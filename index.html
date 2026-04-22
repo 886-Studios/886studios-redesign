@@ -358,10 +358,6 @@
       gap: 18px;
     }
 
-    .home-program-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
     .pcard {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -371,27 +367,118 @@
       transition: transform 0.28s, border-color 0.28s, box-shadow 0.28s;
     }
 
-    .pcard-featured {
-      background:
-        radial-gradient(circle at top right, rgba(139,92,246,0.22), transparent 48%),
-        linear-gradient(155deg, rgba(109,40,217,0.18), rgba(12,12,17,0.94) 58%),
-        var(--bg-card);
-      border-color: rgba(167,139,250,0.34);
-      box-shadow: 0 18px 48px rgba(0,0,0,0.46), 0 0 0 1px rgba(139,92,246,0.1);
-      min-height: 272px;
+    .home-programs-flow {
+      border-top: 1px solid var(--border);
     }
 
-    .card-kicker {
+    .home-program-feature {
+      position: relative;
+      padding: 26px 0 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .home-program-feature-grid {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .home-program-feature-label {
       font-family: var(--font-mono);
       font-size: 10px;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: #d8c7ff;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    .home-program-feature-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4vw, 42px);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      margin-bottom: 12px;
+    }
+
+    .home-program-feature-copy {
+      max-width: 620px;
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.78;
       margin-bottom: 14px;
     }
 
-    .card-kicker span {
-      display: block;
+    .home-program-feature-link {
+      align-self: end;
+      margin-bottom: 4px;
+    }
+
+    .home-program-feature-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #b4b4d3;
+    }
+
+    .home-program-feature-meta span {
+      white-space: nowrap;
+    }
+
+    .home-program-feature-meta span::before {
+      content: '— ';
+      color: var(--text-secondary);
+    }
+
+    .home-program-mini-grid {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .home-program-mini {
+      display: grid;
+      grid-template-columns: 140px minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: start;
+      padding: 18px 0 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .home-program-mini-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .home-program-mini-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .home-program-mini-title {
+      font-family: var(--font-display);
+      font-size: 25px;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .home-program-mini-copy {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.68;
+      max-width: 46ch;
+    }
+
+    .home-program-mini .card-cta {
+      align-self: end;
+      margin-top: 8px;
     }
 
     .pcard::before {
@@ -888,8 +975,19 @@
         overflow: visible;
       }
 
-      .home-program-grid {
+      .home-program-feature-grid {
         grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .home-program-feature-link {
+        align-self: flex-start;
+        margin-bottom: 0;
+      }
+
+      .home-program-mini {
+        grid-template-columns: 1fr;
+        gap: 10px;
       }
 
       .logo-wall {
@@ -1302,27 +1400,47 @@
     <div class="section-tag">Programs</div>
     <h2 class="section-h2">How we support founders</h2>
     <p class="section-lead">From accelerator funding to community desks and coaching — find the program that meets you where you are.</p>
-      <div class="cards-grid home-program-grid">
-      <div class="pcard pcard-featured">
-        <div class="card-kicker"><span>Flagship</span><span>Accelerator</span></div>
-        <h3 class="card-title">ikigai Launchpad</h3>
-        <p class="card-body">$100K funding, hands-on coaching, and mentorship from seasoned entrepreneurs. Powered by 886 Studios and built for founders who want a higher-conviction launch in Taipei.</p>
-        <button class="card-cta" onclick="showPage('programs')">Learn more →</button>
-      </div>
-      <div class="pcard">
-        <h3 class="card-title">Launch Station</h3>
-        <p class="card-body">Free dedicated desks at Taiwan Tech Arena. A vibrant environment to build your startup alongside the 886 Studios community in Taipei.</p>
-        <button class="card-cta" onclick="showPage('programs')">Learn more →</button>
-      </div>
-      <div class="pcard">
-        <h3 class="card-title">ikigai Venture Scout</h3>
-        <p class="card-body">Empower students and recent grads to spot promising founders and connect them to ikigai Launchpad. Earn compensation for successful referrals.</p>
-        <button class="card-cta" onclick="showPage('programs')">Learn more →</button>
-      </div>
-      <div class="pcard">
-        <h3 class="card-title">886 Velocity</h3>
-        <p class="card-body">Accelerator coaching that helps your startup get into and get funded by top accelerators — including Y Combinator.</p>
-        <button class="card-cta" onclick="showPage('programs')">Learn more →</button>
+    <div class="home-programs-flow">
+      <article class="home-program-feature">
+        <div class="home-program-feature-grid">
+          <div class="home-program-feature-label">Flagship<br>Accelerator</div>
+          <div>
+            <h3 class="home-program-feature-title">ikigai Launchpad</h3>
+            <p class="home-program-feature-copy">$100K funding, partner mentorship, and a tight founder batch built for startups that want to move fast from Taipei.</p>
+            <div class="home-program-feature-meta">
+              <span>$100K funding</span>
+              <span>Partner office hours</span>
+              <span>Batch community</span>
+            </div>
+          </div>
+          <button class="card-cta home-program-feature-link" onclick="showPage('programs')">Learn more →</button>
+        </div>
+      </article>
+      <div class="home-program-mini-grid">
+        <article class="home-program-mini">
+          <div class="home-program-mini-label">Community</div>
+          <div class="home-program-mini-body">
+            <h3 class="home-program-mini-title">Launch Station</h3>
+            <p class="home-program-mini-copy">Free coworking space and a founder community inside Taiwan Tech Arena.</p>
+          </div>
+          <button class="card-cta" onclick="showPage('programs')">Learn more →</button>
+        </article>
+        <article class="home-program-mini">
+          <div class="home-program-mini-label">Campus Network</div>
+          <div class="home-program-mini-body">
+            <h3 class="home-program-mini-title">ikigai Venture Scout</h3>
+            <p class="home-program-mini-copy">Source standout founders on campus and connect them into the 886 network.</p>
+          </div>
+          <button class="card-cta" onclick="showPage('programs')">Learn more →</button>
+        </article>
+        <article class="home-program-mini">
+          <div class="home-program-mini-label">Coaching</div>
+          <div class="home-program-mini-body">
+            <h3 class="home-program-mini-title">886 Velocity</h3>
+            <p class="home-program-mini-copy">Sharpen your story, materials, and accelerator readiness with direct coaching.</p>
+          </div>
+          <button class="card-cta" onclick="showPage('programs')">Learn more →</button>
+        </article>
       </div>
     </div>
   </div>
