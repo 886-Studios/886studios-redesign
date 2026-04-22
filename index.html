@@ -1283,6 +1283,131 @@
     .nl-btn:hover { background: var(--purple-bright); }
 
     /* ===========================
+       APPLICATION SECTION
+    =========================== */
+    .apply-highlight {
+      background: linear-gradient(135deg, rgba(139,92,246,0.08), rgba(109,40,217,0.06));
+      border: 1px solid rgba(139,92,246,0.25);
+      border-radius: 16px;
+      padding: 64px 48px;
+      margin: 40px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .apply-highlight::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 100% 0%, rgba(167,139,250,0.1), transparent 60%);
+      pointer-events: none;
+    }
+
+    .apply-highlight-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 48px;
+    }
+
+    .apply-highlight-content h3 {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .apply-highlight-content p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-bottom: 20px;
+    }
+
+    .apply-highlight-cta {
+      display: inline-flex;
+      gap: 12px;
+    }
+
+    /* Application form styles */
+    .app-form-grid {
+      display: grid;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .app-form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .app-form-label {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .app-form-input,
+    .app-form-select,
+    .app-form-textarea {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .app-form-input:focus,
+    .app-form-select:focus,
+    .app-form-textarea:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(139,92,246,0.1);
+    }
+
+    .app-form-textarea {
+      min-height: 120px;
+      resize: vertical;
+      font-family: var(--font-body);
+    }
+
+    .app-form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .app-form-hint {
+      font-size: 12px;
+      color: var(--text-secondary);
+      margin-top: 6px;
+    }
+
+    @media (max-width: 768px) {
+      .apply-highlight {
+        padding: 40px 24px;
+      }
+
+      .apply-highlight-inner {
+        flex-direction: column;
+        gap: 24px;
+      }
+
+      .app-form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===========================
        HOME PAGE DENSITY
     =========================== */
     #page-home .hero {
@@ -1366,6 +1491,7 @@
       <button class="nav-link" id="nav-about" onclick="showPage('about')">About</button>
       <button class="nav-link" id="nav-events" onclick="showPage('events')">Events</button>
       <button class="nav-link" id="nav-contact" onclick="showPage('contact')">Contact</button>
+      <button class="nav-link" id="nav-apply" onclick="showPage('apply')">Apply</button>
     </div>
     <a class="nav-cta" href="https://tally.so/r/w5p4jQ" target="_blank">Apply Now →</a>
   </div>
@@ -1568,6 +1694,22 @@
           <span class="portfolio-item">Gitroll</span>
           <span class="portfolio-item">Dentscape</span>
           <span class="portfolio-item">Valtech</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Highlight -->
+  <div class="section" style="padding-bottom: 40px;">
+    <div class="apply-highlight">
+      <div class="apply-highlight-inner">
+        <div class="apply-highlight-content">
+          <h3>Ready to build what matters?</h3>
+          <p>Apply to ikigai Launchpad and get $100K in funding, partner mentorship, and access to our global network.</p>
+          <div class="apply-highlight-cta">
+            <button class="btn-pri" onclick="showPage('apply')">Start Application →</button>
+            <button class="btn-sec" onclick="showPage('programs')">Learn More</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1964,6 +2106,189 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ===================== APPLICATION ===================== -->
+<div class="page" id="page-apply">
+  <div class="pg-hero">
+    <div class="pg-hero-glow"></div>
+    <div class="section-tag">Application</div>
+    <h1 class="section-h2" style="font-size:clamp(32px,5vw,56px)">Join ikigai Launchpad</h1>
+    <p class="section-lead" style="margin-bottom:0">Tell us about your startup and why you'd be a great fit for our accelerator program.</p>
+  </div>
+  <div class="pg-divider"></div>
+  <div class="section" style="max-width:800px;margin:0 auto">
+    <form class="app-form-grid">
+      <!-- Founder Information -->
+      <div style="margin-bottom:24px">
+        <div class="section-tag">Founder Information</div>
+      </div>
+
+      <div class="app-form-row">
+        <div class="app-form-group">
+          <label class="app-form-label">Founder Name</label>
+          <input type="text" class="app-form-input" placeholder="Your name">
+          <div class="app-form-hint">Full name of the primary founder</div>
+        </div>
+        <div class="app-form-group">
+          <label class="app-form-label">Email Address</label>
+          <input type="email" class="app-form-input" placeholder="you@company.com">
+          <div class="app-form-hint">We'll use this to contact you</div>
+        </div>
+      </div>
+
+      <div class="app-form-row">
+        <div class="app-form-group">
+          <label class="app-form-label">Phone Number</label>
+          <input type="tel" class="app-form-input" placeholder="+886 9XX XXX XXX">
+          <div class="app-form-hint">Include country code</div>
+        </div>
+        <div class="app-form-group">
+          <label class="app-form-label">Co-founders</label>
+          <input type="text" class="app-form-input" placeholder="Names and roles (if applicable)">
+          <div class="app-form-hint">List any other founders on the team</div>
+        </div>
+      </div>
+
+      <!-- Company Information -->
+      <div style="margin-top:40px;margin-bottom:24px">
+        <div class="section-tag">Company Information</div>
+      </div>
+
+      <div class="app-form-group">
+        <label class="app-form-label">Company Name</label>
+        <input type="text" class="app-form-input" placeholder="Your startup's name">
+        <div class="app-form-hint">What is your company called?</div>
+      </div>
+
+      <div class="app-form-row">
+        <div class="app-form-group">
+          <label class="app-form-label">Industry</label>
+          <select class="app-form-select">
+            <option value="">Select an industry...</option>
+            <option value="saas">SaaS</option>
+            <option value="fintech">FinTech</option>
+            <option value="ai">AI/ML</option>
+            <option value="deeptech">DeepTech</option>
+            <option value="gaming">Gaming</option>
+            <option value="marketplaces">Marketplaces</option>
+            <option value="hardware">Hardware</option>
+            <option value="biotech">BioTech</option>
+            <option value="other">Other</option>
+          </select>
+          <div class="app-form-hint">What's your primary industry?</div>
+        </div>
+        <div class="app-form-group">
+          <label class="app-form-label">Stage</label>
+          <select class="app-form-select">
+            <option value="">Select a stage...</option>
+            <option value="idea">Idea Stage</option>
+            <option value="pre-launch">Pre-Launch</option>
+            <option value="launched">Launched (Early Users)</option>
+            <option value="mvp">MVP with Revenue</option>
+            <option value="growth">Growth Stage</option>
+          </select>
+          <div class="app-form-hint">Where is your startup at right now?</div>
+        </div>
+      </div>
+
+      <!-- Company Story -->
+      <div style="margin-top:40px;margin-bottom:24px">
+        <div class="section-tag">Your Story</div>
+      </div>
+
+      <div class="app-form-group">
+        <label class="app-form-label">What problem are you solving?</label>
+        <textarea class="app-form-textarea" placeholder="Describe the problem you're addressing and who it affects..."></textarea>
+        <div class="app-form-hint">Help us understand the market opportunity</div>
+      </div>
+
+      <div class="app-form-group">
+        <label class="app-form-label">How are you solving it?</label>
+        <textarea class="app-form-textarea" placeholder="Explain your approach, product, and what makes you different..."></textarea>
+        <div class="app-form-hint">What's unique about your solution?</div>
+      </div>
+
+      <div class="app-form-group">
+        <label class="app-form-label">Why are you the right team to build this?</label>
+        <textarea class="app-form-textarea" placeholder="Tell us about relevant experiences, skills, and why you're uniquely positioned..."></textarea>
+        <div class="app-form-hint">What gives you an unfair advantage?</div>
+      </div>
+
+      <!-- Metrics & Traction -->
+      <div style="margin-top:40px;margin-bottom:24px">
+        <div class="section-tag">Metrics & Traction</div>
+      </div>
+
+      <div class="app-form-row">
+        <div class="app-form-group">
+          <label class="app-form-label">Current Monthly Revenue or MRR</label>
+          <input type="text" class="app-form-input" placeholder="$0 or N/A">
+          <div class="app-form-hint">If applicable</div>
+        </div>
+        <div class="app-form-group">
+          <label class="app-form-label">Number of Active Users</label>
+          <input type="text" class="app-form-input" placeholder="0 or N/A">
+          <div class="app-form-hint">Monthly active users</div>
+        </div>
+      </div>
+
+      <div class="app-form-group">
+        <label class="app-form-label">Key Metrics (Month-over-Month Growth, Retention, etc.)</label>
+        <textarea class="app-form-textarea" placeholder="Share your most important metrics and growth rates..."></textarea>
+        <div class="app-form-hint">What shows momentum?</div>
+      </div>
+
+      <!-- Vision & Plans -->
+      <div style="margin-top:40px;margin-bottom:24px">
+        <div class="section-tag">Your Vision</div>
+      </div>
+
+      <div class="app-form-group">
+        <label class="app-form-label">What's your 3-year vision?</label>
+        <textarea class="app-form-textarea" placeholder="Describe where you see your company in 3 years..."></textarea>
+        <div class="app-form-hint">Be ambitious</div>
+      </div>
+
+      <div class="app-form-group">
+        <label class="app-form-label">Why are you interested in 886 Studios / ikigai Launchpad?</label>
+        <textarea class="app-form-textarea" placeholder="What specifically appeals to you about our program?..."></textarea>
+        <div class="app-form-hint">Help us understand the fit</div>
+      </div>
+
+      <!-- Additional Information -->
+      <div style="margin-top:40px;margin-bottom:24px">
+        <div class="section-tag">Additional Information</div>
+      </div>
+
+      <div class="app-form-row">
+        <div class="app-form-group">
+          <label class="app-form-label">Company Website</label>
+          <input type="url" class="app-form-input" placeholder="https://yourcompany.com">
+          <div class="app-form-hint">If you have one</div>
+        </div>
+        <div class="app-form-group">
+          <label class="app-form-label">Location</label>
+          <input type="text" class="app-form-input" placeholder="City, Country">
+          <div class="app-form-hint">Where is your team based?</div>
+        </div>
+      </div>
+
+      <div class="app-form-group">
+        <label class="app-form-label">Additional Links</label>
+        <textarea class="app-form-textarea" placeholder="Links to your pitch deck, demo video, GitHub, LinkedIn profiles, etc."></textarea>
+        <div class="app-form-hint">Share any relevant links (optional)</div>
+      </div>
+
+      <!-- Submit -->
+      <div style="margin-top:40px;display:flex;gap:12px;justify-content:flex-start">
+        <button type="submit" class="btn-pri">Submit Application →</button>
+        <button type="button" class="btn-sec" onclick="showPage('home')">Cancel</button>
+      </div>
+
+      <p style="font-size:12px;color:var(--text-secondary);margin-top:20px">By submitting this application, you agree to our terms and privacy policy. We'll review all applications carefully and get back to you within 2 weeks.</p>
+    </form>
   </div>
 </div>
 
