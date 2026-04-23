@@ -5,8 +5,9 @@ This repo is structured as a small Astro site so the current website can stay vi
 ## Why this structure
 
 - `src/` holds the website source files
-- `public/` holds static files like logos and browser scripts
-- each major section of the current site lives in its own component
+- `public/` holds static files like logos
+- each route has its own page file in `src/pages/`
+- each major page body lives in its own component
 - the project can be forked, cloned, previewed locally, and deployed as a standard static website
 
 ## Project structure
@@ -14,7 +15,6 @@ This repo is structured as a small Astro site so the current website can stay vi
 ```text
 public/
   assets/
-    js/
     logos/
 src/
   components/
@@ -44,7 +44,8 @@ npm run check
 
 ## How to build on top of this
 
+- edit most site copy in `src/data/siteContent.ts`
 - edit visual styles in `src/styles/global.css`
 - update shared chrome in `src/components/SiteNav.astro` and `src/components/SiteFooter.astro`
-- update each current website section in `src/components/pages/`
-- when you are ready for true URLs like `/about` or `/programs`, this structure is already set up to grow into that cleanly
+- update section structure in `src/components/pages/`
+- add or reorganize subpages in `src/pages/`

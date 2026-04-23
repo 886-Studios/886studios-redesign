@@ -1,18 +1,30 @@
+---
+import { brand, siteContent } from "../data/siteContent";
+
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+---
+
 <!-- ===================== NAV ===================== -->
 <nav>
   <div class="nav-inner">
-    <div class="nav-logo" onclick="showPage('home')">
-      <img src="https://assets.super.so/84e41881-15d5-4c3b-8757-ffaf6ffc4c3d/images/7d822858-0851-478f-8873-befb9dbe6aba/886_Logo_(white).avif" alt="886 Studios">
-    </div>
+    <a class="nav-logo" href="/">
+      <img src={brand.logoUrl} alt={brand.logoAlt} />
+    </a>
     <div class="nav-links">
-      <button class="nav-link" id="nav-home" onclick="showPage('home')">Home</button>
-      <button class="nav-link" id="nav-programs" onclick="showPage('programs')">Programs</button>
-      <button class="nav-link" id="nav-resources" onclick="showPage('resources')">Resources</button>
-      <button class="nav-link" id="nav-about" onclick="showPage('about')">About</button>
-      <button class="nav-link" id="nav-events" onclick="showPage('events')">Events</button>
-      <button class="nav-link" id="nav-contact" onclick="showPage('contact')">Contact</button>
+      {
+        siteContent.nav.items.map((item) => (
+          <a class:list={["nav-link", currentPath === item.href && "active"]} href={item.href}>
+            {item.label}
+          </a>
+        ))
+      }
     </div>
-    <a class="nav-cta" href="https://tally.so/r/w5p4jQ" target="_blank">Apply Now →</a>
+    <a class="nav-cta" href={siteContent.nav.cta.href} target="_blank">
+      {siteContent.nav.cta.label}
+    </a>
   </div>
 </nav>
-

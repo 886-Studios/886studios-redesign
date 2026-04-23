@@ -132,8 +132,7 @@
     /* ===========================
        PAGES
     =========================== */
-    .page { display: none; min-height: 100vh; padding-top: var(--nav-height); }
-    .page.active { display: block; }
+    .page { display: block; min-height: 100vh; padding-top: var(--nav-height); }
 
     /* ===========================
        HOME — HERO

@@ -1,106 +1,69 @@
+---
+import { siteContent } from "../../data/siteContent";
+
+const { programs } = siteContent;
+---
+
 <div class="page" id="page-programs">
   <div class="pg-hero program-hero">
     <div class="pg-hero-glow"></div>
-    <div class="section-tag">Programs</div>
+    <div class="section-tag">{programs.eyebrow}</div>
     <div class="program-intro-grid">
       <div>
-        <h1 class="program-headline">Pick the lane that matches your momentum.</h1>
-        <p class="section-lead program-summary">Four ways to work with 886 Studios, from direct startup acceleration to community, campus sourcing, and founder coaching.</p>
+        <h1 class="program-headline">{programs.title}</h1>
+        <p class="section-lead program-summary">{programs.lead}</p>
       </div>
     </div>
   </div>
   <div class="pg-divider"></div>
   <div class="program-shell">
     <div class="program-lane">
-      <article class="program-row">
-        <div class="program-meta">
-          <div class="program-number">01</div>
-          <div class="program-track">Accelerator</div>
-        </div>
-        <div>
-          <div class="program-heading">
-            <h2 class="program-name">ikigai Launchpad</h2>
-            <a class="program-heading-link" href="https://withikigai.com/" target="_blank">Visit Website</a>
-          </div>
-          <p class="program-description">A 12-week accelerator in Taipei for early-stage founders who want capital, close operator support, and the pressure-tested structure to move from idea to real traction.</p>
-          <div class="program-highlights">
-            <span class="program-highlight">$100K in funding</span>
-            <span class="program-highlight">Weekly office hours with partners</span>
-            <span class="program-highlight">Demo Day + investor intros</span>
-          </div>
-        </div>
-        <div class="program-side">
-          <div class="program-fit-label">Best for</div>
-          <p class="program-fit">Early-stage founders who want capital, close support, and momentum.</p>
-          <div class="program-cta-row">
-            <a class="btn-pri program-link" href="https://tally.so/r/w5p4jQ" target="_blank">Apply Here →</a>
-          </div>
-        </div>
-      </article>
-
-      <article class="program-row">
-        <div class="program-meta">
-          <div class="program-number">02</div>
-          <div class="program-track">Community</div>
-        </div>
-        <div>
-          <h2 class="program-name">Launch Station</h2>
-          <p class="program-description">A free workspace inside Taiwan Tech Arena for founders who build better around other ambitious teams. The point is proximity: more collisions, more conversations, more forward motion.</p>
-          <div class="program-highlights">
-            <span class="program-highlight">Founder community</span>
-            <span class="program-highlight">Free coworking space</span>
-          </div>
-        </div>
-        <div class="program-side">
-          <div class="program-fit-label">Best for</div>
-          <p class="program-fit">Founders who want a Taipei base and builder energy.</p>
-          <button class="card-cta program-link">Applications open soon →</button>
-        </div>
-      </article>
-
-      <article class="program-row">
-        <div class="program-meta">
-          <div class="program-number">03</div>
-          <div class="program-track">Campus Network</div>
-        </div>
-        <div>
-          <h2 class="program-name">ikigai Venture Scout</h2>
-          <p class="program-description">A campus discovery network that finds strong student founders early and connects them into ikigai Launchpad. Scouts build venture instincts while becoming the bridge between universities and the startup ecosystem.</p>
-          <div class="program-highlights">
-            <span class="program-highlight">Source founders on your campus</span>
-            <span class="program-highlight">Referral compensation</span>
-            <span class="program-highlight">Access to our network</span>
-          </div>
-        </div>
-        <div class="program-side">
-          <div class="program-fit-label">Best for</div>
-          <p class="program-fit">Students and recent grads plugged into builder communities.</p>
-          <a class="card-cta program-link" href="https://886studios.com/program/ikigai-venture-scout" target="_blank">Learn more →</a>
-        </div>
-      </article>
-
-      <article class="program-row">
-        <div class="program-meta">
-          <div class="program-number">04</div>
-          <div class="program-track">Coaching</div>
-        </div>
-        <div>
-          <h2 class="program-name">886 Velocity</h2>
-          <p class="program-description">Accelerator coaching for founders who want sharper applications, clearer narratives, and a stronger shot at getting into top global programs like YC.</p>
-          <div class="program-highlights">
-            <span class="program-highlight">Application strategy</span>
-            <span class="program-highlight">Narrative sharpening</span>
-            <span class="program-highlight">Interview prep</span>
-          </div>
-        </div>
-        <div class="program-side">
-          <div class="program-fit-label">Best for</div>
-          <p class="program-fit">Founders applying to top accelerators and sharpening their story.</p>
-          <button class="card-cta program-link">Learn more →</button>
-        </div>
-      </article>
+      {
+        programs.items.map((item) => (
+          <article class="program-row">
+            <div class="program-meta">
+              <div class="program-number">{item.number}</div>
+              <div class="program-track">{item.track}</div>
+            </div>
+            <div>
+              {item.headingLink ? (
+                <div class="program-heading">
+                  <h2 class="program-name">{item.name}</h2>
+                  <a class="program-heading-link" href={item.headingLink.href} target="_blank">
+                    {item.headingLink.label}
+                  </a>
+                </div>
+              ) : (
+                <h2 class="program-name">{item.name}</h2>
+              )}
+              <p class="program-description">{item.body}</p>
+              <div class="program-highlights">
+                {item.highlights.map((highlight) => <span class="program-highlight">{highlight}</span>)}
+              </div>
+            </div>
+            <div class="program-side">
+              <div class="program-fit-label">Best for</div>
+              <p class="program-fit">{item.fit}</p>
+              {item.cta.type === "primary" && (
+                <div class="program-cta-row">
+                  <a class="btn-pri program-link" href={item.cta.href} target="_blank">
+                    {item.cta.label}
+                  </a>
+                </div>
+              )}
+              {item.cta.type === "link" && (
+                <a class="card-cta program-link" href={item.cta.href} target="_blank">
+                  {item.cta.label}
+                </a>
+              )}
+              {item.cta.type === "secondary" && (
+                <button class="card-cta program-link">{item.cta.label}</button>
+              )}
+            </div>
+          </article>
+        ))
+      }
     </div>
-    <div class="program-footer-note">All programs are designed to help founders move faster, think sharper, and build with more leverage.</div>
+    <div class="program-footer-note">{programs.footer}</div>
   </div>
 </div>
-

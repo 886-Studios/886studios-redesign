@@ -1,79 +1,56 @@
+---
+import { siteContent } from "../../data/siteContent";
+
+const { resources } = siteContent;
+---
+
 <div class="page" id="page-resources">
   <div class="pg-hero">
     <div class="pg-hero-glow"></div>
-    <div class="section-tag">Resources</div>
-    <h1 class="section-h2 pg-hero-title">Tools for founders</h1>
-    <p class="section-lead section-lead--flush">Guides, databases, and exclusive perks for the 886 Studios community.</p>
+    <div class="section-tag">{resources.eyebrow}</div>
+    <h1 class="section-h2 pg-hero-title">{resources.title}</h1>
+    <p class="section-lead section-lead--flush">{resources.lead}</p>
   </div>
   <div class="pg-divider"></div>
   <div class="section">
-    <div class="section-tag">Knowledge Library</div>
+    <div class="section-tag">{resources.libraryTitle}</div>
     <div class="res-grid">
-      <a class="res-item" href="#">
-        <div class="res-icon">📚</div>
-        <div><div class="res-name">Y Combinator 101</div><div class="res-sub">Everything you need to know about YC</div></div>
-      </a>
-      <a class="res-item" href="#">
-        <div class="res-icon">📄</div>
-        <div><div class="res-name">Incorporation 101</div><div class="res-sub">How to incorporate your startup</div></div>
-      </a>
-      <a class="res-item" href="#">
-        <div class="res-icon">📝</div>
-        <div><div class="res-name">Application Guide</div><div class="res-sub">Write the winning accelerator app</div></div>
-      </a>
-      <a class="res-item" href="#">
-        <div class="res-icon">🗺️</div>
-        <div><div class="res-name">Ecosystem Database</div><div class="res-sub">Taiwan startup ecosystem map</div></div>
-      </a>
-      <a class="res-item" href="#">
-        <div class="res-icon">❓</div>
-        <div><div class="res-name">Founders FAQs</div><div class="res-sub">Common founder questions, answered</div></div>
-      </a>
-      <a class="res-item" href="#">
-        <div class="res-icon">🎯</div>
-        <div><div class="res-name">Interview Guidebook</div><div class="res-sub">Nail your accelerator interview</div></div>
-      </a>
+      {
+        resources.libraryItems.map((item) => (
+          <a class="res-item" href="#">
+            <div class="res-icon">{item.icon}</div>
+            <div>
+              <div class="res-name">{item.title}</div>
+              <div class="res-sub">{item.subtitle}</div>
+            </div>
+          </a>
+        ))
+      }
     </div>
 
     <div class="section-stack-48">
-      <div class="section-tag">Ask Me Anything</div>
+      <div class="section-tag">{resources.ama.eyebrow}</div>
       <div class="pcard pcard--narrow">
-        <h3 class="card-title">886 AMA</h3>
-        <p class="card-body">Your questions are addressed asynchronously by our venture partners who've encountered the same challenges. No question too basic or too specific.</p>
-        <a class="card-cta" href="#">Submit a question →</a>
+        <h3 class="card-title">{resources.ama.title}</h3>
+        <p class="card-body">{resources.ama.body}</p>
+        <a class="card-cta" href="#">{resources.ama.ctaLabel}</a>
       </div>
     </div>
 
     <div class="section-stack-56">
-      <div class="section-tag">Exclusive Perks</div>
-      <p class="perks-note">Unlock these perks by working with us through ikigai Launchpad or Launch Station.</p>
+      <div class="section-tag">{resources.perks.eyebrow}</div>
+      <p class="perks-note">{resources.perks.note}</p>
 
-      <div class="perk-section-label">Productivity</div>
-      <div class="perks-row">
-        <div class="perk">📝 Notion</div>
-        <div class="perk">📋 Coda</div>
-        <div class="perk">📤 DocSend</div>
-        <div class="perk">🗂️ Miro</div>
-      </div>
-
-      <div class="perk-section-label">Finances</div>
-      <div class="perks-row">
-        <div class="perk">💳 Ramp</div>
-        <div class="perk">🏦 Mercury</div>
-      </div>
-
-      <div class="perk-section-label">Marketing</div>
-      <div class="perks-row">
-        <div class="perk">📈 HubSpot</div>
-        <div class="perk">🌐 Webflow</div>
-      </div>
-
-      <div class="perk-section-label">Engineering</div>
-      <div class="perks-row">
-        <div class="perk">☁️ AWS Activate</div>
-        <div class="perk">🐙 GitHub</div>
-      </div>
+      {
+        resources.perks.categories.map((category) => (
+          <>
+            <div class="perk-section-label">{category.title}</div>
+            <div class="perks-row">
+              {category.items.map((item) => <div class="perk">{item}</div>)}
+            </div>
+          </>
+        ))
+      }
     </div>
   </div>
 </div>
-
