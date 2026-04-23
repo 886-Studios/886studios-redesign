@@ -1,0 +1,22 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteNav from "../components/SiteNav.astro";
+import AboutPage from "../components/pages/AboutPage.astro";
+import ContactPage from "../components/pages/ContactPage.astro";
+import EventsPage from "../components/pages/EventsPage.astro";
+import HomePage from "../components/pages/HomePage.astro";
+import ProgramsPage from "../components/pages/ProgramsPage.astro";
+import ResourcesPage from "../components/pages/ResourcesPage.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <SiteNav />
+  <HomePage />
+  <ProgramsPage />
+  <ResourcesPage />
+  <AboutPage />
+  <EventsPage />
+  <ContactPage />
+  <SiteFooter />
+</BaseLayout>
