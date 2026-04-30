@@ -562,31 +562,6 @@
       padding: 14px 18px;
     }
 
-    .logo-card[data-exit] .logo-stage::after {
-      content: attr(data-exit);
-      position: absolute;
-      right: 10px;
-      bottom: 10px;
-      padding: 5px 8px;
-      border-radius: 999px;
-      background: rgba(7,7,10,0.78);
-      color: #f4f4fb;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 0.18s, transform 0.18s;
-      pointer-events: none;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
-    }
-
-    .logo-card[data-exit]:hover .logo-stage::after {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
     .logo-image {
       display: block;
       max-width: 100%;
