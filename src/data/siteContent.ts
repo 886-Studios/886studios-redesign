@@ -37,11 +37,10 @@ export const siteContent = {
     items: [
       { id: "home", label: "Home", href: "/" },
       { id: "programs", label: "Programs", href: "/programs" },
-      { id: "resources", label: "Resources", href: "/resources" },
-      { id: "about", label: "About", href: "/about" },
+      { id: "about", label: "About Us", href: "/about" },
       { id: "events", label: "Events", href: "/events" },
+      { id: "resources", label: "Resources", href: "/resources" },
       { id: "contact", label: "Contact", href: "/contact" },
-      { id: "apply", label: "Apply", href: "/apply" },
     ],
   },
   home: {
