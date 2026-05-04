@@ -217,19 +217,6 @@ export const siteContent = {
         "Valtech",
       ],
     },
-    applyHighlight: {
-      title: "Ready to build what matters?",
-      body:
-        "Apply to ikigai Launchpad and get $100K in funding, partner mentorship, and access to our global network.",
-      primaryCta: {
-        label: "Start Application →",
-        href: "/apply",
-      },
-      secondaryCta: {
-        label: "Learn More",
-        href: "/programs",
-      },
-    },
     newsletter: {
       title: "Subscribe to our Newsletter",
       body: "Only cool things, we promise.",
@@ -431,7 +418,7 @@ export const siteContent = {
     columns: [
       {
         eyebrow: "Who We Are",
-        title: "Silicon Valley experience.<br>Deep Taiwan roots.",
+        title: "",
         paragraphs: [
           "886 Studios is a group of experienced founders dedicated to building and launching startups globally. Our partners include the founders of Twitch, Kabam, RedOctane (creators of Guitar Hero), Playdom, OrbitBaby, HTC Vive, and other successful companies.",
           "Our portfolio spans industries and geographies, including Discord, OURA, Crunchyroll, Gogoro, P. LEAGUE+, KKBOX, and more. We back ambitious early-stage founders with a commitment to empowering Taiwan's startup ecosystem.",
@@ -440,7 +427,7 @@ export const siteContent = {
       },
       {
         eyebrow: "Our Story",
-        title: "Named for a country code.",
+        title: "",
         paragraphs: [
           "Named after Taiwan's international country code, 886 Studios was born with a singular mission: to foster and grow Taiwan's startup ecosystem.",
           "In our early days, 886 Studios operated as a venture studio. This insight drove us to create the ikigai Launchpad — our startup accelerator designed to propel founders toward global growth.",

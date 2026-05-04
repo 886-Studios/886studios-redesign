@@ -23,8 +23,6 @@ const { home } = siteContent;
     </div>
   </section>
 
-  <hr class="divider">
-
   <!-- Programs strip -->
   <div class="section">
     <div class="section-tag">{home.programs.eyebrow}</div>
@@ -65,8 +63,6 @@ const { home } = siteContent;
     </div>
   </div>
 
-  <hr class="divider">
-
   <div class="section">
     <h2 class="section-h2">{home.founders.title}</h2>
     <div class="logo-wall">
@@ -88,25 +84,6 @@ const { home } = siteContent;
         </div>
         <div class="portfolio-track" aria-hidden="true">
           {home.founders.portfolio.map((item) => <span class="portfolio-item">{item}</span>)}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section apply-highlight-section">
-    <div class="apply-highlight">
-      <div class="apply-highlight-inner">
-        <div class="apply-highlight-content">
-          <h3>{home.applyHighlight.title}</h3>
-          <p>{home.applyHighlight.body}</p>
-          <div class="apply-highlight-cta">
-            <a class="btn-pri" href={home.applyHighlight.primaryCta.href}>
-              {home.applyHighlight.primaryCta.label}
-            </a>
-            <a class="btn-sec" href={home.applyHighlight.secondaryCta.href}>
-              {home.applyHighlight.secondaryCta.label}
-            </a>
-          </div>
         </div>
       </div>
     </div>
