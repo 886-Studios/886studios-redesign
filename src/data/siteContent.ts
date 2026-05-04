@@ -244,7 +244,7 @@ export const siteContent = {
       "Four ways to work with 886 Studios, from direct startup acceleration to community, campus sourcing, and founder coaching.",
     items: [
       {
-        number: "01",
+        featuredLabel: "Flagship program",
         track: "Accelerator",
         name: "ikigai Launchpad",
         headingLink: {
@@ -267,7 +267,6 @@ export const siteContent = {
         },
       },
       {
-        number: "02",
         track: "Community",
         name: "Launch Station",
         body:
@@ -275,12 +274,11 @@ export const siteContent = {
         highlights: ["Founder community", "Free coworking space"],
         fit: "Founders who want a Taipei base and builder energy.",
         cta: {
-          type: "secondary",
-          label: "Applications open soon →",
+          type: "status",
+          label: "Applications open soon",
         },
       },
       {
-        number: "03",
         track: "Campus Network",
         name: "ikigai Venture Scout",
         body:
@@ -298,7 +296,6 @@ export const siteContent = {
         },
       },
       {
-        number: "04",
         track: "Coaching",
         name: "886 Velocity",
         body:
@@ -310,11 +307,50 @@ export const siteContent = {
         ],
         fit: "Founders applying to top accelerators and sharpening their story.",
         cta: {
-          type: "secondary",
-          label: "Learn more →",
+          type: "status",
+          label: "Details coming soon",
         },
       },
     ],
+    comparison: {
+      title: "Compare programs",
+      lead: "A quick read on where each program fits, how much time it asks for, and what founders should expect to get out of it.",
+      rows: [
+        {
+          featured: true,
+          program: "ikigai Launchpad",
+          track: "Accelerator",
+          bestFor: "Early-stage founders ready for capital, structure, and close operator support.",
+          commitment: "12-week accelerator",
+          outcome: "$100K funding, partner mentorship, Demo Day, and investor introductions.",
+          status: "Applications open",
+        },
+        {
+          program: "Launch Station",
+          track: "Community",
+          bestFor: "Founders who want a Taipei base and more collisions with other builders.",
+          commitment: "Flexible coworking",
+          outcome: "A free workspace, founder community, and proximity to Taiwan Tech Arena.",
+          status: "Opening soon",
+        },
+        {
+          program: "ikigai Venture Scout",
+          track: "Campus Network",
+          bestFor: "Students and recent grads who are close to campus builder communities.",
+          commitment: "Part-time scout role",
+          outcome: "Venture reps, referral compensation, and access to the 886 Studios network.",
+          status: "Live",
+        },
+        {
+          program: "886 Velocity",
+          track: "Coaching",
+          bestFor: "Founders applying to top accelerators and tightening their story.",
+          commitment: "Founder coaching",
+          outcome: "Sharper applications, stronger narratives, and interview preparation.",
+          status: "Details coming soon",
+        },
+      ],
+    },
     footer:
       "All programs are designed to help founders move faster, think sharper, and build with more leverage.",
   },
