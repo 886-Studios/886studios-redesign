@@ -21,10 +21,14 @@ const { home } = siteContent;
         <a class="btn-pri" href={home.hero.cta.href} target="_blank">{home.hero.cta.label}</a>
       </div>
     </div>
+    <div class="hero-scroll-hint">
+      <div class="hero-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
   </section>
 
   <!-- Programs strip -->
-  <div class="section">
+  <div class="section reveal">
     <div class="section-tag">{home.programs.eyebrow}</div>
     <h2 class="section-h2">{home.programs.title}</h2>
     <p class="section-lead">{home.programs.lead}</p>
@@ -63,7 +67,7 @@ const { home } = siteContent;
     </div>
   </div>
 
-  <div class="section">
+  <div class="section reveal reveal-delay-1">
     <h2 class="section-h2">{home.founders.title}</h2>
     <div class="logo-wall">
       {

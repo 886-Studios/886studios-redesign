@@ -1,0 +1,73 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Page Not Found — 886 Studios" description="The page you're looking for doesn't exist.">
+  <div class="page" id="page-404">
+    <div class="notfound-wrap">
+      <div class="notfound-glow"></div>
+      <div class="notfound-inner">
+        <div class="notfound-code">404</div>
+        <h1 class="notfound-title">Page not found</h1>
+        <p class="notfound-body">The page you're looking for doesn't exist or has been moved.</p>
+        <a class="btn-pri" href="/">Back to home</a>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  #page-404 {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .notfound-wrap {
+    position: relative;
+    text-align: center;
+    padding: 80px 32px;
+  }
+
+  .notfound-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px; height: 300px;
+    background: radial-gradient(ellipse, rgba(109,40,217,0.18), transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+  }
+
+  .notfound-inner { position: relative; }
+
+  .notfound-code {
+    font-family: var(--font-display);
+    font-size: clamp(96px, 16vw, 180px);
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.06em;
+    background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 40%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+
+  .notfound-title {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .notfound-body {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 36px;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
