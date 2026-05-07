@@ -5,21 +5,8 @@ import { brand, siteContent } from "../data/siteContent";
 
 <footer>
   <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a class="footer-logo" href="/"><img src={brand.logoUrl} alt={brand.logoAlt} /></a>
-        <p class="footer-tagline">Building Taiwan's next generation of global tech companies.</p>
-        <SocialLinks />
-      </div>
-      <nav class="footer-nav">
-        {siteContent.nav.items.map((item) => (
-          <a class="footer-nav-link" href={item.href}>{item.label}</a>
-        ))}
-      </nav>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">{siteContent.footer.copy}</div>
-      <a class="footer-apply" href={siteContent.nav.cta.href} target="_blank">{siteContent.nav.cta.label}</a>
-    </div>
+    <a class="footer-logo" href="/"><img src={brand.logoUrl} alt={brand.logoAlt} /></a>
+    <div class="footer-copy">{siteContent.footer.copy}</div>
+    <SocialLinks />
   </div>
 </footer>

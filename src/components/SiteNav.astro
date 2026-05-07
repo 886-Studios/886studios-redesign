@@ -8,7 +8,7 @@ interface Props {
 const { currentPath } = Astro.props;
 ---
 
-<nav>
+<nav class="site-nav">
   <div class="nav-inner">
     <a class="nav-logo" href="/">
       <img src={brand.logoUrl} alt={brand.logoAlt} />
@@ -62,7 +62,7 @@ const { currentPath } = Astro.props;
 </div>
 
 <script>
-  const nav = document.querySelector('nav')!;
+  const nav = document.querySelector('.site-nav')!;
   const hamburger = document.querySelector('.nav-hamburger') as HTMLButtonElement;
   const drawer = document.getElementById('mobile-drawer')!;
   const overlay = drawer.querySelector('.mobile-drawer-overlay')!;
