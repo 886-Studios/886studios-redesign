@@ -12,9 +12,9 @@ export const socialLinks = [
     ariaLabel: "886 Studios on X",
   },
   {
-    platform: "instagram",
-    href: "https://www.instagram.com/ikigai_launchpad/",
-    ariaLabel: "886 Studios on Instagram",
+    platform: "substack",
+    href: "https://886studios.substack.com/",
+    ariaLabel: "ikigai Insights on Substack",
   },
   {
     platform: "linkedin",
@@ -23,8 +23,18 @@ export const socialLinks = [
   },
   {
     platform: "discord",
-    href: "https://discord.com/invite/B98RnZzdgj",
+    href: "https://discord.gg/FGcEHJyB3F",
     ariaLabel: "886 Studios on Discord",
+  },
+  {
+    platform: "instagram",
+    href: "https://www.instagram.com/ikigai_launchpad/",
+    ariaLabel: "886 Studios on Instagram",
+  },
+  {
+    platform: "threads",
+    href: "https://www.threads.net/@ikigai_launchpad",
+    ariaLabel: "ikigai Launchpad on Threads",
   },
 ] as const;
 
@@ -60,7 +70,7 @@ export const siteContent = {
       lead:
         "From accelerator funding to community desks and coaching — find the program that meets you where you are.",
       featured: {
-        label: "Flagship<br>Accelerator",
+        label: "Accelerator",
         title: "ikigai Launchpad",
         body:
           "$100K funding, partner mentorship, and a tight founder batch built for startups that want to move fast from Taipei.",
@@ -87,7 +97,7 @@ export const siteContent = {
         },
         {
           label: "Coaching",
-          title: "886 Velocity",
+          title: "Velocity",
           body:
             "Sharpen your story, materials, and accelerator readiness with direct coaching.",
           ctaLabel: "Learn more →",
@@ -284,7 +294,7 @@ export const siteContent = {
       },
       {
         track: "Coaching",
-        name: "886 Velocity",
+        name: "Velocity",
         body:
           "Accelerator coaching for founders who want sharper applications, clearer narratives, and a stronger shot at getting into top global programs like YC.",
         highlights: [
@@ -329,7 +339,7 @@ export const siteContent = {
           status: "Live",
         },
         {
-          program: "886 Velocity",
+          program: "Velocity",
           track: "Coaching",
           bestFor: "Founders applying to top accelerators and tightening their story.",
           commitment: "Founder coaching",
