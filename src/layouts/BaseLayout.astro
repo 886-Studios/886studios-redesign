@@ -5,10 +5,18 @@ import SiteNav from "../components/SiteNav.astro";
 
 interface Props {
   title?: string;
+  description?: string;
+  ogImage?: string;
 }
 
-const { title = "886 Studios — Taipei's Premier Startup Accelerator" } = Astro.props;
+const {
+  title = "886 Studios — Taipei's Premier Startup Accelerator",
+  description = "886 Studios backs ambitious early-stage founders building companies with global potential — built by the founders behind Twitch, Kabam, and Guitar Hero.",
+  ogImage = "https://886studios.com/og-image.jpg",
+} = Astro.props;
+
 const currentPath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/$/, "");
+const canonicalUrl = Astro.url.href;
 ---
 
 <!DOCTYPE html>
@@ -17,6 +25,24 @@ const currentPath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replac
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="886 Studios" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@886Studios" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
     <link rel="icon" type="image/avif" href="/favicon.avif" />
     <link rel="shortcut icon" type="image/avif" href="/favicon.avif" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

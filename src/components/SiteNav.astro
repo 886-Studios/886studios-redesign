@@ -8,7 +8,6 @@ interface Props {
 const { currentPath } = Astro.props;
 ---
 
-<!-- ===================== NAV ===================== -->
 <nav>
   <div class="nav-inner">
     <a class="nav-logo" href="/">
@@ -23,8 +22,72 @@ const { currentPath } = Astro.props;
         ))
       }
     </div>
-    <a class="nav-cta" href={siteContent.nav.cta.href} target="_blank">
+    <a class="nav-cta nav-cta--desktop" href={siteContent.nav.cta.href} target="_blank">
       {siteContent.nav.cta.label}
     </a>
+    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+  <div class="mobile-drawer-overlay"></div>
+  <div class="mobile-drawer-panel">
+    <div class="mobile-drawer-header">
+      <a class="nav-logo" href="/">
+        <img src={brand.logoUrl} alt={brand.logoAlt} />
+      </a>
+      <button class="mobile-drawer-close" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </div>
+    <nav class="mobile-drawer-nav">
+      {
+        siteContent.nav.items.map((item) => (
+          <a class:list={["mobile-nav-link", currentPath === item.href && "active"]} href={item.href}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="mobile-drawer-footer">
+      <a class="btn-pri" href={siteContent.nav.cta.href} target="_blank" style="width:100%;justify-content:center;">
+        {siteContent.nav.cta.label}
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const hamburger = document.querySelector('.nav-hamburger') as HTMLButtonElement;
+  const drawer = document.getElementById('mobile-drawer')!;
+  const overlay = drawer.querySelector('.mobile-drawer-overlay')!;
+  const closeBtn = drawer.querySelector('.mobile-drawer-close')!;
+
+  function openDrawer() {
+    drawer.setAttribute('aria-hidden', 'false');
+    hamburger.setAttribute('aria-expanded', 'true');
+    hamburger.classList.add('is-open');
+    drawer.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    drawer.setAttribute('aria-hidden', 'true');
+    hamburger.setAttribute('aria-expanded', 'false');
+    hamburger.classList.remove('is-open');
+    drawer.classList.remove('is-open');
+    document.body.style.overflow = '';
+  }
+
+  hamburger.addEventListener('click', openDrawer);
+  closeBtn.addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', closeDrawer);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDrawer();
+  });
+</script>
