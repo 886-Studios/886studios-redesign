@@ -455,12 +455,11 @@ export const siteContent = {
     teamTitle: "Operating Team",
     team: [
       { initials: "FW", name: "Freya Wu", role: "General Manager", photo: "/assets/headshots/freya-wu.jpg" },
-      { initials: "GW", name: "Gin Wu", role: "Program & Ops Lead", photo: "/assets/headshots/gin-wu.png" },
       { initials: "CW", name: "Carter Wang", role: "Venture Associate", photo: "/assets/headshots/carter-wang.png" },
     ],
     partnersTitle: "Partners",
     partners: [
-      { initials: "KH", name: "Kai Huang", company: "Twitch, Guitar Hero", photo: "/assets/headshots/kai-huang.jpg" },
+      { initials: "KH", name: "Kai Huang", company: "Guitar Hero", photo: "/assets/headshots/kai-huang.jpg" },
       { initials: "JH", name: "Joseph Hei", company: "Twitch, Metatheory", photo: "/assets/headshots/joseph-hei.jpg" },
       { initials: "CH", name: "Charles Huang", company: "Guitar Hero, Kabam", photo: "/assets/headshots/charles-huang.jpg" },
       { initials: "JH", name: "Jameson Hsu", company: "Kabam", photo: "/assets/headshots/jameson-hsu.jpg" },
