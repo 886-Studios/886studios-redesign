@@ -1,8 +1,7 @@
 export const brand = {
   name: "886 Studios",
   logoAlt: "886 Studios",
-  logoUrl:
-    "https://assets.super.so/84e41881-15d5-4c3b-8757-ffaf6ffc4c3d/images/7d822858-0851-478f-8873-befb9dbe6aba/886_Logo_(white).avif",
+  logoUrl: "/assets/886-logo.avif",
 };
 
 export const socialLinks = [
@@ -222,6 +221,7 @@ export const siteContent = {
       body: "Only cool things, we promise.",
       placeholder: "you@company.com",
       button: "Subscribe →",
+      href: "https://886studios.substack.com/",
     },
   },
   programs: {
@@ -352,31 +352,37 @@ export const siteContent = {
         icon: "📚",
         title: "Y Combinator 101",
         subtitle: "Everything you need to know about YC",
+        href: "https://886studios.substack.com/",
       },
       {
         icon: "📄",
         title: "Incorporation 101",
         subtitle: "How to incorporate your startup",
+        href: "https://886studios.substack.com/",
       },
       {
         icon: "📝",
         title: "Application Guide",
         subtitle: "Write the winning accelerator app",
+        href: "https://886studios.substack.com/",
       },
       {
         icon: "🗺️",
         title: "Ecosystem Database",
         subtitle: "Taiwan startup ecosystem map",
+        href: "https://886studios.substack.com/",
       },
       {
         icon: "❓",
         title: "Founders FAQs",
         subtitle: "Common founder questions, answered",
+        href: "https://886studios.substack.com/",
       },
       {
         icon: "🎯",
         title: "Interview Guidebook",
         subtitle: "Nail your accelerator interview",
+        href: "https://886studios.substack.com/",
       },
     ],
     ama: {
@@ -385,6 +391,7 @@ export const siteContent = {
       body:
         "Your questions are addressed asynchronously by our venture partners who've encountered the same challenges. No question too basic or too specific.",
       ctaLabel: "Submit a question →",
+      ctaHref: "https://886studios.substack.com/",
     },
     perks: {
       eyebrow: "Exclusive Perks",
@@ -437,24 +444,24 @@ export const siteContent = {
     ],
     teamTitle: "Operating Team",
     team: [
-      { initials: "FW", name: "Freya Wu", role: "General Manager" },
-      { initials: "GW", name: "Gin Wu", role: "Program & Ops Lead" },
-      { initials: "CW", name: "Carter Wang", role: "Venture Associate" },
+      { initials: "FW", name: "Freya Wu", role: "General Manager", photo: "/assets/headshots/freya-wu.jpg" },
+      { initials: "GW", name: "Gin Wu", role: "Program & Ops Lead", photo: "/assets/headshots/gin-wu.png" },
+      { initials: "CW", name: "Carter Wang", role: "Venture Associate", photo: "/assets/headshots/carter-wang.png" },
     ],
     partnersTitle: "Partners",
     partners: [
-      { initials: "KH", name: "Kai Huang" },
-      { initials: "JH", name: "Joseph Hei" },
-      { initials: "CH", name: "Charles Huang" },
-      { initials: "JH", name: "Jameson Hsu" },
-      { initials: "KL", name: "Kevin Lin" },
-      { initials: "KC", name: "Kevin Chou" },
-      { initials: "CW", name: "Chris Wang" },
-      { initials: "JH", name: "Jacob Hsu" },
-      { initials: "JH", name: "James Hong" },
-      { initials: "SC", name: "Steven Chiang" },
-      { initials: "TC", name: "Timothy Chen" },
-      { initials: "PC", name: "Phil Chen" },
+      { initials: "KH", name: "Kai Huang", company: "Twitch, Guitar Hero", photo: "/assets/headshots/kai-huang.jpg" },
+      { initials: "JH", name: "Joseph Hei", company: "Twitch, Metatheory", photo: "/assets/headshots/joseph-hei.jpg" },
+      { initials: "CH", name: "Charles Huang", company: "Guitar Hero, Kabam", photo: "/assets/headshots/charles-huang.jpg" },
+      { initials: "JH", name: "Jameson Hsu", company: "Kabam", photo: "/assets/headshots/jameson-hsu.jpg" },
+      { initials: "KL", name: "Kevin Lin", company: "Twitch", photo: "/assets/headshots/kevin-lin.jpg" },
+      { initials: "KC", name: "Kevin Chou", company: "Kabam", photo: "/assets/headshots/kevin-chou.jpg" },
+      { initials: "CW", name: "Chris Wang", company: "Playdom", photo: "/assets/headshots/chris-wang.jpg" },
+      { initials: "JH", name: "Jacob Hsu", company: "Catalyte", photo: "/assets/headshots/jacob-hsu.jpg" },
+      { initials: "JH", name: "James Hong", company: "Hot or Not", photo: "/assets/headshots/james-hong.jpg" },
+      { initials: "SC", name: "Steven Chiang", company: "Orbit Baby", photo: "/assets/headshots/steven-chiang.jpg" },
+      { initials: "TC", name: "Timothy Chen", company: "Gen.G", photo: "/assets/headshots/timothy-chen.jpg" },
+      { initials: "PC", name: "Phil Chen", company: "HTC Vive", photo: "/assets/headshots/phil-chen.jpg" },
     ],
   },
   events: {
@@ -728,6 +735,6 @@ export const siteContent = {
     },
   },
   footer: {
-    copy: "@ 886 Studios 2026",
+    copy: "© 886 Studios 2026",
   },
 };

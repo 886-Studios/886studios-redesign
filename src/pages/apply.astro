@@ -1,8 +1,13 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import ApplicationPage from "../components/pages/ApplicationPage.astro";
+const TALLY_URL = "https://tally.so/r/w5p4jQ";
 ---
-
-<BaseLayout title="Apply | 886 Studios">
-  <ApplicationPage />
-</BaseLayout>
+<html>
+  <head>
+    <meta http-equiv="refresh" content={`0;url=${TALLY_URL}`} />
+    <title>Redirecting…</title>
+  </head>
+  <body>
+    <script define:vars={{ TALLY_URL }}>window.location.replace(TALLY_URL);</script>
+    <p>Redirecting to application form… <a href={TALLY_URL}>Click here</a> if not redirected.</p>
+  </body>
+</html>

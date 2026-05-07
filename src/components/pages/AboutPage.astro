@@ -34,7 +34,12 @@ const { about } = siteContent;
       {
         about.team.map((person) => (
           <div class="team-card">
-            <div class="avatar">{person.initials}</div>
+            <div class="avatar-wrap">
+              {person.photo
+                ? <img class="avatar-photo" src={person.photo} alt={person.name} />
+                : <div class="avatar">{person.initials}</div>
+              }
+            </div>
             <div class="team-name">{person.name}</div>
             <div class="team-role">{person.role}</div>
           </div>
@@ -49,8 +54,14 @@ const { about } = siteContent;
       {
         about.partners.map((partner) => (
           <div class="team-card">
-            <div class="avatar">{partner.initials}</div>
+            <div class="avatar-wrap">
+              {partner.photo
+                ? <img class="avatar-photo" src={partner.photo} alt={partner.name} />
+                : <div class="avatar">{partner.initials}</div>
+              }
+            </div>
             <div class="team-name">{partner.name}</div>
+            {partner.company && <div class="team-company">{partner.company}</div>}
           </div>
         ))
       }

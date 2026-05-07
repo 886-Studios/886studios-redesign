@@ -17,7 +17,7 @@ const { resources } = siteContent;
     <div class="res-grid">
       {
         resources.libraryItems.map((item) => (
-          <a class="res-item" href="#">
+          <a class="res-item" href={item.href} target="_blank" rel="noopener noreferrer">
             <div class="res-icon">{item.icon}</div>
             <div>
               <div class="res-name">{item.title}</div>
@@ -33,7 +33,7 @@ const { resources } = siteContent;
       <div class="pcard pcard--narrow">
         <h3 class="card-title">{resources.ama.title}</h3>
         <p class="card-body">{resources.ama.body}</p>
-        <a class="card-cta" href="#">{resources.ama.ctaLabel}</a>
+        <a class="card-cta" href={resources.ama.ctaHref} target="_blank" rel="noopener noreferrer">{resources.ama.ctaLabel}</a>
       </div>
     </div>
 

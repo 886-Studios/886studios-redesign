@@ -97,8 +97,7 @@ const { home } = siteContent;
         <p>{home.newsletter.body}</p>
       </div>
       <div class="nl-form">
-        <input class="nl-input" type="email" placeholder={home.newsletter.placeholder} />
-        <button class="nl-btn">{home.newsletter.button}</button>
+        <a class="nl-btn" href={home.newsletter.href} target="_blank" rel="noopener noreferrer">{home.newsletter.button}</a>
       </div>
     </div>
   </div>
