@@ -33,6 +33,14 @@ npm run dev
 
 Then open `http://127.0.0.1:4173/`.
 
+## Environment variables
+
+```bash
+LUMA_API_KEY=your_luma_calendar_api_key
+```
+
+The events page loads upcoming and past events from Luma at build time. Set this variable locally in `.env` and in the production deploy environment.
+
 ## Useful commands
 
 ```bash

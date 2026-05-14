@@ -1,0 +1,50 @@
+---
+import type { LumaEventCard } from "../lib/luma";
+
+interface Props {
+  event: LumaEventCard;
+  tag: string;
+  highlight?: boolean;
+  highlightLabel?: string;
+}
+
+const { event, tag, highlight = false, highlightLabel = "Upcoming event" } = Astro.props;
+const mediaClass = event.coverUrl ? "ev-media" : "ev-media ev-media--date-only";
+const cardClass = `ev-card${event.url ? " ev-card--link" : ""}${highlight ? " ev-card--featured" : ""}`;
+---
+
+{
+  event.url ? (
+    <a class={cardClass} href={event.url} target="_blank" rel="noreferrer">
+      <div class={mediaClass}>
+        <div class="ev-date">
+          <div class="ev-month">{event.month}</div>
+          <div class="ev-day">{event.day}</div>
+        </div>
+        {event.coverUrl && <img class="ev-thumb" src={event.coverUrl} alt="" loading="lazy" decoding="async" />}
+      </div>
+      <div class="ev-copy">
+        {highlight && <div class="ev-featured-label">{highlightLabel}</div>}
+        <div class="ev-title">{event.title}</div>
+        <div class="ev-meta">{event.meta}</div>
+      </div>
+      <div class="ev-tag">{tag}</div>
+    </a>
+  ) : (
+    <div class={cardClass}>
+      <div class={mediaClass}>
+        <div class="ev-date">
+          <div class="ev-month">{event.month}</div>
+          <div class="ev-day">{event.day}</div>
+        </div>
+        {event.coverUrl && <img class="ev-thumb" src={event.coverUrl} alt="" loading="lazy" decoding="async" />}
+      </div>
+      <div class="ev-copy">
+        {highlight && <div class="ev-featured-label">{highlightLabel}</div>}
+        <div class="ev-title">{event.title}</div>
+        <div class="ev-meta">{event.meta}</div>
+      </div>
+      <div class="ev-tag">{tag}</div>
+    </div>
+  )
+}
