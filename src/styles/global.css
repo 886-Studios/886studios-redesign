@@ -138,24 +138,24 @@
     .nav-cta {
       font-family: var(--font-body);
       font-size: 13.5px;
-      font-weight: 600;
+      font-weight: 700;
       color: #fff;
       text-decoration: none;
-      padding: 8px 20px;
-      border-radius: 8px;
-      background: var(--purple);
-      border: 1px solid rgba(167, 139, 250, 0.4);
-      transition: all 0.2s;
+      padding: 9px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(139,92,246,1), rgba(167,139,250,0.92));
+      border: 1px solid rgba(167,139,250,0.52);
+      box-shadow: 0 4px 18px rgba(139,92,246,0.32), inset 0 1px 0 rgba(255,255,255,0.18);
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
       cursor: pointer;
       white-space: nowrap;
-      box-shadow: 0 2px 20px rgba(139, 92, 246, 0.4);
       flex-shrink: 0;
     }
 
     .nav-cta:hover {
-      background: var(--purple-bright);
-      box-shadow: 0 4px 28px rgba(167, 139, 250, 0.55);
       transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.34);
+      box-shadow: 0 8px 28px rgba(139,92,246,0.42), inset 0 1px 0 rgba(255,255,255,0.26);
     }
 
     /* Hamburger */
@@ -447,42 +447,72 @@
        BUTTONS
     =========================== */
     .btn-pri {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; gap: 10px;
       font-family: var(--font-body);
-      font-size: 15px; font-weight: 600;
+      font-size: 15px; font-weight: 700;
       color: #fff;
-      padding: 14px 30px;
-      border-radius: 10px;
-      background: var(--purple);
-      border: 1px solid rgba(167,139,250,0.35);
-      box-shadow: 0 4px 24px rgba(139,92,246,0.45);
+      min-height: 46px;
+      padding: 0 18px 0 24px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(139,92,246,1), rgba(167,139,250,0.92));
+      border: 1px solid rgba(167,139,250,0.52);
+      box-shadow: 0 10px 30px rgba(139,92,246,0.32), inset 0 1px 0 rgba(255,255,255,0.22);
       text-decoration: none; cursor: pointer;
-      transition: all 0.22s;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .btn-pri::after {
+      content: "→";
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; flex-shrink: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      font-size: 14px; line-height: 1;
     }
 
     .btn-pri:hover {
       transform: translateY(-2px);
-      box-shadow: 0 8px 40px rgba(139,92,246,0.6);
-      background: var(--purple-bright);
+      border-color: rgba(255,255,255,0.34);
+      box-shadow: 0 16px 42px rgba(139,92,246,0.42), inset 0 1px 0 rgba(255,255,255,0.28);
+    }
+
+    .btn-pri:focus-visible {
+      outline: 2px solid var(--purple-bright);
+      outline-offset: 3px;
     }
 
     .btn-sec {
-      display: inline-flex; align-items: center; gap: 8px;
+      display: inline-flex; align-items: center; gap: 10px;
       font-family: var(--font-body);
-      font-size: 15px; font-weight: 500;
-      color: var(--text-secondary);
-      padding: 14px 28px;
-      border-radius: 10px;
+      font-size: 15px; font-weight: 600;
+      color: var(--text-primary);
+      min-height: 46px;
+      padding: 0 18px 0 24px;
+      border-radius: 999px;
       background: transparent;
-      border: 1px solid var(--border-bright);
+      border: 1px solid rgba(167,139,250,0.45);
       text-decoration: none; cursor: pointer;
-      transition: all 0.22s;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s, background 0.2s;
+    }
+
+    .btn-sec::after {
+      content: "→";
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; flex-shrink: 0;
+      border-radius: 999px;
+      background: rgba(139,92,246,0.14);
+      font-size: 14px; line-height: 1;
     }
 
     .btn-sec:hover {
-      color: var(--text-primary);
-      border-color: rgba(139,92,246,0.5);
-      background: rgba(139,92,246,0.07);
+      transform: translateY(-2px);
+      border-color: rgba(167,139,250,0.7);
+      background: rgba(139,92,246,0.08);
+    }
+
+    .btn-sec:focus-visible {
+      outline: 2px solid var(--purple-bright);
+      outline-offset: 3px;
     }
 
     /* ===========================
@@ -1705,22 +1735,34 @@
 
     .nl-btn {
       font-family: var(--font-body);
-      font-size: 14px; font-weight: 600;
+      font-size: 14px; font-weight: 700;
       color: #fff;
-      padding: 12px 24px;
-      border-radius: 8px;
-      background: var(--purple);
-      border: none; cursor: pointer;
-      transition: background 0.2s, box-shadow 0.2s;
+      min-height: 46px;
+      padding: 0 18px 0 22px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(139,92,246,1), rgba(167,139,250,0.92));
+      border: 1px solid rgba(167,139,250,0.52);
+      box-shadow: 0 10px 30px rgba(139,92,246,0.32), inset 0 1px 0 rgba(255,255,255,0.22);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
       white-space: nowrap;
       text-decoration: none;
-      display: inline-flex; align-items: center;
-      box-shadow: 0 2px 16px rgba(139,92,246,0.4);
+      display: inline-flex; align-items: center; gap: 10px;
+    }
+
+    .nl-btn::after {
+      content: "→";
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; flex-shrink: 0;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.16);
+      font-size: 14px; line-height: 1;
     }
 
     .nl-btn:hover {
-      background: var(--purple-bright);
-      box-shadow: 0 4px 24px rgba(139,92,246,0.6);
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.34);
+      box-shadow: 0 16px 42px rgba(139,92,246,0.42), inset 0 1px 0 rgba(255,255,255,0.28);
     }
 
     /* ===========================
@@ -1849,7 +1891,7 @@
 
     .social-row { display: flex; gap: 10px; margin-top: 10px; }
     .ci-value--spaced { margin-bottom: 16px; }
-    .btn-pri--compact { font-size: 14px; padding: 10px 22px; }
+    .btn-pri--compact { font-size: 14px; min-height: 38px; padding: 0 14px 0 18px; }
 
     .company-more {
       display: flex; flex-wrap: wrap;

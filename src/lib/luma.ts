@@ -27,7 +27,7 @@ export async function getLumaEvents(): Promise<LumaEventsResult> {
   const apiKey = getEnvValue("LUMA_API_KEY");
 
   if (!apiKey) {
-    console.warn("LUMA_API_KEY is not configured; rendering the empty events state.");
+    console.warn("[luma] LUMA_API_KEY is not set — skipping API call.");
 
     return {
       upcomingEvents: [],
@@ -36,6 +36,8 @@ export async function getLumaEvents(): Promise<LumaEventsResult> {
       error: "Luma is not configured.",
     };
   }
+
+  console.log(`[luma] API key found (length ${apiKey.length}), fetching events…`);
 
   const now = new Date().toISOString();
   const [upcoming, past] = await Promise.all([
@@ -87,7 +89,8 @@ async function fetchLumaEvents(
       });
 
       if (!response.ok) {
-        console.warn(`Luma events request failed with status ${response.status}.`);
+        const body = await response.text().catch(() => "");
+        console.warn(`[luma] Request failed — status ${response.status}: ${body}`);
         return { events: [], error: "Unable to load Luma events." };
       }
 
@@ -110,8 +113,8 @@ async function fetchLumaEvents(
           : b.sortAt.localeCompare(a.sortAt)
       ),
     };
-  } catch (error) {
-    console.warn("Luma events request failed.", error);
+  } catch (err) {
+    console.warn("[luma] Request threw an exception:", err);
     return {
       events: [],
       error: "Unable to load Luma events.",

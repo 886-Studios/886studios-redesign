@@ -40,7 +40,7 @@ export const socialLinks = [
 export const siteContent = {
   nav: {
     cta: {
-      label: "Apply Now →",
+      label: "Apply Now",
       href: "https://tally.so/r/w5p4jQ",
     },
     items: [
@@ -59,7 +59,7 @@ export const siteContent = {
       body:
         "886 Studios is where Taiwan's next generation of global tech companies are built — by the founders behind Twitch, Kabam, and Guitar Hero.",
       cta: {
-        label: "Apply to ikigai Launchpad →",
+        label: "Apply to ikigai Launchpad",
         href: "https://tally.so/r/w5p4jQ",
       },
     },
@@ -230,7 +230,7 @@ export const siteContent = {
       title: "Subscribe to our Newsletter",
       body: "Only cool things, we promise.",
       placeholder: "you@company.com",
-      button: "Subscribe →",
+      button: "Subscribe",
       href: "https://886studios.substack.com/",
     },
   },
@@ -259,7 +259,7 @@ export const siteContent = {
           "Early-stage founders who want capital, close support, and momentum.",
         cta: {
           type: "primary",
-          label: "Apply Here →",
+          label: "Apply Here",
           href: "https://tally.so/r/w5p4jQ",
         },
       },
@@ -690,7 +690,7 @@ export const siteContent = {
       },
     ],
     actions: {
-      submitLabel: "Submit Application →",
+      submitLabel: "Submit Application",
       cancelLabel: "Cancel",
       cancelHref: "/",
     },
@@ -711,7 +711,7 @@ export const siteContent = {
       messageLabel: "Message",
       messagePlaceholder:
         "Tell us about yourself and why you're reaching out...",
-      button: "Send Message →",
+      button: "Send Message",
     },
     location: {
       label: "Location",
@@ -722,7 +722,7 @@ export const siteContent = {
       label: "Ready to build?",
       body:
         "Applications for ikigai Launchpad are currently closed for Sp'26. Check back soon.",
-      buttonLabel: "Visit ikigai Launchpad →",
+      buttonLabel: "Visit ikigai Launchpad",
       buttonHref: "https://withikigai.com/",
     },
   },
