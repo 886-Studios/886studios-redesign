@@ -20,6 +20,7 @@ const cardClass = `ev-card${event.url ? " ev-card--link" : ""}${highlight ? " ev
         <div class="ev-date">
           <div class="ev-month">{event.month}</div>
           <div class="ev-day">{event.day}</div>
+          <div class="ev-year">{event.year}</div>
         </div>
         {event.coverUrl && <img class="ev-thumb" src={event.coverUrl} alt="" loading="lazy" decoding="async" />}
       </div>
@@ -36,6 +37,7 @@ const cardClass = `ev-card${event.url ? " ev-card--link" : ""}${highlight ? " ev
         <div class="ev-date">
           <div class="ev-month">{event.month}</div>
           <div class="ev-day">{event.day}</div>
+          <div class="ev-year">{event.year}</div>
         </div>
         {event.coverUrl && <img class="ev-thumb" src={event.coverUrl} alt="" loading="lazy" decoding="async" />}
       </div>

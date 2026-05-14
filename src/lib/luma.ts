@@ -6,6 +6,7 @@ export interface LumaEventCard {
   title: string;
   month: string;
   day: string;
+  year: string;
   meta: string;
   coverUrl?: string;
   url?: string;
@@ -166,6 +167,10 @@ function toEventCard(event: LumaRecord | null): LumaEventCard | null {
       day: "numeric",
       timeZone,
     }).format(start),
+    year: new Intl.DateTimeFormat("en-US", {
+      year: "numeric",
+      timeZone,
+    }).format(start),
     meta,
     coverUrl: getCoverUrl(event),
     url: getEventUrl(event),
@@ -188,8 +193,6 @@ function getLocation(event: LumaRecord): string {
   }
 
   const location =
-    getString(event, "location_name") ??
-    getString(event, "venue_name") ??
     getNestedLocation(event, "geo_address_json") ??
     getNestedLocation(event, "geo_address_info") ??
     getNestedLocation(event, "location");
@@ -202,12 +205,16 @@ function getNestedLocation(event: LumaRecord, key: string): string | undefined {
   if (typeof value === "string" && value.trim()) return value.trim();
   if (!isRecord(value)) return undefined;
 
+  const city = getString(value, "city");
+  const country = getString(value, "country") ?? getString(value, "country_code");
+  if (city && country) return `${city}, ${country}`;
+  if (city) return city;
+
   return (
-    getString(value, "name") ??
-    getString(value, "address") ??
     getString(value, "full_address") ??
     getString(value, "formatted_address") ??
-    getString(value, "city")
+    getString(value, "address") ??
+    getString(value, "name")
   );
 }
 

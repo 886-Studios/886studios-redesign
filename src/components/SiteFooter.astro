@@ -6,7 +6,10 @@ import { brand, siteContent } from "../data/siteContent";
 <footer>
   <div class="footer-inner">
     <a class="footer-logo" href="/"><img src={brand.logoUrl} alt={brand.logoAlt} /></a>
-    <div class="footer-copy">{siteContent.footer.copy}</div>
+    <div class="footer-copy">
+      <span>{siteContent.footer.copy}</span>
+      <span>Made in Taipei, Taiwan</span>
+    </div>
     <SocialLinks />
   </div>
 </footer>

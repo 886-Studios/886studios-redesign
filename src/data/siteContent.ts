@@ -11,19 +11,9 @@ export const socialLinks = [
     ariaLabel: "886 Studios on X",
   },
   {
-    platform: "substack",
-    href: "https://886studios.substack.com/",
-    ariaLabel: "ikigai Insights on Substack",
-  },
-  {
     platform: "linkedin",
     href: "https://www.linkedin.com/company/886studios/",
     ariaLabel: "886 Studios on LinkedIn",
-  },
-  {
-    platform: "discord",
-    href: "https://discord.gg/FGcEHJyB3F",
-    ariaLabel: "886 Studios on Discord",
   },
   {
     platform: "instagram",
@@ -34,6 +24,16 @@ export const socialLinks = [
     platform: "threads",
     href: "https://www.threads.net/@ikigai_launchpad",
     ariaLabel: "ikigai Launchpad on Threads",
+  },
+  {
+    platform: "discord",
+    href: "https://discord.gg/FGcEHJyB3F",
+    ariaLabel: "886 Studios on Discord",
+  },
+  {
+    platform: "substack",
+    href: "https://886studios.substack.com/",
+    ariaLabel: "ikigai Insights on Substack",
   },
 ] as const;
 

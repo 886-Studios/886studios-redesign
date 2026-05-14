@@ -16,17 +16,6 @@ const lumaEvents = await getLumaEvents();
   </div>
   <div class="pg-divider"></div>
   <div class="section">
-    <div class="events-calendar-note">
-      <div class="events-calendar-copy">
-        <div class="ev-title">{events.calendarTitle}</div>
-        <div class="ev-meta">{events.calendarText}</div>
-      </div>
-      <a class="events-calendar-cta" href={events.calendarUrl} target="_blank" rel="noreferrer">
-        <span>{events.calendarCta}</span>
-        <span class="events-calendar-cta-mark" aria-hidden="true">→</span>
-      </a>
-    </div>
-
     {
       lumaEvents.upcomingEvents.length > 0 ? (
         <section class="events-section" aria-labelledby="upcoming-events-title">
@@ -56,10 +45,21 @@ const lumaEvents = await getLumaEvents();
         <section class="events-section" aria-labelledby="past-events-title">
           <h2 class="events-section-title" id="past-events-title">{events.pastTitle}</h2>
           <div class="events-list">
-            {lumaEvents.pastEvents.map((item) => <EventCard event={item} tag="Past" />)}
+            {lumaEvents.pastEvents.map((item) => <EventCard event={item} tag="Learn more" />)}
           </div>
         </section>
       )
     }
+
+    <div class="events-calendar-note">
+      <div class="events-calendar-copy">
+        <div class="ev-title">{events.calendarTitle}</div>
+        <div class="ev-meta">{events.calendarText}</div>
+      </div>
+      <a class="events-calendar-cta" href={events.calendarUrl} target="_blank" rel="noreferrer">
+        <span>{events.calendarCta}</span>
+        <span class="events-calendar-cta-mark" aria-hidden="true">→</span>
+      </a>
+    </div>
   </div>
 </div>
