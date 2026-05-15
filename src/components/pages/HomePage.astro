@@ -36,13 +36,9 @@ const { home } = siteContent;
     <div class="home-programs-flow">
       <article class="home-program-feature">
         <div class="home-program-feature-grid">
-          <div class="home-program-feature-label" set:html={home.programs.featured.label}></div>
           <div>
             <h3 class="home-program-feature-title">{home.programs.featured.title}</h3>
             <p class="home-program-feature-copy">{home.programs.featured.body}</p>
-            <div class="home-program-feature-meta">
-              {home.programs.featured.meta.map((item) => <span>{item}</span>)}
-            </div>
           </div>
           <a class="card-cta home-program-feature-link" href={home.programs.featured.ctaHref}>
             {home.programs.featured.ctaLabel}
@@ -53,7 +49,6 @@ const { home } = siteContent;
         {
           home.programs.secondary.map((item) => (
             <article class="home-program-mini">
-              <div class="home-program-mini-label">{item.label}</div>
               <div class="home-program-mini-body">
                 <h3 class="home-program-mini-title">{item.title}</h3>
                 <p class="home-program-mini-copy">{item.body}</p>

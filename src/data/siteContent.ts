@@ -113,7 +113,7 @@ export const siteContent = {
           alt: "Twitch logo",
           exit: "Exit · $970M",
           title: "Twitch exit: approximately $970 million",
-          imageClass: "",
+          imageClass: "is-tall",
         },
         {
           name: "Kabam",
@@ -121,7 +121,7 @@ export const siteContent = {
           alt: "Kabam logo",
           exit: "Exit · $800M",
           title: "Kabam exit: approximately $800 million",
-          imageClass: "",
+          imageClass: "is-tall",
         },
         {
           name: "RedOctane",
@@ -129,7 +129,7 @@ export const siteContent = {
           alt: "RedOctane logo",
           exit: "Exit · $99.9M",
           title: "RedOctane exit: approximately $99.9 million",
-          imageClass: "is-wide",
+          imageClass: "is-tall",
         },
         {
           name: "Playdom",
@@ -137,13 +137,13 @@ export const siteContent = {
           alt: "Playdom logo",
           exit: "Exit · $563.2M",
           title: "Playdom exit: approximately $563.2 million",
-          imageClass: "is-wide",
+          imageClass: "is-tall",
         },
         {
           name: "Metatheory",
           src: "/assets/logos/metatheory.png",
           alt: "Metatheory logo",
-          imageClass: "is-wide",
+          imageClass: "is-tall",
         },
         {
           name: "Mochi Media",
@@ -151,7 +151,7 @@ export const siteContent = {
           alt: "Mochi Media logo",
           exit: "Exit · $80M",
           title: "Mochi Media exit: approximately $80 million",
-          imageClass: "is-wide",
+          imageClass: "is-tall",
         },
         {
           name: "Orbit Baby",
@@ -159,7 +159,7 @@ export const siteContent = {
           alt: "Orbit Baby logo",
           exit: "Exit · $17.5M",
           title: "Orbit Baby exit: approximately $17.5 million",
-          imageClass: "is-wide",
+          imageClass: "is-tall",
         },
         {
           name: "Blue Goji",
@@ -179,37 +179,37 @@ export const siteContent = {
           alt: "Hot or Not logo",
           exit: "Exit · $20M",
           title: "Hot or Not exit: approximately $20 million",
-          imageClass: "",
+          imageClass: "is-tall",
         },
         {
           name: "Rally",
           src: "/assets/logos/rally-official.png",
           alt: "Rally logo",
-          imageClass: "",
+          imageClass: "is-tall",
         },
         {
           name: "Tiburon Entertainment",
           src: "/assets/logos/tiburon.png",
           alt: "Tiburon Entertainment logo",
-          imageClass: "",
+          imageClass: "is-tall",
         },
         {
           name: "Catalyte",
           src: "/assets/logos/catalyte-official.png",
           alt: "Catalyte logo",
-          imageClass: "",
+          imageClass: "is-tall",
         },
         {
           name: "Cold Electric",
           src: "/assets/logos/cold-electric-og.png",
           alt: "Cold Electric logo",
-          imageClass: "is-product",
+          imageClass: "is-tall",
         },
         {
           name: "New Taipei Kings",
           src: "/assets/logos/new-taipei-kings.png",
           alt: "New Taipei Kings logo",
-          imageClass: "is-wide",
+          imageClass: "is-tall",
         },
       ],
       portfolio: [
@@ -429,7 +429,7 @@ export const siteContent = {
   },
   about: {
     eyebrow: "About Us",
-    title: "Built by founders,<br>for founders.",
+    title: "Built by founders, for founders.",
     lead:
       "886 Studios backs ambitious early-stage founders building companies with global potential.",
     columns: [
@@ -454,7 +454,8 @@ export const siteContent = {
     ],
     teamTitle: "Operating Team",
     team: [
-      { initials: "FW", name: "Freya Wu", role: "General Manager", photo: "/assets/headshots/freya-wu.webp" },
+      { initials: "FW", name: "Freya Wu", role: "General Manager", photo: "/assets/headshots/freya-wu.webp", objectPosition: "center 40%" },
+      { initials: "PC", name: "Patryk Chojecki", role: "Program Manager", photo: "/assets/headshots/patryk-chojecki.webp" },
       { initials: "CW", name: "Carter Wang", role: "Venture Associate", photo: "/assets/headshots/carter-wang.webp" },
     ],
     partnersTitle: "Partners",

@@ -37,7 +37,7 @@ const { about } = siteContent;
             <div class="team-card">
               <div class="avatar-wrap">
                 {person.photo
-                  ? <img class="avatar-photo" src={person.photo} alt={person.name} width="80" height="80" />
+                  ? <img class="avatar-photo" src={person.photo} alt={person.name} width="80" height="80" style={person.objectPosition ? `object-position: ${person.objectPosition}` : undefined} />
                   : <div class="avatar">{person.initials}</div>
                 }
               </div>
