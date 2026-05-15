@@ -17,9 +17,10 @@
       --text-primary: #ffffff;
       --text-secondary: #c4c4d8;
       --text-muted: #8888a8;
-      --font-display: 'Space Grotesk', sans-serif;
-      --font-body: 'Figtree', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
+      --font-sans: 'Geist', system-ui, -apple-system, sans-serif;
+      --font-mono: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      --font-display: var(--font-sans);
+      --font-body: var(--font-sans);
       --nav-height: 64px;
       --max: 1160px;
       --r: 12px;
@@ -29,7 +30,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: var(--font-body);
+      font-family: var(--font-sans);
       background: var(--bg);
       color: var(--text-primary);
       line-height: 1.6;
@@ -370,7 +371,7 @@
     .hero-h1 {
       font-family: var(--font-display);
       font-size: clamp(60px, 8vw, 112px);
-      font-weight: 800;
+      font-weight: 700;
       line-height: 0.93;
       letter-spacing: -0.04em;
       margin-bottom: 32px;
@@ -429,7 +430,7 @@
     .section-h2 {
       font-family: var(--font-display);
       font-size: clamp(30px, 3.8vw, 48px);
-      font-weight: 800;
+      font-weight: 700;
       letter-spacing: -0.03em;
       line-height: 1.1;
       margin-bottom: 14px;
@@ -856,7 +857,7 @@
       font-family: var(--font-display);
       font-size: clamp(44px, 6.4vw, 86px);
       line-height: 0.91;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.04em;
       max-width: 14ch;
       margin-bottom: 18px;
     }
@@ -1066,7 +1067,7 @@
     .program-compare-title {
       font-family: var(--font-display);
       font-size: clamp(26px, 3.5vw, 44px);
-      font-weight: 800;
+      font-weight: 700;
       line-height: 1.02;
       letter-spacing: -0.02em;
       margin-bottom: 12px;
@@ -1397,13 +1398,14 @@
       line-height: 1.65;
     }
 
-    .events-calendar-cta {
+    .events-calendar-cta,
+    .ev-card--featured .ev-tag {
       min-height: 46px;
       display: inline-flex;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      justify-self: end;
       padding: 0 18px 0 22px;
       border-radius: 999px;
       border: 1px solid rgba(167,139,250,0.52);
@@ -1413,15 +1415,21 @@
         0 10px 30px rgba(139,92,246,0.32),
         inset 0 1px 0 rgba(255,255,255,0.22);
       color: #fff;
+      font-family: var(--font-body);
       font-size: 14px;
       font-weight: 700;
+      letter-spacing: 0;
       line-height: 1;
       text-decoration: none;
+      text-transform: none;
       white-space: nowrap;
       transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
     }
 
-    .events-calendar-cta:hover {
+    .events-calendar-cta { justify-self: end; }
+
+    .events-calendar-cta:hover,
+    .ev-card--featured.ev-card--link:hover .ev-tag {
       transform: translateY(-2px);
       border-color: rgba(255,255,255,0.34);
       box-shadow:
@@ -1434,7 +1442,8 @@
       outline-offset: 3px;
     }
 
-    .events-calendar-cta-mark {
+    .events-calendar-cta-mark,
+    .ev-card--featured.ev-card--link .ev-tag::after {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -1442,6 +1451,7 @@
       height: 22px;
       border-radius: 999px;
       background: rgba(255,255,255,0.16);
+      color: inherit;
       font-size: 14px;
       line-height: 1;
     }
@@ -1452,7 +1462,7 @@
     .events-section-title {
       font-family: var(--font-display);
       font-size: clamp(20px, 2.5vw, 28px);
-      font-weight: 800;
+      font-weight: 700;
       margin-bottom: 16px;
     }
 
@@ -1529,7 +1539,7 @@
 
     .ev-day {
       font-family: var(--font-display);
-      font-size: 38px; font-weight: 800; line-height: 1.1; margin-top: 3px;
+      font-size: 38px; font-weight: 700; line-height: 1.1; margin-top: 3px;
     }
 
     .ev-year {
@@ -1573,23 +1583,8 @@
 
     .ev-card--link:hover .ev-tag::after { transform: translateX(3px); }
 
-    .ev-card--featured .ev-tag {
-      font-size: 11px; font-weight: 600;
-      flex-direction: row; align-items: center; gap: 0;
-      padding: 9px 20px;
-      border-radius: 999px;
-      border: 1px solid rgba(139,92,246,0.45);
-      background: rgba(139,92,246,0.1);
-      color: var(--purple-bright);
-      transition: background 0.2s, border-color 0.2s;
-    }
-
-    .ev-card--featured.ev-card--link .ev-tag::after { display: none; }
-
-    .ev-card--featured.ev-card--link:hover .ev-tag {
-      background: rgba(139,92,246,0.18);
-      border-color: rgba(139,92,246,0.65);
-    }
+    .ev-card--featured.ev-card--link .ev-tag::after { content: '→'; }
+    .ev-card--featured.ev-card--link:hover .ev-tag::after { transform: none; }
 
     .events-empty {
       background: var(--bg-card);
@@ -1756,7 +1751,7 @@
 
     .nl-text h3 {
       font-family: var(--font-display);
-      font-size: 22px; font-weight: 800; margin-bottom: 4px;
+      font-size: 22px; font-weight: 700; margin-bottom: 4px;
     }
 
     .nl-text p { font-size: 14px; color: var(--text-secondary); }
@@ -1897,7 +1892,7 @@
     /* ===========================
        STRUCTURE HELPERS
     =========================== */
-    .pg-hero-title { font-size: clamp(34px, 5vw, 60px); }
+    .pg-hero-title { font-size: clamp(34px, 5vw, 60px); letter-spacing: -0.04em; }
     .section-lead--flush { margin-bottom: 0; }
     .section-stack-48 { margin-top: 48px; }
     .pcard--narrow { margin-top: 16px; max-width: 600px; }
