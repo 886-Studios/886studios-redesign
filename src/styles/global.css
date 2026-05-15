@@ -1794,8 +1794,19 @@
        HOME PAGE DENSITY
     =========================== */
     #page-home .hero {
-      min-height: clamp(560px, 84vh, 780px);
-      padding: 60px 32px 48px;
+      min-height: clamp(480px, 72vh, 660px);
+      padding: 60px 32px 32px;
+    }
+
+    #page-home .hero + .section {
+      padding-top: 44px;
+    }
+
+    #page-home .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) min(600px, 55%);
+      gap: 56px;
+      align-items: center;
     }
 
     #page-home .hero-sub { margin-bottom: 36px; max-width: 560px; }
@@ -1809,6 +1820,131 @@
     #page-home .logo-stage { min-height: 62px; padding: 10px 14px; }
 
     #page-home .nl-strip { padding: 36px 32px; }
+
+    /* ===========================
+       EVENT CAROUSEL
+    =========================== */
+    .hero-carousel-col {
+      opacity: 0;
+      animation: fadeUp 0.7s 0.36s ease forwards;
+    }
+
+    .ev-carousel {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--r);
+      border: 1px solid var(--border-bright);
+      overflow: hidden;
+      background: var(--bg-card);
+      box-shadow:
+        0 0 0 1px rgba(139,92,246,0.08),
+        0 24px 72px rgba(0,0,0,0.55),
+        0 0 80px rgba(109,40,217,0.08);
+    }
+
+    .ev-carousel-slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+      pointer-events: none;
+    }
+
+    .ev-carousel-slide.is-active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .ev-carousel-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .ev-carousel-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 44px 18px 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.75), transparent);
+    }
+
+    .ev-carousel-caption-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+    }
+
+    .ev-carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: rgba(5,5,7,0.6);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.85);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s, background 0.2s, border-color 0.2s;
+      z-index: 2;
+    }
+
+    .ev-carousel:hover .ev-carousel-arrow { opacity: 1; }
+
+    .ev-carousel-arrow:hover {
+      background: rgba(109,40,217,0.65);
+      border-color: rgba(167,139,250,0.4);
+    }
+
+    .ev-carousel-arrow-prev { left: 12px; }
+    .ev-carousel-arrow-next { right: 12px; }
+
+    .ev-carousel-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 2;
+    }
+
+    .ev-carousel-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.28);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.22s, width 0.22s;
+    }
+
+    .ev-carousel-dot.is-active {
+      background: rgba(255,255,255,0.88);
+      width: 18px;
+    }
+
+    @media (max-width: 860px) {
+      #page-home .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero-carousel-col {
+        max-width: 520px;
+        width: 100%;
+      }
+    }
 
     /* Responsive nav breakpoint */
     @media (max-width: 880px) {

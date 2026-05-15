@@ -1,0 +1,112 @@
+---
+const slides = [
+  { src: "/assets/events/event-1.svg", alt: "886 Studios community meetup event", caption: "Community Meetup" },
+  { src: "/assets/events/event-2.svg", alt: "Demo day presentations at 886 Studios", caption: "Demo Day" },
+  { src: "/assets/events/event-3.svg", alt: "Founder networking night", caption: "Networking Night" },
+  { src: "/assets/events/event-4.svg", alt: "Fireside chat with founders and investors", caption: "Fireside Chat" },
+  { src: "/assets/events/event-5.svg", alt: "Pitch night competition at 886 Studios", caption: "Pitch Night" },
+];
+---
+
+<div class="ev-carousel" id="ev-carousel" aria-label="Event photos slideshow" role="region">
+  {slides.map((slide, i) => (
+    <div
+      class:list={["ev-carousel-slide", i === 0 && "is-active"]}
+      aria-hidden={i !== 0 ? "true" : "false"}
+      data-index={i}
+    >
+      <img
+        src={slide.src}
+        alt={slide.alt}
+        class="ev-carousel-img"
+        loading={i === 0 ? "eager" : "lazy"}
+        decoding="async"
+      />
+      <div class="ev-carousel-caption">
+        <span class="ev-carousel-caption-label">{slide.caption}</span>
+      </div>
+    </div>
+  ))}
+
+  <button class="ev-carousel-arrow ev-carousel-arrow-prev" aria-label="Previous photo" id="ev-prev">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <button class="ev-carousel-arrow ev-carousel-arrow-next" aria-label="Next photo" id="ev-next">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+      <path d="M5 2l5 5-5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <div class="ev-carousel-dots" role="tablist" aria-label="Slide navigation">
+    {slides.map((_, i) => (
+      <button
+        class:list={["ev-carousel-dot", i === 0 && "is-active"]}
+        role="tab"
+        aria-selected={i === 0 ? "true" : "false"}
+        aria-label={`Photo ${i + 1} of ${slides.length}`}
+        data-dot-index={i}
+      ></button>
+    ))}
+  </div>
+</div>
+
+<script>
+  function initCarousel() {
+    const carousel = document.getElementById("ev-carousel");
+    if (!carousel) return;
+
+    const slides = Array.from(carousel.querySelectorAll<HTMLElement>(".ev-carousel-slide"));
+    const dots = Array.from(carousel.querySelectorAll<HTMLButtonElement>(".ev-carousel-dot"));
+    const prevBtn = document.getElementById("ev-prev");
+    const nextBtn = document.getElementById("ev-next");
+
+    const total = slides.length;
+    let current = 0;
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+
+    function goTo(index: number) {
+      slides[current].classList.remove("is-active");
+      slides[current].setAttribute("aria-hidden", "true");
+      dots[current].classList.remove("is-active");
+      dots[current].setAttribute("aria-selected", "false");
+
+      current = ((index % total) + total) % total;
+
+      slides[current].classList.add("is-active");
+      slides[current].setAttribute("aria-hidden", "false");
+      dots[current].classList.add("is-active");
+      dots[current].setAttribute("aria-selected", "true");
+    }
+
+    function start() {
+      intervalId = setInterval(() => goTo(current + 1), 4200);
+    }
+
+    function stop() {
+      if (intervalId !== null) clearInterval(intervalId);
+      intervalId = null;
+    }
+
+    prevBtn?.addEventListener("click", () => { stop(); goTo(current - 1); start(); });
+    nextBtn?.addEventListener("click", () => { stop(); goTo(current + 1); start(); });
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => { stop(); goTo(i); start(); });
+    });
+
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+
+    // Keyboard navigation
+    carousel.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") { stop(); goTo(current - 1); start(); }
+      if (e.key === "ArrowRight") { stop(); goTo(current + 1); start(); }
+    });
+
+    start();
+  }
+
+  initCarousel();
+</script>

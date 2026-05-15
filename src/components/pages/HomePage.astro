@@ -1,5 +1,6 @@
 ---
 import { siteContent } from "../../data/siteContent";
+import EventCarousel from "../EventCarousel.astro";
 
 const { home } = siteContent;
 ---
@@ -13,19 +14,23 @@ const { home } = siteContent;
       <div class="hero-grid"></div>
     </div>
     <div class="hero-inner">
-      <h1 class="hero-h1">
-        {home.hero.titleLead}<br /><em>{home.hero.titleAccent}</em>
-      </h1>
-      <p class="hero-sub">{home.hero.body}</p>
-      <div class="hero-actions">
-        <a class="btn-pri" href={home.hero.cta.href} target="_blank">{home.hero.cta.label}</a>
+      <div class="hero-content">
+        <h1 class="hero-h1">
+          {home.hero.titleLead}<br /><em>{home.hero.titleAccent}</em>
+        </h1>
+        <p class="hero-sub">{home.hero.body}</p>
+        <div class="hero-actions">
+          <a class="btn-pri" href={home.hero.cta.href} target="_blank">{home.hero.cta.label}</a>
+        </div>
+      </div>
+      <div class="hero-carousel-col">
+        <EventCarousel />
       </div>
     </div>
   </section>
 
   <!-- Programs strip -->
   <div class="section reveal">
-    <div class="section-tag">{home.programs.eyebrow}</div>
     <h2 class="section-h2">{home.programs.title}</h2>
     <p class="section-lead">{home.programs.lead}</p>
     <div class="home-programs-flow">
