@@ -67,12 +67,12 @@ export const siteContent = {
       eyebrow: "Programs",
       title: "How we support founders",
       lead:
-        "From accelerator funding to community desks and coaching — find the program that meets you where you are.",
+        "ikigai Launchpad is our flagship accelerator, with Launch Station supporting founders who want to build around the Taipei startup community.",
       featured: {
         label: "Accelerator",
         title: "ikigai Launchpad",
         body:
-          "$100K funding, partner mentorship, and a tight founder batch built for startups that want to move fast from Taipei.",
+          "$100K funding, hands-on partner mentorship, and a tight 10-week founder batch built for startups that want to move fast from Taipei.",
         meta: ["$100K funding", "Partner office hours", "Batch community"],
         ctaLabel: "Learn more →",
         ctaHref: "/programs",
@@ -83,22 +83,6 @@ export const siteContent = {
           title: "Launch Station",
           body:
             "Free coworking space and a founder community inside Taiwan Tech Arena.",
-          ctaLabel: "Learn more →",
-          ctaHref: "/programs",
-        },
-        {
-          label: "Campus Network",
-          title: "ikigai Venture Scout",
-          body:
-            "Source standout founders on campus and connect them into the 886 network.",
-          ctaLabel: "Learn more →",
-          ctaHref: "/programs",
-        },
-        {
-          label: "Coaching",
-          title: "Velocity",
-          body:
-            "Sharpen your story, materials, and accelerator readiness with direct coaching.",
           ctaLabel: "Learn more →",
           ctaHref: "/programs",
         },
@@ -236,30 +220,67 @@ export const siteContent = {
   },
   programs: {
     eyebrow: "Programs",
-    title: "Pick the lane that matches your momentum.",
+    title: "How we work with founders.",
     lead:
-      "Four ways to work with 886 Studios, from direct startup acceleration to community, campus sourcing, and founder coaching.",
+      "Our flagship 10-week accelerator in Taipei gives early-stage founders capital, hands-on support, and access to the 886 Studios network.",
     items: [
       {
-        featuredLabel: "Flagship program",
-        track: "Accelerator",
         name: "ikigai Launchpad",
-        headingLink: {
-          label: "Visit Website",
-          href: "https://withikigai.com/",
-        },
+        learnMoreHref: "https://withikigai.com/?gad_source=1&gad_campaignid=22431875260&gbraid=0AAAAA_T5bfikWpWgiBTvO7VHwrU9CtcE_&gclid=CjwKCAjw8arQBhB9EiwAfIKdQlaQyIeLDc12b41gZD-eZtsUKEI1hZeVtvXa_raBK1dNjUjeREajkBoCNKgQAvD_BwE",
         body:
-          "A 12-week accelerator in Taipei for early-stage founders who want capital, close operator support, and the pressure-tested structure to move from idea to real traction.",
-        highlights: [
-          "$100K in funding",
-          "Weekly office hours with partners",
-          "Demo Day + investor intros",
-        ],
+          "A 10-week accelerator for early-stage founders building globally ambitious startups from Taiwan. Founders receive funding, weekly 1-on-1 office hours and workshops with 886 Studios partners, a tight batch community, warm investor introductions, and Demo Day.",
+        highlights: [],
+        details: {
+          intro: "",
+          metrics: [
+            {
+              label: "Investment",
+              value: "$100K USD",
+              note: "Standard deal listed by ikigai as $100K for 8%.",
+            },
+            {
+              label: "Format",
+              value: "10 weeks",
+              note: "In-person in Taipei, with office space at Taiwan Tech Arena.",
+            },
+            {
+              label: "Support",
+              value: "Beyond Demo Day",
+              note: "Tailored alumni support continues after the batch.",
+            },
+          ],
+          sections: [
+            {
+              title: "Hands-on support",
+              items: [
+                "Weekly 1-on-1 mentor office hours",
+                "Founder-led workshops and guest speakers",
+                "Product-to-market support from partners and program staff",
+              ],
+            },
+            {
+              title: "Community and workspace",
+              items: [
+                "Tight in-person batch at Taiwan Tech Arena",
+                "English-first environment with bilingual support",
+                "Networking, founder events, and team building",
+              ],
+            },
+            {
+              title: "Network access",
+              items: [
+                "Warm introductions and investor matching",
+                "Demo Day for founders ready to show progress",
+                "Access to founder, operator, and corporate perks",
+              ],
+            },
+          ],
+        },
         fit:
-          "Early-stage founders who want capital, close support, and momentum.",
+          "Early-stage founders ready to work full-time on a global startup.",
         cta: {
-          type: "primary",
-          label: "Apply Here",
+          type: "link",
+          label: "Apply to ikigai Launchpad →",
           href: "https://tally.so/r/w5p4jQ",
         },
       },
@@ -275,81 +296,8 @@ export const siteContent = {
           label: "Applications open soon",
         },
       },
-      {
-        track: "Campus Network",
-        name: "ikigai Venture Scout",
-        body:
-          "A campus discovery network that finds strong student founders early and connects them into ikigai Launchpad. Scouts build venture instincts while becoming the bridge between universities and the startup ecosystem.",
-        highlights: [
-          "Source founders on your campus",
-          "Referral compensation",
-          "Access to our network",
-        ],
-        fit: "Students and recent grads plugged into builder communities.",
-        cta: {
-          type: "link",
-          label: "Learn more →",
-          href: "https://886studios.com/program/ikigai-venture-scout",
-        },
-      },
-      {
-        track: "Coaching",
-        name: "Velocity",
-        body:
-          "Accelerator coaching for founders who want sharper applications, clearer narratives, and a stronger shot at getting into top global programs like YC.",
-        highlights: [
-          "Application strategy",
-          "Narrative sharpening",
-          "Interview prep",
-        ],
-        fit: "Founders applying to top accelerators and sharpening their story.",
-        cta: {
-          type: "status",
-          label: "Details coming soon",
-        },
-      },
     ],
-    comparison: {
-      title: "Compare programs",
-      lead: "A quick read on where each program fits, how much time it asks for, and what founders should expect to get out of it.",
-      rows: [
-        {
-          featured: true,
-          program: "ikigai Launchpad",
-          track: "Accelerator",
-          bestFor: "Early-stage founders ready for capital, structure, and close operator support.",
-          commitment: "12-week accelerator",
-          outcome: "$100K funding, partner mentorship, Demo Day, and investor introductions.",
-          status: "Applications open",
-        },
-        {
-          program: "Launch Station",
-          track: "Community",
-          bestFor: "Founders who want a Taipei base and more collisions with other builders.",
-          commitment: "Flexible coworking",
-          outcome: "A free workspace, founder community, and proximity to Taiwan Tech Arena.",
-          status: "Opening soon",
-        },
-        {
-          program: "ikigai Venture Scout",
-          track: "Campus Network",
-          bestFor: "Students and recent grads who are close to campus builder communities.",
-          commitment: "Part-time scout role",
-          outcome: "Venture reps, referral compensation, and access to the 886 Studios network.",
-          status: "Live",
-        },
-        {
-          program: "Velocity",
-          track: "Coaching",
-          bestFor: "Founders applying to top accelerators and tightening their story.",
-          commitment: "Founder coaching",
-          outcome: "Sharper applications, stronger narratives, and interview preparation.",
-          status: "Details coming soon",
-        },
-      ],
-    },
-    footer:
-      "All programs are designed to help founders move faster, think sharper, and build with more leverage.",
+    footer: "",
   },
   resources: {
     eyebrow: "Resources",

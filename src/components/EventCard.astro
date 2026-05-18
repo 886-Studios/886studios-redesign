@@ -11,6 +11,8 @@ interface Props {
 const { event, tag, highlight = false, highlightLabel = "Upcoming event" } = Astro.props;
 const mediaClass = event.coverUrl ? "ev-media" : "ev-media ev-media--date-only";
 const cardClass = `ev-card${event.url ? " ev-card--link" : ""}${highlight ? " ev-card--featured" : ""}`;
+const isLearnMore = tag.toLowerCase() === "learn more";
+const tagLabel = isLearnMore ? "Learn more →" : tag;
 ---
 
 {
@@ -29,7 +31,7 @@ const cardClass = `ev-card${event.url ? " ev-card--link" : ""}${highlight ? " ev
         <div class="ev-title">{event.title}</div>
         <div class="ev-meta">{event.meta}</div>
       </div>
-      <div class="ev-tag">{tag}</div>
+      <div class:list={["ev-tag", isLearnMore && "card-cta"]}>{tagLabel}</div>
     </a>
   ) : (
     <div class={cardClass}>
@@ -46,7 +48,7 @@ const cardClass = `ev-card${event.url ? " ev-card--link" : ""}${highlight ? " ev
         <div class="ev-title">{event.title}</div>
         <div class="ev-meta">{event.meta}</div>
       </div>
-      <div class="ev-tag">{tag}</div>
+      <div class:list={["ev-tag", isLearnMore && "card-cta"]}>{tagLabel}</div>
     </div>
   )
 }

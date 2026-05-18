@@ -8,102 +8,73 @@ const { programs } = siteContent;
   <div class="pg-hero program-hero">
     <div class="pg-hero-glow"></div>
     <div class="section-tag">{programs.eyebrow}</div>
-    <div class="program-intro-grid">
-      <div>
-        <h1 class="program-headline">{programs.title}</h1>
-        <p class="section-lead program-summary">{programs.lead}</p>
-      </div>
-    </div>
+    <h1 class="program-headline">{programs.title}</h1>
+    <p class="section-lead program-summary">{programs.lead}</p>
   </div>
   <div class="pg-divider"></div>
   <div class="program-shell">
-    <div class="program-lane">
-      {
-        programs.items.map((item) => (
-          <article class:list={["program-row", item.featuredLabel && "program-row-featured"]}>
-            <div class="program-meta">
-              {item.featuredLabel && <div class="program-featured-label">{item.featuredLabel}</div>}
-              <div class="program-track">{item.track}</div>
-            </div>
-            <div>
-              {item.headingLink ? (
-                <div class="program-heading">
-                  <h2 class="program-name">{item.name}</h2>
-                  <a class="program-heading-link" href={item.headingLink.href} target="_blank">
-                    {item.headingLink.label}
-                  </a>
-                </div>
-              ) : (
-                <h2 class="program-name">{item.name}</h2>
-              )}
-              <p class="program-description">{item.body}</p>
+    {
+      programs.items.map((item) => (
+        <article class:list={["program-card", item.details && "program-card-featured"]}>
+          <div class="program-card-top">
+            {item.learnMoreHref && (
+              <a class="card-cta program-card-learn-more" href={item.learnMoreHref} target="_blank" rel="noopener noreferrer">
+                Learn more →
+              </a>
+            )}
+            {item.track && <div class="program-track">{item.track}</div>}
+            <h2 class="program-name">{item.name}</h2>
+            <p class="program-description">{item.body}</p>
+            {item.highlights.length > 0 && (
               <div class="program-highlights">
                 {item.highlights.map((highlight) => <span class="program-highlight">{highlight}</span>)}
               </div>
+            )}
+          </div>
+
+          {item.details && (
+            <div class="program-stats-row">
+              {item.details.metrics.map((metric) => (
+                <div class="program-stat">
+                  <div class="program-stat-value">{metric.value}</div>
+                  <div class="program-stat-label">{metric.label}</div>
+                  <div class="program-stat-note">{metric.note}</div>
+                </div>
+              ))}
             </div>
-            <div class="program-side">
+          )}
+
+          {item.details && (
+            <div class="program-detail-grid">
+              {item.details.sections.map((section) => (
+                <section class="program-detail-panel">
+                  <h3 class="program-detail-title">{section.title}</h3>
+                  <ul class="program-detail-list">
+                    {section.items.map((detail) => <li>{detail}</li>)}
+                  </ul>
+                </section>
+              ))}
+            </div>
+          )}
+
+          <div class="program-card-footer">
+            <div class="program-fit-block">
               <div class="program-fit-label">Best for</div>
               <p class="program-fit">{item.fit}</p>
-              {item.cta.type === "primary" && (
-                <div class="program-cta-row">
-                  <a class="btn-pri program-link" href={item.cta.href} target="_blank">
-                    {item.cta.label}
-                  </a>
-                </div>
-              )}
+            </div>
+            <div class="program-cta-block">
               {item.cta.type === "link" && (
                 <a class="card-cta program-link" href={item.cta.href} target="_blank">
                   {item.cta.label}
                 </a>
               )}
               {item.cta.type === "status" && (
-                <span class="program-status-badge program-link">{item.cta.label}</span>
+                <span class="card-cta program-status-text">{item.cta.label}</span>
               )}
             </div>
-          </article>
-        ))
-      }
-    </div>
-    <section class="program-compare" aria-labelledby="program-compare-title">
-      <div class="program-compare-header">
-        <div class="program-compare-kicker">Decision guide</div>
-        <h2 id="program-compare-title" class="program-compare-title">{programs.comparison.title}</h2>
-        <p class="program-compare-lead">{programs.comparison.lead}</p>
-      </div>
-      <div class="program-table-wrap">
-        <table class="program-table">
-          <thead>
-            <tr>
-              <th scope="col">Program</th>
-              <th scope="col">Best for</th>
-              <th scope="col">Commitment</th>
-              <th scope="col">Key outcome</th>
-              <th scope="col">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            {
-              programs.comparison.rows.map((row) => (
-                <tr class:list={[row.featured && "program-table-row-featured"]}>
-                  <th scope="row">
-                    <span class="program-table-name">{row.program}</span>
-                    <span class="program-table-track">{row.track}</span>
-                  </th>
-                  <td>{row.bestFor}</td>
-                  <td>{row.commitment}</td>
-                  <td>{row.outcome}</td>
-                  <td>
-                    <span class:list={["program-table-status", row.featured && "program-table-status-featured"]}>
-                      {row.status}
-                    </span>
-                  </td>
-                </tr>
-              ))
-            }
-          </tbody>
-        </table>
-      </div>
-    </section>
-    <div class="program-footer-note">{programs.footer}</div>
+          </div>
+        </article>
+      ))
+    }
   </div>
 </div>
