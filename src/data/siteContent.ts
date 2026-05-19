@@ -455,6 +455,7 @@ export const siteContent = {
         role: "Venture Associate",
         photo: "/assets/headshots/carter-wang.webp",
         linkedinUrl: "https://www.linkedin.com/in/cartergrantwang/",
+        xUrl: "https://x.com/carterkowang",
       },
     ],
     partnersTitle: "Partners",

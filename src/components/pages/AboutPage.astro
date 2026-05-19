@@ -41,15 +41,33 @@ const { about } = siteContent;
                   : <div class="avatar">{person.initials}</div>
                 }
               </div>
-              <a
-                class="team-name team-link"
-                href={person.linkedinUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${person.name} on LinkedIn`}
-              >
-                {person.name}
-              </a>
+              <div class="team-name-row">
+                <a
+                  class="team-name team-link"
+                  href={person.linkedinUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${person.name} on LinkedIn`}
+                >
+                  <span>{person.name}</span>
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M4.98 3.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM3.5 8.5h2.96V20.5H3.5V8.5Zm5.28 0h2.84v1.64h.04c.4-.75 1.37-1.84 3.34-1.84 3.57 0 4.23 2.35 4.23 5.41v6.79h-2.96v-6.01c0-1.43-.03-3.27-1.99-3.27-2 0-2.31 1.56-2.31 3.17v6.11H8.78V8.5Z" />
+                  </svg>
+                </a>
+                {person.xUrl && (
+                  <a
+                    class="team-social-link"
+                    href={person.xUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${person.name} on X`}
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M18.901 1.153h3.68l-8.04 9.19 9.458 12.504H16.594l-5.8-7.584-6.64 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.9 1.153Zm-1.291 19.492h2.04L6.486 3.24H4.298L17.61 20.645Z" />
+                    </svg>
+                  </a>
+                )}
+              </div>
               <div class="team-role">{person.role}</div>
             </div>
           ))
