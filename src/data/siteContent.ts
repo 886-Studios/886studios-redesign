@@ -89,6 +89,10 @@ export const siteContent = {
           src: "/assets/landing/launchpad-06.jpg",
           alt: "886 Studios founders meeting during an in-person program session",
         },
+        {
+          src: "/assets/landing/launchpad-07.jpg",
+          alt: "886 Studios founders gathered around a table during a program session",
+        },
       ],
     },
     programs: {
