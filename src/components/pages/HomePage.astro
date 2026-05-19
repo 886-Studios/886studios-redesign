@@ -1,6 +1,5 @@
 ---
 import { siteContent } from "../../data/siteContent";
-import EventCarousel from "../EventCarousel.astro";
 
 const { home } = siteContent;
 ---
@@ -14,17 +13,37 @@ const { home } = siteContent;
       <div class="hero-grid"></div>
     </div>
     <div class="hero-inner">
-      <div class="hero-content">
-        <h1 class="hero-h1">
-          {home.hero.titleLead}<br /><em>{home.hero.titleAccent}</em>
-        </h1>
-        <p class="hero-sub">{home.hero.body}</p>
-        <div class="hero-actions">
-          <a class="btn-pri" href={home.hero.cta.href} target="_blank">{home.hero.cta.label}</a>
-        </div>
+      <h1 class="hero-h1">
+        {home.hero.titleLead}<br /><em>{home.hero.titleAccent}</em>
+      </h1>
+      <p class="hero-sub">{home.hero.body}</p>
+      <div class="hero-actions">
+        <a class="btn-pri" href={home.hero.cta.href} target="_blank">{home.hero.cta.label}</a>
       </div>
-      <div class="hero-carousel-col">
-        <EventCarousel />
+    </div>
+  </section>
+
+  <section class="photo-showcase reveal" aria-label="886 Studios photo slideshow">
+    <div class="photo-rail" aria-label="886 Studios photo slideshow">
+      <div class="photo-track">
+        <div class="photo-track-set">
+          {
+            home.photos.items.map((photo) => (
+              <figure class="photo-slide">
+                <img src={photo.src} alt={photo.alt} decoding="async" />
+              </figure>
+            ))
+          }
+        </div>
+        <div class="photo-track-set" aria-hidden="true">
+          {
+            home.photos.items.map((photo) => (
+              <figure class="photo-slide">
+                <img src={photo.src} alt="" decoding="async" />
+              </figure>
+            ))
+          }
+        </div>
       </div>
     </div>
   </section>

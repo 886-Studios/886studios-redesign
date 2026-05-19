@@ -63,6 +63,34 @@ export const siteContent = {
         href: "https://tally.so/r/w5p4jQ",
       },
     },
+    photos: {
+      items: [
+        {
+          src: "/assets/landing/launchpad-01.jpg",
+          alt: "886 Studios founders gathered during a community event",
+        },
+        {
+          src: "/assets/landing/launchpad-02.jpg",
+          alt: "Founders and mentors in conversation at 886 Studios",
+        },
+        {
+          src: "/assets/landing/launchpad-03.jpg",
+          alt: "886 Studios community members at a founder session",
+        },
+        {
+          src: "/assets/landing/launchpad-04.jpg",
+          alt: "A workshop moment with the 886 Studios founder community",
+        },
+        {
+          src: "/assets/landing/launchpad-05.jpg",
+          alt: "Founders watching a presentation during an 886 Studios community session",
+        },
+        {
+          src: "/assets/landing/launchpad-06.jpg",
+          alt: "886 Studios founders meeting during an in-person program session",
+        },
+      ],
+    },
     programs: {
       eyebrow: "Programs",
       title: "How we support founders",
