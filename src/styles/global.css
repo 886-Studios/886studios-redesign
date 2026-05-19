@@ -1377,20 +1377,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      min-height: 28px;
+      gap: 8px;
+      min-height: 24px;
     }
     .team-socials {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 5px;
       flex-shrink: 0;
     }
     .team-social-link {
-      width: 28px;
-      height: 28px;
-      border-radius: 7px;
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
       background: var(--bg-card);
       border: 1px solid var(--border);
       color: var(--text-muted);
@@ -1401,11 +1401,13 @@
       transition: all 0.2s;
     }
     .team-social-link svg {
-      width: 16px;
-      height: 16px;
+      width: 12px;
+      height: 12px;
       display: block;
       fill: currentColor;
     }
+    .team-social-link--linkedin svg { transform: scale(1.18); }
+    .team-social-link--x svg { transform: scale(0.96); }
     .team-social-link:hover {
       border-color: var(--purple);
       color: var(--text-primary);
