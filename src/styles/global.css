@@ -1365,6 +1365,31 @@
     }
 
     .team-name { font-family: var(--font-display); font-size: 14px; font-weight: 700; }
+    .team-link {
+      color: var(--text-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: color 0.2s ease;
+    }
+    .team-link::after {
+      content: "in";
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(14, 118, 168, 0.18);
+      color: #8cc8e8;
+      font-family: Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1;
+    }
+    .team-link:hover { color: var(--purple-bright); }
     .team-role { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
     .team-company {
       font-size: 11px; color: var(--purple-bright); margin-top: 5px;

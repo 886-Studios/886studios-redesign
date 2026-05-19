@@ -41,7 +41,15 @@ const { about } = siteContent;
                   : <div class="avatar">{person.initials}</div>
                 }
               </div>
-              <div class="team-name">{person.name}</div>
+              <a
+                class="team-name team-link"
+                href={person.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${person.name} on LinkedIn`}
+              >
+                {person.name}
+              </a>
               <div class="team-role">{person.role}</div>
             </div>
           ))

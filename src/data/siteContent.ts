@@ -430,9 +430,28 @@ export const siteContent = {
     ],
     teamTitle: "Operating Team",
     team: [
-      { initials: "FW", name: "Freya Wu", role: "General Manager", photo: "/assets/headshots/freya-wu.webp", objectPosition: "center 40%" },
-      { initials: "PC", name: "Patryk Chojecki", role: "Program Manager", photo: "/assets/headshots/patryk-chojecki.webp" },
-      { initials: "CW", name: "Carter Wang", role: "Venture Associate", photo: "/assets/headshots/carter-wang.webp" },
+      {
+        initials: "FW",
+        name: "Freya Wu",
+        role: "General Manager",
+        photo: "/assets/headshots/freya-wu.webp",
+        objectPosition: "center 40%",
+        linkedinUrl: "https://www.linkedin.com/in/freyawwc/",
+      },
+      {
+        initials: "PC",
+        name: "Patryk Chojecki",
+        role: "Program Manager",
+        photo: "/assets/headshots/patryk-chojecki.webp",
+        linkedinUrl: "https://www.linkedin.com/in/patryk-chojecki/",
+      },
+      {
+        initials: "CW",
+        name: "Carter Wang",
+        role: "Venture Associate",
+        photo: "/assets/headshots/carter-wang.webp",
+        linkedinUrl: "https://www.linkedin.com/in/cartergrantwang/",
+      },
     ],
     partnersTitle: "Partners",
     partners: [
