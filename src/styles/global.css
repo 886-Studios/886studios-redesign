@@ -295,8 +295,7 @@
       overflow: hidden;
       padding: 80px 32px;
       isolation: isolate;
-      background-image:
-        linear-gradient(90deg, rgba(5,5,7,1) 0%, rgba(5,5,7,0.94) 48%, rgba(5,5,7,0.98) 100%);
+      background: #050507;
       background-repeat: no-repeat;
       background-size: 100% 100%;
       background-position: center;
@@ -323,6 +322,7 @@
       inset: 0;
       z-index: 1;
       pointer-events: none;
+      opacity: 0.46;
     }
 
     .hero-orb {
@@ -1369,37 +1369,40 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      min-height: 22px;
+      gap: 10px;
+      min-height: 28px;
     }
-    .team-link {
-      color: var(--text-primary);
-      text-decoration: none;
+    .team-socials {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
-      transition: color 0.2s ease;
-    }
-    .team-link svg,
-    .team-social-link svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
       flex-shrink: 0;
     }
     .team-social-link {
-      width: 22px;
-      height: 22px;
-      color: var(--text-primary);
-      text-decoration: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: color 0.2s ease;
+      text-decoration: none;
+      transition: all 0.2s;
     }
-    .team-link:hover,
-    .team-social-link:hover { color: var(--purple-bright); }
+    .team-social-link svg {
+      width: 16px;
+      height: 16px;
+      display: block;
+      fill: currentColor;
+    }
+    .team-social-link:hover {
+      border-color: var(--purple);
+      color: var(--text-primary);
+      background: rgba(139,92,246,0.1);
+    }
     .team-role { font-size: 12px; color: var(--text-secondary); margin-top: 4px; }
     .team-company {
       font-size: 11px; color: var(--purple-bright); margin-top: 5px;
