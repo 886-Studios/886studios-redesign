@@ -4,53 +4,66 @@ import { siteContent } from "../../data/siteContent";
 const { resources } = siteContent;
 ---
 
-<div class="page" id="page-resources">
-  <div class="pg-hero">
+<div class="page resources-page" id="page-resources">
+  <section class="pg-hero resources-hero-simple" aria-labelledby="resources-title">
     <div class="pg-hero-glow"></div>
-    <div class="section-tag">{resources.eyebrow}</div>
-    <h1 class="section-h2 pg-hero-title">{resources.title}</h1>
-    <p class="section-lead section-lead--flush">{resources.lead}</p>
-  </div>
+    <h1 class="resources-title-simple" id="resources-title">{resources.title}</h1>
+  </section>
   <div class="pg-divider"></div>
-  <div class="section">
-    <div class="section-tag">{resources.libraryTitle}</div>
-    <div class="res-grid">
-      {
-        resources.libraryItems.map((item) => (
-          <a class="res-item" href={item.href} target="_blank" rel="noopener noreferrer">
-            <div class="res-icon">{item.icon}</div>
-            <div>
-              <div class="res-name">{item.title}</div>
-              <div class="res-sub">{item.subtitle}</div>
-            </div>
+
+  <main class="resources-simple-shell">
+    <section class="resources-simple-block" aria-label="Resource links">
+      <div class="resources-card-grid">
+        {resources.libraryItems.map((item) => (
+          <a class="resource-card-simple" href={item.href}>
+            <h2>{item.title}</h2>
+            <span aria-hidden="true">→</span>
           </a>
-        ))
-      }
-    </div>
-
-    <div class="section-stack-48">
-      <div class="section-tag">{resources.ama.eyebrow}</div>
-      <div class="pcard pcard--narrow">
-        <h3 class="card-title">{resources.ama.title}</h3>
-        <p class="card-body">{resources.ama.body}</p>
-        <a class="card-cta" href={resources.ama.ctaHref} target="_blank" rel="noopener noreferrer">{resources.ama.ctaLabel}</a>
+        ))}
       </div>
-    </div>
+    </section>
 
-    <div class="section-stack-56">
-      <div class="section-tag">{resources.perks.eyebrow}</div>
-      <p class="perks-note">{resources.perks.note}</p>
+    <section class="resources-simple-block resources-ama-simple" aria-labelledby="ama-heading">
+      <div class="resources-block-heading">
+        <h2 id="ama-heading">{resources.ama.title}</h2>
+      </div>
+      <div class="resources-ama-body">
+        {resources.ama.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        <a class="btn-sec resources-ama-cta" href={resources.ama.ctaHref} target="_blank" rel="noopener noreferrer">
+          {resources.ama.ctaLabel}
+        </a>
+      </div>
+    </section>
 
-      {
-        resources.perks.categories.map((category) => (
-          <>
-            <div class="perk-section-label">{category.title}</div>
-            <div class="perks-row">
-              {category.items.map((item) => <div class="perk">{item}</div>)}
-            </div>
-          </>
-        ))
-      }
-    </div>
-  </div>
+    <section class="resources-simple-block resources-perks-simple" aria-labelledby="perks-heading">
+      <div class="resources-block-heading">
+        <h2 id="perks-heading">{resources.perks.title}</h2>
+      </div>
+
+      <div>
+        <div class="perks-simple-grid">
+          {
+            resources.perks.categories.map((category) => (
+              <article class="perk-category-simple">
+                <h3>{category.title}</h3>
+                <ul>
+                  {category.items.map((item) => <li>{item}</li>)}
+                </ul>
+              </article>
+            ))
+          }
+        </div>
+        <p class="perks-simple-note">
+          you can unlock these exclusive perks by working with us through
+          <a href={resources.perks.programHref} target="_blank" rel="noopener noreferrer">ikigai Launchpad</a>
+          or Launch Station
+        </p>
+      </div>
+    </section>
+
+    <section class="resources-contact-simple" aria-label="Need more help">
+      <p>{resources.contactPrompt}</p>
+      <a class="card-cta" href={resources.contactHref}>{resources.contactLabel}</a>
+    </section>
+  </main>
 </div>

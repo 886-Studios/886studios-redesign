@@ -330,80 +330,68 @@ export const siteContent = {
     footer: "",
   },
   resources: {
-    eyebrow: "Resources",
-    title: "Tools for founders",
-    lead:
-      "Guides, databases, and exclusive perks for the 886 Studios community.",
-    libraryTitle: "Knowledge Library",
+    title: "Resources",
     libraryItems: [
       {
-        icon: "📚",
         title: "Y Combinator 101",
-        subtitle: "Everything you need to know about YC",
-        href: "https://886studios.substack.com/",
+        href: "/resources/y-combinator-101",
       },
       {
-        icon: "📄",
         title: "Incorporation 101",
-        subtitle: "How to incorporate your startup",
-        href: "https://886studios.substack.com/",
+        href: "/incorporation-101",
       },
       {
-        icon: "📝",
         title: "Application Guide",
-        subtitle: "Write the winning accelerator app",
-        href: "https://886studios.substack.com/",
+        href: "/resources/application-guide",
       },
       {
-        icon: "🗺️",
         title: "Ecosystem Database",
-        subtitle: "Taiwan startup ecosystem map",
-        href: "https://886studios.substack.com/",
+        href: "/resources/ecosystem-database",
       },
       {
-        icon: "❓",
         title: "Founders FAQs",
-        subtitle: "Common founder questions, answered",
-        href: "https://886studios.substack.com/",
+        href: "/resources/founders-frequently-asked-questions",
       },
       {
-        icon: "🎯",
         title: "Interview Guidebook",
-        subtitle: "Nail your accelerator interview",
-        href: "https://886studios.substack.com/",
+        href: "/interview-guidebook",
       },
     ],
     ama: {
-      eyebrow: "Ask Me Anything",
-      title: "886 AMA",
-      body:
-        "Your questions are addressed asynchronously by our venture partners who've encountered the same challenges. No question too basic or too specific.",
-      ctaLabel: "Submit a question →",
-      ctaHref: "https://886studios.substack.com/",
+      title: "Ask Me Anything",
+      paragraphs: [
+        "Building a company is undeniably challenging, a reality we fully understand from personal experience. Founders constantly find themselves navigating a complex intersection of responsibilities — making tough decisions, grappling with uncertainty, and sometimes needing to part ways with individuals or ideas.",
+        "We're here to lend an empathetic ear and offer assistance whenever you need it.",
+        "In 886 AMA, your questions will be addressed asynchronously by our venture partners who have encountered similar experiences.",
+      ],
+      ctaLabel: "Founder AMA",
+      ctaHref: "https://tally.so/r/m626gk",
     },
     perks: {
-      eyebrow: "Exclusive Perks",
-      note:
-        "Unlock these perks by working with us through ikigai Launchpad or Launch Station.",
+      title: "Exclusive Perks",
+      programHref: "https://withikigai.com/",
       categories: [
         {
           title: "Productivity",
-          items: ["📝 Notion", "📋 Coda", "📤 DocSend", "🗂️ Miro"],
+          items: ["Notion", "Coda", "DocSend", "Miro"],
         },
         {
           title: "Finances",
-          items: ["💳 Ramp", "🏦 Mercury"],
+          items: ["Ramp", "Mercury"],
         },
         {
           title: "Marketing",
-          items: ["📈 HubSpot", "🌐 Webflow"],
+          items: ["Hubspot", "Webflow"],
         },
         {
           title: "Engineering",
-          items: ["☁️ AWS Activate", "🐙 GitHub"],
+          items: ["AWS Activate", "GitHub"],
         },
       ],
     },
+    contactPrompt: "Need more help?",
+    contactLabel: "Contact Us",
+    contactHref: "/contact",
   },
   about: {
     eyebrow: "About Us",

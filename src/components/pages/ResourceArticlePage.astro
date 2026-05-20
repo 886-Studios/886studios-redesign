@@ -1,0 +1,131 @@
+---
+import type { ResourceArticle } from "../../data/resourceArticles";
+
+const { article } = Astro.props as { article: ResourceArticle };
+---
+
+<div class="page resource-article-page">
+  <section class="pg-hero resource-article-hero" aria-labelledby="resource-article-title">
+    <div class="pg-hero-glow"></div>
+    <a class="resource-back-link" href="/resources">← Resources</a>
+    <h1 class="resource-article-title" id="resource-article-title">{article.title}</h1>
+    {article.intro && <p class="resource-article-intro">{article.intro}</p>}
+  </section>
+  <div class="pg-divider"></div>
+
+  <main class="resource-article-shell">
+    {article.sections?.map((section) => (
+      <section class="resource-article-section">
+        <h2>{section.title}</h2>
+
+        {section.paragraphs?.map((paragraph: string) => <p>{paragraph}</p>)}
+
+        {section.list && (
+          <ul class="resource-list">
+            {section.list.map((item: string) => <li>{item}</li>)}
+          </ul>
+        )}
+
+        {section.subsections && (
+          <div class="resource-subsection-grid">
+            {section.subsections.map((subsection) => (
+              <div class="resource-subsection">
+                <h3>{subsection.title}</h3>
+                {subsection.body && <p>{subsection.body}</p>}
+                {subsection.list && (
+                  <ul class="resource-list">
+                    {subsection.list.map((item: string) => <li>{item}</li>)}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {section.cards && (
+          <div class="resource-card-list">
+            {section.cards.map((card) => (
+              <a class:list={["resource-info-card", !card.href && "resource-info-card--static"]} href={card.href || undefined}>
+                <h3>{card.title}</h3>
+                {card.meta && <div class="resource-card-meta">{card.meta}</div>}
+                {card.body && <p>{card.body}</p>}
+              </a>
+            ))}
+          </div>
+        )}
+
+        {section.table && (
+          <div class="resource-table-wrap">
+            <table class="resource-table">
+              <thead>
+                <tr>
+                  {section.table.headers.map((header: string) => <th>{header}</th>)}
+                </tr>
+              </thead>
+              <tbody>
+                {section.table.rows.map((row: string[]) => (
+                  <tr>
+                    {row.map((cell: string) => <td>{cell}</td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {section.links && (
+          <div class="resource-link-row">
+            {section.links.map((link) => (
+              <a class="card-cta" href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}>
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
+      </section>
+    ))}
+
+    {article.directoryGroups?.map((group) => (
+      <section class="resource-directory-section">
+        <h2>{group.title}</h2>
+        <div class="resource-directory-grid">
+          {group.entries.map((entry) => (
+            <article class="resource-directory-card">
+              <div class="resource-directory-top">
+                <h3>{entry.name}</h3>
+                {entry.year && <span>{entry.year}</span>}
+              </div>
+              {entry.focus && <p>{entry.focus}</p>}
+              <dl>
+                {entry.url && (
+                  <>
+                    <dt>Website</dt>
+                    <dd><a href={entry.href || `https://${entry.url}`} target="_blank" rel="noopener noreferrer">{entry.url}</a></dd>
+                  </>
+                )}
+                {entry.contact && (
+                  <>
+                    <dt>Contact</dt>
+                    <dd>{entry.contact}</dd>
+                  </>
+                )}
+                {entry.range && (
+                  <>
+                    <dt>Range</dt>
+                    <dd>{entry.range}</dd>
+                  </>
+                )}
+                {entry.stage && (
+                  <>
+                    <dt>Stage</dt>
+                    <dd>{entry.stage}</dd>
+                  </>
+                )}
+              </dl>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+  </main>
+</div>

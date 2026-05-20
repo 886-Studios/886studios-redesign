@@ -1,0 +1,15 @@
+---
+import ResourceArticlePage from "../components/pages/ResourceArticlePage.astro";
+import { standaloneResourceArticles } from "../data/resourceArticles";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const article = standaloneResourceArticles.find((item) => item.slug === "incorporation-101");
+
+if (!article) {
+  throw new Error("Missing incorporation resource article");
+}
+---
+
+<BaseLayout title="Incorporation 101 — 886 Studios Resources">
+  <ResourceArticlePage article={article} />
+</BaseLayout>

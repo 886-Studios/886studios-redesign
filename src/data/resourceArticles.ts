@@ -1,0 +1,534 @@
+type ResourceLink = {
+  label: string;
+  href: string;
+};
+
+type ResourceCard = {
+  title: string;
+  meta?: string;
+  body?: string;
+  href?: string;
+};
+
+type ResourceTable = {
+  headers: string[];
+  rows: string[][];
+};
+
+type ResourceSubsection = {
+  title: string;
+  body?: string;
+  list?: string[];
+};
+
+type ResourceSection = {
+  title: string;
+  paragraphs?: string[];
+  list?: string[];
+  cards?: ResourceCard[];
+  links?: ResourceLink[];
+  table?: ResourceTable;
+  subsections?: ResourceSubsection[];
+};
+
+type ResourceDirectoryEntry = {
+  name: string;
+  focus?: string;
+  url?: string;
+  href?: string;
+  year?: string;
+  contact?: string;
+  range?: string;
+  stage?: string;
+};
+
+type ResourceDirectoryGroup = {
+  title: string;
+  entries: ResourceDirectoryEntry[];
+};
+
+export type ResourceArticle = {
+  slug: string;
+  title: string;
+  intro?: string;
+  sections?: ResourceSection[];
+  directoryGroups?: ResourceDirectoryGroup[];
+};
+
+export const resourceArticles: ResourceArticle[] = [
+  {
+    slug: "y-combinator-101",
+    title: "Y Combinator 101",
+    intro:
+      "We provide the hints and tips from experienced founders, former YC Partners, and 886 Partners to allow founders to submit their best possible application.",
+    sections: [
+      {
+        title: "Overview",
+        paragraphs: [
+          "If you have your application ready, send it to us and schedule for a mock interview.",
+        ],
+        links: [
+          { label: "YC Mock Interview", href: "https://tally.so/r/m626gk" },
+          { label: "Application Template", href: "https://886studios.com/resources/y-combinator-101" },
+        ],
+      },
+      {
+        title: "Partner Notes",
+        cards: [
+          {
+            title: "Kevin Lin",
+            meta: "Twitch Co-founder · YC Visiting Partner",
+            body: "Dig deep. Research. Know the landscape. Understand the problem deeply.",
+          },
+          {
+            title: "Lyle Fong",
+            meta: "Lithium, now Khoros, Co-founder · YC Visiting Partner",
+            body:
+              "Helping founders figure out what actually matters at their stage of company, then focusing all their efforts on that is usually the first step in building a great business.",
+          },
+          {
+            title: "Holly Liu",
+            meta: "Kabam Co-founder, PKO Investments Co-founder · YC Visiting Partner",
+            body: "It’s better to know more about the problem and your customers than your product.",
+          },
+        ],
+      },
+      {
+        title: "Tips",
+        list: [
+          "We are not asking for the execution or 5 or 10 year plan. We want your vision: how you want your company to be.",
+          "Use comparisons to existing products or companies to help your explanations.",
+          "Be concise when answering questions. Less is more.",
+          "Do not go into too many features.",
+          "Use simple words and an easy-going tone.",
+        ],
+      },
+      {
+        title: "Read More",
+        links: [
+          { label: "Advice from Michael Seibel", href: "https://twitter.com/mwseibel" },
+          {
+            label: "Article - YC’s latest batch sure was a lot of ‘maybe AI can do… this?’",
+            href: "https://techcrunch.com/",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    slug: "application-guide",
+    title: "Application Guide",
+    sections: [
+      {
+        title: "Pre-Application Checklist",
+        paragraphs: [
+          "Before you apply to an accelerator, make sure you are prepared to join one. Go through this checklist and ask yourself some questions.",
+        ],
+        cards: [
+          {
+            title: "Do you have a cofounder?",
+            body:
+              "Some accelerators prioritize startups with a cofounder. If you don’t have one, begin to plan how you might get one and brainstorm what you would look for in a cofounder.",
+          },
+          {
+            title: "Is your LinkedIn professional?",
+            body:
+              "Accelerators and potential investors do check your LinkedIn. Be authentic and transparent about work experience, technical skills, and portfolio. Keep photos and language professional.",
+          },
+          {
+            title: "Has your resume been updated?",
+            body:
+              "Make sure your resume is up to date with the projects you are currently working on. This makes it easier for accelerators to track your professional timeline.",
+          },
+          {
+            title: "Are you working full-time on this startup?",
+            body:
+              "Accelerators are looking for dedication from founders. Ask yourself how much time you currently spend on your company and whether other work may be distracting.",
+          },
+          {
+            title: "Can you communicate your pitch well?",
+            body:
+              "Be prepared for questions in English. It is helpful to send a pre-read before meetings, use slides and graphics wisely, and practice the flow.",
+          },
+          {
+            title: "What do you hope to gain from the program?",
+            body:
+              "Different programs fit different industries and stages. Consider whether you want mentors, demo day practice, community, rigorous coursework, or other outcomes.",
+          },
+        ],
+      },
+      {
+        title: "Choose An Accelerator",
+        paragraphs: [
+          "After going through the checklist, you may decide to apply to an accelerator. Depending on your company stage, industry, and timeline, the program you choose should fit your startup needs.",
+          "There are several options in Taiwan’s startup ecosystem. To apply to the ikigai Launchpad program, use the application link below.",
+        ],
+        links: [{ label: "Apply Now", href: "https://withikigai.com/" }],
+      },
+      {
+        title: "How to Answer Application Questions",
+        paragraphs: [
+          "Accelerators get pitched many interesting startups with a lot of potential. If the person reading your application can’t understand the concept based on your explanation, they may pass. Knowing how to answer application questions is a valuable skill.",
+        ],
+        subsections: [
+          {
+            title: "STAR Method",
+            body:
+              "For behavioral or personal questions, organize your answer around situation, task, action, and result. Keep the situation and task short, spend the most time on your actions, and reflect on what happened and what you learned.",
+          },
+          {
+            title: "Be Straightforward",
+            body:
+              "When a question asks a simple “what,” do not add filler or marketing-speak. Add detail only when it is relevant and necessary.",
+          },
+          {
+            title: "Quantitative Data",
+            body:
+              "Be truthful with market size, runway, revenue, expenses, and other metrics. Accelerators may check your data and ask how you calculated it.",
+          },
+          {
+            title: "Competition",
+            body:
+              "Do not claim you have no competition. Competition can be any alternative a customer uses. We care more about your plan to overcome obstacles than an unrealistic claim that none exist.",
+          },
+        ],
+      },
+      {
+        title: "The One-Minute Introduction Video",
+        paragraphs: [
+          "Many accelerator applications ask for a short introduction video describing your team and startup. The goal is clarity, not production value.",
+        ],
+        list: [
+          "Keep the video to one minute.",
+          "Upload it to YouTube, allow embedding, and mark it as unlisted if needed.",
+          "Make sure the audio quality is clear.",
+          "Try not to read from a script; it should sound like a face-to-face conversation.",
+          "Make explanations simple and easy to understand.",
+          "Make sure all co-founders are included.",
+          "Do not add special effects or background music.",
+          "Do not use the video as a full product demo. Explain the team’s passion, why this idea, and why this journey.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "founders-frequently-asked-questions",
+    title: "Founders FAQs",
+    intro:
+      "Founders Frequently Asked Questions (FFAQ) offers essential insights directly from seasoned entrepreneurs. Dive into expert advice tailored for startup success.",
+    sections: [
+      {
+        title: "Co-Founders",
+        cards: [
+          { title: "Finding a Co-Founder", href: "/finding-a-co-founder" },
+          { title: "The Role of Expertise", href: "/the-role-of-expertise" },
+          { title: "Choosing the Right Co-founder", href: "/choosing-the-right-co-founder" },
+          { title: "Lessons Learned", href: "/lessons-learned" },
+        ],
+      },
+      {
+        title: "Investor Relations",
+        cards: [
+          { title: "Leadership in Funding Rounds", href: "/leadership-in-funding-rounds" },
+          { title: "Encouraging Leadership", href: "/encouraging-leadership" },
+          { title: "Engagement During Fundraising", href: "/engagement-during-fundraising" },
+          { title: "Negotiating with Lead Investors", href: "/negotiating-with-lead-investors" },
+        ],
+      },
+      {
+        title: "Networking",
+        cards: [
+          { title: "Warm Introductions", href: "/warm-introductions" },
+          { title: "Dos and Don'ts", href: "/dos-and-donts" },
+        ],
+      },
+      {
+        title: "Seeking More Advice",
+        paragraphs: ["We are here to help! Ask your questions directly to the 886 partners here:"],
+        links: [{ label: "Contact Us Here", href: "https://tally.so/r/m626gk" }],
+      },
+    ],
+  },
+  {
+    slug: "ecosystem-database",
+    title: "Ecosystem Database",
+    intro:
+      "In Taiwan’s ecosystem, there are several accredited accelerators and VCs to choose from. We’ve compiled information on some of a startup’s options in Taiwan.",
+    directoryGroups: [
+      {
+        title: "Accelerators",
+        entries: [
+          { name: "ikigai Launchpad", focus: "AI, IoT, Gaming, Consumer, Digital Transformation, Sportstech, Web 3, etc", url: "withikigai.com", href: "https://withikigai.com/", year: "2024", contact: "carter@886studios.com" },
+          { name: "AppWorks", focus: "AI, IoT, Web 3", url: "appworks.tw", href: "https://appworks.tw/", year: "2010", contact: "a@appworks.tw" },
+          { name: "Garage+", focus: "AI, Big Data, IoT, HealthTech, 5G, Robotics, Energy, Transportation", url: "www.garageplus.asia", href: "https://www.garageplus.asia/", year: "2008", contact: "info@garageplus.asia" },
+          { name: "IAPS", focus: "AI, IoT, Sustainability, Manufacturing, Defense, BioMed Agritech, FoodTech, Lifestyle, SportTech", url: "iaps.ord.nycu.edu.tw", href: "https://iaps.ord.nycu.edu.tw/", year: "2013", contact: "anitahsieh@g2.nctu.edu.tw" },
+          { name: "TAcc+", focus: "AI, IoT, Cybersecurity, Healthcare, Sustainability, etc.", url: "taccplus.com", href: "https://taccplus.com/", year: "2019", contact: "support@taccplus.com" },
+          { name: "Asia Blockchain Accelerator", focus: "Web 3, Blockchain", url: "www.abatw.io", href: "https://www.abatw.io/", year: "2018", contact: "contact@abatw.io" },
+          { name: "APT 5G Accelerator", focus: "ICT, IoT, 5G, AI, Cloud, Big data", url: "aptg5gaccel.com", href: "https://aptg5gaccel.com/", year: "2018", contact: "aptg5gaccel@gmail.com" },
+          { name: "StarFab Accelerator", focus: "AIoT, 5G, XR, Cybersecurity, Digital Transformation, Industrial Automation, Retail, Hospitality, Medical, and Automobile", url: "www.starfabx.com", href: "https://www.starfabx.com/", year: "2016" },
+          { name: "SparkLabs Taiwan", url: "www.sparklabstaiwan.com", href: "https://www.sparklabstaiwan.com/", year: "2013", contact: "info@sparklabstaiwan.com" },
+        ],
+      },
+      {
+        title: "VC Firms",
+        entries: [
+          { name: "Cornerstone Ventures", focus: "AI, Big Data, Digital", range: "$200,000 - 1,000,000", stage: "Early Stage", url: "cornerstonevc.tw", href: "https://cornerstonevc.tw/", contact: "contact@cornerstonevc.tw" },
+          { name: "Cherubic Ventures", focus: "SaaS, Consumer Tech", range: "$500,000 - 1,000,000", stage: "Pre-Seed - Seed", url: "cherubic.com", href: "https://cherubic.com/", contact: "bp@cherubic.com" },
+          { name: "Cathay Venture", focus: "Biotech, Electronics, Software, Consumer, Manufacturing, Automobile, Sustainability", range: "$1,000,000 - 2,300,000", stage: "Seed - Series A+", url: "www.cathayholdings.com", href: "https://www.cathayholdings.com/", contact: "80357826@cathaycapital.com.tw" },
+          { name: "Hive Ventures", focus: "AI, Big Data, SaaS, Web3, Enterprise Software, Smart Manufacturing", range: "$300,000-500,000", stage: "Seed - Pre-A", url: "www.hiveventures.io", href: "https://www.hiveventures.io/", contact: "ideas@hiveventures.io" },
+          { name: "Mesh Ventures", focus: "AI, IoT, Consumer Electronics, Semiconductor", range: "$500,000-$1,000,000", stage: "Seed - Series A", url: "mesh.vc", href: "https://mesh.vc/", contact: "hello@mesh.vc" },
+          { name: "Trans-Pacific Technology Fund", focus: "Medical & Health, Advanced Materials, IoT, AI, Fintech", range: "$1,000,000-4,000,000", stage: "Unspecified Stage", url: "tptf.co", href: "https://tptf.co/", contact: "flee@tptf.co" },
+          { name: "CSC Venture Capital Corp.", focus: "Lifestyle, HealthTech, ICT, Connectivity, Media, IoT", range: "$1,000,000-3,000,000", stage: "Series A", url: "www2.capital.com.tw", href: "https://www2.capital.com.tw/", contact: "service@capital.com.tw" },
+          { name: "LUCIMA", focus: "AR/VR, AI, Platform, Media, Digital Content & Experience Technology, Martech, HealthTech, Connectivity, Sustainability, Green Energy, SaaS", range: "$100,000-1,000,000", stage: "Pre A - Series B", url: "lucima.com", href: "https://lucima.com/", contact: "Info@lucima.com" },
+          { name: "Taipei Angels", focus: "BioTech, Cultural Creativity, Mobile & Commerce, Software & Services, Technology & Hardware", range: "$30,000-160,000", stage: "Angel - Seed", url: "www.taipeiangels.com", href: "https://www.taipeiangels.com/", contact: "contact@taipeiangels.com" },
+          { name: "Smart Capital", focus: "Unspecified Industry", range: "$100,000-1,000,000", stage: "Angel - Pre A", url: "angel-investor.org", href: "https://angel-investor.org/", contact: "fundraising@angel-investor.org" },
+          { name: "Creative Ventures", focus: "AgriTech, FoodTech, Health Tech, Manufacturing, Logistics, Automotive, Energy, PropTech", range: "Unspecified Range", stage: "Early Stage", url: "creativeventures.vc", href: "https://creativeventures.vc/", contact: "invest@creativeventures.vc" },
+          { name: "Ace Capital", focus: "AI, IoT, Fintech, Blockchain, Sustainability, AgriTech, Media, Connectivity, SaaS", range: "$100,000-1,000,000", stage: "Series A", url: "www.theacecapital.com", href: "https://www.theacecapital.com/", contact: "info@theAceCapital.com" },
+        ],
+      },
+      {
+        title: "Accelerator / Incubator",
+        entries: [
+          { name: "FinTechSpace", url: "www.fintechspace.com.tw", href: "https://www.fintechspace.com.tw/", contact: "fintechspace@iii.org.tw" },
+          { name: "VIVE X", url: "vivex.vive.com", href: "https://vivex.vive.com/" },
+          { name: "TEC", url: "tec.ntu.edu.tw", href: "https://tec.ntu.edu.tw/", contact: "ntutec@ntutec.com" },
+          { name: "StarFab Accelerator", url: "www.starfabx.com", href: "https://www.starfabx.com/" },
+          { name: "Orange Fab Asia", url: "orangefab.com", href: "https://orangefab.com/" },
+          { name: "SparkLabs Taiwan", url: "www.sparklabstaiwan.com", href: "https://www.sparklabstaiwan.com/", contact: "info@sparklabstaiwan.com" },
+          { name: "IAPS", url: "iaps.ord.nycu.edu.tw", href: "https://iaps.ord.nycu.edu.tw/", contact: "https://iaps.ord.nycu.edu.tw/contact-us/" },
+          { name: "Orbit Startups", url: "orbitstartups.com", href: "https://orbitstartups.com/" },
+          { name: "Garage +", url: "www.garageplus.asia", href: "https://www.garageplus.asia/", contact: "info@garageplus.asia" },
+          { name: "Dit Startup", url: "www.ditstartup.com", href: "https://www.ditstartup.com/", contact: "service@ditstartup.com" },
+          { name: "BE Health", url: "www.behealthventures.com", href: "https://www.behealthventures.com/", contact: "service@behealthventures.com" },
+          { name: "AI ROBOT", url: "www.stsp.gov.tw", href: "https://www.stsp.gov.tw/", contact: "ai_robot@mail.mirdc.org.tw" },
+          { name: "AppWorks", url: "appworks.tw", href: "https://appworks.tw/", contact: "a@appworks.tw" },
+          { name: "Anchor Taiwan", url: "www.anchortaiwan.com", href: "https://www.anchortaiwan.com/", contact: "info@anchortaiwan.com" },
+          { name: "AAMA Taipei", url: "www.aamataipei.com.tw", href: "https://www.aamataipei.com.tw/", contact: "tccfe.aama@tccfe.org.tw" },
+        ],
+      },
+      {
+        title: "Co-working Space",
+        entries: [
+          { name: "FinTechSpace", url: "www.fintechspace.com.tw", href: "https://www.fintechspace.com.tw/", contact: "fintechspace@iii.org.tw" },
+          { name: "Futureward", url: "futureward.com", href: "https://futureward.com/", contact: "admin@futureward.com" },
+          { name: "Monospace", url: "monospace.tw", href: "https://monospace.tw/", contact: "hq@monospace.tw" },
+          { name: "Taipei Co-space", url: "www.cospace-taipei.com", href: "https://www.cospace-taipei.com/", contact: "taipei.cospace@gmail.com" },
+          { name: "SkyCo", contact: "https://www.skycowork.com/contact-us" },
+          { name: "One&Co Taipei", url: "www.oneandco.tw", href: "https://www.oneandco.tw/", contact: "https://www.oneandco.tw/zh/contact/" },
+          { name: "Pun Place", url: "www.facebook.com", href: "https://www.facebook.com/", contact: "punplace@panmedia.asia" },
+          { name: "Star Roket", url: "starrocket.io", href: "https://starrocket.io/", contact: "info@starrocket.io" },
+          { name: "JustCo" },
+          { name: "Popop Taipei", url: "popoptaipei.com", href: "https://popoptaipei.com/" },
+          { name: "t.Hub", url: "www.t-hubtaipei.com", href: "https://www.t-hubtaipei.com/", contact: "service@t-hubtaipei.com" },
+          { name: "WeWork", url: "www.wework.com", href: "https://www.wework.com/" },
+          { name: "CIT", url: "www.cit.tw", href: "https://www.cit.tw/", contact: "hun@theplanb.cc" },
+          { name: "Regus", contact: "https://www.regus.com/zh-tw/enquiry2" },
+        ],
+      },
+      {
+        title: "Community",
+        entries: [
+          { name: "AAMA Taipei", url: "www.aamataipei.com.tw", href: "https://www.aamataipei.com.tw/", contact: "tccfe.aama@tccfe.org.tw" },
+          { name: "Futureward", url: "futureward.com", href: "https://futureward.com/", contact: "admin@futureward.com" },
+          { name: "DAKUO", url: "dakuo.koda.net.tw", href: "https://dakuo.koda.net.tw/", contact: "ervice@legendinno.com.tw" },
+          { name: "iiiNNO", url: "www.iiinno.co", href: "https://www.iiinno.co/", contact: "contact@iiinno.co" },
+          { name: "Techstars", url: "www.techstars.com", href: "https://www.techstars.com/", contact: "https://www.techstars.com/contact" },
+          { name: "Meet", url: "meet.bnext.com.tw", href: "https://meet.bnext.com.tw/", contact: "service@bnext.com.tw" },
+          { name: "11Fleet", url: "www.11fleet.com", href: "https://www.11fleet.com/", contact: "info@11fleet.com" },
+          { name: "NTPC Innosquare", url: "www.facebook.com", href: "https://www.facebook.com/", contact: "innosquare.new.taipei@gmail.com" },
+          { name: "Startup Stadium", url: "www.startupstadium.tw", href: "https://www.startupstadium.tw/" },
+          { name: "Taiwan Employment Gold Card", url: "goldcard.nat.gov.tw", href: "https://goldcard.nat.gov.tw/", contact: "help@taiwangoldcard.tw" },
+        ],
+      },
+      {
+        title: "Government",
+        entries: [
+          { name: "Startup Stadium", url: "www.startupstadium.tw", href: "https://www.startupstadium.tw/" },
+          { name: "Taiwan Employment Gold Card", url: "goldcard.nat.gov.tw", href: "https://goldcard.nat.gov.tw/", contact: "help@taiwangoldcard.tw" },
+          { name: "Contact Taiwan", url: "contacttaiwan.tw", href: "https://contacttaiwan.tw/", contact: "recruit@moea.gov.tw" },
+          { name: "Taiwan Startup Terrace Linkou", url: "www.startupterrace.tw", href: "https://www.startupterrace.tw/" },
+          { name: "Taiwan Tech Arena", url: "www.taiwanarena.tech", href: "https://www.taiwanarena.tech/" },
+          { name: "FITI", url: "exp.stpi.narl.org.tw", href: "https://exp.stpi.narl.org.tw/" },
+          { name: "ASVDA", url: "www.asvda.org", href: "https://www.asvda.org/" },
+          { name: "TRIPLE", url: "www.triplelinkage.com", href: "https://www.triplelinkage.com/" },
+          { name: "ITRI", url: "www.itri.org.tw", href: "https://www.itri.org.tw/" },
+          { name: "Angel885", url: "www.angel885.org.tw", href: "https://www.angel885.org.tw/" },
+          { name: "SITI", url: "industry-incentive.taipei", href: "https://industry-incentive.taipei/" },
+          { name: "Crossroads", url: "crossroads.tw", href: "https://crossroads.tw/", contact: "service@crossroads.tw" },
+          { name: "Tainan City Government Economic Development Bureau", url: "economic.tainan.gov.tw", href: "https://economic.tainan.gov.tw/" },
+        ],
+      },
+      {
+        title: "Media",
+        entries: [
+          { name: "Digitimes", url: "www.digitimes.com.tw", href: "https://www.digitimes.com.tw/", contact: "marketing@digitimes.com" },
+          { name: "TechOrange", url: "buzzorange.com", href: "https://buzzorange.com/", contact: "pr@fusionmedium.com" },
+          { name: "The News Lens", url: "www.thenewslens.com", href: "https://www.thenewslens.com/", contact: "press@thenewslens.com" },
+          { name: "Business Next", url: "www.bnext.com.tw", href: "https://www.bnext.com.tw/", contact: "service@bnext.com.tw" },
+          { name: "Inside", url: "www.inside.com.tw", href: "https://www.inside.com.tw/", contact: "contact@inside.com.tw" },
+          { name: "TechNews", url: "technews.tw", href: "https://technews.tw/" },
+          { name: "Taiwan News", url: "www.taiwannews.com.tw", href: "https://www.taiwannews.com.tw/", contact: "taiwannewseditor@gmail.com" },
+        ],
+      },
+      {
+        title: "Talent Platform",
+        entries: [
+          { name: "Terminal 1", url: "t1.co", href: "https://t1.co/", contact: "hi@t1.co" },
+          { name: "Yourator", url: "www.yourator.co", href: "https://www.yourator.co/" },
+          { name: "meet.jobs", url: "meet.jobs", href: "https://meet.jobs/", contact: "service@meet.jobs" },
+          { name: "Cake", url: "www.cakeresume.com", href: "https://www.cakeresume.com/" },
+          { name: "ALPHA camp", url: "tw.alphacamp.co", href: "https://tw.alphacamp.co/", contact: "taiwan@alphacamp.co" },
+        ],
+      },
+      {
+        title: "Venture Capital",
+        entries: [
+          { name: "BE Health", url: "www.behealthventures.com", href: "https://www.behealthventures.com/", contact: "service@behealthventures.com" },
+          { name: "AppWorks", url: "appworks.tw", href: "https://appworks.tw/", contact: "a@appworks.tw" },
+          { name: "BRV Capital", url: "brvcapital.com", href: "https://brvcapital.com/" },
+          { name: "ITIC, Industrial Technology Invesment Corporation", url: "itic.com.tw", href: "https://itic.com.tw/", contact: "service@itic.com.tw" },
+          { name: "500", url: "500.co", href: "https://500.co/" },
+          { name: "China Development Financial", url: "www.cdfholding.com", href: "https://www.cdfholding.com/" },
+          { name: "TAIWANIA", url: "www.taiwaniacapital.com", href: "https://www.taiwaniacapital.com/", contact: "https://www.taiwaniacapital.com/%e8%81%af%e7%b5%a1%e6%88%91%e5%80%91/" },
+          { name: "Taipei Angels", url: "www.taipeiangels.com", href: "https://www.taipeiangels.com/", contact: "contact@taipeiangels.com" },
+          { name: "WI Harper Group", url: "wiharper.com", href: "https://wiharper.com/" },
+          { name: "MESH", url: "mesh.vc", href: "https://mesh.vc/", contact: "hello@mesh.vc" },
+          { name: "Cherubic", url: "cherubic.com", href: "https://cherubic.com/", contact: "bp@cherubic.com" },
+          { name: "Kyber Capital", url: "www.kybercap.com", href: "https://www.kybercap.com/", contact: "info@kybercap.com" },
+          { name: "Headline", url: "headline.com", href: "https://headline.com/", contact: "hello@headline.com" },
+          { name: "Pinehurst", url: "pinehurstadvisors.com", href: "https://pinehurstadvisors.com/", contact: "info@pinehurstadvisors.com" },
+        ],
+      },
+      {
+        title: "Venture Studios",
+        entries: [
+          { name: "886 Studios", url: "www.886studios.com", href: "https://www.886studios.com/" },
+          { name: "Elmntri", url: "elmntri.com", href: "https://elmntri.com/", contact: "https://coda.io/form/Build-with-us-at-Elmntri_dumwMaTE6E8" },
+          { name: "Sudo Labs", url: "www.sudolabs.co", href: "https://www.sudolabs.co/", contact: "hello@sudolabs.co" },
+        ],
+      },
+    ],
+  },
+];
+
+export const standaloneResourceArticles: ResourceArticle[] = [
+  {
+    slug: "incorporation-101",
+    title: "Incorporation 101",
+    sections: [
+      {
+        title: "Get Started",
+        list: [
+          "Are you planning to take in revenue soon? If so, how soon?",
+          "Where will you take in revenue?",
+          "Do you plan on having investors? If so, are they Taiwanese or international?",
+          "How many employees are you planning on hiring?",
+          "How do you plan to fundraise?",
+          "Do you provide a visa for yourself in Taiwan?",
+        ],
+      },
+      {
+        title: "Jurisdictions",
+        paragraphs: [
+          "Jurisdiction is a crucial component for creating a company, as it determines the legal implications and regulatory framework in which the company will operate, taxation, and other obligations. Careful consideration helps ensure legal compliance, protects the interests of the company and its owners, and optimizes business operations.",
+        ],
+        links: [
+          { label: "Taiwan", href: "https://886studios.com/incorporation-101" },
+          { label: "Singapore", href: "https://886studios.com/incorporation-101" },
+          { label: "United States", href: "https://886studios.com/incorporation-101" },
+        ],
+      },
+      {
+        title: "Common Business Structures",
+        table: {
+          headers: ["Business Structure", "Ownership", "Taxes", "Liability"],
+          rows: [
+            ["LLC", "One or more persons can have ownership.", "Corporate tax or personal tax and self-employment tax.", "Owners are not personally liable for the company's liability."],
+            ["Partnership", "More than one person.", "Personal tax and self-employment tax. Limited liability partners are excluded.", "Partners have unlimited liability unless it is registered as a limited liability partnership."],
+            ["C-Corporation", "One or more than one person.", "Corporate tax needs to be paid.", "Owners are not personally liable."],
+            ["S-Corporation", "One or more than one, but limited to 100 people, and all need to be US citizens or residents.", "Personal tax applies to S-corporations.", "Business owners are not personally liable for the company's liability."],
+            ["Sole Proprietorship", "One person who runs the company.", "Personal tax and self-employment tax.", "Unlimited personal liability."],
+          ],
+        },
+      },
+      {
+        title: "Representative Office",
+        paragraphs: [
+          "A representative office is a business structure that allows a company to establish a presence in a foreign country without engaging in commercial activities.",
+        ],
+        subsections: [
+          { title: "Pros", list: ["Simple establishment", "No registered capital requirement", "Easy maintenance"] },
+          { title: "Cons", list: ["Limited business scope", "Not a legal entity; all liabilities are borne by the parent company"] },
+        ],
+      },
+      {
+        title: "Subsidiary",
+        paragraphs: ["A subsidiary is a separate legal entity that is controlled by another company, known as the parent company."],
+        subsections: [
+          { title: "Pros", list: ["Tax advantages", "Loss management", "Easy to establish", "Synergize with other subsidiaries"] },
+          { title: "Cons", list: ["More legalities", "Complex financials", "Increased liability"] },
+        ],
+      },
+      {
+        title: "Branch",
+        paragraphs: ["The branch business structure involves establishing a branch office in a foreign country, which operates as an extension of the parent company."],
+        subsections: [
+          { title: "Pros", list: ["Parent organization maintains a greater level of control", "A branch office is governed by the laws of the parent company’s country", "Costs less to establish", "Offers the parent company greater tax benefits"] },
+          { title: "Cons", list: ["More difficult for the parent organization to explore new business opportunities", "The parent organization is liable for branch office debt or legal problems", "Hiring for branch office"] },
+        ],
+        links: [{ label: "Sign up here for a free consultation meeting!", href: "https://tally.so/r/m626gk" }],
+      },
+    ],
+  },
+  {
+    slug: "interview-guidebook",
+    title: "Interview Guidebook",
+    sections: [
+      {
+        title: "The Basics",
+        paragraphs: [
+          "All 886 program interviews are conducted over 30-minute time slots via Zoom. We expect all co-founders to be on the call. In return, expect 1-2 of our partners to present, in addition to our operating team and program directors.",
+          "Due to time constraints we ask for your pitch to be concise. Teams are given 5 minutes to present, in which we expect you to walk us through your deck and do a brief demonstration of your product. The remainder of the 25 minutes is reserved for Q&A and discussion.",
+        ],
+      },
+      {
+        title: "How to Prepare",
+        list: [
+          "Online Etiquette - Preemptively address potential technical issues. Have resources prepared and accessible, and make sure Zoom works without interruptions or updates.",
+          "Your Pitch - Don’t try to memorize a script. Prepare talking points and conduct market research beforehand, but aim to be familiar enough that you do not rely heavily on notes.",
+        ],
+      },
+      {
+        title: "What We Look For",
+        list: [
+          "Progress - We are interested in seeing the progress you have made since applying or contacting us.",
+          "About You - Be ready to describe your team's size, experience, the problem you are solving, and why solving it is personally significant to you.",
+          "Data - Be ready to share monthly operating expenses, runway, previous funding, and user or revenue metrics if applicable.",
+        ],
+      },
+      {
+        title: "Questions",
+        paragraphs: [
+          "Our interviews are not meant to be an interrogation where we expect you to know absolutely everything. We appreciate sincerity and understand that some questions can be unexpected.",
+        ],
+        list: [
+          "What feedback have you gathered from beta testing or users? How did you apply it?",
+          "How do you differentiate from competitors? What are competitors doing well or wrong?",
+          "When have you pivoted and why?",
+          "What stage of the process are you in? What does your timeline look like?",
+          "How do you plan to scale your product? Who is your target audience?",
+          "What do you hope to gain out of our program? What makes Ikigai a good fit for you?",
+        ],
+      },
+      {
+        title: "After the Interview",
+        paragraphs: [
+          "If we have additional follow-up questions, our operations team will contact you via email. If our partners wish to have further discussions, we may request a second round of interviews. Final decisions are generally communicated after interviews are completed and all applicants have been reviewed.",
+          "Good luck to all applicants!",
+        ],
+      },
+    ],
+  },
+];
+
+export const allResourceArticles = [...resourceArticles, ...standaloneResourceArticles];
