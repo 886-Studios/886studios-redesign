@@ -57,7 +57,7 @@ export const siteContent = {
       titleLead: "Build what",
       titleAccent: "matters.",
       body:
-        "886 Studios is where Taiwan's next generation of global tech companies are built — by the founders behind Twitch, Kabam, and Guitar Hero.",
+        "886 Studios is where the next generation of global tech companies are built.\nWe run ikigai Launchpad, the premier Silicon Valley-style accelerator in Taipei\nbrought to you by the founders of Twitch, Guitar Hero, Playdom, Kabam, & more.",
       cta: {
         label: "Apply to ikigai Launchpad",
         href: "https://tally.so/r/w5p4jQ",

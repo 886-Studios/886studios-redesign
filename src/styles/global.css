@@ -346,7 +346,7 @@
         url('/assets/hero/sf-tpe-hero.jpg');
       background-repeat: no-repeat;
       background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, cover;
-      background-position: center, center, center, center, center, center center;
+      background-position: center, center, center, center, center, center 38%;
       filter: saturate(0.9) contrast(1.02);
       opacity: 1;
     }
@@ -468,6 +468,7 @@
 
     .hero-actions {
       display: flex; gap: 14px; flex-wrap: wrap; align-items: center; justify-content: center;
+      width: 100%;
       opacity: 0;
       animation: fadeUp 0.6s 0.28s ease forwards;
     }
@@ -705,6 +706,8 @@
       align-items: start;
     }
 
+    .home-program-feature-grid > div { min-width: 0; }
+
     .home-program-feature-label {
       display: inline-flex;
       align-items: center;
@@ -730,7 +733,7 @@
       font-size: 15px;
       color: var(--text-secondary);
       line-height: 1.78;
-      white-space: nowrap;
+      max-width: 880px;
     }
 
     .home-program-feature-link { align-self: end; margin-bottom: 4px; }
@@ -792,7 +795,7 @@
       font-size: 14px;
       color: var(--text-secondary);
       line-height: 1.68;
-      white-space: nowrap;
+      max-width: 760px;
     }
 
     .home-program-mini .card-cta { align-self: end; margin-top: 8px; }
@@ -2392,7 +2395,7 @@
       padding-top: 64px;
     }
 
-    #page-home .hero-sub { margin-bottom: 36px; max-width: 800px; }
+    #page-home .hero-sub { margin-bottom: 52px; max-width: 800px; }
 
     #page-home .section { padding: 72px 32px; }
 
@@ -2426,8 +2429,8 @@
 
       .hero::before {
         display: block;
-        background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 175% auto;
-        background-position: center, center, center, center, center, center top;
+        background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 150% auto;
+        background-position: center, center, center, center, center, 50% 8%;
       }
 
       .photo-showcase {
