@@ -335,26 +335,32 @@ export const siteContent = {
       {
         title: "Y Combinator 101",
         href: "/resources/y-combinator-101",
+        description: "Partner notes, application tips, and mock interview prep from YC visiting partners and experienced founders.",
       },
       {
         title: "Incorporation 101",
         href: "/incorporation-101",
+        description: "Jurisdiction comparisons, common business structures, and practical guidance on forming your company.",
       },
       {
         title: "Application Guide",
         href: "/resources/application-guide",
+        description: "A step-by-step checklist to prepare your team, pitch, and materials before applying to any accelerator.",
       },
       {
         title: "Ecosystem Database",
         href: "/resources/ecosystem-database",
+        description: "A curated directory of accelerators, VC firms, co-working spaces, and communities across Taiwan.",
       },
       {
         title: "Founders FAQs",
         href: "/resources/founders-frequently-asked-questions",
+        description: "Seasoned founders answer the most common questions on co-founders, investor relations, and networking.",
       },
       {
         title: "Interview Guidebook",
         href: "/interview-guidebook",
+        description: "How 886 program interviews work, what we look for, and how to prepare your team and pitch.",
       },
     ],
     ama: {
@@ -373,19 +379,33 @@ export const siteContent = {
       categories: [
         {
           title: "Productivity",
-          items: ["Notion", "Coda", "DocSend", "Miro"],
+          items: [
+            { label: "Notion", href: "https://notion.so" },
+            { label: "Coda", href: "https://coda.io" },
+            { label: "DocSend", href: "https://www.docsend.com" },
+            { label: "Miro", href: "https://miro.com" },
+          ],
         },
         {
           title: "Finances",
-          items: ["Ramp", "Mercury"],
+          items: [
+            { label: "Ramp", href: "https://ramp.com" },
+            { label: "Mercury", href: "https://mercury.com" },
+          ],
         },
         {
           title: "Marketing",
-          items: ["Hubspot", "Webflow"],
+          items: [
+            { label: "Hubspot", href: "https://www.hubspot.com" },
+            { label: "Webflow", href: "https://webflow.com" },
+          ],
         },
         {
           title: "Engineering",
-          items: ["AWS Activate", "GitHub"],
+          items: [
+            { label: "AWS Activate", href: "https://aws.amazon.com/activate/" },
+            { label: "GitHub", href: "https://github.com" },
+          ],
         },
       ],
     },
