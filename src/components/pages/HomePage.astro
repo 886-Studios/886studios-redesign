@@ -115,9 +115,33 @@ const { home } = siteContent;
         <h3>{home.newsletter.title}</h3>
         <p>{home.newsletter.body}</p>
       </div>
-      <div class="nl-form">
-        <a class="nl-btn" href={home.newsletter.href} target="_blank" rel="noopener noreferrer">{home.newsletter.button}</a>
-      </div>
+      <form class="nl-form" action={home.newsletter.action} method="post" target="substack-subscribe-frame">
+        <label class="sr-only" for="newsletter-email">Email address</label>
+        <input
+          id="newsletter-email"
+          class="nl-input"
+          type="email"
+          name="email"
+          placeholder={home.newsletter.placeholder}
+          autocomplete="email"
+          required
+        />
+        <button class="nl-btn" type="submit">{home.newsletter.button}</button>
+      </form>
+      <iframe class="nl-frame" name="substack-subscribe-frame" title="Newsletter signup status"></iframe>
     </div>
   </div>
 </div>
+
+<script>
+  const newsletterForm = document.querySelector('.nl-form');
+
+  newsletterForm?.addEventListener('submit', () => {
+    const button = newsletterForm.querySelector('.nl-btn');
+    newsletterForm.classList.add('is-submitted');
+
+    if (button instanceof HTMLButtonElement) {
+      button.textContent = 'Check your inbox';
+    }
+  });
+</script>

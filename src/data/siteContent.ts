@@ -245,7 +245,7 @@ export const siteContent = {
       body: "Only cool things, we promise.",
       placeholder: "you@company.com",
       button: "Subscribe",
-      href: "https://886studios.substack.com/",
+      action: "https://886studios.substack.com/api/v1/free",
     },
   },
   programs: {
