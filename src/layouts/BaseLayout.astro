@@ -54,7 +54,7 @@ const canonicalUrl = Astro.url.href;
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class:list={[currentPath === "/" && "is-home"]}>
     <SiteNav currentPath={currentPath} />
     <slot />
     <SiteFooter />
