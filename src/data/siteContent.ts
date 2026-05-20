@@ -138,9 +138,9 @@ export const siteContent = {
           imageClass: "is-tall",
         },
         {
-          name: "RedOctane",
-          src: "/assets/logos/redoctane-alt.png",
-          alt: "RedOctane logo",
+          name: "Guitar Hero (Red Octane)",
+          src: "/assets/logos/guitar-hero.png",
+          alt: "Guitar Hero logo",
           exit: "Exit · $99.9M",
           title: "RedOctane exit: approximately $99.9 million",
           imageClass: "is-tall",
