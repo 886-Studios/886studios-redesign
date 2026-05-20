@@ -472,6 +472,14 @@
       animation: fadeUp 0.6s 0.28s ease forwards;
     }
 
+    .hero-actions .btn-pri {
+      padding: 0 24px;
+    }
+
+    .hero-actions .btn-pri::after {
+      content: none;
+    }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -521,11 +529,11 @@
       position: relative;
       overflow: hidden;
       z-index: 2;
-      margin-top: -16px;
-      padding: 18px 0 50px;
+      margin-top: 0;
+      padding: 40px 0 56px;
       background:
         radial-gradient(ellipse 34% 78% at 14% 8%, rgba(215,166,107,0.035), transparent 70%),
-        linear-gradient(180deg, rgba(5,5,7,0.12) 0%, rgba(5,5,7,0.82) 58%, #050507 100%);
+        linear-gradient(180deg, rgba(5,5,7,0.02) 0%, rgba(5,5,7,0.78) 62%, #050507 100%);
     }
 
     .photo-showcase::after {
@@ -535,9 +543,6 @@
       right: 0;
       z-index: 2;
       pointer-events: none;
-    }
-
-    .photo-showcase::after {
       bottom: 0;
       height: 110px;
       background: linear-gradient(180deg, rgba(5,5,7,0), #050507 88%);
@@ -905,9 +910,19 @@
       text-transform: uppercase;
     }
 
+    .portfolio-heading {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      color: color-mix(in srgb, var(--text-muted) 78%, var(--jade-soft));
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 28px;
+      margin-bottom: 10px;
+    }
+
     .portfolio-strip {
       position: relative;
-      margin-top: 24px;
       padding: 14px 0;
       border-top: 1px solid rgba(215,166,107,0.08);
       border-bottom: 1px solid rgba(111,184,170,0.06);
@@ -1923,18 +1938,24 @@
        HOME PAGE DENSITY
     =========================== */
     #page-home .hero {
-      min-height: clamp(420px, 62vh, 560px);
-      padding: calc(var(--nav-height) + 48px) 32px 52px;
+      min-height: clamp(540px, 72vh, 680px);
+      padding: calc(var(--nav-height) + 64px) 32px 88px;
     }
 
     #page-home.page { padding-top: 0; }
+
+    #page-home .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
 
     #page-home .hero + .section {
       padding-top: 44px;
     }
 
     #page-home .photo-showcase + .section {
-      padding-top: 48px;
+      padding-top: 64px;
     }
 
     #page-home .hero-sub { margin-bottom: 36px; max-width: 800px; }
@@ -1962,7 +1983,7 @@
     @media (max-width: 720px) {
       #page-home .hero {
         min-height: auto;
-        padding: calc(var(--nav-height) + 44px) 24px 44px;
+        padding: calc(var(--nav-height) + 48px) 24px 64px;
       }
 
       .hero {
@@ -1976,8 +1997,8 @@
       }
 
       .photo-showcase {
-        margin-top: -30px;
-        padding: 38px 0 60px;
+        margin-top: 0;
+        padding: 36px 0 60px;
       }
 
       .photo-slide { flex-basis: min(78vw, 340px); }

@@ -98,13 +98,11 @@ export const siteContent = {
     programs: {
       eyebrow: "Programs",
       title: "How we support founders",
-      lead:
-        "ikigai Launchpad is our flagship accelerator, with Launch Station supporting founders who want to build around the Taipei startup community.",
       featured: {
         label: "Accelerator",
         title: "ikigai Launchpad",
         body:
-          "$100K funding, hands-on partner mentorship, and a tight 10-week founder batch built for startups that want to move fast from Taipei.",
+          "$100K in funding, hands-on mentorship from the 886 Studios partners, and a tight-knit 10-12 week program designed for startups that want to move fast.",
         meta: ["$100K funding", "Partner office hours", "Batch community"],
         ctaLabel: "Learn more →",
         ctaHref: "/programs",
@@ -121,7 +119,7 @@ export const siteContent = {
       ],
     },
     founders: {
-      title: "Built by founders from iconic companies.",
+      title: "Built by founders from iconic companies",
       logos: [
         {
           name: "Twitch",
