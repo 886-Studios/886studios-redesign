@@ -248,7 +248,7 @@ export const siteContent = {
   programs: {
     eyebrow: "Programs",
     title: "ikigai Launchpad",
-    lead: "ikigai Launchpad is a 12-week accelerator for founders looking for funding to work full-time on their startup and mentorship from successful Silicon Valley founders.",
+    lead: "A 12-week, in-person accelerator in Taipei with $100K USD, mentor office hours, investor intros, and support beyond the batch.",
     items: [
       {
         name: "ikigai Launchpad",
@@ -265,13 +265,18 @@ export const siteContent = {
               note: "Funding to help founders focus full-time.",
             },
             {
-              label: "Format",
+              label: "Length",
               value: "12 weeks",
-              note: "In-person in Taipei.",
+              note: "A focused in-person batch.",
+            },
+            {
+              label: "Location",
+              value: "Taipei",
+              note: "Built around Taiwan Tech Arena.",
             },
             {
               label: "Support",
-              value: "Mentor office hours",
+              value: "Office hours",
               note: "Plus investor intros and post-program support.",
             },
           ],
@@ -310,7 +315,7 @@ export const siteContent = {
       {
         track: "Community",
         name: "Launch Station",
-        body: "A free workspace inside Taiwan Tech Arena for founders who build better around other ambitious teams. The point is proximity: more useful collisions, more honest conversations, more forward motion.",
+        body: "Free workspace inside Taiwan Tech Arena for founders who build better around other ambitious teams.",
         highlights: ["Founder community", "Free coworking space"],
         fit: "Founders who want a Taipei base and builder energy.",
         cta: {

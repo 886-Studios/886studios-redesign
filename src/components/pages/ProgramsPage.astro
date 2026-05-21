@@ -36,7 +36,7 @@ const ikigaiPillars = [
     image: programPhotos.funding,
     details: [
       { label: "Investment", value: "$100K USD" },
-      { label: "Focus", value: "Funding to work full-time" },
+      { label: "Purpose", value: "Work full-time on the company" },
     ],
   },
   {
@@ -90,12 +90,13 @@ const launchStationHighlights = ["Free workspace", "Founder community"];
   <main class="program-page-body">
     <section class="program-pillars" id="ikigai-details" aria-label="ikigai Launchpad pillars">
       <div class="program-pillar-list">
-        {ikigaiPillars.map((pillar) => (
+        {ikigaiPillars.map((pillar, index) => (
           <article class="program-pillar-row">
             <figure class="program-pillar-image">
               <img src={pillar.image.src} alt={pillar.image.alt} decoding="async" />
             </figure>
             <div class="program-pillar-copy">
+              <span class="program-pillar-index">{String(index + 1).padStart(2, "0")}</span>
               <h3>{pillar.title}</h3>
               <dl class="program-pillar-details">
                 {pillar.details.map((detail) => (
@@ -132,7 +133,7 @@ const launchStationHighlights = ["Free workspace", "Founder community"];
         <div class="program-secondary-copy">
           <span class="program-band-label">{launchStation.track}</span>
           <h2 id="launch-station-title">{launchStation.name}</h2>
-          <p>Free workspace inside Taiwan Tech Arena for founders building around other ambitious teams.</p>
+          <p>{launchStation.body}</p>
           <dl class="program-secondary-list">
             {launchStationHighlights.map((highlight) => (
               <div>
