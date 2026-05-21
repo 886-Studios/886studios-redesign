@@ -10,6 +10,27 @@ const applicationSteps = [
   "Interview with 886 Studios",
   "Interview with Lifelike Capital",
 ];
+
+const programPhotos = {
+  hero: {
+    src: "/assets/programs/ikigai-storytelling-room.jpeg",
+    alt: "Founders in an ikigai Launchpad storytelling workshop",
+  },
+  batch: {
+    src: "/assets/programs/ikigai-batch-discussion.jpeg",
+    alt: "ikigai Launchpad founders gathered around a conference table",
+  },
+  community: {
+    src: "/assets/programs/ikigai-founder-table.jpeg",
+    alt: "Founders working together in a Taipei meeting room",
+  },
+  support: {
+    src: "/assets/programs/ikigai-mentor-session.jpeg",
+    alt: "A mentor session with founders seated around a table",
+  },
+};
+
+const sectionPhotos = [null, programPhotos.community, programPhotos.support];
 ---
 
 <div class="page" id="page-programs">
@@ -18,65 +39,84 @@ const applicationSteps = [
       <div class="section-tag">Accelerator program</div>
       <h1 class="program-headline" id="programs-title">{ikigai.name}</h1>
       <p class="program-summary">{programs.lead}</p>
-      <dl class="program-fact-list" aria-label="ikigai Launchpad key facts">
-        {ikigai.details?.metrics.map((metric) => (
-          <div class="program-fact">
-            <dt>{metric.label}</dt>
-            <dd>{metric.value}</dd>
-            <span>{metric.note}</span>
-          </div>
-        ))}
-      </dl>
       <div class="program-hero-actions">
         <a class="btn-pri program-primary-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
           Apply to ikigai Launchpad
         </a>
       </div>
     </div>
+    <div class="program-hero-media" aria-hidden="true">
+      <figure class="program-hero-image program-hero-image--wide">
+        <img src={programPhotos.hero.src} alt="" decoding="async" />
+      </figure>
+      <figure class="program-hero-image program-hero-image--portrait">
+        <img src={programPhotos.batch.src} alt="" decoding="async" />
+      </figure>
+    </div>
+  </section>
+
+  <section class="program-facts-band" aria-label="ikigai Launchpad key facts">
+    <dl class="program-fact-list">
+      {ikigai.details?.metrics.map((metric) => (
+        <div class="program-fact">
+          <dt>{metric.label}</dt>
+          <dd>{metric.value}</dd>
+          <span>{metric.note}</span>
+        </div>
+      ))}
+    </dl>
   </section>
 
   <main class="program-page-body">
-    <section class="program-brief" id="ikigai-details" aria-labelledby="ikigai-details-title">
-      <div class="program-brief-intro">
-        <div class="section-tag">Core pillars</div>
-        <h2 id="ikigai-details-title">Funding, community, and hands-on support.</h2>
+    <section class="program-pillars" id="ikigai-details" aria-labelledby="ikigai-details-title">
+      <div class="program-pillars-intro">
+        <div class="section-tag">What the program gives you</div>
+        <h2 id="ikigai-details-title">Capital, a focused batch, and direct founder support.</h2>
         <p>{ikigai.body}</p>
       </div>
 
-      <div class="program-brief-grid">
-        {ikigai.details?.sections.map((section) => (
-          <article class="program-brief-block">
-            <h3>{section.title}</h3>
-            <ul>
-              {section.items.map((detail) => <li>{detail}</li>)}
-            </ul>
+      <div class="program-pillar-list">
+        {ikigai.details?.sections.map((section, index) => (
+          <article class="program-pillar-row">
+            <div class="program-pillar-copy">
+              <h3>{section.title}</h3>
+              <ul>
+                {section.items.map((detail) => <li>{detail}</li>)}
+              </ul>
+            </div>
+            {sectionPhotos[index] ? (
+              <figure class="program-pillar-image">
+                <img src={sectionPhotos[index].src} alt={sectionPhotos[index].alt} decoding="async" />
+              </figure>
+            ) : (
+              <div class="program-pillar-number" aria-label="$100K USD investment">
+                <span>$100K</span>
+                <small>USD investment</small>
+              </div>
+            )}
           </article>
         ))}
       </div>
     </section>
 
-    <section class="program-process" aria-labelledby="program-process-title">
-      <div>
-        <span class="program-band-label">Application process</span>
-        <h2 id="program-process-title">What happens after you apply</h2>
-      </div>
-      <ol class="program-process-list">
-        {applicationSteps.map((step) => <li>{step}</li>)}
-      </ol>
-    </section>
-
-    <section class="program-apply-band" aria-label="Apply to ikigai Launchpad">
-      <div>
+    <section class="program-conversion" aria-label="Apply to ikigai Launchpad">
+      <div class="program-apply-copy">
         <span class="program-band-label">Applications</span>
         <h2>Apply to ikigai Launchpad.</h2>
+        <p>
+          Apply if you are ready for 12 weeks in person in Taipei, weekly mentor office hours, investor introductions,
+          and support beyond the batch.
+        </p>
+        <a class="btn-pri program-primary-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
+          Apply to ikigai Launchpad
+        </a>
       </div>
-      <p>
-        Apply if you are ready for 12 weeks in person in Taipei, weekly mentor office hours, investor introductions,
-        and support beyond the batch.
-      </p>
-      <a class="btn-pri program-primary-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
-        Apply to ikigai Launchpad
-      </a>
+      <div class="program-process-compact" aria-labelledby="program-process-title">
+        <h3 id="program-process-title">What happens after you apply</h3>
+        <ol class="program-process-list">
+          {applicationSteps.map((step) => <li>{step}</li>)}
+        </ol>
+      </div>
     </section>
   </main>
 </div>
