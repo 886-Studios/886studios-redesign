@@ -5,13 +5,17 @@ const { programs } = siteContent;
 const [ikigai, launchStation] = programs.items;
 
 const applicationSteps = [
-  "Submit application",
-  "Application review",
-  "Interview with 886 Studios",
-  "Interview with Lifelike Capital",
+  "Apply",
+  "Review",
+  "886 interview",
+  "Lifelike interview",
 ];
 
 const programPhotos = {
+  hero: {
+    src: "/assets/programs/ikigai-founder-table.jpeg",
+    alt: "ikigai Launchpad founders working together around a table",
+  },
   funding: {
     src: "/assets/programs/ikigai-storytelling-room.jpeg",
     alt: "Founders in an ikigai Launchpad workshop",
@@ -33,6 +37,7 @@ const programPhotos = {
 const ikigaiPillars = [
   {
     title: "Funding",
+    kicker: "Capital to focus",
     image: programPhotos.funding,
     details: [
       { label: "Investment", value: "$100K USD" },
@@ -41,6 +46,7 @@ const ikigaiPillars = [
   },
   {
     title: "Hands-on support",
+    kicker: "Weekly founder time",
     image: programPhotos.support,
     details: [
       { label: "Mentor office hours", value: "Weekly 1-on-1 time" },
@@ -50,6 +56,7 @@ const ikigaiPillars = [
   },
   {
     title: "Community",
+    kicker: "In person in Taipei",
     image: programPhotos.community,
     details: [
       { label: "Format", value: "12 weeks in person" },
@@ -74,39 +81,43 @@ const launchStationHighlights = ["Free workspace", "Founder community"];
         </a>
       </div>
     </div>
-  </section>
-
-  <section class="program-facts-band" aria-label="ikigai Launchpad key facts">
-    <dl class="program-fact-list">
-      {ikigai.details?.metrics.map((metric) => (
-        <div class="program-fact">
-          <dt>{metric.label}</dt>
-          <dd>{metric.value}</dd>
-        </div>
-      ))}
-    </dl>
+    <figure class="program-hero-image">
+      <img src={programPhotos.hero.src} alt={programPhotos.hero.alt} decoding="async" loading="eager" fetchpriority="high" />
+    </figure>
   </section>
 
   <main class="program-page-body">
+    <section class="program-facts-band" aria-label="ikigai Launchpad key facts">
+      <dl class="program-fact-list">
+        {ikigai.details?.metrics.map((metric) => (
+          <div class="program-fact">
+            <dt>{metric.label}</dt>
+            <dd>{metric.value}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
     <section class="program-pillars" id="ikigai-details" aria-label="ikigai Launchpad pillars">
       <div class="program-pillar-list">
         {ikigaiPillars.map((pillar, index) => (
-          <article class="program-pillar-row">
+          <article class="program-pillar-chapter">
+            <div class="program-pillar-copy">
+              <span class="program-pillar-index">{String(index + 1).padStart(2, "0")}</span>
+              <p class="program-pillar-kicker">{pillar.kicker}</p>
+              <h2>{pillar.title}</h2>
+            </div>
             <figure class="program-pillar-image">
               <img src={pillar.image.src} alt={pillar.image.alt} decoding="async" />
             </figure>
-            <div class="program-pillar-copy">
-              <span class="program-pillar-index">{String(index + 1).padStart(2, "0")}</span>
-              <h3>{pillar.title}</h3>
-              <dl class="program-pillar-details">
-                {pillar.details.map((detail) => (
-                  <div>
-                    <dt>{detail.label}</dt>
-                    <dd>{detail.value}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
+            <dl class="program-pillar-details">
+              {pillar.details.map((detail) => (
+                <div>
+                  <dt>{detail.label}</dt>
+                  <dd>{detail.value}</dd>
+                </div>
+              ))}
+            </dl>
           </article>
         ))}
       </div>
@@ -123,7 +134,12 @@ const launchStationHighlights = ["Free workspace", "Founder community"];
       <div class="program-process-compact" aria-labelledby="program-process-title">
         <h3 id="program-process-title">What happens after you apply</h3>
         <ol class="program-process-list">
-          {applicationSteps.map((step) => <li>{step}</li>)}
+          {applicationSteps.map((step, index) => (
+            <li>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              {step}
+            </li>
+          ))}
         </ol>
       </div>
     </section>
