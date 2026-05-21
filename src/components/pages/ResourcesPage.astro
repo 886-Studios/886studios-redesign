@@ -29,15 +29,15 @@ const { resources } = siteContent;
       </div>
     </section>
     <section class="resources-section resources-ama-section" aria-labelledby="ama-heading">
-      <div class="resources-ama-card">
-        <div class="resources-ama-left">
+      <div class="resources-ama-row">
+        <div class="resources-ama-main">
           <div class="section-tag">Community</div>
           <h2 id="ama-heading">{resources.ama.title}</h2>
           <div class="resources-ama-body">
             {resources.ama.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
           </div>
         </div>
-        <div class="resources-ama-right">
+        <div class="resources-ama-aside">
           <p>Submit a question and get a thoughtful response from one of our venture partners.</p>
           <a class="card-cta resources-ama-cta" href={resources.ama.ctaHref} target="_blank" rel="noopener noreferrer">
             {resources.ama.ctaLabel} →
@@ -54,9 +54,9 @@ const { resources } = siteContent;
           or Launch Station.
         </p>
       </header>
-      <div class="resources-perks-grid">
+      <div class="resources-perks-cols">
         {resources.perks.categories.map((category) => (
-          <div class="resources-perk-card">
+          <div class="resources-perk-col">
             <h3>{category.title}</h3>
             <ul>
               {category.items.map((item) => (

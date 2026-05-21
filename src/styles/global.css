@@ -1470,22 +1470,23 @@
       transform: translateX(4px);
     }
 
-    /* AMA callout */
-    .resources-ama-card {
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: 48px;
-      padding: 40px;
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      background: var(--bg-card);
+    /* AMA section - clean two-column layout */
+    .resources-ama-section {
+      border-top: 1px solid var(--border);
     }
 
-    .resources-ama-left .section-tag {
+    .resources-ama-row {
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      gap: 56px;
+      align-items: start;
+    }
+
+    .resources-ama-main .section-tag {
       margin-bottom: 12px;
     }
 
-    .resources-ama-left h2 {
+    .resources-ama-main h2 {
       font-family: var(--font-display);
       font-size: clamp(22px, 2.5vw, 30px);
       font-weight: 700;
@@ -1504,16 +1505,14 @@
       margin-top: 12px;
     }
 
-    .resources-ama-right {
+    .resources-ama-aside {
       display: flex;
       flex-direction: column;
-      justify-content: center;
       gap: 20px;
-      padding-left: 40px;
-      border-left: 1px solid rgba(255,255,255,0.06);
+      padding-top: 4px;
     }
 
-    .resources-ama-right p {
+    .resources-ama-aside p {
       color: var(--text-secondary);
       font-size: 14px;
       line-height: 1.75;
@@ -1523,50 +1522,50 @@
       align-self: flex-start;
     }
 
-    /* Perks */
-    .resources-perks-grid {
+    /* Perks - clean category columns */
+    .resources-perks-section {
+      border-top: 1px solid var(--border);
+    }
+
+    .resources-perks-cols {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 1px;
-      border: 1px solid var(--border);
-      border-radius: var(--r);
-      overflow: hidden;
-      background: var(--border);
+      gap: 0 48px;
     }
 
-    .resources-perk-card {
-      padding: 28px 24px;
-      background: var(--bg-card);
+    .resources-perk-col {
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
     }
 
-    .resources-perk-card h3 {
+    .resources-perk-col h3 {
       font-family: var(--font-mono);
       font-size: 10px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--purple-bright);
-      margin-bottom: 18px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
     }
 
-    .resources-perk-card ul {
+    .resources-perk-col ul {
       list-style: none;
       display: flex;
       flex-direction: column;
       gap: 10px;
     }
 
-    .resources-perk-card li {
+    .resources-perk-col li {
       font-size: 14px;
       line-height: 1.4;
     }
 
-    .resources-perk-card li a {
+    .resources-perk-col li a {
       color: var(--text-secondary);
       text-decoration: none;
       transition: color 0.15s;
     }
 
-    .resources-perk-card li a:hover {
+    .resources-perk-col li a:hover {
       color: var(--purple-bright);
     }
 
@@ -1577,6 +1576,7 @@
       justify-content: space-between;
       gap: 24px;
       padding-top: 48px;
+      border-top: 1px solid var(--border);
     }
 
     .resources-contact-section p {
@@ -1593,21 +1593,18 @@
         display: none;
       }
 
-      .resources-ama-card {
+      .resources-ama-row {
         grid-template-columns: 1fr;
         gap: 32px;
-        padding: 32px;
       }
 
-      .resources-ama-right {
-        padding-left: 0;
-        border-left: none;
-        border-top: 1px solid rgba(255,255,255,0.06);
-        padding-top: 28px;
-      }
-
-      .resources-perks-grid {
+      .resources-perks-cols {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 40px;
+      }
+
+      .resources-perk-col:nth-child(n+3) {
+        margin-top: 32px;
       }
     }
 
@@ -1625,12 +1622,13 @@
         gap: 0 16px;
       }
 
-      .resources-ama-card {
-        padding: 24px;
+      .resources-perks-cols {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0 28px;
       }
 
-      .resources-perks-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .resources-perk-col:nth-child(n+3) {
+        margin-top: 28px;
       }
 
       .resources-contact-section {
