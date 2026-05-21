@@ -252,13 +252,13 @@ export const siteContent = {
     eyebrow: "Programs",
     title: "ikigai Launchpad",
     lead:
-      "Apply to the 10-week, in-person accelerator for Taiwan-based founders building for global markets. Ikigai Launchpad pairs $100K in funding with weekly partner office hours, a tight batch, and a Demo Day path into the 886 Studios network.",
+      "Apply to the 12-week, in-person accelerator for founders building from Taiwan. Ikigai Launchpad provides $100K in funding, weekly partner office hours, founder-led workshops, office space in Taipei, and Demo Day.",
     items: [
       {
         name: "ikigai Launchpad",
         learnMoreHref: "https://withikigai.com/?gad_source=1&gad_campaignid=22431875260&gbraid=0AAAAA_T5bfikWpWgiBTvO7VHwrU9CtcE_&gclid=CjwKCAjw8arQBhB9EiwAfIKdQlaQyIeLDc12b41gZD-eZtsUKEI1hZeVtvXa_raBK1dNjUjeREajkBoCNKgQAvD_BwE",
         body:
-          "The program is built for founders who want direct feedback and real momentum, not a passive curriculum. Teams work from Taipei, meet weekly with 886 Studios partners, sharpen product and go-to-market decisions, and leave with a clearer investor story.",
+          "Founders work in person from Taiwan Tech Arena and get mentorship from 886 Studios partners, program staff, guest speakers, and the broader founder community. The program is English-first, with bilingual support.",
         highlights: [],
         details: {
           intro: "",
@@ -266,17 +266,17 @@ export const siteContent = {
             {
               label: "Investment",
               value: "$100K USD",
-              note: "Standard deal listed by ikigai as $100K for 8%.",
+              note: "Standard deal listed by ikigai: $100K USD for 8%.",
             },
             {
               label: "Format",
-              value: "10 weeks",
-              note: "In-person in Taipei, with office space at Taiwan Tech Arena.",
+              value: "12 weeks",
+              note: "In-person in Taipei, followed by Demo Day.",
             },
             {
-              label: "Support",
-              value: "Beyond Demo Day",
-              note: "Tailored alumni support continues after the batch.",
+              label: "Location",
+              value: "Taiwan Tech Arena",
+              note: "Office space is provided for the duration of the program.",
             },
           ],
           sections: [
@@ -297,17 +297,18 @@ export const siteContent = {
               ],
             },
             {
-              title: "Network access",
+              title: "After the program",
               items: [
                 "Warm introductions and investor matching",
-                "Demo Day for founders ready to show progress",
+                "Demo Day after the 12-week program",
                 "Access to founder, operator, and corporate perks",
+                "Tailored post-program support for alumni",
               ],
             },
           ],
         },
         fit:
-          "Early-stage founders ready to work full-time on a global startup from Taipei.",
+          "Early-stage founders ready to work full-time on a startup from Taipei.",
         cta: {
           type: "link",
           label: "Apply to ikigai Launchpad →",

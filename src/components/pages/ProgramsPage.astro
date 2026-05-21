@@ -3,6 +3,13 @@ import { siteContent } from "../../data/siteContent";
 
 const { programs } = siteContent;
 const [ikigai, launchStation] = programs.items;
+
+const applicationSteps = [
+  "Submit application",
+  "Application review",
+  "Interview with 886 Studios",
+  "Interview with Lifelike Capital",
+];
 ---
 
 <div class="page" id="page-programs">
@@ -38,8 +45,8 @@ const [ikigai, launchStation] = programs.items;
   <main class="program-page-body">
     <section class="program-brief" id="ikigai-details" aria-labelledby="ikigai-details-title">
       <div class="program-brief-intro">
-        <div class="section-tag">Inside the 10 weeks</div>
-        <h2 id="ikigai-details-title">A Taipei founder sprint with capital, pressure, and partner-level feedback.</h2>
+        <div class="section-tag">Inside the 12 weeks</div>
+        <h2 id="ikigai-details-title">Funding, office space, weekly support, and Demo Day.</h2>
         <p>{ikigai.body}</p>
       </div>
 
@@ -55,14 +62,24 @@ const [ikigai, launchStation] = programs.items;
       </div>
     </section>
 
+    <section class="program-process" aria-labelledby="program-process-title">
+      <div>
+        <span class="program-band-label">Application process</span>
+        <h2 id="program-process-title">What happens after you apply</h2>
+      </div>
+      <ol class="program-process-list">
+        {applicationSteps.map((step) => <li>{step}</li>)}
+      </ol>
+    </section>
+
     <section class="program-apply-band" aria-label="Apply to ikigai Launchpad">
       <div>
-        <span class="program-band-label">Ready for the batch?</span>
-        <h2>Apply when your team is ready to build full-time.</h2>
+        <span class="program-band-label">Applications</span>
+        <h2>Apply to ikigai Launchpad.</h2>
       </div>
       <p>
-        The application is the primary next step. If there is fit, the team can follow up with deeper program details,
-        mentor access, and batch timing.
+        The program is in person in Taipei. All co-founders are expected to join on-site, and office space is provided
+        at Taiwan Tech Arena for the duration of the program.
       </p>
       <a class="btn-pri program-primary-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
         Apply to ikigai Launchpad
