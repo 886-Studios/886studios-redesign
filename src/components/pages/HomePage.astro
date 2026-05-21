@@ -16,7 +16,14 @@ const { home } = siteContent;
       <h1 class="hero-h1">
         {home.hero.titleLead}<br /><em>{home.hero.titleAccent}</em>
       </h1>
-      <p class="hero-sub" set:html={home.hero.body.replace(/\n/g, "<br />")}></p>
+      <p class="hero-sub">
+        {home.hero.body.split("\n").map((line, index) => (
+          <>
+            {index > 0 && <br />}
+            <span>{line}</span>
+          </>
+        ))}
+      </p>
       <div class="hero-actions">
         <a class="btn-pri" href={home.hero.cta.href} target="_blank">{home.hero.cta.label}</a>
       </div>
