@@ -1248,22 +1248,31 @@
 
     .program-pillar-list {
       display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 0;
       border-top: 1px solid var(--program-rule);
+      border-bottom: 1px solid var(--program-rule);
     }
 
     .program-pillar-row {
       display: grid;
-      grid-template-columns: minmax(0, 0.78fr) minmax(280px, 0.5fr);
-      gap: clamp(28px, 5vw, 70px);
-      align-items: center;
-      padding: clamp(30px, 5vw, 54px) 0;
-      border-bottom: 1px solid var(--program-rule);
+      grid-template-rows: auto 1fr;
+      gap: clamp(20px, 3vw, 30px);
+      align-items: start;
+      padding: clamp(24px, 4vw, 36px);
+    }
+
+    .program-pillar-row:first-child {
+      padding-left: 0;
+    }
+
+    .program-pillar-row + .program-pillar-row {
+      border-left: 1px solid var(--program-rule);
     }
 
     .program-pillar-copy {
       display: grid;
-      gap: 16px;
+      gap: clamp(18px, 3vw, 26px);
       align-items: start;
     }
 
@@ -1276,37 +1285,45 @@
       line-height: 1.25;
     }
 
-    .program-pillar-copy ul {
+    .program-pillar-details {
       display: grid;
-      gap: 10px;
       margin: 0;
       padding: 0;
-      list-style: none;
-      max-width: 48ch;
+      border-top: 1px solid var(--program-rule);
     }
 
-    .program-pillar-copy li {
-      position: relative;
-      padding-left: 18px;
+    .program-pillar-details div {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--program-rule);
+    }
+
+    .program-pillar-details div:last-child {
+      border-bottom: 0;
+    }
+
+    .program-pillar-details dt {
+      color: var(--program-accent);
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.12em;
+      line-height: 1.6;
+    }
+
+    .program-pillar-details dd {
+      margin: 0;
       color: var(--program-muted);
-      font-size: 1rem;
-      line-height: 1.65;
-    }
-
-    .program-pillar-copy li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0.78em;
-      width: 7px;
-      height: 1px;
-      background: var(--program-accent);
+      font-size: 0.96rem;
+      line-height: 1.55;
+      overflow-wrap: break-word;
     }
 
     .program-pillar-image {
       margin: 0;
       overflow: hidden;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 4 / 3;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.04);
@@ -1496,6 +1513,20 @@
         grid-template-columns: 1fr;
       }
 
+      .program-pillar-list {
+        grid-template-columns: 1fr;
+      }
+
+      .program-pillar-row,
+      .program-pillar-row:first-child {
+        padding: 28px 0;
+      }
+
+      .program-pillar-row + .program-pillar-row {
+        border-left: 0;
+        border-top: 1px solid var(--program-rule);
+      }
+
       .program-pillar-copy {
         grid-template-columns: 1fr;
         gap: 14px;
@@ -1503,6 +1534,7 @@
 
       .program-pillar-image {
         max-width: 760px;
+        aspect-ratio: 16 / 10;
       }
 
       .program-secondary-image {

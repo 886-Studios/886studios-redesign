@@ -60,20 +60,20 @@ const launchStationHighlights = ["Free workspace", "Founder community"];
   </section>
 
   <main class="program-page-body">
-    <section class="program-pillars" id="ikigai-details" aria-labelledby="ikigai-details-title">
-      <div class="program-pillars-intro">
-        <div class="section-tag">{ikigai.name}</div>
-        <h2 id="ikigai-details-title">Capital, a focused batch, and direct founder support.</h2>
-      </div>
-
+    <section class="program-pillars" id="ikigai-details" aria-label="ikigai Launchpad pillars">
       <div class="program-pillar-list">
         {ikigai.details?.sections.map((section, index) => (
           <article class="program-pillar-row">
             <div class="program-pillar-copy">
               <h3>{section.title}</h3>
-              <ul>
-                {section.items.map((detail) => <li>{detail}</li>)}
-              </ul>
+              <dl class="program-pillar-details">
+                {section.items.map((detail, detailIndex) => (
+                  <div>
+                    <dt>{String(detailIndex + 1).padStart(2, "0")}</dt>
+                    <dd>{detail}</dd>
+                  </div>
+                ))}
+              </dl>
             </div>
             <figure class="program-pillar-image">
               <img src={pillarPhotos[index].src} alt={pillarPhotos[index].alt} decoding="async" />
