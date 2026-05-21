@@ -252,13 +252,13 @@ export const siteContent = {
     eyebrow: "Programs",
     title: "ikigai Launchpad",
     lead:
-      "Apply to the 12-week, in-person accelerator for founders building from Taiwan. Ikigai Launchpad provides $100K in funding, weekly partner office hours, founder-led workshops, office space in Taipei, and Demo Day.",
+      "ikigai Launchpad is a 12-week accelerator for founders looking for funding to work full-time on their startup and mentorship from successful Silicon Valley founders.",
     items: [
       {
         name: "ikigai Launchpad",
         learnMoreHref: "https://withikigai.com/?gad_source=1&gad_campaignid=22431875260&gbraid=0AAAAA_T5bfikWpWgiBTvO7VHwrU9CtcE_&gclid=CjwKCAjw8arQBhB9EiwAfIKdQlaQyIeLDc12b41gZD-eZtsUKEI1hZeVtvXa_raBK1dNjUjeREajkBoCNKgQAvD_BwE",
         body:
-          "Founders work in person from Taiwan Tech Arena and get mentorship from 886 Studios partners, program staff, guest speakers, and the broader founder community. The program is English-first, with bilingual support.",
+          "Built by the founders behind Twitch, Guitar Hero, Kabam, and more, the program offers funding, hands-on mentorship from 886 Studios partners, access to a global network, a tight-knit batch community, office space in Taipei, workshops, guest speakers, and Demo Day.",
         highlights: [],
         details: {
           intro: "",
@@ -281,6 +281,23 @@ export const siteContent = {
           ],
           sections: [
             {
+              title: "Funding",
+              items: [
+                "$100K USD investment",
+                "Standard deal listed by ikigai: $100K USD for 8%",
+                "Funding intended to help founders focus full-time on the company",
+              ],
+            },
+            {
+              title: "Community",
+              items: [
+                "Office space at Taiwan Tech Arena",
+                "Tight in-person batch in Taipei",
+                "English-first environment with bilingual support",
+                "Networking, founder events, and team building",
+              ],
+            },
+            {
               title: "Hands-on support",
               items: [
                 "Weekly 1-on-1 mentor office hours",
@@ -289,15 +306,7 @@ export const siteContent = {
               ],
             },
             {
-              title: "Community and workspace",
-              items: [
-                "Tight in-person batch at Taiwan Tech Arena",
-                "English-first environment with bilingual support",
-                "Networking, founder events, and team building",
-              ],
-            },
-            {
-              title: "After the program",
+              title: "Beyond the batch",
               items: [
                 "Warm introductions and investor matching",
                 "Demo Day after the 12-week program",
@@ -308,7 +317,7 @@ export const siteContent = {
           ],
         },
         fit:
-          "Early-stage founders ready to work full-time on a startup from Taipei.",
+          "Founders looking for funding to work full-time and mentorship from successful Silicon Valley founders.",
         cta: {
           type: "link",
           label: "Apply to ikigai Launchpad →",
