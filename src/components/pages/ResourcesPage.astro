@@ -2,76 +2,178 @@
 import { siteContent } from "../../data/siteContent";
 
 const { resources } = siteContent;
+
+// Enrich library items with category and color metadata
+const libraryMeta = [
+  { category: "Accelerators",   color: "gold"   },
+  { category: "Legal & Setup",  color: "jade"   },
+  { category: "Applications",   color: "purple" },
+  { category: "Ecosystem",      color: "jade"   },
+  { category: "Community",      color: "purple" },
+  { category: "Interviews",     color: "gold"   },
+];
+
+// Inline SVG icons (one per library item, in order)
+const libraryIcons = [
+  // Star — Accelerators
+  `<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M10 2l2.35 4.76 5.26.77-3.8 3.7.9 5.24L10 14l-4.71 2.47.9-5.24-3.8-3.7 5.26-.77z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
+  // Building — Legal
+  `<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 17v-5h6v5M10 3v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  // Clipboard — Applications
+  `<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="4" y="4" width="12" height="13" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M7 4.5A1.5 1.5 0 018.5 3h3A1.5 1.5 0 0113 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M7.5 10.5l2 2 3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  // Globe — Ecosystem
+  `<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M3 10h14M10 3c-2 2.5-3 4.5-3 7s1 4.5 3 7M10 3c2 2.5 3 4.5 3 7s-1 4.5-3 7" stroke="currentColor" stroke-width="1.5"/></svg>`,
+  // Chat bubble — FAQ
+  `<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 5.5A2.5 2.5 0 015.5 3h9A2.5 2.5 0 0117 5.5v6A2.5 2.5 0 0114.5 14H9.5l-4 3v-3H5.5A2.5 2.5 0 013 11.5v-6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
+  // Microphone — Interviews
+  `<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="7" y="2.5" width="6" height="9" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M4 10.5a6 6 0 0012 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 16.5v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+];
+
+// Perk category icons
+const perkIcons: Record<string, string> = {
+  Productivity: `<svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M11 2L4 11h7l-2 7 7-9h-7l2-7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>`,
+  Finances:     `<svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M10 6v8M8 8.5C8 7.67 8.9 7 10 7s2 .67 2 1.5-1 1.5-2 1.5-2 .67-2 1.5S8.9 13 10 13s2-.67 2-1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  Marketing:    `<svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 8v4l3 1 8 4V3L6 7 3 8z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M6 8v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+  Engineering:  `<svg width="16" height="16" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M7.5 4.5l1.5 1.5-5 5 3 3 5-5 1.5 1.5V4.5H7.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M15 13l-3-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+};
 ---
 
 <div class="page resources-page" id="page-resources">
-  <section class="pg-hero" aria-labelledby="resources-title">
+
+  <!-- ── Hero ─────────────────────────────────── -->
+  <section class="pg-hero res-pg-hero" aria-labelledby="resources-title">
     <div class="pg-hero-glow"></div>
     <div class="section-tag">Resources</div>
     <h1 class="section-h2 pg-hero-title" id="resources-title">{resources.title}</h1>
-    <p class="section-lead section-lead--flush">Tools and guides to help founders build, launch, and scale in Taiwan.</p>
+    <p class="res-hero-lead">
+      Tools, guides, and community access to help founders build, launch, and scale across Taiwan and beyond.
+    </p>
   </section>
-  <main class="resources-shell">
-    <section class="resources-section resources-library-section" aria-label="Resource library">
-      <header class="resources-section-header">
-        <h2>Library</h2>
-        <p class="resources-nowrap">Our guides covering the most common challenges founders face when building a company in Taiwan.</p>
+
+  <!-- separator — matches the pg-divider pattern used across all inner pages -->
+  <div class="pg-divider"></div>
+
+  <main class="res-shell">
+
+    <!-- ── Resource Library ──────────────────────── -->
+    <section class="res-section res-library" aria-labelledby="res-library-heading">
+      <header class="res-section-hdr">
+        <div>
+          <h2 id="res-library-heading">Resource Library</h2>
+          <p>Our guides covering the most common challenges founders face when building a company in Taiwan.</p>
+        </div>
       </header>
-      <div class="resources-library-list" role="list">
-        {resources.libraryItems.map((item) => (
-          <a class="resources-library-row" href={item.href} role="listitem">
-            <span class="resources-lib-dash" aria-hidden="true">—</span>
-            <span class="resources-lib-title">{item.title}</span>
-            <span class="resources-lib-desc">{item.description}</span>
-            <span class="resources-lib-arrow" aria-hidden="true">→</span>
+
+      <div class="res-card-grid">
+        {resources.libraryItems.map((item, i) => (
+          <a
+            class={`res-card res-card--${libraryMeta[i].color}`}
+            href={item.href}
+            aria-label={item.title}
+          >
+            <div class="res-card-top">
+              <span class={`res-card-icon res-card-icon--${libraryMeta[i].color}`} set:html={libraryIcons[i]} />
+              <span class={`res-card-tag res-card-tag--${libraryMeta[i].color}`}>
+                {libraryMeta[i].category}
+              </span>
+            </div>
+            <h3 class="res-card-title">{item.title}</h3>
+            <p class="res-card-desc">{item.description}</p>
+            <div class="res-card-footer">
+              <span class="res-card-cta">Read guide <span class="res-arrow">→</span></span>
+            </div>
           </a>
         ))}
       </div>
     </section>
-    <section class="resources-section resources-ama-section" aria-labelledby="ama-heading">
-      <div class="resources-ama-row">
-        <div class="resources-ama-main">
+
+    <!-- ── AMA Feature Card ───────────────────────── -->
+    <section class="res-section res-ama" aria-labelledby="res-ama-heading">
+      <div class="res-ama-card">
+        <div class="res-ama-glow"></div>
+
+        <div class="res-ama-body">
           <div class="section-tag">Community</div>
-          <h2 id="ama-heading">{resources.ama.title}</h2>
-          <div class="resources-ama-body">
-            {resources.ama.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-          </div>
-        </div>
-        <div class="resources-ama-aside">
-          <p>Submit a question and get a thoughtful response from one of our venture partners.</p>
-          <a class="card-cta resources-ama-cta" href={resources.ama.ctaHref} target="_blank" rel="noopener noreferrer">
-            {resources.ama.ctaLabel} →
+          <h2 id="res-ama-heading">{resources.ama.title}</h2>
+          <p class="res-ama-lead">{resources.ama.paragraphs[2]}</p>
+          <a class="btn-pri" href={resources.ama.ctaHref} target="_blank" rel="noopener noreferrer">
+            {resources.ama.ctaLabel}
           </a>
+        </div>
+
+        <div class="res-ama-panel">
+          <p class="res-ama-panel-label">How it works</p>
+          <ol class="res-ama-steps">
+            <li>
+              <span class="res-step-num">01</span>
+              <span>Submit your question anonymously</span>
+            </li>
+            <li>
+              <span class="res-step-num">02</span>
+              <span>Reviewed by our venture partners</span>
+            </li>
+            <li>
+              <span class="res-step-num">03</span>
+              <span>Receive a thoughtful, experienced response</span>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
-    <section class="resources-section resources-perks-section" aria-labelledby="perks-heading">
-      <header class="resources-section-header">
-        <h2 id="perks-heading">{resources.perks.title}</h2>
-        <p class="resources-nowrap">
-          Unlock these perks by working with us through{" "}
-          <a href={resources.perks.programHref} target="_blank" rel="noopener noreferrer">ikigai Launchpad</a>{" "}
-          or Launch Station.
-        </p>
+
+    <!-- ── Exclusive Perks ────────────────────────── -->
+    <section class="res-section res-perks" aria-labelledby="res-perks-heading">
+      <header class="res-section-hdr">
+        <div>
+          <p class="res-exclusive-eyebrow">Members Only</p>
+          <h2 id="res-perks-heading">{resources.perks.title}</h2>
+          <p>
+            Unlock these perks by working with us through{" "}
+            <a href={resources.perks.programHref} target="_blank" rel="noopener noreferrer">ikigai Launchpad</a>{" "}
+            or Launch Station.
+          </p>
+        </div>
       </header>
-      <div class="resources-perks-cols">
+
+      <div class="res-perks-grid">
         {resources.perks.categories.map((category) => (
-          <div class="resources-perk-col">
-            <h3>{category.title}</h3>
-            <ul>
+          <div class="res-perk-card">
+            <div class="res-perk-hdr">
+              <span class="res-perk-icon" set:html={perkIcons[category.title] ?? ""} />
+              <span class="res-perk-label">{category.title}</span>
+            </div>
+            <div class="res-perk-tools">
               {category.items.map((item) => (
-                <li>
-                  <a href={item.href} target="_blank" rel="noopener noreferrer">{item.label}</a>
-                </li>
+                <a
+                  class="res-perk-tool"
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.label}
+                </a>
               ))}
-            </ul>
+            </div>
           </div>
         ))}
       </div>
     </section>
-    <section class="resources-contact-section" aria-label="Need more help">
-      <p>{resources.contactPrompt}</p>
-      <a class="card-cta" href={resources.contactHref}>{resources.contactLabel}</a>
+
+    <!-- ── Contact CTA ──────────────────────────── -->
+    <section class="res-section" aria-label="Need more help">
+      <div class="res-ama-card res-contact-card">
+        <div class="res-contact-glow"></div>
+
+        <div class="res-ama-body">
+          <div class="section-tag">Get in touch</div>
+          <h2>{resources.contactPrompt}</h2>
+          <p class="res-ama-lead">
+            Our team is ready to help you navigate the Taiwan startup ecosystem — whether you're just getting started or already scaling.
+          </p>
+          <a class="btn-pri" href={resources.contactHref}>{resources.contactLabel}</a>
+        </div>
+      </div>
     </section>
+
   </main>
 </div>

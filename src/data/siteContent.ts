@@ -56,8 +56,7 @@ export const siteContent = {
     hero: {
       titleLead: "Build what",
       titleAccent: "matters.",
-      body:
-        "886 Studios is where the next generation of global tech companies are built.\nWe run ikigai Launchpad, the premier Silicon Valley-style accelerator in Taipei\nbrought to you by the founders of Twitch, Guitar Hero, Playdom, Kabam, & more.",
+      body: "886 Studios is where the next generation of global tech companies are built.\nWe run ikigai Launchpad, the premier Silicon Valley-style accelerator in Taipei\nbrought to you by the founders of Twitch, Guitar Hero, Playdom, Kabam, & more.",
       cta: {
         label: "Apply to ikigai Launchpad",
         href: "https://tally.so/r/w5p4jQ",
@@ -101,8 +100,7 @@ export const siteContent = {
       featured: {
         label: "Accelerator",
         title: "ikigai Launchpad",
-        body:
-          "$100K in funding, hands-on mentorship from the 886 Studios partners, and a tight-knit 10-12 week program designed for startups that want to move fast.",
+        body: "$100K in funding, hands-on mentorship from the 886 Studios partners, and a tight-knit 10-12 week program designed for startups that want to move fast.",
         meta: ["$100K funding", "Partner office hours", "Batch community"],
         ctaLabel: "Learn more →",
         ctaHref: "/programs",
@@ -111,8 +109,7 @@ export const siteContent = {
         {
           label: "Community",
           title: "Launch Station",
-          body:
-            "Free coworking space and a founder community inside Taiwan Tech Arena.",
+          body: "Free coworking space and a founder community inside Taiwan Tech Arena.",
           ctaLabel: "Learn more →",
           ctaHref: "/programs",
         },
@@ -251,14 +248,13 @@ export const siteContent = {
   programs: {
     eyebrow: "Programs",
     title: "ikigai Launchpad",
-    lead:
-      "ikigai Launchpad is a 12-week accelerator for founders looking for funding to work full-time on their startup and mentorship from successful Silicon Valley founders.",
+    lead: "ikigai Launchpad is a 12-week accelerator for founders looking for funding to work full-time on their startup and mentorship from successful Silicon Valley founders.",
     items: [
       {
         name: "ikigai Launchpad",
-        learnMoreHref: "https://withikigai.com/?gad_source=1&gad_campaignid=22431875260&gbraid=0AAAAA_T5bfikWpWgiBTvO7VHwrU9CtcE_&gclid=CjwKCAjw8arQBhB9EiwAfIKdQlaQyIeLDc12b41gZD-eZtsUKEI1hZeVtvXa_raBK1dNjUjeREajkBoCNKgQAvD_BwE",
-        body:
-          "A focused accelerator for founders who need capital, mentor time, an in-person batch, investor access, and support that continues after the 12 weeks.",
+        learnMoreHref:
+          "https://withikigai.com/?gad_source=1&gad_campaignid=22431875260&gbraid=0AAAAA_T5bfikWpWgiBTvO7VHwrU9CtcE_&gclid=CjwKCAjw8arQBhB9EiwAfIKdQlaQyIeLDc12b41gZD-eZtsUKEI1hZeVtvXa_raBK1dNjUjeREajkBoCNKgQAvD_BwE",
+        body: "A focused accelerator for founders who need capital, mentor time, an in-person batch, investor access, and support that continues after the 12 weeks.",
         highlights: [],
         details: {
           intro: "",
@@ -289,10 +285,7 @@ export const siteContent = {
             },
             {
               title: "Community",
-              items: [
-                "12-week program",
-                "In person in Taipei",
-              ],
+              items: ["12-week program", "In person in Taipei"],
             },
             {
               title: "Hands-on support",
@@ -304,8 +297,7 @@ export const siteContent = {
             },
           ],
         },
-        fit:
-          "Founders ready to spend 12 weeks in person in Taipei building with capital, mentors, and a focused batch.",
+        fit: "Founders ready to spend 12 weeks in person in Taipei building with capital, mentors, and a focused batch.",
         cta: {
           type: "link",
           label: "Apply to ikigai Launchpad →",
@@ -315,8 +307,7 @@ export const siteContent = {
       {
         track: "Community",
         name: "Launch Station",
-        body:
-          "A free workspace inside Taiwan Tech Arena for founders who build better around other ambitious teams. The point is proximity: more useful collisions, more honest conversations, more forward motion.",
+        body: "A free workspace inside Taiwan Tech Arena for founders who build better around other ambitious teams. The point is proximity: more useful collisions, more honest conversations, more forward motion.",
         highlights: ["Founder community", "Free coworking space"],
         fit: "Founders who want a Taipei base and builder energy.",
         cta: {
@@ -328,37 +319,43 @@ export const siteContent = {
     footer: "",
   },
   resources: {
-    title: "Resources",
+    title: "Tools for You",
     libraryItems: [
       {
         title: "Y Combinator 101",
         href: "/resources/y-combinator-101",
-        description: "Partner notes, application tips, and mock interview prep from YC visiting partners and experienced founders.",
+        description:
+          "Partner notes, application tips, and mock interview prep from YC visiting partners and experienced founders.",
       },
       {
         title: "Incorporation 101",
         href: "/incorporation-101",
-        description: "Jurisdiction comparisons, common business structures, and practical guidance on forming your company.",
+        description:
+          "Jurisdiction comparisons, common business structures, and practical guidance on forming your company.",
       },
       {
         title: "Application Guide",
         href: "/resources/application-guide",
-        description: "A step-by-step checklist to prepare your team, pitch, and materials before applying to any accelerator.",
+        description:
+          "A step-by-step checklist to prepare your team, pitch, and materials before applying to any accelerator.",
       },
       {
         title: "Ecosystem Database",
         href: "/resources/ecosystem-database",
-        description: "A curated directory of accelerators, VC firms, co-working spaces, and communities across Taiwan.",
+        description:
+          "A curated directory of accelerators, VC firms, co-working spaces, and communities across Taiwan.",
       },
       {
         title: "Founders FAQs",
         href: "/resources/founders-frequently-asked-questions",
-        description: "Seasoned founders answer the most common questions on co-founders, investor relations, and networking.",
+        description:
+          "Seasoned founders answer the most common questions on co-founders, investor relations, and networking.",
       },
       {
         title: "Interview Guidebook",
         href: "/interview-guidebook",
-        description: "How 886 program interviews work, what we look for, and how to prepare your team and pitch.",
+        description:
+          "How 886 program interviews work, what we look for, and how to prepare your team and pitch.",
       },
     ],
     ama: {
@@ -414,8 +411,7 @@ export const siteContent = {
   about: {
     eyebrow: "About Us",
     title: "Built by founders, for founders.",
-    lead:
-      "886 Studios backs ambitious early-stage founders building companies with global potential.",
+    lead: "886 Studios backs ambitious early-stage founders building companies with global potential.",
     columns: [
       {
         eyebrow: "Who We Are",
@@ -464,25 +460,84 @@ export const siteContent = {
     ],
     partnersTitle: "Partners",
     partners: [
-      { initials: "KH", name: "Kai Huang", company: "Guitar Hero", photo: "/assets/headshots/kai-huang.webp" },
-      { initials: "KL", name: "Kevin Lin", company: "Twitch", photo: "/assets/headshots/kevin-lin.webp" },
-      { initials: "KC", name: "Kevin Chou", company: "Kabam", photo: "/assets/headshots/kevin-chou.webp" },
-      { initials: "CW", name: "Chris Wang", company: "Playdom", photo: "/assets/headshots/chris-wang.webp" },
-      { initials: "PC", name: "Phil Chen", company: "HTC Vive", photo: "/assets/headshots/phil-chen.webp" },
-      { initials: "JH", name: "Jameson Hsu", company: "Mochi Media", photo: "/assets/headshots/jameson-hsu.webp" },
-      { initials: "JH", name: "Joseph Hei", company: "Orbit Baby", photo: "/assets/headshots/joseph-hei.webp" },
-      { initials: "JH", name: "Jacob Hsu", company: "Catalyte", photo: "/assets/headshots/jacob-hsu.webp" },
-      { initials: "CH", name: "Charles Huang", company: "Guitar Hero", photo: "/assets/headshots/charles-huang.webp" },
-      { initials: "JH", name: "James Hong", company: "Hot or Not", photo: "/assets/headshots/james-hong.webp" },
-      { initials: "SC", name: "Steven Chiang", company: "Tiburon Entertainment", photo: "/assets/headshots/steven-chiang.webp" },
-      { initials: "TC", name: "Timothy Chen", company: "Gen.G", photo: "/assets/headshots/timothy-chen.webp" },
+      {
+        initials: "KH",
+        name: "Kai Huang",
+        company: "Guitar Hero",
+        photo: "/assets/headshots/kai-huang.webp",
+      },
+      {
+        initials: "KL",
+        name: "Kevin Lin",
+        company: "Twitch",
+        photo: "/assets/headshots/kevin-lin.webp",
+      },
+      {
+        initials: "KC",
+        name: "Kevin Chou",
+        company: "Kabam",
+        photo: "/assets/headshots/kevin-chou.webp",
+      },
+      {
+        initials: "CW",
+        name: "Chris Wang",
+        company: "Playdom",
+        photo: "/assets/headshots/chris-wang.webp",
+      },
+      {
+        initials: "PC",
+        name: "Phil Chen",
+        company: "HTC Vive",
+        photo: "/assets/headshots/phil-chen.webp",
+      },
+      {
+        initials: "JH",
+        name: "Jameson Hsu",
+        company: "Mochi Media",
+        photo: "/assets/headshots/jameson-hsu.webp",
+      },
+      {
+        initials: "JH",
+        name: "Joseph Hei",
+        company: "Orbit Baby",
+        photo: "/assets/headshots/joseph-hei.webp",
+      },
+      {
+        initials: "JH",
+        name: "Jacob Hsu",
+        company: "Catalyte",
+        photo: "/assets/headshots/jacob-hsu.webp",
+      },
+      {
+        initials: "CH",
+        name: "Charles Huang",
+        company: "Guitar Hero",
+        photo: "/assets/headshots/charles-huang.webp",
+      },
+      {
+        initials: "JH",
+        name: "James Hong",
+        company: "Hot or Not",
+        photo: "/assets/headshots/james-hong.webp",
+      },
+      {
+        initials: "SC",
+        name: "Steven Chiang",
+        company: "Tiburon Entertainment",
+        photo: "/assets/headshots/steven-chiang.webp",
+      },
+      {
+        initials: "TC",
+        name: "Timothy Chen",
+        company: "Gen.G",
+        photo: "/assets/headshots/timothy-chen.webp",
+      },
     ],
   },
   events: {
     eyebrow: "Events",
     title: "What's happening",
-    lead:
-      "Meetups, workshops, and demo days for the 886 Studios community.",
+    lead: "Meetups, workshops, and demo days for the 886 Studios community.",
     calendarUrl: "https://luma.com/886",
     calendarTitle: "Subscribe to the 886 Studios Luma calendar.",
     calendarText:
@@ -501,8 +556,7 @@ export const siteContent = {
   apply: {
     eyebrow: "Application",
     title: "Join ikigai Launchpad",
-    lead:
-      "Tell us about your startup and why you'd be a great fit for our accelerator program.",
+    lead: "Tell us about your startup and why you'd be a great fit for our accelerator program.",
     sections: [
       {
         title: "Founder Information",
@@ -649,14 +703,14 @@ export const siteContent = {
             {
               label: "What's your 3-year vision?",
               type: "textarea" as const,
-              placeholder:
-                "Describe where you see your company in 3 years...",
+              placeholder: "Describe where you see your company in 3 years...",
               hint: "Be ambitious",
             },
           ],
           [
             {
-              label: "Why are you interested in 886 Studios / ikigai Launchpad?",
+              label:
+                "Why are you interested in 886 Studios / ikigai Launchpad?",
               type: "textarea" as const,
               placeholder:
                 "What specifically appeals to you about our program?...",
@@ -699,19 +753,25 @@ export const siteContent = {
       cancelLabel: "Cancel",
       cancelHref: "/",
     },
-    note:
-      "By submitting this application, you agree to our terms and privacy policy. We'll review all applications carefully and get back to you within 2 weeks.",
+    note: "By submitting this application, you agree to our terms and privacy policy. We'll review all applications carefully and get back to you within 2 weeks.",
   },
   contact: {
     eyebrow: "Contact",
     title: "Get in touch",
-    lead:
-      "Founder, investor, mentor, or curious — we'd love to hear from you.",
+    lead: "Founder, investor, mentor, or curious — we'd love to hear from you.",
     form: {
       fields: [
         { label: "Name", type: "text" as const, placeholder: "Your name" },
-        { label: "Email", type: "email" as const, placeholder: "you@company.com" },
-        { label: "Subject", type: "text" as const, placeholder: "What's this about?" },
+        {
+          label: "Email",
+          type: "email" as const,
+          placeholder: "you@company.com",
+        },
+        {
+          label: "Subject",
+          type: "text" as const,
+          placeholder: "What's this about?",
+        },
       ],
       messageLabel: "Message",
       messagePlaceholder:
@@ -725,8 +785,7 @@ export const siteContent = {
     followUsLabel: "Follow Us",
     ctaCard: {
       label: "Ready to build?",
-      body:
-        "Applications for ikigai Launchpad are currently closed for Sp'26. Check back soon.",
+      body: "Applications for ikigai Launchpad are currently closed for Sp'26. Check back soon.",
       buttonLabel: "Visit ikigai Launchpad",
       buttonHref: "https://withikigai.com/",
     },

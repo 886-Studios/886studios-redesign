@@ -7,7 +7,7 @@ const { article } = Astro.props as { article: ResourceArticle };
 <div class="page resource-article-page">
   <section class="pg-hero resource-article-hero" aria-labelledby="resource-article-title">
     <div class="pg-hero-glow"></div>
-    <a class="resource-back-link" href="/resources">← Resources</a>
+    <a class="resource-back-link" href={article.parent?.href ?? "/resources"}>← {article.parent?.label ?? "Resources"}</a>
     <h1 class="resource-article-title" id="resource-article-title">{article.title}</h1>
     {article.intro && <p class="resource-article-intro">{article.intro}</p>}
   </section>
