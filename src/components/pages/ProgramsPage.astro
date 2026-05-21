@@ -2,7 +2,7 @@
 import { siteContent } from "../../data/siteContent";
 
 const { programs } = siteContent;
-const [ikigai, launchStation] = programs.items;
+const [ikigai] = programs.items;
 
 const applicationSteps = [
   "Submit application",
@@ -10,6 +10,8 @@ const applicationSteps = [
   "Interview with 886 Studios",
   "Interview with Lifelike Capital",
 ];
+
+const partnerProof = ["Twitch", "Guitar Hero", "Kabam", "Playdom"];
 ---
 
 <div class="page" id="page-programs">
@@ -23,12 +25,12 @@ const applicationSteps = [
         <a class="btn-pri program-primary-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
           Apply to ikigai Launchpad
         </a>
-        <a class="program-secondary-link" href="#ikigai-details">Read the program brief</a>
+        <a class="card-cta program-secondary-link" href="#ikigai-details">Read the program brief</a>
       </div>
     </div>
 
     <aside class="program-application-panel" aria-label="ikigai Launchpad program facts">
-      <div class="program-panel-label">Program at a glance</div>
+      <div class="program-panel-label">Quick facts</div>
       <p class="program-panel-copy">{ikigai.fit}</p>
       <dl class="program-fact-list">
         {ikigai.details?.metrics.map((metric) => (
@@ -43,10 +45,17 @@ const applicationSteps = [
   </section>
 
   <main class="program-page-body">
+    <section class="program-proof-strip" aria-label="886 Studios partner context">
+      <p>Built by 886 Studios partners behind</p>
+      <div>
+        {partnerProof.map((partner) => <span>{partner}</span>)}
+      </div>
+    </section>
+
     <section class="program-brief" id="ikigai-details" aria-labelledby="ikigai-details-title">
       <div class="program-brief-intro">
-        <div class="section-tag">Inside the 12 weeks</div>
-        <h2 id="ikigai-details-title">Funding, community, hands-on support, and support beyond the batch.</h2>
+        <div class="section-tag">Core pillars</div>
+        <h2 id="ikigai-details-title">Funding, community, and hands-on support.</h2>
         <p>{ikigai.body}</p>
       </div>
 
@@ -78,30 +87,12 @@ const applicationSteps = [
         <h2>Apply to ikigai Launchpad.</h2>
       </div>
       <p>
-        The program is in person in Taipei. All co-founders are expected to join on-site, and office space is provided
-        at Taiwan Tech Arena for the duration of the program.
+        Apply if you are ready for 12 weeks in person in Taipei, weekly mentor office hours, investor introductions,
+        and support beyond the batch.
       </p>
       <a class="btn-pri program-primary-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
         Apply to ikigai Launchpad
       </a>
-    </section>
-
-    <section class="program-secondary-program" aria-labelledby="launch-station-title">
-      <div class="program-secondary-meta">
-        <span>{launchStation.track}</span>
-        <strong>{launchStation.cta.label}</strong>
-      </div>
-      <div class="program-secondary-copy">
-        <h2 id="launch-station-title">{launchStation.name}</h2>
-        <p>{launchStation.body}</p>
-        <div class="program-highlights" aria-label="Launch Station highlights">
-          {launchStation.highlights.map((highlight) => <span class="program-highlight">{highlight}</span>)}
-        </div>
-      </div>
-      <div class="program-secondary-fit">
-        <span>Best for</span>
-        <p>{launchStation.fit}</p>
-      </div>
     </section>
   </main>
 </div>
