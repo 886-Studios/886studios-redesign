@@ -2,79 +2,89 @@
 import { siteContent } from "../../data/siteContent";
 
 const { programs } = siteContent;
+const [ikigai, launchStation] = programs.items;
 ---
 
 <div class="page" id="page-programs">
-  <div class="pg-hero program-hero">
-    <div class="pg-hero-glow"></div>
-    <div class="section-tag">{programs.eyebrow}</div>
-    <h1 class="program-headline">{programs.title}</h1>
-    <p class="section-lead program-summary">{programs.lead}</p>
-  </div>
-  <div class="pg-divider"></div>
-  <div class="program-shell">
-    {
-      programs.items.map((item) => (
-        <article class:list={["program-card", item.details && "program-card-featured"]}>
-          <div class="program-card-top">
-            {item.learnMoreHref && (
-              <a class="card-cta program-card-learn-more" href={item.learnMoreHref} target="_blank" rel="noopener noreferrer">
-                Learn more →
-              </a>
-            )}
-            {item.track && <div class="program-track">{item.track}</div>}
-            <h2 class="program-name">{item.name}</h2>
-            <p class="program-description">{item.body}</p>
-            {item.highlights.length > 0 && (
-              <div class="program-highlights">
-                {item.highlights.map((highlight) => <span class="program-highlight">{highlight}</span>)}
-              </div>
-            )}
+  <section class="program-page-hero" aria-labelledby="programs-title">
+    <div class="program-hero-copy">
+      <div class="section-tag">Accelerator program</div>
+      <p class="program-hero-kicker">886 Studios in Taipei</p>
+      <h1 class="program-headline" id="programs-title">{ikigai.name}</h1>
+      <p class="program-summary">{programs.lead}</p>
+      <div class="program-hero-actions">
+        <a class="btn-pri program-primary-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
+          Apply to ikigai Launchpad
+        </a>
+        <a class="program-secondary-link" href="#ikigai-details">Read the program brief</a>
+      </div>
+    </div>
+
+    <aside class="program-application-panel" aria-label="ikigai Launchpad application facts">
+      <div class="program-panel-label">Application focus</div>
+      <p class="program-panel-copy">{ikigai.fit}</p>
+      <dl class="program-fact-list">
+        {ikigai.details?.metrics.map((metric) => (
+          <div class="program-fact">
+            <dt>{metric.label}</dt>
+            <dd>{metric.value}</dd>
+            <span>{metric.note}</span>
           </div>
+        ))}
+      </dl>
+    </aside>
+  </section>
 
-          {item.details && (
-            <div class="program-stats-row">
-              {item.details.metrics.map((metric) => (
-                <div class="program-stat">
-                  <div class="program-stat-value">{metric.value}</div>
-                  <div class="program-stat-label">{metric.label}</div>
-                  <div class="program-stat-note">{metric.note}</div>
-                </div>
-              ))}
-            </div>
-          )}
+  <main class="program-page-body">
+    <section class="program-brief" id="ikigai-details" aria-labelledby="ikigai-details-title">
+      <div class="program-brief-intro">
+        <div class="section-tag">Inside the 10 weeks</div>
+        <h2 id="ikigai-details-title">A Taipei founder sprint with capital, pressure, and partner-level feedback.</h2>
+        <p>{ikigai.body}</p>
+      </div>
 
-          {item.details && (
-            <div class="program-detail-grid">
-              {item.details.sections.map((section) => (
-                <section class="program-detail-panel">
-                  <h3 class="program-detail-title">{section.title}</h3>
-                  <ul class="program-detail-list">
-                    {section.items.map((detail) => <li>{detail}</li>)}
-                  </ul>
-                </section>
-              ))}
-            </div>
-          )}
+      <div class="program-brief-grid">
+        {ikigai.details?.sections.map((section) => (
+          <article class="program-brief-block">
+            <h3>{section.title}</h3>
+            <ul>
+              {section.items.map((detail) => <li>{detail}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </section>
 
-          <div class="program-card-footer">
-            <div class="program-fit-block">
-              <div class="program-fit-label">Best for</div>
-              <p class="program-fit">{item.fit}</p>
-            </div>
-            <div class="program-cta-block">
-              {item.cta.type === "link" && (
-                <a class="card-cta program-link" href={item.cta.href} target="_blank">
-                  {item.cta.label}
-                </a>
-              )}
-              {item.cta.type === "status" && (
-                <span class="card-cta program-status-text">{item.cta.label}</span>
-              )}
-            </div>
-          </div>
-        </article>
-      ))
-    }
-  </div>
+    <section class="program-apply-band" aria-label="Apply to ikigai Launchpad">
+      <div>
+        <span class="program-band-label">Ready for the batch?</span>
+        <h2>Apply when your team is ready to build full-time.</h2>
+      </div>
+      <p>
+        The application is the primary next step. If there is fit, the team can follow up with deeper program details,
+        mentor access, and batch timing.
+      </p>
+      <a class="btn-pri program-primary-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
+        Apply to ikigai Launchpad
+      </a>
+    </section>
+
+    <section class="program-secondary-program" aria-labelledby="launch-station-title">
+      <div class="program-secondary-meta">
+        <span>{launchStation.track}</span>
+        <strong>{launchStation.cta.label}</strong>
+      </div>
+      <div class="program-secondary-copy">
+        <h2 id="launch-station-title">{launchStation.name}</h2>
+        <p>{launchStation.body}</p>
+        <div class="program-highlights" aria-label="Launch Station highlights">
+          {launchStation.highlights.map((highlight) => <span class="program-highlight">{highlight}</span>)}
+        </div>
+      </div>
+      <div class="program-secondary-fit">
+        <span>Best for</span>
+        <p>{launchStation.fit}</p>
+      </div>
+    </section>
+  </main>
 </div>

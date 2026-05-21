@@ -250,15 +250,15 @@ export const siteContent = {
   },
   programs: {
     eyebrow: "Programs",
-    title: "How we work with founders.",
+    title: "ikigai Launchpad",
     lead:
-      "Our flagship 10-week accelerator in Taipei gives early-stage founders capital, hands-on support, and access to the 886 Studios network.",
+      "Apply to the 10-week, in-person accelerator for Taiwan-based founders building for global markets. Ikigai Launchpad pairs $100K in funding with weekly partner office hours, a tight batch, and a Demo Day path into the 886 Studios network.",
     items: [
       {
         name: "ikigai Launchpad",
         learnMoreHref: "https://withikigai.com/?gad_source=1&gad_campaignid=22431875260&gbraid=0AAAAA_T5bfikWpWgiBTvO7VHwrU9CtcE_&gclid=CjwKCAjw8arQBhB9EiwAfIKdQlaQyIeLDc12b41gZD-eZtsUKEI1hZeVtvXa_raBK1dNjUjeREajkBoCNKgQAvD_BwE",
         body:
-          "A 10-week accelerator for early-stage founders building globally ambitious startups from Taiwan. Founders receive funding, weekly 1-on-1 office hours and workshops with 886 Studios partners, a tight batch community, warm investor introductions, and Demo Day.",
+          "The program is built for founders who want direct feedback and real momentum, not a passive curriculum. Teams work from Taipei, meet weekly with 886 Studios partners, sharpen product and go-to-market decisions, and leave with a clearer investor story.",
         highlights: [],
         details: {
           intro: "",
@@ -307,7 +307,7 @@ export const siteContent = {
           ],
         },
         fit:
-          "Early-stage founders ready to work full-time on a global startup.",
+          "Early-stage founders ready to work full-time on a global startup from Taipei.",
         cta: {
           type: "link",
           label: "Apply to ikigai Launchpad →",
@@ -318,7 +318,7 @@ export const siteContent = {
         track: "Community",
         name: "Launch Station",
         body:
-          "A free workspace inside Taiwan Tech Arena for founders who build better around other ambitious teams. The point is proximity: more collisions, more conversations, more forward motion.",
+          "A free workspace inside Taiwan Tech Arena for founders who build better around other ambitious teams. The point is proximity: more useful collisions, more honest conversations, more forward motion.",
         highlights: ["Founder community", "Free coworking space"],
         fit: "Founders who want a Taipei base and builder energy.",
         cta: {
