@@ -284,15 +284,18 @@ export const siteContent = {
               ],
             },
             {
-              title: "Community",
-              items: ["12-week program", "In person in Taipei"],
-            },
-            {
               title: "Hands-on support",
               items: [
                 "1-on-1 weekly mentor office hours",
                 "Warm introductions and investor matching",
                 "Support beyond the batch",
+              ],
+            },
+            {
+              title: "Community",
+              items: [
+                "12-week program",
+                "In person in Taipei",
               ],
             },
           ],

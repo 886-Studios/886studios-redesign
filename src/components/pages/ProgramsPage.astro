@@ -17,8 +17,8 @@ const programPhotos = {
     alt: "Founders in an ikigai Launchpad workshop",
   },
   community: {
-    src: "/assets/programs/ikigai-founder-table.jpeg",
-    alt: "Founders working together in a Taipei meeting room",
+    src: "/assets/programs/ikigai-launch-station.jpeg",
+    alt: "ikigai Launchpad founders gathered for a cohort photo",
   },
   support: {
     src: "/assets/programs/ikigai-mentor-session.jpeg",
@@ -30,7 +30,35 @@ const programPhotos = {
   },
 };
 
-const pillarPhotos = [programPhotos.funding, programPhotos.community, programPhotos.support];
+const ikigaiPillars = [
+  {
+    title: "Funding",
+    image: programPhotos.funding,
+    details: [
+      { label: "Investment", value: "$100K USD" },
+      { label: "Focus", value: "Funding to work full-time" },
+    ],
+  },
+  {
+    title: "Hands-on support",
+    image: programPhotos.support,
+    details: [
+      { label: "Mentor office hours", value: "Weekly 1-on-1 time" },
+      { label: "Investor access", value: "Warm intros and matching" },
+      { label: "After the batch", value: "Support beyond 12 weeks" },
+    ],
+  },
+  {
+    title: "Community",
+    image: programPhotos.community,
+    details: [
+      { label: "Format", value: "12 weeks in person" },
+      { label: "Location", value: "Taipei" },
+      { label: "Batch", value: "Founders building together" },
+    ],
+  },
+];
+
 const launchStationHighlights = ["Free workspace", "Founder community"];
 ---
 
@@ -62,22 +90,22 @@ const launchStationHighlights = ["Free workspace", "Founder community"];
   <main class="program-page-body">
     <section class="program-pillars" id="ikigai-details" aria-label="ikigai Launchpad pillars">
       <div class="program-pillar-list">
-        {ikigai.details?.sections.map((section, index) => (
+        {ikigaiPillars.map((pillar) => (
           <article class="program-pillar-row">
+            <figure class="program-pillar-image">
+              <img src={pillar.image.src} alt={pillar.image.alt} decoding="async" />
+            </figure>
             <div class="program-pillar-copy">
-              <h3>{section.title}</h3>
+              <h3>{pillar.title}</h3>
               <dl class="program-pillar-details">
-                {section.items.map((detail, detailIndex) => (
+                {pillar.details.map((detail) => (
                   <div>
-                    <dt>{String(detailIndex + 1).padStart(2, "0")}</dt>
-                    <dd>{detail}</dd>
+                    <dt>{detail.label}</dt>
+                    <dd>{detail.value}</dd>
                   </div>
                 ))}
               </dl>
             </div>
-            <figure class="program-pillar-image">
-              <img src={pillarPhotos[index].src} alt={pillarPhotos[index].alt} decoding="async" />
-            </figure>
           </article>
         ))}
       </div>
