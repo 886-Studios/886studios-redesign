@@ -10,29 +10,15 @@ const applicationSteps = [
   "Interview with 886 Studios",
   "Interview with Lifelike Capital",
 ];
-
-const partnerProof = ["Twitch", "Guitar Hero", "Kabam", "Playdom"];
 ---
 
 <div class="page" id="page-programs">
   <section class="program-page-hero" aria-labelledby="programs-title">
     <div class="program-hero-copy">
       <div class="section-tag">Accelerator program</div>
-      <p class="program-hero-kicker">886 Studios in Taipei</p>
       <h1 class="program-headline" id="programs-title">{ikigai.name}</h1>
       <p class="program-summary">{programs.lead}</p>
-      <div class="program-hero-actions">
-        <a class="btn-pri program-primary-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
-          Apply to ikigai Launchpad
-        </a>
-        <a class="card-cta program-secondary-link" href="#ikigai-details">Read the program brief</a>
-      </div>
-    </div>
-
-    <aside class="program-application-panel" aria-label="ikigai Launchpad program facts">
-      <div class="program-panel-label">Quick facts</div>
-      <p class="program-panel-copy">{ikigai.fit}</p>
-      <dl class="program-fact-list">
+      <dl class="program-fact-list" aria-label="ikigai Launchpad key facts">
         {ikigai.details?.metrics.map((metric) => (
           <div class="program-fact">
             <dt>{metric.label}</dt>
@@ -41,17 +27,15 @@ const partnerProof = ["Twitch", "Guitar Hero", "Kabam", "Playdom"];
           </div>
         ))}
       </dl>
-    </aside>
+      <div class="program-hero-actions">
+        <a class="btn-pri program-primary-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
+          Apply to ikigai Launchpad
+        </a>
+      </div>
+    </div>
   </section>
 
   <main class="program-page-body">
-    <section class="program-proof-strip" aria-label="886 Studios partner context">
-      <p>Built by 886 Studios partners behind</p>
-      <div>
-        {partnerProof.map((partner) => <span>{partner}</span>)}
-      </div>
-    </section>
-
     <section class="program-brief" id="ikigai-details" aria-labelledby="ikigai-details-title">
       <div class="program-brief-intro">
         <div class="section-tag">Core pillars</div>
