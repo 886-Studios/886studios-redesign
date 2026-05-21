@@ -1087,6 +1087,7 @@
 
     .program-page-hero,
     .program-facts-band,
+    .program-feature-image,
     .program-page-body {
       max-width: var(--max);
       margin: 0 auto;
@@ -1094,12 +1095,9 @@
     }
 
     .program-page-hero {
-      display: grid;
-      grid-template-columns: minmax(0, 0.92fr) minmax(340px, 0.72fr);
-      gap: clamp(36px, 6vw, 88px);
-      align-items: end;
+      display: block;
       padding-top: 72px;
-      padding-bottom: 56px;
+      padding-bottom: 62px;
       border-bottom: 1px solid var(--program-rule);
       position: relative;
     }
@@ -1145,42 +1143,21 @@
       margin-top: 34px;
     }
 
-    .program-hero-media {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(116px, 0.34fr);
-      gap: 14px;
-      align-items: end;
+    .program-feature-image {
+      margin: 0;
+      padding-top: clamp(30px, 5vw, 56px);
     }
 
-    .program-hero-image {
-      margin: 0;
-      min-width: 0;
+    .program-feature-image img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 7;
+      object-fit: cover;
+      object-position: center;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.04);
-    }
-
-    .program-hero-image img,
-    .program-pillar-image img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .program-hero-image--wide {
-      grid-column: 1 / -1;
-      aspect-ratio: 16 / 10;
-    }
-
-    .program-hero-image--portrait {
-      grid-column: 1 / 2;
-      justify-self: end;
-      width: min(68%, 320px);
-      aspect-ratio: 4 / 5;
-      margin-top: -82px;
-      box-shadow: 0 24px 50px rgba(5, 0, 18, 0.34);
     }
 
     .program-primary-cta {
@@ -1260,7 +1237,7 @@
     }
 
     .program-page-body {
-      padding-top: 72px;
+      padding-top: clamp(58px, 7vw, 84px);
       padding-bottom: 96px;
     }
 
@@ -1302,17 +1279,17 @@
 
     .program-pillar-row {
       display: grid;
-      grid-template-columns: minmax(0, 0.9fr) minmax(300px, 0.62fr);
-      gap: clamp(28px, 5vw, 64px);
-      align-items: center;
+      grid-template-columns: minmax(150px, 0.28fr) minmax(0, 1fr);
+      gap: clamp(24px, 5vw, 74px);
+      align-items: start;
       padding: clamp(30px, 5vw, 54px) 0;
       border-bottom: 1px solid var(--program-rule);
     }
 
     .program-pillar-copy {
       display: grid;
-      grid-template-columns: minmax(150px, 0.34fr) minmax(0, 1fr);
-      gap: clamp(20px, 3vw, 34px);
+      grid-template-columns: subgrid;
+      grid-column: 1 / -1;
       align-items: start;
     }
 
@@ -1351,38 +1328,94 @@
       background: var(--program-accent);
     }
 
-    .program-pillar-image {
+    .program-secondary {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(300px, 0.7fr);
+      gap: clamp(28px, 5vw, 70px);
+      align-items: end;
+      margin-top: clamp(58px, 8vw, 96px);
+      padding: clamp(34px, 5vw, 58px) 0;
+      border-top: 1px solid var(--program-rule-strong);
+      border-bottom: 1px solid var(--program-rule);
+    }
+
+    .program-secondary-copy h2 {
+      margin: 12px 0 0;
+      color: var(--program-ink);
+      font-family: var(--font-display);
+      font-size: clamp(30px, 3.8vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      text-wrap: balance;
+    }
+
+    .program-secondary-copy p {
+      margin: 22px 0 0;
+      color: var(--program-muted);
+      font-size: 1rem;
+      line-height: 1.78;
+      max-width: 62ch;
+      overflow-wrap: break-word;
+    }
+
+    .program-secondary-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0;
+      margin: 30px 0 0;
+      border-top: 1px solid var(--program-rule);
+    }
+
+    .program-secondary-list div {
+      padding: 18px 24px 0 0;
+    }
+
+    .program-secondary-list div + div {
+      border-left: 1px solid var(--program-rule);
+      padding-left: 24px;
+    }
+
+    .program-secondary-list dt {
+      color: var(--program-ink);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .program-secondary-list dd {
+      margin: 8px 0 0;
+      color: var(--program-muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .program-status {
+      display: inline-block;
+      margin-top: 30px;
+      color: var(--program-accent);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      line-height: 1.45;
+      text-transform: uppercase;
+    }
+
+    .program-secondary-image {
       margin: 0;
       overflow: hidden;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 4 / 5;
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
       background: rgba(255, 255, 255, 0.04);
     }
 
-    .program-pillar-number {
-      justify-self: end;
-      display: grid;
-      gap: 8px;
-      text-align: right;
-    }
-
-    .program-pillar-number span {
-      color: var(--program-ink);
-      font-family: var(--font-display);
-      font-size: clamp(58px, 7vw, 96px);
-      font-weight: 700;
-      letter-spacing: -0.06em;
-      line-height: 0.9;
-    }
-
-    .program-pillar-number small {
-      color: var(--program-muted);
-      font-family: var(--font-mono);
-      font-size: 0.7rem;
-      letter-spacing: 0.14em;
-      line-height: 1.45;
-      text-transform: uppercase;
+    .program-secondary-image img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .program-conversion {
@@ -1390,7 +1423,7 @@
       grid-template-columns: minmax(300px, 0.82fr) minmax(0, 1fr);
       gap: clamp(24px, 4vw, 52px);
       align-items: start;
-      margin-top: clamp(54px, 8vw, 94px);
+      margin-top: clamp(50px, 7vw, 86px);
       padding: clamp(28px, 4vw, 44px) 0;
       border-top: 1px solid var(--program-rule-strong);
       border-bottom: 1px solid var(--program-rule-strong);
@@ -1462,31 +1495,24 @@
     }
 
     @media (max-width: 900px) {
-      .program-page-hero {
-        grid-template-columns: 1fr;
-        align-items: start;
-      }
-
       .program-headline {
         max-width: 760px;
       }
 
-      .program-hero-media {
-        max-width: 760px;
-      }
-
       .program-pillar-row,
+      .program-secondary,
       .program-conversion {
         grid-template-columns: 1fr;
       }
 
-      .program-pillar-number {
-        justify-self: start;
-        text-align: left;
+      .program-pillar-copy {
+        grid-template-columns: 1fr;
+        gap: 14px;
       }
 
-      .program-pillar-image {
+      .program-secondary-image {
         max-width: 760px;
+        aspect-ratio: 16 / 10;
       }
 
       .program-process-list {
@@ -1510,6 +1536,7 @@
 
       .program-page-hero,
       .program-facts-band,
+      .program-feature-image,
       .program-page-body {
         padding-inline: 24px;
       }
@@ -1534,20 +1561,6 @@
       .program-hero-actions {
         align-items: stretch;
         flex-direction: column;
-      }
-
-      .program-hero-media {
-        grid-template-columns: 1fr;
-      }
-
-      .program-hero-image--wide,
-      .program-hero-image--portrait {
-        grid-column: auto;
-      }
-
-      .program-hero-image--portrait {
-        width: 72%;
-        margin-top: -46px;
       }
 
       .program-primary-cta {
@@ -1576,15 +1589,35 @@
         gap: 14px;
       }
 
+      .program-feature-image img {
+        aspect-ratio: 4 / 3;
+      }
+
       .program-pillar-row {
         gap: 22px;
         padding: 34px 0;
       }
 
       .program-pillars-intro h2,
+      .program-secondary-copy h2,
       .program-apply-copy h2 {
         font-size: clamp(28px, 8vw, 38px);
         line-height: 1.08;
+      }
+
+      .program-secondary-list {
+        grid-template-columns: 1fr;
+      }
+
+      .program-secondary-list div,
+      .program-secondary-list div + div {
+        border-left: 0;
+        padding-left: 0;
+      }
+
+      .program-secondary-list div + div {
+        border-top: 1px solid var(--program-rule);
+        padding-top: 18px;
       }
 
       .program-process-list {
@@ -1606,6 +1639,7 @@
     @media (max-width: 420px) {
       .program-page-hero,
       .program-facts-band,
+      .program-feature-image,
       .program-page-body {
         padding-inline: 20px;
       }
@@ -1614,10 +1648,6 @@
         max-width: 100%;
         font-size: clamp(36px, 11vw, 48px);
         letter-spacing: -0.04em;
-      }
-
-      .program-hero-image--portrait {
-        width: 82%;
       }
 
     }

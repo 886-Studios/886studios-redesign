@@ -2,7 +2,7 @@
 import { siteContent } from "../../data/siteContent";
 
 const { programs } = siteContent;
-const [ikigai] = programs.items;
+const [ikigai, launchStation] = programs.items;
 
 const applicationSteps = [
   "Submit application",
@@ -12,25 +12,26 @@ const applicationSteps = [
 ];
 
 const programPhotos = {
-  hero: {
-    src: "/assets/programs/ikigai-storytelling-room.jpeg",
-    alt: "Founders in an ikigai Launchpad storytelling workshop",
-  },
-  batch: {
-    src: "/assets/programs/ikigai-batch-discussion.jpeg",
-    alt: "ikigai Launchpad founders gathered around a conference table",
-  },
-  community: {
+  feature: {
     src: "/assets/programs/ikigai-founder-table.jpeg",
-    alt: "Founders working together in a Taipei meeting room",
+    alt: "Founders working together around a table in Taipei",
   },
-  support: {
-    src: "/assets/programs/ikigai-mentor-session.jpeg",
-    alt: "A mentor session with founders seated around a table",
+  launchStation: {
+    src: "/assets/programs/ikigai-batch-discussion.jpeg",
+    alt: "Founders gathered for a group discussion",
   },
 };
 
-const sectionPhotos = [null, programPhotos.community, programPhotos.support];
+const launchStationDetails = [
+  {
+    label: "Free workspace",
+    note: "A Taipei base inside Taiwan Tech Arena.",
+  },
+  {
+    label: "Founder community",
+    note: "Built for useful collisions with other ambitious teams.",
+  },
+];
 ---
 
 <div class="page" id="page-programs">
@@ -44,14 +45,6 @@ const sectionPhotos = [null, programPhotos.community, programPhotos.support];
           Apply to ikigai Launchpad
         </a>
       </div>
-    </div>
-    <div class="program-hero-media" aria-hidden="true">
-      <figure class="program-hero-image program-hero-image--wide">
-        <img src={programPhotos.hero.src} alt="" decoding="async" />
-      </figure>
-      <figure class="program-hero-image program-hero-image--portrait">
-        <img src={programPhotos.batch.src} alt="" decoding="async" />
-      </figure>
     </div>
   </section>
 
@@ -67,16 +60,20 @@ const sectionPhotos = [null, programPhotos.community, programPhotos.support];
     </dl>
   </section>
 
+  <figure class="program-feature-image">
+    <img src={programPhotos.feature.src} alt={programPhotos.feature.alt} decoding="async" />
+  </figure>
+
   <main class="program-page-body">
     <section class="program-pillars" id="ikigai-details" aria-labelledby="ikigai-details-title">
       <div class="program-pillars-intro">
-        <div class="section-tag">What the program gives you</div>
+        <div class="section-tag">{ikigai.name}</div>
         <h2 id="ikigai-details-title">Capital, a focused batch, and direct founder support.</h2>
         <p>{ikigai.body}</p>
       </div>
 
       <div class="program-pillar-list">
-        {ikigai.details?.sections.map((section, index) => (
+        {ikigai.details?.sections.map((section) => (
           <article class="program-pillar-row">
             <div class="program-pillar-copy">
               <h3>{section.title}</h3>
@@ -84,20 +81,32 @@ const sectionPhotos = [null, programPhotos.community, programPhotos.support];
                 {section.items.map((detail) => <li>{detail}</li>)}
               </ul>
             </div>
-            {sectionPhotos[index] ? (
-              <figure class="program-pillar-image">
-                <img src={sectionPhotos[index].src} alt={sectionPhotos[index].alt} decoding="async" />
-              </figure>
-            ) : (
-              <div class="program-pillar-number" aria-label="$100K USD investment">
-                <span>$100K</span>
-                <small>USD investment</small>
-              </div>
-            )}
           </article>
         ))}
       </div>
     </section>
+
+    {launchStation && (
+      <section class="program-secondary" aria-labelledby="launch-station-title">
+        <div class="program-secondary-copy">
+          <span class="program-band-label">{launchStation.track}</span>
+          <h2 id="launch-station-title">{launchStation.name}</h2>
+          <p>{launchStation.body}</p>
+          <dl class="program-secondary-list">
+            {launchStationDetails.map((detail) => (
+              <div>
+                <dt>{detail.label}</dt>
+                <dd>{detail.note}</dd>
+              </div>
+            ))}
+          </dl>
+          <div class="program-status">{launchStation.cta.label}</div>
+        </div>
+        <figure class="program-secondary-image">
+          <img src={programPhotos.launchStation.src} alt={programPhotos.launchStation.alt} decoding="async" />
+        </figure>
+      </section>
+    )}
 
     <section class="program-conversion" aria-label="Apply to ikigai Launchpad">
       <div class="program-apply-copy">
