@@ -4,52 +4,32 @@ import { siteContent } from "../../data/siteContent";
 const { programs } = siteContent;
 const [ikigai, launchStation] = programs.items;
 
-const applicationSteps = [
-  "Apply",
-  "Review",
-  "886 interview",
-  "Lifelike interview",
-];
+const applicationSteps = ["Apply", "Review", "886 interview", "Lifelike interview"];
 
-const programPhotos = {
-  hero: {
-    src: "/assets/programs/ikigai-founder-table.jpeg",
-    alt: "ikigai Launchpad founders working together around a table",
-  },
-  funding: {
-    src: "/assets/programs/ikigai-storytelling-room.jpeg",
-    alt: "Founders in an ikigai Launchpad workshop",
-  },
-  community: {
-    src: "/assets/programs/ikigai-launch-station.jpeg",
-    alt: "ikigai Launchpad founders gathered for a cohort photo",
-  },
-  support: {
-    src: "/assets/programs/ikigai-mentor-session.jpeg",
-    alt: "A mentor session with founders around a table",
-  },
-  launchStation: {
-    src: "/assets/programs/ikigai-batch-discussion.jpeg",
-    alt: "Founders gathered for a group discussion",
-  },
+const heroPhoto = {
+  src: "/assets/programs/ikigai-founder-table.jpeg",
+  alt: "ikigai Launchpad founders working together around a table",
 };
 
-const ikigaiPillars = [
+const launchStationPhoto = {
+  src: "/assets/programs/ikigai-batch-discussion.jpeg",
+  alt: "Founders gathered at Launch Station",
+};
+
+const specPillars = [
   {
+    index: "01",
     title: "Funding",
     kicker: "Capital to focus",
-    image: programPhotos.funding,
-    reversed: false,
     details: [
       { label: "Investment", value: "$100K USD" },
       { label: "Purpose", value: "Work full-time on the company" },
     ],
   },
   {
+    index: "02",
     title: "Hands-on support",
     kicker: "Weekly founder time",
-    image: programPhotos.support,
-    reversed: true,
     details: [
       { label: "Mentor office hours", value: "Weekly 1-on-1 time" },
       { label: "Investor access", value: "Warm intros and matching" },
@@ -57,10 +37,9 @@ const ikigaiPillars = [
     ],
   },
   {
+    index: "03",
     title: "Community",
     kicker: "In person in Taipei",
-    image: programPhotos.community,
-    reversed: false,
     details: [
       { label: "Format", value: "12 weeks in person" },
       { label: "Location", value: "Taipei" },
@@ -68,101 +47,110 @@ const ikigaiPillars = [
     ],
   },
 ];
-
-const launchStationHighlights = ["Free workspace", "Founder community"];
 ---
 
 <div class="page" id="page-programs">
-  <section class="program-page-hero" aria-labelledby="programs-title">
-    <div class="program-hero-copy">
-      <div class="section-tag">Accelerator program</div>
-      <h1 class="program-headline" id="programs-title">{ikigai.name}</h1>
-      <p class="program-summary">{programs.lead}</p>
-      <div class="program-hero-facts" role="list">
-        {ikigai.details?.metrics.map((metric) => (
-          <div class="program-hero-fact" role="listitem">
-            <span class="program-hero-fact-value">{metric.value}</span>
-            <span class="program-hero-fact-label">{metric.label}</span>
+
+  <!-- Hero: ikigai brand + key info + photo -->
+  <section class="prog-hero" aria-labelledby="prog-ikigai-heading">
+    <div class="prog-hero-copy">
+      <div class="prog-brand-row">
+        <!-- ikigai Launchpad mark (4-petal) -->
+        <svg class="prog-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="4" y="3" width="40" height="43" rx="11" transform="rotate(-15 24 24.5)" fill="currentColor"/>
+          <rect x="56" y="3" width="40" height="43" rx="11" transform="rotate(15 76 24.5)" fill="currentColor"/>
+          <rect x="4" y="54" width="40" height="43" rx="11" transform="rotate(15 24 75.5)" fill="currentColor"/>
+          <rect x="56" y="54" width="40" height="43" rx="11" transform="rotate(-15 76 75.5)" fill="currentColor"/>
+        </svg>
+        <span class="section-tag">Accelerator program</span>
+      </div>
+      <h1 class="prog-h1" id="prog-ikigai-heading">{ikigai.name}</h1>
+      <p class="prog-lead">{programs.lead}</p>
+      <div class="prog-metrics" role="list">
+        {ikigai.details?.metrics.map((m) => (
+          <div class="prog-metric" role="listitem">
+            <strong class="prog-metric-val">{m.value}</strong>
+            <span class="prog-metric-lbl">{m.label}</span>
           </div>
         ))}
       </div>
-      <div class="program-hero-actions">
-        <a class="btn-pri program-primary-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
-          Apply to ikigai Launchpad
-        </a>
-      </div>
+      <a class="btn-pri prog-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
+        Apply to ikigai Launchpad
+      </a>
     </div>
-    <figure class="program-hero-image">
-      <img src={programPhotos.hero.src} alt={programPhotos.hero.alt} decoding="async" loading="eager" fetchpriority="high" />
+    <figure class="prog-hero-photo">
+      <img src={heroPhoto.src} alt={heroPhoto.alt} decoding="async" loading="eager" fetchpriority="high" />
     </figure>
   </section>
 
-  <main class="program-page-body">
-    <div class="program-pillar-list">
-      {ikigaiPillars.map((pillar, index) => (
-        <article class:list={["program-pillar-chapter reveal", pillar.reversed && "is-reversed"]}>
-          <div class="program-pillar-copy">
-            <span class="program-pillar-index">{String(index + 1).padStart(2, "0")}</span>
-            <p class="program-pillar-kicker">{pillar.kicker}</p>
-            <h2>{pillar.title}</h2>
-          </div>
-          <figure class="program-pillar-image">
-            <img src={pillar.image.src} alt={pillar.image.alt} decoding="async" />
-          </figure>
-          <dl class="program-pillar-details">
-            {pillar.details.map((detail) => (
-              <div>
-                <dt>{detail.label}</dt>
-                <dd>{detail.value}</dd>
-              </div>
-            ))}
-          </dl>
-        </article>
-      ))}
-    </div>
+  <div class="prog-body">
 
-    <hr class="divider program-section-divider" />
+    <!-- 3-column spec: what the program gives you -->
+    <section class="prog-spec reveal" aria-label="What ikigai Launchpad includes">
+      <div class="prog-spec-header">
+        <span class="prog-band-label">What you get</span>
+      </div>
+      <div class="prog-spec-grid">
+        {specPillars.map((p) => (
+          <article class="prog-spec-col">
+            <span class="prog-spec-num">{p.index}</span>
+            <h2 class="prog-spec-name">{p.title}</h2>
+            <p class="prog-spec-kicker">{p.kicker}</p>
+            <dl class="prog-spec-dl">
+              {p.details.map((d) => (
+                <div class="prog-spec-item">
+                  <dt>{d.label}</dt>
+                  <dd>{d.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </article>
+        ))}
+      </div>
+    </section>
 
-    <section class="program-conversion reveal" aria-label="Apply to ikigai Launchpad">
-      <div class="program-apply-copy">
-        <span class="program-band-label">Applications</span>
-        <h2>Apply to ikigai Launchpad.</h2>
-        <a class="btn-pri program-primary-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
+    <!-- Apply: CTA + process steps -->
+    <section class="prog-apply reveal" aria-label="Apply to ikigai Launchpad">
+      <div class="prog-apply-copy">
+        <span class="prog-band-label">Applications</span>
+        <h2 class="prog-apply-h2">Apply to ikigai<br/>Launchpad.</h2>
+        <a class="btn-pri prog-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
           Apply to ikigai Launchpad
         </a>
       </div>
-      <div class="program-process-compact" aria-labelledby="program-process-title">
-        <h3 id="program-process-title">What happens after you apply</h3>
-        <ol class="program-process-list">
-          {applicationSteps.map((step, index) => (
-            <li>
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              {step}
+      <div class="prog-process" aria-labelledby="prog-process-lbl">
+        <h3 class="prog-process-lbl" id="prog-process-lbl">What happens after you apply</h3>
+        <ol class="prog-process-list">
+          {applicationSteps.map((step, i) => (
+            <li class="prog-process-item">
+              <span class="prog-process-num">{String(i + 1).padStart(2, "0")}</span>
+              <span class="prog-process-step">{step}</span>
             </li>
           ))}
         </ol>
       </div>
     </section>
 
+    <hr class="divider prog-div" />
+
+    <!-- Launch Station: secondary program -->
     {launchStation && (
-      <section class="program-secondary reveal" aria-labelledby="launch-station-title">
-        <div class="program-secondary-copy">
-          <span class="program-band-label">{launchStation.track}</span>
-          <h2 id="launch-station-title">{launchStation.name}</h2>
-          <p>{launchStation.body}</p>
-          <dl class="program-secondary-list">
-            {launchStationHighlights.map((highlight) => (
-              <div>
-                <dt>{highlight}</dt>
-              </div>
-            ))}
-          </dl>
-          <div class="program-status">{launchStation.cta.label}</div>
+      <section class="prog-launch reveal" aria-labelledby="prog-launch-heading">
+        <div class="prog-launch-copy">
+          <span class="prog-band-label">{launchStation.track}</span>
+          <h2 class="prog-launch-name" id="prog-launch-heading">{launchStation.name}</h2>
+          <p class="prog-launch-body">{launchStation.body}</p>
+          <ul class="prog-launch-highlights">
+            <li>Free workspace</li>
+            <li>Founder community</li>
+          </ul>
+          <span class="prog-launch-status">{launchStation.cta.label}</span>
         </div>
-        <figure class="program-secondary-image">
-          <img src={programPhotos.launchStation.src} alt={programPhotos.launchStation.alt} decoding="async" />
+        <figure class="prog-launch-photo">
+          <img src={launchStationPhoto.src} alt={launchStationPhoto.alt} decoding="async" />
         </figure>
       </section>
     )}
-  </main>
+
+  </div>
 </div>
