@@ -5,29 +5,12 @@ const { programs } = siteContent;
 const [ikigai, launchStation] = programs.items;
 
 const applicationSteps = ["Apply", "Review", "886 interview", "Lifelike interview"];
+const nextBatch = "Next batch starts Fall 2026.";
 
 const heroPhoto = {
   src: "/assets/programs/ikigai-workshop-room.jpeg",
   alt: "ikigai Launchpad workshop session with founders",
 };
-
-const mosaicPhotos = [
-  {
-    src: "/assets/programs/ikigai-group-tshirts.jpeg",
-    alt: "ikigai Launchpad founders in program t-shirts",
-    portrait: true,
-  },
-  {
-    src: "/assets/programs/ikigai-cowork-table.jpeg",
-    alt: "Founders collaborating at a coworking space",
-    portrait: false,
-  },
-  {
-    src: "/assets/programs/ikigai-mentor-table.jpeg",
-    alt: "Mentor session with founders at a long table",
-    portrait: false,
-  },
-];
 
 const launchStationPhoto = {
   src: "/assets/programs/ikigai-batch-discussion.jpeg",
@@ -43,6 +26,10 @@ const specPillars = [
       { label: "Investment", value: "$100K USD" },
       { label: "Purpose", value: "Work full-time on the company" },
     ],
+    photo: {
+      src: "/assets/programs/ikigai-founder-table.jpeg",
+      alt: "Founders working together during ikigai Launchpad",
+    },
   },
   {
     index: "02",
@@ -53,6 +40,10 @@ const specPillars = [
       { label: "Investor access", value: "Warm intros and matching" },
       { label: "After the batch", value: "Support beyond 12 weeks" },
     ],
+    photo: {
+      src: "/assets/programs/ikigai-mentor-session.jpeg",
+      alt: "ikigai Launchpad mentor session with founders",
+    },
   },
   {
     index: "03",
@@ -63,6 +54,10 @@ const specPillars = [
       { label: "Location", value: "Taipei" },
       { label: "Batch", value: "Founders building together" },
     ],
+    photo: {
+      src: "/assets/programs/ikigai-group-tshirts.jpeg",
+      alt: "ikigai Launchpad founders together in Taipei",
+    },
   },
 ];
 ---
@@ -95,33 +90,28 @@ const specPillars = [
       <a class="btn-pri prog-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
         Apply to ikigai Launchpad
       </a>
+      <p class="prog-next-batch">{nextBatch}</p>
     </div>
     <figure class="prog-hero-photo">
       <img src={heroPhoto.src} alt={heroPhoto.alt} decoding="async" loading="eager" fetchpriority="high" />
     </figure>
   </section>
 
-  <!-- Photo mosaic: program life -->
-  <div class="prog-photos">
-    {mosaicPhotos.map((p) => (
-      <figure class:list={["prog-photo", p.portrait && "prog-photo--portrait"]}>
-        <img src={p.src} alt={p.alt} decoding="async" loading="lazy" />
-      </figure>
-    ))}
-  </div>
-
   <div class="prog-body">
 
-    <!-- 3-column spec: what the program gives you -->
-    <section class="prog-spec reveal" aria-label="What ikigai Launchpad includes">
-      <div class="prog-spec-header">
+    <!-- Pillars: what the program gives you -->
+    <section class="prog-pillars reveal" aria-label="What ikigai Launchpad includes">
+      <div class="prog-pillars-header">
         <span class="prog-band-label">What you get</span>
       </div>
-      <div class="prog-spec-grid">
-        {specPillars.map((p) => (
-          <article class="prog-spec-col">
+      {specPillars.map((p) => (
+        <article class="prog-pillar-card">
+          <figure class="prog-pillar-media">
+            <img src={p.photo.src} alt={p.photo.alt} decoding="async" loading="lazy" />
+          </figure>
+          <div class="prog-pillar-copy">
             <span class="prog-spec-num">{p.index}</span>
-            <h2 class="prog-spec-name">{p.title}</h2>
+            <h3 class="prog-spec-name">{p.title}</h3>
             <p class="prog-spec-kicker">{p.kicker}</p>
             <dl class="prog-spec-dl">
               {p.details.map((d) => (
@@ -131,9 +121,9 @@ const specPillars = [
                 </div>
               ))}
             </dl>
-          </article>
-        ))}
-      </div>
+          </div>
+        </article>
+      ))}
     </section>
 
     <!-- Apply: CTA + process steps -->
