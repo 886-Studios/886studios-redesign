@@ -7,9 +7,27 @@ const [ikigai, launchStation] = programs.items;
 const applicationSteps = ["Apply", "Review", "886 interview", "Lifelike interview"];
 
 const heroPhoto = {
-  src: "/assets/programs/ikigai-founder-table.jpeg",
-  alt: "ikigai Launchpad founders working together around a table",
+  src: "/assets/programs/ikigai-workshop-room.jpeg",
+  alt: "ikigai Launchpad workshop session with founders",
 };
+
+const mosaicPhotos = [
+  {
+    src: "/assets/programs/ikigai-group-tshirts.jpeg",
+    alt: "ikigai Launchpad founders in program t-shirts",
+    portrait: true,
+  },
+  {
+    src: "/assets/programs/ikigai-cowork-table.jpeg",
+    alt: "Founders collaborating at a coworking space",
+    portrait: false,
+  },
+  {
+    src: "/assets/programs/ikigai-mentor-table.jpeg",
+    alt: "Mentor session with founders at a long table",
+    portrait: false,
+  },
+];
 
 const launchStationPhoto = {
   src: "/assets/programs/ikigai-batch-discussion.jpeg",
@@ -55,12 +73,12 @@ const specPillars = [
   <section class="prog-hero" aria-labelledby="prog-ikigai-heading">
     <div class="prog-hero-copy">
       <div class="prog-brand-row">
-        <!-- ikigai Launchpad mark (4-petal) -->
-        <svg class="prog-mark" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="4" y="3" width="40" height="43" rx="11" transform="rotate(-15 24 24.5)" fill="currentColor"/>
-          <rect x="56" y="3" width="40" height="43" rx="11" transform="rotate(15 76 24.5)" fill="currentColor"/>
-          <rect x="4" y="54" width="40" height="43" rx="11" transform="rotate(15 24 75.5)" fill="currentColor"/>
-          <rect x="56" y="54" width="40" height="43" rx="11" transform="rotate(-15 76 75.5)" fill="currentColor"/>
+        <!-- ikigai mark: 2×2 grid of rounded squares -->
+        <svg class="prog-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="1" y="1" width="9.5" height="9.5" rx="2" fill="currentColor"/>
+          <rect x="13.5" y="1" width="9.5" height="9.5" rx="2" fill="currentColor"/>
+          <rect x="1" y="13.5" width="9.5" height="9.5" rx="2" fill="currentColor"/>
+          <rect x="13.5" y="13.5" width="9.5" height="9.5" rx="2" fill="currentColor"/>
         </svg>
         <span class="section-tag">Accelerator program</span>
       </div>
@@ -82,6 +100,15 @@ const specPillars = [
       <img src={heroPhoto.src} alt={heroPhoto.alt} decoding="async" loading="eager" fetchpriority="high" />
     </figure>
   </section>
+
+  <!-- Photo mosaic: program life -->
+  <div class="prog-photos">
+    {mosaicPhotos.map((p) => (
+      <figure class:list={["prog-photo", p.portrait && "prog-photo--portrait"]}>
+        <img src={p.src} alt={p.alt} decoding="async" loading="lazy" />
+      </figure>
+    ))}
+  </div>
 
   <div class="prog-body">
 
@@ -130,8 +157,6 @@ const specPillars = [
         </ol>
       </div>
     </section>
-
-    <hr class="divider prog-div" />
 
     <!-- Launch Station: secondary program -->
     {launchStation && (

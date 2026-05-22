@@ -2336,7 +2336,7 @@ body.is-home nav.site-nav.is-scrolled {
     }
 
     /* ===========================
-       PROGRAMS PAGE v2
+       PROGRAMS PAGE v3
     =========================== */
 
     /* Shared label used across all prog- sections */
@@ -2353,28 +2353,27 @@ body.is-home nav.site-nav.is-scrolled {
     /* ── Hero ─────────────────────────────── */
     .prog-hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(260px, 0.7fr);
+      grid-template-columns: minmax(0, 1.05fr) minmax(260px, 0.72fr);
       gap: clamp(36px, 6vw, 80px);
       align-items: center;
       max-width: var(--max);
       margin: 0 auto;
-      padding: clamp(72px, 8vw, 112px) clamp(24px, 4vw, 32px) clamp(52px, 6vw, 76px);
+      padding: clamp(72px, 8vw, 112px) clamp(24px, 4vw, 32px) clamp(52px, 6vw, 72px);
     }
 
     .prog-brand-row {
       display: flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 18px;
+      gap: 10px;
+      margin-bottom: 20px;
     }
 
-    /* ikigai 4-petal mark */
+    /* ikigai mark: 2×2 grid of rounded squares */
     .prog-mark {
-      width: 30px;
-      height: 30px;
+      width: 22px;
+      height: 22px;
       color: var(--purple-bright);
       flex-shrink: 0;
-      overflow: visible;
     }
 
     .prog-h1 {
@@ -2395,38 +2394,27 @@ body.is-home nav.site-nav.is-scrolled {
       max-width: 540px;
     }
 
-    /* 4 key metrics below lead */
+    /* 4 key metrics below lead — no lines, just space */
     .prog-metrics {
       display: flex;
       flex-wrap: wrap;
       align-items: flex-start;
-      gap: 0;
-      margin-top: 28px;
-      padding-top: 20px;
-      border-top: 1px solid var(--border-bright);
+      gap: 10px 32px;
+      margin-top: 32px;
     }
 
     .prog-metric {
       display: flex;
       flex-direction: column;
-      gap: 5px;
-      padding-right: 22px;
-      margin-right: 22px;
-      border-right: 1px solid var(--border-bright);
-    }
-
-    .prog-metric:last-child {
-      border-right: none;
-      margin-right: 0;
-      padding-right: 0;
+      gap: 4px;
     }
 
     .prog-metric-val {
-      font-size: clamp(0.9rem, 1.1vw, 1.04rem);
+      font-size: clamp(1.25rem, 1.8vw, 1.6rem);
       font-weight: 700;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       color: var(--text-primary);
-      line-height: 1.2;
+      line-height: 1.1;
     }
 
     .prog-metric-lbl {
@@ -2458,10 +2446,9 @@ body.is-home nav.site-nav.is-scrolled {
       margin: 0;
       overflow: hidden;
       border-radius: 10px;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 16 / 11;
       background: var(--bg-elevated);
-      align-self: start;
-      margin-top: 8px;
+      align-self: center;
     }
 
     .prog-hero-photo img {
@@ -2469,6 +2456,37 @@ body.is-home nav.site-nav.is-scrolled {
       width: 100%;
       height: 100%;
       object-fit: cover;
+    }
+
+    /* ── Photo mosaic ─────────────────────── */
+    .prog-photos {
+      display: grid;
+      grid-template-columns: 0.72fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 6px;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 clamp(24px, 4vw, 32px);
+      height: clamp(280px, 36vw, 460px);
+    }
+
+    .prog-photo {
+      margin: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      background: var(--bg-elevated);
+    }
+
+    .prog-photo--portrait {
+      grid-row: 1 / 3;
+    }
+
+    .prog-photo img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
     }
 
     /* ── Body container ───────────────────── */
@@ -2480,42 +2498,31 @@ body.is-home nav.site-nav.is-scrolled {
 
     /* ── Spec grid ────────────────────────── */
     .prog-spec {
-      padding-top: clamp(52px, 7vw, 80px);
+      padding-top: clamp(64px, 8vw, 96px);
       padding-bottom: clamp(64px, 8vw, 96px);
-      border-top: 1px solid var(--border-bright);
     }
 
     .prog-spec-header {
-      margin-bottom: clamp(28px, 3.5vw, 42px);
+      margin-bottom: clamp(32px, 4vw, 48px);
     }
 
     .prog-spec-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(40px, 6vw, 80px);
     }
 
     .prog-spec-col {
       display: flex;
       flex-direction: column;
-      padding-right: clamp(24px, 3.5vw, 52px);
-    }
-
-    .prog-spec-col + .prog-spec-col {
-      padding-left: clamp(24px, 3.5vw, 52px);
-      padding-right: clamp(24px, 3.5vw, 52px);
-      border-left: 1px solid var(--border);
-    }
-
-    .prog-spec-col:last-child {
-      padding-right: 0;
     }
 
     .prog-spec-num {
-      color: var(--purple-bright);
+      color: var(--text-muted);
       font-family: var(--font-mono);
       font-size: 0.62rem;
       letter-spacing: 0.16em;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .prog-spec-name {
@@ -2528,7 +2535,7 @@ body.is-home nav.site-nav.is-scrolled {
     }
 
     .prog-spec-kicker {
-      margin: 0 0 20px;
+      margin: 0;
       color: var(--text-muted);
       font-size: 0.85rem;
       line-height: 1.55;
@@ -2541,8 +2548,7 @@ body.is-home nav.site-nav.is-scrolled {
       margin: 0;
       padding: 0;
       margin-top: auto;
-      padding-top: 20px;
-      border-top: 1px solid var(--border);
+      padding-top: 28px;
     }
 
     .prog-spec-item {
@@ -2576,8 +2582,7 @@ body.is-home nav.site-nav.is-scrolled {
       gap: clamp(36px, 6vw, 84px);
       align-items: center;
       padding-top: clamp(36px, 5vw, 56px);
-      padding-bottom: clamp(64px, 8vw, 96px);
-      border-top: 1px solid var(--border-bright);
+      padding-bottom: clamp(80px, 10vw, 120px);
     }
 
     .prog-apply-h2 {
@@ -2619,7 +2624,7 @@ body.is-home nav.site-nav.is-scrolled {
       font-family: var(--font-mono);
       font-size: 0.62rem;
       letter-spacing: 0.14em;
-      color: var(--purple-bright);
+      color: var(--text-muted);
     }
 
     .prog-process-step {
@@ -2630,19 +2635,14 @@ body.is-home nav.site-nav.is-scrolled {
       line-height: 1.3;
     }
 
-    /* ── Divider ──────────────────────────── */
-    .prog-div {
-      margin: 0 0 clamp(56px, 7vw, 88px);
-      border-top-color: var(--border-bright);
-    }
-
     /* ── Launch Station ───────────────────── */
     .prog-launch {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(260px, 0.58fr);
       gap: clamp(36px, 6vw, 84px);
       align-items: center;
-      opacity: 0.75;
+      padding-top: clamp(52px, 6vw, 72px);
+      opacity: 0.72;
       transition: opacity 0.35s ease;
     }
 
@@ -2714,43 +2714,48 @@ body.is-home nav.site-nav.is-scrolled {
         grid-template-columns: 1fr;
       }
 
+      .prog-hero-photo {
+        aspect-ratio: 16 / 9;
+      }
+
+      .prog-photos {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+        height: auto;
+      }
+
+      .prog-photo--portrait {
+        grid-row: auto;
+        aspect-ratio: 4 / 3;
+      }
+
+      .prog-photo:not(.prog-photo--portrait) {
+        aspect-ratio: 4 / 3;
+      }
+
       .prog-spec-grid {
         grid-template-columns: 1fr;
-        gap: 0;
-      }
-
-      .prog-spec-col {
-        padding-right: 0;
-        padding-bottom: clamp(28px, 4vw, 40px);
-        border-bottom: 1px solid var(--border);
-      }
-
-      .prog-spec-col + .prog-spec-col {
-        padding-left: 0;
-        padding-top: clamp(28px, 4vw, 40px);
-        border-left: none;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .prog-spec-col:last-child {
-        border-bottom: none;
+        gap: clamp(32px, 5vw, 48px);
       }
 
       .prog-apply,
       .prog-launch {
         grid-template-columns: 1fr;
       }
-
-      .prog-metrics {
-        flex-wrap: wrap;
-        row-gap: 14px;
-      }
     }
 
     @media (max-width: 640px) {
-      .prog-metric {
-        flex: 1 1 auto;
-        min-width: 90px;
+      .prog-photos {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+
+      .prog-photo--portrait {
+        aspect-ratio: 3 / 2;
+      }
+
+      .prog-metric-val {
+        font-size: clamp(1.1rem, 5vw, 1.4rem);
       }
 
       .prog-apply-h2 {
