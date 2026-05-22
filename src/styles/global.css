@@ -2339,6 +2339,13 @@ body.is-home nav.site-nav.is-scrolled {
        PROGRAMS PAGE v3
     =========================== */
 
+    #page-programs {
+      background:
+        radial-gradient(ellipse 42% 24% at 78% 12%, rgba(139, 92, 246, 0.18), transparent 68%),
+        radial-gradient(ellipse 34% 18% at 18% 44%, rgba(109, 40, 217, 0.1), transparent 72%),
+        linear-gradient(180deg, #050507 0%, #050507 24%, #090810 48%, #07070b 76%, #050507 100%);
+    }
+
     /* Shared label used across all prog- sections */
     .prog-band-label {
       display: block;
@@ -2357,12 +2364,21 @@ body.is-home nav.site-nav.is-scrolled {
       gap: clamp(36px, 6vw, 80px);
       align-items: center;
       max-width: var(--max);
-      margin: clamp(20px, 3vw, 36px) auto 0;
-      padding: clamp(56px, 7vw, 86px) clamp(24px, 4vw, 36px);
-      border-radius: 8px;
+      margin: 0 auto;
+      padding: clamp(72px, 8vw, 108px) clamp(24px, 4vw, 32px) clamp(34px, 5vw, 52px);
+      position: relative;
+      isolation: isolate;
+    }
+
+    .prog-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0 calc(50% - 50vw) -120px;
+      z-index: -1;
+      pointer-events: none;
       background:
-        linear-gradient(135deg, rgba(139, 92, 246, 0.13), transparent 42%),
-        color-mix(in srgb, var(--bg-elevated) 72%, transparent);
+        radial-gradient(ellipse 34% 44% at 73% 38%, rgba(139, 92, 246, 0.16), transparent 72%),
+        linear-gradient(180deg, rgba(12, 10, 22, 0.42), transparent 82%);
     }
 
     .prog-brand-row {
@@ -2467,7 +2483,8 @@ body.is-home nav.site-nav.is-scrolled {
       aspect-ratio: 16 / 11;
       background: var(--bg-elevated);
       align-self: center;
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.28);
+      box-shadow: 0 22px 80px rgba(0, 0, 0, 0.34);
+      position: relative;
     }
 
     .prog-hero-photo img {
@@ -2475,19 +2492,49 @@ body.is-home nav.site-nav.is-scrolled {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      filter: saturate(0.92) contrast(1.03);
     }
 
     /* ── Body container ───────────────────── */
     .prog-body {
       max-width: var(--max);
       margin: 0 auto;
-      padding: clamp(18px, 4vw, 42px) clamp(24px, 4vw, 32px) clamp(80px, 10vw, 120px);
+      padding: 0 clamp(24px, 4vw, 32px) clamp(80px, 10vw, 120px);
     }
 
     /* ── Pillar stack ─────────────────────── */
     .prog-pillars {
       display: grid;
-      gap: 10px;
+      gap: clamp(42px, 7vw, 88px);
+      padding: clamp(20px, 4vw, 42px) 0 clamp(34px, 6vw, 76px);
+      position: relative;
+      isolation: isolate;
+    }
+
+    .prog-pillars::before,
+    .prog-pillars::after {
+      content: "";
+      position: absolute;
+      inset-inline: calc(50% - 50vw);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .prog-pillars::before {
+      inset-block: -88px 0;
+      background:
+        radial-gradient(ellipse 42% 28% at 30% 20%, rgba(139, 92, 246, 0.11), transparent 72%),
+        radial-gradient(ellipse 38% 26% at 76% 74%, rgba(109, 40, 217, 0.1), transparent 76%),
+        linear-gradient(180deg, transparent 0%, rgba(12, 10, 20, 0.78) 14%, rgba(10, 9, 16, 0.82) 82%, transparent 100%);
+    }
+
+    .prog-pillars::after {
+      inset-block: -36px 10%;
+      background:
+        linear-gradient(90deg, rgba(5, 5, 7, 0.94), rgba(5, 5, 7, 0.78), rgba(5, 5, 7, 0.94)),
+        url("/assets/programs/ikigai-workshop-room.jpeg") center / cover;
+      opacity: 0.16;
+      filter: saturate(0.75) blur(2px);
     }
 
     .prog-pillar-card {
@@ -2495,12 +2542,7 @@ body.is-home nav.site-nav.is-scrolled {
       grid-template-columns: minmax(280px, 0.48fr) minmax(0, 0.52fr);
       gap: clamp(22px, 4vw, 54px);
       align-items: stretch;
-      min-height: clamp(300px, 34vw, 430px);
-      padding: clamp(14px, 2vw, 22px);
-      border-radius: 8px;
-      background:
-        linear-gradient(135deg, rgba(139, 92, 246, 0.075), transparent 34%),
-        color-mix(in srgb, var(--bg-card) 82%, transparent);
+      min-height: clamp(280px, 32vw, 410px);
     }
 
     .prog-pillar-card:nth-of-type(even) {
@@ -2521,7 +2563,20 @@ body.is-home nav.site-nav.is-scrolled {
       border-radius: 7px;
       min-height: 100%;
       background: var(--bg-elevated);
-      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.035);
+      box-shadow: 0 18px 64px rgba(0, 0, 0, 0.26);
+      position: relative;
+    }
+
+    .prog-pillar-media::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(135deg, rgba(139, 92, 246, 0.13), transparent 42%),
+        linear-gradient(180deg, transparent 58%, rgba(5, 5, 7, 0.12));
+      mix-blend-mode: color;
+      opacity: 0.55;
     }
 
     .prog-pillar-media img {
@@ -2531,13 +2586,14 @@ body.is-home nav.site-nav.is-scrolled {
       min-height: clamp(270px, 30vw, 386px);
       object-fit: cover;
       object-position: center;
+      filter: saturate(0.9) contrast(1.03);
     }
 
     .prog-pillar-copy {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: clamp(16px, 3vw, 42px);
+      padding: clamp(10px, 2vw, 28px) 0;
     }
 
     .prog-spec-num {
@@ -2603,12 +2659,21 @@ body.is-home nav.site-nav.is-scrolled {
       grid-template-columns: minmax(0, 0.88fr) minmax(260px, 0.85fr);
       gap: clamp(36px, 6vw, 84px);
       align-items: center;
-      margin-top: clamp(34px, 5vw, 58px);
-      padding: clamp(34px, 5vw, 54px);
-      border-radius: 8px;
+      margin-top: clamp(76px, 10vw, 128px);
+      padding: 0;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .prog-apply::before {
+      content: "";
+      position: absolute;
+      inset: clamp(-40px, -5vw, -28px) calc(50% - 50vw);
+      z-index: -1;
+      pointer-events: none;
       background:
-        radial-gradient(ellipse 42% 60% at 10% 10%, rgba(139, 92, 246, 0.12), transparent 64%),
-        color-mix(in srgb, var(--bg-surface) 82%, transparent);
+        radial-gradient(ellipse 28% 58% at 20% 48%, rgba(139, 92, 246, 0.16), transparent 72%),
+        linear-gradient(90deg, rgba(10, 9, 18, 0.72), transparent 68%);
     }
 
     .prog-apply-h2 {
@@ -2667,12 +2732,23 @@ body.is-home nav.site-nav.is-scrolled {
       grid-template-columns: minmax(0, 1fr) minmax(260px, 0.58fr);
       gap: clamp(36px, 6vw, 84px);
       align-items: center;
-      margin-top: clamp(28px, 4vw, 48px);
-      padding: clamp(28px, 4vw, 42px);
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.025);
-      opacity: 0.84;
+      margin-top: clamp(72px, 9vw, 116px);
+      padding: 0;
+      opacity: 0.78;
       transition: opacity 0.35s ease;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .prog-launch::before {
+      content: "";
+      position: absolute;
+      inset: clamp(-36px, -4vw, -24px) calc(50% - 50vw);
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 22% 46% at 72% 44%, rgba(139, 92, 246, 0.08), transparent 76%),
+        linear-gradient(180deg, transparent, rgba(10, 10, 15, 0.54), transparent);
     }
 
     .prog-launch:hover {
