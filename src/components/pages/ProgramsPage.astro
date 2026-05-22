@@ -39,6 +39,7 @@ const ikigaiPillars = [
     title: "Funding",
     kicker: "Capital to focus",
     image: programPhotos.funding,
+    reversed: false,
     details: [
       { label: "Investment", value: "$100K USD" },
       { label: "Purpose", value: "Work full-time on the company" },
@@ -48,6 +49,7 @@ const ikigaiPillars = [
     title: "Hands-on support",
     kicker: "Weekly founder time",
     image: programPhotos.support,
+    reversed: true,
     details: [
       { label: "Mentor office hours", value: "Weekly 1-on-1 time" },
       { label: "Investor access", value: "Warm intros and matching" },
@@ -58,6 +60,7 @@ const ikigaiPillars = [
     title: "Community",
     kicker: "In person in Taipei",
     image: programPhotos.community,
+    reversed: false,
     details: [
       { label: "Format", value: "12 weeks in person" },
       { label: "Location", value: "Taipei" },
@@ -75,6 +78,14 @@ const launchStationHighlights = ["Free workspace", "Founder community"];
       <div class="section-tag">Accelerator program</div>
       <h1 class="program-headline" id="programs-title">{ikigai.name}</h1>
       <p class="program-summary">{programs.lead}</p>
+      <div class="program-hero-facts" role="list">
+        {ikigai.details?.metrics.map((metric) => (
+          <div class="program-hero-fact" role="listitem">
+            <span class="program-hero-fact-value">{metric.value}</span>
+            <span class="program-hero-fact-label">{metric.label}</span>
+          </div>
+        ))}
+      </div>
       <div class="program-hero-actions">
         <a class="btn-pri program-primary-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
           Apply to ikigai Launchpad
@@ -87,47 +98,32 @@ const launchStationHighlights = ["Free workspace", "Founder community"];
   </section>
 
   <main class="program-page-body">
-    <section class="program-facts-band" aria-label="ikigai Launchpad key facts">
-      <dl class="program-fact-list">
-        {ikigai.details?.metrics.map((metric) => (
-          <div class="program-fact">
-            <dt>{metric.label}</dt>
-            <dd>{metric.value}</dd>
+    <div class="program-pillar-list">
+      {ikigaiPillars.map((pillar, index) => (
+        <article class:list={["program-pillar-chapter reveal", pillar.reversed && "is-reversed"]}>
+          <div class="program-pillar-copy">
+            <span class="program-pillar-index">{String(index + 1).padStart(2, "0")}</span>
+            <p class="program-pillar-kicker">{pillar.kicker}</p>
+            <h2>{pillar.title}</h2>
           </div>
-        ))}
-      </dl>
-    </section>
+          <figure class="program-pillar-image">
+            <img src={pillar.image.src} alt={pillar.image.alt} decoding="async" />
+          </figure>
+          <dl class="program-pillar-details">
+            {pillar.details.map((detail) => (
+              <div>
+                <dt>{detail.label}</dt>
+                <dd>{detail.value}</dd>
+              </div>
+            ))}
+          </dl>
+        </article>
+      ))}
+    </div>
 
-    <section class="program-pillars" id="ikigai-details" aria-label="ikigai Launchpad pillars">
-      <div class="program-section-intro">
-        <span class="program-band-label">What you get</span>
-        <h2>What the program gives you</h2>
-      </div>
-      <div class="program-pillar-list">
-        {ikigaiPillars.map((pillar, index) => (
-          <article class="program-pillar-chapter">
-            <div class="program-pillar-copy">
-              <span class="program-pillar-index">{String(index + 1).padStart(2, "0")}</span>
-              <p class="program-pillar-kicker">{pillar.kicker}</p>
-              <h2>{pillar.title}</h2>
-            </div>
-            <figure class="program-pillar-image">
-              <img src={pillar.image.src} alt={pillar.image.alt} decoding="async" />
-            </figure>
-            <dl class="program-pillar-details">
-              {pillar.details.map((detail) => (
-                <div>
-                  <dt>{detail.label}</dt>
-                  <dd>{detail.value}</dd>
-                </div>
-              ))}
-            </dl>
-          </article>
-        ))}
-      </div>
-    </section>
+    <hr class="divider program-section-divider" />
 
-    <section class="program-conversion" aria-label="Apply to ikigai Launchpad">
+    <section class="program-conversion reveal" aria-label="Apply to ikigai Launchpad">
       <div class="program-apply-copy">
         <span class="program-band-label">Applications</span>
         <h2>Apply to ikigai Launchpad.</h2>
@@ -149,7 +145,7 @@ const launchStationHighlights = ["Free workspace", "Founder community"];
     </section>
 
     {launchStation && (
-      <section class="program-secondary" aria-labelledby="launch-station-title">
+      <section class="program-secondary reveal" aria-labelledby="launch-station-title">
         <div class="program-secondary-copy">
           <span class="program-band-label">{launchStation.track}</span>
           <h2 id="launch-station-title">{launchStation.name}</h2>
