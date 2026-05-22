@@ -101,9 +101,6 @@ const specPillars = [
 
     <!-- Pillars: what the program gives you -->
     <section class="prog-pillars reveal" aria-label="What ikigai Launchpad includes">
-      <div class="prog-pillars-header">
-        <span class="prog-band-label">What you get</span>
-      </div>
       {specPillars.map((p) => (
         <article class="prog-pillar-card">
           <figure class="prog-pillar-media">
@@ -134,6 +131,7 @@ const specPillars = [
         <a class="btn-pri prog-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
           Apply to ikigai Launchpad
         </a>
+        <p class="prog-next-batch prog-next-batch--apply">{nextBatch}</p>
       </div>
       <div class="prog-process" aria-labelledby="prog-process-lbl">
         <h3 class="prog-process-lbl" id="prog-process-lbl">What happens after you apply</h3>

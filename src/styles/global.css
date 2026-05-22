@@ -2447,12 +2447,16 @@ body.is-home nav.site-nav.is-scrolled {
 
     .prog-next-batch {
       margin: 14px 0 0;
-      color: var(--text-muted);
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
+      color: color-mix(in srgb, var(--text-secondary) 86%, var(--purple-bright));
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      letter-spacing: 0;
       line-height: 1.45;
-      text-transform: uppercase;
+    }
+
+    .prog-next-batch--apply {
+      margin-top: 16px;
+      color: var(--text-secondary);
     }
 
     /* Hero photo */
@@ -2477,17 +2481,13 @@ body.is-home nav.site-nav.is-scrolled {
     .prog-body {
       max-width: var(--max);
       margin: 0 auto;
-      padding: clamp(28px, 5vw, 56px) clamp(24px, 4vw, 32px) clamp(80px, 10vw, 120px);
+      padding: clamp(18px, 4vw, 42px) clamp(24px, 4vw, 32px) clamp(80px, 10vw, 120px);
     }
 
     /* ── Pillar stack ─────────────────────── */
     .prog-pillars {
       display: grid;
-      gap: 12px;
-    }
-
-    .prog-pillars-header {
-      padding: 0 0 clamp(14px, 2vw, 22px);
+      gap: 10px;
     }
 
     .prog-pillar-card {
@@ -2499,7 +2499,7 @@ body.is-home nav.site-nav.is-scrolled {
       padding: clamp(14px, 2vw, 22px);
       border-radius: 8px;
       background:
-        linear-gradient(135deg, rgba(139, 92, 246, 0.085), transparent 36%),
+        linear-gradient(135deg, rgba(139, 92, 246, 0.075), transparent 34%),
         color-mix(in srgb, var(--bg-card) 82%, transparent);
     }
 
@@ -2521,6 +2521,7 @@ body.is-home nav.site-nav.is-scrolled {
       border-radius: 7px;
       min-height: 100%;
       background: var(--bg-elevated);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.035);
     }
 
     .prog-pillar-media img {
