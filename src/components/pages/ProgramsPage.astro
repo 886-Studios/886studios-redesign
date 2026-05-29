@@ -68,25 +68,11 @@ const specPillars = [
   <section class="prog-hero" aria-labelledby="prog-ikigai-heading">
     <div class="prog-hero-copy">
       <div class="prog-brand-row">
-        <!-- ikigai mark: 2×2 grid of rounded squares -->
-        <svg class="prog-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <rect x="1" y="1" width="9.5" height="9.5" rx="2" fill="currentColor"/>
-          <rect x="13.5" y="1" width="9.5" height="9.5" rx="2" fill="currentColor"/>
-          <rect x="1" y="13.5" width="9.5" height="9.5" rx="2" fill="currentColor"/>
-          <rect x="13.5" y="13.5" width="9.5" height="9.5" rx="2" fill="currentColor"/>
-        </svg>
+        <img class="prog-mark" src="/assets/programs/ikigai-mark.png" alt="" aria-hidden="true" />
         <span class="section-tag">Accelerator program</span>
       </div>
       <h1 class="prog-h1" id="prog-ikigai-heading">{ikigai.name}</h1>
       <p class="prog-lead">{programs.lead}</p>
-      <div class="prog-metrics" role="list">
-        {ikigai.details?.metrics.map((m) => (
-          <div class="prog-metric" role="listitem">
-            <strong class="prog-metric-val">{m.value}</strong>
-            <span class="prog-metric-lbl">{m.label}</span>
-          </div>
-        ))}
-      </div>
       <a class="btn-pri prog-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
         Apply to ikigai Launchpad
       </a>
