@@ -23,7 +23,7 @@ const canonicalUrl = Astro.url.href;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
@@ -47,6 +47,8 @@ const canonicalUrl = Astro.url.href;
     <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
     <link rel="icon" type="image/avif" href="/favicon.avif" />
     <link rel="shortcut icon" type="image/png" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="32x32" href="/favicon-32.png" />
+    {currentPath === "/" && <link rel="preload" as="image" href="/assets/hero/sf-tpe-hero.jpg" fetchpriority="high" />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

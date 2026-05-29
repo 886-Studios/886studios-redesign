@@ -306,6 +306,7 @@ body.is-home nav.site-nav.is-scrolled {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.75);
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   animation: overlayIn 0.2s ease forwards;
 }
@@ -421,6 +422,7 @@ body.is-home nav.site-nav.is-scrolled {
 .hero {
   position: relative;
   min-height: calc(100vh - var(--nav-height));
+  min-height: calc(100dvh - var(--nav-height));
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -756,30 +758,25 @@ body.is-home nav.site-nav.is-scrolled {
 .photo-showcase::before {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
   top: 0;
-  z-index: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
   pointer-events: none;
-  height: 220px;
-  background: linear-gradient(
-    180deg,
-    rgba(5, 5, 7, 0),
-    rgba(5, 5, 7, 0.24) 70%,
-    transparent
-  );
+  width: clamp(20px, 7vw, 80px);
+  background: linear-gradient(to right, var(--bg), transparent);
 }
 
 .photo-showcase::after {
   content: "";
   position: absolute;
-  left: 0;
-  right: 0;
-  z-index: 0;
-  pointer-events: none;
+  top: 0;
   bottom: 0;
-  height: 156px;
-  background: linear-gradient(180deg, rgba(5, 5, 7, 0), #050507 86%);
+  right: 0;
+  z-index: 2;
+  pointer-events: none;
+  width: clamp(20px, 7vw, 80px);
+  background: linear-gradient(to left, var(--bg), transparent);
 }
 
 .photo-rail {
@@ -787,21 +784,8 @@ body.is-home nav.site-nav.is-scrolled {
   z-index: 1;
   width: 100%;
   overflow: hidden;
+  overflow: clip;
   padding: 2px 0;
-  mask-image: linear-gradient(
-    90deg,
-    transparent,
-    black 7%,
-    black 93%,
-    transparent
-  );
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent,
-    black 7%,
-    black 93%,
-    transparent
-  );
 }
 
 .photo-track {
@@ -820,6 +804,7 @@ body.is-home nav.site-nav.is-scrolled {
 .photo-slide {
   flex: 0 0 clamp(260px, 34vw, 420px);
   aspect-ratio: 4 / 3;
+  min-height: 195px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.055);
   border-radius: var(--r-sm);
@@ -4141,6 +4126,8 @@ body.is-home nav.site-nav.is-scrolled {
 
 .form-input,
 .form-textarea {
+  -webkit-appearance: none;
+  appearance: none;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--r-sm);
@@ -4232,6 +4219,8 @@ body.is-home nav.site-nav.is-scrolled {
 .app-form-input,
 .app-form-select,
 .app-form-textarea {
+  -webkit-appearance: none;
+  appearance: none;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 10px;
@@ -4243,6 +4232,14 @@ body.is-home nav.site-nav.is-scrolled {
   transition:
     border-color 0.2s,
     box-shadow 0.2s;
+}
+
+.app-form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7' viewBox='0 0 12 7' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238888a8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+  cursor: pointer;
 }
 
 .app-form-input:focus,
@@ -4404,6 +4401,8 @@ footer {
 }
 
 .nl-input {
+  -webkit-appearance: none;
+  appearance: none;
   width: min(280px, 42vw);
   min-height: 46px;
   border-radius: 999px;
@@ -4421,6 +4420,7 @@ footer {
 }
 
 .nl-input::placeholder {
+  color: var(--text-muted);
   color: color-mix(in srgb, var(--text-muted) 82%, transparent);
 }
 
@@ -4507,6 +4507,7 @@ footer {
 }
 
 #page-home {
+  overflow-x: hidden;
   overflow-x: clip;
 }
 

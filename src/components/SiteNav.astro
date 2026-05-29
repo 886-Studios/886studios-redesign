@@ -99,6 +99,23 @@ const { currentPath } = Astro.props;
     if (e.key === 'Escape') closeDrawer();
   });
 
+  // Safari back-forward cache (BFCache): re-trigger hero CSS animations when the
+  // page is restored from cache, since Safari may freeze animated elements at
+  // opacity: 0 if the user navigated away before the animation completed.
+  window.addEventListener('pageshow', (e) => {
+    if (e.persisted) {
+      const animated = document.querySelectorAll<HTMLElement>(
+        '.hero-h1, .hero-sub, .hero-actions, .eyebrow'
+      );
+      animated.forEach((el) => {
+        el.style.animationName = 'none';
+        // Force a reflow so the browser registers the reset before replaying
+        void el.getBoundingClientRect();
+        el.style.animationName = '';
+      });
+    }
+  });
+
   // Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
