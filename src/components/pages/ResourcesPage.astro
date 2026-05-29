@@ -40,9 +40,8 @@ const perkIcons: Record<string, string> = {
 
 <div class="page resources-page" id="page-resources">
 
-  <!-- ── Hero ─────────────────────────────────── -->
+  <!-- Hero -->
   <section class="pg-hero res-pg-hero" aria-labelledby="resources-title">
-    <div class="pg-hero-glow"></div>
     <div class="section-tag">Resources</div>
     <h1 class="section-h2 pg-hero-title" id="resources-title">{resources.title}</h1>
     <p class="res-hero-lead">
@@ -55,7 +54,7 @@ const perkIcons: Record<string, string> = {
 
   <main class="res-shell">
 
-    <!-- ── Resource Library ──────────────────────── -->
+    <!-- Resource Library -->
     <section class="res-section res-library" aria-labelledby="res-library-heading">
       <header class="res-section-hdr">
         <div>
@@ -80,18 +79,16 @@ const perkIcons: Record<string, string> = {
             <h3 class="res-card-title">{item.title}</h3>
             <p class="res-card-desc">{item.description}</p>
             <div class="res-card-footer">
-              <span class="res-card-cta">Read guide <span class="res-arrow">→</span></span>
+              <span class="res-card-cta">Read guide</span>
             </div>
           </a>
         ))}
       </div>
     </section>
 
-    <!-- ── AMA Feature Card ───────────────────────── -->
+    <!-- AMA Feature Card -->
     <section class="res-section res-ama" aria-labelledby="res-ama-heading">
       <div class="res-ama-card">
-        <div class="res-ama-glow"></div>
-
         <div class="res-ama-body">
           <div class="section-tag">Community</div>
           <h2 id="res-ama-heading">{resources.ama.title}</h2>
@@ -121,7 +118,7 @@ const perkIcons: Record<string, string> = {
       </div>
     </section>
 
-    <!-- ── Exclusive Perks ────────────────────────── -->
+    <!-- Exclusive Perks -->
     <section class="res-section res-perks" aria-labelledby="res-perks-heading">
       <header class="res-section-hdr">
         <div>
@@ -159,11 +156,9 @@ const perkIcons: Record<string, string> = {
       </div>
     </section>
 
-    <!-- ── Contact CTA ──────────────────────────── -->
+    <!-- Contact CTA -->
     <section class="res-section" aria-label="Need more help">
       <div class="res-ama-card res-contact-card">
-        <div class="res-contact-glow"></div>
-
         <div class="res-ama-body">
           <div class="section-tag">Get in touch</div>
           <h2>{resources.contactPrompt}</h2>
