@@ -789,16 +789,19 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .photo-track {
+  --photo-gap: clamp(16px, 2vw, 24px);
+  --photo-marquee-duration: 74s;
   display: flex;
   width: max-content;
-  animation: photoMarquee 52s linear infinite;
+  animation: photoMarquee var(--photo-marquee-duration) linear infinite;
   will-change: transform;
 }
 
 .photo-track-set {
+  flex: 0 0 auto;
   display: flex;
-  gap: clamp(16px, 2vw, 24px);
-  padding-right: clamp(16px, 2vw, 24px);
+  gap: var(--photo-gap);
+  padding-right: var(--photo-gap);
 }
 
 .photo-slide {
@@ -824,7 +827,7 @@ body.is-home nav.site-nav.is-scrolled {
     transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-33.333333%, 0, 0);
   }
 }
 
@@ -4799,6 +4802,11 @@ footer {
   .photo-showcase {
     margin-top: -36px;
     padding: var(--space-lg) 0 var(--space-xl);
+  }
+
+  .photo-track {
+    --photo-gap: 16px;
+    --photo-marquee-duration: 112s;
   }
 
   .photo-slide {
