@@ -2326,8 +2326,8 @@ body.is-home nav.site-nav.is-scrolled {
 
     #page-programs {
       background:
-        radial-gradient(ellipse 42% 24% at 78% 12%, rgba(139, 92, 246, 0.18), transparent 68%),
-        radial-gradient(ellipse 34% 18% at 18% 44%, rgba(109, 40, 217, 0.1), transparent 72%),
+        radial-gradient(ellipse 42% 24% at 78% 12%, rgba(139, 92, 246, 0.12), transparent 68%),
+        radial-gradient(ellipse 34% 18% at 18% 44%, rgba(109, 40, 217, 0.07), transparent 72%),
         linear-gradient(180deg, #050507 0%, #050507 24%, #090810 48%, #07070b 76%, #050507 100%);
     }
 
@@ -2362,8 +2362,8 @@ body.is-home nav.site-nav.is-scrolled {
       z-index: -1;
       pointer-events: none;
       background:
-        radial-gradient(ellipse 34% 44% at 73% 38%, rgba(139, 92, 246, 0.16), transparent 72%),
-        linear-gradient(180deg, rgba(12, 10, 22, 0.42), transparent 82%);
+        radial-gradient(ellipse 34% 44% at 73% 38%, rgba(139, 92, 246, 0.12), transparent 72%),
+        linear-gradient(180deg, rgba(12, 10, 22, 0.34), transparent 82%);
     }
 
     .prog-brand-row {
@@ -2508,18 +2508,18 @@ body.is-home nav.site-nav.is-scrolled {
     .prog-pillars::before {
       inset-block: -88px 0;
       background:
-        radial-gradient(ellipse 42% 28% at 30% 20%, rgba(139, 92, 246, 0.11), transparent 72%),
-        radial-gradient(ellipse 38% 26% at 76% 74%, rgba(109, 40, 217, 0.1), transparent 76%),
-        linear-gradient(180deg, transparent 0%, rgba(12, 10, 20, 0.78) 14%, rgba(10, 9, 16, 0.82) 82%, transparent 100%);
+        radial-gradient(ellipse 42% 28% at 30% 20%, rgba(139, 92, 246, 0.08), transparent 72%),
+        radial-gradient(ellipse 38% 26% at 76% 74%, rgba(109, 40, 217, 0.075), transparent 76%),
+        linear-gradient(180deg, transparent 0%, rgba(12, 10, 20, 0.68) 14%, rgba(10, 9, 16, 0.7) 82%, transparent 100%);
     }
 
     .prog-pillars::after {
       inset-block: -36px 10%;
       background:
-        linear-gradient(90deg, rgba(5, 5, 7, 0.94), rgba(5, 5, 7, 0.78), rgba(5, 5, 7, 0.94)),
+        linear-gradient(90deg, rgba(5, 5, 7, 0.97), rgba(5, 5, 7, 0.9), rgba(5, 5, 7, 0.97)),
         url("/assets/programs/ikigai-workshop-room.jpeg") center / cover;
-      opacity: 0.16;
-      filter: saturate(0.75) blur(2px);
+      opacity: 0.09;
+      filter: saturate(0.65) blur(1px);
     }
 
     .prog-pillar-card {
@@ -2579,10 +2579,23 @@ body.is-home nav.site-nav.is-scrolled {
       flex-direction: column;
       justify-content: center;
       padding: clamp(10px, 2vw, 28px) 0;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .prog-pillar-copy::before {
+      content: "";
+      position: absolute;
+      inset: -18% -12%;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 72% 76% at 50% 50%, rgba(5, 5, 7, 0.74), transparent 72%),
+        linear-gradient(90deg, rgba(5, 5, 7, 0.5), transparent);
     }
 
     .prog-spec-num {
-      color: var(--text-muted);
+      color: color-mix(in srgb, var(--text-muted) 82%, var(--purple-bright));
       font-family: var(--font-mono);
       font-size: 0.62rem;
       letter-spacing: 0.16em;
@@ -2600,8 +2613,8 @@ body.is-home nav.site-nav.is-scrolled {
 
     .prog-spec-kicker {
       margin: 0;
-      color: var(--text-muted);
-      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
       line-height: 1.55;
     }
 
@@ -2625,7 +2638,7 @@ body.is-home nav.site-nav.is-scrolled {
       font-size: 0.58rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--purple-bright);
+      color: color-mix(in srgb, var(--purple-bright) 88%, var(--text-primary));
       line-height: 1.4;
     }
 
@@ -2644,8 +2657,8 @@ body.is-home nav.site-nav.is-scrolled {
       grid-template-columns: minmax(0, 0.88fr) minmax(260px, 0.85fr);
       gap: clamp(36px, 6vw, 84px);
       align-items: center;
-      margin-top: clamp(76px, 10vw, 128px);
-      padding: 0;
+      margin-top: clamp(62px, 8vw, 104px);
+      padding: clamp(18px, 4vw, 34px) 0;
       position: relative;
       isolation: isolate;
     }
@@ -2657,8 +2670,8 @@ body.is-home nav.site-nav.is-scrolled {
       z-index: -1;
       pointer-events: none;
       background:
-        radial-gradient(ellipse 28% 58% at 20% 48%, rgba(139, 92, 246, 0.16), transparent 72%),
-        linear-gradient(90deg, rgba(10, 9, 18, 0.72), transparent 68%);
+        radial-gradient(ellipse 26% 54% at 20% 48%, rgba(139, 92, 246, 0.12), transparent 72%),
+        linear-gradient(90deg, rgba(10, 9, 18, 0.82), rgba(8, 8, 12, 0.34) 58%, transparent 86%);
     }
 
     .prog-apply-h2 {
@@ -2672,7 +2685,7 @@ body.is-home nav.site-nav.is-scrolled {
 
     .prog-process-lbl {
       margin: 0 0 clamp(20px, 2.5vw, 30px);
-      color: var(--purple-bright);
+      color: color-mix(in srgb, var(--purple-bright) 86%, var(--text-primary));
       font-family: var(--font-mono);
       font-size: 0.62rem;
       letter-spacing: 0.16em;
@@ -2700,7 +2713,7 @@ body.is-home nav.site-nav.is-scrolled {
       font-family: var(--font-mono);
       font-size: 0.62rem;
       letter-spacing: 0.14em;
-      color: var(--text-muted);
+      color: color-mix(in srgb, var(--text-muted) 82%, var(--purple-bright));
     }
 
     .prog-process-step {
@@ -2717,10 +2730,8 @@ body.is-home nav.site-nav.is-scrolled {
       grid-template-columns: minmax(0, 1fr) minmax(260px, 0.58fr);
       gap: clamp(36px, 6vw, 84px);
       align-items: center;
-      margin-top: clamp(72px, 9vw, 116px);
-      padding: 0;
-      opacity: 0.78;
-      transition: opacity 0.35s ease;
+      margin-top: clamp(78px, 9vw, 124px);
+      padding: clamp(18px, 4vw, 34px) 0;
       position: relative;
       isolation: isolate;
     }
@@ -2732,12 +2743,9 @@ body.is-home nav.site-nav.is-scrolled {
       z-index: -1;
       pointer-events: none;
       background:
-        radial-gradient(ellipse 22% 46% at 72% 44%, rgba(139, 92, 246, 0.08), transparent 76%),
-        linear-gradient(180deg, transparent, rgba(10, 10, 15, 0.54), transparent);
-    }
-
-    .prog-launch:hover {
-      opacity: 0.92;
+        radial-gradient(ellipse 22% 46% at 72% 44%, rgba(139, 92, 246, 0.055), transparent 76%),
+        linear-gradient(90deg, rgba(8, 8, 12, 0.66), rgba(8, 8, 12, 0.28), transparent),
+        linear-gradient(180deg, transparent, rgba(10, 10, 15, 0.48), transparent);
     }
 
     .prog-launch-name {
@@ -2751,7 +2759,7 @@ body.is-home nav.site-nav.is-scrolled {
 
     .prog-launch-body {
       margin: 16px 0 0;
-      color: var(--text-secondary);
+      color: color-mix(in srgb, var(--text-secondary) 88%, var(--text-muted));
       font-size: 0.97rem;
       line-height: 1.7;
       max-width: 52ch;
@@ -2769,7 +2777,7 @@ body.is-home nav.site-nav.is-scrolled {
     .prog-launch-highlights li {
       font-size: 0.9rem;
       font-weight: 600;
-      color: var(--text-secondary);
+      color: color-mix(in srgb, var(--text-secondary) 86%, var(--text-muted));
       letter-spacing: -0.01em;
     }
 
@@ -2789,7 +2797,7 @@ body.is-home nav.site-nav.is-scrolled {
       border-radius: 8px;
       aspect-ratio: 4 / 3;
       background: var(--bg-elevated);
-      opacity: 0.86;
+      opacity: 0.82;
     }
 
     .prog-launch-photo img {
@@ -2801,8 +2809,15 @@ body.is-home nav.site-nav.is-scrolled {
 
     /* ── Responsive ───────────────────────── */
     @media (max-width: 980px) {
+      #page-programs {
+        background:
+          radial-gradient(ellipse 70% 22% at 72% 8%, rgba(139, 92, 246, 0.1), transparent 70%),
+          linear-gradient(180deg, #050507 0%, #08070d 48%, #050507 100%);
+      }
+
       .prog-hero {
         grid-template-columns: 1fr;
+        gap: clamp(24px, 5vw, 40px);
       }
 
       .prog-hero-photo {
@@ -2832,24 +2847,164 @@ body.is-home nav.site-nav.is-scrolled {
     }
 
     @media (max-width: 640px) {
+      .prog-hero {
+        padding: clamp(52px, 13vw, 74px) clamp(18px, 6vw, 24px) 24px;
+      }
+
+      .prog-hero::before {
+        inset-bottom: -64px;
+        background:
+          radial-gradient(ellipse 70% 28% at 70% 18%, rgba(139, 92, 246, 0.1), transparent 72%),
+          linear-gradient(180deg, rgba(12, 10, 22, 0.24), transparent 86%);
+      }
+
+      .prog-brand-row {
+        margin-bottom: 14px;
+      }
+
+      .prog-mark {
+        width: 18px;
+        height: 18px;
+      }
+
+      .prog-h1 {
+        font-size: clamp(2.8rem, 14vw, 4.25rem);
+        max-width: 7ch;
+      }
+
+      .prog-lead {
+        font-size: 1rem;
+        line-height: 1.58;
+      }
+
+      .prog-metrics {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px 20px;
+        margin-top: 26px;
+      }
+
       .prog-metric-val {
         font-size: clamp(1.1rem, 5vw, 1.4rem);
       }
 
+      .prog-metric-lbl {
+        font-size: 0.56rem;
+      }
+
+      .prog-cta {
+        width: 100%;
+        justify-content: center;
+        min-height: 48px;
+        margin-top: 26px;
+        padding-inline: 18px 14px;
+      }
+
+      .prog-next-batch {
+        font-size: 0.88rem;
+      }
+
+      .prog-body {
+        padding-inline: clamp(18px, 6vw, 24px);
+      }
+
+      .prog-pillars {
+        gap: 54px;
+        padding: 28px 0 54px;
+      }
+
+      .prog-pillars::before {
+        inset-block: -46px 0;
+        background:
+          radial-gradient(ellipse 72% 20% at 38% 12%, rgba(139, 92, 246, 0.055), transparent 74%),
+          linear-gradient(180deg, transparent 0%, rgba(12, 10, 20, 0.58) 12%, rgba(10, 9, 16, 0.62) 86%, transparent 100%);
+      }
+
+      .prog-pillars::after {
+        inset-block: -12px 0;
+        opacity: 0.045;
+        filter: saturate(0.55) blur(0);
+      }
+
+      .prog-pillar-card {
+        gap: 20px;
+        min-height: auto;
+      }
+
+      .prog-pillar-media {
+        border-radius: 8px;
+      }
+
+      .prog-pillar-media,
+      .prog-pillar-media img {
+        aspect-ratio: 4 / 3;
+      }
+
+      .prog-pillar-copy::before {
+        inset: -10% -6%;
+        background:
+          radial-gradient(ellipse 80% 82% at 50% 50%, rgba(5, 5, 7, 0.7), transparent 74%);
+      }
+
+      .prog-spec-name {
+        font-size: clamp(2.15rem, 11vw, 3.2rem);
+      }
+
+      .prog-spec-kicker {
+        font-size: 0.92rem;
+      }
+
       .prog-spec-dl {
         grid-template-columns: 1fr;
+        gap: 16px;
+        padding-top: 24px;
       }
 
       .prog-pillar-copy {
-        padding: 12px 4px 4px;
+        padding: 4px 2px 0;
+      }
+
+      .prog-apply {
+        gap: 30px;
+        margin-top: 46px;
+        padding: 24px 0;
+      }
+
+      .prog-apply::before {
+        inset-block: -20px;
+        background:
+          radial-gradient(ellipse 64% 28% at 26% 20%, rgba(139, 92, 246, 0.095), transparent 74%),
+          linear-gradient(180deg, rgba(10, 9, 18, 0.68), transparent 92%);
       }
 
       .prog-apply-h2 {
-        font-size: clamp(2.2rem, 10vw, 3.4rem);
+        font-size: clamp(2.35rem, 11vw, 3.55rem);
       }
 
-      .prog-h1 {
-        font-size: clamp(2.8rem, 12vw, 4.4rem);
+      .prog-process-list {
+        gap: 16px;
+      }
+
+      .prog-process-item {
+        grid-template-columns: 32px minmax(0, 1fr);
+      }
+
+      .prog-launch {
+        gap: 24px;
+        margin-top: 52px;
+        padding: 22px 0 0;
+      }
+
+      .prog-launch::before {
+        inset-block: -18px;
+        background:
+          radial-gradient(ellipse 64% 26% at 70% 34%, rgba(139, 92, 246, 0.05), transparent 76%),
+          linear-gradient(180deg, rgba(9, 9, 14, 0.44), transparent);
+      }
+
+      .prog-launch-photo {
+        aspect-ratio: 4 / 3;
+        opacity: 0.9;
       }
     }
 
@@ -3665,15 +3820,7 @@ body.is-home nav.site-nav.is-scrolled {
   border-radius: var(--r-sm);
   padding: 20px 16px;
   text-align: center;
-  transition: all 0.22s;
   overflow: hidden;
-}
-
-.team-card:hover {
-  border-color: rgba(139, 92, 246, 0.3);
-  background: var(--bg-elevated);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
 .avatar-wrap {
@@ -3685,11 +3832,6 @@ body.is-home nav.site-nav.is-scrolled {
   border: 2px solid var(--border-accent);
   flex-shrink: 0;
   box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.08);
-  transition: box-shadow 0.22s;
-}
-
-.team-card:hover .avatar-wrap {
-  box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.2);
 }
 
 .avatar-photo {
@@ -3698,11 +3840,6 @@ body.is-home nav.site-nav.is-scrolled {
   object-fit: cover;
   object-position: top center;
   display: block;
-  transition: transform 0.4s ease;
-}
-
-.team-card:hover .avatar-photo {
-  transform: scale(1.06);
 }
 
 .avatar {
