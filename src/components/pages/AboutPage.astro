@@ -1,5 +1,6 @@
 ---
 import { siteContent } from "../../data/siteContent";
+import { partnerProfileByName } from "../../data/partnerProfiles";
 
 const { about } = siteContent;
 ---
@@ -83,8 +84,11 @@ const { about } = siteContent;
       <div class="section-tag">{about.partnersTitle}</div>
       <div class="team-grid team-grid--partners">
         {
-          about.partners.map((partner) => (
-            <div class="team-card">
+          about.partners.map((partner) => {
+            const partnerProfile = partnerProfileByName.get(partner.name);
+
+            return (
+            <a class:list={["team-card", partnerProfile && "team-card--link"]} href={partnerProfile ? `/about/${partnerProfile.slug}` : undefined}>
               <div class="avatar-wrap">
                 {partner.photo
                   ? <img class="avatar-photo" src={partner.photo} alt={partner.name} width="80" height="80" />
@@ -93,8 +97,9 @@ const { about } = siteContent;
               </div>
               <div class="team-name">{partner.name}</div>
               {partner.company && <div class="team-company">{partner.company}</div>}
-            </div>
-          ))
+            </a>
+            );
+          })
         }
       </div>
     </div>

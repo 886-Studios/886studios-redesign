@@ -1,0 +1,22 @@
+---
+import PartnerProfilePage from "../../components/pages/PartnerProfilePage.astro";
+import { partnerProfiles } from "../../data/partnerProfiles";
+import type { PartnerProfile } from "../../data/partnerProfiles";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return partnerProfiles.map((profile) => ({
+    params: { slug: profile.slug },
+    props: { profile },
+  }));
+}
+
+const { profile } = Astro.props as { profile: PartnerProfile };
+---
+
+<BaseLayout
+  title={`${profile.name} — 886 Studios Partner`}
+  description={profile.profile[0] ?? `${profile.name}, 886 Studios Partner.`}
+>
+  <PartnerProfilePage profile={profile} />
+</BaseLayout>

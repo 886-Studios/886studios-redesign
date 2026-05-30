@@ -1,0 +1,60 @@
+---
+import type { PartnerProfile } from "../../data/partnerProfiles";
+
+const { profile } = Astro.props as { profile: PartnerProfile };
+---
+
+<div class="page partner-profile-page">
+  <section class="partner-profile-hero" aria-labelledby="partner-profile-title">
+    <div class="partner-profile-hero-copy">
+      <a class="partner-profile-back" href="/about">← About</a>
+      <h1 class="partner-profile-title" id="partner-profile-title">{profile.name}</h1>
+      <p class="partner-profile-company">{profile.company}</p>
+    </div>
+    <figure class="partner-profile-photo">
+      <img src={profile.photo} alt={profile.name} decoding="async" loading="eager" />
+    </figure>
+  </section>
+
+  <main class="partner-profile-shell">
+    {profile.profile.length > 0 && (
+      <section class="partner-profile-section">
+        <h2>{profile.profileTitle}</h2>
+        <div class="partner-profile-copy">
+          {profile.profile.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </section>
+    )}
+
+    {profile.questions && profile.questions.length > 0 && (
+      <section class="partner-profile-section partner-profile-interview">
+        {profile.questions.map((item) => (
+          <article class="partner-profile-qa">
+            <h2>{item.question}</h2>
+            <div class="partner-profile-copy">
+              {item.answer.map((paragraph) => <p>{paragraph}</p>)}
+            </div>
+          </article>
+        ))}
+      </section>
+    )}
+
+    {profile.recommendations && profile.recommendations.length > 0 && (
+      <section class="partner-profile-section">
+        <h2>Reading Recommendations:</h2>
+        <ul class="partner-profile-list">
+          {profile.recommendations.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+    )}
+
+    {profile.companiesBuilt.length > 0 && (
+      <section class="partner-profile-section">
+        <h2>Companies he’s Built</h2>
+        <ul class="partner-company-list">
+          {profile.companiesBuilt.map((company) => <li>{company}</li>)}
+        </ul>
+      </section>
+    )}
+  </main>
+</div>

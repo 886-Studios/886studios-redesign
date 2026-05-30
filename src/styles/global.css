@@ -3680,6 +3680,17 @@ body.is-home nav.site-nav.is-scrolled {
   overflow: hidden;
 }
 
+.team-card--link {
+  color: inherit;
+  display: block;
+  text-decoration: none;
+}
+
+.team-card--link:focus-visible {
+  outline: 2px solid var(--purple-bright);
+  outline-offset: 4px;
+}
+
 .avatar-wrap {
   width: 80px;
   height: 80px;
@@ -3775,6 +3786,150 @@ body.is-home nav.site-nav.is-scrolled {
   margin-top: 5px;
   font-family: var(--font-mono);
   letter-spacing: 0.06em;
+}
+
+/* ===========================
+       PARTNER PROFILES
+    =========================== */
+.partner-profile-page {
+  background:
+    radial-gradient(ellipse 38% 20% at 72% 4%, rgba(139, 92, 246, 0.12), transparent 70%),
+    var(--bg);
+}
+
+.partner-profile-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: clamp(40px, 7vw, 92px);
+  align-items: end;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(58px, 8vw, 96px) 32px 54px;
+}
+
+.partner-profile-back {
+  display: inline-block;
+  margin-bottom: 34px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.partner-profile-back:focus-visible {
+  outline: 2px solid var(--purple-bright);
+  outline-offset: 5px;
+}
+
+.partner-profile-title {
+  max-width: 10ch;
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(48px, 7.6vw, 108px);
+  font-weight: 700;
+  letter-spacing: -0.052em;
+  line-height: 0.92;
+}
+
+.partner-profile-company {
+  margin: 22px 0 0;
+  color: var(--purple-bright);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  line-height: 1.55;
+  text-transform: uppercase;
+}
+
+.partner-profile-photo {
+  width: min(100%, 320px);
+  aspect-ratio: 1;
+  margin: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 1px solid rgba(167, 139, 250, 0.24);
+  background: var(--bg-card);
+  box-shadow: 0 0 0 10px rgba(139, 92, 246, 0.06);
+}
+
+.partner-profile-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.partner-profile-shell {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 32px clamp(86px, 10vw, 124px);
+}
+
+.partner-profile-section {
+  padding: 42px 0;
+  border-top: 1px solid var(--border);
+}
+
+.partner-profile-section h2 {
+  max-width: 760px;
+  margin: 0 0 20px;
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.14;
+}
+
+.partner-profile-copy {
+  display: grid;
+  gap: 16px;
+}
+
+.partner-profile-copy p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.82;
+}
+
+.partner-profile-interview {
+  display: grid;
+  gap: 34px;
+}
+
+.partner-profile-qa h2 {
+  font-size: clamp(21px, 2.2vw, 28px);
+  line-height: 1.2;
+}
+
+.partner-profile-list,
+.partner-company-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.partner-profile-list li,
+.partner-company-list li {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
+.partner-company-list li {
+  color: var(--purple-bright);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 /* ===========================
@@ -4723,6 +4878,20 @@ footer {
     gap: 40px;
   }
 
+  .partner-profile-hero {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 52px 24px 40px;
+  }
+
+  .partner-profile-photo {
+    width: min(64vw, 240px);
+  }
+
+  .partner-profile-shell {
+    padding-inline: 24px;
+  }
+
   .team-grid--partners {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -4848,6 +5017,25 @@ footer {
   }
   .team-grid--ops {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .partner-profile-title {
+    font-size: clamp(42px, 14vw, 64px);
+  }
+
+  .partner-profile-section {
+    padding: 34px 0;
+  }
+
+  .partner-profile-copy p {
+    font-size: 0.96rem;
+    line-height: 1.74;
+  }
+
+  .partner-profile-list,
+  .partner-company-list {
+    display: grid;
+    gap: 10px;
   }
 }
 
