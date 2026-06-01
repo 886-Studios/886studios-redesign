@@ -19,7 +19,6 @@ const launchStationPhoto = {
 
 const specPillars = [
   {
-    index: "01",
     title: "Funding",
     kicker: "Capital to focus",
     details: [
@@ -32,7 +31,6 @@ const specPillars = [
     },
   },
   {
-    index: "02",
     title: "Hands-on support",
     kicker: "Weekly founder time",
     details: [
@@ -46,7 +44,6 @@ const specPillars = [
     },
   },
   {
-    index: "03",
     title: "Community",
     kicker: "In person in Taipei",
     details: [
@@ -69,7 +66,6 @@ const specPillars = [
     <div class="prog-hero-copy">
       <div class="prog-brand-row">
         <img class="prog-mark" src="/assets/programs/ikigai-mark.png" alt="" aria-hidden="true" />
-        <span class="section-tag">Accelerator program</span>
       </div>
       <h1 class="prog-h1" id="prog-ikigai-heading">{ikigai.name}</h1>
       <p class="prog-lead">{programs.lead}</p>
@@ -93,7 +89,6 @@ const specPillars = [
             <img src={p.photo.src} alt={p.photo.alt} decoding="async" loading="lazy" />
           </figure>
           <div class="prog-pillar-copy">
-            <span class="prog-spec-num">{p.index}</span>
             <h3 class="prog-spec-name">{p.title}</h3>
             <p class="prog-spec-kicker">{p.kicker}</p>
             <dl class="prog-spec-dl">

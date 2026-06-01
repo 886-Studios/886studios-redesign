@@ -2,9 +2,27 @@
 import EventCard from "../EventCard.astro";
 import { siteContent } from "../../data/siteContent";
 import { getLumaEvents } from "../../lib/luma";
+import type { LumaEventCard } from "../../lib/luma";
 
 const { events } = siteContent;
 const lumaEvents = await getLumaEvents();
+
+function groupEventsByYear(items: LumaEventCard[]) {
+  return items.reduce<Array<{ year: string; events: LumaEventCard[] }>>((groups, item) => {
+    const existing = groups.find((group) => group.year === item.year);
+
+    if (existing) {
+      existing.events.push(item);
+    } else {
+      groups.push({ year: item.year, events: [item] });
+    }
+
+    return groups;
+  }, []);
+}
+
+const upcomingEventsByYear = groupEventsByYear(lumaEvents.upcomingEvents);
+const pastEventsByYear = groupEventsByYear(lumaEvents.pastEvents);
 ---
 
 <div class="page" id="page-events">
@@ -20,10 +38,17 @@ const lumaEvents = await getLumaEvents();
       lumaEvents.upcomingEvents.length > 0 ? (
         <section class="events-section" aria-labelledby="upcoming-events-title">
           <h2 class="events-section-title" id="upcoming-events-title">{events.upcomingTitle}</h2>
-          <div class="events-list">
+          <div class="events-year-stack">
             {
-              lumaEvents.upcomingEvents.map((item) => (
-                <EventCard event={item} tag="RSVP" highlight highlightLabel={events.upcomingHighlightLabel} />
+              upcomingEventsByYear.map((group) => (
+                <section class="events-year-group" aria-label={`${group.year} upcoming events`}>
+                  <h3 class="events-year-heading">{group.year}</h3>
+                  <div class="events-list">
+                    {group.events.map((item) => (
+                      <EventCard event={item} tag="RSVP" highlight highlightLabel={events.upcomingHighlightLabel} />
+                    ))}
+                  </div>
+                </section>
               ))
             }
           </div>
@@ -44,8 +69,15 @@ const lumaEvents = await getLumaEvents();
       lumaEvents.pastEvents.length > 0 && (
         <section class="events-section" aria-labelledby="past-events-title">
           <h2 class="events-section-title" id="past-events-title">{events.pastTitle}</h2>
-          <div class="events-list">
-            {lumaEvents.pastEvents.map((item) => <EventCard event={item} tag="Learn more" />)}
+          <div class="events-year-stack">
+            {pastEventsByYear.map((group) => (
+              <section class="events-year-group" aria-label={`${group.year} past events`}>
+                <h3 class="events-year-heading">{group.year}</h3>
+                <div class="events-list">
+                  {group.events.map((item) => <EventCard event={item} tag="Learn more" />)}
+                </div>
+              </section>
+            ))}
           </div>
         </section>
       )

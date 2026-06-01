@@ -2372,7 +2372,6 @@ body.is-home nav.site-nav.is-scrolled {
     .prog-brand-row {
       display: flex;
       align-items: center;
-      gap: 10px;
       margin-bottom: 20px;
     }
 
@@ -2563,14 +2562,6 @@ body.is-home nav.site-nav.is-scrolled {
       background:
         radial-gradient(ellipse 72% 76% at 50% 50%, rgba(5, 5, 7, 0.74), transparent 72%),
         linear-gradient(90deg, rgba(5, 5, 7, 0.5), transparent);
-    }
-
-    .prog-spec-num {
-      color: color-mix(in srgb, var(--text-muted) 82%, var(--purple-bright));
-      font-family: var(--font-mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.16em;
-      margin-bottom: 16px;
     }
 
     .prog-spec-name {
@@ -4051,6 +4042,30 @@ body.is-home nav.site-nav.is-scrolled {
   margin-bottom: 16px;
 }
 
+.events-year-stack {
+  display: grid;
+  gap: 34px;
+}
+
+.events-year-group {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 26px;
+  align-items: start;
+}
+
+.events-year-heading {
+  position: sticky;
+  top: calc(var(--nav-height) + 18px);
+  margin: 0;
+  color: var(--purple-bright);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+}
+
 .events-list {
   display: flex;
   flex-direction: column;
@@ -4914,6 +4929,19 @@ footer {
 
   #page-events .section-lead {
     white-space: normal;
+  }
+
+  .events-year-stack {
+    gap: 30px;
+  }
+
+  .events-year-group {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .events-year-heading {
+    position: static;
   }
 
   .ev-card {
