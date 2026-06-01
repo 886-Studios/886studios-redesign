@@ -2329,10 +2329,7 @@ body.is-home nav.site-nav.is-scrolled {
 
     #page-programs {
       overflow-x: clip;
-      background:
-        radial-gradient(ellipse 42% 24% at 78% 12%, rgba(139, 92, 246, 0.12), transparent 68%),
-        radial-gradient(ellipse 34% 18% at 18% 44%, rgba(109, 40, 217, 0.07), transparent 72%),
-        linear-gradient(180deg, #050507 0%, #050507 24%, #090810 48%, #07070b 76%, #050507 100%);
+      background: var(--bg);
     }
 
     /* Shared label used across all prog- sections */
@@ -2355,7 +2352,7 @@ body.is-home nav.site-nav.is-scrolled {
       width: 100%;
       max-width: var(--max);
       margin: 0 auto;
-      padding: clamp(72px, 8vw, 108px) clamp(24px, 4vw, 32px) clamp(34px, 5vw, 52px);
+      padding: calc(var(--nav-height) + clamp(52px, 7vw, 84px)) var(--home-section-x) clamp(46px, 6vw, 72px);
       position: relative;
       isolation: isolate;
     }
@@ -2363,12 +2360,10 @@ body.is-home nav.site-nav.is-scrolled {
     .prog-hero::before {
       content: "";
       position: absolute;
-      inset: 0 calc(50% - 50vw) -120px;
+      inset: 0 calc(50% - 50vw) 0;
       z-index: -1;
       pointer-events: none;
-      background:
-        radial-gradient(ellipse 34% 44% at 73% 38%, rgba(139, 92, 246, 0.12), transparent 72%),
-        linear-gradient(180deg, rgba(12, 10, 22, 0.34), transparent 82%);
+      background: linear-gradient(180deg, rgba(12, 10, 22, 0.28), rgba(5, 5, 7, 0));
     }
 
     .prog-brand-row {
@@ -2411,14 +2406,14 @@ body.is-home nav.site-nav.is-scrolled {
       max-width: 100%;
       background: var(--purple);
       border-color: rgba(167, 139, 250, 0.44);
-      box-shadow: 0 10px 28px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      box-shadow: 0 6px 18px rgba(139, 92, 246, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.16);
       color: #fff;
     }
 
     .prog-cta:hover {
       background: var(--purple-bright);
       border-color: rgba(255, 255, 255, 0.34);
-      box-shadow: 0 14px 36px rgba(139, 92, 246, 0.38), inset 0 1px 0 rgba(255, 255, 255, 0.26);
+      box-shadow: 0 8px 22px rgba(139, 92, 246, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
 
     .prog-next-batch {
@@ -2439,11 +2434,11 @@ body.is-home nav.site-nav.is-scrolled {
     .prog-hero-photo {
       margin: 0;
       overflow: hidden;
-      border-radius: 10px;
-      aspect-ratio: 16 / 11;
+      border-radius: var(--r-sm);
+      aspect-ratio: 16 / 10;
       background: var(--bg-elevated);
       align-self: center;
-      box-shadow: 0 22px 80px rgba(0, 0, 0, 0.34);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.24);
       position: relative;
     }
 
@@ -2452,7 +2447,8 @@ body.is-home nav.site-nav.is-scrolled {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: saturate(0.92) contrast(1.03);
+      object-position: 50% 48%;
+      filter: saturate(0.98) contrast(1.02);
     }
 
     /* ── Body container ───────────────────── */
@@ -2460,14 +2456,14 @@ body.is-home nav.site-nav.is-scrolled {
       width: 100%;
       max-width: var(--max);
       margin: 0 auto;
-      padding: 0 clamp(24px, 4vw, 32px) clamp(80px, 10vw, 120px);
+      padding: 0 var(--home-section-x) clamp(84px, 10vw, 120px);
     }
 
     /* ── Pillar stack ─────────────────────── */
     .prog-pillars {
       display: grid;
-      gap: clamp(50px, 7vw, 92px);
-      padding: clamp(28px, 4vw, 50px) 0 clamp(40px, 6vw, 78px);
+      gap: clamp(72px, 9vw, 124px);
+      padding: clamp(52px, 7vw, 88px) 0 clamp(58px, 8vw, 96px);
       position: relative;
       isolation: isolate;
     }
@@ -2482,10 +2478,7 @@ body.is-home nav.site-nav.is-scrolled {
     }
 
     .prog-pillars::before {
-      inset-block: -72px 4%;
-      background:
-        radial-gradient(ellipse 34% 22% at 26% 18%, rgba(139, 92, 246, 0.045), transparent 76%),
-        radial-gradient(ellipse 30% 22% at 78% 72%, rgba(109, 40, 217, 0.04), transparent 78%);
+      display: none;
     }
 
     .prog-pillars::after {
@@ -2515,20 +2508,15 @@ body.is-home nav.site-nav.is-scrolled {
     .prog-pillar-media {
       margin: 0;
       overflow: hidden;
-      border-radius: 8px;
-      aspect-ratio: 5 / 4;
+      border-radius: var(--r-sm);
+      aspect-ratio: 16 / 11;
       background: #111015;
-      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.22);
       position: relative;
     }
 
     .prog-pillar-media::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(180deg, rgba(5, 5, 7, 0) 68%, rgba(5, 5, 7, 0.18));
-      opacity: 0.38;
+      display: none;
     }
 
     .prog-pillar-media img {
@@ -2537,7 +2525,19 @@ body.is-home nav.site-nav.is-scrolled {
       height: 100%;
       object-fit: cover;
       object-position: center;
-      filter: saturate(1.04) contrast(1.01);
+      filter: saturate(1.02) contrast(1.01);
+    }
+
+    .prog-pillar-card:nth-of-type(1) .prog-pillar-media img {
+      object-position: 48% 52%;
+    }
+
+    .prog-pillar-card:nth-of-type(2) .prog-pillar-media img {
+      object-position: 52% 50%;
+    }
+
+    .prog-pillar-card:nth-of-type(3) .prog-pillar-media img {
+      object-position: 50% 44%;
     }
 
     .prog-pillar-copy {
@@ -2545,18 +2545,13 @@ body.is-home nav.site-nav.is-scrolled {
       flex-direction: column;
       justify-content: center;
       max-width: 520px;
-      padding: clamp(8px, 2vw, 22px) 0;
+      padding: 0;
       position: relative;
       isolation: isolate;
     }
 
     .prog-pillar-copy::before {
-      content: "";
-      position: absolute;
-      inset: -18% -10%;
-      z-index: -1;
-      pointer-events: none;
-      background: radial-gradient(ellipse 78% 82% at 48% 50%, rgba(5, 5, 7, 0.56), transparent 74%);
+      display: none;
     }
 
     .prog-pillar-label {
@@ -2602,21 +2597,14 @@ body.is-home nav.site-nav.is-scrolled {
       grid-template-columns: minmax(0, 0.88fr) minmax(260px, 0.85fr);
       gap: clamp(36px, 6vw, 84px);
       align-items: center;
-      margin-top: clamp(62px, 8vw, 104px);
-      padding: clamp(18px, 4vw, 34px) 0;
+      margin-top: clamp(40px, 6vw, 76px);
+      padding: clamp(48px, 7vw, 88px) 0;
       position: relative;
       isolation: isolate;
     }
 
     .prog-apply::before {
-      content: "";
-      position: absolute;
-      inset: clamp(-40px, -5vw, -28px) calc(50% - 50vw);
-      z-index: -1;
-      pointer-events: none;
-      background:
-        radial-gradient(ellipse 26% 54% at 20% 48%, rgba(139, 92, 246, 0.12), transparent 72%),
-        linear-gradient(90deg, rgba(10, 9, 18, 0.82), rgba(8, 8, 12, 0.34) 58%, transparent 86%);
+      display: none;
     }
 
     .prog-apply-h2 {
@@ -2675,22 +2663,14 @@ body.is-home nav.site-nav.is-scrolled {
       grid-template-columns: minmax(0, 1fr) minmax(260px, 0.58fr);
       gap: clamp(36px, 6vw, 84px);
       align-items: center;
-      margin-top: clamp(78px, 9vw, 124px);
-      padding: clamp(18px, 4vw, 34px) 0;
+      margin-top: clamp(40px, 6vw, 76px);
+      padding: clamp(48px, 7vw, 88px) 0 0;
       position: relative;
       isolation: isolate;
     }
 
     .prog-launch::before {
-      content: "";
-      position: absolute;
-      inset: clamp(-36px, -4vw, -24px) calc(50% - 50vw);
-      z-index: -1;
-      pointer-events: none;
-      background:
-        radial-gradient(ellipse 22% 46% at 72% 44%, rgba(139, 92, 246, 0.055), transparent 76%),
-        linear-gradient(90deg, rgba(8, 8, 12, 0.66), rgba(8, 8, 12, 0.28), transparent),
-        linear-gradient(180deg, transparent, rgba(10, 10, 15, 0.48), transparent);
+      display: none;
     }
 
     .prog-launch-name {
@@ -2740,9 +2720,9 @@ body.is-home nav.site-nav.is-scrolled {
       margin: 0;
       overflow: hidden;
       border-radius: 8px;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 16 / 11;
       background: var(--bg-elevated);
-      opacity: 0.82;
+      opacity: 0.92;
     }
 
     .prog-launch-photo img {
@@ -2750,14 +2730,13 @@ body.is-home nav.site-nav.is-scrolled {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: 50% 48%;
     }
 
     /* ── Responsive ───────────────────────── */
     @media (max-width: 980px) {
       #page-programs {
-        background:
-          radial-gradient(ellipse 70% 22% at 72% 8%, rgba(139, 92, 246, 0.1), transparent 70%),
-          linear-gradient(180deg, #050507 0%, #08070d 48%, #050507 100%);
+        background: var(--bg);
       }
 
       .prog-hero {
@@ -2808,9 +2787,7 @@ body.is-home nav.site-nav.is-scrolled {
 
       .prog-hero::before {
         inset-bottom: -64px;
-        background:
-          radial-gradient(ellipse 70% 28% at 70% 18%, rgba(139, 92, 246, 0.1), transparent 72%),
-          linear-gradient(180deg, rgba(12, 10, 22, 0.24), transparent 86%);
+        background: linear-gradient(180deg, rgba(12, 10, 22, 0.24), transparent 86%);
       }
 
       .prog-brand-row {
@@ -2851,14 +2828,8 @@ body.is-home nav.site-nav.is-scrolled {
       }
 
       .prog-pillars {
-        gap: 58px;
-        padding: 34px 0 58px;
-      }
-
-      .prog-pillars::before {
-        inset-block: -46px 0;
-        background:
-          radial-gradient(ellipse 72% 20% at 38% 12%, rgba(139, 92, 246, 0.04), transparent 74%);
+        gap: 64px;
+        padding: 42px 0 64px;
       }
 
       .prog-pillar-card {
@@ -2876,8 +2847,7 @@ body.is-home nav.site-nav.is-scrolled {
       }
 
       .prog-pillar-copy::before {
-        inset: -8% -4%;
-        background: radial-gradient(ellipse 82% 84% at 50% 50%, rgba(5, 5, 7, 0.42), transparent 76%);
+        display: none;
       }
 
       .prog-spec-name {
@@ -2901,15 +2871,12 @@ body.is-home nav.site-nav.is-scrolled {
 
       .prog-apply {
         gap: 30px;
-        margin-top: 46px;
-        padding: 24px 0;
+        margin-top: 34px;
+        padding: 44px 0;
       }
 
       .prog-apply::before {
-        inset-block: -20px;
-        background:
-          radial-gradient(ellipse 64% 28% at 26% 20%, rgba(139, 92, 246, 0.095), transparent 74%),
-          linear-gradient(180deg, rgba(10, 9, 18, 0.68), transparent 92%);
+        display: none;
       }
 
       .prog-apply-h2 {
@@ -2926,15 +2893,12 @@ body.is-home nav.site-nav.is-scrolled {
 
       .prog-launch {
         gap: 24px;
-        margin-top: 52px;
-        padding: 22px 0 0;
+        margin-top: 34px;
+        padding: 44px 0 0;
       }
 
       .prog-launch::before {
-        inset-block: -18px;
-        background:
-          radial-gradient(ellipse 64% 26% at 70% 34%, rgba(139, 92, 246, 0.05), transparent 76%),
-          linear-gradient(180deg, rgba(9, 9, 14, 0.44), transparent);
+        display: none;
       }
 
       .prog-launch-photo {
