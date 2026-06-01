@@ -20,10 +20,11 @@ const launchStationPhoto = {
 const specPillars = [
   {
     title: "Funding",
-    kicker: "Capital to focus",
-    details: [
-      { label: "Investment", value: "$100K USD" },
-      { label: "Purpose", value: "Work full-time on the company" },
+    headline: "$100K to build full time",
+    proofPoints: [
+      "$100K USD investment",
+      "12 weeks focused on the company",
+      "For founders ready to work full time",
     ],
     photo: {
       src: "/assets/programs/ikigai-founder-table.jpeg",
@@ -32,11 +33,11 @@ const specPillars = [
   },
   {
     title: "Hands-on support",
-    kicker: "Weekly founder time",
-    details: [
-      { label: "Mentor office hours", value: "Weekly 1-on-1 time" },
-      { label: "Investor access", value: "Warm intros and matching" },
-      { label: "After the batch", value: "Support beyond 12 weeks" },
+    headline: "Weekly support from operators",
+    proofPoints: [
+      "1-on-1 mentor office hours",
+      "Founder-led workshops",
+      "Warm intros and investor matching",
     ],
     photo: {
       src: "/assets/programs/ikigai-mentor-session.jpeg",
@@ -45,11 +46,11 @@ const specPillars = [
   },
   {
     title: "Community",
-    kicker: "In person in Taipei",
-    details: [
-      { label: "Format", value: "12 weeks in person" },
-      { label: "Location", value: "Taipei" },
-      { label: "Batch", value: "Founders building together" },
+    headline: "A founder batch in Taipei",
+    proofPoints: [
+      "In person in Taipei",
+      "Founders building alongside each other",
+      "Support beyond the batch",
     ],
     photo: {
       src: "/assets/programs/ikigai-group-tshirts.jpeg",
@@ -86,19 +87,16 @@ const specPillars = [
       {specPillars.map((p) => (
         <article class="prog-pillar-card">
           <figure class="prog-pillar-media">
-            <img src={p.photo.src} alt={p.photo.alt} decoding="async" loading="lazy" />
+            <img src={p.photo.src} alt={p.photo.alt} decoding="async" loading="eager" />
           </figure>
           <div class="prog-pillar-copy">
-            <h3 class="prog-spec-name">{p.title}</h3>
-            <p class="prog-spec-kicker">{p.kicker}</p>
-            <dl class="prog-spec-dl">
-              {p.details.map((d) => (
-                <div class="prog-spec-item">
-                  <dt>{d.label}</dt>
-                  <dd>{d.value}</dd>
-                </div>
+            <p class="prog-pillar-label">{p.title}</p>
+            <h3 class="prog-spec-name">{p.headline}</h3>
+            <ul class="prog-proof-list" aria-label={`${p.title} proof points`}>
+              {p.proofPoints.map((point) => (
+                <li class="prog-proof-item">{point}</li>
               ))}
-            </dl>
+            </ul>
           </div>
         </article>
       ))}

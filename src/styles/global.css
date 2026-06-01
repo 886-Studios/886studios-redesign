@@ -2328,6 +2328,7 @@ body.is-home nav.site-nav.is-scrolled {
     =========================== */
 
     #page-programs {
+      overflow-x: clip;
       background:
         radial-gradient(ellipse 42% 24% at 78% 12%, rgba(139, 92, 246, 0.12), transparent 68%),
         radial-gradient(ellipse 34% 18% at 18% 44%, rgba(109, 40, 217, 0.07), transparent 72%),
@@ -2351,6 +2352,7 @@ body.is-home nav.site-nav.is-scrolled {
       grid-template-columns: minmax(0, 1.05fr) minmax(260px, 0.72fr);
       gap: clamp(36px, 6vw, 80px);
       align-items: center;
+      width: 100%;
       max-width: var(--max);
       margin: 0 auto;
       padding: clamp(72px, 8vw, 108px) clamp(24px, 4vw, 32px) clamp(34px, 5vw, 52px);
@@ -2391,6 +2393,7 @@ body.is-home nav.site-nav.is-scrolled {
       line-height: 0.92;
       color: var(--text-primary);
       max-width: 640px;
+      overflow-wrap: break-word;
     }
 
     .prog-lead {
@@ -2399,11 +2402,13 @@ body.is-home nav.site-nav.is-scrolled {
       font-size: clamp(1rem, 1.3vw, 1.14rem);
       line-height: 1.65;
       max-width: 540px;
+      overflow-wrap: break-word;
     }
 
     /* CTA button */
     .prog-cta {
       margin-top: 32px;
+      max-width: 100%;
       background: var(--purple);
       border-color: rgba(167, 139, 250, 0.44);
       box-shadow: 0 10px 28px rgba(139, 92, 246, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2);
@@ -2452,6 +2457,7 @@ body.is-home nav.site-nav.is-scrolled {
 
     /* ── Body container ───────────────────── */
     .prog-body {
+      width: 100%;
       max-width: var(--max);
       margin: 0 auto;
       padding: 0 clamp(24px, 4vw, 32px) clamp(80px, 10vw, 120px);
@@ -2460,8 +2466,8 @@ body.is-home nav.site-nav.is-scrolled {
     /* ── Pillar stack ─────────────────────── */
     .prog-pillars {
       display: grid;
-      gap: clamp(42px, 7vw, 88px);
-      padding: clamp(20px, 4vw, 42px) 0 clamp(34px, 6vw, 76px);
+      gap: clamp(50px, 7vw, 92px);
+      padding: clamp(28px, 4vw, 50px) 0 clamp(40px, 6vw, 78px);
       position: relative;
       isolation: isolate;
     }
@@ -2476,32 +2482,26 @@ body.is-home nav.site-nav.is-scrolled {
     }
 
     .prog-pillars::before {
-      inset-block: -88px 0;
+      inset-block: -72px 4%;
       background:
-        radial-gradient(ellipse 42% 28% at 30% 20%, rgba(139, 92, 246, 0.08), transparent 72%),
-        radial-gradient(ellipse 38% 26% at 76% 74%, rgba(109, 40, 217, 0.075), transparent 76%),
-        linear-gradient(180deg, transparent 0%, rgba(12, 10, 20, 0.68) 14%, rgba(10, 9, 16, 0.7) 82%, transparent 100%);
+        radial-gradient(ellipse 34% 22% at 26% 18%, rgba(139, 92, 246, 0.045), transparent 76%),
+        radial-gradient(ellipse 30% 22% at 78% 72%, rgba(109, 40, 217, 0.04), transparent 78%);
     }
 
     .prog-pillars::after {
-      inset-block: -36px 10%;
-      background:
-        linear-gradient(90deg, rgba(5, 5, 7, 0.97), rgba(5, 5, 7, 0.9), rgba(5, 5, 7, 0.97)),
-        url("/assets/programs/ikigai-workshop-room.jpeg") center / cover;
-      opacity: 0.09;
-      filter: saturate(0.65) blur(1px);
+      display: none;
     }
 
     .prog-pillar-card {
       display: grid;
-      grid-template-columns: minmax(280px, 0.48fr) minmax(0, 0.52fr);
-      gap: clamp(22px, 4vw, 54px);
-      align-items: stretch;
-      min-height: clamp(280px, 32vw, 410px);
+      grid-template-columns: minmax(300px, 0.56fr) minmax(0, 0.44fr);
+      gap: clamp(28px, 5vw, 70px);
+      align-items: center;
+      min-height: 0;
     }
 
     .prog-pillar-card:nth-of-type(even) {
-      grid-template-columns: minmax(0, 0.52fr) minmax(280px, 0.48fr);
+      grid-template-columns: minmax(0, 0.44fr) minmax(300px, 0.56fr);
     }
 
     .prog-pillar-card:nth-of-type(even) .prog-pillar-media {
@@ -2515,10 +2515,10 @@ body.is-home nav.site-nav.is-scrolled {
     .prog-pillar-media {
       margin: 0;
       overflow: hidden;
-      border-radius: 7px;
-      min-height: 100%;
-      background: var(--bg-elevated);
-      box-shadow: 0 18px 64px rgba(0, 0, 0, 0.26);
+      border-radius: 8px;
+      aspect-ratio: 5 / 4;
+      background: #111015;
+      box-shadow: 0 20px 70px rgba(0, 0, 0, 0.3);
       position: relative;
     }
 
@@ -2527,28 +2527,25 @@ body.is-home nav.site-nav.is-scrolled {
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background:
-        linear-gradient(135deg, rgba(139, 92, 246, 0.13), transparent 42%),
-        linear-gradient(180deg, transparent 58%, rgba(5, 5, 7, 0.12));
-      mix-blend-mode: color;
-      opacity: 0.55;
+      background: linear-gradient(180deg, rgba(5, 5, 7, 0) 68%, rgba(5, 5, 7, 0.18));
+      opacity: 0.38;
     }
 
     .prog-pillar-media img {
       display: block;
       width: 100%;
       height: 100%;
-      min-height: clamp(270px, 30vw, 386px);
       object-fit: cover;
       object-position: center;
-      filter: saturate(0.9) contrast(1.03);
+      filter: saturate(1.04) contrast(1.01);
     }
 
     .prog-pillar-copy {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      padding: clamp(10px, 2vw, 28px) 0;
+      max-width: 520px;
+      padding: clamp(8px, 2vw, 22px) 0;
       position: relative;
       isolation: isolate;
     }
@@ -2556,61 +2553,47 @@ body.is-home nav.site-nav.is-scrolled {
     .prog-pillar-copy::before {
       content: "";
       position: absolute;
-      inset: -18% -12%;
+      inset: -18% -10%;
       z-index: -1;
       pointer-events: none;
-      background:
-        radial-gradient(ellipse 72% 76% at 50% 50%, rgba(5, 5, 7, 0.74), transparent 72%),
-        linear-gradient(90deg, rgba(5, 5, 7, 0.5), transparent);
+      background: radial-gradient(ellipse 78% 82% at 48% 50%, rgba(5, 5, 7, 0.56), transparent 74%);
+    }
+
+    .prog-pillar-label {
+      margin: 0 0 14px;
+      color: color-mix(in srgb, var(--purple-bright) 76%, var(--text-secondary));
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.16em;
+      line-height: 1.4;
+      text-transform: uppercase;
     }
 
     .prog-spec-name {
-      margin: 0 0 8px;
-      font-size: clamp(2rem, 4vw, 4.2rem);
+      margin: 0;
+      font-size: clamp(2.15rem, 3.5vw, 3.85rem);
       font-weight: 700;
-      letter-spacing: -0.052em;
-      line-height: 0.96;
+      letter-spacing: -0.044em;
+      line-height: 0.98;
       color: var(--text-primary);
     }
 
-    .prog-spec-kicker {
-      margin: 0;
-      color: var(--text-secondary);
-      font-size: 0.9rem;
-      line-height: 1.55;
-    }
-
-    .prog-spec-dl {
+    .prog-proof-list {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px 28px;
-      margin: 0;
+      gap: 12px;
+      margin: clamp(28px, 4vw, 42px) 0 0;
       padding: 0;
-      padding-top: clamp(28px, 4vw, 44px);
+      list-style: none;
+      max-width: 46ch;
     }
 
-    .prog-spec-item {
-      display: flex;
-      flex-direction: column;
-      gap: 3px;
-    }
-
-    .prog-spec-item dt {
-      font-family: var(--font-mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: color-mix(in srgb, var(--purple-bright) 88%, var(--text-primary));
-      line-height: 1.4;
-    }
-
-    .prog-spec-item dd {
+    .prog-proof-item {
       margin: 0;
-      font-size: clamp(0.94rem, 1.1vw, 1.06rem);
-      font-weight: 650;
-      color: var(--text-primary);
-      letter-spacing: -0.015em;
-      line-height: 1.35;
+      font-size: clamp(1rem, 1.18vw, 1.14rem);
+      font-weight: 620;
+      color: color-mix(in srgb, var(--text-primary) 94%, white);
+      letter-spacing: -0.012em;
+      line-height: 1.42;
     }
 
     /* ── Apply section ────────────────────── */
@@ -2811,6 +2794,16 @@ body.is-home nav.site-nav.is-scrolled {
     @media (max-width: 640px) {
       .prog-hero {
         padding: clamp(52px, 13vw, 74px) clamp(18px, 6vw, 24px) 24px;
+        overflow: hidden;
+      }
+
+      .prog-hero-copy,
+      .prog-hero-photo,
+      .prog-pillar-card,
+      .prog-pillar-media,
+      .prog-pillar-copy {
+        width: 100%;
+        max-width: 342px;
       }
 
       .prog-hero::before {
@@ -2830,21 +2823,23 @@ body.is-home nav.site-nav.is-scrolled {
       }
 
       .prog-h1 {
-        font-size: clamp(2.8rem, 14vw, 4.25rem);
-        max-width: 7ch;
+        font-size: clamp(2.55rem, 12.5vw, 3.6rem);
+        max-width: 100%;
       }
 
       .prog-lead {
         font-size: 1rem;
         line-height: 1.58;
+        max-width: 100%;
       }
 
       .prog-cta {
         width: 100%;
+        max-width: 342px;
         justify-content: center;
         min-height: 48px;
         margin-top: 26px;
-        padding-inline: 18px 14px;
+        padding-inline: 16px 12px;
       }
 
       .prog-next-batch {
@@ -2856,25 +2851,18 @@ body.is-home nav.site-nav.is-scrolled {
       }
 
       .prog-pillars {
-        gap: 54px;
-        padding: 28px 0 54px;
+        gap: 58px;
+        padding: 34px 0 58px;
       }
 
       .prog-pillars::before {
         inset-block: -46px 0;
         background:
-          radial-gradient(ellipse 72% 20% at 38% 12%, rgba(139, 92, 246, 0.055), transparent 74%),
-          linear-gradient(180deg, transparent 0%, rgba(12, 10, 20, 0.58) 12%, rgba(10, 9, 16, 0.62) 86%, transparent 100%);
-      }
-
-      .prog-pillars::after {
-        inset-block: -12px 0;
-        opacity: 0.045;
-        filter: saturate(0.55) blur(0);
+          radial-gradient(ellipse 72% 20% at 38% 12%, rgba(139, 92, 246, 0.04), transparent 74%);
       }
 
       .prog-pillar-card {
-        gap: 20px;
+        gap: 22px;
         min-height: auto;
       }
 
@@ -2888,23 +2876,23 @@ body.is-home nav.site-nav.is-scrolled {
       }
 
       .prog-pillar-copy::before {
-        inset: -10% -6%;
-        background:
-          radial-gradient(ellipse 80% 82% at 50% 50%, rgba(5, 5, 7, 0.7), transparent 74%);
+        inset: -8% -4%;
+        background: radial-gradient(ellipse 82% 84% at 50% 50%, rgba(5, 5, 7, 0.42), transparent 76%);
       }
 
       .prog-spec-name {
-        font-size: clamp(2.15rem, 11vw, 3.2rem);
+        font-size: clamp(2.15rem, 10.4vw, 3.25rem);
+        max-width: 342px;
       }
 
-      .prog-spec-kicker {
-        font-size: 0.92rem;
+      .prog-pillar-label {
+        margin-bottom: 12px;
       }
 
-      .prog-spec-dl {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        padding-top: 24px;
+      .prog-proof-list {
+        gap: 11px;
+        margin-top: 24px;
+        max-width: 342px;
       }
 
       .prog-pillar-copy {
