@@ -668,6 +668,10 @@ body.is-home nav.site-nav.is-scrolled {
   display: inline;
 }
 
+.hero-sub--mobile {
+  display: none;
+}
+
 .hero-actions {
   display: flex;
   gap: 14px;
@@ -827,7 +831,7 @@ body.is-home nav.site-nav.is-scrolled {
     transform: translate3d(0, 0, 0);
   }
   to {
-    transform: translate3d(-50%, 0, 0);
+    transform: translate3d(-25%, 0, 0);
   }
 }
 
@@ -4684,17 +4688,39 @@ footer {
 /* Responsive nav breakpoint */
 @media (max-width: 880px) {
   body.is-home nav.site-nav {
-    height: 72px;
-    background: transparent;
+    height: 0;
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
     border-bottom-color: transparent;
+    box-shadow: none;
+    pointer-events: none;
   }
 
   body.is-home nav.site-nav.is-scrolled {
-    background: rgba(5, 5, 7, 0.84);
+    background: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom-color: transparent;
+    box-shadow: none;
   }
 
   .nav-inner {
+    height: 0;
     padding-inline: clamp(20px, 6vw, 28px);
+    pointer-events: none;
+  }
+
+  body.is-home .nav-logo {
+    position: fixed;
+    top: 22px;
+    left: clamp(20px, 6vw, 28px);
+    z-index: 220;
+    pointer-events: auto;
+  }
+
+  body.is-home .nav-logo img {
+    height: 28px;
   }
 
   body.is-home .nav-hamburger {
@@ -4703,6 +4729,7 @@ footer {
     top: 17px;
     right: clamp(20px, 6vw, 28px);
     z-index: 220;
+    pointer-events: auto;
     background: rgba(255, 255, 255, 0.045);
     border-color: rgba(255, 255, 255, 0.12);
     box-shadow: none;
@@ -4735,15 +4762,15 @@ footer {
   }
 
   #page-home .hero-inner {
-    width: calc(100vw - 48px);
-    max-width: 340px;
+    width: min(calc(100vw - 48px), 320px);
+    max-width: 320px;
     min-width: 0;
   }
 
   #page-home .hero-h1 {
     inline-size: 100%;
     max-inline-size: 100%;
-    font-size: clamp(43px, 12.5vw, 52px);
+    font-size: clamp(40px, 11.6vw, 48px);
     line-height: 0.96;
     letter-spacing: -0.035em;
     margin-bottom: var(--space-md);
@@ -4753,13 +4780,21 @@ footer {
 
   #page-home .hero-sub {
     inline-size: 100%;
-    max-inline-size: 268px;
+    max-inline-size: 300px;
     min-width: 0;
-    font-size: clamp(14px, 3.7vw, 15px);
-    line-height: 1.62;
+    font-size: clamp(14px, 3.7vw, 14.75px);
+    line-height: 1.5;
     margin-bottom: var(--space-lg);
     overflow-wrap: anywhere;
     word-break: break-word;
+  }
+
+  #page-home .hero-sub--desktop {
+    display: none;
+  }
+
+  #page-home .hero-sub--mobile {
+    display: block;
   }
 
   #page-home .hero-sub br {
@@ -5025,7 +5060,7 @@ footer {
 
 @media (max-width: 480px) {
   #page-home .hero-h1 {
-    font-size: clamp(41px, 12vw, 48px);
+    font-size: clamp(38px, 11vw, 44px);
   }
   #page-home .hero-sub {
     font-size: 15px;

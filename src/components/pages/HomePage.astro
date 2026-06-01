@@ -2,6 +2,9 @@
 import { siteContent } from "../../data/siteContent";
 
 const { home } = siteContent;
+const mobileHeroBody =
+  "886 Studios backs founders from Taipei with capital, operator support, and a proven Silicon Valley network.";
+const photoLoopSets = [false, true, true, true];
 ---
 
 <div class="page" id="page-home">
@@ -16,7 +19,7 @@ const { home } = siteContent;
       <h1 class="hero-h1">
         {home.hero.titleLead}<br /><em>{home.hero.titleAccent}</em>
       </h1>
-      <p class="hero-sub">
+      <p class="hero-sub hero-sub--desktop">
         {home.hero.body.split("\n").map((line, index) => (
           <>
             {index > 0 && <br />}
@@ -24,6 +27,7 @@ const { home } = siteContent;
           </>
         ))}
       </p>
+      <p class="hero-sub hero-sub--mobile">{mobileHeroBody}</p>
       <div class="hero-actions">
         <a class="btn-pri" href={home.hero.cta.href} target="_blank">{home.hero.cta.label}</a>
       </div>
@@ -33,24 +37,17 @@ const { home } = siteContent;
   <section class="photo-showcase reveal" aria-label="886 Studios photo slideshow">
     <div class="photo-rail" aria-label="886 Studios photo slideshow">
       <div class="photo-track">
-        <div class="photo-track-set">
-          {
-            home.photos.items.map((photo) => (
-              <figure class="photo-slide">
-                <img src={photo.src} alt={photo.alt} decoding="async" />
-              </figure>
-            ))
-          }
-        </div>
-        <div class="photo-track-set" aria-hidden="true">
-          {
-            home.photos.items.map((photo) => (
-              <figure class="photo-slide">
-                <img src={photo.src} alt="" decoding="async" />
-              </figure>
-            ))
-          }
-        </div>
+        {photoLoopSets.map((isHidden) => (
+          <div class="photo-track-set" aria-hidden={isHidden ? "true" : undefined}>
+            {
+              home.photos.items.map((photo) => (
+                <figure class="photo-slide">
+                  <img src={photo.src} alt={isHidden ? "" : photo.alt} decoding="async" />
+                </figure>
+              ))
+            }
+          </div>
+        ))}
       </div>
     </div>
   </section>
