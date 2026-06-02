@@ -13,7 +13,7 @@ const applicationSteps = [
   },
   {
     title: "Review",
-    detail: "The 886 team looks for founder momentum, market insight, and fit for the batch.",
+    detail: "The 886 Studios team looks for founder momentum, market insight, and fit for the batch.",
   },
   {
     title: "886 interview",
@@ -27,9 +27,8 @@ const applicationSteps = [
 const nextBatch = "Next batch starts Fall 2026.";
 const quickFacts = ikigai.details?.metrics ?? [];
 const ikigaiNameParts = ikigai.name.split(" ");
-const taiwanTechArenaUrl = "https://www.taiwanarena.tech";
 const founderBenefitsIntro =
-  "ikigai Launchpad gives founders capital, weekly operator support, investor access, and a focused in-person batch in Taipei. The program is built for teams ready to spend 12 weeks moving faster on the company.";
+  "ikigai Launchpad gives founders capital, investor access, and a community of founders & innovators in Taipei. The program is built for teams ready to spend 12 weeks moving faster on the company.";
 
 const heroPhoto = {
   src: "/assets/programs/ikigai-audience-theater.jpg",
@@ -44,7 +43,7 @@ const launchStationPhoto = {
 const specPillars = [
   {
     title: "Funding",
-    headline: "$100K to focus full time",
+    headline: "$100K",
     proofPoints: [
       "$100K USD for the company",
       "12-week in-person Taipei batch",
@@ -57,11 +56,11 @@ const specPillars = [
   },
   {
     title: "Hands-on support",
-    headline: "Weekly support from operators",
+    headline: "A community of founders & innovators",
     proofPoints: [
-      "Weekly mentor office hours",
-      "Operator-led workshops",
-      "Investor matching and warm intros",
+      "A community of founders & innovators",
+      "Warm introductions and investor matching",
+      "Support beyond the batch",
     ],
     photo: {
       src: "/assets/programs/ikigai-mentor-session.jpeg",
@@ -70,7 +69,7 @@ const specPillars = [
   },
   {
     title: "Community",
-    headline: "A focused founder batch in Taipei",
+    headline: "A community of founders & innovators",
     proofPoints: [
       "In-person founder batch in Taipei",
       "Peer founders building with you",
@@ -88,10 +87,6 @@ const specPillars = [
 
   <section class="prog-hero" aria-labelledby="prog-ikigai-heading">
     <div class="prog-hero-copy">
-      <div class="prog-brand-row">
-        <img class="prog-mark" src="/assets/programs/ikigai-mark.png" alt="" aria-hidden="true" />
-        <span class="prog-band-label">{programs.eyebrow}</span>
-      </div>
       <h1 class="prog-h1" id="prog-ikigai-heading">
         {ikigaiNameParts.map((part, index) => (
           <>
@@ -108,26 +103,14 @@ const specPillars = [
         <p class="prog-next-batch">{nextBatch}</p>
       </div>
     </div>
-    <aside class="prog-brief-card" aria-label="ikigai Launchpad at a glance">
-      <span class="prog-card-kicker">At a glance</span>
+    <aside class="prog-brief-card" aria-label="ikigai Launchpad facts">
       <dl class="prog-brief-facts">
         {quickFacts.map((fact) => (
           <div class="prog-brief-fact">
             <dt>{fact.label}</dt>
             <dd>
               <strong>{fact.value}</strong>
-              <span>
-                {fact.note === "Built around Taiwan Tech Arena." ? (
-                  <>
-                    Built around{" "}
-                    <a class="prog-inline-link" href={taiwanTechArenaUrl} target="_blank" rel="noopener noreferrer">
-                      Taiwan Tech Arena
-                    </a>.
-                  </>
-                ) : (
-                  fact.note
-                )}
-              </span>
+              {fact.note && <span>{fact.note}</span>}
             </dd>
           </div>
         ))}
@@ -145,7 +128,6 @@ const specPillars = [
     <section class="prog-pillars reveal" aria-labelledby="prog-includes-heading">
       <header class="prog-section-header">
         <div class="prog-section-heading">
-          <span class="prog-band-label">ikigai Launchpad</span>
           <h2 class="prog-section-title" id="prog-includes-heading">What founders get</h2>
         </div>
         <p class="prog-section-copy">{founderBenefitsIntro}</p>

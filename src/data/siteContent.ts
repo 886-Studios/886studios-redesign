@@ -262,7 +262,7 @@ export const siteContent = {
             {
               label: "Investment",
               value: "$100K USD",
-              note: "Funding to help founders focus full-time.",
+              note: "Funding for the company.",
             },
             {
               label: "Length",
@@ -272,7 +272,7 @@ export const siteContent = {
             {
               label: "Location",
               value: "Taipei",
-              note: "Built around Taiwan Tech Arena.",
+              note: "",
             },
             {
               label: "Support",
@@ -291,7 +291,7 @@ export const siteContent = {
             {
               title: "Hands-on support",
               items: [
-                "1-on-1 weekly mentor office hours",
+                "A community of founders & innovators",
                 "Warm introductions and investor matching",
                 "Support beyond the batch",
               ],
@@ -299,7 +299,7 @@ export const siteContent = {
             {
               title: "Community",
               items: [
-                "12-week program",
+                "A community of founders & innovators",
                 "In person in Taipei",
               ],
             },
@@ -316,7 +316,7 @@ export const siteContent = {
         track: "Community",
         name: "Launch Station",
         body: "A free dedicated desk and founder community inside Taiwan Tech Arena for early-stage builders in Taipei.",
-        highlights: ["Dedicated desk", "TTA office access", "Startup perks"],
+        highlights: ["Free dedicated desk", "TTA office access", "Startup perks"],
         fit: "Motivated founders refining an MVP, preparing to fundraise, or looking for a sharper startup environment.",
         cta: {
           type: "link",
@@ -350,7 +350,7 @@ export const siteContent = {
         },
       ],
       benefits: [
-        "A dedicated desk in 886 Studios' open startup office",
+        "A free dedicated desk in 886 Studios' open startup office",
         "Access to meeting rooms, kitchen, snacks, and TTA facilities",
         "Startup perks across AWS, Notion, Ramp, Webflow, and more",
         "Opportunities to meet founders, investors, and community members",
