@@ -3013,7 +3013,6 @@ body.is-home nav.site-nav.is-scrolled {
         font-size: 1.55rem;
       }
 
-<<<<<<< HEAD
       .prog-process-list {
         gap: 0;
       }
@@ -3022,10 +3021,10 @@ body.is-home nav.site-nav.is-scrolled {
         top: 20px;
         bottom: 20px;
         left: 17px;
-=======
+      }
+
       .prog-spec-name {
         min-height: 0;
->>>>>>> d160898 (Small improvements to the Programs Page.)
       }
 
       .prog-process-item {
