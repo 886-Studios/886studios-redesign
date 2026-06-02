@@ -1,6 +1,12 @@
 ---
 import SocialLinks from "./SocialLinks.astro";
 import { brand, siteContent } from "../data/siteContent";
+
+interface Props {
+  hideSocials?: boolean;
+}
+
+const { hideSocials = false } = Astro.props;
 ---
 
 <footer>
@@ -9,6 +15,6 @@ import { brand, siteContent } from "../data/siteContent";
     <div class="footer-copy">
       <span>{siteContent.footer.copy}</span>
     </div>
-    <SocialLinks />
+    {!hideSocials && <SocialLinks />}
   </div>
 </footer>

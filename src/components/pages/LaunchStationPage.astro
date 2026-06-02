@@ -12,6 +12,9 @@ const founderMoments = [
 
 <div class="page ls-page" id="page-launch-station">
   <section class="ls-hero" aria-labelledby="ls-heading">
+    <figure class="ls-poster">
+      <img src={launchStation.poster.src} alt={launchStation.poster.alt} decoding="async" loading="eager" fetchpriority="high" />
+    </figure>
     <div class="ls-hero-copy">
       <div class="ls-topline">
         <a class="ls-back" href="/programs">Programs</a>
@@ -19,6 +22,7 @@ const founderMoments = [
       </div>
       <h1 class="ls-h1" id="ls-heading">{launchStation.title}</h1>
       <p class="ls-lead">{launchStation.lead}</p>
+      <p class="ls-status-note">{launchStation.status}</p>
       <div class="ls-hero-signals" aria-label="Launch Station essentials">
         {launchStation.essentials.map((item) => (
           <article class="ls-signal">
@@ -27,16 +31,7 @@ const founderMoments = [
           </article>
         ))}
       </div>
-      <div class="ls-actions" aria-label="Launch Station status and updates">
-        <span class="ls-status">{launchStation.status}</span>
-        <a class="btn-sec ls-discord" href="https://discord.gg/FGcEHJyB3F" target="_blank" rel="noopener noreferrer">
-          Join Discord
-        </a>
-      </div>
     </div>
-    <figure class="ls-poster">
-      <img src={launchStation.poster.src} alt={launchStation.poster.alt} decoding="async" loading="eager" fetchpriority="high" />
-    </figure>
   </section>
 
   <main class="ls-body">
@@ -66,7 +61,7 @@ const founderMoments = [
       <ul class="ls-benefit-list">
         {launchStation.benefits.map((benefit, index) => (
           <li>
-            <span>{String(index + 1).padStart(2, "0")}</span>
+            <span>{index + 1}</span>
             <strong>{benefit}</strong>
           </li>
         ))}

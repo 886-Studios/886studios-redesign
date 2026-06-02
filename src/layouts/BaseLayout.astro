@@ -7,12 +7,14 @@ interface Props {
   title?: string;
   description?: string;
   ogImage?: string;
+  hideFooterSocials?: boolean;
 }
 
 const {
   title = "886 Studios — Taipei's Premier Startup Accelerator",
   description = "886 Studios backs ambitious early-stage founders building companies with global potential — built by the founders behind Twitch, Kabam, and Guitar Hero.",
   ogImage = "https://886studios.com/og-image.jpg",
+  hideFooterSocials = false,
 } = Astro.props;
 
 const currentPath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/$/, "");
@@ -59,6 +61,6 @@ const canonicalUrl = Astro.url.href;
   <body class:list={[currentPath === "/" && "is-home"]}>
     <SiteNav currentPath={currentPath} />
     <slot />
-    <SiteFooter />
+    <SiteFooter hideSocials={hideFooterSocials} />
   </body>
 </html>
