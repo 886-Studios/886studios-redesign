@@ -9,15 +9,18 @@ const { launchStation } = siteContent.programs;
     <figure class="ls-poster">
       <img src={launchStation.poster.src} alt={launchStation.poster.alt} decoding="async" loading="eager" fetchpriority="high" />
     </figure>
-    <div class="ls-hero-copy">
-      <div class="ls-topline">
-        <a class="ls-back" href="/programs">Programs</a>
-        <p class="prog-band-label">{launchStation.eyebrow}</p>
+    <div class="ls-hero-grid">
+      <div class="ls-hero-copy">
+        <div class="ls-topline">
+          <a class="ls-back" href="/programs">Programs</a>
+          <p class="prog-band-label">{launchStation.eyebrow}</p>
+        </div>
+        <h1 class="ls-h1" id="ls-heading">{launchStation.title}</h1>
+        <p class="ls-lead">{launchStation.lead}</p>
+        <p class="ls-status-note">{launchStation.status}</p>
       </div>
-      <h1 class="ls-h1" id="ls-heading">{launchStation.title}</h1>
-      <p class="ls-lead">{launchStation.lead}</p>
-      <p class="ls-status-note">{launchStation.status}</p>
       <div class="ls-hero-signals" aria-label="Launch Station essentials">
+        <span class="prog-card-kicker">At a glance</span>
         {launchStation.essentials.map((item) => (
           <article class="ls-signal">
             <p>{item.label}</p>
