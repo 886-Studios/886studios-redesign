@@ -335,10 +335,6 @@ export const siteContent = {
       lead:
         "Launch Station gives early-stage founders a free dedicated desk inside Taiwan Tech Arena, plus the builder energy, resources, and community around 886 Studios.",
       status: "Applications will open at the beginning of October.",
-      intro: [
-        "It is built for founders who want more than a seat. Members work from a high-energy startup office, connect with other builders in Taipei, and contribute back to the community through demos, workshops, lessons learned, or anything useful to fellow founders.",
-        "The program is a fit if you are refining an MVP, getting ready to fundraise, or looking for a place where ambitious founders are working side by side.",
-      ],
       essentials: [
         {
           label: "Location",
@@ -362,13 +358,6 @@ export const siteContent = {
       ],
       contribution:
         "In return, Launch Station members contribute to the community by hosting a session, sharing what they are learning, giving a demo, or helping other founders move faster.",
-      links: [
-        { label: "Instagram", href: "https://www.instagram.com/ikigai_launchpad/" },
-        { label: "X", href: "https://x.com/886Studios" },
-        { label: "Threads", href: "https://www.threads.net/@ikigai_launchpad" },
-        { label: "LinkedIn", href: "https://www.linkedin.com/company/886studios/" },
-        { label: "Discord", href: "https://discord.gg/FGcEHJyB3F" },
-      ],
     },
     footer: "",
   },

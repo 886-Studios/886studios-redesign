@@ -4039,6 +4039,176 @@ body.is-home nav.site-nav.is-scrolled {
       }
     }
 
+    /* Distill pass: one-column Launch Station page */
+    .ls-page {
+      background: var(--bg);
+    }
+
+    .ls-hero,
+    .ls-body {
+      max-width: 880px;
+    }
+
+    .ls-hero {
+      gap: clamp(24px, 4vw, 44px);
+      padding-top: calc(var(--nav-height) + clamp(24px, 5vw, 52px));
+      padding-bottom: clamp(52px, 8vw, 86px);
+    }
+
+    .ls-poster {
+      width: min(100%, 360px);
+      max-width: 360px;
+      box-shadow: none;
+    }
+
+    .ls-topline {
+      margin-bottom: 22px;
+    }
+
+    .ls-h1 {
+      margin-bottom: 18px;
+      max-width: 720px;
+      font-size: clamp(3.6rem, 8vw, 6.8rem);
+      line-height: 0.94;
+    }
+
+    .ls-lead,
+    .ls-status-note {
+      max-width: 640px;
+    }
+
+    .ls-status-note {
+      margin-top: 14px;
+      color: var(--text-muted);
+    }
+
+    .ls-hero-signals {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      max-width: 760px;
+      margin-top: clamp(28px, 4vw, 42px);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ls-signal {
+      padding: 16px 22px 16px 0;
+    }
+
+    .ls-signal + .ls-signal {
+      padding-left: 22px;
+    }
+
+    .ls-body {
+      padding-bottom: clamp(82px, 10vw, 120px);
+    }
+
+    .ls-benefits,
+    .ls-note {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(26px, 5vw, 44px);
+      padding: clamp(54px, 8vw, 86px) 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .ls-benefits {
+      padding-top: clamp(48px, 7vw, 76px);
+    }
+
+    .ls-benefits-copy {
+      gap: 14px;
+      max-width: 680px;
+    }
+
+    .ls-benefits h2,
+    .ls-note h2 {
+      max-width: 700px;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.05;
+    }
+
+    .ls-benefit-list {
+      display: grid;
+      gap: 0;
+      max-width: 760px;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
+    .ls-benefit-list li {
+      display: grid;
+      grid-template-columns: 34px minmax(0, 1fr);
+      gap: 16px;
+      padding: 18px 0;
+      border-top: 1px solid var(--border);
+      background: transparent;
+    }
+
+    .ls-benefit-list li:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .ls-benefit-list li span {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0;
+      line-height: 1.5;
+    }
+
+    .ls-benefit-list li strong {
+      color: color-mix(in srgb, var(--text-primary) 92%, var(--text-secondary));
+      font-size: clamp(0.98rem, 1.2vw, 1.06rem);
+      font-weight: 600;
+      line-height: 1.48;
+    }
+
+    .ls-note {
+      padding-bottom: 0;
+    }
+
+    .ls-note p {
+      max-width: 680px;
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: clamp(1rem, 1.25vw, 1.1rem);
+      line-height: 1.74;
+    }
+
+    @media (max-width: 760px) {
+      .ls-hero,
+      .ls-body {
+        padding-inline: clamp(18px, 6vw, 24px);
+      }
+
+      .ls-poster {
+        width: min(100%, 300px);
+        max-width: 300px;
+      }
+
+      .ls-hero-signals {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+
+      .ls-signal,
+      .ls-signal + .ls-signal {
+        padding: 15px 0;
+        border-left: 0;
+      }
+
+      .ls-signal + .ls-signal {
+        border-top: 1px solid var(--border);
+      }
+
+      .ls-benefit-list li {
+        grid-template-columns: 28px minmax(0, 1fr);
+        gap: 12px;
+      }
+    }
+
     /* /* ===========================
        RESOURCES PAGE (REDESIGNED)
 

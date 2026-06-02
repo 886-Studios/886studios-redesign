@@ -2,12 +2,6 @@
 import { siteContent } from "../../data/siteContent";
 
 const { launchStation } = siteContent.programs;
-
-const founderMoments = [
-  "Refining an MVP",
-  "Preparing to fundraise",
-  "Looking for a Taipei base",
-];
 ---
 
 <div class="page ls-page" id="page-launch-station">
@@ -35,28 +29,10 @@ const founderMoments = [
   </section>
 
   <main class="ls-body">
-    <section class="ls-fit reveal" aria-labelledby="ls-about-heading">
-      <div class="ls-fit-copy">
-        <div class="ls-section-kicker">What it is</div>
-        <h2 id="ls-about-heading">A free workspace for founders who build better around other founders.</h2>
-        <div class="ls-text-stack">
-          {launchStation.intro.map((paragraph) => (
-            <p>{paragraph}</p>
-          ))}
-        </div>
-      </div>
-      <aside class="ls-founder-moments" aria-label="Good fit for founders">
-        <span>Good fit for</span>
-        {founderMoments.map((moment) => (
-          <strong>{moment}</strong>
-        ))}
-      </aside>
-    </section>
-
     <section class="ls-benefits reveal" aria-labelledby="ls-benefits-heading">
       <div class="ls-benefits-copy">
         <div class="ls-section-kicker">What you get</div>
-        <h2 id="ls-benefits-heading">Office access, startup perks, and a direct line into the 886 community.</h2>
+        <h2 id="ls-benefits-heading">A desk, useful perks, and a community of founders building nearby.</h2>
       </div>
       <ul class="ls-benefit-list">
         {launchStation.benefits.map((benefit, index) => (
@@ -68,22 +44,10 @@ const founderMoments = [
       </ul>
     </section>
 
-    <section class="ls-contribution reveal" aria-labelledby="ls-contribution-heading">
-      <div class="ls-contribution-inner">
-        <div>
-          <div class="ls-section-kicker">Community contribution</div>
-          <h2 id="ls-contribution-heading">Not just a desk.</h2>
-        </div>
-        <p>{launchStation.contribution}</p>
-      </div>
-    </section>
-
-    <section class="ls-updates reveal" aria-labelledby="ls-updates-heading">
-      <div class="ls-updates-copy">
-        <div class="ls-section-kicker">Updates</div>
-        <h2 id="ls-updates-heading">Applications open soon.</h2>
-        <p>{launchStation.status} We will share the application announcement when the next window is ready.</p>
-      </div>
+    <section class="ls-note reveal" aria-labelledby="ls-contribution-heading">
+      <div class="ls-section-kicker">Community contribution</div>
+      <h2 id="ls-contribution-heading">Members contribute back.</h2>
+      <p>{launchStation.contribution}</p>
     </section>
   </main>
 </div>
