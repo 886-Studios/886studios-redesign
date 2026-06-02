@@ -2488,6 +2488,19 @@ body.is-home nav.site-nav.is-scrolled {
       line-height: 1.5;
     }
 
+    .prog-inline-link {
+      color: color-mix(in srgb, var(--purple-bright) 86%, var(--text-primary));
+      text-decoration: underline;
+      text-decoration-color: rgba(167, 139, 250, 0.34);
+      text-underline-offset: 3px;
+      transition: color 0.18s, text-decoration-color 0.18s;
+    }
+
+    .prog-inline-link:hover {
+      color: var(--gold-soft);
+      text-decoration-color: rgba(231, 198, 147, 0.58);
+    }
+
     .prog-media {
       padding-bottom: var(--space-3xl);
     }
@@ -2618,6 +2631,7 @@ body.is-home nav.site-nav.is-scrolled {
 
     .prog-spec-name {
       margin: 0;
+      min-height: 3.55rem;
       color: var(--text-primary);
       font-size: 1.55rem;
       font-weight: 700;
@@ -2999,6 +3013,7 @@ body.is-home nav.site-nav.is-scrolled {
         font-size: 1.55rem;
       }
 
+<<<<<<< HEAD
       .prog-process-list {
         gap: 0;
       }
@@ -3007,6 +3022,10 @@ body.is-home nav.site-nav.is-scrolled {
         top: 20px;
         bottom: 20px;
         left: 17px;
+=======
+      .prog-spec-name {
+        min-height: 0;
+>>>>>>> d160898 (Small improvements to the Programs Page.)
       }
 
       .prog-process-item {

@@ -27,6 +27,9 @@ const applicationSteps = [
 const nextBatch = "Next batch starts Fall 2026.";
 const quickFacts = ikigai.details?.metrics ?? [];
 const ikigaiNameParts = ikigai.name.split(" ");
+const taiwanTechArenaUrl = "https://www.taiwanarena.tech";
+const founderBenefitsIntro =
+  "ikigai Launchpad gives founders capital, weekly operator support, investor access, and a focused in-person batch in Taipei. The program is built for teams ready to spend 12 weeks moving faster on the company.";
 
 const heroPhoto = {
   src: "/assets/programs/ikigai-workshop-room.jpeg",
@@ -41,11 +44,11 @@ const launchStationPhoto = {
 const specPillars = [
   {
     title: "Funding",
-    headline: "$100K to build full time",
+    headline: "$100K to focus full time",
     proofPoints: [
-      "$100K USD investment",
-      "12 weeks focused on the company",
-      "For founders ready to work full time",
+      "$100K USD for the company",
+      "12-week in-person Taipei batch",
+      "Full-time founder commitment",
     ],
     photo: {
       src: "/assets/programs/ikigai-founder-table.jpeg",
@@ -56,9 +59,9 @@ const specPillars = [
     title: "Hands-on support",
     headline: "Weekly support from operators",
     proofPoints: [
-      "1-on-1 mentor office hours",
-      "Founder-led workshops",
-      "Warm intros and investor matching",
+      "Weekly mentor office hours",
+      "Operator-led workshops",
+      "Investor matching and warm intros",
     ],
     photo: {
       src: "/assets/programs/ikigai-mentor-session.jpeg",
@@ -67,11 +70,11 @@ const specPillars = [
   },
   {
     title: "Community",
-    headline: "A founder batch in Taipei",
+    headline: "A focused founder batch in Taipei",
     proofPoints: [
-      "In person in Taipei",
-      "Founders building alongside each other",
-      "Support beyond the batch",
+      "In-person founder batch in Taipei",
+      "Peer founders building with you",
+      "Support after the batch",
     ],
     photo: {
       src: "/assets/programs/ikigai-group-tshirts.jpeg",
@@ -113,7 +116,18 @@ const specPillars = [
             <dt>{fact.label}</dt>
             <dd>
               <strong>{fact.value}</strong>
-              <span>{fact.note}</span>
+              <span>
+                {fact.note === "Built around Taiwan Tech Arena." ? (
+                  <>
+                    Built around{" "}
+                    <a class="prog-inline-link" href={taiwanTechArenaUrl} target="_blank" rel="noopener noreferrer">
+                      Taiwan Tech Arena
+                    </a>.
+                  </>
+                ) : (
+                  fact.note
+                )}
+              </span>
             </dd>
           </div>
         ))}
@@ -134,7 +148,7 @@ const specPillars = [
           <span class="prog-band-label">ikigai Launchpad</span>
           <h2 class="prog-section-title" id="prog-includes-heading">What founders get</h2>
         </div>
-        <p class="prog-section-copy">{ikigai.body}</p>
+        <p class="prog-section-copy">{founderBenefitsIntro}</p>
       </header>
       <div class="prog-pillar-grid">
         {specPillars.map((p) => (
@@ -189,7 +203,13 @@ const specPillars = [
         <div class="prog-launch-copy">
           <span class="prog-band-label">Also available</span>
           <h2 class="prog-launch-name" id="prog-launch-heading">{launchStation.name}</h2>
-          <p class="prog-launch-body">{launchStation.body}</p>
+          <p class="prog-launch-body">
+            Free workspace inside{" "}
+            <a class="prog-inline-link" href={taiwanTechArenaUrl} target="_blank" rel="noopener noreferrer">
+              Taiwan Tech Arena
+            </a>{" "}
+            for founders who build better around other ambitious teams.
+          </p>
           <ul class="prog-launch-highlights">
             {launchStation.highlights.map((highlight) => <li>{highlight}</li>)}
           </ul>
