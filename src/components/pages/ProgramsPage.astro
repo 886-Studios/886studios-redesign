@@ -4,8 +4,19 @@ import { siteContent } from "../../data/siteContent";
 const { programs } = siteContent;
 const [ikigai, launchStation] = programs.items;
 
-const applicationSteps = ["Apply", "Review", "886 interview", "Lifelike interview"];
+const applicationSteps = [
+  { label: "Apply" },
+  { label: "Initial Review by 886 Studios team" },
+  { label: "Interview with 886 Studios" },
+  {
+    label: "Interview with",
+    linkLabel: "Lifelike Capital",
+    href: "https://www.lifelikecap.com/",
+  },
+];
 const nextBatch = "Next batch starts Fall 2026.";
+const quickFacts = ikigai.details?.metrics ?? [];
+const ikigaiNameParts = ikigai.name.split(" ");
 
 const heroPhoto = {
   src: "/assets/programs/ikigai-workshop-room.jpeg",
@@ -62,85 +73,124 @@ const specPillars = [
 
 <div class="page" id="page-programs">
 
-  <!-- Hero: ikigai brand + key info + photo -->
   <section class="prog-hero" aria-labelledby="prog-ikigai-heading">
     <div class="prog-hero-copy">
       <div class="prog-brand-row">
         <img class="prog-mark" src="/assets/programs/ikigai-mark.png" alt="" aria-hidden="true" />
+        <span class="prog-band-label">{programs.eyebrow}</span>
       </div>
-      <h1 class="prog-h1" id="prog-ikigai-heading">{ikigai.name}</h1>
+      <h1 class="prog-h1" id="prog-ikigai-heading">
+        {ikigaiNameParts.map((part, index) => (
+          <>
+            {index > 0 && <br />}
+            <span>{part}</span>
+          </>
+        ))}
+      </h1>
       <p class="prog-lead">{programs.lead}</p>
-      <a class="btn-pri prog-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
-        Apply to ikigai Launchpad
-      </a>
-      <p class="prog-next-batch">{nextBatch}</p>
+      <div class="prog-hero-actions">
+        <a class="btn-pri prog-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
+          Apply to ikigai Launchpad
+        </a>
+        <p class="prog-next-batch">{nextBatch}</p>
+      </div>
     </div>
+    <aside class="prog-brief-card" aria-label="ikigai Launchpad at a glance">
+      <span class="prog-card-kicker">At a glance</span>
+      <dl class="prog-brief-facts">
+        {quickFacts.map((fact) => (
+          <div class="prog-brief-fact">
+            <dt>{fact.label}</dt>
+            <dd>
+              <strong>{fact.value}</strong>
+              <span>{fact.note}</span>
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </aside>
+  </section>
+
+  <section class="prog-media reveal" aria-label="ikigai Launchpad in session">
     <figure class="prog-hero-photo">
       <img src={heroPhoto.src} alt={heroPhoto.alt} decoding="async" loading="eager" fetchpriority="high" />
     </figure>
   </section>
 
   <div class="prog-body">
-
-    <!-- Pillars: what the program gives you -->
-    <section class="prog-pillars reveal" aria-label="What ikigai Launchpad includes">
-      {specPillars.map((p) => (
-        <article class="prog-pillar-card">
-          <figure class="prog-pillar-media">
-            <img src={p.photo.src} alt={p.photo.alt} decoding="async" loading="eager" />
-          </figure>
-          <div class="prog-pillar-copy">
-            <p class="prog-pillar-label">{p.title}</p>
-            <h3 class="prog-spec-name">{p.headline}</h3>
-            <ul class="prog-proof-list" aria-label={`${p.title} proof points`}>
-              {p.proofPoints.map((point) => (
-                <li class="prog-proof-item">{point}</li>
-              ))}
-            </ul>
-          </div>
-        </article>
-      ))}
+    <section class="prog-pillars reveal" aria-labelledby="prog-includes-heading">
+      <header class="prog-section-header">
+        <div class="prog-section-heading">
+          <span class="prog-band-label">ikigai Launchpad</span>
+          <h2 class="prog-section-title" id="prog-includes-heading">What founders get</h2>
+        </div>
+        <p class="prog-section-copy">{ikigai.body}</p>
+      </header>
+      <div class="prog-pillar-grid">
+        {specPillars.map((p) => (
+          <article class="prog-pillar-card">
+            <figure class="prog-pillar-media">
+              <img src={p.photo.src} alt={p.photo.alt} decoding="async" loading="lazy" />
+            </figure>
+            <div class="prog-pillar-copy">
+              <p class="prog-pillar-label">{p.title}</p>
+              <h3 class="prog-spec-name">{p.headline}</h3>
+              <ul class="prog-proof-list" aria-label={`${p.title} proof points`}>
+                {p.proofPoints.map((point) => (
+                  <li class="prog-proof-item">{point}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
     </section>
 
-    <!-- Apply: CTA + process steps -->
     <section class="prog-apply reveal" aria-label="Apply to ikigai Launchpad">
       <div class="prog-apply-copy">
         <span class="prog-band-label">Applications</span>
-        <h2 class="prog-apply-h2">Apply to ikigai<br/>Launchpad.</h2>
+        <h2 class="prog-apply-h2">Apply to ikigai Launchpad.</h2>
         <a class="btn-pri prog-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
           Apply to ikigai Launchpad
         </a>
         <p class="prog-next-batch prog-next-batch--apply">{nextBatch}</p>
       </div>
-      <div class="prog-process" aria-labelledby="prog-process-lbl">
+      <div class="prog-process-card" aria-labelledby="prog-process-lbl">
         <h3 class="prog-process-lbl" id="prog-process-lbl">What happens after you apply</h3>
         <ol class="prog-process-list">
-          {applicationSteps.map((step, i) => (
+          {applicationSteps.map((step, index) => (
             <li class="prog-process-item">
-              <span class="prog-process-num">{String(i + 1).padStart(2, "0")}</span>
-              <span class="prog-process-step">{step}</span>
+              <span class="prog-process-num" aria-hidden="true">{index + 1}.</span>
+              {step.href ? (
+                <span class="prog-process-step">
+                  {step.label}{" "}
+                  <a class="prog-process-link" href={step.href} target="_blank" rel="noopener noreferrer">
+                    {step.linkLabel}
+                  </a>
+                </span>
+              ) : (
+                <span class="prog-process-step">{step.label}</span>
+              )}
             </li>
           ))}
         </ol>
       </div>
     </section>
 
-    <!-- Launch Station: secondary program -->
     {launchStation && (
       <section class="prog-launch reveal" aria-labelledby="prog-launch-heading">
+        <figure class="prog-launch-photo">
+          <img src={launchStationPhoto.src} alt={launchStationPhoto.alt} decoding="async" loading="lazy" />
+        </figure>
         <div class="prog-launch-copy">
           <span class="prog-band-label">Also available</span>
           <h2 class="prog-launch-name" id="prog-launch-heading">{launchStation.name}</h2>
           <p class="prog-launch-body">{launchStation.body}</p>
           <ul class="prog-launch-highlights">
-            <li>Free workspace</li>
-            <li>Founder community</li>
+            {launchStation.highlights.map((highlight) => <li>{highlight}</li>)}
           </ul>
           <span class="prog-launch-status">{launchStation.cta.label}</span>
         </div>
-        <figure class="prog-launch-photo">
-          <img src={launchStationPhoto.src} alt={launchStationPhoto.alt} decoding="async" />
-        </figure>
       </section>
     )}
 
