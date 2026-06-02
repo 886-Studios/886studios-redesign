@@ -2,15 +2,31 @@
 import { siteContent } from "../../data/siteContent";
 
 const { launchStation } = siteContent.programs;
+
+const founderMoments = [
+  "Refining an MVP",
+  "Preparing to fundraise",
+  "Looking for a Taipei base",
+];
 ---
 
 <div class="page ls-page" id="page-launch-station">
   <section class="ls-hero" aria-labelledby="ls-heading">
     <div class="ls-hero-copy">
-      <a class="ls-back" href="/programs">Programs</a>
-      <p class="prog-band-label">{launchStation.eyebrow}</p>
+      <div class="ls-topline">
+        <a class="ls-back" href="/programs">Programs</a>
+        <p class="prog-band-label">{launchStation.eyebrow}</p>
+      </div>
       <h1 class="ls-h1" id="ls-heading">{launchStation.title}</h1>
       <p class="ls-lead">{launchStation.lead}</p>
+      <div class="ls-hero-signals" aria-label="Launch Station essentials">
+        {launchStation.essentials.map((item) => (
+          <article class="ls-signal">
+            <p>{item.label}</p>
+            <strong>{item.value}</strong>
+          </article>
+        ))}
+      </div>
       <div class="ls-actions" aria-label="Launch Station status and updates">
         <span class="ls-status">{launchStation.status}</span>
         <a class="btn-sec ls-discord" href="https://discord.gg/FGcEHJyB3F" target="_blank" rel="noopener noreferrer">
@@ -24,33 +40,35 @@ const { launchStation } = siteContent.programs;
   </section>
 
   <main class="ls-body">
-    <section class="ls-essentials reveal" aria-label="Launch Station essentials">
-      {launchStation.essentials.map((item) => (
-        <article class="ls-essential">
-          <p>{item.label}</p>
-          <strong>{item.value}</strong>
-        </article>
-      ))}
-    </section>
-
-    <section class="ls-intro reveal" aria-labelledby="ls-about-heading">
-      <div class="ls-section-kicker">What it is</div>
-      <div class="ls-text-stack">
+    <section class="ls-fit reveal" aria-labelledby="ls-about-heading">
+      <div class="ls-fit-copy">
+        <div class="ls-section-kicker">What it is</div>
         <h2 id="ls-about-heading">A free workspace for founders who build better around other founders.</h2>
-        {launchStation.intro.map((paragraph) => (
-          <p>{paragraph}</p>
-        ))}
+        <div class="ls-text-stack">
+          {launchStation.intro.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
       </div>
+      <aside class="ls-founder-moments" aria-label="Good fit for founders">
+        <span>Good fit for</span>
+        {founderMoments.map((moment) => (
+          <strong>{moment}</strong>
+        ))}
+      </aside>
     </section>
 
     <section class="ls-benefits reveal" aria-labelledby="ls-benefits-heading">
-      <div>
+      <div class="ls-benefits-copy">
         <div class="ls-section-kicker">What you get</div>
         <h2 id="ls-benefits-heading">Office access, startup perks, and a direct line into the 886 community.</h2>
       </div>
       <ul class="ls-benefit-list">
-        {launchStation.benefits.map((benefit) => (
-          <li>{benefit}</li>
+        {launchStation.benefits.map((benefit, index) => (
+          <li>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <strong>{benefit}</strong>
+          </li>
         ))}
       </ul>
     </section>
@@ -66,9 +84,10 @@ const { launchStation } = siteContent.programs;
     </section>
 
     <section class="ls-updates reveal" aria-labelledby="ls-updates-heading">
-      <div>
+      <div class="ls-updates-copy">
         <div class="ls-section-kicker">Updates</div>
-        <h2 id="ls-updates-heading">Follow for application news.</h2>
+        <h2 id="ls-updates-heading">Applications open soon.</h2>
+        <p>{launchStation.status} Follow 886 Studios and ikigai Launchpad for the announcement.</p>
       </div>
       <div class="ls-link-row">
         {launchStation.links.map((link) => (
