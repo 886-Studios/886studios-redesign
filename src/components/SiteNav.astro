@@ -6,6 +6,8 @@ interface Props {
 }
 
 const { currentPath } = Astro.props;
+
+const isActiveNavItem = (href: string) => href === "/" ? currentPath === "/" : currentPath === href || currentPath.startsWith(`${href}/`);
 ---
 
 <nav class="site-nav">
@@ -16,7 +18,7 @@ const { currentPath } = Astro.props;
     <div class="nav-links">
       {
         siteContent.nav.items.map((item) => (
-          <a class:list={["nav-link", currentPath === item.href && "active"]} href={item.href}>
+          <a class:list={["nav-link", isActiveNavItem(item.href) && "active"]} href={item.href}>
             {item.label}
           </a>
         ))
@@ -47,7 +49,7 @@ const { currentPath } = Astro.props;
     <nav class="mobile-drawer-nav">
       {
         siteContent.nav.items.map((item) => (
-          <a class:list={["mobile-nav-link", currentPath === item.href && "active"]} href={item.href}>
+          <a class:list={["mobile-nav-link", isActiveNavItem(item.href) && "active"]} href={item.href}>
             {item.label}
           </a>
         ))

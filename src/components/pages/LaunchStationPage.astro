@@ -1,0 +1,80 @@
+---
+import { siteContent } from "../../data/siteContent";
+
+const { launchStation } = siteContent.programs;
+---
+
+<div class="page ls-page" id="page-launch-station">
+  <section class="ls-hero" aria-labelledby="ls-heading">
+    <div class="ls-hero-copy">
+      <a class="ls-back" href="/programs">Programs</a>
+      <p class="prog-band-label">{launchStation.eyebrow}</p>
+      <h1 class="ls-h1" id="ls-heading">{launchStation.title}</h1>
+      <p class="ls-lead">{launchStation.lead}</p>
+      <div class="ls-actions" aria-label="Launch Station status and updates">
+        <span class="ls-status">{launchStation.status}</span>
+        <a class="btn-sec ls-discord" href="https://discord.gg/FGcEHJyB3F" target="_blank" rel="noopener noreferrer">
+          Join Discord
+        </a>
+      </div>
+    </div>
+    <figure class="ls-poster">
+      <img src={launchStation.poster.src} alt={launchStation.poster.alt} decoding="async" loading="eager" fetchpriority="high" />
+    </figure>
+  </section>
+
+  <main class="ls-body">
+    <section class="ls-essentials reveal" aria-label="Launch Station essentials">
+      {launchStation.essentials.map((item) => (
+        <article class="ls-essential">
+          <p>{item.label}</p>
+          <strong>{item.value}</strong>
+        </article>
+      ))}
+    </section>
+
+    <section class="ls-intro reveal" aria-labelledby="ls-about-heading">
+      <div class="ls-section-kicker">What it is</div>
+      <div class="ls-text-stack">
+        <h2 id="ls-about-heading">A free workspace for founders who build better around other founders.</h2>
+        {launchStation.intro.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </section>
+
+    <section class="ls-benefits reveal" aria-labelledby="ls-benefits-heading">
+      <div>
+        <div class="ls-section-kicker">What you get</div>
+        <h2 id="ls-benefits-heading">Office access, startup perks, and a direct line into the 886 community.</h2>
+      </div>
+      <ul class="ls-benefit-list">
+        {launchStation.benefits.map((benefit) => (
+          <li>{benefit}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="ls-contribution reveal" aria-labelledby="ls-contribution-heading">
+      <div class="ls-contribution-inner">
+        <div>
+          <div class="ls-section-kicker">Community contribution</div>
+          <h2 id="ls-contribution-heading">Not just a desk.</h2>
+        </div>
+        <p>{launchStation.contribution}</p>
+      </div>
+    </section>
+
+    <section class="ls-updates reveal" aria-labelledby="ls-updates-heading">
+      <div>
+        <div class="ls-section-kicker">Updates</div>
+        <h2 id="ls-updates-heading">Follow for application news.</h2>
+      </div>
+      <div class="ls-link-row">
+        {launchStation.links.map((link) => (
+          <a href={link.href} target="_blank" rel="noopener noreferrer">{link.label}</a>
+        ))}
+      </div>
+    </section>
+  </main>
+</div>
