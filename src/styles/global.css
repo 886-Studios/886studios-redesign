@@ -4279,23 +4279,61 @@ body.is-home nav.site-nav.is-scrolled {
       line-height: 1.45;
     }
 
+    .ls-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 28px;
+    }
+
+    .ls-secondary-cta {
+      display: inline-flex;
+      align-items: center;
+      min-height: 46px;
+      color: var(--text-secondary);
+      font-size: 0.94rem;
+      font-weight: 700;
+      line-height: 1;
+      text-decoration: none;
+      transition: color 0.18s;
+    }
+
+    .ls-secondary-cta:hover,
+    .ls-secondary-cta:focus-visible {
+      color: var(--text-primary);
+    }
+
+    .ls-secondary-cta:focus-visible {
+      outline: 2px solid var(--purple-bright);
+      outline-offset: 4px;
+      border-radius: 6px;
+    }
+
     .ls-hero-signals {
       display: grid;
-      gap: 18px;
+      grid-column: 1 / -1;
+      grid-template-columns: 0.7fr repeat(3, minmax(0, 1fr));
+      gap: 0;
       max-width: none;
-      margin-top: 0;
-      padding: 24px;
-      border: 1px solid rgba(255, 255, 255, 0.075);
-      border-radius: var(--r-sm);
-      background: var(--bg-card);
+      margin-top: clamp(8px, 2vw, 18px);
+      padding: 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.075);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+      background: transparent;
+    }
+
+    .ls-hero-signals .prog-card-kicker {
+      padding: 18px 22px 18px 0;
     }
 
     .ls-signal,
     .ls-signal + .ls-signal {
       display: block;
       min-width: 0;
-      padding: 0;
+      padding: 18px 22px;
       border: 0;
+      border-left: 1px solid rgba(255, 255, 255, 0.075);
       background: transparent;
     }
 
@@ -4430,6 +4468,23 @@ body.is-home nav.site-nav.is-scrolled {
       .ls-hero-signals {
         max-width: 620px;
       }
+
+      .ls-hero-signals {
+        grid-template-columns: 1fr;
+        max-width: 100%;
+      }
+
+      .ls-hero-signals .prog-card-kicker,
+      .ls-signal,
+      .ls-signal + .ls-signal {
+        padding: 16px 0;
+        border-left: 0;
+      }
+
+      .ls-signal,
+      .ls-signal + .ls-signal {
+        border-top: 1px solid rgba(255, 255, 255, 0.075);
+      }
     }
 
     @media (max-width: 640px) {
@@ -4463,7 +4518,7 @@ body.is-home nav.site-nav.is-scrolled {
       }
 
       .ls-hero-signals {
-        padding: 20px;
+        margin-top: 4px;
       }
 
       .ls-benefits,

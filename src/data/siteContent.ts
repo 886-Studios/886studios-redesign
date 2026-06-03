@@ -355,11 +355,9 @@ export const siteContent = {
         },
       ],
       benefits: [
-        "A free dedicated desk in 886 Studios' open startup office",
-        "Access to meeting rooms, kitchen, snacks, and TTA facilities",
-        "Startup perks across AWS, Notion, Ramp, Webflow, and more",
-        "Opportunities to meet founders, investors, and community members",
-        "Consideration for ikigai Launchpad and potential investment",
+        "Free dedicated desk space inside 886 Studios' open startup office",
+        "Exclusive startup software perks across AWS, Notion, Ramp, Webflow, and more",
+        "Founder and investor community at Taiwan Tech Arena",
       ],
       contribution:
         "In return, Launch Station members contribute to the community by hosting a session, sharing what they are learning, giving a demo, or helping other founders move faster.",

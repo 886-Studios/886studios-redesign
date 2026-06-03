@@ -18,6 +18,10 @@ const { launchStation } = siteContent.programs;
         <h1 class="ls-h1" id="ls-heading">{launchStation.title}</h1>
         <p class="ls-lead">{launchStation.lead}</p>
         <p class="ls-status-note">{launchStation.status}</p>
+        <div class="ls-hero-actions">
+          <a class="btn-pri ls-primary-cta" href="/contact">Contact 886</a>
+          <a class="ls-secondary-cta" href="/programs">View all programs</a>
+        </div>
       </div>
       <div class="ls-hero-signals" aria-label="Launch Station essentials">
         <span class="prog-card-kicker">At a glance</span>
@@ -49,7 +53,7 @@ const { launchStation } = siteContent.programs;
 
     <section class="ls-note reveal" aria-labelledby="ls-contribution-heading">
       <div class="ls-section-kicker">Community contribution</div>
-      <h2 id="ls-contribution-heading">Members contribute back.</h2>
+      <h2 id="ls-contribution-heading">Contribute to the room.</h2>
       <p>{launchStation.contribution}</p>
     </section>
   </main>
