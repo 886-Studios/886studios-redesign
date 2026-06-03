@@ -3,15 +3,7 @@ import { siteContent } from "../../data/siteContent";
 
 const { resources } = siteContent;
 
-// Enrich library items with category and color metadata
-const libraryMeta = [
-  { category: "Accelerators",   color: "gold"   },
-  { category: "Legal & Setup",  color: "jade"   },
-  { category: "Applications",   color: "purple" },
-  { category: "Ecosystem",      color: "jade"   },
-  { category: "Community",      color: "purple" },
-  { category: "Interviews",     color: "gold"   },
-];
+const libraryColors = ["gold", "jade", "purple", "jade", "purple", "gold"];
 
 ---
 
@@ -43,15 +35,10 @@ const libraryMeta = [
       <div class="res-card-grid">
         {resources.libraryItems.map((item, i) => (
           <a
-            class={`res-card res-card--${libraryMeta[i].color}`}
+            class={`res-card res-card--${libraryColors[i]}`}
             href={item.href}
             aria-label={item.title}
           >
-            <div class="res-card-top">
-              <span class={`res-card-tag res-card-tag--${libraryMeta[i].color}`}>
-                {libraryMeta[i].category}
-              </span>
-            </div>
             <h3 class="res-card-title">{item.title}</h3>
             <p class="res-card-desc">{item.description}</p>
             <div class="res-card-footer">
@@ -78,15 +65,15 @@ const libraryMeta = [
           <p class="res-ama-panel-label">How it works</p>
           <ol class="res-ama-steps">
             <li>
-              <span class="res-step-num">01</span>
+              <span class="res-step-num">1</span>
               <span>Submit your question anonymously</span>
             </li>
             <li>
-              <span class="res-step-num">02</span>
+              <span class="res-step-num">2</span>
               <span>Reviewed by our venture partners</span>
             </li>
             <li>
-              <span class="res-step-num">03</span>
+              <span class="res-step-num">3</span>
               <span>Receive a thoughtful, experienced response</span>
             </li>
           </ol>
@@ -98,7 +85,6 @@ const libraryMeta = [
     <section class="res-section res-perks" aria-labelledby="res-perks-heading">
       <header class="res-section-hdr">
         <div>
-          <p class="res-exclusive-eyebrow">Members Only</p>
           <h2 id="res-perks-heading">{resources.perks.title}</h2>
           <p>
             Unlock these perks by working with us through{" "}

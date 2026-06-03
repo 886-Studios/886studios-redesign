@@ -21,7 +21,6 @@ function groupEventsByYear(items: LumaEventCard[]) {
   }, []);
 }
 
-const upcomingEventsByYear = groupEventsByYear(lumaEvents.upcomingEvents);
 const pastEventsByYear = groupEventsByYear(lumaEvents.pastEvents);
 ---
 
@@ -38,19 +37,10 @@ const pastEventsByYear = groupEventsByYear(lumaEvents.pastEvents);
       lumaEvents.upcomingEvents.length > 0 ? (
         <section class="events-section" aria-labelledby="upcoming-events-title">
           <h2 class="events-section-title" id="upcoming-events-title">{events.upcomingTitle}</h2>
-          <div class="events-year-stack">
-            {
-              upcomingEventsByYear.map((group) => (
-                <section class="events-year-group" aria-label={`${group.year} upcoming events`}>
-                  <h3 class="events-year-heading">{group.year}</h3>
-                  <div class="events-list">
-                    {group.events.map((item) => (
-                      <EventCard event={item} tag="RSVP" highlight highlightLabel={events.upcomingHighlightLabel} />
-                    ))}
-                  </div>
-                </section>
-              ))
-            }
+          <div class="events-list" aria-label="Upcoming events">
+            {lumaEvents.upcomingEvents.map((item) => (
+              <EventCard event={item} tag="RSVP" highlight highlightLabel={events.upcomingHighlightLabel} />
+            ))}
           </div>
         </section>
       ) : (

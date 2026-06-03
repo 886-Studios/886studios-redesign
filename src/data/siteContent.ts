@@ -267,7 +267,7 @@ export const siteContent = {
             {
               label: "Length",
               value: "12 weeks",
-              note: "A focused in-person batch.",
+              note: "",
             },
             {
               label: "Location",
@@ -276,8 +276,9 @@ export const siteContent = {
             },
             {
               label: "Support",
-              value: "Office hours",
-              note: "Plus investor intros and post-program support.",
+              value: "1-on-1 Weekly Office Hours",
+              note:
+                "Plus: Workshops, guest speakers, team building, customer and investor intros, and more.",
             },
           ],
           sections: [
