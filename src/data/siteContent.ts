@@ -334,7 +334,7 @@ export const siteContent = {
       title: "Launch Station",
       eyebrow: "Community program",
       poster: {
-        src: "/assets/programs/launch-station-poster.jpg",
+        src: "/assets/programs/launch-station-community-collage.jpg",
         alt: "Launch Station poster",
       },
       lead:

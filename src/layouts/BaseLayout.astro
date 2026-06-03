@@ -11,14 +11,15 @@ interface Props {
 }
 
 const {
-  title = "886 Studios — Taipei's Premier Startup Accelerator",
-  description = "886 Studios backs ambitious early-stage founders building companies with global potential — built by the founders behind Twitch, Kabam, and Guitar Hero.",
-  ogImage = "https://886studios.com/og-image.jpg",
+  title = "886 Studios",
+  description = "Newsletter →",
+  ogImage = "https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/a3afedd0-7225-4cad-930f-bc3e1d574804/886_banner/public",
   hideFooterSocials = false,
 } = Astro.props;
 
+const siteUrl = "https://886studios.com";
 const currentPath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/$/, "");
-const canonicalUrl = Astro.url.href;
+const canonicalUrl = currentPath === "/" ? siteUrl : `${siteUrl}${currentPath}`;
 ---
 
 <!DOCTYPE html>
@@ -28,6 +29,7 @@ const canonicalUrl = Astro.url.href;
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph -->
@@ -36,7 +38,9 @@ const canonicalUrl = Astro.url.href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content="886 Studios" />
     <meta property="og:site_name" content="886 Studios" />
+    <meta property="og:locale" content="en-US" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -44,6 +48,7 @@ const canonicalUrl = Astro.url.href;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="886 Studios" />
 
     <meta name="theme-color" content="#050507" />
     <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
