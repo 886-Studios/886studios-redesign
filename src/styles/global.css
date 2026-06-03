@@ -2906,6 +2906,7 @@ body.is-home nav.site-nav.is-scrolled {
       justify-self: end;
       width: min(100%, 260px);
       aspect-ratio: 4 / 5;
+      border: 0;
       background: #e8e5dc;
       opacity: 0.92;
     }
@@ -4226,7 +4227,7 @@ body.is-home nav.site-nav.is-scrolled {
       margin: 0;
       overflow: hidden;
       aspect-ratio: 4 / 5;
-      border: 1px solid rgba(255, 255, 255, 0.06);
+      border: 0;
       border-radius: var(--r-sm);
       background: #e8e5dc;
       box-shadow: 0 20px 56px rgba(0, 0, 0, 0.28);
