@@ -212,9 +212,9 @@ export const siteContent = {
         },
         {
           name: "Cold Electric",
-          src: "/assets/logos/cold-electric-og.png",
+          src: "/assets/logos/cold-electric.svg",
           alt: "Cold Electric logo",
-          imageClass: "is-tall",
+          imageClass: "is-cold-electric",
         },
         {
           name: "New Taipei Kings",
