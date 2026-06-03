@@ -317,7 +317,11 @@ export const siteContent = {
         track: "Community",
         name: "Launch Station",
         body: "A free dedicated desk and founder community inside Taiwan Tech Arena for early-stage builders in Taipei.",
-        highlights: ["Free dedicated desk", "TTA office access", "Startup perks"],
+        highlights: [
+          "Free dedicated desk space",
+          "Exclusive startup software perks",
+          "Founder and investor community",
+        ],
         fit: "Motivated founders refining an MVP, preparing to fundraise, or looking for a sharper startup environment.",
         cta: {
           type: "link",

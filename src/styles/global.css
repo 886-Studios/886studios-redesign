@@ -2545,7 +2545,6 @@ body.is-home nav.site-nav.is-scrolled {
       padding-bottom: clamp(84px, 10vw, 120px);
     }
 
-    .prog-pillars,
     .prog-apply,
     .prog-launch {
       padding-top: var(--space-2xl);
@@ -2553,6 +2552,7 @@ body.is-home nav.site-nav.is-scrolled {
     }
 
     .prog-pillars {
+      padding-top: var(--space-2xl);
       padding-bottom: var(--space-2xl);
     }
 
