@@ -4378,6 +4378,10 @@ body.is-home nav.site-nav.is-scrolled {
       border-bottom: 0;
     }
 
+    .ls-benefit-list li::before {
+      content: none;
+    }
+
     .ls-benefit-list li span {
       display: inline-flex;
       align-items: center;
