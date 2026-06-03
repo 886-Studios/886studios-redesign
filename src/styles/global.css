@@ -2438,7 +2438,7 @@ body.is-home nav.site-nav.is-scrolled {
     }
 
     .prog-brief-card,
-    .prog-benefit-card,
+    .prog-pillar-card,
     .prog-process-card {
       border: 1px solid rgba(255, 255, 255, 0.075);
       border-radius: var(--r-sm);
@@ -2585,55 +2585,49 @@ body.is-home nav.site-nav.is-scrolled {
       line-height: 1.78;
     }
 
-    .prog-benefit-grid {
+    .prog-pillar-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
     }
 
-    .prog-benefit-card {
-      display: grid;
-      grid-template-rows: auto auto 1fr auto;
-      gap: 12px;
+    .prog-pillar-card {
+      display: flex;
       min-width: 0;
       overflow: hidden;
+      flex-direction: column;
+    }
+
+    .prog-pillar-media {
+      aspect-ratio: 16 / 10;
+      border: 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 0;
+      box-shadow: none;
+    }
+
+    .prog-pillar-card:nth-of-type(1) .prog-pillar-media img {
+      object-position: 48% 52%;
+    }
+
+    .prog-pillar-card:nth-of-type(2) .prog-pillar-media img {
+      object-position: 52% 50%;
+    }
+
+    .prog-pillar-card:nth-of-type(3) .prog-pillar-media img {
+      object-position: 50% 44%;
+    }
+
+    .prog-pillar-copy {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      min-width: 0;
       padding: 22px;
-      min-height: 260px;
-      color: inherit;
-      text-decoration: none;
-      transition:
-        border-color 0.22s ease,
-        background 0.22s ease,
-        transform 0.22s ease;
     }
 
-    .prog-benefit-card:hover,
-    .prog-benefit-card:focus-visible {
-      transform: translateY(-2px);
-      border-color: rgba(167, 139, 250, 0.26);
-      background: rgba(18, 18, 28, 0.96);
-    }
-
-    .prog-benefit-card:focus-visible {
-      outline: 2px solid var(--purple-bright);
-      outline-offset: 4px;
-    }
-
-    .prog-benefit-index {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 34px;
-      height: 34px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 999px;
-      color: var(--text-primary);
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      line-height: 1;
-    }
-
-    .prog-benefit-label {
+    .prog-pillar-label {
+      margin: 0 0 8px;
       color: color-mix(in srgb, var(--purple-bright) 78%, var(--text-secondary));
       font-family: var(--font-mono);
       font-size: 0.66rem;
@@ -2642,20 +2636,43 @@ body.is-home nav.site-nav.is-scrolled {
       text-transform: uppercase;
     }
 
-    .prog-benefit-card strong {
+    .prog-spec-name {
       margin: 0;
+      min-height: 3.55rem;
       color: var(--text-primary);
-      font-size: 1.44rem;
+      font-size: 1.55rem;
       font-weight: 700;
       letter-spacing: 0;
-      line-height: 1.16;
+      line-height: 1.14;
     }
 
-    .prog-benefit-card > span:last-child {
+    .prog-proof-list {
+      display: grid;
+      gap: 10px;
+      margin: 20px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .prog-proof-item {
+      display: grid;
+      grid-template-columns: 9px minmax(0, 1fr);
+      gap: 10px;
       color: var(--text-secondary);
       font-size: 0.92rem;
+      font-weight: 500;
       letter-spacing: 0;
-      line-height: 1.56;
+      line-height: 1.48;
+    }
+
+    .prog-proof-item::before {
+      content: "";
+      width: 5px;
+      height: 5px;
+      margin-top: 0.62em;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      opacity: 0.8;
     }
 
     .prog-apply {
@@ -2916,7 +2933,7 @@ body.is-home nav.site-nav.is-scrolled {
       }
 
       .prog-brief-facts,
-      .prog-benefit-grid {
+      .prog-pillar-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -2978,13 +2995,13 @@ body.is-home nav.site-nav.is-scrolled {
       }
 
       .prog-brief-card,
-      .prog-benefit-card,
+      .prog-pillar-copy,
       .prog-process-card {
         padding: 20px;
       }
 
       .prog-brief-facts,
-      .prog-benefit-grid,
+      .prog-pillar-grid,
       .prog-process-list {
         grid-template-columns: 1fr;
       }
@@ -3033,12 +3050,9 @@ body.is-home nav.site-nav.is-scrolled {
         line-height: 1.68;
       }
 
-      .prog-benefit-card {
-        min-height: 220px;
-      }
-
-      .prog-benefit-card strong {
-        font-size: 1.35rem;
+      .prog-spec-name {
+        min-height: 0;
+        font-size: 1.55rem;
       }
 
       .prog-launch-name {

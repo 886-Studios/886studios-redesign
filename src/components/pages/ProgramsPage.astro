@@ -36,60 +36,45 @@ const launchStationPhoto = {
   alt: programs.launchStation.poster.alt,
 };
 
-const founderBenefits = [
+const specPillars = [
   {
-    label: "Funding",
-    title: "$100K USD",
-    body: "Capital for the company so founders can focus full-time on building.",
-    href: "https://withikigai.com/launch",
+    title: "Funding",
+    headline: "$100K",
+    proofPoints: [
+      "$100K USD for the company",
+      "12-week in-person Taipei batch",
+      "Full-time founder commitment",
+    ],
+    photo: {
+      src: "/assets/programs/ikigai-founder-table.jpeg",
+      alt: "Founders working together during ikigai Launchpad",
+    },
   },
   {
-    label: "Support",
-    title: "1-on-1 Weekly Office Hours",
-    body: "Dedicated weekly time with 886 partners to work through product, strategy, and roadblocks.",
-    href: "https://withikigai.com/launch/program-offers-1/mentor-office-hours",
+    title: "Hands-on support",
+    headline: "1-on-1 Weekly Office Hours",
+    proofPoints: [
+      "Founder-led workshops and guest speakers",
+      "Warm customer and investor introductions",
+      "Support beyond the batch",
+    ],
+    photo: {
+      src: "/assets/programs/ikigai-mentor-session.jpeg",
+      alt: "ikigai Launchpad mentor session with founders",
+    },
   },
   {
-    label: "Workshops",
-    title: "Founder-Led Workshops",
-    body: "Sessions on storytelling, pitch decks, pitching, market sizing, pricing, investor relations, and more.",
-    href: "https://withikigai.com/launch/program-offers-1/workshops",
-  },
-  {
-    label: "Fundraising",
-    title: "Demo Day",
-    body: "A focused moment for teams to present progress and build investor momentum after the batch.",
-    href: "https://withikigai.com/launch/program-offers-1/investor-matching",
-  },
-  {
-    label: "Network",
-    title: "Guest Speakers",
-    body: "Access to operators, founders, and investors who bring practical context into the room.",
-    href: "https://withikigai.com/launch",
-  },
-  {
-    label: "Batch",
-    title: "Team Building",
-    body: "Offsites and founder activities that help the batch build trust, share ideas, and push together.",
-    href: "https://withikigai.com/launch/program-offers-1/team-building-activities",
-  },
-  {
-    label: "Workspace",
-    title: "Free Office Space in Taipei",
-    body: "Desk and office space inside Taiwan Tech Arena for the duration of the program.",
-    href: "https://withikigai.com/launch/program-offers-1/office-space-in-taipei",
-  },
-  {
-    label: "Intros",
-    title: "Customer and Investor Introductions",
-    body: "Warm introductions, investor matching, and help finding the right people as the company takes shape.",
-    href: "https://withikigai.com/launch/program-offers-1/warm-intros",
-  },
-  {
-    label: "Beyond",
-    title: "Perks, Events, and Alumni Support",
-    body: "Startup perks, founder events, and tailored support that continues after the 12-week batch.",
-    href: "https://withikigai.com/launch/program-offers-1/exclusive-access-to-corporate-perks",
+    title: "Community",
+    headline: "A community of founders & innovators",
+    proofPoints: [
+      "In-person founder batch in Taipei",
+      "Peer founders building with you",
+      "Support after the batch",
+    ],
+    photo: {
+      src: "/assets/programs/ikigai-group-tshirts.jpeg",
+      alt: "ikigai Launchpad founders together in Taipei",
+    },
   },
 ];
 ---
@@ -143,14 +128,22 @@ const founderBenefits = [
         </div>
         <p class="prog-section-copy">{founderBenefitsIntro}</p>
       </header>
-      <div class="prog-benefit-grid">
-        {founderBenefits.map((benefit, index) => (
-          <a class="prog-benefit-card" href={benefit.href} target="_blank" rel="noopener noreferrer">
-            <span class="prog-benefit-index">{String(index + 1).padStart(2, "0")}</span>
-            <span class="prog-benefit-label">{benefit.label}</span>
-            <strong>{benefit.title}</strong>
-            <span>{benefit.body}</span>
-          </a>
+      <div class="prog-pillar-grid">
+        {specPillars.map((p) => (
+          <article class="prog-pillar-card">
+            <figure class="prog-pillar-media">
+              <img src={p.photo.src} alt={p.photo.alt} decoding="async" loading="lazy" />
+            </figure>
+            <div class="prog-pillar-copy">
+              <p class="prog-pillar-label">{p.title}</p>
+              <h3 class="prog-spec-name">{p.headline}</h3>
+              <ul class="prog-proof-list" aria-label={`${p.title} proof points`}>
+                {p.proofPoints.map((point) => (
+                  <li class="prog-proof-item">{point}</li>
+                ))}
+              </ul>
+            </div>
+          </article>
         ))}
       </div>
     </section>
