@@ -683,8 +683,15 @@ body.is-home nav.site-nav.is-scrolled {
   animation: fadeUp 0.6s 0.28s ease forwards;
 }
 
+#page-home .hero-actions {
+  display: grid;
+  place-items: center;
+}
+
 .hero-actions .btn-pri {
+  margin-inline: auto;
   padding: 0 24px;
+  justify-content: center;
 }
 
 .hero-actions .btn-pri::after {
