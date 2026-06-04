@@ -365,7 +365,7 @@ export const siteContent = {
     footer: "",
   },
   resources: {
-    title: "Tools for You",
+    title: "Resources Library",
     libraryItems: [
       {
         title: "Y Combinator 101",
@@ -405,12 +405,9 @@ export const siteContent = {
       },
     ],
     ama: {
-      title: "Ask Me Anything",
-      paragraphs: [
-        "Building a company is undeniably challenging, a reality we fully understand from personal experience. Founders constantly find themselves navigating a complex intersection of responsibilities — making tough decisions, grappling with uncertainty, and sometimes needing to part ways with individuals or ideas.",
-        "We're here to lend an empathetic ear and offer assistance whenever you need it.",
-        "In 886 AMA, your questions will be addressed asynchronously by our venture partners who have encountered similar experiences.",
-      ],
+      title: "Have more questions?",
+      lead:
+        "about your business, fundraising, industry, or want feedback on your idea from our partners? let us know!",
       ctaLabel: "Founder AMA",
       ctaHref: "https://tally.so/r/m626gk",
     },
@@ -421,38 +418,75 @@ export const siteContent = {
         {
           title: "Productivity",
           items: [
-            { label: "Notion", href: "https://notion.so" },
-            { label: "Coda", href: "https://coda.io" },
-            { label: "DocSend", href: "https://www.docsend.com" },
-            { label: "Miro", href: "https://miro.com" },
+            {
+              label: "Notion",
+              href: "https://notion.so",
+              logoSrc: "https://www.google.com/s2/favicons?domain=notion.so&sz=64",
+            },
+            {
+              label: "Coda",
+              href: "https://coda.io",
+              logoSrc: "https://www.google.com/s2/favicons?domain=coda.io&sz=64",
+            },
+            {
+              label: "DocSend",
+              href: "https://www.docsend.com",
+              logoSrc: "https://www.google.com/s2/favicons?domain=docsend.com&sz=64",
+            },
+            {
+              label: "Miro",
+              href: "https://miro.com",
+              logoSrc: "https://www.google.com/s2/favicons?domain=miro.com&sz=64",
+            },
           ],
         },
         {
           title: "Finances",
           items: [
-            { label: "Ramp", href: "https://ramp.com" },
-            { label: "Mercury", href: "https://mercury.com" },
+            {
+              label: "Ramp",
+              href: "https://ramp.com",
+              logoSrc: "https://www.google.com/s2/favicons?domain=ramp.com&sz=64",
+            },
+            {
+              label: "Mercury",
+              href: "https://mercury.com",
+              logoSrc: "https://www.google.com/s2/favicons?domain=mercury.com&sz=64",
+            },
           ],
         },
         {
           title: "Marketing",
           items: [
-            { label: "Hubspot", href: "https://www.hubspot.com" },
-            { label: "Webflow", href: "https://webflow.com" },
+            {
+              label: "Hubspot",
+              href: "https://www.hubspot.com",
+              logoSrc: "https://www.google.com/s2/favicons?domain=hubspot.com&sz=64",
+            },
+            {
+              label: "Webflow",
+              href: "https://webflow.com",
+              logoSrc: "https://www.google.com/s2/favicons?domain=webflow.com&sz=64",
+            },
           ],
         },
         {
           title: "Engineering",
           items: [
-            { label: "AWS Activate", href: "https://aws.amazon.com/activate/" },
-            { label: "GitHub", href: "https://github.com" },
+            {
+              label: "AWS Activate",
+              href: "https://aws.amazon.com/activate/",
+              logoSrc: "https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64",
+            },
+            {
+              label: "GitHub",
+              href: "https://github.com",
+              logoSrc: "https://www.google.com/s2/favicons?domain=github.com&sz=64",
+            },
           ],
         },
       ],
     },
-    contactPrompt: "Need more help?",
-    contactLabel: "Contact Us",
-    contactHref: "/contact",
   },
   about: {
     eyebrow: "About Us",

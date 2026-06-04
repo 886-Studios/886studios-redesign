@@ -55,7 +55,7 @@ const libraryColors = ["gold", "jade", "purple", "jade", "purple", "gold"];
         <div class="res-ama-body">
           <div class="section-tag">Community</div>
           <h2 id="res-ama-heading">{resources.ama.title}</h2>
-          <p class="res-ama-lead">{resources.ama.paragraphs[2]}</p>
+          <p class="res-ama-lead">{resources.ama.lead}</p>
           <a class="btn-pri" href={resources.ama.ctaHref} target="_blank" rel="noopener noreferrer">
             {resources.ama.ctaLabel}
           </a>
@@ -108,26 +108,15 @@ const libraryColors = ["gold", "jade", "purple", "jade", "purple", "gold"];
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <span class="res-perk-logo">
+                    <img src={item.logoSrc} alt="" loading="lazy" decoding="async" />
+                  </span>
                   {item.label}
                 </a>
               ))}
             </div>
           </div>
         ))}
-      </div>
-    </section>
-
-    <!-- Contact CTA -->
-    <section class="res-section" aria-label="Need more help">
-      <div class="res-ama-card res-contact-card">
-        <div class="res-ama-body">
-          <div class="section-tag">Get in touch</div>
-          <h2>{resources.contactPrompt}</h2>
-          <p class="res-ama-lead">
-            Our team is ready to help you navigate the Taiwan startup ecosystem — whether you're just getting started or already scaling.
-          </p>
-          <a class="btn-pri" href={resources.contactHref}>{resources.contactLabel}</a>
-        </div>
       </div>
     </section>
 

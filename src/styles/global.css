@@ -4878,7 +4878,9 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .res-perk-tool {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-size: 13.5px;
   font-weight: 500;
   color: var(--text-secondary);
@@ -4894,13 +4896,21 @@ body.is-home nav.site-nav.is-scrolled {
   color: var(--purple-bright);
 }
 
-/* Contact card */
-.res-contact-card {
-  grid-template-columns: 1fr;
+.res-perk-logo {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
 }
 
-.res-contact-card .res-ama-body {
-  max-width: 560px;
+.res-perk-logo img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
 }
 
 /* ── Responsive ── */
