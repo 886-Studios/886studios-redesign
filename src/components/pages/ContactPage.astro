@@ -1,5 +1,4 @@
 ---
-import SocialLinks from "../SocialLinks.astro";
 import { siteContent } from "../../data/siteContent";
 
 const { contact } = siteContent;
@@ -10,7 +9,6 @@ const { contact } = siteContent;
     <div class="pg-hero-glow"></div>
     <div class="section-tag">{contact.eyebrow}</div>
     <h1 class="section-h2 pg-hero-title">{contact.title}</h1>
-    <p class="section-lead section-lead--flush">{contact.lead}</p>
   </div>
   <div class="pg-divider"></div>
   <div class="section">
@@ -30,23 +28,6 @@ const { contact } = siteContent;
         </div>
         <div>
           <button class="btn-pri">{contact.form.button}</button>
-        </div>
-      </div>
-      <div class="contact-info-stack">
-        <div class="ci-block">
-          <div class="ci-label">{contact.location.label}</div>
-          <div class="ci-value" set:html={contact.location.value}></div>
-        </div>
-        <div class="ci-block">
-          <div class="ci-label">{contact.followUsLabel}</div>
-          <SocialLinks className="social-row" />
-        </div>
-        <div class="ci-block">
-          <div class="ci-label">{contact.ctaCard.label}</div>
-          <div class="ci-value ci-value--spaced">{contact.ctaCard.body}</div>
-          <a class="btn-pri btn-pri--compact" href={contact.ctaCard.buttonHref} target="_blank">
-            {contact.ctaCard.buttonLabel}
-          </a>
         </div>
       </div>
     </div>

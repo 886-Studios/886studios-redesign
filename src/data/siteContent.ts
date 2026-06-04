@@ -804,7 +804,6 @@ export const siteContent = {
   contact: {
     eyebrow: "Contact",
     title: "Get in touch",
-    lead: "Founder, investor, mentor, or curious — we'd love to hear from you.",
     form: {
       fields: [
         { label: "Name", type: "text" as const, placeholder: "Your name" },
@@ -823,17 +822,6 @@ export const siteContent = {
       messagePlaceholder:
         "Tell us about yourself and why you're reaching out...",
       button: "Send Message",
-    },
-    location: {
-      label: "Location",
-      value: "Taiwan Tech Arena (TTA)<br>Taipei, Taiwan",
-    },
-    followUsLabel: "Follow Us",
-    ctaCard: {
-      label: "Ready to build?",
-      body: "Applications for ikigai Launchpad are currently closed for Sp'26. Check back soon.",
-      buttonLabel: "Visit ikigai Launchpad",
-      buttonHref: "https://withikigai.com/",
     },
   },
   footer: {

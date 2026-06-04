@@ -5937,8 +5937,8 @@ body.is-home nav.site-nav.is-scrolled {
     =========================== */
 .contact-cols {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  grid-template-columns: minmax(0, 720px);
+  justify-content: center;
 }
 .form-stack {
   display: flex;
