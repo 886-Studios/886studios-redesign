@@ -5,6 +5,7 @@ const { home } = siteContent;
 const mobileHeroBody =
   "886 Studios backs founders from Taipei with capital, operator support, and a proven Silicon Valley network.";
 const photoLoopSets = [false, true, true, true];
+const isExternalHeroCta = home.hero.cta.href.startsWith("http");
 ---
 
 <div class="page" id="page-home">
@@ -29,7 +30,14 @@ const photoLoopSets = [false, true, true, true];
       </p>
       <p class="hero-sub hero-sub--mobile">{mobileHeroBody}</p>
       <div class="hero-actions">
-        <a class="btn-pri" href={home.hero.cta.href} target="_blank">{home.hero.cta.label}</a>
+        <a
+          class="btn-pri"
+          href={home.hero.cta.href}
+          target={isExternalHeroCta ? "_blank" : undefined}
+          rel={isExternalHeroCta ? "noopener noreferrer" : undefined}
+        >
+          {home.hero.cta.label}
+        </a>
       </div>
     </div>
   </section>

@@ -58,8 +58,8 @@ export const siteContent = {
       titleAccent: "matters.",
       body: "886 Studios is where the next generation of global tech companies are built.\nWe run ikigai Launchpad, the premier Silicon Valley-style accelerator in Taipei\nbrought to you by the founders of Twitch, Guitar Hero, Playdom, Kabam, & more.",
       cta: {
-        label: "Apply to ikigai Launchpad",
-        href: "https://tally.so/r/w5p4jQ",
+        label: "Learn more about ikigai",
+        href: "/programs",
       },
     },
     photos: {
@@ -100,8 +100,8 @@ export const siteContent = {
       featured: {
         label: "Accelerator",
         title: "ikigai Launchpad",
-        body: "$100K in funding, hands-on mentorship from the 886 Studios partners, and a tight-knit 10-12 week program designed for startups that want to move fast.",
-        meta: ["$100K funding", "Partner office hours", "Batch community"],
+        body: "$100K USD in funding, hands-on mentorship from successful Silicon Valley founders, and a tight-knit 10-12 week accelerator program designed for startups that want to move fast.",
+        meta: ["$100K USD funding", "Partner office hours", "Batch community"],
         ctaLabel: "Learn more →",
         ctaHref: "/programs",
       },
@@ -116,7 +116,7 @@ export const siteContent = {
       ],
     },
     founders: {
-      title: "Built by founders from iconic companies",
+      title: "Iconic companies that we've built",
       logos: [
         {
           name: "Twitch",
@@ -135,11 +135,11 @@ export const siteContent = {
           imageClass: "is-tall",
         },
         {
-          name: "Guitar Hero (Red Octane)",
+          name: "Guitar Hero",
           src: "/assets/logos/guitar-hero.png",
           alt: "Guitar Hero logo",
           exit: "Exit · $99.9M",
-          title: "RedOctane exit: approximately $99.9 million",
+          title: "Guitar Hero exit: approximately $99.9 million",
           imageClass: "is-tall",
         },
         {
