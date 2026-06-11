@@ -58,7 +58,7 @@ export const siteContent = {
       titleAccent: "matters.",
       body: "886 Studios is where the next generation of global tech companies are built.\nWe run ikigai Launchpad, the premier Silicon Valley-style accelerator in Taipei\nbrought to you by the founders of Twitch, Guitar Hero, Playdom, Kabam, & more.",
       cta: {
-        label: "Learn more about ikigai",
+        label: "Learn more about ikigai Launchpad",
         href: "/programs",
       },
     },
