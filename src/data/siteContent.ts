@@ -238,7 +238,9 @@ export const siteContent = {
       ],
     },
     newsletter: {
-      title: "Subscribe to our Newsletter",
+      title: "Subscribe to our newsletter,",
+      publicationName: "ikigai Insights",
+      publicationUrl: "https://886studios.substack.com/",
       body: "Only cool things, we promise.",
       placeholder: "you@company.com",
       button: "Subscribe",

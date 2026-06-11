@@ -6240,6 +6240,18 @@ footer {
   margin-bottom: 4px;
 }
 
+.nl-text h3 a {
+  color: var(--purple-bright);
+  text-decoration: none;
+}
+
+.nl-text h3 a:hover,
+.nl-text h3 a:focus-visible {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .nl-text p {
   font-size: 14px;
   color: var(--text-secondary);

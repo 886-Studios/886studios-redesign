@@ -121,7 +121,12 @@ const isExternalHeroCta = home.hero.cta.href.startsWith("http");
   <div class="nl-strip">
     <div class="nl-inner">
       <div class="nl-text">
-        <h3>{home.newsletter.title}</h3>
+        <h3>
+          {home.newsletter.title}{" "}
+          <a href={home.newsletter.publicationUrl} target="_blank" rel="noopener noreferrer">
+            {home.newsletter.publicationName}
+          </a>
+        </h3>
         <p>{home.newsletter.body}</p>
       </div>
       <form class="nl-form" action={home.newsletter.action} method="post" target="substack-subscribe-frame">
