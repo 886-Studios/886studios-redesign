@@ -125,7 +125,15 @@ async function fetchLumaEvents(
 
 function getEnvValue(name: string): string {
   const value = import.meta.env[name];
-  return typeof value === "string" ? value.trim() : "";
+  if (typeof value === "string" && value.trim()) return value.trim();
+
+  const processEnv = (
+    globalThis as typeof globalThis & {
+      process?: { env?: Record<string, string | undefined> };
+    }
+  ).process?.env?.[name];
+
+  return typeof processEnv === "string" ? processEnv.trim() : "";
 }
 
 function getEntries(payload: LumaRecord): unknown[] {
