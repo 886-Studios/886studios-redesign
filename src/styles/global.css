@@ -6418,6 +6418,10 @@ footer {
 
 /* Responsive nav breakpoint */
 @media (max-width: 880px) {
+  nav.site-nav {
+    position: absolute;
+  }
+
   body.is-home nav.site-nav {
     height: var(--nav-height);
     background: rgba(5, 5, 7, 0.7);
