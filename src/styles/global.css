@@ -6419,39 +6419,28 @@ footer {
 /* Responsive nav breakpoint */
 @media (max-width: 880px) {
   body.is-home nav.site-nav {
-    height: 0;
-    background: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    height: var(--nav-height);
+    background: rgba(5, 5, 7, 0.7);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border-bottom-color: transparent;
     box-shadow: none;
-    pointer-events: none;
-  }
-
-  body.is-home nav.site-nav.is-scrolled {
-    background: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    border-bottom-color: transparent;
-    box-shadow: none;
-  }
-
-  .nav-inner {
-    height: 0;
-    padding-inline: clamp(20px, 6vw, 28px);
-    pointer-events: none;
-  }
-
-  body:not(.is-home) .nav-inner {
-    height: 100%;
     pointer-events: auto;
   }
 
-  body.is-home .nav-logo {
-    position: fixed;
-    top: 22px;
-    left: clamp(20px, 6vw, 28px);
-    z-index: 220;
+  body.is-home nav.site-nav.is-scrolled {
+    background: rgba(5, 5, 7, 0.92);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
+    border-bottom-color: var(--border);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.03),
+      0 4px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .nav-inner {
+    height: 100%;
+    padding-inline: clamp(20px, 6vw, 28px);
     pointer-events: auto;
   }
 
@@ -6461,11 +6450,6 @@ footer {
 
   body.is-home .nav-hamburger {
     display: flex;
-    position: fixed;
-    top: 17px;
-    right: clamp(20px, 6vw, 28px);
-    z-index: 220;
-    pointer-events: auto;
     background: rgba(255, 255, 255, 0.045);
     border-color: rgba(255, 255, 255, 0.12);
     box-shadow: none;
