@@ -2,8 +2,6 @@
 import { siteContent } from "../../data/siteContent";
 
 const { home } = siteContent;
-const mobileHeroBody =
-  "886 Studios backs founders from Taipei with capital, operator support, and a proven Silicon Valley network.";
 const photoLoopSets = [false, true];
 const isExternalHeroCta = home.hero.cta.href.startsWith("http");
 ---
@@ -20,7 +18,7 @@ const isExternalHeroCta = home.hero.cta.href.startsWith("http");
       <h1 class="hero-h1">
         {home.hero.titleLead}<br /><em>{home.hero.titleAccent}</em>
       </h1>
-      <p class="hero-sub hero-sub--desktop">
+      <p class="hero-sub">
         {home.hero.body.split("\n").map((line, index) => (
           <>
             {index > 0 && <br />}
@@ -28,7 +26,6 @@ const isExternalHeroCta = home.hero.cta.href.startsWith("http");
           </>
         ))}
       </p>
-      <p class="hero-sub hero-sub--mobile">{mobileHeroBody}</p>
       <div class="hero-actions">
         <a
           class="btn-pri"
