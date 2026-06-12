@@ -27,7 +27,10 @@ const founderBenefitsIntro =
   "ikigai Launchpad gives founders capital, operator access, working space, and a real Taipei batch. These are the core pieces teams use across the 12 weeks and beyond.";
 
 const heroPhoto = {
-  src: "/assets/programs/ikigai-audience-theater.jpg",
+  src: "/assets/programs/ikigai-audience-theater-1280.webp",
+  srcset:
+    "/assets/programs/ikigai-audience-theater-1280.webp 1280w, /assets/programs/ikigai-audience-theater-1920.webp 1920w",
+  sizes: "(max-width: 640px) calc(100vw - 36px), min(calc(100vw - 48px), 1160px)",
   alt: "ikigai Launchpad audience gathered in a theater",
 };
 
@@ -116,9 +119,19 @@ const specPillars = [
     </aside>
   </section>
 
-  <section class="prog-media reveal" aria-label="ikigai Launchpad in session">
+  <section class="prog-media" aria-label="ikigai Launchpad in session">
     <figure class="prog-hero-photo">
-      <img src={heroPhoto.src} alt={heroPhoto.alt} decoding="async" loading="eager" fetchpriority="high" />
+      <img
+        src={heroPhoto.src}
+        srcset={heroPhoto.srcset}
+        sizes={heroPhoto.sizes}
+        alt={heroPhoto.alt}
+        width="1920"
+        height="1280"
+        decoding="async"
+        loading="eager"
+        fetchpriority="high"
+      />
     </figure>
   </section>
 

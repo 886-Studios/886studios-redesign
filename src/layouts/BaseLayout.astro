@@ -57,6 +57,19 @@ const canonicalUrl = currentPath === "/" ? siteUrl : `${siteUrl}${currentPath}`;
     <link rel="shortcut icon" type="image/png" href="/favicon-32.png" />
     <link rel="apple-touch-icon" sizes="32x32" href="/favicon-32.png" />
     {currentPath === "/" && <link rel="preload" as="image" href="/assets/hero/sf-tpe-hero.jpg" fetchpriority="high" />}
+    {
+      currentPath === "/programs" && (
+        <link
+          rel="preload"
+          as="image"
+          href="/assets/programs/ikigai-audience-theater-1280.webp"
+          imagesrcset="/assets/programs/ikigai-audience-theater-1280.webp 1280w, /assets/programs/ikigai-audience-theater-1920.webp 1920w"
+          imagesizes="(max-width: 640px) calc(100vw - 36px), min(calc(100vw - 48px), 1160px)"
+          type="image/webp"
+          fetchpriority="high"
+        />
+      )
+    }
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
