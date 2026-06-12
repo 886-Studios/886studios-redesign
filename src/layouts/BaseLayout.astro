@@ -21,6 +21,7 @@ const {
 const siteUrl = "https://886studios.com";
 const currentPath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/$/, "");
 const canonicalUrl = currentPath === "/" ? siteUrl : `${siteUrl}${currentPath}`;
+const googleAnalyticsId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 ---
 
 <!DOCTYPE html>
@@ -76,6 +77,21 @@ const canonicalUrl = currentPath === "/" ? siteUrl : `${siteUrl}${currentPath}`;
       href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
+    {
+      googleAnalyticsId && (
+        <>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
+          <script is:inline define:vars={{ googleAnalyticsId }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              window.dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", googleAnalyticsId);
+          </script>
+        </>
+      )
+    }
   </head>
   <body class:list={[currentPath === "/" && "is-home"]}>
     <SiteNav currentPath={currentPath} />
