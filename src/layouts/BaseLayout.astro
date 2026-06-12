@@ -21,7 +21,7 @@ const {
 const siteUrl = "https://886studios.com";
 const currentPath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/$/, "");
 const canonicalUrl = currentPath === "/" ? siteUrl : `${siteUrl}${currentPath}`;
-const googleAnalyticsId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const googleAnalyticsId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "G-HWJ420T1HT";
 ---
 
 <!DOCTYPE html>
