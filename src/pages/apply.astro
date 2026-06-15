@@ -5,9 +5,20 @@ const TALLY_URL = "https://tally.so/r/w5p4jQ";
   <head>
     <meta http-equiv="refresh" content={`0;url=${TALLY_URL}`} />
     <title>Redirecting…</title>
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HWJ420T1HT"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-HWJ420T1HT");
+    </script>
   </head>
   <body>
-    <script define:vars={{ TALLY_URL }}>window.location.replace(TALLY_URL);</script>
+    <script is:inline define:vars={{ TALLY_URL }}>window.location.replace(TALLY_URL);</script>
     <p>Redirecting to application form… <a href={TALLY_URL}>Click here</a> if not redirected.</p>
   </body>
 </html>
