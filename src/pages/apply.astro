@@ -1,24 +1,23 @@
 ---
-const TALLY_URL = "https://tally.so/r/w5p4jQ";
----
-<html>
-  <head>
-    <meta http-equiv="refresh" content={`0;url=${TALLY_URL}`} />
-    <title>Redirecting…</title>
-    <!-- Google tag (gtag.js) -->
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-HWJ420T1HT"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import { getGoogleAnalyticsId, siteConfig } from "../config/site";
+import { siteContent } from "../data/siteContent";
 
-      gtag("config", "G-HWJ420T1HT");
-    </script>
+const applicationUrl = siteContent.nav.cta.href;
+const googleAnalyticsId = getGoogleAnalyticsId();
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="refresh" content={`0;url=${applicationUrl}`} />
+    <title>{`Redirecting to application - ${siteConfig.name}`}</title>
+    <GoogleAnalytics measurementId={googleAnalyticsId} />
   </head>
   <body>
-    <script is:inline define:vars={{ TALLY_URL }}>window.location.replace(TALLY_URL);</script>
-    <p>Redirecting to application form… <a href={TALLY_URL}>Click here</a> if not redirected.</p>
+    <script is:inline define:vars={{ applicationUrl }}>window.location.replace(applicationUrl);</script>
+    <p>Redirecting to application form... <a href={applicationUrl}>Click here</a> if not redirected.</p>
   </body>
 </html>
