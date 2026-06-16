@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://886studios-redesign.vercel.app/sitemap.xml
+Sitemap: https://886studios.com/sitemap.xml

@@ -129,7 +129,12 @@ const isExternalHeroCta = home.hero.cta.href.startsWith("http");
         </h3>
         <p>{home.newsletter.body}</p>
       </div>
-      <form class="nl-form" action={home.newsletter.action} method="post" target="substack-subscribe-frame">
+      <form
+        class="nl-form"
+        action={home.newsletter.action}
+        method="post"
+        target="substack-subscribe-frame"
+      >
         <label class="sr-only" for="newsletter-email">Email address</label>
         <input
           id="newsletter-email"
@@ -142,7 +147,13 @@ const isExternalHeroCta = home.hero.cta.href.startsWith("http");
         />
         <button class="nl-btn" type="submit">{home.newsletter.button}</button>
       </form>
-      <iframe class="nl-frame" name="substack-subscribe-frame" title="Newsletter signup status"></iframe>
+      <iframe
+        class="nl-frame"
+        name="substack-subscribe-frame"
+        title="Newsletter signup status"
+        sandbox="allow-forms allow-scripts"
+        referrerpolicy="strict-origin-when-cross-origin"
+      ></iframe>
     </div>
   </div>
 </div>

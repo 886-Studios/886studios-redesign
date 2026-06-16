@@ -38,7 +38,7 @@ export async function getLumaEvents(): Promise<LumaEventsResult> {
     };
   }
 
-  console.log(`[luma] API key found (length ${apiKey.length}), fetching events…`);
+  console.log("[luma] API key found, fetching events...");
 
   const now = new Date().toISOString();
   const [upcoming, past] = await Promise.all([
@@ -90,8 +90,7 @@ async function fetchLumaEvents(
       });
 
       if (!response.ok) {
-        const body = await response.text().catch(() => "");
-        console.warn(`[luma] Request failed — status ${response.status}: ${body}`);
+        console.warn(`[luma] Request failed with status ${response.status}.`);
         return { events: [], error: "Unable to load Luma events." };
       }
 
@@ -186,7 +185,7 @@ function toEventCard(event: LumaRecord | null): LumaEventCard | null {
 }
 
 function getCoverUrl(event: LumaRecord): string | undefined {
-  return (
+  return getSafeHttpsUrl(
     getString(event, "cover_url") ??
     getString(event, "coverUrl") ??
     getString(event, "thumbnail_url") ??
@@ -233,10 +232,22 @@ function getEventUrl(event: LumaRecord): string | undefined {
     getString(event, "registration_url") ??
     getString(event, "share_url");
 
-  if (url) return url;
+  const safeUrl = getSafeHttpsUrl(url);
+  if (safeUrl) return safeUrl;
 
   const slug = getString(event, "slug");
-  return slug ? `https://luma.com/${slug}` : undefined;
+  return slug ? `https://luma.com/${encodeURIComponent(slug)}` : undefined;
+}
+
+function getSafeHttpsUrl(value: string | undefined): string | undefined {
+  if (!value) return undefined;
+
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" ? url.href : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 function formatTimeRange(start: Date, end: Date | null, timeZone: string): string {

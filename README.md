@@ -18,6 +18,8 @@ npm run check
 npm run build
 ```
 
+For security-sensitive changes, also review `vercel.json` and run `npm audit` when network access is explicitly approved.
+
 ## Environment
 
 Copy `.env.example` to `.env` for local data-backed builds:
@@ -56,6 +58,7 @@ src/
     home.ts                     homepage-only browser behavior
   styles/
     global.css                  visual system and page styles
+vercel.json                     production security headers
 ```
 
 `public/` contains static assets. Keep images there unless Astro image processing is intentionally introduced later.
