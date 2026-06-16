@@ -9,7 +9,7 @@ export const siteConfig = {
   locale: "en-US",
   twitterSite: "@886Studios",
   themeColor: "#050507",
-  googleAnalyticsFallbackId: "G-HWJ420T1HT",
+  googleAnalyticsFallbackId: "G-GPGM23G5QK",
 } as const;
 
 interface RouteImagePreload {
@@ -50,5 +50,5 @@ export function getRouteImagePreloads(pathname: string) {
 }
 
 export function getGoogleAnalyticsId() {
-  return import.meta.env.PUBLIC_GA_MEASUREMENT_ID || siteConfig.googleAnalyticsFallbackId;
+  return siteConfig.googleAnalyticsFallbackId;
 }
