@@ -1,4 +1,5 @@
 ---
+import SocialLinks from "../SocialLinks.astro";
 import type { PartnerProfile } from "../../data/partnerProfiles";
 
 const { profile } = Astro.props as { profile: PartnerProfile };
@@ -10,6 +11,7 @@ const { profile } = Astro.props as { profile: PartnerProfile };
       <a class="partner-profile-back" href="/about">← About</a>
       <h1 class="partner-profile-title" id="partner-profile-title">{profile.name}</h1>
       <p class="partner-profile-company">{profile.company}</p>
+      <SocialLinks className="partner-profile-socials" />
     </div>
     <figure class="partner-profile-photo">
       <img src={profile.photo} alt={profile.name} decoding="async" loading="eager" />

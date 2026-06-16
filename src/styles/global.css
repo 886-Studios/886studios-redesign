@@ -4598,6 +4598,26 @@ body.is-home nav.site-nav.is-scrolled {
   text-transform: uppercase;
 }
 
+.partner-profile-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.partner-profile-socials .social-btn {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.partner-profile-socials .social-btn:hover {
+  border-color: rgba(167, 139, 250, 0.42);
+  background: rgba(139, 92, 246, 0.1);
+}
+
 .partner-profile-photo {
   width: min(100%, 320px);
   aspect-ratio: 1;
