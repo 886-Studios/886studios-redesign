@@ -14,7 +14,7 @@ const { about } = siteContent;
         about.columns.map((column) => (
           <div class="about-col">
             <div class="section-tag about-column-tag">{column.eyebrow}</div>
-            {column.title && <h2 class="section-h2 section-h2--compact" set:html={column.title}></h2>}
+            {column.title && <h2 class="section-h2 section-h2--compact">{column.title}</h2>}
             {column.paragraphs.map((paragraph, index) => (
               <p class:list={["prose", index > 0 && "prose--spaced"]}>{paragraph}</p>
             ))}
