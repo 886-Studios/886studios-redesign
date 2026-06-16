@@ -1,8 +1,16 @@
 ---
 import "../styles/global.css";
+import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteNav from "../components/SiteNav.astro";
-import Analytics from "@vercel/analytics/astro";
+import VercelAnalytics from "../components/VercelAnalytics.astro";
+import {
+  getCanonicalUrl,
+  getGoogleAnalyticsId,
+  getRouteImagePreloads,
+  normalizePath,
+  siteConfig,
+} from "../config/site";
 
 interface Props {
   title?: string;
@@ -12,16 +20,16 @@ interface Props {
 }
 
 const {
-  title = "886 Studios",
-  description = "Newsletter →",
-  ogImage = "https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/a3afedd0-7225-4cad-930f-bc3e1d574804/886_banner/public",
+  title = siteConfig.defaultTitle,
+  description = siteConfig.defaultDescription,
+  ogImage = siteConfig.defaultOgImage,
   hideFooterSocials = false,
 } = Astro.props;
 
-const siteUrl = "https://886studios.com";
-const currentPath = Astro.url.pathname === "/" ? "/" : Astro.url.pathname.replace(/\/$/, "");
-const canonicalUrl = currentPath === "/" ? siteUrl : `${siteUrl}${currentPath}`;
-const googleAnalyticsId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "G-HWJ420T1HT";
+const currentPath = normalizePath(Astro.url.pathname);
+const canonicalUrl = getCanonicalUrl(currentPath);
+const googleAnalyticsId = getGoogleAnalyticsId();
+const routeImagePreloads = getRouteImagePreloads(currentPath);
 ---
 
 <!DOCTYPE html>
@@ -40,36 +48,35 @@ const googleAnalyticsId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "G-HWJ420T
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:alt" content="886 Studios" />
-    <meta property="og:site_name" content="886 Studios" />
-    <meta property="og:locale" content="en-US" />
+    <meta property="og:image:alt" content={siteConfig.ogImageAlt} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta property="og:locale" content={siteConfig.locale} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@886Studios" />
+    <meta name="twitter:site" content={siteConfig.twitterSite} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="886 Studios" />
+    <meta name="twitter:image:alt" content={siteConfig.ogImageAlt} />
 
-    <meta name="theme-color" content="#050507" />
+    <meta name="theme-color" content={siteConfig.themeColor} />
     <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
     <link rel="icon" type="image/avif" href="/favicon.avif" />
     <link rel="shortcut icon" type="image/png" href="/favicon-32.png" />
     <link rel="apple-touch-icon" sizes="32x32" href="/favicon-32.png" />
-    {currentPath === "/" && <link rel="preload" as="image" href="/assets/hero/sf-tpe-hero.jpg" fetchpriority="high" />}
     {
-      currentPath === "/programs" && (
+      routeImagePreloads.map((image) => (
         <link
           rel="preload"
           as="image"
-          href="/assets/programs/ikigai-audience-theater-1280.webp"
-          imagesrcset="/assets/programs/ikigai-audience-theater-1280.webp 1280w, /assets/programs/ikigai-audience-theater-1920.webp 1920w"
-          imagesizes="(max-width: 640px) calc(100vw - 36px), min(calc(100vw - 48px), 1160px)"
-          type="image/webp"
+          href={image.href}
+          imagesrcset={image.srcset}
+          imagesizes={image.sizes}
+          type={image.type}
           fetchpriority="high"
         />
-      )
+      ))
     }
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -77,26 +84,15 @@ const googleAnalyticsId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID || "G-HWJ420T
       href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    {
-      googleAnalyticsId && (
-        <>
-          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
-          <script is:inline define:vars={{ googleAnalyticsId }}>
-            window.dataLayer = window.dataLayer || [];
-            function gtag() {
-              window.dataLayer.push(arguments);
-            }
-            gtag("js", new Date());
-            gtag("config", googleAnalyticsId);
-          </script>
-        </>
-      )
-    }
+    <GoogleAnalytics measurementId={googleAnalyticsId} />
   </head>
   <body class:list={[currentPath === "/" && "is-home"]}>
     <SiteNav currentPath={currentPath} />
     <slot />
     <SiteFooter hideSocials={hideFooterSocials} />
-    <Analytics />
+    <VercelAnalytics />
+    <script>
+      import "../scripts/site";
+    </script>
   </body>
 </html>

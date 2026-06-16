@@ -19,8 +19,10 @@ public/
 src/
   components/
     pages/
+  config/
   layouts/
   pages/
+  scripts/
   styles/
 ```
 
@@ -53,6 +55,8 @@ npm run check
 ## How to build on top of this
 
 - edit most site copy in `src/data/siteContent.ts`
+- edit canonical URLs, default metadata, analytics IDs, and route image preloads in `src/config/site.ts`
+- edit bundled browser behavior in `src/scripts/`
 - edit visual styles in `src/styles/global.css`
 - update shared chrome in `src/components/SiteNav.astro` and `src/components/SiteFooter.astro`
 - update section structure in `src/components/pages/`

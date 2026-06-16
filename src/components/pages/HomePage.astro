@@ -148,48 +148,5 @@ const isExternalHeroCta = home.hero.cta.href.startsWith("http");
 </div>
 
 <script>
-  const newsletterForm = document.querySelector('.nl-form');
-  const photoTracks = document.querySelectorAll('.photo-track');
-
-  const syncPhotoTracks = () => {
-    const isCompact = window.matchMedia('(max-width: 720px)').matches;
-    const pixelsPerSecond = isCompact ? 34 : 42;
-    const minimumDuration = isCompact ? 58 : 62;
-
-    photoTracks.forEach((track) => {
-      if (!(track instanceof HTMLElement)) return;
-
-      const firstSet = track.querySelector('.photo-track-set');
-      if (!(firstSet instanceof HTMLElement)) return;
-
-      const loopWidth = firstSet.getBoundingClientRect().width;
-      if (loopWidth <= 0) return;
-
-      track.style.setProperty('--photo-loop-distance', `${-loopWidth}px`);
-      track.style.setProperty(
-        '--photo-marquee-duration',
-        `${Math.max(minimumDuration, loopWidth / pixelsPerSecond).toFixed(2)}s`
-      );
-    });
-  };
-
-  if (photoTracks.length > 0) {
-    if ('ResizeObserver' in window) {
-      const photoResizeObserver = new ResizeObserver(syncPhotoTracks);
-      photoTracks.forEach((track) => photoResizeObserver.observe(track));
-    }
-
-    window.addEventListener('load', syncPhotoTracks, { once: true });
-    window.addEventListener('resize', syncPhotoTracks);
-    syncPhotoTracks();
-  }
-
-  newsletterForm?.addEventListener('submit', () => {
-    const button = newsletterForm.querySelector('.nl-btn');
-    newsletterForm.classList.add('is-submitted');
-
-    if (button instanceof HTMLButtonElement) {
-      button.textContent = 'Check your inbox';
-    }
-  });
+  import "../../scripts/home";
 </script>
