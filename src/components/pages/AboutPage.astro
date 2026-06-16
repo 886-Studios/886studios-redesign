@@ -35,7 +35,7 @@ const { about } = siteContent;
             return (
               <div class:list={["team-card", teamProfile && "team-card--link", teamProfile && "team-card--profile"]}>
                 {teamProfile && (
-                  <a class="team-card-hit-link" href={`/about/${teamProfile.slug}`} aria-label={`View details for ${person.name}`}></a>
+                  <a class="team-card-hit-link" href={`/about/${teamProfile.slug}`} aria-label={`View profile for ${person.name}`}></a>
                 )}
                 <div class="avatar-wrap">
                   {person.photo

@@ -4,6 +4,13 @@ export interface PartnerQuestion {
 }
 
 export type ProfileParagraph = string | Array<string | { text: string; href: string }>;
+export type ProfileSocialPlatform = "linkedin" | "x";
+
+export interface ProfileSocial {
+  platform: ProfileSocialPlatform;
+  href: string;
+  ariaLabel: string;
+}
 
 export interface PartnerProfile {
   slug: string;
@@ -15,6 +22,7 @@ export interface PartnerProfile {
   profile: ProfileParagraph[];
   questions?: PartnerQuestion[];
   recommendations?: string[];
+  socials?: ProfileSocial[];
   companiesBuilt: string[];
 }
 
@@ -36,6 +44,13 @@ export const partnerProfiles: PartnerProfile[] = [
         `, where she interviews entrepreneurs to share stories of resilience, creativity, and personal growth.`,
       ],
     ],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/freyawwc/",
+        ariaLabel: "Freya Wu on LinkedIn",
+      },
+    ],
     companiesBuilt: [],
   },
   {
@@ -50,6 +65,13 @@ export const partnerProfiles: PartnerProfile[] = [
       `He holds a degree from Jagiellonian University in Cracow and a master's from National Chengchi University, where he was a recipient of the Taiwan ICDF Scholarship.`,
       `Earlier in his career, he conducted research at Academia Sinica and worked at a cell and gene therapy startup accelerator, advising biotech startups on fundraising, market strategy, and international partnerships.`,
       `He brings this experience to building a cross-border ecosystem connecting founders, investors, and partners across Taiwan, APAC, and beyond.`,
+    ],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/patryk-chojecki/",
+        ariaLabel: "Patryk Chojecki on LinkedIn",
+      },
     ],
     companiesBuilt: [],
   },
@@ -68,6 +90,18 @@ export const partnerProfiles: PartnerProfile[] = [
         { text: `Flying Arrows`, href: "https://carterko.substack.com/" },
         `.`,
       ],
+    ],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/cartergrantwang/",
+        ariaLabel: "Carter Wang on LinkedIn",
+      },
+      {
+        platform: "x",
+        href: "https://x.com/carterkowang",
+        ariaLabel: "Carter Wang on X",
+      },
     ],
     companiesBuilt: [],
   },

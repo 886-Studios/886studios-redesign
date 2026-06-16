@@ -20,6 +20,7 @@ const profileDescription = Array.isArray(profile.profile[0])
 <BaseLayout
   title={`${profile.name} — 886 Studios Profile`}
   description={profileDescription ?? `${profile.name}, 886 Studios.`}
+  hideFooterSocials
 >
   <PartnerProfilePage profile={profile} />
 </BaseLayout>
