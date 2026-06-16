@@ -3,6 +3,8 @@ export interface PartnerQuestion {
   answer: string[];
 }
 
+export type ProfileParagraph = string | Array<string | { text: string; href: string }>;
+
 export interface PartnerProfile {
   slug: string;
   name: string;
@@ -10,13 +12,65 @@ export interface PartnerProfile {
   photo: string;
   sourceUrl: string;
   profileTitle: string;
-  profile: string[];
+  profile: ProfileParagraph[];
   questions?: PartnerQuestion[];
   recommendations?: string[];
   companiesBuilt: string[];
 }
 
 export const partnerProfiles: PartnerProfile[] = [
+  {
+    slug: "freya-wu",
+    name: "Freya Wu",
+    company: "General Manager, 886 Studios",
+    photo: "/assets/headshots/freya-wu.webp",
+    sourceUrl: "https://886studios.com/about/freya-wu",
+    profileTitle: "About Freya",
+    profile: [
+      `Freya Wu is passionate about startups, talent development, and storytelling. She is the General Manager at 886 Studios, where she helps early-stage founders turn ideas into global companies through investment, mentorship, and community.`,
+      `Previously, she served as Startup Development Director at Taiwan Startup Stadium, where she mentored early-stage startups, supported their global market expansion, and helped build one of Taiwan’s most active founder communities.`,
+      `Freya believes in nurturing the entrepreneurial spirit — not just in business, but as a mindset for navigating life with curiosity and courage.`,
+      [
+        `Beyond her professional work, Freya is also a dedicated career coach, helping young professionals discover confidence, self-worth, and direction in their career paths. In her free time, she hosts the podcast `,
+        { text: `On the Road`, href: "https://open.firstory.me/user/otr/platforms" },
+        `, where she interviews entrepreneurs to share stories of resilience, creativity, and personal growth.`,
+      ],
+    ],
+    companiesBuilt: [],
+  },
+  {
+    slug: "patryk-chojecki",
+    name: "Patryk Chojecki",
+    company: "Program Manager, ikigai Launchpad",
+    photo: "/assets/headshots/patryk-chojecki.webp",
+    sourceUrl: "https://886studios.com/about/patryk-chojecki",
+    profileTitle: "About Patryk",
+    profile: [
+      `Patryk Chojecki is the Program Manager in charge of ikigai Launchpad at 886 Studios. Originally from Poland, he has spent the past several years in Taipei working at the intersection of business, science, and venture capital.`,
+      `He holds a degree from Jagiellonian University in Cracow and a master's from National Chengchi University, where he was a recipient of the Taiwan ICDF Scholarship.`,
+      `Earlier in his career, he conducted research at Academia Sinica and worked at a cell and gene therapy startup accelerator, advising biotech startups on fundraising, market strategy, and international partnerships.`,
+      `He brings this experience to building a cross-border ecosystem connecting founders, investors, and partners across Taiwan, APAC, and beyond.`,
+    ],
+    companiesBuilt: [],
+  },
+  {
+    slug: "carter-wang",
+    name: "Carter Wang",
+    company: "Venture Associate, 886 Studios",
+    photo: "/assets/headshots/carter-wang.webp",
+    sourceUrl: "https://886studios.com/about/carter-wang",
+    profileTitle: "About Carter",
+    profile: [
+      `Carter Wang is a Venture Associate at 886 Studios, where he leads deal sourcing, researches and evaluates startups, and manages the founder pipeline for ikigai Launchpad accelerator. He also oversees 886's content and social media presence, maintains the company website, and drives community building and event programming in Taipei.`,
+      `Before joining 886 Studios, Carter served as a Research Fellow at Contrary Research, writing investment memos on emerging technology companies, and led the Venture Analyst team at Slug Fund at UC Santa Cruz, where he studied Business and Managerial Economics.`,
+      [
+        `Outside of work, Carter writes about technology, culture, and human nature in his Substack, `,
+        { text: `Flying Arrows`, href: "https://flyingarrows.substack.com/" },
+        `.`,
+      ],
+    ],
+    companiesBuilt: [],
+  },
   {
     slug: "kai-huang",
     name: "Kai Huang",

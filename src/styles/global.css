@@ -4371,6 +4371,7 @@ body.is-home nav.site-nav.is-scrolled {
   position: absolute;
   right: 12px;
   bottom: 10px;
+  z-index: 3;
   color: var(--purple-bright);
   font-family: var(--font-mono);
   font-size: 0.58rem;
@@ -4385,8 +4386,20 @@ body.is-home nav.site-nav.is-scrolled {
     transform 0.18s ease;
 }
 
+.team-card--profile::after {
+  content: "View details";
+}
+
+.team-card-hit-link {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+}
+
 .team-card--link:hover,
-.team-card--link:focus-visible {
+.team-card--link:focus-visible,
+.team-card--link:focus-within {
   border-color: rgba(167, 139, 250, 0.44);
   background: var(--bg-elevated);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
@@ -4394,28 +4407,33 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .team-card--link:hover::after,
-.team-card--link:focus-visible::after {
+.team-card--link:focus-visible::after,
+.team-card--link:focus-within::after {
   opacity: 1;
   transform: translateY(0);
 }
 
 .team-card--link:hover .avatar-wrap,
-.team-card--link:focus-visible .avatar-wrap {
+.team-card--link:focus-visible .avatar-wrap,
+.team-card--link:focus-within .avatar-wrap {
   border-color: rgba(167, 139, 250, 0.62);
   box-shadow: 0 0 0 5px rgba(139, 92, 246, 0.12);
 }
 
 .team-card--link:hover .avatar-photo,
-.team-card--link:focus-visible .avatar-photo {
+.team-card--link:focus-visible .avatar-photo,
+.team-card--link:focus-within .avatar-photo {
   transform: scale(1.06);
 }
 
 .team-card--link:hover .team-name,
-.team-card--link:focus-visible .team-name {
+.team-card--link:focus-visible .team-name,
+.team-card--link:focus-within .team-name {
   color: var(--text-primary);
 }
 
-.team-card--link:focus-visible {
+.team-card--link:focus-visible,
+.team-card--link:focus-within {
   outline: 2px solid var(--purple-bright);
   outline-offset: 4px;
 }
@@ -4480,6 +4498,8 @@ body.is-home nav.site-nav.is-scrolled {
   flex-shrink: 0;
 }
 .team-social-link {
+  position: relative;
+  z-index: 4;
   width: 24px;
   height: 24px;
   border-radius: 6px;
@@ -4629,6 +4649,15 @@ body.is-home nav.site-nav.is-scrolled {
   color: var(--text-secondary);
   font-size: 1rem;
   line-height: 1.82;
+}
+
+.partner-profile-copy a {
+  color: var(--purple-bright);
+  text-underline-offset: 0.2em;
+}
+
+.partner-profile-copy a:hover {
+  color: var(--text-primary);
 }
 
 .partner-profile-interview {

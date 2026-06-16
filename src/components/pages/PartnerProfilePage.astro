@@ -21,7 +21,21 @@ const { profile } = Astro.props as { profile: PartnerProfile };
       <section class="partner-profile-section">
         <h2>{profile.profileTitle}</h2>
         <div class="partner-profile-copy">
-          {profile.profile.map((paragraph) => <p>{paragraph}</p>)}
+          {profile.profile.map((paragraph) => (
+            <p>
+              {typeof paragraph === "string"
+                ? paragraph
+                : paragraph.map((segment) =>
+                    typeof segment === "string" ? (
+                      segment
+                    ) : (
+                      <a href={segment.href} target="_blank" rel="noopener noreferrer">
+                        {segment.text}
+                      </a>
+                    ),
+                  )}
+            </p>
+          ))}
         </div>
       </section>
     )}

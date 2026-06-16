@@ -12,11 +12,14 @@ export function getStaticPaths() {
 }
 
 const { profile } = Astro.props as { profile: PartnerProfile };
+const profileDescription = Array.isArray(profile.profile[0])
+  ? profile.profile[0].map((segment) => (typeof segment === "string" ? segment : segment.text)).join("")
+  : profile.profile[0];
 ---
 
 <BaseLayout
-  title={`${profile.name} — 886 Studios Partner`}
-  description={profile.profile[0] ?? `${profile.name}, 886 Studios Partner.`}
+  title={`${profile.name} — 886 Studios Profile`}
+  description={profileDescription ?? `${profile.name}, 886 Studios.`}
 >
   <PartnerProfilePage profile={profile} />
 </BaseLayout>
