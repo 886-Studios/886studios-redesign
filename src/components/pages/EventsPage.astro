@@ -1,5 +1,6 @@
 ---
 import EventCard from "../EventCard.astro";
+import PageHero from "../PageHero.astro";
 import { siteContent } from "../../data/siteContent";
 import { getLumaEvents } from "../../lib/luma";
 import type { LumaEventCard } from "../../lib/luma";
@@ -25,13 +26,7 @@ const pastEventsByYear = groupEventsByYear(lumaEvents.pastEvents);
 ---
 
 <div class="page" id="page-events">
-  <div class="pg-hero">
-    <div class="pg-hero-glow"></div>
-    <div class="section-tag">{events.eyebrow}</div>
-    <h1 class="section-h2 pg-hero-title">{events.title}</h1>
-    <p class="section-lead section-lead--flush">{events.lead}</p>
-  </div>
-  <div class="pg-divider"></div>
+  <PageHero eyebrow={events.eyebrow} title={events.title} lead={events.lead} />
   <div class="section">
     {
       lumaEvents.upcomingEvents.length > 0 ? (

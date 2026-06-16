@@ -1,16 +1,12 @@
 ---
+import PageHero from "../PageHero.astro";
 import { siteContent } from "../../data/siteContent";
 
 const { contact } = siteContent;
 ---
 
 <div class="page" id="page-contact">
-  <div class="pg-hero">
-    <div class="pg-hero-glow"></div>
-    <div class="section-tag">{contact.eyebrow}</div>
-    <h1 class="section-h2 pg-hero-title">{contact.title}</h1>
-  </div>
-  <div class="pg-divider"></div>
+  <PageHero eyebrow={contact.eyebrow} title={contact.title} />
   <div class="section">
     <div class="contact-cols">
       <div class="form-stack">

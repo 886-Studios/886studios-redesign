@@ -1,0 +1,19 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  titleId?: string;
+  className?: string;
+}
+
+const { eyebrow, title, lead, titleId, className } = Astro.props;
+---
+
+<section class:list={["pg-hero", className]} aria-labelledby={titleId}>
+  <div class="pg-hero-glow"></div>
+  {eyebrow && <div class="section-tag">{eyebrow}</div>}
+  <h1 class="section-h2 pg-hero-title" id={titleId}>{title}</h1>
+  {lead && <p class="section-lead section-lead--flush">{lead}</p>}
+</section>
+<div class="pg-divider"></div>
