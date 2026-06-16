@@ -22,7 +22,7 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "freya-wu",
     name: "Freya Wu",
-    company: "General Manager, 886 Studios",
+    company: "General Manager",
     photo: "/assets/headshots/freya-wu.webp",
     sourceUrl: "https://886studios.com/about/freya-wu",
     profileTitle: "About Freya",
@@ -41,7 +41,7 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "patryk-chojecki",
     name: "Patryk Chojecki",
-    company: "Program Manager, ikigai Launchpad",
+    company: "Program Manager",
     photo: "/assets/headshots/patryk-chojecki.webp",
     sourceUrl: "https://886studios.com/about/patryk-chojecki",
     profileTitle: "About Patryk",
@@ -56,7 +56,7 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "carter-wang",
     name: "Carter Wang",
-    company: "Venture Associate, 886 Studios",
+    company: "Venture Associate",
     photo: "/assets/headshots/carter-wang.webp",
     sourceUrl: "https://886studios.com/about/carter-wang",
     profileTitle: "About Carter",
@@ -65,7 +65,7 @@ export const partnerProfiles: PartnerProfile[] = [
       `Before joining 886 Studios, Carter served as a Research Fellow at Contrary Research, writing investment memos on emerging technology companies, and led the Venture Analyst team at Slug Fund at UC Santa Cruz, where he studied Business and Managerial Economics.`,
       [
         `Outside of work, Carter writes about technology, culture, and human nature in his Substack, `,
-        { text: `Flying Arrows`, href: "https://flyingarrows.substack.com/" },
+        { text: `Flying Arrows`, href: "https://carterko.substack.com/" },
         `.`,
       ],
     ],
