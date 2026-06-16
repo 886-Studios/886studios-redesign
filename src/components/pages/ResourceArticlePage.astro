@@ -1,5 +1,10 @@
 ---
 import type { ResourceArticle } from "../../data/resourceArticles";
+import {
+  getSafeExternalHttpsHref,
+  getSafeInternalOrHttpsHref,
+  isExternalHttpsHref,
+} from "../../lib/urls";
 
 const { article } = Astro.props as { article: ResourceArticle };
 ---
@@ -44,13 +49,17 @@ const { article } = Astro.props as { article: ResourceArticle };
 
         {section.cards && (
           <div class="resource-card-list">
-            {section.cards.map((card) => (
-              <a class:list={["resource-info-card", !card.href && "resource-info-card--static"]} href={card.href || undefined}>
-                <h3>{card.title}</h3>
-                {card.meta && <div class="resource-card-meta">{card.meta}</div>}
-                {card.body && <p>{card.body}</p>}
-              </a>
-            ))}
+            {section.cards.map((card) => {
+              const href = getSafeInternalOrHttpsHref(card.href);
+
+              return (
+                <a class:list={["resource-info-card", !href && "resource-info-card--static"]} href={href}>
+                  <h3>{card.title}</h3>
+                  {card.meta && <div class="resource-card-meta">{card.meta}</div>}
+                  {card.body && <p>{card.body}</p>}
+                </a>
+              );
+            })}
           </div>
         )}
 
@@ -75,11 +84,21 @@ const { article } = Astro.props as { article: ResourceArticle };
 
         {section.links && (
           <div class="resource-link-row">
-            {section.links.map((link) => (
-              <a class="card-cta" href={link.href} target={link.href.startsWith("http") ? "_blank" : undefined} rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}>
-                {link.label}
-              </a>
-            ))}
+            {section.links.map((link) => {
+              const href = getSafeInternalOrHttpsHref(link.href);
+              if (!href) return null;
+
+              return (
+                <a
+                  class="card-cta"
+                  href={href}
+                  target={isExternalHttpsHref(href) ? "_blank" : undefined}
+                  rel={isExternalHttpsHref(href) ? "noopener noreferrer" : undefined}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </div>
         )}
       </section>
@@ -89,41 +108,53 @@ const { article } = Astro.props as { article: ResourceArticle };
       <section class="resource-directory-section">
         <h2>{group.title}</h2>
         <div class="resource-directory-grid">
-          {group.entries.map((entry) => (
-            <article class="resource-directory-card">
-              <div class="resource-directory-top">
-                <h3>{entry.name}</h3>
-                {entry.year && <span>{entry.year}</span>}
-              </div>
-              {entry.focus && <p>{entry.focus}</p>}
-              <dl>
-                {entry.url && (
-                  <>
-                    <dt>Website</dt>
-                    <dd><a href={entry.href || `https://${entry.url}`} target="_blank" rel="noopener noreferrer">{entry.url}</a></dd>
-                  </>
-                )}
-                {entry.contact && (
-                  <>
-                    <dt>Contact</dt>
-                    <dd>{entry.contact}</dd>
-                  </>
-                )}
-                {entry.range && (
-                  <>
-                    <dt>Range</dt>
-                    <dd>{entry.range}</dd>
-                  </>
-                )}
-                {entry.stage && (
-                  <>
-                    <dt>Stage</dt>
-                    <dd>{entry.stage}</dd>
-                  </>
-                )}
-              </dl>
-            </article>
-          ))}
+          {group.entries.map((entry) => {
+            const websiteHref =
+              getSafeExternalHttpsHref(entry.href) ??
+              getSafeExternalHttpsHref(entry.url ? `https://${entry.url}` : undefined);
+
+            return (
+              <article class="resource-directory-card">
+                <div class="resource-directory-top">
+                  <h3>{entry.name}</h3>
+                  {entry.year && <span>{entry.year}</span>}
+                </div>
+                {entry.focus && <p>{entry.focus}</p>}
+                <dl>
+                  {entry.url && (
+                    <>
+                      <dt>Website</dt>
+                      <dd>
+                        {websiteHref ? (
+                          <a href={websiteHref} target="_blank" rel="noopener noreferrer">{entry.url}</a>
+                        ) : (
+                          entry.url
+                        )}
+                      </dd>
+                    </>
+                  )}
+                  {entry.contact && (
+                    <>
+                      <dt>Contact</dt>
+                      <dd>{entry.contact}</dd>
+                    </>
+                  )}
+                  {entry.range && (
+                    <>
+                      <dt>Range</dt>
+                      <dd>{entry.range}</dd>
+                    </>
+                  )}
+                  {entry.stage && (
+                    <>
+                      <dt>Stage</dt>
+                      <dd>{entry.stage}</dd>
+                    </>
+                  )}
+                </dl>
+              </article>
+            );
+          })}
         </div>
       </section>
     ))}

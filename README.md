@@ -26,10 +26,9 @@ Copy `.env.example` to `.env` for local data-backed builds:
 
 ```bash
 LUMA_API_KEY=
-PUBLIC_GA_MEASUREMENT_ID=
 ```
 
-`LUMA_API_KEY` is optional for local rendering, but the Events page will show its fallback state without it. `PUBLIC_GA_MEASUREMENT_ID` falls back to the production ID defined in `src/config/site.ts`.
+`LUMA_API_KEY` is optional for local rendering, but the Events page will show its fallback state without it. Google Analytics uses the production ID defined in `src/config/site.ts`.
 
 ## Architecture Map
 
@@ -52,6 +51,7 @@ src/
     BaseLayout.astro            document shell, metadata, global chrome
   lib/
     luma.ts                     Luma API adapter and event-card normalization
+    urls.ts                     shared safe-link helpers for data-driven links
   pages/                        Astro route entrypoints
   scripts/
     site.ts                     global browser behavior
