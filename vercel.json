@@ -1,6 +1,306 @@
 {
   "redirects": [
     {
+      "source": "/:alias(Carter-Wang|Carter|carter)",
+      "destination": "/about/carter-wang",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Carter-Wang|Carter|carter)/",
+      "destination": "/about/carter-wang",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Carter-Wang|Carter|carter)",
+      "destination": "/about/carter-wang",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Carter-Wang|Carter|carter)/",
+      "destination": "/about/carter-wang",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Freya-Wu|Freya|freya)",
+      "destination": "/about/freya-wu",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Freya-Wu|Freya|freya)/",
+      "destination": "/about/freya-wu",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Freya-Wu|Freya|freya)",
+      "destination": "/about/freya-wu",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Freya-Wu|Freya|freya)/",
+      "destination": "/about/freya-wu",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Patryk-Chojecki|Patryk|patryk|Pat|pat)",
+      "destination": "/about/patryk-chojecki",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Patryk-Chojecki|Patryk|patryk|Pat|pat)/",
+      "destination": "/about/patryk-chojecki",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Patryk-Chojecki|Patryk|patryk|Pat|pat)",
+      "destination": "/about/patryk-chojecki",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Patryk-Chojecki|Patryk|patryk|Pat|pat)/",
+      "destination": "/about/patryk-chojecki",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Kai-Huang|Kai|kai)",
+      "destination": "/about/kai-huang",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Kai-Huang|Kai|kai)/",
+      "destination": "/about/kai-huang",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Kai-Huang|Kai|kai)",
+      "destination": "/about/kai-huang",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Kai-Huang|Kai|kai)/",
+      "destination": "/about/kai-huang",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Joseph-Hei|Joseph|joseph)",
+      "destination": "/about/joseph-hei",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Joseph-Hei|Joseph|joseph)/",
+      "destination": "/about/joseph-hei",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Joseph-Hei|Joseph|joseph)",
+      "destination": "/about/joseph-hei",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Joseph-Hei|Joseph|joseph)/",
+      "destination": "/about/joseph-hei",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Charles-Huang|Charles|charles)",
+      "destination": "/about/charles-huang",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Charles-Huang|Charles|charles)/",
+      "destination": "/about/charles-huang",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Charles-Huang|Charles|charles)",
+      "destination": "/about/charles-huang",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Charles-Huang|Charles|charles)/",
+      "destination": "/about/charles-huang",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Jameson-Hsu|Jameson|jameson)",
+      "destination": "/about/jameson-hsu",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Jameson-Hsu|Jameson|jameson)/",
+      "destination": "/about/jameson-hsu",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Jameson-Hsu|Jameson|jameson)",
+      "destination": "/about/jameson-hsu",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Jameson-Hsu|Jameson|jameson)/",
+      "destination": "/about/jameson-hsu",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Kevin-Lin)",
+      "destination": "/about/kevin-lin",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Kevin-Lin)/",
+      "destination": "/about/kevin-lin",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Kevin-Lin)",
+      "destination": "/about/kevin-lin",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Kevin-Lin)/",
+      "destination": "/about/kevin-lin",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Kevin-Chou)",
+      "destination": "/about/kevin-chou",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Kevin-Chou)/",
+      "destination": "/about/kevin-chou",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Kevin-Chou)",
+      "destination": "/about/kevin-chou",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Kevin-Chou)/",
+      "destination": "/about/kevin-chou",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Chris-Wang|Chris|chris)",
+      "destination": "/about/chris-wang",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Chris-Wang|Chris|chris)/",
+      "destination": "/about/chris-wang",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Chris-Wang|Chris|chris)",
+      "destination": "/about/chris-wang",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Chris-Wang|Chris|chris)/",
+      "destination": "/about/chris-wang",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Jacob-Hsu|Jacob|jacob)",
+      "destination": "/about/jacob-hsu",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Jacob-Hsu|Jacob|jacob)/",
+      "destination": "/about/jacob-hsu",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Jacob-Hsu|Jacob|jacob)",
+      "destination": "/about/jacob-hsu",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Jacob-Hsu|Jacob|jacob)/",
+      "destination": "/about/jacob-hsu",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(James-Hong)",
+      "destination": "/about/james-hong",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(James-Hong)/",
+      "destination": "/about/james-hong",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(James-Hong)",
+      "destination": "/about/james-hong",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(James-Hong)/",
+      "destination": "/about/james-hong",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Steven-Chiang|Steven|steven)",
+      "destination": "/about/steven-chiang",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Steven-Chiang|Steven|steven)/",
+      "destination": "/about/steven-chiang",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Steven-Chiang|Steven|steven)",
+      "destination": "/about/steven-chiang",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Steven-Chiang|Steven|steven)/",
+      "destination": "/about/steven-chiang",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Timothy-Chen|Timothy|timothy)",
+      "destination": "/about/timothy-chen",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Timothy-Chen|Timothy|timothy)/",
+      "destination": "/about/timothy-chen",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Timothy-Chen|Timothy|timothy)",
+      "destination": "/about/timothy-chen",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Timothy-Chen|Timothy|timothy)/",
+      "destination": "/about/timothy-chen",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Phil-Chen|Phil|phil)",
+      "destination": "/about/phil-chen",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Phil-Chen|Phil|phil)/",
+      "destination": "/about/phil-chen",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Phil-Chen|Phil|phil)",
+      "destination": "/about/phil-chen",
+      "permanent": true
+    },
+    {
+      "source": "/about/:alias(Phil-Chen|Phil|phil)/",
+      "destination": "/about/phil-chen",
+      "permanent": true
+    },
+    {
       "source": "/:slug(freya-wu|patryk-chojecki|carter-wang|kai-huang|joseph-hei|charles-huang|jameson-hsu|kevin-lin|kevin-chou|chris-wang|jacob-hsu|james-hong|steven-chiang|timothy-chen|phil-chen)",
       "destination": "/about/:slug",
       "permanent": true
