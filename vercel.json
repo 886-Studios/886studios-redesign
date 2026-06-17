@@ -1,6 +1,26 @@
 {
   "redirects": [
     {
+      "source": "/about-us",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/about-us/",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/:section(About-Us|About-us|about-us)/:slug",
+      "destination": "/about/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/:section(About-Us|About-us|about-us)/:slug/",
+      "destination": "/about/:slug",
+      "permanent": true
+    },
+    {
       "source": "/:section(About|Team|team|Profile|profile|Profiles|profiles|People|people|Partners|partners)/:slug",
       "destination": "/about/:slug",
       "permanent": true
