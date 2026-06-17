@@ -72,7 +72,7 @@ export const resourceArticles: ResourceArticle[] = [
           { label: "YC Mock Interview", href: "https://tally.so/r/m626gk" },
           {
             label: "Application Template",
-            href: "https://886studios.com/resources/y-combinator-101",
+            href: "https://www.886studios.com/resources/y-combinator-101",
           },
         ],
       },
@@ -1268,14 +1268,14 @@ export const standaloneResourceArticles: ResourceArticle[] = [
           "Jurisdiction is a crucial component for creating a company, as it determines the legal implications and regulatory framework in which the company will operate, taxation, and other obligations. Careful consideration helps ensure legal compliance, protects the interests of the company and its owners, and optimizes business operations.",
         ],
         links: [
-          { label: "Taiwan", href: "https://886studios.com/incorporation-101" },
+          { label: "Taiwan", href: "https://www.886studios.com/incorporation-101" },
           {
             label: "Singapore",
-            href: "https://886studios.com/incorporation-101",
+            href: "https://www.886studios.com/incorporation-101",
           },
           {
             label: "United States",
-            href: "https://886studios.com/incorporation-101",
+            href: "https://www.886studios.com/incorporation-101",
           },
         ],
       },

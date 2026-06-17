@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://886studios.com/sitemap.xml
+Sitemap: https://www.886studios.com/sitemap.xml

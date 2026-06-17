@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "886 Studios",
-  url: "https://886studios.com",
+  url: "https://www.886studios.com",
   defaultTitle: "886 Studios",
   defaultDescription: "Newsletter →",
   defaultOgImage:

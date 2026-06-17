@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://886studios.com/</loc><priority>1.0</priority></url>
-  <url><loc>https://886studios.com/programs/</loc><priority>0.9</priority></url>
-  <url><loc>https://886studios.com/about/</loc><priority>0.9</priority></url>
-  <url><loc>https://886studios.com/events/</loc><priority>0.7</priority></url>
-  <url><loc>https://886studios.com/resources/</loc><priority>0.8</priority></url>
-  <url><loc>https://886studios.com/contact/</loc><priority>0.6</priority></url>
+  <url><loc>https://www.886studios.com/</loc><priority>1.0</priority></url>
+  <url><loc>https://www.886studios.com/programs</loc><priority>0.9</priority></url>
+  <url><loc>https://www.886studios.com/about</loc><priority>0.9</priority></url>
+  <url><loc>https://www.886studios.com/events</loc><priority>0.7</priority></url>
+  <url><loc>https://www.886studios.com/resources</loc><priority>0.8</priority></url>
+  <url><loc>https://www.886studios.com/contact</loc><priority>0.6</priority></url>
+  <url><loc>https://www.886studios.com/about/freya-wu</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/patryk-chojecki</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/carter-wang</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/kai-huang</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/joseph-hei</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/charles-huang</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/jameson-hsu</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/kevin-lin</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/kevin-chou</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/chris-wang</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/jacob-hsu</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/james-hong</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/steven-chiang</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/timothy-chen</loc><priority>0.5</priority></url>
+  <url><loc>https://www.886studios.com/about/phil-chen</loc><priority>0.5</priority></url>
 </urlset>

@@ -32,7 +32,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Freya Wu",
     company: "General Manager",
     photo: "/assets/headshots/freya-wu.webp",
-    sourceUrl: "https://886studios.com/about/freya-wu",
+    sourceUrl: "https://www.886studios.com/about/freya-wu",
     profileTitle: "About Freya",
     profile: [
       `Freya Wu is passionate about startups, talent development, and storytelling. She is the General Manager at 886 Studios, where she helps early-stage founders turn ideas into global companies through investment, mentorship, and community.`,
@@ -58,7 +58,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Patryk Chojecki",
     company: "Program Manager",
     photo: "/assets/headshots/patryk-chojecki.webp",
-    sourceUrl: "https://886studios.com/about/patryk-chojecki",
+    sourceUrl: "https://www.886studios.com/about/patryk-chojecki",
     profileTitle: "About Patryk",
     profile: [
       `Patryk Chojecki is the Program Manager in charge of ikigai Launchpad at 886 Studios. Originally from Poland, he has spent the past several years in Taipei working at the intersection of business, science, and venture capital.`,
@@ -80,7 +80,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Carter Wang",
     company: "Venture Associate",
     photo: "/assets/headshots/carter-wang.webp",
-    sourceUrl: "https://886studios.com/about/carter-wang",
+    sourceUrl: "https://www.886studios.com/about/carter-wang",
     profileTitle: "About Carter",
     profile: [
       `Carter Wang is a Venture Associate at 886 Studios, where he leads deal sourcing, researches and evaluates startups, and manages the founder pipeline for ikigai Launchpad accelerator. He also oversees 886's content and social media presence, maintains the company website, and drives community building and event programming in Taipei.`,
@@ -110,7 +110,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Kai Huang",
     company: "Guitar Hero",
     photo: "/assets/headshots/kai-huang.webp",
-    sourceUrl: "https://886studios.com/kai-huang",
+    sourceUrl: "https://www.886studios.com/about/kai-huang",
     profileTitle: "Profile",
     profile: [
       `Kai has wanted to start his own company since adolescence, inspired by his father who had already started many businesses. After graduating from UC Berkeley, Kai planned to pursue an MBA before building his first startup. However, with the rise of the internet and the many opportunities that came along with it, Kai decided to take advantage of the timing and build his first company four years after college.`,
@@ -161,7 +161,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Joseph Hei",
     company: "Orbit Baby",
     photo: "/assets/headshots/joseph-hei.webp",
-    sourceUrl: "https://886studios.com/joseph-hei",
+    sourceUrl: "https://www.886studios.com/about/joseph-hei",
     profileTitle: "Profile",
     profile: [
       `Joe had always wanted to start his own company, and personal experiences helped him realize his place in the baby products industry. He shares with us the story behind his inspiration for founding his first company, how he approaches product-market fit by thinking about “product-user fit,” and how to balance decisiveness with thoughtfulness in decision-making.`,
@@ -203,7 +203,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Charles Huang",
     company: "Guitar Hero",
     photo: "/assets/headshots/charles-huang.webp",
-    sourceUrl: "https://886studios.com/charles-huang",
+    sourceUrl: "https://www.886studios.com/about/charles-huang",
     profileTitle: "Profile",
     profile: [
       `Charles is a co-founder of RedOctane, the company behind Guitar Hero. Most of his interests lie in hardware, and he serves on the board of various businesses as well as philanthropic groups for education and culture. He is currently a lecturer for entrepreneurship at his Alma Mater, UC Berkeley.`,
@@ -300,7 +300,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Jameson Hsu",
     company: "Mochi Media",
     photo: "/assets/headshots/jameson-hsu.webp",
-    sourceUrl: "https://886studios.com/jameson-hsu",
+    sourceUrl: "https://www.886studios.com/about/jameson-hsu",
     profileTitle: "Profile",
     profile: [
       `Jameson Hsu, a Virginia Tech graduate, became an entrepreneur accidentally. He has since exited three startups (including one to Shanda Games and one to Facebook) and is working on his fourth as CEO / Co-Founder.`,
@@ -351,7 +351,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Kevin Lin",
     company: "Twitch",
     photo: "/assets/headshots/kevin-lin.webp",
-    sourceUrl: "https://886studios.com/kevin-lin",
+    sourceUrl: "https://www.886studios.com/about/kevin-lin",
     profileTitle: "About Kevin",
     profile: [
       `Kevin Lin is an experienced technology investor and entrepreneur with more than 20 years of operating and investment experience. Kevin is a Managing Partner at 886 Studios and Co-Founder and General Partner at Lifelike Capital, a leading early stage technology venture capital firm. Prior, Kevin was Co-Founder and COO of Twitch, the world’s leading live streaming gaming and community platform.`,
@@ -366,7 +366,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Kevin Chou",
     company: "Kabam",
     photo: "/assets/headshots/kevin-chou.webp",
-    sourceUrl: "https://886studios.com/kevin-chou",
+    sourceUrl: "https://www.886studios.com/about/kevin-chou",
     profileTitle: "Profile",
     profile: [
       `Kevin has successfully founded and exited on three companies spanning crypto, gaming, and esports. His current interests are in Web3 and its fundamental technology and focus on decentralization. Originally from a finance background, he shares his initial motivation to start his own company as well as tips and insights into what makes a successful founder and company.`,
@@ -414,7 +414,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Chris Wang",
     company: "Playdom",
     photo: "/assets/headshots/chris-wang.webp",
-    sourceUrl: "https://886studios.com/chris-wang",
+    sourceUrl: "https://www.886studios.com/about/chris-wang",
     profileTitle: "Profile",
     profile: [
       `Chris Wang completed his undergraduate studies at UC Berkeley and went on to earn a PhD in Computer Science from Carnegie Mellon University at just 22. To finance his startup ambitions, he built a profitable online poker bot and experimented with multiple concepts before shifting into gaming industry. He cofounded Playdom, which is acquired by Disney for $563M only two years later.`,
@@ -470,7 +470,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Jacob Hsu",
     company: "Catalyte",
     photo: "/assets/headshots/jacob-hsu.webp",
-    sourceUrl: "https://886studios.com/jacob-hsu",
+    sourceUrl: "https://www.886studios.com/about/jacob-hsu",
     profileTitle: "Profile",
     profile: [
       `Jacob Hsu fell into the startup ecosystem by accident. Originally from an investment banking background, Jacob started by simply wanting a way to make data-entry easier prior to the dawn of the internet. He created a web-crawler and data-scraper on a floppy disk, originally for personal use, but then later sold the intellectual property to a bank. However, when a bank expressed interest in his new technology, he sold the intellectual property at age 23.`,
@@ -514,7 +514,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "James Hong",
     company: "Hot or Not",
     photo: "/assets/headshots/james-hong.webp",
-    sourceUrl: "https://886studios.com/james-hong",
+    sourceUrl: "https://www.886studios.com/about/james-hong",
     profileTitle: "Profile",
     profile: [],
     companiesBuilt: ["Hot or Not (acquired by Ruby)"],
@@ -524,7 +524,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Steven Chiang",
     company: "Tiburon Entertainment",
     photo: "/assets/headshots/steven-chiang.webp",
-    sourceUrl: "https://886studios.com/steven-chiang",
+    sourceUrl: "https://www.886studios.com/about/steven-chiang",
     profileTitle: "About Steven",
     profile: [
       `Steven Chiang is a prominent figure in the video game industry, known for his leadership roles at major gaming companies and his contributions to game development. He graduated from Columbia University with a Bachelor of Science in Electrical Engineering in 1993.`,
@@ -541,7 +541,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Timothy Chen",
     company: "Gen.G",
     photo: "/assets/headshots/timothy-chen.webp",
-    sourceUrl: "https://886studios.com/timothy-chen",
+    sourceUrl: "https://www.886studios.com/about/timothy-chen",
     profileTitle: "Profile",
     profile: [
       `Tim started his career at VIA Technologies, a semiconductor company based in Taiwan. As the Head of Global Sales and Marketing, he soon began angel investing in various companies. He also founded CAATCHPLAY, a media/film streaming, production, and distribution company based in Taiwan.`,
@@ -599,7 +599,7 @@ export const partnerProfiles: PartnerProfile[] = [
     name: "Phil Chen",
     company: "HTC Vive",
     photo: "/assets/headshots/phil-chen.webp",
-    sourceUrl: "https://886studios.com/phil-chen",
+    sourceUrl: "https://www.886studios.com/about/phil-chen",
     profileTitle: "Profile",
     profile: [
       `Phil has spent much of his career working with hardware and technology, creating and building products such as the first Android phone, HTC Exodus, and the HTC Vive. He shares his journey and some of his learning through his experience of being an entrepreneur, an exit, and joining then eventually creating his own venture capital.`,

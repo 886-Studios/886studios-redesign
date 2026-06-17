@@ -1,4 +1,11 @@
 {
+  "redirects": [
+    {
+      "source": "/:slug(freya-wu|patryk-chojecki|carter-wang|kai-huang|joseph-hei|charles-huang|jameson-hsu|kevin-lin|kevin-chou|chris-wang|jacob-hsu|james-hong|steven-chiang|timothy-chen|phil-chen)",
+      "destination": "/about/:slug",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
