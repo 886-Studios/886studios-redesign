@@ -1,302 +1,312 @@
 {
   "redirects": [
     {
-      "source": "/:alias(Carter-Wang|Carter|carter)",
+      "source": "/:section(About|Team|team|Profile|profile|Profiles|profiles|People|people|Partners|partners)/:slug",
+      "destination": "/about/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/:section(About|Team|team|Profile|profile|Profiles|profiles|People|people|Partners|partners)/:slug/",
+      "destination": "/about/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/:alias(Carter-Wang|CarterWang|Carterwang|carterwang|Carter|carter)",
       "destination": "/about/carter-wang",
       "permanent": true
     },
     {
-      "source": "/:alias(Carter-Wang|Carter|carter)/",
+      "source": "/:alias(Carter-Wang|CarterWang|Carterwang|carterwang|Carter|carter)/",
       "destination": "/about/carter-wang",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Carter-Wang|Carter|carter)",
+      "source": "/about/:alias(Carter-Wang|CarterWang|Carterwang|carterwang|Carter|carter)",
       "destination": "/about/carter-wang",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Carter-Wang|Carter|carter)/",
+      "source": "/about/:alias(Carter-Wang|CarterWang|Carterwang|carterwang|Carter|carter)/",
       "destination": "/about/carter-wang",
       "permanent": true
     },
     {
-      "source": "/:alias(Freya-Wu|Freya|freya)",
+      "source": "/:alias(Freya-Wu|FreyaWu|Freyawu|freyawu|Freya|freya)",
       "destination": "/about/freya-wu",
       "permanent": true
     },
     {
-      "source": "/:alias(Freya-Wu|Freya|freya)/",
+      "source": "/:alias(Freya-Wu|FreyaWu|Freyawu|freyawu|Freya|freya)/",
       "destination": "/about/freya-wu",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Freya-Wu|Freya|freya)",
+      "source": "/about/:alias(Freya-Wu|FreyaWu|Freyawu|freyawu|Freya|freya)",
       "destination": "/about/freya-wu",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Freya-Wu|Freya|freya)/",
+      "source": "/about/:alias(Freya-Wu|FreyaWu|Freyawu|freyawu|Freya|freya)/",
       "destination": "/about/freya-wu",
       "permanent": true
     },
     {
-      "source": "/:alias(Patryk-Chojecki|Patryk|patryk|Pat|pat)",
+      "source": "/:alias(Patryk-Chojecki|PatrykChojecki|Patrykchojecki|patrykchojecki|Patryk|patryk|Pat|pat)",
       "destination": "/about/patryk-chojecki",
       "permanent": true
     },
     {
-      "source": "/:alias(Patryk-Chojecki|Patryk|patryk|Pat|pat)/",
+      "source": "/:alias(Patryk-Chojecki|PatrykChojecki|Patrykchojecki|patrykchojecki|Patryk|patryk|Pat|pat)/",
       "destination": "/about/patryk-chojecki",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Patryk-Chojecki|Patryk|patryk|Pat|pat)",
+      "source": "/about/:alias(Patryk-Chojecki|PatrykChojecki|Patrykchojecki|patrykchojecki|Patryk|patryk|Pat|pat)",
       "destination": "/about/patryk-chojecki",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Patryk-Chojecki|Patryk|patryk|Pat|pat)/",
+      "source": "/about/:alias(Patryk-Chojecki|PatrykChojecki|Patrykchojecki|patrykchojecki|Patryk|patryk|Pat|pat)/",
       "destination": "/about/patryk-chojecki",
       "permanent": true
     },
     {
-      "source": "/:alias(Kai-Huang|Kai|kai)",
+      "source": "/:alias(Kai-Huang|KaiHuang|Kaihuang|kaihuang|Kai|kai)",
       "destination": "/about/kai-huang",
       "permanent": true
     },
     {
-      "source": "/:alias(Kai-Huang|Kai|kai)/",
+      "source": "/:alias(Kai-Huang|KaiHuang|Kaihuang|kaihuang|Kai|kai)/",
       "destination": "/about/kai-huang",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Kai-Huang|Kai|kai)",
+      "source": "/about/:alias(Kai-Huang|KaiHuang|Kaihuang|kaihuang|Kai|kai)",
       "destination": "/about/kai-huang",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Kai-Huang|Kai|kai)/",
+      "source": "/about/:alias(Kai-Huang|KaiHuang|Kaihuang|kaihuang|Kai|kai)/",
       "destination": "/about/kai-huang",
       "permanent": true
     },
     {
-      "source": "/:alias(Joseph-Hei|Joseph|joseph)",
+      "source": "/:alias(Joseph-Hei|JosephHei|Josephhei|josephhei|Joseph|joseph)",
       "destination": "/about/joseph-hei",
       "permanent": true
     },
     {
-      "source": "/:alias(Joseph-Hei|Joseph|joseph)/",
+      "source": "/:alias(Joseph-Hei|JosephHei|Josephhei|josephhei|Joseph|joseph)/",
       "destination": "/about/joseph-hei",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Joseph-Hei|Joseph|joseph)",
+      "source": "/about/:alias(Joseph-Hei|JosephHei|Josephhei|josephhei|Joseph|joseph)",
       "destination": "/about/joseph-hei",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Joseph-Hei|Joseph|joseph)/",
+      "source": "/about/:alias(Joseph-Hei|JosephHei|Josephhei|josephhei|Joseph|joseph)/",
       "destination": "/about/joseph-hei",
       "permanent": true
     },
     {
-      "source": "/:alias(Charles-Huang|Charles|charles)",
+      "source": "/:alias(Charles-Huang|CharlesHuang|Charleshuang|charleshuang|Charles|charles)",
       "destination": "/about/charles-huang",
       "permanent": true
     },
     {
-      "source": "/:alias(Charles-Huang|Charles|charles)/",
+      "source": "/:alias(Charles-Huang|CharlesHuang|Charleshuang|charleshuang|Charles|charles)/",
       "destination": "/about/charles-huang",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Charles-Huang|Charles|charles)",
+      "source": "/about/:alias(Charles-Huang|CharlesHuang|Charleshuang|charleshuang|Charles|charles)",
       "destination": "/about/charles-huang",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Charles-Huang|Charles|charles)/",
+      "source": "/about/:alias(Charles-Huang|CharlesHuang|Charleshuang|charleshuang|Charles|charles)/",
       "destination": "/about/charles-huang",
       "permanent": true
     },
     {
-      "source": "/:alias(Jameson-Hsu|Jameson|jameson)",
+      "source": "/:alias(Jameson-Hsu|JamesonHsu|Jamesonhsu|jamesonhsu|Jameson|jameson)",
       "destination": "/about/jameson-hsu",
       "permanent": true
     },
     {
-      "source": "/:alias(Jameson-Hsu|Jameson|jameson)/",
+      "source": "/:alias(Jameson-Hsu|JamesonHsu|Jamesonhsu|jamesonhsu|Jameson|jameson)/",
       "destination": "/about/jameson-hsu",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Jameson-Hsu|Jameson|jameson)",
+      "source": "/about/:alias(Jameson-Hsu|JamesonHsu|Jamesonhsu|jamesonhsu|Jameson|jameson)",
       "destination": "/about/jameson-hsu",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Jameson-Hsu|Jameson|jameson)/",
+      "source": "/about/:alias(Jameson-Hsu|JamesonHsu|Jamesonhsu|jamesonhsu|Jameson|jameson)/",
       "destination": "/about/jameson-hsu",
       "permanent": true
     },
     {
-      "source": "/:alias(Kevin-Lin)",
+      "source": "/:alias(Kevin-Lin|KevinLin|Kevinlin|kevinlin)",
       "destination": "/about/kevin-lin",
       "permanent": true
     },
     {
-      "source": "/:alias(Kevin-Lin)/",
+      "source": "/:alias(Kevin-Lin|KevinLin|Kevinlin|kevinlin)/",
       "destination": "/about/kevin-lin",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Kevin-Lin)",
+      "source": "/about/:alias(Kevin-Lin|KevinLin|Kevinlin|kevinlin)",
       "destination": "/about/kevin-lin",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Kevin-Lin)/",
+      "source": "/about/:alias(Kevin-Lin|KevinLin|Kevinlin|kevinlin)/",
       "destination": "/about/kevin-lin",
       "permanent": true
     },
     {
-      "source": "/:alias(Kevin-Chou)",
+      "source": "/:alias(Kevin-Chou|KevinChou|Kevinchou|kevinchou)",
       "destination": "/about/kevin-chou",
       "permanent": true
     },
     {
-      "source": "/:alias(Kevin-Chou)/",
+      "source": "/:alias(Kevin-Chou|KevinChou|Kevinchou|kevinchou)/",
       "destination": "/about/kevin-chou",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Kevin-Chou)",
+      "source": "/about/:alias(Kevin-Chou|KevinChou|Kevinchou|kevinchou)",
       "destination": "/about/kevin-chou",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Kevin-Chou)/",
+      "source": "/about/:alias(Kevin-Chou|KevinChou|Kevinchou|kevinchou)/",
       "destination": "/about/kevin-chou",
       "permanent": true
     },
     {
-      "source": "/:alias(Chris-Wang|Chris|chris)",
+      "source": "/:alias(Chris-Wang|ChrisWang|Chriswang|chriswang|Chris|chris)",
       "destination": "/about/chris-wang",
       "permanent": true
     },
     {
-      "source": "/:alias(Chris-Wang|Chris|chris)/",
+      "source": "/:alias(Chris-Wang|ChrisWang|Chriswang|chriswang|Chris|chris)/",
       "destination": "/about/chris-wang",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Chris-Wang|Chris|chris)",
+      "source": "/about/:alias(Chris-Wang|ChrisWang|Chriswang|chriswang|Chris|chris)",
       "destination": "/about/chris-wang",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Chris-Wang|Chris|chris)/",
+      "source": "/about/:alias(Chris-Wang|ChrisWang|Chriswang|chriswang|Chris|chris)/",
       "destination": "/about/chris-wang",
       "permanent": true
     },
     {
-      "source": "/:alias(Jacob-Hsu|Jacob|jacob)",
+      "source": "/:alias(Jacob-Hsu|JacobHsu|Jacobhsu|jacobhsu|Jacob|jacob)",
       "destination": "/about/jacob-hsu",
       "permanent": true
     },
     {
-      "source": "/:alias(Jacob-Hsu|Jacob|jacob)/",
+      "source": "/:alias(Jacob-Hsu|JacobHsu|Jacobhsu|jacobhsu|Jacob|jacob)/",
       "destination": "/about/jacob-hsu",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Jacob-Hsu|Jacob|jacob)",
+      "source": "/about/:alias(Jacob-Hsu|JacobHsu|Jacobhsu|jacobhsu|Jacob|jacob)",
       "destination": "/about/jacob-hsu",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Jacob-Hsu|Jacob|jacob)/",
+      "source": "/about/:alias(Jacob-Hsu|JacobHsu|Jacobhsu|jacobhsu|Jacob|jacob)/",
       "destination": "/about/jacob-hsu",
       "permanent": true
     },
     {
-      "source": "/:alias(James-Hong)",
+      "source": "/:alias(James-Hong|JamesHong|Jameshong|jameshong)",
       "destination": "/about/james-hong",
       "permanent": true
     },
     {
-      "source": "/:alias(James-Hong)/",
+      "source": "/:alias(James-Hong|JamesHong|Jameshong|jameshong)/",
       "destination": "/about/james-hong",
       "permanent": true
     },
     {
-      "source": "/about/:alias(James-Hong)",
+      "source": "/about/:alias(James-Hong|JamesHong|Jameshong|jameshong)",
       "destination": "/about/james-hong",
       "permanent": true
     },
     {
-      "source": "/about/:alias(James-Hong)/",
+      "source": "/about/:alias(James-Hong|JamesHong|Jameshong|jameshong)/",
       "destination": "/about/james-hong",
       "permanent": true
     },
     {
-      "source": "/:alias(Steven-Chiang|Steven|steven)",
+      "source": "/:alias(Steven-Chiang|StevenChiang|Stevenchiang|stevenchiang|Steven|steven)",
       "destination": "/about/steven-chiang",
       "permanent": true
     },
     {
-      "source": "/:alias(Steven-Chiang|Steven|steven)/",
+      "source": "/:alias(Steven-Chiang|StevenChiang|Stevenchiang|stevenchiang|Steven|steven)/",
       "destination": "/about/steven-chiang",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Steven-Chiang|Steven|steven)",
+      "source": "/about/:alias(Steven-Chiang|StevenChiang|Stevenchiang|stevenchiang|Steven|steven)",
       "destination": "/about/steven-chiang",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Steven-Chiang|Steven|steven)/",
+      "source": "/about/:alias(Steven-Chiang|StevenChiang|Stevenchiang|stevenchiang|Steven|steven)/",
       "destination": "/about/steven-chiang",
       "permanent": true
     },
     {
-      "source": "/:alias(Timothy-Chen|Timothy|timothy)",
+      "source": "/:alias(Timothy-Chen|TimothyChen|Timothychen|timothychen|Timothy|timothy)",
       "destination": "/about/timothy-chen",
       "permanent": true
     },
     {
-      "source": "/:alias(Timothy-Chen|Timothy|timothy)/",
+      "source": "/:alias(Timothy-Chen|TimothyChen|Timothychen|timothychen|Timothy|timothy)/",
       "destination": "/about/timothy-chen",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Timothy-Chen|Timothy|timothy)",
+      "source": "/about/:alias(Timothy-Chen|TimothyChen|Timothychen|timothychen|Timothy|timothy)",
       "destination": "/about/timothy-chen",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Timothy-Chen|Timothy|timothy)/",
+      "source": "/about/:alias(Timothy-Chen|TimothyChen|Timothychen|timothychen|Timothy|timothy)/",
       "destination": "/about/timothy-chen",
       "permanent": true
     },
     {
-      "source": "/:alias(Phil-Chen|Phil|phil)",
+      "source": "/:alias(Phil-Chen|PhilChen|Philchen|philchen|Phil|phil)",
       "destination": "/about/phil-chen",
       "permanent": true
     },
     {
-      "source": "/:alias(Phil-Chen|Phil|phil)/",
+      "source": "/:alias(Phil-Chen|PhilChen|Philchen|philchen|Phil|phil)/",
       "destination": "/about/phil-chen",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Phil-Chen|Phil|phil)",
+      "source": "/about/:alias(Phil-Chen|PhilChen|Philchen|philchen|Phil|phil)",
       "destination": "/about/phil-chen",
       "permanent": true
     },
     {
-      "source": "/about/:alias(Phil-Chen|Phil|phil)/",
+      "source": "/about/:alias(Phil-Chen|PhilChen|Philchen|philchen|Phil|phil)/",
       "destination": "/about/phil-chen",
       "permanent": true
     },
