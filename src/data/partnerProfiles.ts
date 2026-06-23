@@ -539,7 +539,7 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "timothy-chen",
     name: "Timothy Chen",
-    company: "Gen.G",
+    company: "VIA Technologies",
     photo: "/assets/headshots/timothy-chen.webp",
     sourceUrl: "https://www.886studios.com/about/timothy-chen",
     profileTitle: "Profile",
@@ -592,7 +592,7 @@ export const partnerProfiles: PartnerProfile[] = [
         ],
       },
     ],
-    companiesBuilt: ["VIA Technologies"],
+    companiesBuilt: ["VIA Technologies", "CAATCHPLAY"],
   },
   {
     slug: "phil-chen",
