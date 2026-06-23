@@ -18,7 +18,7 @@ const { article } = Astro.props as { article: ResourceArticle };
   </section>
   <div class="pg-divider"></div>
 
-  <main class="resource-article-shell">
+  <article class="resource-article-shell">
     {article.sections?.map((section) => (
       <section class="resource-article-section">
         <h2>{section.title}</h2>
@@ -158,5 +158,5 @@ const { article } = Astro.props as { article: ResourceArticle };
         </div>
       </section>
     ))}
-  </main>
+  </article>
 </div>

@@ -1,11 +1,19 @@
 # 886 Studios Website
 
-Astro static site for 886 Studios. The codebase is intentionally small and structured for agentic maintenance: thin route files, page-level Astro components, shared site configuration, and isolated browser scripts.
+Astro static site for 886 Studios. The codebase is intentionally small and structured for agentic maintenance: thin route files, page-level Astro components, shared site configuration, data-driven content, and isolated browser scripts.
+
+## Prerequisites
+
+- Node `18.20.8`, `20.3.0+`, or `22+`
+- npm `9.6.5+`
+
+This repo uses `package-lock.json`, so prefer npm over pnpm or yarn unless the package manager strategy changes.
 
 ## Quick Start
 
 ```bash
 npm install
+cp .env.example .env
 npm run dev
 ```
 
@@ -18,17 +26,42 @@ npm run check
 npm run build
 ```
 
-For security-sensitive changes, also review `vercel.json` and run `npm audit` when network access is explicitly approved.
+To inspect the production build locally:
+
+```bash
+npm run preview
+```
+
+Use the URL printed by Astro.
+
+## Scripts
+
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the local Astro dev server. |
+| `npm run check` | Run Astro diagnostics and TypeScript checks. |
+| `npm run build` | Build all static routes into `dist/`. |
+| `npm run preview` | Serve the latest `dist/` build locally. |
 
 ## Environment
 
-Copy `.env.example` to `.env` for local data-backed builds:
+`.env.example` contains the only local environment variable currently used:
 
 ```bash
 LUMA_API_KEY=
 ```
 
-`LUMA_API_KEY` is optional for local rendering, but the Events page will show its fallback state without it. Google Analytics uses the production ID defined in `src/config/site.ts`.
+`LUMA_API_KEY` is optional. Without it, the Events page renders the configured fallback state. With it, `npm run build` fetches approved Luma events through `src/lib/luma.ts`.
+
+Do not commit `.env`, `.env.local`, or any `.env.*.local` file. Google Analytics uses the production fallback ID in `src/config/site.ts`; there is no separate local analytics env var.
+
+## Common Pitfalls
+
+- If `/events` shows fallback copy locally, confirm `LUMA_API_KEY` is present in `.env` and restart the dev server.
+- If `npm run build` logs a Luma warning, check the API key and network access. The page should still render a fallback state.
+- If `npm run dev` is already using port `4173`, stop the existing process or run Astro on another port.
+- Do not edit generated files in `dist/`; source changes belong under `src/`.
+- Keep screenshots, traces, `.env` files, and OS metadata out of the repo.
 
 ## Architecture Map
 
@@ -58,25 +91,26 @@ src/
     home.ts                     homepage-only browser behavior
   styles/
     global.css                  visual system and page styles
-vercel.json                     production security headers
+public/                         static assets
+vercel.json                     redirects and production security headers
 ```
 
-`public/` contains static assets. Keep images there unless Astro image processing is intentionally introduced later.
+Keep images in `public/` unless Astro image processing is intentionally introduced later.
 
-## Agent Workflow
+## Editing Workflow
 
 Use this path for most changes:
 
 1. Identify the route in `src/pages/`.
 2. Open the matching body component in `src/components/pages/`.
 3. Edit copy/data in `src/data/` when possible.
-4. Edit global metadata, canonical behavior, or preloads in `src/config/site.ts`.
+4. Edit metadata, canonical behavior, analytics IDs, or preloads in `src/config/site.ts`.
 5. Edit shared chrome in `SiteNav.astro`, `SiteFooter.astro`, or `BaseLayout.astro`.
 6. Edit browser behavior in `src/scripts/`, not inline in page markup.
 7. Run `npm run check` and `npm run build`.
 8. For visual or interaction changes, start `npm run dev` and live-test the affected route.
 
-Commit small, reviewed slices. Do not include generated output from `dist/`, local `.env` files, screenshots, traces, or OS metadata.
+Commit small, reviewed slices.
 
 ## Content Boundaries
 
@@ -90,17 +124,43 @@ Commit small, reviewed slices. Do not include generated output from `dist/`, loc
 - Long-form resource pages: `src/data/resourceArticles.ts`
 - Partner detail pages: `src/data/partnerProfiles.ts`
 
-The `/apply` route is a redirect to the shared nav CTA URL. Do not rebuild a local application form unless product direction changes.
+The `/apply` route redirects to the shared nav CTA URL. Do not rebuild a local application form unless product direction changes.
 
 ## Design Context
 
 Read `.impeccable.md` before making visual changes. It captures the target audience, brand tone, and design constraints for the site.
 
-Current visual direction: dark 886 language, restrained purple accents, real founder photos, strong typography, and direct founder-facing copy. Avoid adding generic marketing sections, decorative blobs/orbs beyond existing intentional treatments, or large visual rewrites without live screenshots.
+Current visual direction: dark 886 language, restrained purple accents, real founder photos, strong typography, and direct founder-facing copy. Avoid generic marketing sections, decorative effects beyond existing intentional treatments, or large visual rewrites without live screenshots.
 
-## Validation Notes
+## Validation Checklist
 
-`npm run build` statically renders all routes, including Events. If `LUMA_API_KEY` is set, the build fetches Luma events through `src/lib/luma.ts`; otherwise it renders the configured fallback state.
+For routine changes:
+
+```bash
+npm run check
+npm run build
+```
+
+For local performance checks, build and serve the production output first:
+
+```bash
+npm run build
+npm run preview -- --host 127.0.0.1 --port 4173
+```
+
+Then run Lighthouse against the affected route and save the report outside tracked source:
+
+```bash
+mkdir -p .artifacts/performance
+npx --yes lighthouse http://127.0.0.1:4173/programs \
+  --only-categories=performance \
+  --preset=desktop \
+  --chrome-flags="--headless=new" \
+  --output=html \
+  --output-path=.artifacts/performance/programs-desktop.html
+```
+
+For production Core Web Vitals, run WebPageTest against the deployed URL with at least 3 runs, first-view and repeat-view enabled, and the same route set used for frontend QA. Store exported reports under `.artifacts/performance/`.
 
 For frontend QA, verify at least:
 
@@ -112,4 +172,6 @@ For frontend QA, verify at least:
 - mobile navigation open/close
 - `/apply` redirect markup when touching CTA or redirect behavior
 
-The project has no committed Playwright suite. Use the available browser tooling in the current environment for live validation and keep screenshots outside the repo.
+For security-sensitive changes, review `vercel.json` and run `npm audit` when network access is explicitly approved.
+
+The project has no committed Playwright suite. Use the available browser tooling in the current environment for live validation and keep generated QA artifacts outside the repo.

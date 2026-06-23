@@ -18,6 +18,8 @@ const googleAnalyticsId = getGoogleAnalyticsId();
   </head>
   <body>
     <script is:inline define:vars={{ applicationUrl }}>window.location.replace(applicationUrl);</script>
-    <p>Redirecting to application form... <a href={applicationUrl}>Click here</a> if not redirected.</p>
+    <main>
+      <p>Redirecting to application form... <a href={applicationUrl}>Click here</a> if not redirected.</p>
+    </main>
   </body>
 </html>

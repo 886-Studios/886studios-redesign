@@ -25,6 +25,24 @@ const quickFacts = ikigai.details?.metrics ?? [];
 const ikigaiNameParts = ikigai.name.split(" ");
 const founderBenefitsIntro =
   "ikigai Launchpad gives founders capital, operator access, working space, and a real Taipei batch. These are the core pieces teams use across the 12 weeks and beyond.";
+const pillarImageWidths = [640, 960, 1280];
+const pillarImageSizes =
+  "(max-width: 640px) calc(100vw - 36px), (max-width: 980px) calc((100vw - 48px - 18px) / 2), 371px";
+
+const getPillarPhoto = (
+  name: string,
+  alt: string,
+  dimensions: { width: number; height: number }
+) => ({
+  alt,
+  width: dimensions.width,
+  height: dimensions.height,
+  sizes: pillarImageSizes,
+  src: `/assets/programs/${name}-960.jpg`,
+  avifSrcset: pillarImageWidths.map((width) => `/assets/programs/${name}-${width}.avif ${width}w`).join(", "),
+  webpSrcset: pillarImageWidths.map((width) => `/assets/programs/${name}-${width}.webp ${width}w`).join(", "),
+  jpgSrcset: pillarImageWidths.map((width) => `/assets/programs/${name}-${width}.jpg ${width}w`).join(", "),
+});
 
 const heroPhoto = {
   src: "/assets/programs/ikigai-audience-theater-1280.webp",
@@ -48,10 +66,10 @@ const specPillars = [
       "Quit your job and focus full-time on building",
       "Potential follow-on investment from Lifelike Capital",
     ],
-    photo: {
-      src: "/assets/programs/ikigai-founder-table.jpeg",
-      alt: "Founders working together during ikigai Launchpad",
-    },
+    photo: getPillarPhoto("ikigai-founder-table", "Founders working together during ikigai Launchpad", {
+      width: 1280,
+      height: 960,
+    }),
   },
   {
     title: "Hands-on support",
@@ -62,10 +80,10 @@ const specPillars = [
       "Warm Introductions + Investor Matching",
       "Exclusive Corporate Perks",
     ],
-    photo: {
-      src: "/assets/programs/ikigai-mentor-session.jpeg",
-      alt: "ikigai Launchpad mentor session with founders",
-    },
+    photo: getPillarPhoto("ikigai-mentor-session", "ikigai Launchpad mentor session with founders", {
+      width: 1280,
+      height: 960,
+    }),
   },
   {
     title: "Community",
@@ -76,10 +94,10 @@ const specPillars = [
       "Networking & Founder Events",
       "Support beyond the 12-week timeframe",
     ],
-    photo: {
-      src: "/assets/programs/ikigai-group-tshirts.jpeg",
-      alt: "ikigai Launchpad founders together in Taipei",
-    },
+    photo: getPillarPhoto("ikigai-group-tshirts", "ikigai Launchpad founders together in Taipei", {
+      width: 1280,
+      height: 1707,
+    }),
   },
 ];
 ---
@@ -147,7 +165,20 @@ const specPillars = [
         {specPillars.map((p) => (
           <article class="prog-pillar-card">
             <figure class="prog-pillar-media">
-              <img src={p.photo.src} alt={p.photo.alt} decoding="async" loading="lazy" />
+              <picture>
+                <source type="image/avif" srcset={p.photo.avifSrcset} sizes={p.photo.sizes} />
+                <source type="image/webp" srcset={p.photo.webpSrcset} sizes={p.photo.sizes} />
+                <img
+                  src={p.photo.src}
+                  srcset={p.photo.jpgSrcset}
+                  sizes={p.photo.sizes}
+                  alt={p.photo.alt}
+                  width={p.photo.width}
+                  height={p.photo.height}
+                  decoding="async"
+                  loading="lazy"
+                />
+              </picture>
             </figure>
             <div class="prog-pillar-copy">
               <p class="prog-pillar-label">{p.title}</p>

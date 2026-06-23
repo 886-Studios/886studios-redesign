@@ -87,8 +87,11 @@ const routeImagePreloads = getRouteImagePreloads(currentPath);
     <GoogleAnalytics measurementId={googleAnalyticsId} />
   </head>
   <body class:list={[currentPath === "/" && "is-home"]}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <SiteNav currentPath={currentPath} />
-    <slot />
+    <main id="main-content" class="site-main" tabindex="-1">
+      <slot />
+    </main>
     <SiteFooter hideSocials={hideFooterSocials} />
     <VercelAnalytics />
     <script>

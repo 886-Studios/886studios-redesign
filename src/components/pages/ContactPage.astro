@@ -3,6 +3,7 @@ import PageHero from "../PageHero.astro";
 import { siteContent } from "../../data/siteContent";
 
 const { contact } = siteContent;
+const getContactFieldId = (label: string) => `contact-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
 ---
 
 <div class="page" id="page-contact">
@@ -13,14 +14,25 @@ const { contact } = siteContent;
         {
           contact.form.fields.map((field) => (
             <div class="form-group">
-              <label class="form-lbl">{field.label}</label>
-              <input class="form-input" type={field.type} placeholder={field.placeholder} />
+              <label class="form-lbl" for={getContactFieldId(field.label)}>{field.label}</label>
+              <input
+                id={getContactFieldId(field.label)}
+                class="form-input"
+                type={field.type}
+                name={field.label.toLowerCase()}
+                placeholder={field.placeholder}
+              />
             </div>
           ))
         }
         <div class="form-group">
-          <label class="form-lbl">{contact.form.messageLabel}</label>
-          <textarea class="form-textarea" placeholder={contact.form.messagePlaceholder}></textarea>
+          <label class="form-lbl" for="contact-message">{contact.form.messageLabel}</label>
+          <textarea
+            id="contact-message"
+            class="form-textarea"
+            name="message"
+            placeholder={contact.form.messagePlaceholder}
+          ></textarea>
         </div>
         <div>
           <button class="btn-pri">{contact.form.button}</button>
