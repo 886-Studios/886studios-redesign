@@ -4406,30 +4406,6 @@ body.is-home nav.site-nav.is-scrolled {
   cursor: pointer;
 }
 
-.team-card--link::after {
-  content: "View profile";
-  position: absolute;
-  right: 12px;
-  bottom: 10px;
-  z-index: 3;
-  color: var(--purple-bright);
-  font-family: var(--font-mono);
-  font-size: 0.58rem;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  line-height: 1;
-  opacity: 0;
-  text-transform: uppercase;
-  transform: translateY(6px);
-  transition:
-    opacity 0.18s ease,
-    transform 0.18s ease;
-}
-
-.team-card--profile::after {
-  content: "View profile";
-}
-
 .team-card-hit-link {
   position: absolute;
   inset: 0;
@@ -4444,13 +4420,6 @@ body.is-home nav.site-nav.is-scrolled {
   background: var(--bg-elevated);
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.24);
   transform: translateY(-4px);
-}
-
-.team-card--link:hover::after,
-.team-card--link:focus-visible::after,
-.team-card--link:focus-within::after {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 .team-card--link:hover .avatar-wrap,

@@ -545,19 +545,19 @@ export const siteContent = {
       {
         initials: "KH",
         name: "Kai Huang",
-        company: "Guitar Hero (RedOctane) / Blue Goji",
+        company: "Guitar Hero / Blue Goji",
         photo: "/assets/headshots/kai-huang.webp",
       },
       {
         initials: "KL",
         name: "Kevin Lin",
-        company: "Twitch / Metatheory / Lifelike Capital",
+        company: "Twitch / Metatheory",
         photo: "/assets/headshots/kevin-lin.webp",
       },
       {
         initials: "KC",
         name: "Kevin Chou",
-        company: "Kabam / Rally / Gen.G / Forte",
+        company: "Kabam / Gen.G",
         photo: "/assets/headshots/kevin-chou.webp",
       },
       {
@@ -569,19 +569,19 @@ export const siteContent = {
       {
         initials: "PC",
         name: "Phil Chen",
-        company: "HTC Vive / New Taipei Kings / Cold Electric",
+        company: "HTC Vive / New Taipei Kings",
         photo: "/assets/headshots/phil-chen.webp",
       },
       {
         initials: "JH",
         name: "Jameson Hsu",
-        company: "Mochi Media / Shanda Games",
+        company: "Mochi Media",
         photo: "/assets/headshots/jameson-hsu.webp",
       },
       {
         initials: "JH",
         name: "Joseph Hei",
-        company: "Orbit Baby / Speed Smith",
+        company: "Orbit Baby",
         photo: "/assets/headshots/joseph-hei.webp",
       },
       {
@@ -593,19 +593,19 @@ export const siteContent = {
       {
         initials: "CH",
         name: "Charles Huang",
-        company: "Guitar Hero (RedOctane) / Blue Goji",
+        company: "Guitar Hero / Blue Goji",
         photo: "/assets/headshots/charles-huang.webp",
       },
       {
         initials: "JH",
         name: "James Hong",
-        company: "Hot or Not / Cakey",
+        company: "Hot or Not",
         photo: "/assets/headshots/james-hong.webp",
       },
       {
         initials: "SC",
         name: "Steven Chiang",
-        company: "Tiburon / EA Sports / Fortis Games",
+        company: "Tiburon / EA Sports",
         photo: "/assets/headshots/steven-chiang.webp",
       },
       {
