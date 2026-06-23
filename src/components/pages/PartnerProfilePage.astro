@@ -49,15 +49,7 @@ const { profile } = Astro.props as { profile: PartnerProfile };
             <p>
               {typeof paragraph === "string"
                 ? paragraph
-                : paragraph.map((segment) =>
-                    typeof segment === "string" ? (
-                      segment
-                    ) : (
-                      <a href={segment.href} target="_blank" rel="noopener noreferrer">
-                        {segment.text}
-                      </a>
-                    ),
-                  )}
+                : paragraph.map((segment) => typeof segment === "string" ? segment : <a href={segment.href} target="_blank" rel="noopener noreferrer">{segment.text}</a>)}
             </p>
           ))}
         </div>

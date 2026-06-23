@@ -83,11 +83,11 @@ export const partnerProfiles: PartnerProfile[] = [
     sourceUrl: "https://www.886studios.com/about/carter-wang",
     profileTitle: "About Carter",
     profile: [
-      `Carter Wang is a Venture Associate at 886 Studios, where he leads deal sourcing, researches and evaluates startups, and manages the founder pipeline for ikigai Launchpad accelerator. He also oversees 886's content and social media presence, maintains the company website, and drives community building and event programming in Taipei.`,
-      `Before joining 886 Studios, Carter served as a Research Fellow at Contrary Research, writing investment memos on emerging technology companies, and led the Venture Analyst team at Slug Fund at UC Santa Cruz, where he studied Business and Managerial Economics.`,
+      `Carter Wang is a Venture Associate at 886 Studios, where he leads deal sourcing, researches and evaluates startups, and manages the founder pipeline for ikigai Launchpad accelerator. He also oversees 886's content and social media presence, website, drives community building initiatives, and event programming in Taipei.`,
+      `Before joining 886 Studios, Carter served as a Research Fellow at Contrary Research, writing investment memos on emerging startups, and was the Vice President and Head of the Venture Analyst team at Slug Fund at UC Santa Cruz, where he studied Business and Managerial Economics.`,
       [
         `Outside of work, Carter writes about technology, culture, and human nature in his Substack, `,
-        { text: `Flying Arrows`, href: "https://carterko.substack.com/" },
+        { text: `flying Arrows`, href: "https://carterko.substack.com/" },
         `.`,
       ],
     ],
