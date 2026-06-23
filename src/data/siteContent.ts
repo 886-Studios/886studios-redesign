@@ -569,7 +569,7 @@ export const siteContent = {
       {
         initials: "PC",
         name: "Phil Chen",
-        company: "HTC Vive / New Taipei Kings",
+        company: "HTC Vive / New Taipei Kings / Cold Electric",
         photo: "/assets/headshots/phil-chen.webp",
       },
       {
