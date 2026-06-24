@@ -36,7 +36,7 @@ const { profile } = Astro.props as { profile: PartnerProfile };
       )}
     </div>
     <figure class="partner-profile-photo">
-      <img src={profile.photo} alt={profile.name} decoding="async" loading="eager" />
+      <img src={profile.photo} alt={profile.name} width="400" height="400" decoding="async" loading="eager" fetchpriority="high" />
     </figure>
   </section>
 

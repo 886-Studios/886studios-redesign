@@ -2,6 +2,7 @@ function initPhotoMarquee() {
   const photoTracks = Array.from(document.querySelectorAll<HTMLElement>(".photo-track"));
   if (photoTracks.length === 0) return;
 
+  let animationFrame = 0;
   const syncPhotoTracks = () => {
     const isCompact = window.matchMedia("(max-width: 720px)").matches;
     const pixelsPerSecond = isCompact ? 34 : 42;
@@ -22,14 +23,19 @@ function initPhotoMarquee() {
     });
   };
 
+  const queueSyncPhotoTracks = () => {
+    cancelAnimationFrame(animationFrame);
+    animationFrame = requestAnimationFrame(syncPhotoTracks);
+  };
+
   if ("ResizeObserver" in window) {
-    const photoResizeObserver = new ResizeObserver(syncPhotoTracks);
+    const photoResizeObserver = new ResizeObserver(queueSyncPhotoTracks);
     photoTracks.forEach((track) => photoResizeObserver.observe(track));
   }
 
-  window.addEventListener("load", syncPhotoTracks, { once: true });
-  window.addEventListener("resize", syncPhotoTracks);
-  syncPhotoTracks();
+  window.addEventListener("load", queueSyncPhotoTracks, { once: true });
+  window.addEventListener("resize", queueSyncPhotoTracks);
+  queueSyncPhotoTracks();
 }
 
 function initNewsletterForm() {

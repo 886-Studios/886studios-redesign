@@ -21,6 +21,7 @@ function initNavChrome() {
   const main = select<HTMLElement>("#main-content");
   const footer = select<HTMLElement>("footer");
   let previouslyFocusedElement: HTMLElement | null = null;
+  let previousBodyOverflow = "";
 
   if (!nav || !hamburger || !drawer || !overlay || !closeButton) return;
 
@@ -37,8 +38,9 @@ function initNavChrome() {
     drawer.classList.add("is-open");
     main?.setAttribute("inert", "");
     footer?.setAttribute("inert", "");
+    previousBodyOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    closeButton.focus();
+    closeButton.focus({ preventScroll: true });
   };
 
   const closeDrawer = () => {
@@ -51,10 +53,11 @@ function initNavChrome() {
     drawer.classList.remove("is-open");
     main?.removeAttribute("inert");
     footer?.removeAttribute("inert");
-    document.body.style.overflow = "";
+    document.body.style.overflow = previousBodyOverflow;
     const focusTarget = previouslyFocusedElement && document.contains(previouslyFocusedElement) ? previouslyFocusedElement : hamburger;
-    focusTarget.focus();
+    focusTarget.focus({ preventScroll: true });
     previouslyFocusedElement = null;
+    previousBodyOverflow = "";
   };
 
   const trapDrawerFocus = (event: KeyboardEvent) => {
@@ -117,7 +120,7 @@ function initScrollReveal() {
   const revealElements = selectAll<HTMLElement>(".reveal");
   if (revealElements.length === 0) return;
 
-  if (!("IntersectionObserver" in window)) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches || !("IntersectionObserver" in window)) {
     revealElements.forEach((element) => element.classList.add("is-visible"));
     return;
   }

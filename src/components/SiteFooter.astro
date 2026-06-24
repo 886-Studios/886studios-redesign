@@ -11,7 +11,9 @@ const { hideSocials = false } = Astro.props;
 
 <footer>
   <div class="footer-inner">
-    <a class="footer-logo" href="/"><img src={brand.logoUrl} alt={brand.logoAlt} /></a>
+    <a class="footer-logo" href="/">
+      <img src={brand.logoUrl} alt={brand.logoAlt} width={brand.logoWidth} height={brand.logoHeight} loading="lazy" decoding="async" />
+    </a>
     <div class="footer-copy">
       <span>{siteContent.footer.copy}</span>
     </div>

@@ -47,7 +47,14 @@ const isExternalHeroCta = home.hero.cta.href.startsWith("http");
             {
               home.photos.items.map((photo) => (
                 <figure class="photo-slide">
-                  <img src={photo.src} alt={isHidden ? "" : photo.alt} decoding="async" />
+                  <img
+                    src={photo.src}
+                    alt={isHidden ? "" : photo.alt}
+                    width={photo.width}
+                    height={photo.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </figure>
               ))
             }
@@ -97,7 +104,15 @@ const isExternalHeroCta = home.hero.cta.href.startsWith("http");
         home.founders.logos.map((logo) => (
           <div class="logo-card">
             <div class="logo-stage">
-              <img class:list={["logo-image", logo.imageClass]} src={logo.src} alt={logo.alt} />
+              <img
+                class:list={["logo-image", logo.imageClass]}
+                src={logo.src}
+                alt={logo.alt}
+                width={logo.width}
+                height={logo.height}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
             <div class="logo-caption">{logo.name}</div>
           </div>

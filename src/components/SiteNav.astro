@@ -13,12 +13,12 @@ const isActiveNavItem = (href: string) => href === "/" ? currentPath === "/" : c
 <nav class="site-nav">
   <div class="nav-inner">
     <a class="nav-logo" href="/">
-      <img src={brand.logoUrl} alt={brand.logoAlt} />
+      <img src={brand.logoUrl} alt={brand.logoAlt} width={brand.logoWidth} height={brand.logoHeight} decoding="async" />
     </a>
     <div class="nav-links">
       {
         siteContent.nav.items.map((item) => (
-          <a class:list={["nav-link", isActiveNavItem(item.href) && "active"]} href={item.href}>
+          <a class:list={["nav-link", isActiveNavItem(item.href) && "active"]} href={item.href} aria-current={isActiveNavItem(item.href) ? "page" : undefined}>
             {item.label}
           </a>
         ))
@@ -38,7 +38,7 @@ const isActiveNavItem = (href: string) => href === "/" ? currentPath === "/" : c
   <div class="mobile-drawer-panel" role="dialog" aria-modal="true" aria-label="Main menu">
     <div class="mobile-drawer-header">
       <a class="nav-logo" href="/">
-        <img src={brand.logoUrl} alt={brand.logoAlt} />
+        <img src={brand.logoUrl} alt={brand.logoAlt} width={brand.logoWidth} height={brand.logoHeight} decoding="async" />
       </a>
       <button class="mobile-drawer-close" aria-label="Close menu">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -49,7 +49,7 @@ const isActiveNavItem = (href: string) => href === "/" ? currentPath === "/" : c
     <nav class="mobile-drawer-nav">
       {
         siteContent.nav.items.map((item) => (
-          <a class:list={["mobile-nav-link", isActiveNavItem(item.href) && "active"]} href={item.href}>
+          <a class:list={["mobile-nav-link", isActiveNavItem(item.href) && "active"]} href={item.href} aria-current={isActiveNavItem(item.href) ? "page" : undefined}>
             {item.label}
           </a>
         ))

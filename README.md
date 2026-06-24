@@ -4,7 +4,7 @@ Astro static site for 886 Studios. The codebase is intentionally small and struc
 
 ## Prerequisites
 
-- Node `18.20.8`, `20.3.0+`, or `22+`
+- Node `22.12.0+`
 - npm `9.6.5+`
 
 This repo uses `package-lock.json`, so prefer npm over pnpm or yarn unless the package manager strategy changes.

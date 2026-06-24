@@ -221,7 +221,14 @@ const specPillars = [
     {launchStation && launchStationHref && (
       <a class="prog-launch reveal" aria-labelledby="prog-launch-heading" href={launchStationHref}>
         <figure class="prog-launch-photo">
-          <img src={launchStationPhoto.src} alt={launchStationPhoto.alt} decoding="async" loading="lazy" />
+          <img
+            src={launchStationPhoto.src}
+            alt={launchStationPhoto.alt}
+            width={programs.launchStation.poster.width}
+            height={programs.launchStation.poster.height}
+            decoding="async"
+            loading="lazy"
+          />
         </figure>
         <div class="prog-launch-copy">
           <span class="prog-band-label">Also available</span>
