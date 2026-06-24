@@ -154,6 +154,13 @@ export const partnerProfiles: PartnerProfile[] = [
       "TechCrunch",
       "Your network - staying current with industry news and learning from those who know more than you",
     ],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/kai-huang-813142/",
+        ariaLabel: "Kai Huang on LinkedIn",
+      },
+    ],
     companiesBuilt: ["Guitar Hero", "Red Octane", "Blue Goji", "Flash Bike"],
   },
   {
@@ -196,6 +203,13 @@ export const partnerProfiles: PartnerProfile[] = [
       },
     ],
     recommendations: ["How to Win Friends and Influence People by Dale Carnegie"],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/joseph-hei/",
+        ariaLabel: "Joseph Hei on LinkedIn",
+      },
+    ],
     companiesBuilt: ["Orbit Baby", "Speed Smith"],
   },
   {
@@ -293,6 +307,13 @@ export const partnerProfiles: PartnerProfile[] = [
         ],
       },
     ],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/charleshuang2/",
+        ariaLabel: "Charles Huang on LinkedIn",
+      },
+    ],
     companiesBuilt: ["Guitar Hero", "Red Octane", "Blue Goji", "Green Throttle Games (acquired by Google)"],
   },
   {
@@ -344,6 +365,13 @@ export const partnerProfiles: PartnerProfile[] = [
         ],
       },
     ],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/jamesonhsu/",
+        ariaLabel: "Jameson Hsu on LinkedIn",
+      },
+    ],
     companiesBuilt: ["Mochi Media", "WDDG"],
   },
   {
@@ -358,6 +386,13 @@ export const partnerProfiles: PartnerProfile[] = [
       `Under his leadership, Twitch brought live social video to hundreds of millions of people worldwide, enabling thousands of creators to build communities and make a living through live, shared experiences. Kevin led Twitch from inception to a dominant 90% market share, 2,000+ employees, $1.5B USD in revenue, and an acquisition by Amazon for $1B USD.`,
       `Kevin is also a Co-Founder of Lin Capital (predecessor to Lifelike Capital), former Chairman of the Board of OURA, Board Director for Krafton/PUBG, Co-Founder and CEO of Metatheory, Co-Founder of Gold House, and a prolific angel/venture capital investor. Kevin has led venture capital investments in top companies including Cruise Automation (the leading autonomous AI driving company, acquired by GM for $1B+ USD), Alto Pharmacy (latest value at $1B USD), OURA (latest value at $5B USD).`,
       `Kevin holds a Bachelors from Yale University.`,
+    ],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/kevinlin3/",
+        ariaLabel: "Kevin Lin on LinkedIn",
+      },
     ],
     companiesBuilt: ["Twitch", "Justin.tv", "Lifelike Capital", "Metatheory"],
   },
@@ -406,6 +441,13 @@ export const partnerProfiles: PartnerProfile[] = [
       "The Hard Thing About Hard Things by Ben Horowitz",
       "TechMeme",
       "Hacker News by Y Combinator",
+    ],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/kevinchou/",
+        ariaLabel: "Kevin Chou on LinkedIn",
+      },
     ],
     companiesBuilt: ["Rally", "Kabam", "Gen.G Esports"],
   },
@@ -463,6 +505,13 @@ export const partnerProfiles: PartnerProfile[] = [
         ],
       },
     ],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/chris-wang-5a880b1b/",
+        ariaLabel: "Chris Wang on LinkedIn",
+      },
+    ],
     companiesBuilt: ["Playdom", "ThunderCore"],
   },
   {
@@ -507,6 +556,13 @@ export const partnerProfiles: PartnerProfile[] = [
         ],
       },
     ],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/jacobhsu/",
+        ariaLabel: "Jacob Hsu on LinkedIn",
+      },
+    ],
     companiesBuilt: ["Symbio", "Catalyte"],
   },
   {
@@ -517,6 +573,13 @@ export const partnerProfiles: PartnerProfile[] = [
     sourceUrl: "https://www.886studios.com/about/james-hong",
     profileTitle: "Profile",
     profile: [],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/thehonger/",
+        ariaLabel: "James Hong on LinkedIn",
+      },
+    ],
     companiesBuilt: ["Hot or Not (acquired by Ruby)"],
   },
   {
@@ -534,6 +597,13 @@ export const partnerProfiles: PartnerProfile[] = [
       `Most recently, in July 2021, Chiang became the President and Founder of Fortis Games. At Fortis, he focuses on building leadership culture and ensuring game delivery.`,
       `Throughout his career, Chiang has been credited on over 100 games, including major titles such as Mortal Kombat 11, Cyberpunk 2077, and Hogwarts Legacy. He has also served as a board member and advisor for several organizations, including The Topps Company, Virtuos, and Gamebasics.`,
     ],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/steven-chiang-98689/",
+        ariaLabel: "Steven Chiang on LinkedIn",
+      },
+    ],
     companiesBuilt: ["Tiburon (acquired by EA)", "Zynga"],
   },
   {
@@ -546,6 +616,13 @@ export const partnerProfiles: PartnerProfile[] = [
     profile: [
       `Tim started his career at VIA Technologies, a semiconductor company based in Taiwan. As the Head of Global Sales and Marketing, he soon began angel investing in various companies. He also founded CAATCHPLAY, a media/film streaming, production, and distribution company based in Taiwan.`,
       `With a clear vision of what he wants to achieve, he shares with us how he came to be an angel investor and how his own interests have driven him to find and solve problems.`,
+    ],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/timothy-chen-0a5173/",
+        ariaLabel: "Timothy Chen on LinkedIn",
+      },
     ],
     questions: [
       {
@@ -646,6 +723,13 @@ export const partnerProfiles: PartnerProfile[] = [
           `When you want to determine the difference between a good and a great shooter it’s not in the technique, practice, or talent. They all have the same training and put in the same amount of work. What separates the great from the good is if they themselves believe they will make the shot. I’ve noticed especially in Taiwan that many founders lack this when they can and should be more confident.`,
           `They have the talent but are hindered by themselves, and they don’t believe that they can move to Silicon Valley and make it. They envision themselves but never actually take the leap and do so.”`,
         ],
+      },
+    ],
+    socials: [
+      {
+        platform: "linkedin",
+        href: "https://www.linkedin.com/in/phil-chen-3b912b112/",
+        ariaLabel: "Phil Chen on LinkedIn",
       },
     ],
     companiesBuilt: ["HTC", "Cold Electric", "New Taipei Kings", "Race Capital", "Presence Capital"],
