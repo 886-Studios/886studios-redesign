@@ -4,7 +4,10 @@ import { siteContent } from "../../data/siteContent";
 const { home } = siteContent;
 const photoLoopSets = [false, true];
 const isExternalHeroCta = home.hero.cta.href.startsWith("http");
-const portfolioPreviewItems = home.founders.portfolio.slice(0, 5);
+const portfolioPreviewSlugs = ["o3o-labs", "preciser", "dentscape", "gitroll", "peeps"];
+const portfolioPreviewItems = portfolioPreviewSlugs
+  .map((slug) => home.founders.portfolio.find((item) => item.slug === slug))
+  .filter((item): item is NonNullable<typeof item> => Boolean(item));
 ---
 
 <div class="page" id="page-home">

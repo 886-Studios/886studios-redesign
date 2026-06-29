@@ -192,6 +192,24 @@ export const portfolioCompanies = [
     description: "An AI sports analytics platform for sports teams.",
   },
   {
+    name: "Valtec",
+    slug: "valtec",
+    relationship: "886-backed",
+    category: "Maritime",
+    websiteUrl: "https://www.valtec.ai/",
+    description:
+      "Valtec builds AI-powered aerial maritime intelligence systems that turn ocean data into real-time detection, monitoring, and decision support.",
+  },
+  {
+    name: "Miso",
+    slug: "miso",
+    relationship: "886-backed",
+    category: "AI Search",
+    websiteUrl: "https://miso.ai/",
+    description:
+      "Miso builds citation-driven AI search for publishers, giving readers trustworthy answers grounded in a publisher's own content.",
+  },
+  {
     name: "Discord",
     slug: "discord",
     relationship: "Partner-backed",

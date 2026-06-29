@@ -12,7 +12,7 @@ export function getStaticPaths() {
 
 const { company } = Astro.props as { company: PortfolioCompany };
 const pageTitle = `${company.name} — 886 Studios Portfolio`;
-const pageDescription = `${company.name} is ${company.relationship.toLowerCase()} in the ${company.category.toLowerCase()} category.`;
+const pageDescription = `${company.name}: ${company.description}`;
 const externalLinks = [
   { label: "Website", href: company.websiteUrl },
   { label: "App Store", href: company.appStoreUrl },
@@ -26,15 +26,10 @@ const externalLinks = [
       <a class="startup-back-link" href="/portfolio">Back to portfolio</a>
       <div class="section-tag">{company.category}</div>
       <h1 class="startup-detail-title" id="startup-detail-title">{company.name}</h1>
-      <p class="startup-detail-lead">{company.description}</p>
     </section>
 
     <section class="startup-detail-shell" aria-label={`${company.name} details`}>
       <dl class="startup-detail-facts">
-        <div>
-          <dt>Relationship</dt>
-          <dd>{company.relationship}</dd>
-        </div>
         <div>
           <dt>Category</dt>
           <dd>{company.category}</dd>
@@ -44,14 +39,6 @@ const externalLinks = [
             <div>
               <dt>Program</dt>
               <dd>{company.program}</dd>
-            </div>
-          )
-        }
-        {
-          company.status && (
-            <div>
-              <dt>Status</dt>
-              <dd>{company.status}</dd>
             </div>
           )
         }
