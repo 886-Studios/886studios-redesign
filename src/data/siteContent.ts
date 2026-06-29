@@ -44,77 +44,152 @@ export interface PortfolioCompany {
   slug: string;
   relationship: "Partner-backed" | "886-backed";
   category: string;
-  batch?: string;
+  program?: string;
+  status?: "Active" | "Inactive";
   websiteUrl?: string;
+  appStoreUrl?: string;
+  playStoreUrl?: string;
   description: string;
 }
 
 export const portfolioCompanies = [
   {
-    name: "HeyEva",
-    slug: "heyeva",
+    name: "diffusr.",
+    slug: "diffusr",
     relationship: "886-backed",
     category: "AI",
-    batch: "Spring 2026",
-    websiteUrl: "https://www.heyeva.me",
-    description: "AI agents that help creators manage brand deals.",
+    program: "ikigai S'26",
+    status: "Active",
+    websiteUrl: "https://www.diffusr.ai",
+    description:
+      "An AI-enabled agency producing and distributing high-volume AI UGC for brands.",
   },
   {
-    name: "Kardomo",
-    slug: "kardomo",
+    name: "Peeps",
+    slug: "peeps",
     relationship: "886-backed",
     category: "Consumer",
-    batch: "Spring 2026",
+    program: "ikigai S'26",
+    status: "Active",
     websiteUrl: "https://encoremap.com",
+    appStoreUrl: "https://apps.apple.com/tw/app/peeps-%E8%88%87%E6%9C%8B%E5%8F%8B%E5%90%8C%E5%B1%85/id6753601581",
     description:
-      "A consumer fan platform building Encore for K-pop discovery, participation, and memories.",
+      "Peeps is a private social game where close friends live together online, share daily moments, and stay connected through playful rituals.",
   },
   {
-    name: "LFG (by Doppler)",
-    slug: "lfg-by-doppler",
+    name: "lfg",
+    slug: "lfg",
     relationship: "886-backed",
     category: "Consumer",
-    batch: "Spring 2026",
+    program: "ikigai S'26",
+    status: "Active",
     websiteUrl: "https://lfgggg.com/",
+    appStoreUrl: "https://apps.apple.com/us/app/lfg-on-demand-hangouts/id6762966872",
     description:
-      "A consumer app that turns saved inspiration into plans and real-world action.",
+      "LFG turns saved places and ideas into shareable lists, helping friend groups move from scrolling to real-world plans.",
   },
   {
-    name: "Runaway AI",
-    slug: "runaway-ai",
+    name: "Hushli",
+    slug: "hushli",
     relationship: "886-backed",
-    category: "AI",
-    description: "An AI startup backed by 886 Studios.",
+    category: "Health",
+    program: "ikigai S'25",
+    status: "Active",
+    appStoreUrl: "https://apps.apple.com/tw/app/hushli-ai-confidant-journal/id6748250163?l=en-GB",
+    description:
+      "Hushli is an AI confidant that listens without judgment, helping people talk through difficult moments and remember their emotional journey.",
   },
   {
-    name: "O3O Labs (PicPet)",
-    slug: "o3o-labs-picpet",
+    name: "InstaPodz",
+    slug: "instapodz",
     relationship: "886-backed",
     category: "AI",
-    description: "An AI startup behind PicPet, backed by 886 Studios.",
+    program: "ikigai S'25",
+    status: "Active",
+    websiteUrl: "https://instapodz.com/",
+    appStoreUrl: "https://apps.apple.com/us/app/instapodz-ai-podcast-creator/id6744011584",
+    description:
+      "InstaPodz turns questions, links, and learning goals into personalized AI podcast episodes.",
+  },
+  {
+    name: "PictureCook",
+    slug: "picturecook",
+    relationship: "886-backed",
+    category: "Education",
+    program: "ikigai S'25",
+    status: "Active",
+    websiteUrl: "https://picture-cook.com/",
+    appStoreUrl: "https://apps.apple.com/sg/app/picturecook-kid-english-buddy/id6746742382",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.picturecook.interactiveaudiobook",
+    description:
+      "PictureCook is a character-based reading companion that helps children build daily reading habits through stories, kid-friendly news, and conversation.",
+  },
+  {
+    name: "Sugar AI",
+    slug: "sugar-ai",
+    relationship: "886-backed",
+    category: "AI",
+    program: "ikigai S'25",
+    status: "Active",
+    websiteUrl: "https://sugarai.tw/",
+    appStoreUrl: "https://apps.apple.com/tw/app/sugar-%E4%BD%A0%E7%9A%84%E6%AD%A3%E7%89%88%E6%BC%AB%E7%95%ABai%E8%A7%92%E8%89%B2/id6744877922",
+    description:
+      "Sugar AI turns licensed characters into interactive AI personas fans can chat and play with.",
+  },
+  {
+    name: "Tellit Now",
+    slug: "tellit-now",
+    relationship: "886-backed",
+    category: "Commerce",
+    program: "ikigai S'25",
+    status: "Active",
+    websiteUrl: "https://www.tellitapp.ai/",
+    appStoreUrl: "https://apps.apple.com/us/app/tell-it-now-%E6%8E%A2%E5%BA%97%E5%A4%A7%E8%81%B2%E5%85%AC/id6448947278",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=ai.tellit.tellitapp",
+    description:
+      "Tellit Now connects offline stores with influential consumers through location-based social promotion tasks.",
   },
   {
     name: "Gitroll",
     slug: "gitroll",
     relationship: "886-backed",
     category: "Developer tools",
+    program: "ikigai F'24",
+    status: "Active",
     websiteUrl: "https://gitroll.io/",
     description:
-      "A developer tools startup backed by 886 Studios.",
+      "An AI-powered talent assessment platform for engineering teams.",
+  },
+  {
+    name: "PicPet by O3O Labs",
+    slug: "o3o-labs",
+    relationship: "886-backed",
+    category: "Consumer",
+    program: "ikigai F'24",
+    status: "Active",
+    appStoreUrl: "https://apps.apple.com/us/app/picpet/id6742077014",
+    description:
+      "PicPet lets close friends raise a virtual pet together by feeding it photos and sharing daily moments.",
   },
   {
     name: "Dentscape",
     slug: "dentscape",
     relationship: "886-backed",
     category: "Health",
-    description: "A health startup backed by 886 Studios.",
+    program: "Velocity",
+    status: "Active",
+    websiteUrl: "https://dentscape.ai/",
+    description: "An AI agent for dental design workflows.",
   },
   {
-    name: "Valtech",
-    slug: "valtech",
+    name: "Preciser",
+    slug: "preciser",
     relationship: "886-backed",
-    category: "Enterprise",
-    description: "An enterprise startup backed by 886 Studios.",
+    category: "Sports",
+    program: "Velocity",
+    status: "Active",
+    websiteUrl: "https://www.preciser.io/",
+    description: "An AI sports analytics platform for sports teams.",
   },
   {
     name: "Discord",

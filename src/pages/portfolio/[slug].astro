@@ -13,6 +13,11 @@ export function getStaticPaths() {
 const { company } = Astro.props as { company: PortfolioCompany };
 const pageTitle = `${company.name} — 886 Studios Portfolio`;
 const pageDescription = `${company.name} is ${company.relationship.toLowerCase()} in the ${company.category.toLowerCase()} category.`;
+const externalLinks = [
+  { label: "Website", href: company.websiteUrl },
+  { label: "App Store", href: company.appStoreUrl },
+  { label: "Google Play", href: company.playStoreUrl },
+].filter((link): link is { label: string; href: string } => typeof link.href === "string" && link.href.length > 0);
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -35,10 +40,18 @@ const pageDescription = `${company.name} is ${company.relationship.toLowerCase()
           <dd>{company.category}</dd>
         </div>
         {
-          company.batch && (
+          company.program && (
             <div>
-              <dt>Batch</dt>
-              <dd>{company.batch}</dd>
+              <dt>Program</dt>
+              <dd>{company.program}</dd>
+            </div>
+          )
+        }
+        {
+          company.status && (
+            <div>
+              <dt>Status</dt>
+              <dd>{company.status}</dd>
             </div>
           )
         }
@@ -48,15 +61,19 @@ const pageDescription = `${company.name} is ${company.relationship.toLowerCase()
         <h2>About {company.name}</h2>
         <p>{company.description}</p>
         {
-          company.websiteUrl && (
-            <a
-              class="startup-detail-cta"
-              href={company.websiteUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Visit website -&gt;
-            </a>
+          externalLinks.length > 0 && (
+            <div class="startup-detail-actions" aria-label={`${company.name} links`}>
+              {externalLinks.map((link) => (
+                <a
+                  class="startup-detail-cta"
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {link.label} -&gt;
+                </a>
+              ))}
+            </div>
           )
         }
       </div>

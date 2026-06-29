@@ -2,6 +2,10 @@
 import PageHero from "../components/PageHero.astro";
 import { portfolioCompanies } from "../data/siteContent";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const alphabeticalPortfolioCompanies = [...portfolioCompanies].sort((a, b) =>
+  a.name.localeCompare(b.name, "en", { sensitivity: "base", ignorePunctuation: true }),
+);
 ---
 
 <BaseLayout
@@ -12,7 +16,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <PageHero
       eyebrow="Portfolio"
       title="Startups backed by our network"
-      lead="A closer look at companies backed by 886 Studios and by partners across our network."
       titleId="portfolio-title"
     />
 
@@ -20,7 +23,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <h2 class="sr-only" id="portfolio-directory-title">Portfolio companies</h2>
       <ul class="portfolio-list portfolio-list--directory" aria-label="Portfolio companies">
         {
-          portfolioCompanies.map((item) => (
+          alphabeticalPortfolioCompanies.map((item) => (
             <li class="portfolio-row">
               <a class="portfolio-link" href={`/portfolio/${item.slug}`}>
                 <span class="portfolio-name-group">
@@ -28,9 +31,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
                   <span class="portfolio-category">{item.category}</span>
                 </span>
                 <span class="portfolio-meta">
-                  <span class="portfolio-learn">
-                    Learn more -&gt;
-                  </span>
+                  <span class="sr-only">Open {item.name} portfolio page</span>
+                  <span class="portfolio-indicator" aria-hidden="true"></span>
                 </span>
               </a>
             </li>

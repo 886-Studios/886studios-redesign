@@ -120,32 +120,28 @@ const portfolioPreviewItems = home.founders.portfolio.slice(0, 5);
         ))
       }
     </div>
-    <div class="portfolio-header">
-      <h3 class="portfolio-heading">Our portfolio</h3>
-      <p class="portfolio-copy">
-        Startups backed by 886 Studios and by partners across our network.
-      </p>
-    </div>
-    <ul class="portfolio-list" aria-label="Portfolio companies">
-      {
-        portfolioPreviewItems.map((item) => (
-          <li class="portfolio-row">
-            <a class="portfolio-link" href={`/portfolio/${item.slug}`}>
-              <span class="portfolio-name-group">
-                <span class="portfolio-name">{item.name}</span>
-                <span class="portfolio-category">{item.category}</span>
-              </span>
-              <span class="portfolio-meta">
-                <span class="portfolio-learn">
-                  Learn more -&gt;
+    <div class="portfolio-block">
+      <h2 class="section-h2">Our portfolio</h2>
+      <ul class="portfolio-list" aria-label="Portfolio companies">
+        {
+          portfolioPreviewItems.map((item) => (
+            <li class="portfolio-row">
+              <a class="portfolio-link" href={`/portfolio/${item.slug}`}>
+                <span class="portfolio-name-group">
+                  <span class="portfolio-name">{item.name}</span>
+                  <span class="portfolio-category">{item.category}</span>
                 </span>
-              </span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-    <a class="portfolio-see-more" href="/portfolio">See more portfolio companies -&gt;</a>
+                <span class="portfolio-meta">
+                  <span class="sr-only">Open {item.name} portfolio page</span>
+                  <span class="portfolio-indicator" aria-hidden="true"></span>
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <a class="portfolio-see-more" href="/portfolio">See all portfolio companies</a>
+    </div>
   </div>
 
   <!-- Newsletter -->
