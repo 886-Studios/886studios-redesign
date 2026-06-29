@@ -12,12 +12,12 @@ This repo uses `package-lock.json`, so prefer npm over pnpm or yarn unless the p
 ## Quick Start
 
 ```bash
-npm install
+npm ci
 cp .env.example .env
 npm run dev
 ```
 
-Open `http://127.0.0.1:4173/`.
+Open `http://127.0.0.1:4173/`. Astro will print the actual URL if that port is already in use.
 
 Before handing work back, run:
 
@@ -29,6 +29,7 @@ npm run build
 To inspect the production build locally:
 
 ```bash
+npm run build
 npm run preview
 ```
 
@@ -43,6 +44,8 @@ Use the URL printed by Astro.
 | `npm run build` | Build all static routes into `dist/`. |
 | `npm run preview` | Serve the latest `dist/` build locally. |
 
+Use `npm install <package>` only when intentionally changing dependencies. For normal setup and CI-style installs, use `npm ci` so `package-lock.json` is respected exactly.
+
 ## Environment
 
 `.env.example` contains the only local environment variable currently used:
@@ -53,13 +56,30 @@ LUMA_API_KEY=
 
 `LUMA_API_KEY` is optional. Without it, the Events page renders the configured fallback state. With it, `npm run build` fetches approved Luma events through `src/lib/luma.ts`.
 
-Do not commit `.env`, `.env.local`, or any `.env.*.local` file. Google Analytics uses the production fallback ID in `src/config/site.ts`; there is no separate local analytics env var.
+Do not commit `.env`, `.env.local`, or any `.env.*.local` file. These files are ignored by git and should hold local or deployment secrets only.
+
+Google Analytics uses the production fallback ID in `src/config/site.ts`; there is no separate local analytics env var. Vercel Analytics renders only when Vercel sets `VERCEL=1`.
+
+## Deployment
+
+The site is a static Astro build deployed on Vercel.
+
+- Build command: `npm run build`
+- Output directory: `dist/`
+- Canonical site URL: `https://www.886studios.com`
+- Redirects and security headers: `vercel.json`
+- Required production env vars: none
+- Optional production env vars: `LUMA_API_KEY`
+
+If `LUMA_API_KEY` is present in production, the Events page is generated from approved Luma events at build time. If it is absent or the API request fails, the build still completes and the page renders fallback copy.
 
 ## Common Pitfalls
 
+- If `npm ci` fails after dependency edits, regenerate the lockfile intentionally with `npm install` and commit `package-lock.json`.
 - If `/events` shows fallback copy locally, confirm `LUMA_API_KEY` is present in `.env` and restart the dev server.
 - If `npm run build` logs a Luma warning, check the API key and network access. The page should still render a fallback state.
-- If `npm run dev` is already using port `4173`, stop the existing process or run Astro on another port.
+- If `npm run dev` is already using port `4173`, use the alternate URL printed by Astro or stop the existing process.
+- If `npm run preview` serves stale output, run `npm run build` first.
 - Do not edit generated files in `dist/`; source changes belong under `src/`.
 - Keep screenshots, traces, `.env` files, and OS metadata out of the repo.
 
@@ -173,5 +193,12 @@ For frontend QA, verify at least:
 - `/apply` redirect markup when touching CTA or redirect behavior
 
 For security-sensitive changes, review `vercel.json` and run `npm audit` when network access is explicitly approved.
+
+For dependency maintenance:
+
+```bash
+npm outdated --long
+npm audit --audit-level=moderate
+```
 
 The project has no committed Playwright suite. Use the available browser tooling in the current environment for live validation and keep generated QA artifacts outside the repo.
