@@ -62,7 +62,7 @@ export const portfolioCompanies = [
     status: "Active",
     websiteUrl: "https://www.diffusr.ai",
     description:
-      "An AI-enabled agency producing and distributing high-volume AI UGC for brands.",
+      "diffusr. helps brands launch AI-generated UGC campaigns at social-platform scale. The company operates as a managed service that develops creative concepts, produces avatar-led video variants, and distributes campaigns so brands can test and amplify messages faster than a traditional creator workflow.",
   },
   {
     name: "Peeps",
@@ -71,10 +71,10 @@ export const portfolioCompanies = [
     category: "Consumer",
     program: "ikigai S'26",
     status: "Active",
-    websiteUrl: "https://encoremap.com",
+    websiteUrl: "https://playpeeps.app",
     appStoreUrl: "https://apps.apple.com/tw/app/peeps-%E8%88%87%E6%9C%8B%E5%8F%8B%E5%90%8C%E5%B1%85/id6753601581",
     description:
-      "Peeps is a private social game where close friends live together online, share daily moments, and stay connected through playful rituals.",
+      "Peeps is a private social app that gives close friends a shared pixel home on the internet. Friends can move around a room together, share daily photos, decorate the space, raise mystery pets, and play mini-games, turning lightweight check-ins into a persistent place for real friend groups.",
   },
   {
     name: "lfg",
@@ -83,10 +83,10 @@ export const portfolioCompanies = [
     category: "Consumer",
     program: "ikigai S'26",
     status: "Active",
-    websiteUrl: "https://lfgggg.com/",
+    websiteUrl: "https://lfg.place/",
     appStoreUrl: "https://apps.apple.com/us/app/lfg-on-demand-hangouts/id6762966872",
     description:
-      "LFG turns saved places and ideas into shareable lists, helping friend groups move from scrolling to real-world plans.",
+      "lfg is a social planning app for on-demand hangouts with friends in real life. It turns places discovered on Instagram, TikTok, Google Maps, and elsewhere into a shared map, then lets users pick a spot, invite the right people, and coordinate plans without getting stuck in group-chat back-and-forth.",
   },
   {
     name: "Hushli",
@@ -95,9 +95,10 @@ export const portfolioCompanies = [
     category: "Health",
     program: "ikigai S'25",
     status: "Active",
+    websiteUrl: "https://hushli.ai/",
     appStoreUrl: "https://apps.apple.com/tw/app/hushli-ai-confidant-journal/id6748250163?l=en-GB",
     description:
-      "Hushli is an AI confidant that listens without judgment, helping people talk through difficult moments and remember their emotional journey.",
+      "Hushli is an AI confidant and mood journal built around a private companion named Lumi. The app gives people a place to talk through difficult moments, turn conversations into journal entries, track emotional patterns over time, and use privacy features such as Face ID for a quieter personal reflection space.",
   },
   {
     name: "InstaPodz",
@@ -109,7 +110,7 @@ export const portfolioCompanies = [
     websiteUrl: "https://instapodz.com/",
     appStoreUrl: "https://apps.apple.com/us/app/instapodz-ai-podcast-creator/id6744011584",
     description:
-      "InstaPodz turns questions, links, and learning goals into personalized AI podcast episodes.",
+      "InstaPodz creates personalized AI radio and podcast episodes from topics, questions, links, or daily learning goals. Users can choose show length, host style, language, and even character-style voices, making it a lightweight way to turn news, research, and curiosity into audio that fits a commute or short break.",
   },
   {
     name: "PictureCook",
@@ -122,7 +123,7 @@ export const portfolioCompanies = [
     appStoreUrl: "https://apps.apple.com/sg/app/picturecook-kid-english-buddy/id6746742382",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.picturecook.interactiveaudiobook",
     description:
-      "PictureCook is a character-based reading companion that helps children build daily reading habits through stories, kid-friendly news, and conversation.",
+      "PictureCook is an AI-powered English learning companion for children. Its interactive picture books combine narration, tap-to-learn vocabulary, kid-safe stories, and AI character conversations so young learners can practice reading, listening, and speaking through storytime rather than formal lessons.",
   },
   {
     name: "Sugar AI",
@@ -134,7 +135,7 @@ export const portfolioCompanies = [
     websiteUrl: "https://sugarai.tw/",
     appStoreUrl: "https://apps.apple.com/tw/app/sugar-%E4%BD%A0%E7%9A%84%E6%AD%A3%E7%89%88%E6%BC%AB%E7%95%ABai%E8%A7%92%E8%89%B2/id6744877922",
     description:
-      "Sugar AI turns licensed characters into interactive AI personas fans can chat and play with.",
+      "Sugar AI turns officially licensed comic and manga characters into interactive AI companions for fans. Characters are supervised around creator-approved personalities, remember conversations, unlock story branches and memories through chat, and give IP owners a new direct-to-fan format for character engagement.",
   },
   {
     name: "Tellit Now",
@@ -147,7 +148,7 @@ export const portfolioCompanies = [
     appStoreUrl: "https://apps.apple.com/us/app/tell-it-now-%E6%8E%A2%E5%BA%97%E5%A4%A7%E8%81%B2%E5%85%AC/id6448947278",
     playStoreUrl: "https://play.google.com/store/apps/details?id=ai.tellit.tellitapp",
     description:
-      "Tellit Now connects offline stores with influential consumers through location-based social promotion tasks.",
+      "Tellit Now is a map-based word-of-mouth marketing platform for local stores, brands, and influential consumers. Businesses can publish nearby check-in and content tasks, while consumers discover offers, visit locations, post to social channels, and earn cash or reciprocal rewards after merchants review the promotion.",
   },
   {
     name: "Gitroll",
@@ -158,7 +159,7 @@ export const portfolioCompanies = [
     status: "Active",
     websiteUrl: "https://gitroll.io/",
     description:
-      "An AI-powered talent assessment platform for engineering teams.",
+      "GitRoll helps engineering teams evaluate developers by turning real code history into data-driven coding profiles. Its AI analyzes open-source activity, builds skill evidence from actual repositories, and gives recruiters a way to assess candidates without relying only on resumes, trivia-style interviews, or take-home tests.",
   },
   {
     name: "PicPet by O3O Labs",
@@ -169,7 +170,7 @@ export const portfolioCompanies = [
     status: "Active",
     appStoreUrl: "https://apps.apple.com/us/app/picpet/id6742077014",
     description:
-      "PicPet lets close friends raise a virtual pet together by feeding it photos and sharing daily moments.",
+      "PicPet by O3O Labs is a social game for close friends built around raising a shared virtual pet. Friends feed the pet with photos, earn coins, unlock rewards, customize rooms and pets, and use the daily routine as a playful reason to stay connected with the people they care about.",
   },
   {
     name: "Dentscape",
@@ -179,7 +180,8 @@ export const portfolioCompanies = [
     program: "Velocity",
     status: "Active",
     websiteUrl: "https://dentscape.ai/",
-    description: "An AI agent for dental design workflows.",
+    description:
+      "Dentscape builds AI dental-design software for labs that need faster CAD workflows. Its platform positions itself as a personalized AI dental designer that can help produce high volumes of crown designs quickly, reducing repetitive manual work while fitting into the bread-and-butter production flow of dental labs.",
   },
   {
     name: "Preciser",
@@ -189,7 +191,8 @@ export const portfolioCompanies = [
     program: "Velocity",
     status: "Active",
     websiteUrl: "https://www.preciser.io/",
-    description: "An AI sports analytics platform for sports teams.",
+    description:
+      "Preciser is an AI and computer-vision analytics platform for sports video, with current support for basketball and baseball. Teams, coaches, leagues, and organizations can upload or stream game footage and receive automated stats, highlights, reports, and video insights without spending hours on manual tagging.",
   },
   {
     name: "Valtec",
@@ -198,7 +201,7 @@ export const portfolioCompanies = [
     category: "AI",
     websiteUrl: "https://www.valtec.ai/",
     description:
-      "Valtec builds AI-powered aerial maritime intelligence systems that turn ocean data into real-time detection, monitoring, and decision support.",
+      "Valtec builds aerial maritime intelligence systems that use AI detection to monitor ocean activity in real time. Its technology is focused on turning data captured from above into practical awareness for maritime operators, helping teams detect, track, and respond to activity across coastal and open-water environments.",
   },
   {
     name: "Miso",
@@ -207,7 +210,7 @@ export const portfolioCompanies = [
     category: "AI",
     websiteUrl: "https://miso.ai/",
     description:
-      "Miso builds citation-driven AI search for publishers, giving readers trustworthy answers grounded in a publisher's own content.",
+      "Miso builds AI answer and search technology for publishers and content platforms that need trustworthy discovery. Instead of returning only vague search results, Miso grounds responses in a publisher's own content, adds citations, and helps readers get useful answers while keeping traffic and engagement inside the publisher experience.",
   },
   {
     name: "Discord",
@@ -216,7 +219,7 @@ export const portfolioCompanies = [
     category: "Consumer",
     websiteUrl: "https://discord.com/",
     description:
-      "A consumer communication platform for communities, friends, creators, and teams.",
+      "Discord is a consumer communication platform built for voice, video, text, and shared online spaces. People use it to play games, hang out with friends, organize private groups, or build larger communities, with customizable servers that combine casual chat, live presence, and community tools.",
   },
   {
     name: "OURA",
@@ -225,7 +228,7 @@ export const portfolioCompanies = [
     category: "Health",
     websiteUrl: "https://ouraring.com/",
     description:
-      "A health technology company known for turning wearable biometric data into practical daily insights.",
+      "OURA is a health technology company best known for the Oura Ring, a smart ring that tracks sleep, fitness, stress, and broader wellness signals around the clock. Its product turns passive biometric data into daily readiness, recovery, and health insights that help people understand patterns in their bodies over time.",
   },
   {
     name: "Crunchyroll",
@@ -234,7 +237,7 @@ export const portfolioCompanies = [
     category: "Media",
     websiteUrl: "https://www.crunchyroll.com/",
     description:
-      "A global anime and manga streaming brand serving fans across markets and devices.",
+      "Crunchyroll is a global anime brand and streaming service serving fans across shows, films, manga, games, theatrical releases, events, and merchandise. The company has become one of the central distribution and community platforms for anime outside Japan, connecting licensed content with audiences across markets and devices.",
   },
   {
     name: "Gogoro",
@@ -243,7 +246,7 @@ export const portfolioCompanies = [
     category: "Climate",
     websiteUrl: "https://www.gogoro.com/",
     description:
-      "An electric mobility company building battery-swapping infrastructure and smart scooters.",
+      "Gogoro builds electric urban mobility infrastructure around smart scooters, swappable batteries, fleet tools, and the Gogoro Network. Its platform is designed to make refueling electric two-wheelers fast, help cities and logistics operators manage energy more efficiently, and support cleaner transportation in dense urban markets.",
   },
   {
     name: "P. LEAGUE+",
@@ -252,7 +255,7 @@ export const portfolioCompanies = [
     category: "Sports",
     websiteUrl: "https://pleagueofficial.com/",
     description:
-      "A professional basketball league helping grow Taiwan's sports and entertainment market.",
+      "P. LEAGUE+ is a professional men's basketball league in Taiwan focused on higher-quality home-game experiences and stronger fan interaction. The league brings together Taiwanese clubs, publishes schedules, standings, statistics, video, ticketing, and media content, and has played a visible role in growing Taiwan's basketball entertainment market.",
   },
   {
     name: "KKBOX",
@@ -261,7 +264,7 @@ export const portfolioCompanies = [
     category: "Media",
     websiteUrl: "https://www.kkbox.com/",
     description:
-      "A music streaming platform with deep roots across Asian music and digital entertainment.",
+      "KKBOX is a music streaming and digital entertainment platform with deep roots in Taiwan and other Asian markets. The service is known for licensed music discovery, playlists, podcasts, and live entertainment features, giving Mandarin and Asian music fans a regional alternative to global streaming services.",
   },
 ] satisfies readonly PortfolioCompany[];
 
