@@ -5,9 +5,10 @@ interface Props {
   lead?: string;
   titleId?: string;
   className?: string;
+  showDivider?: boolean;
 }
 
-const { eyebrow, title, lead, titleId, className } = Astro.props;
+const { eyebrow, title, lead, titleId, className, showDivider = true } = Astro.props;
 ---
 
 <section class:list={["pg-hero", className]} aria-labelledby={titleId}>
@@ -16,4 +17,4 @@ const { eyebrow, title, lead, titleId, className } = Astro.props;
   <h1 class="section-h2 pg-hero-title" id={titleId}>{title}</h1>
   {lead && <p class="section-lead section-lead--flush">{lead}</p>}
 </section>
-<div class="pg-divider"></div>
+{showDivider && <div class="pg-divider"></div>}

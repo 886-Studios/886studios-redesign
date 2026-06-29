@@ -18,35 +18,31 @@ const externalLinks = [
   { label: "App Store", href: company.appStoreUrl },
   { label: "Google Play", href: company.playStoreUrl },
 ].filter((link): link is { label: string; href: string } => typeof link.href === "string" && link.href.length > 0);
+const companyInitials =
+  company.name
+    .replace(/\bby\b/gi, "")
+    .replace(/[^a-z0-9\s]/gi, " ")
+    .trim()
+    .split(/\s+/)
+    .slice(0, 2)
+    .map((part) => part.charAt(0).toUpperCase())
+    .join("") || company.name.charAt(0).toUpperCase();
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
   <article class="startup-detail-page">
-    <section class="startup-detail-hero" aria-labelledby="startup-detail-title">
-      <a class="startup-back-link" href="/portfolio">Back to portfolio</a>
-      <div class="section-tag">{company.category}</div>
-      <h1 class="startup-detail-title" id="startup-detail-title">{company.name}</h1>
-    </section>
+    <section class="startup-detail-shell" aria-labelledby="startup-detail-title">
+      <a class="startup-back-link" href="/portfolio">&larr; Back to portfolio</a>
 
-    <section class="startup-detail-shell" aria-label={`${company.name} details`}>
-      <dl class="startup-detail-facts">
-        <div>
-          <dt>Category</dt>
-          <dd>{company.category}</dd>
+      <div class="startup-detail-main">
+        <div class="startup-detail-heading">
+          <div class="startup-detail-mark" aria-hidden="true">{companyInitials}</div>
+          <div class="startup-detail-copy">
+            <h1 class="startup-detail-title" id="startup-detail-title">{company.name}</h1>
+            <p class="startup-detail-lead">{company.description}</p>
+          </div>
         </div>
-        {
-          company.program && (
-            <div>
-              <dt>Program</dt>
-              <dd>{company.program}</dd>
-            </div>
-          )
-        }
-      </dl>
 
-      <div class="startup-detail-body">
-        <h2>About {company.name}</h2>
-        <p>{company.description}</p>
         {
           externalLinks.length > 0 && (
             <div class="startup-detail-actions" aria-label={`${company.name} links`}>
@@ -57,13 +53,30 @@ const externalLinks = [
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {link.label} -&gt;
+                  {link.label} &rarr;
                 </a>
               ))}
             </div>
           )
         }
       </div>
+
+      <aside class="startup-detail-sidebar" aria-label={`${company.name} facts`}>
+        <dl class="startup-detail-facts">
+          <div>
+            <dt>Category</dt>
+            <dd>{company.category}</dd>
+          </div>
+          {
+            company.program && (
+              <div>
+                <dt>Program</dt>
+                <dd>{company.program}</dd>
+              </div>
+            )
+          }
+        </dl>
+      </aside>
     </section>
   </article>
 </BaseLayout>
