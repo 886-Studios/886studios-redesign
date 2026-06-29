@@ -34,6 +34,14 @@ const pageDescription = `${company.name} is ${company.relationship.toLowerCase()
           <dt>Category</dt>
           <dd>{company.category}</dd>
         </div>
+        {
+          company.batch && (
+            <div>
+              <dt>Batch</dt>
+              <dd>{company.batch}</dd>
+            </div>
+          )
+        }
       </dl>
 
       <div class="startup-detail-body">

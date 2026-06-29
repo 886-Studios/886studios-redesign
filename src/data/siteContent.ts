@@ -44,11 +44,78 @@ export interface PortfolioCompany {
   slug: string;
   relationship: "Partner-backed" | "886-backed";
   category: string;
+  batch?: string;
   websiteUrl?: string;
   description: string;
 }
 
 export const portfolioCompanies = [
+  {
+    name: "HeyEva",
+    slug: "heyeva",
+    relationship: "886-backed",
+    category: "AI",
+    batch: "Spring 2026",
+    websiteUrl: "https://www.heyeva.me",
+    description: "AI agents that help creators manage brand deals.",
+  },
+  {
+    name: "Kardomo",
+    slug: "kardomo",
+    relationship: "886-backed",
+    category: "Consumer",
+    batch: "Spring 2026",
+    websiteUrl: "https://encoremap.com",
+    description:
+      "A consumer fan platform building Encore for K-pop discovery, participation, and memories.",
+  },
+  {
+    name: "LFG (by Doppler)",
+    slug: "lfg-by-doppler",
+    relationship: "886-backed",
+    category: "Consumer",
+    batch: "Spring 2026",
+    websiteUrl: "https://lfgggg.com/",
+    description:
+      "A consumer app that turns saved inspiration into plans and real-world action.",
+  },
+  {
+    name: "Runaway AI",
+    slug: "runaway-ai",
+    relationship: "886-backed",
+    category: "AI",
+    description: "An AI startup backed by 886 Studios.",
+  },
+  {
+    name: "O3O Labs (PicPet)",
+    slug: "o3o-labs-picpet",
+    relationship: "886-backed",
+    category: "AI",
+    description: "An AI startup behind PicPet, backed by 886 Studios.",
+  },
+  {
+    name: "Gitroll",
+    slug: "gitroll",
+    relationship: "886-backed",
+    category: "Developer tools",
+    websiteUrl: "https://gitroll.io/",
+    description:
+      "A developer tools startup backed by 886 Studios.",
+  },
+  {
+    name: "Dentscape",
+    slug: "dentscape",
+    relationship: "886-backed",
+    category: "Health",
+    description: "A health startup backed by 886 Studios.",
+  },
+  {
+    name: "Valtech",
+    slug: "valtech",
+    relationship: "886-backed",
+    category: "Enterprise",
+    description: "An enterprise startup backed by 886 Studios.",
+  },
   {
     name: "Discord",
     slug: "discord",
@@ -102,43 +169,6 @@ export const portfolioCompanies = [
     websiteUrl: "https://www.kkbox.com/",
     description:
       "A music streaming platform with deep roots across Asian music and digital entertainment.",
-  },
-  {
-    name: "Runaway AI",
-    slug: "runaway-ai",
-    relationship: "886-backed",
-    category: "AI",
-    description: "An AI startup backed by 886 Studios.",
-  },
-  {
-    name: "O3O Labs (PicPet)",
-    slug: "o3o-labs-picpet",
-    relationship: "886-backed",
-    category: "AI",
-    description: "An AI startup behind PicPet, backed by 886 Studios.",
-  },
-  {
-    name: "Gitroll",
-    slug: "gitroll",
-    relationship: "886-backed",
-    category: "Developer tools",
-    websiteUrl: "https://gitroll.io/",
-    description:
-      "A developer tools startup backed by 886 Studios.",
-  },
-  {
-    name: "Dentscape",
-    slug: "dentscape",
-    relationship: "886-backed",
-    category: "Health",
-    description: "A health startup backed by 886 Studios.",
-  },
-  {
-    name: "Valtech",
-    slug: "valtech",
-    relationship: "886-backed",
-    category: "Enterprise",
-    description: "An enterprise startup backed by 886 Studios.",
   },
 ] satisfies readonly PortfolioCompany[];
 
