@@ -1,6 +1,7 @@
 import type { APIRoute } from "astro";
 import { siteConfig } from "../config/site";
 import { partnerProfiles } from "../data/partnerProfiles";
+import { portfolioCompanies } from "../data/siteContent";
 import { resourceArticles, standaloneResourceArticles } from "../data/resourceArticles";
 
 const staticRoutes = [
@@ -9,6 +10,7 @@ const staticRoutes = [
   { path: "/programs/launch-station", priority: "0.7" },
   { path: "/about", priority: "0.9" },
   { path: "/events", priority: "0.7" },
+  { path: "/portfolio", priority: "0.7" },
   { path: "/resources", priority: "0.8" },
   { path: "/contact", priority: "0.6" },
 ];
@@ -21,6 +23,11 @@ const profileRoutes = partnerProfiles.map((profile) => ({
 const resourceRoutes = resourceArticles.map((article) => ({
   path: `/resources/${article.slug}`,
   priority: "0.6",
+}));
+
+const portfolioRoutes = portfolioCompanies.map((company) => ({
+  path: `/portfolio/${company.slug}`,
+  priority: "0.5",
 }));
 
 const standaloneResourceRoutes = standaloneResourceArticles.map((article) => ({
@@ -39,7 +46,13 @@ const escapeXml = (value: string) =>
 const getAbsoluteUrl = (path: string) => new URL(path, siteConfig.url).toString();
 
 export const GET: APIRoute = () => {
-  const routes = [...staticRoutes, ...profileRoutes, ...resourceRoutes, ...standaloneResourceRoutes];
+  const routes = [
+    ...staticRoutes,
+    ...profileRoutes,
+    ...portfolioRoutes,
+    ...resourceRoutes,
+    ...standaloneResourceRoutes,
+  ];
   const urls = routes
     .map(
       (route) =>

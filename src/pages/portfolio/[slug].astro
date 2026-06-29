@@ -1,0 +1,57 @@
+---
+import { portfolioCompanies } from "../../data/siteContent";
+import type { PortfolioCompany } from "../../data/siteContent";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export function getStaticPaths() {
+  return portfolioCompanies.map((company) => ({
+    params: { slug: company.slug },
+    props: { company },
+  }));
+}
+
+const { company } = Astro.props as { company: PortfolioCompany };
+const pageTitle = `${company.name} — 886 Studios Portfolio`;
+const pageDescription = `${company.name} is ${company.relationship.toLowerCase()} in the ${company.category.toLowerCase()} category.`;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <article class="startup-detail-page">
+    <section class="startup-detail-hero" aria-labelledby="startup-detail-title">
+      <a class="startup-back-link" href="/portfolio">Back to portfolio</a>
+      <div class="section-tag">{company.category}</div>
+      <h1 class="startup-detail-title" id="startup-detail-title">{company.name}</h1>
+      <p class="startup-detail-lead">{company.description}</p>
+    </section>
+
+    <section class="startup-detail-shell" aria-label={`${company.name} details`}>
+      <dl class="startup-detail-facts">
+        <div>
+          <dt>Relationship</dt>
+          <dd>{company.relationship}</dd>
+        </div>
+        <div>
+          <dt>Category</dt>
+          <dd>{company.category}</dd>
+        </div>
+      </dl>
+
+      <div class="startup-detail-body">
+        <h2>About {company.name}</h2>
+        <p>{company.description}</p>
+        {
+          company.websiteUrl && (
+            <a
+              class="startup-detail-cta"
+              href={company.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Visit website -&gt;
+            </a>
+          )
+        }
+      </div>
+    </section>
+  </article>
+</BaseLayout>

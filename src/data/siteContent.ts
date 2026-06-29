@@ -39,6 +39,109 @@ export const socialLinks = [
   },
 ] as const;
 
+export interface PortfolioCompany {
+  name: string;
+  slug: string;
+  relationship: "Partner-backed" | "886-backed";
+  category: string;
+  websiteUrl?: string;
+  description: string;
+}
+
+export const portfolioCompanies = [
+  {
+    name: "Discord",
+    slug: "discord",
+    relationship: "Partner-backed",
+    category: "Consumer",
+    websiteUrl: "https://discord.com/",
+    description:
+      "A consumer communication platform for communities, friends, creators, and teams.",
+  },
+  {
+    name: "OURA",
+    slug: "oura",
+    relationship: "Partner-backed",
+    category: "Health",
+    websiteUrl: "https://ouraring.com/",
+    description:
+      "A health technology company known for turning wearable biometric data into practical daily insights.",
+  },
+  {
+    name: "Crunchyroll",
+    slug: "crunchyroll",
+    relationship: "Partner-backed",
+    category: "Media",
+    websiteUrl: "https://www.crunchyroll.com/",
+    description:
+      "A global anime and manga streaming brand serving fans across markets and devices.",
+  },
+  {
+    name: "Gogoro",
+    slug: "gogoro",
+    relationship: "Partner-backed",
+    category: "Mobility",
+    websiteUrl: "https://www.gogoro.com/",
+    description:
+      "An electric mobility company building battery-swapping infrastructure and smart scooters.",
+  },
+  {
+    name: "P. LEAGUE+",
+    slug: "p-league-plus",
+    relationship: "Partner-backed",
+    category: "Sports",
+    websiteUrl: "https://pleagueofficial.com/",
+    description:
+      "A professional basketball league helping grow Taiwan's sports and entertainment market.",
+  },
+  {
+    name: "KKBOX",
+    slug: "kkbox",
+    relationship: "Partner-backed",
+    category: "Media",
+    websiteUrl: "https://www.kkbox.com/",
+    description:
+      "A music streaming platform with deep roots across Asian music and digital entertainment.",
+  },
+  {
+    name: "Runaway AI",
+    slug: "runaway-ai",
+    relationship: "886-backed",
+    category: "AI",
+    description: "An AI startup backed by 886 Studios.",
+  },
+  {
+    name: "O3O Labs (PicPet)",
+    slug: "o3o-labs-picpet",
+    relationship: "886-backed",
+    category: "AI",
+    description: "An AI startup behind PicPet, backed by 886 Studios.",
+  },
+  {
+    name: "Gitroll",
+    slug: "gitroll",
+    relationship: "886-backed",
+    category: "Developer tools",
+    websiteUrl: "https://gitroll.io/",
+    description:
+      "A developer tools startup backed by 886 Studios.",
+  },
+  {
+    name: "Dentscape",
+    slug: "dentscape",
+    relationship: "886-backed",
+    category: "Health",
+    description: "A health startup backed by 886 Studios.",
+  },
+  {
+    name: "Valtech",
+    slug: "valtech",
+    relationship: "886-backed",
+    category: "Enterprise",
+    description: "An enterprise startup backed by 886 Studios.",
+  },
+] satisfies readonly PortfolioCompany[];
+
 export const siteContent = {
   nav: {
     cta: {
@@ -269,19 +372,7 @@ export const siteContent = {
           imageClass: "is-tall",
         },
       ],
-      portfolio: [
-        "Discord",
-        "OURA",
-        "Crunchyroll",
-        "Gogoro",
-        "P. LEAGUE+",
-        "KKBOX",
-        "Runaway AI",
-        "O3O Labs (PicPet)",
-        "Gitroll",
-        "Dentscape",
-        "Valtech",
-      ],
+      portfolio: portfolioCompanies,
     },
     newsletter: {
       title: "Subscribe to our newsletter,",

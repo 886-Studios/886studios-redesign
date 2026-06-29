@@ -4,6 +4,7 @@ import { siteContent } from "../../data/siteContent";
 const { home } = siteContent;
 const photoLoopSets = [false, true];
 const isExternalHeroCta = home.hero.cta.href.startsWith("http");
+const portfolioPreviewItems = home.founders.portfolio.slice(0, 5);
 ---
 
 <div class="page" id="page-home">
@@ -119,17 +120,32 @@ const isExternalHeroCta = home.hero.cta.href.startsWith("http");
         ))
       }
     </div>
-    <h3 class="portfolio-heading">Our portfolio</h3>
-    <div class="portfolio-strip" aria-label="Portfolio companies">
-      <div class="portfolio-marquee">
-        <div class="portfolio-track">
-          {home.founders.portfolio.map((item) => <span class="portfolio-item">{item}</span>)}
-        </div>
-        <div class="portfolio-track" aria-hidden="true">
-          {home.founders.portfolio.map((item) => <span class="portfolio-item">{item}</span>)}
-        </div>
-      </div>
+    <div class="portfolio-header">
+      <h3 class="portfolio-heading">Our portfolio</h3>
+      <p class="portfolio-copy">
+        Startups backed by 886 Studios and by partners across our network.
+      </p>
     </div>
+    <ul class="portfolio-list" aria-label="Portfolio companies">
+      {
+        portfolioPreviewItems.map((item) => (
+          <li class="portfolio-row">
+            <a class="portfolio-link" href={`/portfolio/${item.slug}`}>
+              <span class="portfolio-name-group">
+                <span class="portfolio-name">{item.name}</span>
+                <span class="portfolio-category">{item.category}</span>
+              </span>
+              <span class="portfolio-meta">
+                <span class="portfolio-learn">
+                  Learn more -&gt;
+                </span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <a class="portfolio-see-more" href="/portfolio">See more portfolio companies -&gt;</a>
   </div>
 
   <!-- Newsletter -->
