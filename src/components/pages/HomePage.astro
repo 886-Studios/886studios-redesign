@@ -130,6 +130,16 @@ const portfolioPreviewItems = portfolioPreviewSlugs
           portfolioPreviewItems.map((item) => (
             <li class="portfolio-row">
               <a class="portfolio-link" href={`/portfolio/${item.slug}`}>
+                <span class="portfolio-logo-mark" aria-hidden="true">
+                  <img
+                    src={item.logo.src}
+                    alt=""
+                    width={item.logo.width}
+                    height={item.logo.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </span>
                 <span class="portfolio-name-group">
                   <span class="portfolio-name">{item.name}</span>
                   <span class="portfolio-category">{item.category}</span>
