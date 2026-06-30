@@ -45,10 +45,15 @@ export interface PortfolioCompany {
   relationship: "Partner-backed" | "886-backed";
   category: string;
   program?: string;
-  status?: "Active" | "Inactive";
+  status?: "Active" | "Inactive" | "Acquired";
   websiteUrl?: string;
   appStoreUrl?: string;
   playStoreUrl?: string;
+  founders?: readonly {
+    name: string;
+    linkedinUrl: string;
+    xUrl?: string;
+  }[];
   logo: {
     src: string;
     alt: string;
@@ -67,6 +72,21 @@ export const portfolioCompanies = [
     program: "ikigai S'26",
     status: "Active",
     websiteUrl: "https://www.diffusr.ai",
+    founders: [
+      {
+        name: "Sharan Mansukhani",
+        linkedinUrl: "https://www.linkedin.com/in/sharan-mansukhani-17306a234/",
+      },
+      {
+        name: "Kristian Resabal",
+        linkedinUrl: "https://www.linkedin.com/in/jkresabal",
+        xUrl: "https://x.com/jkresabal",
+      },
+      {
+        name: "Justin To",
+        linkedinUrl: "https://sg.linkedin.com/in/justin-to-4a5401202",
+      },
+    ],
     logo: {
       src: "/assets/portfolio/diffusr.svg",
       alt: "diffusr. logo",
@@ -85,6 +105,7 @@ export const portfolioCompanies = [
     status: "Active",
     websiteUrl: "https://playpeeps.app",
     appStoreUrl: "https://apps.apple.com/tw/app/peeps-%E8%88%87%E6%9C%8B%E5%8F%8B%E5%90%8C%E5%B1%85/id6753601581",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=dev.ymin.peeps",
     logo: {
       src: "/assets/portfolio/peeps.jpg",
       alt: "Peeps logo",
@@ -176,6 +197,7 @@ export const portfolioCompanies = [
     status: "Active",
     websiteUrl: "https://sugarai.tw/",
     appStoreUrl: "https://apps.apple.com/tw/app/sugar-%E4%BD%A0%E7%9A%84%E6%AD%A3%E7%89%88%E6%BC%AB%E7%95%ABai%E8%A7%92%E8%89%B2/id6744877922",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.sugar.ai.dev",
     logo: {
       src: "/assets/portfolio/sugar-ai.jpg",
       alt: "Sugar AI logo",
@@ -205,21 +227,39 @@ export const portfolioCompanies = [
       "Tellit Now is a map-based word-of-mouth marketing platform for local stores, brands, and influential consumers. Businesses can publish nearby check-in and content tasks, while consumers discover offers, visit locations, post to social channels, and earn cash or reciprocal rewards after merchants review the promotion.",
   },
   {
-    name: "Gitroll",
+    name: "GitRoll",
     slug: "gitroll",
     relationship: "886-backed",
     category: "Productivity",
     program: "ikigai F'24",
-    status: "Active",
+    status: "Acquired",
     websiteUrl: "https://gitroll.io/",
     logo: {
       src: "/assets/portfolio/gitroll.png",
-      alt: "Gitroll logo",
-      width: 512,
-      height: 512,
+      alt: "GitRoll logo",
+      width: 296,
+      height: 74,
     },
     description:
       "GitRoll helps engineering teams evaluate developers by turning real code history into data-driven coding profiles. Its AI analyzes open-source activity, builds skill evidence from actual repositories, and gives recruiters a way to assess candidates without relying only on resumes, trivia-style interviews, or take-home tests.",
+  },
+  {
+    name: "Kardomo",
+    slug: "kardomo",
+    relationship: "886-backed",
+    category: "Consumer",
+    status: "Active",
+    websiteUrl: "https://kardomo.com/",
+    appStoreUrl: "https://apps.apple.com/tw/app/kardomo-%E5%8F%B0%E7%81%A3%E5%B0%88%E5%B1%AC%E7%9A%84-kpop-%E4%BA%A4%E5%8F%8B%E5%9C%88/id6748519302",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.kardomo.kardomo",
+    logo: {
+      src: "/assets/portfolio/kardomo.png",
+      alt: "Kardomo logo",
+      width: 879,
+      height: 1149,
+    },
+    description:
+      "Kardomo is a Taiwan-focused K-pop fan platform that brings photocard collections, idol schedules, fan diaries, music rankings, and discussion threads into one community app. Fans can track events, organize collections, share moments, and connect with other fans around the groups and artists they follow.",
   },
   {
     name: "PicPet by O3O Labs",
@@ -229,6 +269,7 @@ export const portfolioCompanies = [
     program: "ikigai F'24",
     status: "Active",
     appStoreUrl: "https://apps.apple.com/us/app/picpet/id6742077014",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.o3o.android.picpet",
     logo: {
       src: "/assets/portfolio/o3o-labs.jpg",
       alt: "PicPet logo",
@@ -308,6 +349,8 @@ export const portfolioCompanies = [
     relationship: "Partner-backed",
     category: "Consumer",
     websiteUrl: "https://discord.com/",
+    appStoreUrl: "https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.discord",
     logo: {
       src: "/assets/portfolio/discord.jpg",
       alt: "Discord logo",
@@ -323,6 +366,8 @@ export const portfolioCompanies = [
     relationship: "Partner-backed",
     category: "Health",
     websiteUrl: "https://ouraring.com/",
+    appStoreUrl: "https://apps.apple.com/us/app/oura/id1043837948",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.ouraring.oura",
     logo: {
       src: "/assets/portfolio/oura.png",
       alt: "OURA logo",
@@ -338,6 +383,8 @@ export const portfolioCompanies = [
     relationship: "Partner-backed",
     category: "Media",
     websiteUrl: "https://www.crunchyroll.com/",
+    appStoreUrl: "https://apps.apple.com/us/app/crunchyroll/id329913454",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.crunchyroll.crunchyroid",
     logo: {
       src: "/assets/portfolio/crunchyroll.jpg",
       alt: "Crunchyroll logo",
@@ -353,6 +400,8 @@ export const portfolioCompanies = [
     relationship: "Partner-backed",
     category: "Climate",
     websiteUrl: "https://www.gogoro.com/",
+    appStoreUrl: "https://apps.apple.com/us/app/gogoro/id927757129",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.gogoro.smartclient",
     logo: {
       src: "/assets/portfolio/gogoro.jpg",
       alt: "Gogoro logo",
@@ -383,6 +432,8 @@ export const portfolioCompanies = [
     relationship: "Partner-backed",
     category: "Media",
     websiteUrl: "https://www.kkbox.com/",
+    appStoreUrl: "https://apps.apple.com/tw/app/kkbox-%E9%9F%B3%E6%A8%82-podcast/id300915900",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.skysoft.kkbox.android",
     logo: {
       src: "/assets/portfolio/kkbox.jpg",
       alt: "KKBOX logo",
