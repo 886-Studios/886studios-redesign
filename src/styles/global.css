@@ -1264,6 +1264,8 @@ body.is-home nav.site-nav.is-scrolled {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 10px;
+  padding-top: var(--space-lg);
+  border-top: 1px solid rgba(215, 166, 107, 0.12);
 }
 
 .logo-card {
@@ -1330,6 +1332,10 @@ body.is-home nav.site-nav.is-scrolled {
 
 .portfolio-block .section-h2 {
   margin-bottom: clamp(22px, 3vw, 32px);
+}
+
+.portfolio-block .portfolio-list {
+  border-top-color: rgba(215, 166, 107, 0.12);
 }
 
 .portfolio-list {
@@ -1511,7 +1517,11 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .portfolio-directory {
-  padding-top: var(--space-xl);
+  padding-top: 0;
+}
+
+.portfolio-directory .portfolio-list {
+  border-top-color: rgba(215, 166, 107, 0.12);
 }
 
 .startup-detail-page {
