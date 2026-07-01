@@ -157,6 +157,16 @@ export const portfolioCompanies = [
     status: "Active",
     websiteUrl: "https://hushli.ai/",
     appStoreUrl: "https://apps.apple.com/tw/app/hushli-ai-confidant-journal/id6748250163?l=en-GB",
+    founders: [
+      {
+        name: "Tim Chen",
+        linkedinUrl: "https://www.linkedin.com/in/timychen12/",
+      },
+      {
+        name: "Sharon Wu",
+        linkedinUrl: "https://www.linkedin.com/in/sharonwu333/",
+      },
+    ],
     logo: {
       src: "/assets/portfolio/hushli.jpg",
       alt: "Hushli logo",
@@ -164,7 +174,7 @@ export const portfolioCompanies = [
       height: 512,
     },
     description:
-      "Hushli is an AI confidant and mood journal built around a private companion named Lumi. The app gives people a place to talk through difficult moments, turn conversations into journal entries, track emotional patterns over time, and use privacy features such as Face ID for a quieter personal reflection space.",
+      "Hushli is an app that helps you navigate breakups, relationship challenges, and difficult emotions.\n\nSimply talk with Hushli like you would with a trusted confidant. It understands your emotions, remembers the meaningful moments you share, and automatically creates a journal of your journey, helping you reflect, heal, and better understand yourself over time.\n\nBuilt by Tim Chen and Sharon Wu, whose personal experiences with Tourette syndrome and high sensitivity (HSP) inspired Hushli, their mission is to make mental wellness more accessible and affordable for everyone.",
   },
   {
     name: "InstaPodz",
