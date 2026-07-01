@@ -6,17 +6,6 @@ const { launchStation } = siteContent.programs;
 
 <div class="page ls-page" id="page-launch-station">
   <section class="ls-hero" aria-labelledby="ls-heading">
-    <figure class="ls-poster">
-      <img
-        src={launchStation.poster.src}
-        alt={launchStation.poster.alt}
-        width={launchStation.poster.width}
-        height={launchStation.poster.height}
-        decoding="async"
-        loading="eager"
-        fetchpriority="high"
-      />
-    </figure>
     <div class="ls-hero-grid">
       <div class="ls-hero-copy">
         <div class="ls-topline">
@@ -31,6 +20,17 @@ const { launchStation } = siteContent.programs;
           <a class="ls-secondary-cta" href="/programs">View all programs</a>
         </div>
       </div>
+      <figure class="ls-poster">
+        <img
+          src={launchStation.poster.src}
+          alt={launchStation.poster.alt}
+          width={launchStation.poster.width}
+          height={launchStation.poster.height}
+          decoding="async"
+          loading="eager"
+          fetchpriority="high"
+        />
+      </figure>
       <div class="ls-hero-signals" aria-label="Launch Station essentials">
         <span class="prog-card-kicker">At a glance</span>
         {launchStation.essentials.map((item) => (

@@ -11,15 +11,23 @@ This repo uses `package-lock.json`, so prefer npm over pnpm or yarn unless the p
 
 ## Quick Start
 
+First-time local setup:
+
 ```bash
 npm ci
 cp .env.example .env
 npm run dev
 ```
 
-Open `http://127.0.0.1:4173/`. Astro will print the actual URL if that port is already in use.
+Open `http://127.0.0.1:4173/`. If port `4173` is already in use, Astro prints the alternate local URL in the terminal. Use that printed URL instead.
 
-Before handing work back, run:
+For day-to-day development after dependencies are installed:
+
+```bash
+npm run dev
+```
+
+Before handing work back or opening a PR, run:
 
 ```bash
 npm run check
@@ -54,7 +62,7 @@ Use `npm install <package>` only when intentionally changing dependencies. For n
 LUMA_API_KEY=
 ```
 
-`LUMA_API_KEY` is optional. Without it, the Events page renders the configured fallback state. With it, `npm run build` fetches approved Luma events through `src/lib/luma.ts`.
+`LUMA_API_KEY` is optional. Without it, the Events page renders the configured fallback state. With it, `npm run build` fetches approved Luma events through `src/lib/luma.ts`. If the key is missing, invalid, or the Luma API request fails, the site should still build successfully with fallback Events copy.
 
 Do not commit `.env`, `.env.local`, or any `.env.*.local` file. These files are ignored by git and should hold local or deployment secrets only.
 
@@ -80,6 +88,7 @@ If `LUMA_API_KEY` is present in production, the Events page is generated from ap
 - If `npm run build` logs a Luma warning, check the API key and network access. The page should still render a fallback state.
 - If `npm run dev` is already using port `4173`, use the alternate URL printed by Astro or stop the existing process.
 - If `npm run preview` serves stale output, run `npm run build` first.
+- If a changed image still looks stale in the browser, confirm the asset URL changed or clear the browser/CDN cache. Public assets are served by stable paths unless renamed.
 - Do not edit generated files in `dist/`; source changes belong under `src/`.
 - Keep screenshots, traces, `.env` files, and OS metadata out of the repo.
 
