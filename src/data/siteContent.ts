@@ -59,6 +59,7 @@ export interface PortfolioCompany {
     alt: string;
     width: number;
     height: number;
+    imageClass?: "is-wordmark" | "is-tall" | "is-compact";
   };
   description: string;
   descriptionLinks?: readonly {
@@ -249,10 +250,11 @@ export const portfolioCompanies = [
     status: "Acquired",
     websiteUrl: "https://gitroll.io/",
     logo: {
-      src: "/assets/portfolio/gitroll.png",
+      src: "/assets/portfolio/gitroll-wordmark.png",
       alt: "GitRoll logo",
       width: 296,
       height: 74,
+      imageClass: "is-wordmark",
     },
     description:
       "GitRoll helps engineering teams evaluate developers by turning real code history into data-driven coding profiles. Its AI analyzes open-source activity, builds skill evidence from actual repositories, and gives recruiters a way to assess candidates without relying only on resumes, trivia-style interviews, or take-home tests.",
@@ -281,6 +283,7 @@ export const portfolioCompanies = [
       alt: "Kardomo logo",
       width: 879,
       height: 1149,
+      imageClass: "is-tall",
     },
     description:
       "Kardomo is a Taiwan-focused K-pop fan platform that brings photocard collections, idol schedules, fan diaries, music rankings, and discussion threads into one community app. Fans can track events, organize collections, share moments, and connect with other fans around the groups and artists they follow.",
@@ -452,6 +455,7 @@ export const portfolioCompanies = [
       alt: "P. LEAGUE+ logo",
       width: 152,
       height: 152,
+      imageClass: "is-compact",
     },
     description:
       "P. LEAGUE+ is a professional men's basketball league in Taiwan focused on higher-quality home-game experiences and stronger fan interaction. The league brings together Taiwanese clubs, publishes schedules, standings, statistics, video, ticketing, and media content, and has played a visible role in growing Taiwan's basketball entertainment market.",

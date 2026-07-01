@@ -132,6 +132,7 @@ const portfolioPreviewItems = portfolioPreviewSlugs
               <a class="portfolio-link" href={`/portfolio/${item.slug}`}>
                 <span class="portfolio-logo-mark" aria-hidden="true">
                   <img
+                    class:list={["portfolio-logo-image", item.logo.imageClass]}
                     src={item.logo.src}
                     alt=""
                     width={item.logo.width}
