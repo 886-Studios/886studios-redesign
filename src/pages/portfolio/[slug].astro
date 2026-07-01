@@ -12,7 +12,7 @@ export function getStaticPaths() {
 
 const { company } = Astro.props as { company: PortfolioCompany };
 const pageTitle = `${company.name} — 886 Studios Portfolio`;
-const pageDescription = `${company.name}: ${company.description}`;
+const pageDescription = `${company.name}: ${company.description.replace(/\s+/g, " ")}`;
 const websiteLink = typeof company.websiteUrl === "string" && company.websiteUrl.length > 0 ? company.websiteUrl : undefined;
 const appStoreBadgeUrl = "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg";
 const playStoreBadgeUrl =
@@ -38,6 +38,42 @@ const showStatus = typeof company.status === "string" && company.status !== "Act
 const hasActions = Boolean(websiteLink) || storeLinks.length > 0;
 const founders = Array.isArray(company.founders) ? company.founders : [];
 const hasFounders = founders.length > 0;
+const descriptionParagraphs = company.description
+  .split(/\n{2,}/)
+  .map((paragraph) => paragraph.trim())
+  .filter((paragraph) => paragraph.length > 0);
+
+function getDescriptionSegments(paragraph: string) {
+  const segments: Array<string | { text: string; href: string }> = [];
+  let cursor = 0;
+
+  if (company.descriptionLinks && company.descriptionLinks.length > 0) {
+    for (const link of company.descriptionLinks) {
+      const linkIndex = paragraph.indexOf(link.text, cursor);
+
+      if (linkIndex < 0) {
+        continue;
+      }
+
+      if (linkIndex > cursor) {
+        segments.push(paragraph.slice(cursor, linkIndex));
+      }
+
+      segments.push(link);
+      cursor = linkIndex + link.text.length;
+    }
+  }
+
+  if (cursor < paragraph.length) {
+    segments.push(paragraph.slice(cursor));
+  }
+
+  if (segments.length === 0) {
+    segments.push(paragraph);
+  }
+
+  return segments;
+}
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -58,84 +94,106 @@ const hasFounders = founders.length > 0;
           </div>
           <div class="startup-detail-copy">
             <h1 class="startup-detail-title" id="startup-detail-title">{company.name}</h1>
-            <p class="startup-detail-lead">{company.description}</p>
-          </div>
-        </div>
+            {
+              descriptionParagraphs.map((paragraph) => {
+                const segments = getDescriptionSegments(paragraph);
 
-        {
-          hasActions && (
-            <div class="startup-detail-actions" aria-label={`${company.name} links`}>
-              {websiteLink && (
-                <a
-                  class="startup-detail-cta"
-                  href={websiteLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Website
-                </a>
-              )}
-              {storeLinks.length > 0 && (
-                <div class="startup-store-links" aria-label={`${company.name} app store links`}>
-                  {storeLinks.map((link) => (
+                return (
+                  <p class="startup-detail-lead">
+                    {segments.map((segment) =>
+                      typeof segment === "string" ? (
+                        segment
+                      ) : (
+                        <a href={segment.href} target="_blank" rel="noopener noreferrer">
+                          {segment.text}
+                        </a>
+                      )
+                    )}
+                  </p>
+                );
+              })
+            }
+
+            {
+              hasActions && (
+                <div class="startup-detail-actions" aria-label={`${company.name} links`}>
+                  {websiteLink && (
                     <a
-                      class={`startup-store-badge startup-store-badge--${link.platform}`}
-                      href={link.href}
+                      class="startup-detail-cta"
+                      href={websiteLink}
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <img src={link.badgeSrc} alt={link.label} loading="lazy" decoding="async" />
+                      Website
                     </a>
-                  ))}
-                </div>
-              )}
-            </div>
-          )
-        }
-
-        {
-          hasFounders && (
-            <section class="startup-founders" aria-labelledby="startup-founders-title">
-              <div class="section-tag startup-founders-tag">Founders</div>
-              <h2 class="startup-founders-title" id="startup-founders-title">Co-founders</h2>
-              <ul class="startup-founder-grid" aria-label={`${company.name} co-founders`}>
-                {founders.map((founder) => (
-                  <li class="team-card startup-founder-card">
-                    <div class="team-name-row startup-founder-name-row">
-                      <div class="team-name">{founder.name}</div>
-                      <div class="team-socials">
+                  )}
+                  {storeLinks.length > 0 && (
+                    <div class="startup-store-links" aria-label={`${company.name} app store links`}>
+                      {storeLinks.map((link) => (
                         <a
-                          class="team-social-link team-social-link--linkedin"
-                          href={founder.linkedinUrl}
+                          class={`startup-store-badge startup-store-badge--${link.platform}`}
+                          href={link.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          aria-label={`${founder.name} on LinkedIn`}
                         >
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M4.98 3.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM3.5 8.5h2.96V20.5H3.5V8.5Zm5.28 0h2.84v1.64h.04c.4-.75 1.37-1.84 3.34-1.84 3.57 0 4.23 2.35 4.23 5.41v6.79h-2.96v-6.01c0-1.43-.03-3.27-1.99-3.27-2 0-2.31 1.56-2.31 3.17v6.11H8.78V8.5Z" />
-                          </svg>
+                          <img
+                            src={link.badgeSrc}
+                            alt={link.label}
+                            loading="lazy"
+                            decoding="async"
+                          />
                         </a>
-                        {founder.xUrl && (
-                          <a
-                            class="team-social-link team-social-link--x"
-                            href={founder.xUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${founder.name} on X`}
-                          >
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                              <path d="M18.901 1.153h3.68l-8.04 9.19 9.458 12.504H16.594l-5.8-7.584-6.64 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.9 1.153Zm-1.291 19.492h2.04L6.486 3.24H4.298L17.61 20.645Z" />
-                            </svg>
-                          </a>
-                        )}
-                      </div>
+                      ))}
                     </div>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          )
-        }
+                  )}
+                </div>
+              )
+            }
+
+            {
+              hasFounders && (
+                <section class="startup-founders" aria-labelledby="startup-founders-title">
+                  <h2 class="startup-founders-title" id="startup-founders-title">Founders</h2>
+                  <ul class="startup-founder-grid" aria-label={`${company.name} founders`}>
+                    {founders.map((founder) => (
+                      <li class="team-card startup-founder-card">
+                        <div class="team-name-row startup-founder-name-row">
+                          <div class="team-name">{founder.name}</div>
+                          <div class="team-socials">
+                            <a
+                              class="team-social-link team-social-link--linkedin"
+                              href={founder.linkedinUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              aria-label={`${founder.name} on LinkedIn`}
+                            >
+                              <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M4.98 3.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM3.5 8.5h2.96V20.5H3.5V8.5Zm5.28 0h2.84v1.64h.04c.4-.75 1.37-1.84 3.34-1.84 3.57 0 4.23 2.35 4.23 5.41v6.79h-2.96v-6.01c0-1.43-.03-3.27-1.99-3.27-2 0-2.31 1.56-2.31 3.17v6.11H8.78V8.5Z" />
+                              </svg>
+                            </a>
+                            {founder.xUrl && (
+                              <a
+                                class="team-social-link team-social-link--x"
+                                href={founder.xUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={`${founder.name} on X`}
+                              >
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                  <path d="M18.901 1.153h3.68l-8.04 9.19 9.458 12.504H16.594l-5.8-7.584-6.64 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.9 1.153Zm-1.291 19.492h2.04L6.486 3.24H4.298L17.61 20.645Z" />
+                                </svg>
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )
+            }
+          </div>
+        </div>
       </div>
 
       <aside class="startup-detail-sidebar" aria-label={`${company.name} facts`}>

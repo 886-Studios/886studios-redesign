@@ -61,6 +61,10 @@ export interface PortfolioCompany {
     height: number;
   };
   description: string;
+  descriptionLinks?: readonly {
+    text: string;
+    href: string;
+  }[];
 }
 
 export const portfolioCompanies = [
@@ -106,6 +110,16 @@ export const portfolioCompanies = [
     websiteUrl: "https://playpeeps.app",
     appStoreUrl: "https://apps.apple.com/tw/app/peeps-%E8%88%87%E6%9C%8B%E5%8F%8B%E5%90%8C%E5%B1%85/id6753601581",
     playStoreUrl: "https://play.google.com/store/apps/details?id=dev.ymin.peeps",
+    founders: [
+      {
+        name: "Marx Yeh",
+        linkedinUrl: "https://www.linkedin.com/in/you-ming-yeh-00b50b272/",
+      },
+      {
+        name: "Ronny Yen",
+        linkedinUrl: "https://www.linkedin.com/in/yyz71/",
+      },
+    ],
     logo: {
       src: "/assets/portfolio/peeps.jpg",
       alt: "Peeps logo",
@@ -113,7 +127,7 @@ export const portfolioCompanies = [
       height: 512,
     },
     description:
-      "Peeps is a private social app that gives close friends a shared pixel home on the internet. Friends can move around a room together, share daily photos, decorate the space, raise mystery pets, and play mini-games, turning lightweight check-ins into a persistent place for real friend groups.",
+      "Peeps is a gamified social app that gives close friends and couples a place to live together online. It's a private space to decorate, hang out, share daily moments, play mini-games, and raise pets together. Rather than another feed or chat box, Peeps is built around presence: lightweight, playful ways to stay close without the pressure of posting or texting.\n\nFounded by a two-person Gen Z team, Peeps has grown to nearly 177K users in just a few weeks through organic word of mouth, and the team is building toward making it the default place where close relationships stay connected online.",
   },
   {
     name: "lfg",
@@ -230,7 +244,7 @@ export const portfolioCompanies = [
     name: "GitRoll",
     slug: "gitroll",
     relationship: "886-backed",
-    category: "Productivity",
+    category: "HRTech",
     program: "ikigai F'24",
     status: "Acquired",
     websiteUrl: "https://gitroll.io/",
@@ -252,6 +266,16 @@ export const portfolioCompanies = [
     websiteUrl: "https://kardomo.com/",
     appStoreUrl: "https://apps.apple.com/tw/app/kardomo-%E5%8F%B0%E7%81%A3%E5%B0%88%E5%B1%AC%E7%9A%84-kpop-%E4%BA%A4%E5%8F%8B%E5%9C%88/id6748519302",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.kardomo.kardomo",
+    founders: [
+      {
+        name: "Marx Yeh",
+        linkedinUrl: "https://www.linkedin.com/in/you-ming-yeh-00b50b272/",
+      },
+      {
+        name: "Ronny Yen",
+        linkedinUrl: "https://www.linkedin.com/in/yyz71/",
+      },
+    ],
     logo: {
       src: "/assets/portfolio/kardomo.png",
       alt: "Kardomo logo",
@@ -262,7 +286,7 @@ export const portfolioCompanies = [
       "Kardomo is a Taiwan-focused K-pop fan platform that brings photocard collections, idol schedules, fan diaries, music rankings, and discussion threads into one community app. Fans can track events, organize collections, share moments, and connect with other fans around the groups and artists they follow.",
   },
   {
-    name: "PicPet by O3O Labs",
+    name: "PicPet",
     slug: "o3o-labs",
     relationship: "886-backed",
     category: "Consumer",
@@ -277,7 +301,13 @@ export const portfolioCompanies = [
       height: 512,
     },
     description:
-      "PicPet by O3O Labs is a social game for close friends built around raising a shared virtual pet. Friends feed the pet with photos, earn coins, unlock rewards, customize rooms and pets, and use the daily routine as a playful reason to stay connected with the people they care about.",
+      "PicPet is a social game for close friends built around raising a shared virtual pet. Friends feed the pet with photos, earn coins, unlock rewards, customize rooms and pets, and use the daily routine as a playful reason to stay connected with the people they care about. PicPet joined a16z Speedrun Cohort 006.",
+    descriptionLinks: [
+      {
+        text: "a16z Speedrun Cohort 006",
+        href: "https://speedrun.a16z.com/companies/picpet",
+      },
+    ],
   },
   {
     name: "Dentscape",
@@ -317,7 +347,7 @@ export const portfolioCompanies = [
     name: "Valtec",
     slug: "valtec",
     relationship: "886-backed",
-    category: "AI",
+    category: "Drones",
     websiteUrl: "https://www.valtec.ai/",
     logo: {
       src: "/assets/portfolio/valtec.png",

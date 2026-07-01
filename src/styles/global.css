@@ -1589,10 +1589,26 @@ body.is-home nav.site-nav.is-scrolled {
 
 .startup-detail-lead {
   max-width: 700px;
-  margin-top: 14px;
+  margin: 14px 0 0;
   color: var(--text-secondary);
   font-size: 1.125rem;
   line-height: 1.66;
+}
+
+.startup-detail-lead + .startup-detail-lead {
+  margin-top: 12px;
+}
+
+.startup-detail-lead a {
+  color: var(--accent-gold);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.startup-detail-lead a:hover,
+.startup-detail-lead a:focus-visible {
+  color: var(--accent-gold-strong);
 }
 
 .startup-detail-facts {
@@ -1713,10 +1729,6 @@ body.is-home nav.site-nav.is-scrolled {
 .startup-founders {
   max-width: 700px;
   margin-top: 46px;
-}
-
-.startup-founders-tag {
-  margin-bottom: 10px;
 }
 
 .startup-founders-title {
