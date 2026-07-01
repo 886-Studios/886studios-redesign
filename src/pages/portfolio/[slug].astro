@@ -156,7 +156,10 @@ function getDescriptionSegments(paragraph: string) {
                   <h2 class="startup-founders-title" id="startup-founders-title">Founders</h2>
                   <ul class="startup-founder-grid" aria-label={`${company.name} founders`}>
                     {founders.map((founder) => (
-                      <li class="team-card startup-founder-card">
+                      <li
+                        class="team-card startup-founder-card"
+                        style={`--founder-name-length: ${founder.name.length};`}
+                      >
                         <div class="team-name-row startup-founder-name-row">
                           <div class="team-name">{founder.name}</div>
                           <div class="team-socials">

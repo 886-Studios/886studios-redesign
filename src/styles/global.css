@@ -1751,24 +1751,32 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .startup-founder-card {
+  display: flex;
+  align-items: center;
   min-width: 0;
-  padding: 18px 16px;
+  height: 78px;
+  padding: 16px;
   text-align: left;
 }
 
 .startup-founder-name-row {
+  width: 100%;
   justify-content: space-between;
-  gap: 10px;
-  min-height: 0;
+  gap: 12px;
+  min-height: 32px;
 }
 
 .startup-founder-card .team-name {
+  flex: 1 1 auto;
   min-width: 0;
-  font-size: 15px;
-  line-height: 1.22;
+  font-size: clamp(0.78rem, calc(1.12rem - (var(--founder-name-length, 12) * 0.01rem)), 1rem);
+  line-height: 1.16;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
 }
 
 .startup-founder-card .team-socials {
+  flex: 0 0 auto;
   gap: 6px;
 }
 
@@ -6135,6 +6143,7 @@ footer {
   }
 
   .startup-founder-card {
+    height: 74px;
     padding: 15px 14px;
   }
 
