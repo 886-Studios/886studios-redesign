@@ -141,6 +141,18 @@ Use this path for most changes:
 
 Commit small, reviewed slices.
 
+## Notion Task Tracker
+
+Use the Notion database as the source of truth for project tasks:
+
+- Database: [886 Studios website redesign](https://app.notion.com/p/352b93834d698023b0baefba50c701a7)
+- Data source: `collection://352b9383-4d69-8013-a35a-000bb4fa79e2`
+- Task properties: `Task`, `Progress`, `Page`, `PIC`, `Date last edited`
+- Progress values: `Not started`, `In process`, `Complete`
+- Page values: `Home`, `About`, `Programs`, `Events`, `Contact`, `Resources`, `General`
+
+When working from this tracker, fetch the database first to confirm the current schema. Before implementing a task, update its `Progress` to `In process`; after code changes and validation, update it to `Complete`. Add new project tasks directly to the same data source with at least `Task`, `Progress`, and `Page` set.
+
 ## Content Boundaries
 
 - Navigation and main CTA: `siteContent.nav`
