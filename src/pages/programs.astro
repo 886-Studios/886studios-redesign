@@ -1,8 +1,14 @@
 ---
 import ProgramsPage from "../components/pages/ProgramsPage.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getProgramSchema, pageMeta } from "../lib/seo";
 ---
 
-<BaseLayout title="Programs — 886 Studios">
+<BaseLayout
+  title={pageMeta.programs.title}
+  description={pageMeta.programs.description}
+  breadcrumbs={[{ name: "Programs", path: "/programs" }]}
+  structuredData={getProgramSchema()}
+>
   <ProgramsPage />
 </BaseLayout>

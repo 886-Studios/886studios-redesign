@@ -1,8 +1,15 @@
 ---
 import ResourcesPage from "../components/pages/ResourcesPage.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getResourcesItemListSchema, pageMeta } from "../lib/seo";
 ---
 
-<BaseLayout title="Resources — 886 Studios">
+<BaseLayout
+  title={pageMeta.resources.title}
+  description={pageMeta.resources.description}
+  pageType="CollectionPage"
+  breadcrumbs={[{ name: "Resources", path: "/resources" }]}
+  structuredData={getResourcesItemListSchema()}
+>
   <ResourcesPage />
 </BaseLayout>

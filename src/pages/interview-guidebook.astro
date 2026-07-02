@@ -2,14 +2,31 @@
 import ResourceArticlePage from "../components/pages/ResourceArticlePage.astro";
 import { standaloneResourceArticles } from "../data/resourceArticles";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  getResourceArticleSchema,
+  getResourceDescription,
+  getResourceFaqSchema,
+} from "../lib/seo";
 
 const article = standaloneResourceArticles.find((item) => item.slug === "interview-guidebook");
 
 if (!article) {
   throw new Error("Missing interview guidebook resource article");
 }
+
+const pagePath = "/interview-guidebook";
+const faqSchema = getResourceFaqSchema(article, pagePath);
 ---
 
-<BaseLayout title="Interview Guidebook — 886 Studios Resources">
+<BaseLayout
+  title="Interview Guidebook — 886 Studios Resources"
+  description={getResourceDescription(article)}
+  ogType="article"
+  breadcrumbs={[
+    { name: "Resources", path: "/resources" },
+    { name: article.title, path: pagePath },
+  ]}
+  structuredData={[getResourceArticleSchema(article, pagePath), ...(faqSchema ? [faqSchema] : [])]}
+>
   <ResourceArticlePage article={article} />
 </BaseLayout>

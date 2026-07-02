@@ -4,35 +4,41 @@ import { partnerProfiles } from "../data/partnerProfiles";
 import { portfolioCompanies } from "../data/siteContent";
 import { resourceArticles, standaloneResourceArticles } from "../data/resourceArticles";
 
+const lastModified = "2026-07-02";
+
 const staticRoutes = [
-  { path: "/", priority: "1.0" },
-  { path: "/programs", priority: "0.9" },
-  { path: "/programs/launch-station", priority: "0.7" },
-  { path: "/about", priority: "0.9" },
-  { path: "/events", priority: "0.7" },
-  { path: "/portfolio", priority: "0.7" },
-  { path: "/resources", priority: "0.8" },
-  { path: "/contact", priority: "0.6" },
+  { path: "/", priority: "1.0", changefreq: "weekly" },
+  { path: "/programs", priority: "0.9", changefreq: "weekly" },
+  { path: "/programs/launch-station", priority: "0.7", changefreq: "monthly" },
+  { path: "/about", priority: "0.9", changefreq: "monthly" },
+  { path: "/events", priority: "0.7", changefreq: "daily" },
+  { path: "/portfolio", priority: "0.7", changefreq: "weekly" },
+  { path: "/resources", priority: "0.8", changefreq: "weekly" },
+  { path: "/contact", priority: "0.6", changefreq: "monthly" },
 ];
 
 const profileRoutes = partnerProfiles.map((profile) => ({
   path: `/about/${profile.slug}`,
   priority: "0.5",
+  changefreq: "monthly",
 }));
 
 const resourceRoutes = resourceArticles.map((article) => ({
   path: `/resources/${article.slug}`,
   priority: "0.6",
+  changefreq: "monthly",
 }));
 
 const portfolioRoutes = portfolioCompanies.map((company) => ({
   path: `/portfolio/${company.slug}`,
   priority: "0.5",
+  changefreq: "monthly",
 }));
 
 const standaloneResourceRoutes = standaloneResourceArticles.map((article) => ({
   path: `/${article.slug}`,
   priority: "0.6",
+  changefreq: "monthly",
 }));
 
 const escapeXml = (value: string) =>
@@ -56,7 +62,7 @@ export const GET: APIRoute = () => {
   const urls = routes
     .map(
       (route) =>
-        `  <url><loc>${escapeXml(getAbsoluteUrl(route.path))}</loc><priority>${route.priority}</priority></url>`
+        `  <url><loc>${escapeXml(getAbsoluteUrl(route.path))}</loc><lastmod>${lastModified}</lastmod><changefreq>${route.changefreq}</changefreq><priority>${route.priority}</priority></url>`
     )
     .join("\n");
 

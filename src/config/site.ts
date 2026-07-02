@@ -1,12 +1,16 @@
 export const siteConfig = {
   name: "886 Studios",
   url: "https://www.886studios.com",
-  defaultTitle: "886 Studios",
-  defaultDescription: "Newsletter →",
-  defaultOgImage:
-    "https://images.spr.so/cdn-cgi/imagedelivery/j42No7y-dcokJuNgXeA0ig/a3afedd0-7225-4cad-930f-bc3e1d574804/886_banner/public",
-  ogImageAlt: "886 Studios",
+  defaultTitle: "886 Studios | Startup Accelerator in Taipei",
+  defaultDescription:
+    "886 Studios backs ambitious early-stage founders in Taipei through ikigai Launchpad, founder mentorship, community, and Silicon Valley operator experience.",
+  defaultOgImage: "https://www.886studios.com/assets/hero/sf-tpe-hero.jpg",
+  defaultOgImageWidth: 1774,
+  defaultOgImageHeight: 887,
+  defaultOgImageType: "image/jpeg",
+  ogImageAlt: "886 Studios founder community connecting Taipei and Silicon Valley",
   locale: "en-US",
+  ogLocale: "en_US",
   twitterSite: "@886Studios",
   themeColor: "#050507",
   googleAnalyticsFallbackId: "G-GPGM23G5QK",

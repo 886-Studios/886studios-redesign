@@ -8,7 +8,7 @@ interface Props {
   showDivider?: boolean;
 }
 
-const { eyebrow, title, lead, titleId, className, showDivider = true } = Astro.props;
+const { eyebrow, title, lead, titleId = "page-title", className, showDivider = true } = Astro.props;
 ---
 
 <section class:list={["pg-hero", className]} aria-labelledby={titleId}>

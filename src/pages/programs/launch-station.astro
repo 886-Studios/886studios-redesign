@@ -1,12 +1,22 @@
 ---
 import LaunchStationPage from "../../components/pages/LaunchStationPage.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getLaunchStationSchema, pageMeta } from "../../lib/seo";
 ---
 
 <BaseLayout
-  title="Launch Station - 886 Studios"
-  description="Launch Station is 886 Studios' free dedicated desk and founder community program inside Taiwan Tech Arena."
-  ogImage="https://www.886studios.com/assets/programs/launch-station-community-collage.jpg"
+  title={pageMeta.launchStation.title}
+  description={pageMeta.launchStation.description}
+  ogImage={pageMeta.launchStation.ogImage}
+  ogImageAlt={pageMeta.launchStation.ogImageAlt}
+  ogImageWidth={pageMeta.launchStation.ogImageWidth}
+  ogImageHeight={pageMeta.launchStation.ogImageHeight}
+  ogImageType={pageMeta.launchStation.ogImageType}
+  breadcrumbs={[
+    { name: "Programs", path: "/programs" },
+    { name: "Launch Station", path: "/programs/launch-station" },
+  ]}
+  structuredData={getLaunchStationSchema()}
   hideFooterSocials
 >
   <LaunchStationPage />

@@ -2,6 +2,7 @@
 import PageHero from "../components/PageHero.astro";
 import { portfolioCompanies } from "../data/siteContent";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getPortfolioItemListSchema, pageMeta } from "../lib/seo";
 
 const alphabeticalPortfolioCompanies = [...portfolioCompanies].sort((a, b) =>
   a.name.localeCompare(b.name, "en", { sensitivity: "base", ignorePunctuation: true }),
@@ -9,8 +10,11 @@ const alphabeticalPortfolioCompanies = [...portfolioCompanies].sort((a, b) =>
 ---
 
 <BaseLayout
-  title="Portfolio — 886 Studios"
-  description="Startups backed by 886 Studios."
+  title={pageMeta.portfolio.title}
+  description={pageMeta.portfolio.description}
+  pageType="CollectionPage"
+  breadcrumbs={[{ name: "Portfolio", path: "/portfolio" }]}
+  structuredData={getPortfolioItemListSchema()}
 >
   <div class="portfolio-page">
     <PageHero

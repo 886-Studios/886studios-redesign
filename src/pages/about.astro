@@ -1,8 +1,15 @@
 ---
 import AboutPage from "../components/pages/AboutPage.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getPeopleItemListSchema, pageMeta } from "../lib/seo";
 ---
 
-<BaseLayout title="About — 886 Studios">
+<BaseLayout
+  title={pageMeta.about.title}
+  description={pageMeta.about.description}
+  pageType="AboutPage"
+  breadcrumbs={[{ name: "About", path: "/about" }]}
+  structuredData={getPeopleItemListSchema()}
+>
   <AboutPage />
 </BaseLayout>

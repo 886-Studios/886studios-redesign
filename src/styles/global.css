@@ -2477,6 +2477,8 @@ body.is-home nav.site-nav.is-scrolled {
       .prog-hero,
       .prog-media,
       .prog-body {
+        width: auto;
+        max-width: none;
         padding-inline: clamp(18px, 6vw, 24px);
       }
 
@@ -2500,6 +2502,7 @@ body.is-home nav.site-nav.is-scrolled {
       }
 
       .prog-lead {
+        max-width: 30ch;
         font-size: 1rem;
         line-height: 1.62;
       }
@@ -2511,7 +2514,7 @@ body.is-home nav.site-nav.is-scrolled {
       }
 
       .prog-cta {
-        width: 100%;
+        width: min(100%, calc(100vw - 64px));
         min-width: 0;
         justify-content: center;
         min-height: 48px;
@@ -2526,7 +2529,15 @@ body.is-home nav.site-nav.is-scrolled {
       .prog-brief-card,
       .prog-pillar-copy,
       .prog-process-card {
+        width: 100%;
+        max-width: 100%;
         padding: 20px;
+      }
+
+      .prog-brief-fact span {
+        display: block;
+        max-width: 30ch;
+        overflow-wrap: anywhere;
       }
 
       .prog-brief-facts,

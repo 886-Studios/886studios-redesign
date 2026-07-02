@@ -2,14 +2,31 @@
 import ResourceArticlePage from "../components/pages/ResourceArticlePage.astro";
 import { standaloneResourceArticles } from "../data/resourceArticles";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import {
+  getResourceArticleSchema,
+  getResourceDescription,
+  getResourceFaqSchema,
+} from "../lib/seo";
 
 const article = standaloneResourceArticles.find((item) => item.slug === "incorporation-101");
 
 if (!article) {
   throw new Error("Missing incorporation resource article");
 }
+
+const pagePath = "/incorporation-101";
+const faqSchema = getResourceFaqSchema(article, pagePath);
 ---
 
-<BaseLayout title="Incorporation 101 — 886 Studios Resources">
+<BaseLayout
+  title="Incorporation 101 — 886 Studios Resources"
+  description={getResourceDescription(article)}
+  ogType="article"
+  breadcrumbs={[
+    { name: "Resources", path: "/resources" },
+    { name: article.title, path: pagePath },
+  ]}
+  structuredData={[getResourceArticleSchema(article, pagePath), ...(faqSchema ? [faqSchema] : [])]}
+>
   <ResourceArticlePage article={article} />
 </BaseLayout>

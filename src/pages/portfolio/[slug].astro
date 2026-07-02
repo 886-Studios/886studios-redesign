@@ -2,6 +2,7 @@
 import { portfolioCompanies } from "../../data/siteContent";
 import type { PortfolioCompany } from "../../data/siteContent";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPortfolioCompanySchema, getPortfolioDescription } from "../../lib/seo";
 
 export function getStaticPaths() {
   return portfolioCompanies.map((company) => ({
@@ -12,7 +13,7 @@ export function getStaticPaths() {
 
 const { company } = Astro.props as { company: PortfolioCompany };
 const pageTitle = `${company.name} — 886 Studios Portfolio`;
-const pageDescription = `${company.name}: ${company.description.replace(/\s+/g, " ")}`;
+const pageDescription = getPortfolioDescription(company);
 const websiteLink = typeof company.websiteUrl === "string" && company.websiteUrl.length > 0 ? company.websiteUrl : undefined;
 const appStoreBadgeUrl = "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg";
 const playStoreBadgeUrl =
@@ -76,7 +77,16 @@ function getDescriptionSegments(paragraph: string) {
 }
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  pageType="ProfilePage"
+  breadcrumbs={[
+    { name: "Portfolio", path: "/portfolio" },
+    { name: company.name, path: `/portfolio/${company.slug}` },
+  ]}
+  structuredData={getPortfolioCompanySchema(company)}
+>
   <article class="startup-detail-page">
     <section class="startup-detail-shell" aria-labelledby="startup-detail-title">
       <a class="startup-back-link" href="/portfolio">&larr; Back to portfolio</a>

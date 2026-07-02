@@ -1,8 +1,14 @@
 ---
 import ContactPage from "../components/pages/ContactPage.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { pageMeta } from "../lib/seo";
 ---
 
-<BaseLayout title="Contact — 886 Studios">
+<BaseLayout
+  title={pageMeta.contact.title}
+  description={pageMeta.contact.description}
+  pageType="ContactPage"
+  breadcrumbs={[{ name: "Contact", path: "/contact" }]}
+>
   <ContactPage />
 </BaseLayout>

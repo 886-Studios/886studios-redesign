@@ -1,8 +1,15 @@
 ---
 import EventsPage from "../components/pages/EventsPage.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getEventsCollectionSchema, pageMeta } from "../lib/seo";
 ---
 
-<BaseLayout title="Events — 886 Studios">
+<BaseLayout
+  title={pageMeta.events.title}
+  description={pageMeta.events.description}
+  pageType="CollectionPage"
+  breadcrumbs={[{ name: "Events", path: "/events" }]}
+  structuredData={getEventsCollectionSchema()}
+>
   <EventsPage />
 </BaseLayout>
