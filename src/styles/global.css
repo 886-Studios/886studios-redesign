@@ -4805,6 +4805,27 @@ body.is-home nav.site-nav.is-scrolled {
   margin-bottom: 18px;
 }
 
+.about-portfolio-cta {
+  margin-top: 34px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-portfolio-cta a {
+  color: var(--purple-bright);
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+.about-portfolio-cta a:hover,
+.about-portfolio-cta a:focus-visible {
+  color: var(--text-primary);
+  text-decoration: underline;
+  outline: none;
+}
+
 .prose {
   font-size: 15px;
   color: var(--text-secondary);

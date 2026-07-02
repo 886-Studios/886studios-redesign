@@ -517,8 +517,8 @@ export const siteContent = {
     },
     items: [
       { id: "home", label: "Home", href: "/" },
-      { id: "programs", label: "Programs", href: "/programs" },
       { id: "about", label: "About Us", href: "/about" },
+      { id: "programs", label: "Programs", href: "/programs" },
       { id: "events", label: "Events", href: "/events" },
       { id: "resources", label: "Resources", href: "/resources" },
       { id: "contact", label: "Contact", href: "/contact" },
@@ -1020,6 +1020,10 @@ export const siteContent = {
         ],
       },
     ],
+    portfolioCta: {
+      label: "Check out our portfolio startups.",
+      href: "/portfolio",
+    },
     teamTitle: "Operating Team",
     team: [
       {
