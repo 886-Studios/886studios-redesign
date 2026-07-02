@@ -93,7 +93,14 @@ function getDescriptionSegments(paragraph: string) {
 
       <div class="startup-detail-main">
         <div class="startup-detail-heading">
-          <div class="startup-detail-mark startup-detail-mark--logo" aria-hidden="true">
+          <div
+            class:list={[
+              "startup-detail-mark",
+              "startup-detail-mark--logo",
+              company.logo.imageClass === "is-app-icon" && "portfolio-logo-mark--app-icon",
+            ]}
+            aria-hidden="true"
+          >
             <img
               class:list={["portfolio-logo-image", company.logo.imageClass]}
               src={company.logo.src}

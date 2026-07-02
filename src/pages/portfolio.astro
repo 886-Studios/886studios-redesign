@@ -31,7 +31,13 @@ const alphabeticalPortfolioCompanies = [...portfolioCompanies].sort((a, b) =>
           alphabeticalPortfolioCompanies.map((item) => (
             <li class="portfolio-row">
               <a class="portfolio-link" href={`/portfolio/${item.slug}`}>
-                <span class="portfolio-logo-mark" aria-hidden="true">
+                <span
+                  class:list={[
+                    "portfolio-logo-mark",
+                    item.logo.imageClass === "is-app-icon" && "portfolio-logo-mark--app-icon",
+                  ]}
+                  aria-hidden="true"
+                >
                   <img
                     class:list={["portfolio-logo-image", item.logo.imageClass]}
                     src={item.logo.src}

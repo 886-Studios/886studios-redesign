@@ -59,7 +59,7 @@ export interface PortfolioCompany {
     alt: string;
     width: number;
     height: number;
-    imageClass?: "is-wordmark" | "is-tall" | "is-compact";
+    imageClass?: "is-wordmark" | "is-tall" | "is-compact" | "is-app-icon";
   };
   description: string;
   descriptionLinks?: readonly {
@@ -147,6 +147,25 @@ export const portfolioCompanies = [
     },
     description:
       "lfg is a social planning app for on-demand hangouts with friends in real life. It turns places discovered on Instagram, TikTok, Google Maps, and elsewhere into a shared map, then lets users pick a spot, invite the right people, and coordinate plans without getting stuck in group-chat back-and-forth.",
+  },
+  {
+    name: "Persona2 AI",
+    slug: "persona2-ai",
+    relationship: "886-backed",
+    category: "Gaming",
+    program: "ikigai S'26",
+    status: "Active",
+    websiteUrl: "https://persona2.ai/",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=ai.persona2.app",
+    logo: {
+      src: "/assets/portfolio/persona2-ai.png",
+      alt: "Persona2 AI logo",
+      width: 512,
+      height: 512,
+      imageClass: "is-app-icon",
+    },
+    description:
+      "Persona2 AI is a platform for RPGs, where anyone can vibe-code, play, and share role-playing games. It brings AI-powered text simulators, role-playing, and interactive narrative creation into a creator-driven game lobby where players can start instantly and build their own unique stories.\n\nPersona2 AI hit 120K users in 3 days, with power users spending 7 hours a day on the platform.",
   },
   {
     name: "Hushli",
@@ -274,6 +293,7 @@ export const portfolioCompanies = [
     slug: "kardomo",
     relationship: "886-backed",
     category: "Consumer",
+    program: "ikigai S'26",
     status: "Active",
     websiteUrl: "https://kardomo.com/",
     appStoreUrl: "https://apps.apple.com/tw/app/kardomo-%E5%8F%B0%E7%81%A3%E5%B0%88%E5%B1%AC%E7%9A%84-kpop-%E4%BA%A4%E5%8F%8B%E5%9C%88/id6748519302",

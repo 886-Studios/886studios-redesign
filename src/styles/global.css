@@ -1414,6 +1414,15 @@ body.is-home nav.site-nav.is-scrolled {
   max-height: 86%;
 }
 
+.portfolio-logo-image.is-app-icon {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  object-fit: cover;
+  border-radius: max(5px, calc(var(--portfolio-logo-radius) - 3px));
+}
+
 .portfolio-name-group {
   min-width: 0;
   display: grid;
