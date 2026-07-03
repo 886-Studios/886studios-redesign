@@ -130,5 +130,17 @@ const { about } = siteContent;
         }
       </div>
     </div>
+
+    <hr class="divider divider--spaced">
+
+    <section class="about-careers reveal reveal-delay-1" aria-labelledby="about-careers-title">
+      <div>
+        <div class="section-tag">{about.careers.eyebrow}</div>
+        <h2 class="section-h2 section-h2--compact" id="about-careers-title">{about.careers.title}</h2>
+      </div>
+      <div class="about-careers-copy">
+        {about.careers.paragraphs.map((paragraph) => <p class="prose">{paragraph}</p>)}
+      </div>
+    </section>
   </div>
 </div>

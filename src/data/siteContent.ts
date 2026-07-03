@@ -1125,6 +1125,14 @@ export const siteContent = {
         photo: "/assets/headshots/timothy-chen.webp",
       },
     ],
+    careers: {
+      eyebrow: "Jobs & Internships",
+      title: "Careers",
+      paragraphs: [
+        "We are not hiring for open roles right now. When an opportunity opens at 886, we will post it here.",
+        "We usually bring on summer interns, too. When the next intern call opens, the details will be announced here.",
+      ],
+    },
   },
   events: {
     eyebrow: "Events",
