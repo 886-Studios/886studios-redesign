@@ -1129,8 +1129,8 @@ export const siteContent = {
       eyebrow: "Jobs & Internships",
       title: "Careers",
       paragraphs: [
-        "We are not hiring for open roles right now. When an opportunity opens at 886, we will post it here.",
-        "We usually bring on summer interns, too. When the next intern call opens, the details will be announced here.",
+        "We are not hiring for open roles right now. When an opportunity opens at 886 Studios, we will post it here.",
+        "We usually bring on summer interns, too. When the next intern call opens, the details will be announced on this page.",
       ],
     },
   },
