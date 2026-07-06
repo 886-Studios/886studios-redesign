@@ -4838,6 +4838,7 @@ body.is-home nav.site-nav.is-scrolled {
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  text-align: right;
 }
 
 .about-portfolio-cta a {
@@ -6679,6 +6680,10 @@ footer {
 
   #page-about .about-cols {
     gap: 34px;
+  }
+
+  #page-about .about-portfolio-cta {
+    text-align: left;
   }
 
   #page-about .divider--spaced {
