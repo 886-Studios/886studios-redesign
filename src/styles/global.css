@@ -71,6 +71,17 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+html.mobile-menu-open,
+body.mobile-menu-open {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body.mobile-menu-open {
+  inset-inline: 0;
+  touch-action: none;
+}
+
 /* View transitions */
 @view-transition {
   navigation: auto;
@@ -222,6 +233,8 @@ body.is-home nav.site-nav.is-scrolled {
   text-decoration: none;
   flex-shrink: 0;
   cursor: pointer;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .nav-logo img {
@@ -305,8 +318,8 @@ body.is-home nav.site-nav.is-scrolled {
   justify-content: center;
   align-items: center;
   gap: 5px;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -341,7 +354,11 @@ body.is-home nav.site-nav.is-scrolled {
   display: none;
   position: fixed;
   inset: 0;
+  height: 100vh;
+  height: 100dvh;
   z-index: 300;
+  overscroll-behavior: contain;
+  touch-action: none;
 }
 
 .mobile-drawer.is-open {
@@ -354,6 +371,7 @@ body.is-home nav.site-nav.is-scrolled {
   background: rgba(0, 0, 0, 0.75);
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
+  touch-action: none;
   animation: overlayIn 0.2s ease forwards;
 }
 
@@ -372,10 +390,14 @@ body.is-home nav.site-nav.is-scrolled {
   right: 0;
   bottom: 0;
   width: min(320px, 88vw);
+  height: 100%;
+  max-height: 100dvh;
   background: var(--bg-surface);
   border-left: 1px solid var(--border);
   display: flex;
   flex-direction: column;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  touch-action: pan-y;
   animation: drawerIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
@@ -392,15 +414,15 @@ body.is-home nav.site-nav.is-scrolled {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-  height: var(--nav-height);
+  padding: env(safe-area-inset-top, 0px) 20px 0;
+  min-height: calc(var(--nav-height) + env(safe-area-inset-top, 0px));
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
 
 .mobile-drawer-close {
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -423,6 +445,8 @@ body.is-home nav.site-nav.is-scrolled {
   flex-direction: column;
   padding: 16px 12px;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-nav-link {
@@ -431,7 +455,10 @@ body.is-home nav.site-nav.is-scrolled {
   font-weight: 500;
   color: var(--text-secondary);
   text-decoration: none;
-  padding: 13px 16px;
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 10px 16px;
   border-radius: 8px;
   transition:
     color 0.18s,
@@ -448,7 +475,7 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .mobile-drawer-footer {
-  padding: 20px;
+  padding: 20px 20px calc(20px + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid var(--border);
   flex-shrink: 0;
 }
@@ -6307,8 +6334,26 @@ footer {
     padding: 24px 22px;
   }
 
+  .events-calendar-copy {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .events-calendar-copy .ev-title {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .events-calendar-copy .ev-meta {
+    overflow-wrap: break-word;
+  }
+
   .events-calendar-cta {
     justify-self: start;
+    max-width: 100%;
+    min-height: 44px;
+    white-space: normal;
+    text-align: center;
   }
 
   #page-events .section-lead {
@@ -6403,11 +6448,39 @@ footer {
   }
 
   .social-btn {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
   }
 
   .social-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .card-cta,
+  .portfolio-see-more,
+  .resource-back-link,
+  .startup-back-link,
+  .ls-back {
+    align-items: center;
+    min-height: 40px;
+  }
+
+  .card-cta {
+    padding-block: 8px;
+  }
+
+  .res-perk-tool,
+  .startup-store-badge {
+    min-height: 40px;
+  }
+
+  .team-social-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .team-social-link svg {
     width: 14px;
     height: 14px;
   }

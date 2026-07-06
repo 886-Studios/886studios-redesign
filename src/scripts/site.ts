@@ -22,6 +22,11 @@ function initNavChrome() {
   const footer = select<HTMLElement>("footer");
   let previouslyFocusedElement: HTMLElement | null = null;
   let previousBodyOverflow = "";
+  let previousHtmlOverflow = "";
+  let previousBodyPosition = "";
+  let previousBodyTop = "";
+  let previousBodyWidth = "";
+  let lockedScrollY = 0;
 
   if (!nav || !hamburger || !drawer || !overlay || !closeButton) return;
 
@@ -39,7 +44,18 @@ function initNavChrome() {
     main?.setAttribute("inert", "");
     footer?.setAttribute("inert", "");
     previousBodyOverflow = document.body.style.overflow;
+    previousHtmlOverflow = document.documentElement.style.overflow;
+    previousBodyPosition = document.body.style.position;
+    previousBodyTop = document.body.style.top;
+    previousBodyWidth = document.body.style.width;
+    lockedScrollY = window.scrollY;
+    document.documentElement.classList.add("mobile-menu-open");
+    document.body.classList.add("mobile-menu-open");
+    document.documentElement.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${lockedScrollY}px`;
+    document.body.style.width = "100%";
     closeButton.focus({ preventScroll: true });
   };
 
@@ -53,11 +69,23 @@ function initNavChrome() {
     drawer.classList.remove("is-open");
     main?.removeAttribute("inert");
     footer?.removeAttribute("inert");
+    document.documentElement.classList.remove("mobile-menu-open");
+    document.body.classList.remove("mobile-menu-open");
+    document.documentElement.style.overflow = previousHtmlOverflow;
     document.body.style.overflow = previousBodyOverflow;
+    document.body.style.position = previousBodyPosition;
+    document.body.style.top = previousBodyTop;
+    document.body.style.width = previousBodyWidth;
+    window.scrollTo(0, lockedScrollY);
     const focusTarget = previouslyFocusedElement && document.contains(previouslyFocusedElement) ? previouslyFocusedElement : hamburger;
     focusTarget.focus({ preventScroll: true });
     previouslyFocusedElement = null;
     previousBodyOverflow = "";
+    previousHtmlOverflow = "";
+    previousBodyPosition = "";
+    previousBodyTop = "";
+    previousBodyWidth = "";
+    lockedScrollY = 0;
   };
 
   const trapDrawerFocus = (event: KeyboardEvent) => {
