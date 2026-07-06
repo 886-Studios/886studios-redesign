@@ -322,7 +322,7 @@ export const portfolioCompanies = [
     name: "PicPet",
     slug: "o3o-labs",
     relationship: "886-backed",
-    category: "Consumer",
+    category: "Social",
     program: "ikigai F'24",
     status: "Active",
     appStoreUrl: "https://apps.apple.com/us/app/picpet/id6742077014",
