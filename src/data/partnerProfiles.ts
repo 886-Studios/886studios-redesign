@@ -505,13 +505,6 @@ export const partnerProfiles: PartnerProfile[] = [
         ],
       },
     ],
-    socials: [
-      {
-        platform: "linkedin",
-        href: "https://www.linkedin.com/in/chris-wang-5a880b1b/",
-        ariaLabel: "Chris Wang on LinkedIn",
-      },
-    ],
     companiesBuilt: ["Playdom", "ThunderCore"],
   },
   {
@@ -728,7 +721,7 @@ export const partnerProfiles: PartnerProfile[] = [
     socials: [
       {
         platform: "linkedin",
-        href: "https://www.linkedin.com/in/phil-chen-3b912b112/",
+        href: "https://www.linkedin.com/in/philchen777/",
         ariaLabel: "Phil Chen on LinkedIn",
       },
     ],
