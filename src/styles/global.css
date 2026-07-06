@@ -3582,7 +3582,7 @@ body.is-home nav.site-nav.is-scrolled {
       justify-self: start;
       width: min(100%, 420px);
       max-width: 420px;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 1;
       transform: none;
     }
 
@@ -3806,7 +3806,7 @@ body.is-home nav.site-nav.is-scrolled {
       max-width: 420px;
       margin: 0;
       overflow: hidden;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 1;
       border: 0;
       border-radius: var(--r-sm);
       background: #e8e5dc;
