@@ -56,7 +56,7 @@ export const pageMeta = {
     title: "Launch Station - 886 Studios",
     description:
       "Launch Station is 886 Studios' free dedicated desk and founder community program inside Taiwan Tech Arena.",
-    ogImage: `${siteConfig.url}/assets/programs/launch-station-community-collage.jpg`,
+    ogImage: `${siteConfig.url}/assets/programs/launch-station-community-collage-2026.jpg`,
     ogImageAlt: "Launch Station founder community collage",
     ogImageWidth: 800,
     ogImageHeight: 800,

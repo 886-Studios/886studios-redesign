@@ -840,8 +840,8 @@ export const siteContent = {
       title: "Launch Station",
       eyebrow: "Community program",
       poster: {
-        src: "/assets/programs/launch-station-community-collage.jpg",
-        alt: "Launch Station poster",
+        src: "/assets/programs/launch-station-community-collage-2026.jpg",
+        alt: "Launch Station community collage",
         width: 800,
         height: 800,
       },
