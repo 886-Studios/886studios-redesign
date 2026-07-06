@@ -15,10 +15,6 @@ const { launchStation } = siteContent.programs;
         <h1 class="ls-h1" id="ls-heading">{launchStation.title}</h1>
         <p class="ls-lead">{launchStation.lead}</p>
         <p class="ls-status-note">{launchStation.status}</p>
-        <div class="ls-hero-actions">
-          <a class="btn-pri ls-primary-cta" href="/contact">Contact 886</a>
-          <a class="ls-secondary-cta" href="/programs">View all programs</a>
-        </div>
       </div>
       <figure class="ls-poster">
         <img
@@ -47,7 +43,7 @@ const { launchStation } = siteContent.programs;
     <section class="ls-benefits reveal" aria-labelledby="ls-benefits-heading">
       <div class="ls-benefits-copy">
         <div class="ls-section-kicker">What you get</div>
-        <h2 id="ls-benefits-heading">A desk, useful perks, and a community of founders building nearby.</h2>
+        <h2 id="ls-benefits-heading">A free desk, exclusive perks, and a community of founders</h2>
       </div>
       <ul class="ls-benefit-list">
         {launchStation.benefits.map((benefit, index) => (
