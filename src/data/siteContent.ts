@@ -1021,7 +1021,7 @@ export const siteContent = {
       },
     ],
     portfolioCta: {
-      label: "Check out our portfolio companies.",
+      label: "Check out our portfolio companies →",
       href: "/portfolio",
     },
     teamTitle: "Operating Team",
