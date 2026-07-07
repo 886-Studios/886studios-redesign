@@ -754,13 +754,13 @@ export const siteContent = {
   programs: {
     eyebrow: "Programs",
     title: "ikigai Launchpad",
-    lead: "A 12-week, in-person accelerator in Taipei with $100K USD, mentor office hours, investor intros, and support beyond the batch.",
+    lead: "A 10-week, in-person accelerator in Taipei with $100K USD, mentor office hours, investor intros, and support beyond the batch.",
     items: [
       {
         name: "ikigai Launchpad",
         learnMoreHref:
           "https://withikigai.com/?gad_source=1&gad_campaignid=22431875260&gbraid=0AAAAA_T5bfikWpWgiBTvO7VHwrU9CtcE_&gclid=CjwKCAjw8arQBhB9EiwAfIKdQlaQyIeLDc12b41gZD-eZtsUKEI1hZeVtvXa_raBK1dNjUjeREajkBoCNKgQAvD_BwE",
-        body: "A focused accelerator for founders who need capital, mentor time, an in-person batch, investor access, and support that continues after the 12 weeks.",
+        body: "A focused accelerator for founders who need capital, mentor time, an in-person batch, investor access, and support that continues after the 10 weeks.",
         highlights: [],
         details: {
           intro: "",
@@ -772,7 +772,7 @@ export const siteContent = {
             },
             {
               label: "Length",
-              value: "12 weeks",
+              value: "10 weeks",
               note: "",
             },
             {
@@ -812,7 +812,7 @@ export const siteContent = {
             },
           ],
         },
-        fit: "Founders ready to spend 12 weeks in person in Taipei building with capital, mentors, and a focused batch.",
+        fit: "Founders ready to spend 10 weeks in person in Taipei building with capital, mentors, and a focused batch.",
         cta: {
           type: "link",
           label: "Apply to ikigai Launchpad →",

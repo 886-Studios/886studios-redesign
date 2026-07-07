@@ -50,7 +50,7 @@ export const pageMeta = {
   programs: {
     title: "Programs - 886 Studios",
     description:
-      "ikigai Launchpad is 886 Studios' 12-week in-person Taipei accelerator with $100K USD, weekly mentor office hours, investor intros, and founder community.",
+      "ikigai Launchpad is 886 Studios' 10-week in-person Taipei accelerator with $100K USD, weekly mentor office hours, investor intros, and founder community.",
   },
   launchStation: {
     title: "Launch Station - 886 Studios",

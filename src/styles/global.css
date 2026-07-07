@@ -3837,7 +3837,7 @@ body.is-home nav.site-nav.is-scrolled {
       margin: 0 0 20px;
       max-width: none;
       color: var(--text-primary);
-      font-size: clamp(4rem, 7vw, 6.05rem);
+      font-size: clamp(3.45rem, 5.8vw, 5.15rem);
       font-weight: 700;
       letter-spacing: 0;
       line-height: 0.95;
@@ -4093,7 +4093,7 @@ body.is-home nav.site-nav.is-scrolled {
 
       .ls-h1 {
         max-width: none;
-        font-size: 2.65rem;
+        font-size: 2.35rem;
         line-height: 1;
         white-space: nowrap;
       }
