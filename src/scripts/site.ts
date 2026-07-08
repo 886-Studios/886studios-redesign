@@ -200,7 +200,36 @@ function initPortfolioReturnPosition() {
   window.addEventListener("pageshow", restorePortfolioPosition);
 }
 
+function initPortfolioDetailReturnLink() {
+  const returnLink = select<HTMLAnchorElement>("[data-portfolio-return-link]");
+  const returnLabel = returnLink?.querySelector<HTMLElement>("[data-portfolio-return-label]");
+  if (!returnLink || !returnLabel) return;
+
+  const normalizePath = (path: string) => path.replace(/\/+$/, "") || "/";
+  const getSameOriginReferrerPath = () => {
+    if (!document.referrer) return null;
+
+    try {
+      const referrerUrl = new URL(document.referrer);
+      if (referrerUrl.origin !== window.location.origin) return null;
+
+      return normalizePath(referrerUrl.pathname);
+    } catch {
+      return null;
+    }
+  };
+
+  const searchParams = new URLSearchParams(window.location.search);
+  const cameFromHome = searchParams.get("from") === "home" || getSameOriginReferrerPath() === "/";
+  if (!cameFromHome) return;
+
+  returnLink.href = "/";
+  returnLabel.textContent = returnLink.dataset.homeLabel || "Back to home";
+  returnLink.closest(".startup-return-links")?.classList.add("is-home-origin");
+}
+
 initNavChrome();
 initCachedPageAnimationReplay();
 initPortfolioReturnPosition();
+initPortfolioDetailReturnLink();
 initScrollReveal();

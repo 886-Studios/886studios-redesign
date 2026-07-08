@@ -1,7 +1,9 @@
 ---
 import Analytics from "@vercel/analytics/astro";
 
-const isVercelBuild = Astro.locals.runtime?.env?.VERCEL === "1";
+const locals = Astro.locals as { runtime?: { env?: Record<string, string | undefined> } };
+const buildEnv = import.meta.env as Record<string, string | undefined>;
+const isVercelBuild = locals.runtime?.env?.VERCEL === "1" || buildEnv.VERCEL === "1";
 ---
 
 {isVercelBuild && <Analytics />}

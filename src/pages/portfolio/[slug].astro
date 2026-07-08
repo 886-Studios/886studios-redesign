@@ -89,7 +89,18 @@ function getDescriptionSegments(paragraph: string) {
 >
   <article class="startup-detail-page">
     <section class="startup-detail-shell" aria-labelledby="startup-detail-title">
-      <a class="startup-back-link" href="/portfolio">&larr; Back to portfolio</a>
+      <nav class="startup-return-links" aria-label="Portfolio navigation">
+        <a
+          class="startup-back-link"
+          href="/portfolio"
+          data-portfolio-return-link
+          data-home-label="Back to home"
+        >
+          <span aria-hidden="true">&larr;</span>
+          <span data-portfolio-return-label>Back to portfolio</span>
+        </a>
+        <a class="startup-home-link" href="/">Home</a>
+      </nav>
 
       <div class="startup-detail-main">
         <div class="startup-detail-heading">
