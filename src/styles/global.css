@@ -6033,8 +6033,9 @@ footer {
 
   body.is-home .nav-hamburger {
     display: flex;
-    background: rgba(255, 255, 255, 0.045);
-    border-color: rgba(255, 255, 255, 0.12);
+    background: transparent;
+    border-color: transparent;
+    border-radius: 0;
     box-shadow: none;
   }
 
@@ -6050,6 +6051,9 @@ footer {
   }
   .nav-hamburger {
     display: flex;
+    background: transparent;
+    border-color: transparent;
+    border-radius: 0;
   }
 }
 
