@@ -1561,7 +1561,6 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .startup-detail-page {
-  overflow-x: hidden;
   background:
     radial-gradient(ellipse 32% 18% at 72% 0%, rgba(255, 255, 255, 0.04), transparent 70%),
     var(--bg);

@@ -200,7 +200,86 @@ function initPortfolioReturnPosition() {
   window.addEventListener("pageshow", restorePortfolioPosition);
 }
 
+function initStartupProfileSwipeBack() {
+  const startupDetailPage = select<HTMLElement>(".startup-detail-page");
+  if (!startupDetailPage) return;
+
+  const edgeThreshold = 28;
+  const minSwipeDistance = 84;
+  const maxVerticalDrift = 72;
+  let startX = 0;
+  let startY = 0;
+  let isEdgeSwipe = false;
+  let hasReturned = false;
+
+  const getSameOriginReferrer = () => {
+    if (!document.referrer) return undefined;
+
+    try {
+      const referrerUrl = new URL(document.referrer);
+      return referrerUrl.origin === window.location.origin ? referrerUrl : undefined;
+    } catch {
+      return undefined;
+    }
+  };
+
+  const returnToPreviousPage = () => {
+    if (hasReturned) return;
+
+    hasReturned = true;
+    const referrerUrl = getSameOriginReferrer();
+
+    if (referrerUrl && window.history.length > 1) {
+      window.history.back();
+      return;
+    }
+
+    window.location.assign("/portfolio");
+  };
+
+  window.addEventListener(
+    "touchstart",
+    (event) => {
+      const touch = event.touches[0];
+      if (!touch) return;
+
+      startX = touch.clientX;
+      startY = touch.clientY;
+      isEdgeSwipe = startX <= edgeThreshold;
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    "touchend",
+    (event) => {
+      if (!isEdgeSwipe) return;
+
+      const touch = event.changedTouches[0];
+      isEdgeSwipe = false;
+      if (!touch) return;
+
+      const deltaX = touch.clientX - startX;
+      const deltaY = touch.clientY - startY;
+
+      if (deltaX >= minSwipeDistance && Math.abs(deltaY) <= maxVerticalDrift) {
+        returnToPreviousPage();
+      }
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    "touchcancel",
+    () => {
+      isEdgeSwipe = false;
+    },
+    { passive: true }
+  );
+}
+
 initNavChrome();
 initCachedPageAnimationReplay();
 initPortfolioReturnPosition();
+initStartupProfileSwipeBack();
 initScrollReveal();
