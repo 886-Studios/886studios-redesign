@@ -52,6 +52,7 @@ const {
 } = Astro.props;
 
 const currentPath = normalizePath(Astro.url.pathname);
+const isPortfolioProfilePage = currentPath.startsWith("/portfolio/");
 const canonicalUrl = getCanonicalUrl(currentPath);
 const absoluteOgImage = getAbsoluteUrl(ogImage);
 const googleAnalyticsId = getGoogleAnalyticsId();
@@ -139,7 +140,7 @@ const structuredDataJson = JSON.stringify(
     <GoogleAnalytics measurementId={googleAnalyticsId} />
     <script type="application/ld+json" is:inline set:html={structuredDataJson} />
   </head>
-  <body class:list={[currentPath === "/" && "is-home"]}>
+  <body class:list={[currentPath === "/" && "is-home", isPortfolioProfilePage && "is-portfolio-profile"]}>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <SiteNav currentPath={currentPath} />
     <main id="main-content" class="site-main" tabindex="-1">

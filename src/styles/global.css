@@ -71,6 +71,11 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+body.is-portfolio-profile {
+  overflow-x: visible;
+  overscroll-behavior-x: auto;
+}
+
 html.mobile-menu-open,
 body.mobile-menu-open {
   overflow: hidden;
