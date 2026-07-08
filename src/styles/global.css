@@ -5738,6 +5738,8 @@ footer {
 .social-btn {
   width: 34px;
   height: 34px;
+  position: relative;
+  flex: 0 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6053,7 +6055,7 @@ footer {
 
 @media (max-width: 720px) {
   footer {
-    padding: 12px clamp(18px, 6vw, 24px);
+    padding: 12px clamp(12px, 5vw, 20px);
   }
 
   #page-home .hero {
@@ -6422,9 +6424,10 @@ footer {
 
   .footer-inner {
     flex-wrap: nowrap;
-    gap: 12px;
+    gap: 8px;
     flex-direction: row;
     justify-content: space-between;
+    min-width: 0;
   }
 
   .footer-logo {
@@ -6436,28 +6439,38 @@ footer {
     left: auto;
     transform: none;
     order: 1;
+    flex: 1 1 auto;
+    min-width: 0;
     align-items: flex-start;
     text-align: left;
-    font-size: 10px;
-    line-height: 1.35;
+    font-size: 9px;
+    line-height: 1;
     letter-spacing: 0.02em;
+    white-space: nowrap;
   }
 
   .socials {
     justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 4px;
+    flex-wrap: nowrap;
+    gap: 0;
     order: 2;
+    flex: 0 0 auto;
   }
 
   .social-btn {
-    width: 40px;
-    height: 40px;
+    width: clamp(23px, 7vw, 30px);
+    height: 34px;
+  }
+
+  .social-btn::before {
+    content: "";
+    position: absolute;
+    inset: -5px -3px;
   }
 
   .social-btn svg {
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
   }
 
   .card-cta,
