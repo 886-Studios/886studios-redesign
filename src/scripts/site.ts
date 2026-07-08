@@ -144,40 +144,6 @@ function initCachedPageAnimationReplay() {
   });
 }
 
-function initReturnLinks() {
-  const returnLinks = selectAll<HTMLAnchorElement>("[data-return-link]");
-  if (returnLinks.length === 0) return;
-
-  const getSameOriginReferrer = () => {
-    if (!document.referrer) return undefined;
-
-    try {
-      const referrerUrl = new URL(document.referrer);
-
-      if (referrerUrl.origin !== window.location.origin) return undefined;
-      if (referrerUrl.href === window.location.href) return undefined;
-
-      return referrerUrl;
-    } catch {
-      return undefined;
-    }
-  };
-
-  returnLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      if (event.defaultPrevented || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
-        return;
-      }
-
-      const referrerUrl = getSameOriginReferrer();
-      if (!referrerUrl || window.history.length <= 1) return;
-
-      event.preventDefault();
-      window.history.back();
-    });
-  });
-}
-
 function initScrollReveal() {
   const revealElements = selectAll<HTMLElement>(".reveal");
   if (revealElements.length === 0) return;
@@ -202,7 +168,39 @@ function initScrollReveal() {
   revealElements.forEach((element) => observer.observe(element));
 }
 
+function initPortfolioReturnPosition() {
+  const storageKey = "886:portfolio-scroll-y";
+  const isPortfolioIndex = window.location.pathname.replace(/\/$/, "") === "/portfolio";
+
+  const restorePortfolioPosition = () => {
+    if (!isPortfolioIndex) return;
+
+    const storedPosition = window.sessionStorage.getItem(storageKey);
+    if (!storedPosition) return;
+
+    const scrollY = Number.parseInt(storedPosition, 10);
+    window.sessionStorage.removeItem(storageKey);
+    if (!Number.isFinite(scrollY)) return;
+
+    window.requestAnimationFrame(() => {
+      window.scrollTo({ top: scrollY, behavior: "auto" });
+    });
+  };
+
+  if (isPortfolioIndex) {
+    restorePortfolioPosition();
+
+    selectAll<HTMLAnchorElement>(".portfolio-directory .portfolio-link").forEach((link) => {
+      link.addEventListener("click", () => {
+        window.sessionStorage.setItem(storageKey, String(window.scrollY));
+      });
+    });
+  }
+
+  window.addEventListener("pageshow", restorePortfolioPosition);
+}
+
 initNavChrome();
 initCachedPageAnimationReplay();
-initReturnLinks();
+initPortfolioReturnPosition();
 initScrollReveal();
