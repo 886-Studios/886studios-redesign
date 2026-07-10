@@ -1186,6 +1186,33 @@ export const siteContent = {
         photo: "/assets/headshots/timothy-chen.webp",
       },
     ],
+    collaboration: {
+      title: "Lifelike Capital",
+      logo: {
+        src: "/assets/about/lifelike-capital.webp",
+        alt: "Lifelike Capital",
+        width: 750,
+        height: 750,
+      },
+      description:
+        "886 Studios and Lifelike Capital work together to support founders building ambitious companies with global potential.",
+      program: {
+        label: "ikigai Launchpad",
+        href: "/programs",
+      },
+      programDescription:
+        "is the result of our collaboration, a shared program created to help next generation of startups grow globally.",
+      links: [
+        {
+          label: "Website",
+          href: "https://www.lifelikecap.com/",
+        },
+        {
+          label: "LinkedIn",
+          href: "https://www.linkedin.com/company/lifelikecapital/",
+        },
+      ],
+    },
     careers: {
       eyebrow: "Jobs & Internships",
       title: "Careers",
