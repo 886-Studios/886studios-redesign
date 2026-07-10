@@ -133,47 +133,49 @@ const { about, resources } = siteContent;
 
     <hr class="divider divider--spaced">
 
-    <section class="about-collaboration reveal reveal-delay-1" aria-labelledby="about-collaboration-title">
-      <div class="about-collaboration-brand">
-        <img
-          src={about.collaboration.logo.src}
-          alt={about.collaboration.logo.alt}
-          width={about.collaboration.logo.width}
-          height={about.collaboration.logo.height}
-          loading="lazy"
-          decoding="async"
-        />
-        <div>
-          <h2 id="about-collaboration-title">{about.collaboration.title}</h2>
+    <div class="reveal reveal-delay-1">
+      <div class="section-tag">{about.collaboration.eyebrow}</div>
+      <section class="about-collaboration" aria-labelledby="about-collaboration-title">
+        <div class="about-collaboration-brand">
+          <img
+            src={about.collaboration.logo.src}
+            alt={about.collaboration.logo.alt}
+            width={about.collaboration.logo.width}
+            height={about.collaboration.logo.height}
+            loading="lazy"
+            decoding="async"
+          />
+          <div>
+            <h2 id="about-collaboration-title">{about.collaboration.title}</h2>
+          </div>
         </div>
-      </div>
 
-      <div class="about-collaboration-copy">
-        <p>{about.collaboration.description}</p>
-        <p>
-          <a href={about.collaboration.program.href}>
-            {about.collaboration.program.label}
-          </a>{" "}
-          {about.collaboration.programDescription}
-        </p>
-      </div>
+        <div class="about-collaboration-copy">
+          <p>{about.collaboration.description}</p>
+          <p>
+            <a href={about.collaboration.program.href}>
+              {about.collaboration.program.label}
+            </a>{" "}
+            {about.collaboration.programDescription}
+          </p>
+        </div>
 
-      <div class="about-collaboration-links" aria-label="Lifelike Capital links">
-        {about.collaboration.links.map((link) => (
-          <a href={link.href} target="_blank" rel="noopener noreferrer">
-            {link.label}
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-              <path d="M5 11 11 5M6 5h5v5" />
-            </svg>
-          </a>
-        ))}
-      </div>
-    </section>
+        <div class="about-collaboration-links" aria-label="Lifelike Capital links">
+          {about.collaboration.links.map((link) => (
+            <a href={link.href} target="_blank" rel="noopener noreferrer">
+              {link.label}
+              <svg viewBox="0 0 16 16" aria-hidden="true">
+                <path d="M5 11 11 5M6 5h5v5" />
+              </svg>
+            </a>
+          ))}
+        </div>
+      </section>
+    </div>
 
     <hr class="divider divider--spaced">
 
     <div class="reveal reveal-delay-1">
-      <div class="section-tag">{about.careers.eyebrow}</div>
       <section class="about-careers" aria-labelledby="about-careers-title">
         <div>
           <h2 class="section-h2 section-h2--compact" id="about-careers-title">{about.careers.title}</h2>

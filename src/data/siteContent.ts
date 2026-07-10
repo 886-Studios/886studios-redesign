@@ -1187,6 +1187,7 @@ export const siteContent = {
       },
     ],
     collaboration: {
+      eyebrow: "Fund Partner",
       title: "Lifelike Capital",
       logo: {
         src: "/assets/about/lifelike-capital.webp",
@@ -1201,7 +1202,7 @@ export const siteContent = {
         href: "/programs",
       },
       programDescription:
-        "is the result of our collaboration, a shared program created to help next generation of startups grow globally.",
+        "is the result of our collaboration, a shared program created to help the next generation of startups grow globally.",
       links: [
         {
           label: "Website",
@@ -1214,7 +1215,6 @@ export const siteContent = {
       ],
     },
     careers: {
-      eyebrow: "Jobs & Internships",
       title: "Careers",
       paragraphs: [
         "We are not hiring for open roles right now. When an opportunity opens at 886 Studios, we will post it here.",

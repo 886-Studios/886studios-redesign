@@ -4883,13 +4883,10 @@ body.is-home nav.site-nav.is-scrolled {
 
 .about-careers {
   display: grid;
-  grid-template-columns: minmax(140px, 0.26fr) minmax(0, 1fr);
-  gap: clamp(20px, 3vw, 36px);
+  grid-template-columns: clamp(260px, 25vw, 320px) minmax(0, 1fr);
+  gap: clamp(28px, 3vw, 40px);
   align-items: center;
-  padding: 30px;
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  background: var(--bg-card);
+  padding: 6px 0 4px;
 }
 
 .about-careers .section-h2 {
@@ -4898,6 +4895,8 @@ body.is-home nav.site-nav.is-scrolled {
 
 .about-careers-copy {
   min-width: 0;
+  padding-left: clamp(28px, 3vw, 40px);
+  border-left: 1px solid var(--border-bright);
 }
 
 .about-careers .prose {
@@ -4907,13 +4906,10 @@ body.is-home nav.site-nav.is-scrolled {
 
 .about-collaboration {
   display: grid;
-  grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.5fr) auto;
-  gap: clamp(26px, 4vw, 52px);
+  grid-template-columns: clamp(260px, 25vw, 320px) minmax(0, 1fr) auto;
+  gap: clamp(28px, 3vw, 40px);
   align-items: center;
-  padding: 30px;
-  border: 1px solid var(--border);
-  border-radius: var(--r-sm);
-  background: var(--bg-card);
+  padding: 6px 0 4px;
 }
 
 .about-collaboration-brand {
@@ -4940,6 +4936,8 @@ body.is-home nav.site-nav.is-scrolled {
 
 .about-collaboration-copy {
   min-width: 0;
+  padding-left: clamp(28px, 3vw, 40px);
+  border-left: 1px solid var(--border-bright);
 }
 
 .about-collaboration-copy p {
@@ -6942,18 +6940,23 @@ footer {
 
   #page-about .about-careers {
     grid-template-columns: 1fr;
-    gap: 14px;
-    padding: 22px;
+    gap: 16px;
+    padding: 0;
   }
 
   #page-about .about-careers .prose {
     white-space: normal;
   }
 
+  #page-about .about-careers-copy {
+    padding-left: 0;
+    border-left: 0;
+  }
+
   #page-about .about-collaboration {
     grid-template-columns: 1fr;
-    gap: 22px;
-    padding: 22px;
+    gap: 20px;
+    padding: 0;
   }
 
   #page-about .about-collaboration-brand {
@@ -6969,6 +6972,11 @@ footer {
   #page-about .about-collaboration-links {
     flex-direction: row;
     gap: 20px;
+  }
+
+  #page-about .about-collaboration-copy {
+    padding-left: 0;
+    border-left: 0;
   }
 
   #page-about .about-news-title {
