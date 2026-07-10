@@ -4891,6 +4891,7 @@ body.is-home nav.site-nav.is-scrolled {
 
 .about-careers .section-h2 {
   margin-bottom: 0;
+  text-align: center;
 }
 
 .about-careers-copy {
@@ -4901,7 +4902,7 @@ body.is-home nav.site-nav.is-scrolled {
 
 .about-careers .prose {
   max-width: none;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .about-collaboration {
@@ -6944,8 +6945,8 @@ footer {
     padding: 0;
   }
 
-  #page-about .about-careers .prose {
-    white-space: normal;
+  #page-about .about-careers .section-h2 {
+    text-align: left;
   }
 
   #page-about .about-careers-copy {
