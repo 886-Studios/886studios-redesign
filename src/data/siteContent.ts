@@ -874,6 +874,67 @@ export const siteContent = {
   },
   resources: {
     title: "Resources Library",
+    newsItems: [
+      {
+        title: "ikigai Launchpad Debuts in Taipei, Showcasing Taiwan’s Next Generation Startups",
+        href: "https://meet-global.bnext.com.tw/articles/view/48332",
+        source: "Meet Global",
+        image: {
+          src: "/assets/resources/news/launchpad-debut.jpg",
+          alt: "ikigai Launchpad founders presenting at Demo Day in Taipei",
+          width: 1920,
+          height: 1440,
+        },
+      },
+      {
+        title: "Kevin Lin on Finding Your ikigai: From Twitch to Taiwanese Startups",
+        href: "https://youtu.be/wOHsOPxHO58?si=RLMXSJ1yHY5tEmqB",
+        source: "CONNECTED on TaiwanPlus",
+        image: {
+          src: "/assets/resources/news/kevin-lin-taiwanplus.jpg",
+          alt: "Kevin Lin featured in the TaiwanPlus interview Finding Your Ikigai",
+          width: 1280,
+          height: 720,
+        },
+      },
+      {
+        title: "Silicon Valley Founders Launch Ikigai to Help Taiwanese Startups Go Global",
+        href: "https://meet-global.bnext.com.tw/articles/view/48182",
+        source: "Meet Global",
+        image: {
+          src: "/assets/resources/news/global-founders.jpg",
+          alt: "Phil Chen and Kai Huang at Dreamers Coffee Roasters",
+          width: 1920,
+          height: 1279,
+        },
+        secondaryLink: {
+          label: "中文",
+          href: "https://meet.bnext.com.tw/articles/view/52166",
+        },
+      },
+      {
+        title: "A look into ikigai — an inside look into the first few weeks of the Summer 2025 batch",
+        href: "https://886studios.substack.com/p/a-look-into-ikigai",
+        source: "ikigai Insights",
+        image: {
+          src: "/assets/resources/news/inside-ikigai.jpg",
+          alt: "The ikigai Launchpad Summer 2025 batch gathered outdoors",
+          width: 1920,
+          height: 1440,
+        },
+      },
+      {
+        title: "團隊崩潰、FBI上門到獲得大咖合作，AI數據公司Preciser成「最靠近NBA的台灣新創」",
+        href: "https://meet.bnext.com.tw/articles/view/52115",
+        source: "Meet Global",
+        image: {
+          src: "/assets/resources/news/preciser.jpg",
+          alt: "The Preciser founding team seated together in their office",
+          width: 1920,
+          height: 1279,
+        },
+      },
+    ],
     libraryItems: [
       {
         title: "Y Combinator 101",
