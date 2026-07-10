@@ -164,7 +164,7 @@ export const resourceArticles: ResourceArticle[] = [
           "After going through the checklist, you may decide to apply to an accelerator. Depending on your company stage, industry, and timeline, the program you choose should fit your startup needs.",
           "There are several options in Taiwan’s startup ecosystem. To apply to the ikigai Launchpad program, use the application link below.",
         ],
-        links: [{ label: "Apply Now", href: "https://withikigai.com/" }],
+        links: [{ label: "Apply Now", href: "/programs" }],
       },
       {
         title: "How to Answer Application Questions",
@@ -287,8 +287,8 @@ export const resourceArticles: ResourceArticle[] = [
             name: "ikigai Launchpad",
             focus:
               "AI, IoT, Gaming, Consumer, Digital Transformation, Sportstech, Web 3, etc",
-            url: "withikigai.com",
-            href: "https://withikigai.com/",
+            url: "886studios.com/programs",
+            href: "/programs",
             year: "2024",
             contact: "carter@886studios.com",
           },

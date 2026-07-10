@@ -1,130 +1,61 @@
 ---
 import { siteContent } from "../../data/siteContent";
 
-const { programs } = siteContent;
-const [ikigai, launchStation] = programs.items;
-const launchStationHref =
-  launchStation?.cta.type === "link" && "href" in launchStation.cta ? launchStation.cta.href : undefined;
-
-const applicationSteps = [
-  {
-    title: "Submit Application",
-  },
-  {
-    title: "Application Review",
-  },
-  {
-    title: "1st Interview",
-  },
-  {
-    title: "2nd Interview",
-  },
-];
-const nextBatch = "Next batch starts Fall 2026.";
-const quickFacts = ikigai.details?.metrics ?? [];
-const ikigaiNameParts = ikigai.name.split(" ");
-const founderBenefitsIntro =
-  "ikigai Launchpad gives founders capital, operator access, working space, and a real Taipei batch. These are the core pieces teams use across the 10 weeks and beyond.";
+const { launchpad, launchStation } = siteContent.programs;
+const launchpadNameParts = launchpad.name.split(" ");
 const pillarImageWidths = [640, 960, 1280];
 const pillarImageSizes =
   "(max-width: 640px) calc(100vw - 36px), (max-width: 980px) calc((100vw - 48px - 18px) / 2), 371px";
 
-const getPillarPhoto = (
-  name: string,
-  alt: string,
-  dimensions: { width: number; height: number }
-) => ({
-  alt,
-  width: dimensions.width,
-  height: dimensions.height,
+const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => ({
+  ...photo,
   sizes: pillarImageSizes,
-  src: `/assets/programs/${name}-960.jpg`,
-  avifSrcset: pillarImageWidths.map((width) => `/assets/programs/${name}-${width}.avif ${width}w`).join(", "),
-  webpSrcset: pillarImageWidths.map((width) => `/assets/programs/${name}-${width}.webp ${width}w`).join(", "),
-  jpgSrcset: pillarImageWidths.map((width) => `/assets/programs/${name}-${width}.jpg ${width}w`).join(", "),
+  src: `/assets/programs/${photo.name}-960.jpg`,
+  avifSrcset: pillarImageWidths
+    .map((width) => `/assets/programs/${photo.name}-${width}.avif ${width}w`)
+    .join(", "),
+  webpSrcset: pillarImageWidths
+    .map((width) => `/assets/programs/${photo.name}-${width}.webp ${width}w`)
+    .join(", "),
+  jpgSrcset: pillarImageWidths
+    .map((width) => `/assets/programs/${photo.name}-${width}.jpg ${width}w`)
+    .join(", "),
 });
-
-const heroPhoto = {
-  src: "/assets/programs/ikigai-audience-theater-1280.webp",
-  srcset:
-    "/assets/programs/ikigai-audience-theater-1280.webp 1280w, /assets/programs/ikigai-audience-theater-1920.webp 1920w",
-  sizes: "(max-width: 640px) calc(100vw - 36px), min(calc(100vw - 48px), 1160px)",
-  alt: "ikigai Launchpad audience gathered in a theater",
-};
-
-const launchStationPhoto = {
-  src: programs.launchStation.poster.src,
-  alt: programs.launchStation.poster.alt,
-};
-
-const specPillars = [
-  {
-    title: "Funding",
-    headline: "$100,000 USD",
-    proofPoints: [
-      "$100,000 USD funding through a SAFE note",
-      "Quit your job and focus full-time on building",
-      "Potential follow-on investment from Lifelike Capital",
-    ],
-    photo: getPillarPhoto("ikigai-founder-table", "Founders working together during ikigai Launchpad", {
-      width: 1280,
-      height: 960,
-    }),
-  },
-  {
-    title: "Hands-on support",
-    headline: "1-on-1 Weekly Mentor Office Hours",
-    proofPoints: [
-      "Founder-Led Workshops",
-      "Guest Speakers",
-      "Warm Introductions + Investor Matching",
-      "Exclusive Corporate Perks",
-    ],
-    photo: getPillarPhoto("ikigai-mentor-session", "ikigai Launchpad mentor session with founders", {
-      width: 1280,
-      height: 960,
-    }),
-  },
-  {
-    title: "Community",
-    headline: "Work alongside other founders",
-    proofPoints: [
-      "Free Office Space in Taipei",
-      "Team Building",
-      "Networking & Founder Events",
-      "Support beyond the 10-week timeframe",
-    ],
-    photo: getPillarPhoto("ikigai-group-tshirts", "ikigai Launchpad founders together in Taipei", {
-      width: 1280,
-      height: 1707,
-    }),
-  },
-];
 ---
 
 <div class="page" id="page-programs">
-
   <section class="prog-hero" aria-labelledby="prog-ikigai-heading">
     <div class="prog-hero-copy">
+      <p class="prog-status-line">
+        <span>{launchpad.status.label}</span>
+        <span aria-hidden="true">·</span>
+        <span>{launchpad.status.batch}</span>
+      </p>
       <h1 class="prog-h1" id="prog-ikigai-heading">
-        {ikigaiNameParts.map((part, index) => (
+        {launchpadNameParts.map((part, index) => (
           <>
             {index > 0 && <br />}
             <span>{part}</span>
           </>
         ))}
       </h1>
-      <p class="prog-lead">{programs.lead}</p>
+      <p class="prog-lead">{launchpad.lead}</p>
       <div class="prog-hero-actions">
-        <a class="btn-pri prog-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
-          Apply to ikigai Launchpad
+        <a
+          class="btn-pri prog-cta"
+          href={launchpad.cta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {launchpad.cta.label}
         </a>
-        <p class="prog-next-batch">{nextBatch}</p>
+        <p class="prog-next-batch">{launchpad.status.summary}</p>
       </div>
     </div>
+
     <aside class="prog-brief-card" aria-label="ikigai Launchpad facts">
       <dl class="prog-brief-facts">
-        {quickFacts.map((fact) => (
+        {launchpad.facts.map((fact) => (
           <div class="prog-brief-fact">
             <dt>{fact.label}</dt>
             <dd>
@@ -140,12 +71,12 @@ const specPillars = [
   <section class="prog-media" aria-label="ikigai Launchpad in session">
     <figure class="prog-hero-photo">
       <img
-        src={heroPhoto.src}
-        srcset={heroPhoto.srcset}
-        sizes={heroPhoto.sizes}
-        alt={heroPhoto.alt}
-        width="1920"
-        height="1280"
+        src={launchpad.heroPhoto.src}
+        srcset={launchpad.heroPhoto.srcset}
+        sizes={launchpad.heroPhoto.sizes}
+        alt={launchpad.heroPhoto.alt}
+        width={launchpad.heroPhoto.width}
+        height={launchpad.heroPhoto.height}
         decoding="async"
         loading="eager"
         fetchpriority="high"
@@ -159,58 +90,110 @@ const specPillars = [
         <div class="prog-section-heading">
           <h2 class="prog-section-title" id="prog-includes-heading">What founders get</h2>
         </div>
-        <p class="prog-section-copy">{founderBenefitsIntro}</p>
+        <p class="prog-section-copy">{launchpad.benefitsIntro}</p>
       </header>
+
       <div class="prog-pillar-grid">
-        {specPillars.map((p) => (
-          <article class="prog-pillar-card">
-            <figure class="prog-pillar-media">
-              <picture>
-                <source type="image/avif" srcset={p.photo.avifSrcset} sizes={p.photo.sizes} />
-                <source type="image/webp" srcset={p.photo.webpSrcset} sizes={p.photo.sizes} />
-                <img
-                  src={p.photo.src}
-                  srcset={p.photo.jpgSrcset}
-                  sizes={p.photo.sizes}
-                  alt={p.photo.alt}
-                  width={p.photo.width}
-                  height={p.photo.height}
-                  decoding="async"
-                  loading="lazy"
-                />
-              </picture>
-            </figure>
-            <div class="prog-pillar-copy">
-              <p class="prog-pillar-label">{p.title}</p>
-              <h3 class="prog-spec-name">{p.headline}</h3>
-              <ul class="prog-proof-list" aria-label={`${p.title} proof points`}>
-                {p.proofPoints.map((point) => (
-                  <li class="prog-proof-item">{point}</li>
-                ))}
-              </ul>
-            </div>
-          </article>
-        ))}
+        {launchpad.benefits.map((benefit) => {
+          const photo = getPillarPhoto(benefit.photo);
+
+          return (
+            <article class="prog-pillar-card">
+              <figure class="prog-pillar-media">
+                <picture>
+                  <source type="image/avif" srcset={photo.avifSrcset} sizes={photo.sizes} />
+                  <source type="image/webp" srcset={photo.webpSrcset} sizes={photo.sizes} />
+                  <img
+                    src={photo.src}
+                    srcset={photo.jpgSrcset}
+                    sizes={photo.sizes}
+                    alt={photo.alt}
+                    width={photo.width}
+                    height={photo.height}
+                    decoding="async"
+                    loading="lazy"
+                  />
+                </picture>
+              </figure>
+              <div class="prog-pillar-copy">
+                <p class="prog-pillar-label">{benefit.title}</p>
+                <h3 class="prog-spec-name">{benefit.headline}</h3>
+                <ul class="prog-proof-list" aria-label={`${benefit.title} details`}>
+                  {benefit.proofPoints.map((point) => (
+                    <li class="prog-proof-item">{point}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
 
-    <section class="prog-apply reveal" id="prog-apply" aria-label="Apply to ikigai Launchpad">
-      <div class="prog-apply-copy">
-        <span class="prog-band-label">Applications</span>
-        <h2 class="prog-apply-h2">Apply to ikigai Launchpad.</h2>
-        <a class="btn-pri prog-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
-          Apply to ikigai Launchpad
-        </a>
-        <p class="prog-next-batch prog-next-batch--apply">{nextBatch}</p>
+    <section class="prog-fit reveal" aria-labelledby="prog-fit-heading">
+      <header class="prog-section-header prog-section-header--top">
+        <div class="prog-section-heading">
+          <p class="prog-band-label">{launchpad.fit.eyebrow}</p>
+          <h2 class="prog-section-title" id="prog-fit-heading">{launchpad.fit.title}</h2>
+        </div>
+        <p class="prog-section-copy">{launchpad.fit.intro}</p>
+      </header>
+
+      <div class="prog-fit-layout">
+        <dl class="prog-fit-list">
+          {launchpad.fit.criteria.map((criterion) => (
+            <div class="prog-fit-item">
+              <dt>{criterion.label}</dt>
+              <dd>{criterion.body}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
+    </section>
+
+    <section class="prog-beyond reveal" aria-labelledby="prog-beyond-heading">
+      <div class="prog-beyond-copy">
+        <p class="prog-band-label">{launchpad.beyondBatch.eyebrow}</p>
+        <h2 class="prog-section-title" id="prog-beyond-heading">{launchpad.beyondBatch.title}</h2>
+        {launchpad.beyondBatch.body.map((paragraph) => <p>{paragraph}</p>)}
+      </div>
+    </section>
+
+    <section class="prog-apply reveal" id="prog-apply" aria-labelledby="prog-apply-heading">
+      <div class="prog-apply-copy">
+        <p class="prog-band-label">{launchpad.application.eyebrow}</p>
+        <h2 class="prog-apply-h2" id="prog-apply-heading">{launchpad.application.title}</h2>
+        {launchpad.application.intro && (
+          <p class="prog-apply-intro">{launchpad.application.intro}</p>
+        )}
+        <a
+          class="btn-pri prog-cta"
+          href={launchpad.cta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {launchpad.cta.label}
+        </a>
+
+        <dl class="prog-milestones" aria-label="Fall 2026 application dates">
+          {launchpad.application.milestones.map((milestone) => (
+            <div class="prog-milestone">
+              <dt>{milestone.date}</dt>
+              <dd>{milestone.label}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
       <div class="prog-process-card" aria-labelledby="prog-process-lbl">
         <h3 class="prog-process-lbl" id="prog-process-lbl">Timeline</h3>
         <ol class="prog-process-list">
-          {applicationSteps.map((step, index) => (
+          {launchpad.application.steps.map((step, index) => (
             <li class="prog-process-item">
               <span class="prog-process-num">{index + 1}</span>
               <span class="prog-process-step-wrap">
                 <span class="prog-process-step">{step.title}</span>
+                <span class="prog-process-detail">{step.detail}</span>
               </span>
             </li>
           ))}
@@ -218,35 +201,60 @@ const specPillars = [
       </div>
     </section>
 
-    {launchStation && launchStationHref && (
-      <a class="prog-launch reveal" aria-labelledby="prog-launch-heading" href={launchStationHref}>
-        <figure class="prog-launch-photo">
-          <img
-            src={launchStationPhoto.src}
-            alt={launchStationPhoto.alt}
-            width={programs.launchStation.poster.width}
-            height={programs.launchStation.poster.height}
-            decoding="async"
-            loading="lazy"
-          />
-        </figure>
-        <div class="prog-launch-copy">
-          <span class="prog-band-label">Also available</span>
-          <h2 class="prog-launch-name" id="prog-launch-heading">{launchStation.name}</h2>
-          <p class="prog-launch-body">
-            Free desk inside{" "}
-            <span class="prog-inline-link prog-inline-link--static">
-              Taiwan Tech Arena
-            </span>{" "}
-            for founders who build better around other ambitious peers.
-          </p>
-          <ul class="prog-launch-highlights">
-            {launchStation.highlights.map((highlight) => <li>{highlight}</li>)}
-          </ul>
-          <span class="prog-launch-status">{launchStation.cta.label}</span>
+    <section class="prog-faq reveal" id="faq" aria-labelledby="prog-faq-heading">
+      <header class="prog-section-header prog-section-header--top">
+        <div class="prog-section-heading">
+          <p class="prog-band-label">Questions</p>
+          <h2 class="prog-section-title" id="prog-faq-heading">Frequently asked</h2>
         </div>
-      </a>
-    )}
+        <p class="prog-section-copy">
+          The essentials founders ask before applying. If something is still unclear, contact the 886 team.
+        </p>
+      </header>
 
+      <div class="prog-faq-list">
+        {launchpad.faqs.map((faq) => (
+          <details class="prog-faq-item">
+            <summary>{faq.question}</summary>
+            <div class="prog-faq-answer">
+              <p>{faq.answer}</p>
+              {"links" in faq && faq.links && (
+                <div class="prog-faq-links">
+                  {faq.links.map((link) => (
+                    <a href={link.href}>{link.label}</a>
+                  ))}
+                </div>
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <a
+      class="prog-launch reveal"
+      aria-labelledby="prog-launch-heading"
+      href={launchStation.card.cta.href}
+    >
+      <figure class="prog-launch-photo">
+        <img
+          src={launchStation.poster.src}
+          alt={launchStation.poster.alt}
+          width={launchStation.poster.width}
+          height={launchStation.poster.height}
+          decoding="async"
+          loading="lazy"
+        />
+      </figure>
+      <div class="prog-launch-copy">
+        <span class="prog-band-label">Also available</span>
+        <h2 class="prog-launch-name" id="prog-launch-heading">{launchStation.title}</h2>
+        <p class="prog-launch-body">{launchStation.card.body}</p>
+        <ul class="prog-launch-highlights">
+          {launchStation.card.highlights.map((highlight) => <li>{highlight}</li>)}
+        </ul>
+        <span class="prog-launch-status">{launchStation.card.cta.label}</span>
+      </div>
+    </a>
   </div>
 </div>

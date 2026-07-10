@@ -4,7 +4,7 @@ import { partnerProfiles } from "../data/partnerProfiles";
 import { portfolioCompanies } from "../data/siteContent";
 import { resourceArticles, standaloneResourceArticles } from "../data/resourceArticles";
 
-const lastModified = "2026-07-02";
+const lastModified = "2026-07-10";
 
 const staticRoutes = [
   { path: "/", priority: "1.0", changefreq: "weekly" },

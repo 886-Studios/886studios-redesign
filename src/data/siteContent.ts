@@ -518,7 +518,7 @@ export const siteContent = {
     items: [
       { id: "home", label: "Home", href: "/" },
       { id: "about", label: "About Us", href: "/about" },
-      { id: "programs", label: "Programs", href: "/programs" },
+      { id: "programs", label: "ikigai Launchpad", href: "/programs" },
       { id: "events", label: "Events", href: "/events" },
       { id: "resources", label: "Resources", href: "/resources" },
       { id: "contact", label: "Contact", href: "/contact" },
@@ -586,7 +586,7 @@ export const siteContent = {
       featured: {
         label: "Accelerator",
         title: "ikigai Launchpad",
-        body: "$100K USD in funding, hands-on mentorship from successful Silicon Valley founders, and a tight-knit 10-12 week accelerator program designed for startups that want to move fast.",
+        body: "$100K USD in funding, hands-on mentorship from successful Silicon Valley founders, and a tight-knit 10-week accelerator program designed for startups that want to move fast.",
         meta: ["$100K USD funding", "Partner office hours", "Batch community"],
         ctaLabel: "Learn more →",
         ctaHref: "/programs",
@@ -752,90 +752,229 @@ export const siteContent = {
     },
   },
   programs: {
-    eyebrow: "Programs",
-    title: "ikigai Launchpad",
-    lead: "A 10-week, in-person accelerator in Taipei with $100K USD, mentor office hours, investor intros, and support beyond the batch.",
-    items: [
-      {
-        name: "ikigai Launchpad",
-        learnMoreHref:
-          "https://withikigai.com/?gad_source=1&gad_campaignid=22431875260&gbraid=0AAAAA_T5bfikWpWgiBTvO7VHwrU9CtcE_&gclid=CjwKCAjw8arQBhB9EiwAfIKdQlaQyIeLDc12b41gZD-eZtsUKEI1hZeVtvXa_raBK1dNjUjeREajkBoCNKgQAvD_BwE",
-        body: "A focused accelerator for founders who need capital, mentor time, an in-person batch, investor access, and support that continues after the 10 weeks.",
-        highlights: [],
-        details: {
-          intro: "",
-          metrics: [
-            {
-              label: "Investment",
-              value: "$100K USD",
-              note: "Funding for the company.",
-            },
-            {
-              label: "Length",
-              value: "10 weeks",
-              note: "",
-            },
-            {
-              label: "Location",
-              value: "Taipei",
-              note: "",
-            },
-            {
-              label: "Support",
-              value: "1-on-1 Weekly Office Hours",
-              note:
-                "Plus: Workshops, guest speakers, team building, customer and investor intros, and more.",
-            },
-          ],
-          sections: [
-            {
-              title: "Funding",
-              items: [
-                "$100K USD investment",
-                "Designed to help founders work full-time",
-              ],
-            },
-            {
-              title: "Hands-on support",
-              items: [
-                "A community of founders & innovators",
-                "Warm introductions and investor matching",
-                "Support beyond the batch",
-              ],
-            },
-            {
-              title: "Community",
-              items: [
-                "A community of founders & innovators",
-                "In person in Taipei",
-              ],
-            },
-          ],
-        },
-        fit: "Founders ready to spend 10 weeks in person in Taipei building with capital, mentors, and a focused batch.",
-        cta: {
-          type: "link",
-          label: "Apply to ikigai Launchpad →",
-          href: "https://tally.so/r/w5p4jQ",
-        },
+    launchpad: {
+      name: "ikigai Launchpad",
+      lead:
+        "A 10-week, in-person accelerator in Taipei with $100K USD, mentor office hours, investor intros, and support beyond the batch.",
+      status: {
+        label: "Applications open",
+        batch: "Fall 2026",
+        summary: "Next batch starts Fall 2026.",
+        applicationOpenDate: "2026-07-10",
+        firstAcceptancesDate: "2026-07-31",
       },
-      {
-        track: "Community",
-        name: "Launch Station",
-        body: "A free dedicated desk and founder community inside Taiwan Tech Arena for early-stage builders in Taipei.",
-        highlights: [
-          "Free dedicated desk space",
-          "Exclusive startup software perks",
-          "Founder and investor community",
+      cta: {
+        label: "Apply to ikigai Launchpad",
+        href: "https://tally.so/r/w5p4jQ",
+      },
+      heroPhoto: {
+        src: "/assets/programs/ikigai-audience-theater-1280.webp",
+        srcset:
+          "/assets/programs/ikigai-audience-theater-1280.webp 1280w, /assets/programs/ikigai-audience-theater-1920.webp 1920w",
+        sizes: "(max-width: 640px) calc(100vw - 36px), min(calc(100vw - 48px), 1160px)",
+        alt: "Founders, mentors, and guests gathered for ikigai Launchpad in Taipei",
+        width: 1920,
+        height: 1280,
+      },
+      facts: [
+        {
+          label: "Investment",
+          value: "$100K USD",
+          note: "Funding for the company.",
+        },
+        {
+          label: "Length",
+          value: "10 weeks",
+          note: "",
+        },
+        {
+          label: "Location",
+          value: "Taipei",
+          note: "",
+        },
+        {
+          label: "Support",
+          value: "1-on-1 Weekly Office Hours",
+          note: "Plus: Workshops, guest speakers, team building, customer and investor intros, and more.",
+        },
+      ],
+      benefitsIntro:
+        "ikigai Launchpad gives founders capital, operator access, working space, and a real Taipei batch. These are the core pieces teams use across the 10 weeks and beyond.",
+      benefits: [
+        {
+          title: "Funding",
+          headline: "$100,000 USD",
+          proofPoints: [
+            "$100,000 USD funding through a SAFE note",
+            "Quit your job and focus full-time on building",
+            "Potential follow-on investment from Lifelike Capital",
+          ],
+          photo: {
+            name: "ikigai-founder-table",
+            alt: "Founders working together during ikigai Launchpad",
+            width: 1280,
+            height: 960,
+          },
+        },
+        {
+          title: "Hands-on support",
+          headline: "1-on-1 Weekly Mentor Office Hours",
+          proofPoints: [
+            "Founder-Led Workshops",
+            "Guest Speakers",
+            "Warm Introductions + Investor Matching",
+            "Exclusive Corporate Perks",
+          ],
+          photo: {
+            name: "ikigai-mentor-session",
+            alt: "An ikigai Launchpad mentor session with founders",
+            width: 1280,
+            height: 960,
+          },
+        },
+        {
+          title: "Community",
+          headline: "Work alongside other founders",
+          proofPoints: [
+            "Free Office Space in Taipei",
+            "Team Building",
+            "Networking & Founder Events",
+            "Support beyond the 10-week timeframe",
+          ],
+          photo: {
+            name: "ikigai-group-tshirts",
+            alt: "ikigai Launchpad founders together in Taipei",
+            width: 1280,
+            height: 1707,
+          },
+        },
+      ],
+      fit: {
+        eyebrow: "What we look for",
+        title: "Built for founders pursuing a global outcome.",
+        intro:
+          "Founders ready to spend 10 weeks in person in Taipei building with capital, mentors, and a focused batch.",
+        criteria: [
+          {
+            label: "Industry",
+            body: "Industry-agnostic, as long as the market is large and global enough to support a category-defining company.",
+          },
+          {
+            label: "Stage",
+            body: "Early—from friends-and-family through pre-seed and seed, including teams still moving from idea to MVP.",
+          },
+          {
+            label: "Commitment",
+            body: "Founders should be working full-time, or ready to work full-time, and able to join the batch in Taipei.",
+          },
+          {
+            label: "Team",
+            body: "A co-founder is not required, but the company needs credible technical or domain capability on the founding team.",
+          },
+          {
+            label: "Mindset",
+            body: "Hungry, coachable, adaptable, and ready to act on candid feedback when the work gets difficult.",
+          },
         ],
-        fit: "Motivated founders refining an MVP, preparing to fundraise, or looking for a sharper startup environment.",
-        cta: {
-          type: "link",
-          label: "Learn more →",
-          href: "/programs/launch-station",
-        },
       },
-    ],
+      beyondBatch: {
+        eyebrow: "Beyond the batch",
+        title: "The relationship continues after week ten.",
+        body: [
+          "As each company progresses, 886 Studios continues to provide tailored support, resources, and introductions based on the team’s stage and funding needs.",
+          "Alumni stay connected to the founder community and may be considered for follow-on investment from Lifelike Capital as the company develops.",
+        ],
+      },
+      application: {
+        eyebrow: "Applications",
+        title: "Apply to ikigai Launchpad.",
+        intro: "",
+        milestones: [
+          {
+            date: "July 10, 2026",
+            label: "Applications open",
+          },
+          {
+            date: "July 31, 2026",
+            label: "First acceptances begin",
+          },
+          {
+            date: "Fall 2026",
+            label: "Next batch",
+          },
+        ],
+        steps: [
+          {
+            title: "Submit Application",
+            detail: "Tell us about the founders, product, market, and why this is the company you need to build.",
+          },
+          {
+            title: "Application Review",
+            detail: "The 886 team reviews every application and selects teams for an interview.",
+          },
+          {
+            title: "1st Interview",
+            detail: "A 30-minute founder conversation. No pitch deck or visual aids are required.",
+          },
+          {
+            title: "2nd Interview",
+            detail: "A 15-minute final conversation, followed by the admission decision.",
+          },
+        ],
+      },
+      faqs: [
+        {
+          question: "Where does the program take place? Is it in person?",
+          answer:
+            "The program takes place in person in Taipei at Taiwan Tech Arena. All co-founders are expected to join on site for the core program, and office space is provided for the full 10 weeks. The working environment is English-first, with many bilingual team members.",
+        },
+        {
+          question: "When is the next batch?",
+          answer:
+            "The next batch is Fall 2026. Applications opened July 10, 2026, and the first acceptances begin July 31, 2026. An exact program start date has not been announced.",
+        },
+        {
+          question: "How long is ikigai Launchpad?",
+          answer:
+            "The program runs for 10 weeks and includes in-person working sessions, office hours, workshops, community programming, investor preparation, and Demo Day.",
+        },
+        {
+          question: "What are the investment terms?",
+          answer:
+            "The standard deal is a $100,000 USD investment for 8% through a SAFE. There may also be potential for follow-on investment from Lifelike Capital as the company develops.",
+        },
+        {
+          question: "What stage and industries do you invest in?",
+          answer:
+            "ikigai Launchpad is industry-agnostic and works with early-stage companies from friends-and-family through pre-seed and seed. The market needs to be large and global enough to support a category-defining company.",
+        },
+        {
+          question: "Do I need a co-founder or a technical background? Can I apply after raising?",
+          answer:
+            "A co-founder is not required, and founders who have already raised capital can apply. Non-technical founders should show credible technical capability on the founding team and a clear path to building the product.",
+        },
+        {
+          question: "What happens after the program ends?",
+          answer:
+            "Support continues beyond week ten. 886 Studios provides tailored introductions, resources, and company-building support based on each alumnus’s stage and funding needs, while the founder community remains active beyond the batch.",
+        },
+        {
+          question: "How should I prepare for interviews or ask another question?",
+          answer:
+            "The first interview is a 30-minute conversation with 886 Studios and does not require a pitch deck. Review the Interview Guidebook before meeting us, or contact the 886 team if your question is not covered here.",
+          links: [
+            {
+              label: "Read the Interview Guidebook",
+              href: "/interview-guidebook",
+            },
+            {
+              label: "Contact 886 Studios",
+              href: "/contact",
+            },
+          ],
+        },
+      ],
+    },
     launchStation: {
       title: "Launch Station",
       eyebrow: "Community program",
@@ -869,6 +1008,18 @@ export const siteContent = {
       ],
       contribution:
         "In return, Launch Station members contribute to the community by hosting a session, sharing what they are learning, giving a demo, or helping other founders move faster.",
+      card: {
+        body: "Free desk inside Taiwan Tech Arena for founders who build better around other ambitious peers.",
+        highlights: [
+          "Free dedicated desk space",
+          "Exclusive startup software perks",
+          "Founder and investor community",
+        ],
+        cta: {
+          label: "Learn more →",
+          href: "/programs/launch-station",
+        },
+      },
     },
     footer: "",
   },
@@ -982,7 +1133,7 @@ export const siteContent = {
     },
     perks: {
       title: "Exclusive Perks",
-      programHref: "https://withikigai.com/",
+      programHref: "/programs",
       categories: [
         {
           title: "Productivity",

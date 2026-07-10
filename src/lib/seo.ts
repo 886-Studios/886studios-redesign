@@ -40,7 +40,7 @@ interface StructuredDataOptions {
 
 const organizationId = `${siteConfig.url}/#organization`;
 const websiteId = `${siteConfig.url}/#website`;
-const contentModified = "2026-07-02";
+const contentModified = "2026-07-10";
 
 export const pageMeta = {
   home: {
@@ -48,9 +48,9 @@ export const pageMeta = {
     description: siteConfig.defaultDescription,
   },
   programs: {
-    title: "Programs - 886 Studios",
+    title: "ikigai Launchpad - 886 Studios",
     description:
-      "ikigai Launchpad is 886 Studios' 10-week in-person Taipei accelerator with $100K USD, weekly mentor office hours, investor intros, and founder community.",
+      "ikigai Launchpad is 886 Studios' 10-week, in-person Taipei accelerator with a standard $100K-for-8% SAFE, weekly mentor office hours, and investor access.",
   },
   launchStation: {
     title: "Launch Station - 886 Studios",
@@ -204,12 +204,12 @@ export function getWebsiteSchema(): JsonLdObject {
 }
 
 export function getProgramSchema(): JsonLdObject {
-  const [ikigai] = siteContent.programs.items;
+  const { launchpad } = siteContent.programs;
 
   return {
     "@type": "Service",
     "@id": `${siteConfig.url}/programs#ikigai-launchpad`,
-    name: ikigai.name,
+    name: launchpad.name,
     serviceType: "Startup accelerator",
     url: `${siteConfig.url}/programs`,
     provider: { "@id": organizationId },
@@ -221,11 +221,20 @@ export function getProgramSchema(): JsonLdObject {
       "@type": "Audience",
       audienceType: "Early-stage startup founders",
     },
+    availableLanguage: ["English", "Chinese"],
     description: pageMeta.programs.description,
-    additionalProperty: (ikigai.details?.metrics ?? []).map((metric) => ({
+    offers: {
+      "@type": "Offer",
+      name: `${launchpad.name} ${launchpad.status.batch}`,
+      description: "Standard $100,000 USD investment for 8% through a SAFE.",
+      availability: "https://schema.org/InStock",
+      validFrom: launchpad.status.applicationOpenDate,
+      url: launchpad.cta.href,
+    },
+    additionalProperty: launchpad.facts.map((fact) => ({
       "@type": "PropertyValue",
-      name: metric.label,
-      value: metric.note ? `${metric.value} - ${metric.note}` : metric.value,
+      name: fact.label,
+      value: `${fact.value} - ${fact.note}`,
     })),
   };
 }

@@ -1,6 +1,28 @@
 {
   "redirects": [
     {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "withikigai.com"
+        }
+      ],
+      "destination": "https://www.886studios.com/programs",
+      "statusCode": 301
+    },
+    {
+      "source": "/(.*)",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.withikigai.com"
+        }
+      ],
+      "destination": "https://www.886studios.com/programs",
+      "statusCode": 301
+    },
+    {
       "source": "/about-us",
       "destination": "/about",
       "permanent": true
