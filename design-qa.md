@@ -49,3 +49,38 @@ The extended-page contact sheet verifies the initial benefits, fit, beyond-the-b
 - Desktop, tablet, compact desktop, and mobile document widths match their viewports.
 
 Final result: passed
+
+## Testimonial card revision — July 13, 2026
+
+### Evidence
+
+- Source visual truth: `.artifacts/design-qa/source-testimonial-cards-reference.png`
+- Desktop implementation: `.artifacts/design-qa/implementation-testimonial-cards-desktop.png`
+- Mobile implementation: `.artifacts/design-qa/implementation-testimonial-cards-mobile.png`
+- Same-input desktop comparison: `.artifacts/design-qa/comparison-testimonial-cards-desktop.png`
+- Desktop viewport/state: 1440 × 1000, testimonial section centered, four complete quotes visible.
+- Mobile viewport/state: 390 × 844, testimonial section, vertically stacked complete quote cards.
+
+### Focused comparison
+
+The comparison isolates the testimonial section because the supplied reference is a component-level layout target rather than a full 886 page. The implementation preserves the reference's essential structure—independent light cards, a distinct person header, a divider, and the quote below—while intentionally retaining 886's dark page background, Geist typography, purple metadata, and restrained radius. Profile photos are intentionally omitted until the user supplies the founder images.
+
+### Required fidelity surfaces
+
+- Fonts and typography: Existing Geist and Geist Mono families retained; hierarchy matches the reference with founder name first, company metadata second, and the full quote below.
+- Spacing and layout rhythm: Cards are visibly separated by consistent gaps. Desktop uses four columns for the four available quotes; compact desktop uses two columns; mobile stacks one card per row without clipped text or empty carousel space.
+- Colors and visual tokens: The requested off-white card background is retained. Purple metadata and borders connect the cards to the existing 886 palette.
+- Image quality and asset fidelity: No invented avatars or placeholder graphics were used. The card header is ready for supplied profile photos in a later pass.
+- Copy and content: All four founder quotes and attributions remain complete and unchanged.
+
+### Findings and comparison history
+
+1. Initial mobile implementation used a horizontal rail whose height was controlled by the longest quote, leaving excessive empty space on shorter cards (P2). Replaced the rail with naturally sized stacked cards on mobile. Post-fix browser evidence shows complete quotes, separate cards, and no unused card area.
+2. The first implementation joined all testimonials inside one shared light field (P1 relative to the revised reference). Replaced it with four independent cards separated by visible gutters.
+3. Browser console pass found no warnings or errors. Desktop, compact desktop, and mobile layouts have no clipped testimonial text or horizontal overflow.
+
+### Remaining acceptable difference
+
+- Founder profile photos are absent because the user said they will supply them later. This is expected, not a QA blocker.
+
+Final result: passed

@@ -6,6 +6,32 @@ const launchpadNameParts = launchpad.name.split(" ");
 const pillarImageWidths = [640, 960, 1280];
 const pillarImageSizes =
   "(max-width: 640px) calc(100vw - 36px), (max-width: 980px) calc((100vw - 48px - 18px) / 2), 371px";
+const testimonialPlaceholders = [
+  {
+    src: "/assets/programs/ikigai-founder-table-960.webp",
+    width: 960,
+    height: 720,
+    position: "46% 50%",
+  },
+  {
+    src: "/assets/programs/ikigai-group-tshirts-960.webp",
+    width: 960,
+    height: 1280,
+    position: "50% 48%",
+  },
+  {
+    src: "/assets/programs/ikigai-mentor-session-960.webp",
+    width: 960,
+    height: 720,
+    position: "54% 50%",
+  },
+  {
+    src: "/assets/programs/ikigai-audience-theater-1280.webp",
+    width: 1280,
+    height: 853,
+    position: "50% 52%",
+  },
+];
 
 const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => ({
   ...photo,
@@ -199,22 +225,57 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
       <header class="prog-section-header prog-section-header--solo">
         <div class="prog-section-heading">
           <p class="prog-band-label">Testimonials</p>
-          <h2 class="prog-section-title" id="prog-testimonials-heading">From the founders.</h2>
+          <h2 class="prog-section-title" id="prog-testimonials-heading">From our founders.</h2>
         </div>
       </header>
 
-      <div class="prog-testimonial-list">
-        {launchpad.testimonials.map((testimonial) => (
-          <figure class="prog-testimonial-item">
-            <blockquote>
-              <p>“{testimonial.quote}”</p>
-            </blockquote>
-            <figcaption>
-              <strong>{testimonial.name}</strong>
-              <span>{testimonial.company}</span>
-            </figcaption>
-          </figure>
-        ))}
+      <div class="prog-testimonial-list" aria-label="Founder testimonials">
+        {launchpad.testimonials.map((testimonial, index) => {
+          const placeholder = testimonialPlaceholders[index];
+
+          return (
+            <article
+              class="prog-testimonial-card"
+              role="button"
+              tabindex="0"
+              aria-label={`Read testimonial from ${testimonial.name}`}
+              aria-pressed="false"
+              data-founder={testimonial.name}
+              style={`--testimonial-photo-position: ${placeholder.position};`}
+            >
+              <div class="prog-testimonial-card-inner">
+                <div class="prog-testimonial-face prog-testimonial-front" aria-hidden="false">
+                  <img
+                    src={placeholder.src}
+                    alt=""
+                    width={placeholder.width}
+                    height={placeholder.height}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="prog-testimonial-flip-hint" aria-hidden="true">
+                    <span class="prog-testimonial-hint-hover">Hover to read</span>
+                    <span class="prog-testimonial-hint-tap">Tap to read</span>
+                  </span>
+                  <div class="prog-testimonial-front-id">
+                    <strong>{testimonial.name}</strong>
+                    <span class="prog-testimonial-logo-placeholder">{testimonial.company}</span>
+                  </div>
+                </div>
+
+                <div class="prog-testimonial-face prog-testimonial-back" aria-hidden="true">
+                  <blockquote>
+                    <p>“{testimonial.quote}”</p>
+                  </blockquote>
+                  <div class="prog-testimonial-attribution">
+                    <strong>{testimonial.name}</strong>
+                    <span>{testimonial.company}</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
 
@@ -247,12 +308,56 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
       aria-labelledby="prog-launch-heading"
       href={launchStation.card.cta.href}
     >
-      <span class="prog-band-label">Also available</span>
-      <div class="prog-launch-copy">
-        <h2 class="prog-launch-name" id="prog-launch-heading">{launchStation.title}</h2>
-        <p class="prog-launch-body">{launchStation.card.body}</p>
+      <figure class="prog-launch-media" aria-hidden="true">
+        <img
+          src="/assets/programs/ikigai-launch-station.jpeg"
+          alt=""
+          width="2000"
+          height="1334"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+      <div class="prog-launch-content">
+        <span class="prog-band-label">Also available</span>
+        <div class="prog-launch-copy">
+          <h2 class="prog-launch-name" id="prog-launch-heading">{launchStation.title}</h2>
+          <p class="prog-launch-body">{launchStation.card.body}</p>
+        </div>
       </div>
       <span class="prog-launch-status">{launchStation.card.cta.label}</span>
     </a>
   </div>
 </div>
+
+<script>
+  const testimonialCards = document.querySelectorAll<HTMLElement>(".prog-testimonial-card");
+
+  testimonialCards.forEach((card) => {
+    const front = card.querySelector<HTMLElement>(".prog-testimonial-front");
+    const back = card.querySelector<HTMLElement>(".prog-testimonial-back");
+    const founder = card.dataset.founder ?? "this founder";
+
+    const setFlipped = (isFlipped: boolean) => {
+      card.setAttribute("aria-pressed", String(isFlipped));
+      card.setAttribute(
+        "aria-label",
+        isFlipped ? `Show photo of ${founder}` : `Read testimonial from ${founder}`,
+      );
+      front?.setAttribute("aria-hidden", String(isFlipped));
+      back?.setAttribute("aria-hidden", String(!isFlipped));
+    };
+
+    const toggleCard = () => {
+      setFlipped(card.getAttribute("aria-pressed") !== "true");
+    };
+
+    card.addEventListener("click", toggleCard);
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggleCard();
+      }
+    });
+  });
+</script>

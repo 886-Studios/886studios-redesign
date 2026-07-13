@@ -849,17 +849,26 @@ export const siteContent = {
       ],
       testimonials: [
         {
-          quote: "One of the best decisions in my entrepreneurial journey.",
+          quote:
+            "ikigai gave me unwavering support and helped me develop a much more global perspective. I'm really grateful for the team (Kevin, Kai, Carter, Freya, and Ginny) and everything they’ve done for me, from helping me think through product to introducing me to helpful connections to being there for moral support through hard times.",
+          name: "Jimmy Huang",
+          company: "PicPet",
+        },
+        {
+          quote:
+            "Joining the program was one of the best decisions in my entrepreneurial journey. I was impressed by how amazingly the mentors connected startups in Taiwan with resources from Silicon Valley.",
           name: "Sylvie Liu",
           company: "Dentscape",
         },
         {
-          quote: "There are no other investors like them.",
+          quote:
+            "886 has been an invaluable partner on our startup journey. With Kai and Joe's Silicon Valley expertise and connections, along with Freya's enthusiasm in organizing collaborative programs, they've been instrumental in fostering your startup’s success and camaraderie among fellow founders. They have genuine interest in helping you grow as a founder. There are no other investors like them.",
           name: "Ser En Low",
           company: "Mecenia / Sendjoy",
         },
         {
-          quote: "Preciser wouldn't exist without 886 Studios.",
+          quote:
+            "Preciser wouldn't exist without 886 Studios. 886 gave me the structure and direction I needed to take Preciser from MVP to Launch but also pushed, challenged, and guided me through the steps, insecurities, and excitement of building an impact-led business.",
           name: "Shirley Chen",
           company: "Preciser",
         },
