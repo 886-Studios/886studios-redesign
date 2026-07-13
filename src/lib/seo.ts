@@ -234,7 +234,7 @@ export function getProgramSchema(): JsonLdObject {
     additionalProperty: launchpad.facts.map((fact) => ({
       "@type": "PropertyValue",
       name: fact.label,
-      value: `${fact.value} - ${fact.note}`,
+      value: fact.note ? `${fact.value} - ${fact.note}` : fact.value,
     })),
   };
 }

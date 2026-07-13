@@ -757,7 +757,7 @@ export const siteContent = {
       lead:
         "A 10-week, in-person accelerator in Taipei with $100K USD, mentor office hours, investor intros, and support beyond the batch.",
       status: {
-        label: "Applications open",
+        announcement: "Applications for the Fall 2026 batch are now open.",
         batch: "Fall 2026",
         summary: "Next batch starts Fall 2026.",
         applicationOpenDate: "2026-07-10",
@@ -780,7 +780,7 @@ export const siteContent = {
         {
           label: "Investment",
           value: "$100K USD",
-          note: "Funding for the company.",
+          note: "",
         },
         {
           label: "Length",
@@ -798,8 +798,6 @@ export const siteContent = {
           note: "Plus: Workshops, guest speakers, team building, customer and investor intros, and more.",
         },
       ],
-      benefitsIntro:
-        "ikigai Launchpad gives founders capital, operator access, working space, and a real Taipei batch. These are the core pieces teams use across the 10 weeks and beyond.",
       benefits: [
         {
           title: "Funding",
@@ -849,11 +847,26 @@ export const siteContent = {
           },
         },
       ],
+      testimonials: [
+        {
+          quote: "One of the best decisions in my entrepreneurial journey.",
+          name: "Sylvie Liu",
+          company: "Dentscape",
+        },
+        {
+          quote: "There are no other investors like them.",
+          name: "Ser En Low",
+          company: "Mecenia / Sendjoy",
+        },
+        {
+          quote: "Preciser wouldn't exist without 886 Studios.",
+          name: "Shirley Chen",
+          company: "Preciser",
+        },
+      ],
       fit: {
         eyebrow: "What we look for",
-        title: "Built for founders pursuing a global outcome.",
-        intro:
-          "Founders ready to spend 10 weeks in person in Taipei building with capital, mentors, and a focused batch.",
+        title: "Founders building for a global market.",
         criteria: [
           {
             label: "Industry",
@@ -861,7 +874,7 @@ export const siteContent = {
           },
           {
             label: "Stage",
-            body: "Early—from friends-and-family through pre-seed and seed, including teams still moving from idea to MVP.",
+            body: "Early. From friends-and-family through pre-seed and seed, including teams still moving from idea to MVP.",
           },
           {
             label: "Commitment",
@@ -873,21 +886,13 @@ export const siteContent = {
           },
           {
             label: "Mindset",
-            body: "Hungry, coachable, adaptable, and ready to act on candid feedback when the work gets difficult.",
+            body: "Hungry, coachable, adaptable, and ready to act on candid feedback",
           },
-        ],
-      },
-      beyondBatch: {
-        eyebrow: "Beyond the batch",
-        title: "The relationship continues after week ten.",
-        body: [
-          "As each company progresses, 886 Studios continues to provide tailored support, resources, and introductions based on the team’s stage and funding needs.",
-          "Alumni stay connected to the founder community and may be considered for follow-on investment from Lifelike Capital as the company develops.",
         ],
       },
       application: {
         eyebrow: "Applications",
-        title: "Apply to ikigai Launchpad.",
+        title: "Join the Fall 2026 batch.",
         intro: "",
         milestones: [
           {
@@ -906,19 +911,15 @@ export const siteContent = {
         steps: [
           {
             title: "Submit Application",
-            detail: "Tell us about the founders, product, market, and why this is the company you need to build.",
           },
           {
             title: "Application Review",
-            detail: "The 886 team reviews every application and selects teams for an interview.",
           },
           {
             title: "1st Interview",
-            detail: "A 30-minute founder conversation. No pitch deck or visual aids are required.",
           },
           {
             title: "2nd Interview",
-            detail: "A 15-minute final conversation, followed by the admission decision.",
           },
         ],
       },
@@ -931,12 +932,12 @@ export const siteContent = {
         {
           question: "When is the next batch?",
           answer:
-            "The next batch is Fall 2026. Applications opened July 10, 2026, and the first acceptances begin July 31, 2026. An exact program start date has not been announced.",
+            "The next batch is Fall 2026. Applications opened July 10, 2026, and the first acceptances begin July 31, 2026.",
         },
         {
           question: "How long is ikigai Launchpad?",
           answer:
-            "The program runs for 10 weeks and includes in-person working sessions, office hours, workshops, community programming, investor preparation, and Demo Day.",
+            "The program runs for 10 weeks and includes in-person working sessions, office hours, workshops, community programming, and fundraising help, and investor matching.",
         },
         {
           question: "What are the investment terms?",
@@ -1009,12 +1010,7 @@ export const siteContent = {
       contribution:
         "In return, Launch Station members contribute to the community by hosting a session, sharing what they are learning, giving a demo, or helping other founders move faster.",
       card: {
-        body: "Free desk inside Taiwan Tech Arena for founders who build better around other ambitious peers.",
-        highlights: [
-          "Free dedicated desk space",
-          "Exclusive startup software perks",
-          "Founder and investor community",
-        ],
+        body: "Our community-building program for founders who move faster alongside ambitious peers.",
         cta: {
           label: "Learn more →",
           href: "/programs/launch-station",

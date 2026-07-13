@@ -25,12 +25,11 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
 
 <div class="page" id="page-programs">
   <section class="prog-hero" aria-labelledby="prog-ikigai-heading">
+    <p class="prog-status-line">
+      <span class="prog-status-copy">{launchpad.status.announcement}</span>
+    </p>
+
     <div class="prog-hero-copy">
-      <p class="prog-status-line">
-        <span>{launchpad.status.label}</span>
-        <span aria-hidden="true">·</span>
-        <span>{launchpad.status.batch}</span>
-      </p>
       <h1 class="prog-h1" id="prog-ikigai-heading">
         {launchpadNameParts.map((part, index) => (
           <>
@@ -86,11 +85,10 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
 
   <div class="prog-body">
     <section class="prog-pillars reveal" aria-labelledby="prog-includes-heading">
-      <header class="prog-section-header">
+      <header class="prog-section-header prog-section-header--solo">
         <div class="prog-section-heading">
           <h2 class="prog-section-title" id="prog-includes-heading">What founders get</h2>
         </div>
-        <p class="prog-section-copy">{launchpad.benefitsIntro}</p>
       </header>
 
       <div class="prog-pillar-grid">
@@ -136,7 +134,6 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
           <p class="prog-band-label">{launchpad.fit.eyebrow}</p>
           <h2 class="prog-section-title" id="prog-fit-heading">{launchpad.fit.title}</h2>
         </div>
-        <p class="prog-section-copy">{launchpad.fit.intro}</p>
       </header>
 
       <div class="prog-fit-layout">
@@ -151,30 +148,17 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
       </div>
     </section>
 
-    <section class="prog-beyond reveal" aria-labelledby="prog-beyond-heading">
-      <div class="prog-beyond-copy">
-        <p class="prog-band-label">{launchpad.beyondBatch.eyebrow}</p>
-        <h2 class="prog-section-title" id="prog-beyond-heading">{launchpad.beyondBatch.title}</h2>
-        {launchpad.beyondBatch.body.map((paragraph) => <p>{paragraph}</p>)}
-      </div>
-    </section>
-
     <section class="prog-apply reveal" id="prog-apply" aria-labelledby="prog-apply-heading">
-      <div class="prog-apply-copy">
+      <header class="prog-apply-copy">
         <p class="prog-band-label">{launchpad.application.eyebrow}</p>
         <h2 class="prog-apply-h2" id="prog-apply-heading">{launchpad.application.title}</h2>
         {launchpad.application.intro && (
           <p class="prog-apply-intro">{launchpad.application.intro}</p>
         )}
-        <a
-          class="btn-pri prog-cta"
-          href={launchpad.cta.href}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {launchpad.cta.label}
-        </a>
+      </header>
 
+      <div class="prog-application-dates" aria-labelledby="prog-dates-lbl">
+        <h3 class="prog-process-lbl" id="prog-dates-lbl">Application timeline</h3>
         <dl class="prog-milestones" aria-label="Fall 2026 application dates">
           {launchpad.application.milestones.map((milestone) => (
             <div class="prog-milestone">
@@ -186,30 +170,57 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
       </div>
 
       <div class="prog-process-card" aria-labelledby="prog-process-lbl">
-        <h3 class="prog-process-lbl" id="prog-process-lbl">Timeline</h3>
+        <h3 class="prog-process-lbl" id="prog-process-lbl">Application process</h3>
         <ol class="prog-process-list">
           {launchpad.application.steps.map((step, index) => (
             <li class="prog-process-item">
               <span class="prog-process-num">{index + 1}</span>
               <span class="prog-process-step-wrap">
                 <span class="prog-process-step">{step.title}</span>
-                <span class="prog-process-detail">{step.detail}</span>
               </span>
             </li>
           ))}
         </ol>
       </div>
+
+      <div class="prog-apply-action">
+        <a
+          class="btn-pri prog-cta"
+          href={launchpad.cta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {launchpad.cta.label}
+        </a>
+      </div>
+    </section>
+
+    <section class="prog-testimonials reveal" aria-labelledby="prog-testimonials-heading">
+      <header class="prog-section-header prog-section-header--solo">
+        <div class="prog-section-heading">
+          <p class="prog-band-label">Testimonials</p>
+          <h2 class="prog-section-title" id="prog-testimonials-heading">From the founders.</h2>
+        </div>
+      </header>
+
+      <div class="prog-testimonial-list">
+        {launchpad.testimonials.map((testimonial) => (
+          <figure class="prog-testimonial-item">
+            <blockquote>
+              <p>“{testimonial.quote}”</p>
+            </blockquote>
+            <figcaption>
+              <strong>{testimonial.name}</strong>
+              <span>{testimonial.company}</span>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
     </section>
 
     <section class="prog-faq reveal" id="faq" aria-labelledby="prog-faq-heading">
-      <header class="prog-section-header prog-section-header--top">
-        <div class="prog-section-heading">
-          <p class="prog-band-label">Questions</p>
-          <h2 class="prog-section-title" id="prog-faq-heading">Frequently asked</h2>
-        </div>
-        <p class="prog-section-copy">
-          The essentials founders ask before applying. If something is still unclear, contact the 886 team.
-        </p>
+      <header class="prog-faq-header">
+        <h2 class="prog-section-title prog-section-title--flush" id="prog-faq-heading">FAQ</h2>
       </header>
 
       <div class="prog-faq-list">
@@ -236,25 +247,12 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
       aria-labelledby="prog-launch-heading"
       href={launchStation.card.cta.href}
     >
-      <figure class="prog-launch-photo">
-        <img
-          src={launchStation.poster.src}
-          alt={launchStation.poster.alt}
-          width={launchStation.poster.width}
-          height={launchStation.poster.height}
-          decoding="async"
-          loading="lazy"
-        />
-      </figure>
+      <span class="prog-band-label">Also available</span>
       <div class="prog-launch-copy">
-        <span class="prog-band-label">Also available</span>
         <h2 class="prog-launch-name" id="prog-launch-heading">{launchStation.title}</h2>
         <p class="prog-launch-body">{launchStation.card.body}</p>
-        <ul class="prog-launch-highlights">
-          {launchStation.card.highlights.map((highlight) => <li>{highlight}</li>)}
-        </ul>
-        <span class="prog-launch-status">{launchStation.card.cta.label}</span>
       </div>
+      <span class="prog-launch-status">{launchStation.card.cta.label}</span>
     </a>
   </div>
 </div>
