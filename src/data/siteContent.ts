@@ -1022,6 +1022,11 @@ export const siteContent = {
               href: "https://mercury.com",
               logoSrc: "https://www.google.com/s2/favicons?domain=mercury.com&sz=64",
             },
+            {
+              label: "Carta",
+              href: "https://carta.com/sg/en/",
+              logoSrc: "https://www.google.com/s2/favicons?domain=carta.com&sz=64",
+            },
           ],
         },
         {
@@ -1046,6 +1051,11 @@ export const siteContent = {
               label: "AWS Activate",
               href: "https://aws.amazon.com/activate/",
               logoSrc: "https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64",
+            },
+            {
+              label: "Google Cloud Startup Program",
+              href: "https://cloud.google.com/startup/",
+              logoSrc: "https://www.google.com/s2/favicons?domain=cloud.google.com&sz=64",
             },
             {
               label: "GitHub",
