@@ -14,6 +14,12 @@ const testimonialPlaceholders = [
     position: "46% 50%",
   },
   {
+    src: "/assets/programs/ikigai-storytelling-room.jpeg",
+    width: 3862,
+    height: 2536,
+    position: "67% 50%",
+  },
+  {
     src: "/assets/programs/ikigai-group-tshirts-960.webp",
     width: 960,
     height: 1280,
@@ -51,10 +57,6 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
 
 <div class="page" id="page-programs">
   <section class="prog-hero" aria-labelledby="prog-ikigai-heading">
-    <p class="prog-status-line">
-      <span class="prog-status-copy">{launchpad.status.announcement}</span>
-    </p>
-
     <div class="prog-hero-copy">
       <h1 class="prog-h1" id="prog-ikigai-heading">
         {launchpadNameParts.map((part, index) => (
@@ -229,13 +231,21 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
         </div>
       </header>
 
+      <div class="prog-testimonial-mobile-guide" aria-hidden="true">
+        <span>Swipe to browse</span>
+        <span data-testimonial-counter>1 / {launchpad.testimonials.length}</span>
+      </div>
+
       <div class="prog-testimonial-list" aria-label="Founder testimonials">
         {launchpad.testimonials.map((testimonial, index) => {
           const placeholder = testimonialPlaceholders[index];
 
           return (
             <article
-              class="prog-testimonial-card"
+              class:list={[
+                "prog-testimonial-card",
+                { "prog-testimonial-card--dense": testimonial.quote.length > 320 },
+              ]}
               role="button"
               tabindex="0"
               aria-label={`Read testimonial from ${testimonial.name}`}
@@ -252,6 +262,7 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
                     height={placeholder.height}
                     loading="lazy"
                     decoding="async"
+                    draggable="false"
                   />
                   <span class="prog-testimonial-flip-hint" aria-hidden="true">
                     <span class="prog-testimonial-hint-hover">Hover to read</span>
@@ -308,12 +319,12 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
       aria-labelledby="prog-launch-heading"
       href={launchStation.card.cta.href}
     >
-      <figure class="prog-launch-media" aria-hidden="true">
+      <figure class="prog-launch-media">
         <img
-          src="/assets/programs/ikigai-launch-station.jpeg"
-          alt=""
-          width="2000"
-          height="1334"
+          src={launchStation.poster.src}
+          alt={launchStation.poster.alt}
+          width={launchStation.poster.width}
+          height={launchStation.poster.height}
           loading="lazy"
           decoding="async"
         />
@@ -331,7 +342,164 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
 </div>
 
 <script>
-  const testimonialCards = document.querySelectorAll<HTMLElement>(".prog-testimonial-card");
+  const testimonialList = document.querySelector<HTMLElement>(".prog-testimonial-list");
+  const testimonialCards = Array.from(
+    document.querySelectorAll<HTMLElement>(".prog-testimonial-card"),
+  );
+  const testimonialCounter = document.querySelector<HTMLElement>("[data-testimonial-counter]");
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const brushReleaseTimers = new WeakMap<HTMLElement, number>();
+  let activeBrushCard: HTMLElement | null = null;
+  let previousBrushX: number | null = null;
+  let dragStart: { x: number; y: number } | null = null;
+  let didDrag = false;
+  let suppressNextClick = false;
+  let testimonialScrollFrame = 0;
+
+  const updateTestimonialCounter = () => {
+    if (!testimonialList || !testimonialCounter || testimonialCards.length === 0) return;
+
+    const listLeft = testimonialList.getBoundingClientRect().left;
+    let closestIndex = 0;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    testimonialCards.forEach((card, index) => {
+      const distance = Math.abs(card.getBoundingClientRect().left - listLeft);
+
+      if (distance < closestDistance) {
+        closestIndex = index;
+        closestDistance = distance;
+      }
+    });
+
+    testimonialCounter.textContent = `${closestIndex + 1} / ${testimonialCards.length}`;
+  };
+
+  testimonialList?.addEventListener(
+    "scroll",
+    () => {
+      window.cancelAnimationFrame(testimonialScrollFrame);
+      testimonialScrollFrame = window.requestAnimationFrame(updateTestimonialCounter);
+    },
+    { passive: true },
+  );
+
+  window.addEventListener("resize", updateTestimonialCounter, { passive: true });
+  updateTestimonialCounter();
+
+  const releaseBrush = (card: HTMLElement) => {
+    const timer = brushReleaseTimers.get(card);
+
+    if (timer) {
+      window.clearTimeout(timer);
+      brushReleaseTimers.delete(card);
+    }
+
+    card.classList.remove("is-brushed");
+  };
+
+  const scheduleBrushRelease = (card: HTMLElement) => {
+    const existingTimer = brushReleaseTimers.get(card);
+
+    if (existingTimer) window.clearTimeout(existingTimer);
+
+    const timer = window.setTimeout(() => {
+      card.classList.remove("is-brushed");
+      brushReleaseTimers.delete(card);
+    }, 240);
+
+    brushReleaseTimers.set(card, timer);
+  };
+
+  const brushCard = (card: HTMLElement, direction: "forward" | "backward") => {
+    if (card.getAttribute("aria-pressed") === "true") return;
+
+    const timer = brushReleaseTimers.get(card);
+    if (timer) {
+      window.clearTimeout(timer);
+      brushReleaseTimers.delete(card);
+    }
+
+    card.dataset.brushDirection = direction;
+    card.classList.add("is-brushed");
+  };
+
+  testimonialList?.addEventListener("pointerdown", (event) => {
+    if (event.pointerType !== "mouse" || event.button !== 0) return;
+
+    dragStart = { x: event.clientX, y: event.clientY };
+    didDrag = false;
+  });
+
+  testimonialList?.addEventListener("pointermove", (event) => {
+    if (!finePointer.matches || reducedMotion.matches || !(event.target instanceof Element)) {
+      return;
+    }
+
+    if (dragStart && !didDrag) {
+      const horizontalTravel = Math.abs(event.clientX - dragStart.x);
+      const verticalTravel = Math.abs(event.clientY - dragStart.y);
+
+      if (horizontalTravel > 8 && horizontalTravel > verticalTravel) {
+        didDrag = true;
+        testimonialList.classList.add("is-brushing");
+      }
+    }
+
+    const nextCard = event.target.closest<HTMLElement>(".prog-testimonial-card");
+    if (!nextCard || nextCard === activeBrushCard) return;
+
+    const nextIndex = testimonialCards.indexOf(nextCard);
+    const direction =
+      previousBrushX === null
+        ? nextIndex >= testimonialCards.length / 2
+          ? "backward"
+          : "forward"
+        : event.clientX >= previousBrushX
+          ? "forward"
+          : "backward";
+
+    if (activeBrushCard) scheduleBrushRelease(activeBrushCard);
+
+    brushCard(nextCard, direction);
+    activeBrushCard = nextCard;
+    previousBrushX = event.clientX;
+  });
+
+  testimonialList?.addEventListener("pointerleave", () => {
+    if (activeBrushCard) scheduleBrushRelease(activeBrushCard);
+    activeBrushCard = null;
+    previousBrushX = null;
+  });
+
+  testimonialList?.addEventListener(
+    "click",
+    (event) => {
+      if (!suppressNextClick) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      suppressNextClick = false;
+    },
+    true,
+  );
+
+  const finishDrag = () => {
+    if (didDrag) {
+      suppressNextClick = true;
+      window.setTimeout(() => {
+        suppressNextClick = false;
+      }, 80);
+    }
+
+    testimonialList?.classList.remove("is-brushing");
+    dragStart = null;
+    didDrag = false;
+  };
+
+  window.addEventListener("pointerup", finishDrag);
+  window.addEventListener("pointercancel", finishDrag);
 
   testimonialCards.forEach((card) => {
     const front = card.querySelector<HTMLElement>(".prog-testimonial-front");
@@ -339,6 +507,8 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
     const founder = card.dataset.founder ?? "this founder";
 
     const setFlipped = (isFlipped: boolean) => {
+      if (isFlipped) releaseBrush(card);
+
       card.setAttribute("aria-pressed", String(isFlipped));
       card.setAttribute(
         "aria-label",
@@ -359,5 +529,6 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
         toggleCard();
       }
     });
+
   });
 </script>

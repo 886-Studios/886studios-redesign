@@ -517,8 +517,8 @@ export const siteContent = {
     },
     items: [
       { id: "home", label: "Home", href: "/" },
-      { id: "about", label: "About Us", href: "/about" },
       { id: "programs", label: "ikigai Launchpad", href: "/programs" },
+      { id: "about", label: "About Us", href: "/about" },
       { id: "events", label: "Events", href: "/events" },
       { id: "resources", label: "Resources", href: "/resources" },
       { id: "contact", label: "Contact", href: "/contact" },
@@ -853,6 +853,12 @@ export const siteContent = {
             "ikigai gave me unwavering support and helped me develop a much more global perspective. I'm really grateful for the team (Kevin, Kai, Carter, Freya, and Ginny) and everything they’ve done for me, from helping me think through product to introducing me to helpful connections to being there for moral support through hard times.",
           name: "Jimmy Huang",
           company: "PicPet",
+        },
+        {
+          quote:
+            "Personally, ikigai showed me different ways to approach uncertainty. With Kevin Lin, it was always about possibility: “Hmm, that could work,” and a why-not-try attitude. With Max Hsieh, it was systematic, actionable, and logical: experiment X, measure Y, define success or failure, learn, and iterate. With Kai Huang, it was about weighing options and trusting your best judgment; even the wrong decision beats no decision because indecision teaches you nothing.",
+          name: "Julia Cheung",
+          company: "Doppler",
         },
         {
           quote:
