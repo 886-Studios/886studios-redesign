@@ -853,30 +853,105 @@ export const siteContent = {
             "ikigai gave me unwavering support and helped me develop a much more global perspective. I'm really grateful for the team (Kevin, Kai, Carter, Freya, and Ginny) and everything they’ve done for me, from helping me think through product to introducing me to helpful connections to being there for moral support through hard times.",
           name: "Jimmy Huang",
           company: "PicPet",
+          profileUrl: "/portfolio/o3o-labs",
+          profileLabel: "PicPet",
+          photo: {
+            src: "/assets/programs/testimonials/jimmy-huang.jpg",
+            alt: "Jimmy Huang smiling in front of the Golden Gate Bridge",
+            width: 620,
+            height: 880,
+            position: "50% 50%",
+          },
+          logo: {
+            src: "/assets/portfolio/o3o-labs.jpg",
+            alt: "PicPet logo",
+            width: 512,
+            height: 512,
+          },
         },
         {
           quote:
             "Personally, ikigai showed me different ways to approach uncertainty. With Kevin Lin, it was always about possibility: “Hmm, that could work,” and a why-not-try attitude. With Max Hsieh, it was systematic, actionable, and logical: experiment X, measure Y, define success or failure, learn, and iterate. With Kai Huang, it was about weighing options and trusting your best judgment; even the wrong decision beats no decision because indecision teaches you nothing.",
           name: "Julia Cheung",
           company: "Doppler",
+          profileUrl: "/portfolio/lfg",
+          profileLabel: "lfg",
+          photo: {
+            src: "/assets/programs/testimonials/julia-cheung.jpg",
+            alt: "Julia Cheung working with other builders at a community event",
+            width: 1200,
+            height: 799,
+            position: "69% 48%",
+          },
+          logo: {
+            src: "/assets/portfolio/lfg.jpg",
+            alt: "lfg logo",
+            width: 512,
+            height: 512,
+          },
         },
         {
           quote:
             "Joining the program was one of the best decisions in my entrepreneurial journey. I was impressed by how amazingly the mentors connected startups in Taiwan with resources from Silicon Valley.",
           name: "Sylvie Liu",
           company: "Dentscape",
+          profileUrl: "/portfolio/dentscape",
+          profileLabel: "Dentscape",
+          photo: {
+            src: "/assets/programs/testimonials/sylvie-liu.jpg",
+            alt: "Sylvie Liu speaking at a professional dental event",
+            width: 800,
+            height: 533,
+            position: "50% 48%",
+          },
+          logo: {
+            src: "/assets/portfolio/dentscape.png",
+            alt: "Dentscape logo",
+            width: 840,
+            height: 840,
+          },
         },
         {
           quote:
             "886 has been an invaluable partner on our startup journey. With Kai and Joe's Silicon Valley expertise and connections, along with Freya's enthusiasm in organizing collaborative programs, they've been instrumental in fostering your startup’s success and camaraderie among fellow founders. They have genuine interest in helping you grow as a founder. There are no other investors like them.",
           name: "Ser En Low",
           company: "Mecenia / Sendjoy",
+          profileUrl: "/portfolio",
+          profileLabel: "Sendjoy",
+          photo: {
+            src: "/assets/programs/testimonials/ser-en-low.jpg",
+            alt: "Ser En Low smiling with participants at an AI video event in New York",
+            width: 400,
+            height: 700,
+            position: "50% 50%",
+          },
+          logo: {
+            src: "/assets/programs/testimonials/sendjoy-logo.webp",
+            alt: "Sendjoy logo",
+            width: 1920,
+            height: 1920,
+          },
         },
         {
           quote:
             "Preciser wouldn't exist without 886 Studios. 886 gave me the structure and direction I needed to take Preciser from MVP to Launch but also pushed, challenged, and guided me through the steps, insecurities, and excitement of building an impact-led business.",
           name: "Shirley Chen",
           company: "Preciser",
+          profileUrl: "/portfolio/preciser",
+          profileLabel: "Preciser",
+          photo: {
+            src: "/assets/programs/testimonials/shirley-chen.jpg",
+            alt: "Shirley Chen seated in a Preciser shirt",
+            width: 400,
+            height: 420,
+            position: "50% 46%",
+          },
+          logo: {
+            src: "/assets/portfolio/preciser.png",
+            alt: "Preciser logo",
+            width: 256,
+            height: 256,
+          },
         },
       ],
       fit: {
@@ -940,14 +1015,32 @@ export const siteContent = {
       },
       faqs: [
         {
-          question: "Where does the program take place? Is it in person?",
-          answer:
-            "The program takes place in person in Taipei at Taiwan Tech Arena. All co-founders are expected to join on site for the core program, and office space is provided for the full 10 weeks. The working environment is English-first, with many bilingual team members.",
-        },
-        {
           question: "When is the next batch?",
           answer:
-            "The next batch is Fall 2026. Applications opened July 10, 2026, and the first acceptances begin July 31, 2026.",
+            "The next batch begins in Fall 2026. Applications opened July 10, 2026. The first acceptances end on July 31, 2026.",
+        },
+        {
+          question: "What are the investment terms?",
+          answer:
+            "The standard deal is a $100,000 USD investment for 8% through a SAFE. There may also be potential for follow-on investment from Lifelike Capital.",
+        },
+        {
+          question: "Where does the program take place? Is it in person?",
+          answer:
+            "The program takes place in person in Taipei. All co-founders are expected to join on site for the core program, and office space is provided for the full 10 weeks.",
+        },
+        {
+          question: "What stage and industries do you invest in?",
+          answer:
+            "We are industry-agnostic and work with early-stage companies from friends-and-family through pre-seed and seed. The market needs to be large and global enough to support a category-defining company.",
+        },
+        {
+          question: "Do you only accept Taiwanese founders?",
+          answer: "Nope, we are open to founders anywhere.",
+        },
+        {
+          question: "Is there a program fee on top of the equity?",
+          answer: "No. The SAFE is the only ask.",
         },
         {
           question: "How long is ikigai Launchpad?",
@@ -955,29 +1048,24 @@ export const siteContent = {
             "The program runs for 10 weeks and includes in-person working sessions, office hours, workshops, community programming, and fundraising help, and investor matching.",
         },
         {
-          question: "What are the investment terms?",
-          answer:
-            "The standard deal is a $100,000 USD investment for 8% through a SAFE. There may also be potential for follow-on investment from Lifelike Capital as the company develops.",
-        },
-        {
-          question: "What stage and industries do you invest in?",
-          answer:
-            "ikigai Launchpad is industry-agnostic and works with early-stage companies from friends-and-family through pre-seed and seed. The market needs to be large and global enough to support a category-defining company.",
-        },
-        {
           question: "Do I need a co-founder or a technical background? Can I apply after raising?",
           answer:
             "A co-founder is not required, and founders who have already raised capital can apply. Non-technical founders should show credible technical capability on the founding team and a clear path to building the product.",
         },
         {
+          question: "What's the difference between 886 Studios and ikigai Launchpad?",
+          answer:
+            "886 Studios is the venture firm. ikigai Launchpad is the accelerator program that we run.",
+        },
+        {
           question: "What happens after the program ends?",
           answer:
-            "Support continues beyond week ten. 886 Studios provides tailored introductions, resources, and company-building support based on each alumnus’s stage and funding needs, while the founder community remains active beyond the batch.",
+            "Support continues beyond week 10. We provide tailored introductions, resources, and company-building support based on each alumnus’s stage and funding needs, while the founder community remains active beyond the batch.",
         },
         {
           question: "How should I prepare for interviews or ask another question?",
           answer:
-            "The first interview is a 30-minute conversation with 886 Studios and does not require a pitch deck. Review the Interview Guidebook before meeting us, or contact the 886 team if your question is not covered here.",
+            "The first interview is a 30-minute conversation with the 886 Studios team and does not require a pitch deck. Review the Interview Guidebook before meeting us, or contact the 886 team if your question is not covered here.",
           links: [
             {
               label: "Read the Interview Guidebook",
