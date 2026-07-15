@@ -33,6 +33,7 @@ interface Props {
   breadcrumbs?: BreadcrumbItem[];
   structuredData?: JsonLdObject | JsonLdObject[];
   hideFooterSocials?: boolean;
+  canonical?: string | false;
 }
 
 const {
@@ -49,13 +50,14 @@ const {
   breadcrumbs,
   structuredData,
   hideFooterSocials = false,
+  canonical,
 } = Astro.props;
 
 const currentPath = normalizePath(Astro.url.pathname);
 const isPortfolioProfilePage = currentPath.startsWith("/portfolio/");
 const showSocialPreview = currentPath === "/";
 const showSocialPreviewImage = showSocialPreview && Boolean(ogImage);
-const canonicalUrl = getCanonicalUrl(currentPath);
+const canonicalUrl = canonical === false ? undefined : canonical ?? getCanonicalUrl(currentPath);
 const absoluteOgImage = showSocialPreviewImage ? getAbsoluteUrl(ogImage) : undefined;
 const googleAnalyticsId = getGoogleAnalyticsId();
 const routeImagePreloads = getRouteImagePreloads(currentPath);
@@ -92,7 +94,7 @@ const structuredDataJson = JSON.stringify(
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
-    <link rel="canonical" href={canonicalUrl} />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
     {

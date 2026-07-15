@@ -1,6 +1,171 @@
 {
   "redirects": [
     {
+      "source": "/about-us/:legacy(gin-wu|operating-team)/:path*",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/886-partners-2/:slug(freya-wu|patryk-chojecki|carter-wang|kai-huang|joseph-hei|charles-huang|jameson-hsu|kevin-lin|kevin-chou|chris-wang|jacob-hsu|james-hong|steven-chiang|timothy-chen|phil-chen)/:path*",
+      "destination": "/about/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/886-partners-2/:path*",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/fundraise/:slug(freya-wu|patryk-chojecki|carter-wang|kai-huang|joseph-hei|charles-huang|jameson-hsu|kevin-lin|kevin-chou|chris-wang|jacob-hsu|james-hong|steven-chiang|timothy-chen|phil-chen)/:path*",
+      "destination": "/about/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/fundraise/:path*",
+      "destination": "/resources",
+      "permanent": true
+    },
+    {
+      "source": "/886-partner-companies/:path*",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/startup-ecosystem-directory/:path*",
+      "destination": "/resources/ecosystem-database",
+      "permanent": true
+    },
+    {
+      "source": "/resources/ecosystem-database/:path+",
+      "destination": "/resources/ecosystem-database",
+      "permanent": true
+    },
+    {
+      "source": "/resources/yc-101/:path*",
+      "destination": "/resources/y-combinator-101",
+      "permanent": true
+    },
+    {
+      "source": "/playbook/yc-playbook/:path*",
+      "destination": "/resources/y-combinator-101",
+      "permanent": true
+    },
+    {
+      "source": "/mock-interview/:path*",
+      "destination": "/resources/y-combinator-101",
+      "permanent": true
+    },
+    {
+      "source": "/application-template/:path*",
+      "destination": "/resources/y-combinator-101",
+      "permanent": true
+    },
+    {
+      "source": "/resources/incorporation-101/:path*",
+      "destination": "/incorporation-101",
+      "permanent": true
+    },
+    {
+      "source": "/playbook/incorporation-101/:path*",
+      "destination": "/incorporation-101",
+      "permanent": true
+    },
+    {
+      "source": "/program/about-the-program/886-studios-interview-guidebook/:path*",
+      "destination": "/interview-guidebook",
+      "permanent": true
+    },
+    {
+      "source": "/program/launch-station/:path*",
+      "destination": "/programs/launch-station",
+      "permanent": true
+    },
+    {
+      "source": "/launch-station/:path*",
+      "destination": "/programs/launch-station",
+      "permanent": true
+    },
+    {
+      "source": "/:legacy(program|velocity-program|mentorship|tech-pilot-program)/:path*",
+      "destination": "/programs",
+      "permanent": true
+    },
+    {
+      "source": "/career/:path*",
+      "destination": "/about#about-careers-title",
+      "permanent": true
+    },
+    {
+      "source": "/events/:path+",
+      "destination": "/events",
+      "permanent": true
+    },
+    {
+      "source": "/examples/:path*",
+      "destination": "/resources/application-guide",
+      "permanent": true
+    },
+    {
+      "source": "/faqs/:path*",
+      "destination": "/resources/founders-frequently-asked-questions",
+      "permanent": true
+    },
+    {
+      "source": "/resources/founders-how-do-i/:path*",
+      "destination": "/resources",
+      "permanent": true
+    },
+    {
+      "source": "/resources/resources/:path*",
+      "destination": "/resources",
+      "permanent": true
+    },
+    {
+      "source": "/resources/launch-station-program-perks/:path*",
+      "destination": "/resources#res-perks-heading",
+      "permanent": true
+    },
+    {
+      "source": "/playbook/:path*",
+      "destination": "/resources",
+      "permanent": true
+    },
+    {
+      "source": "/blocks/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/886-studios/:path*",
+      "destination": "/about",
+      "permanent": true
+    },
+    {
+      "source": "/null/:path*",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/contact-us/:path*",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/apply-now/:path*",
+      "destination": "/apply",
+      "permanent": true
+    },
+    {
+      "source": "/:slug(choosing-the-right-co-founder|dos-and-donts|encouraging-leadership|engagement-during-fundraising|finding-a-co-founder|leadership-in-funding-rounds|lessons-learned|negotiating-with-lead-investors|the-role-of-expertise|warm-introductions)/:path*",
+      "destination": "/resources/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/:entry(ai-robot|alpha-camp|anchor-taiwan|angel|angel885|appworks|asvda|brv-capital|business-next|cake|cherubic|china-development-financial|contact-taiwan|cornerstone-ventures|crossroads|dakuo|digitimes|dit-startup|elmntri|fintechspace|fiti|futureward|garage|headline|iaps|iiinno|inside|itic-industrial-technology-invesment-corporation|itri|kyber-capital|meet|meetjobs|mesh|monospace|oneco-taipei|orange-fab-asia|orbit-startups|pinehurst|popop-taipei|pun-place|regus|siti|skyco|sparklabs-taiwan|star-roket|starfab-accelerator|startup-stadium|sudo-labs|tainan-city-government-economic-development-bureau|taipei-angels|taiwan-employment-gold-card|taiwan-news|taiwania|tec|technews|techorange|techstars|terminal-1|the-news-lens|thub|triple|vive-x|wework|wi-harper-group|yourator)/:path*",
+      "destination": "/resources/ecosystem-database",
+      "permanent": true
+    },
+    {
       "source": "/about-us",
       "destination": "/about",
       "permanent": true

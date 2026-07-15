@@ -4,6 +4,15 @@ import Analytics from "@vercel/analytics/astro";
 const locals = Astro.locals as { runtime?: { env?: Record<string, string | undefined> } };
 const buildEnv = import.meta.env as Record<string, string | undefined>;
 const isVercelBuild = locals.runtime?.env?.VERCEL === "1" || buildEnv.VERCEL === "1";
+const useRuntimePath = Astro.url.pathname === "/404" || Astro.url.pathname === "/404/";
 ---
 
+{
+  useRuntimePath && (
+    <script is:inline>
+      window.webAnalyticsBeforeSend = (event) =>
+        event.type === "pageview" ? { ...event, url: window.location.pathname } : event;
+    </script>
+  )
+}
 {isVercelBuild && <Analytics />}
