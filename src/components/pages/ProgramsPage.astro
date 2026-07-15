@@ -1,137 +1,60 @@
 ---
 import { siteContent } from "../../data/siteContent";
 
-const { programs } = siteContent;
-const [ikigai, launchStation] = programs.items;
-const launchStationHref =
-  launchStation?.cta.type === "link" && "href" in launchStation.cta ? launchStation.cta.href : undefined;
-
-const applicationSteps = [
-  {
-    title: "Submit Application",
-  },
-  {
-    title: "Application Review",
-  },
-  {
-    title: "1st Interview",
-  },
-  {
-    title: "2nd Interview",
-  },
-];
-const nextBatch = "Next batch starts Fall 2026.";
-const quickFacts = ikigai.details?.metrics ?? [];
-const ikigaiNameParts = ikigai.name.split(" ");
-const founderBenefitsIntro =
-  "ikigai Launchpad gives founders capital, operator access, working space, and a real Taipei batch. These are the core pieces teams use across the 10 weeks and beyond.";
+const { launchpad, launchStation } = siteContent.programs;
 const pillarImageWidths = [640, 960, 1280];
 const pillarImageSizes =
   "(max-width: 640px) calc(100vw - 36px), (max-width: 980px) calc((100vw - 48px - 18px) / 2), 371px";
 
-const getPillarPhoto = (
-  name: string,
-  alt: string,
-  dimensions: { width: number; height: number }
-) => ({
-  alt,
-  width: dimensions.width,
-  height: dimensions.height,
+const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => ({
+  ...photo,
   sizes: pillarImageSizes,
-  src: `/assets/programs/${name}-960.jpg`,
-  avifSrcset: pillarImageWidths.map((width) => `/assets/programs/${name}-${width}.avif ${width}w`).join(", "),
-  webpSrcset: pillarImageWidths.map((width) => `/assets/programs/${name}-${width}.webp ${width}w`).join(", "),
-  jpgSrcset: pillarImageWidths.map((width) => `/assets/programs/${name}-${width}.jpg ${width}w`).join(", "),
+  src: `/assets/programs/${photo.name}-960.jpg`,
+  avifSrcset: pillarImageWidths
+    .map((width) => `/assets/programs/${photo.name}-${width}.avif ${width}w`)
+    .join(", "),
+  webpSrcset: pillarImageWidths
+    .map((width) => `/assets/programs/${photo.name}-${width}.webp ${width}w`)
+    .join(", "),
+  jpgSrcset: pillarImageWidths
+    .map((width) => `/assets/programs/${photo.name}-${width}.jpg ${width}w`)
+    .join(", "),
 });
-
-const heroPhoto = {
-  src: "/assets/programs/ikigai-audience-theater-1280.webp",
-  srcset:
-    "/assets/programs/ikigai-audience-theater-1280.webp 1280w, /assets/programs/ikigai-audience-theater-1920.webp 1920w",
-  sizes: "(max-width: 640px) calc(100vw - 36px), min(calc(100vw - 48px), 1160px)",
-  alt: "ikigai Launchpad audience gathered in a theater",
-};
-
-const launchStationPhoto = {
-  src: programs.launchStation.poster.src,
-  alt: programs.launchStation.poster.alt,
-};
-
-const specPillars = [
-  {
-    title: "Funding",
-    headline: "$100,000 USD",
-    proofPoints: [
-      "$100,000 USD funding through a SAFE note",
-      "Quit your job and focus full-time on building",
-      "Potential follow-on investment from Lifelike Capital",
-    ],
-    photo: getPillarPhoto("ikigai-founder-table", "Founders working together during ikigai Launchpad", {
-      width: 1280,
-      height: 960,
-    }),
-  },
-  {
-    title: "Hands-on support",
-    headline: "1-on-1 Weekly Mentor Office Hours",
-    proofPoints: [
-      "Founder-Led Workshops",
-      "Guest Speakers",
-      "Warm Introductions + Investor Matching",
-      "Exclusive Corporate Perks",
-    ],
-    photo: getPillarPhoto("ikigai-mentor-session", "ikigai Launchpad mentor session with founders", {
-      width: 1280,
-      height: 960,
-    }),
-  },
-  {
-    title: "Community",
-    headline: "Work alongside other founders",
-    proofPoints: [
-      "Free Office Space in Taipei",
-      "Team Building",
-      "Networking & Founder Events",
-      "Support beyond the 10-week timeframe",
-    ],
-    photo: getPillarPhoto("ikigai-group-tshirts", "ikigai Launchpad founders together in Taipei", {
-      width: 1280,
-      height: 1707,
-    }),
-  },
-];
 ---
 
 <div class="page" id="page-programs">
-
   <section class="prog-hero" aria-labelledby="prog-ikigai-heading">
     <div class="prog-hero-copy">
-      <h1 class="prog-h1" id="prog-ikigai-heading">
-        {ikigaiNameParts.map((part, index) => (
-          <>
-            {index > 0 && <br />}
-            <span>{part}</span>
-          </>
-        ))}
+      <h1 class="prog-wordmark" id="prog-ikigai-heading">
+        <span class="sr-only">{launchpad.name}</span>
+        <img
+          src="/assets/programs/ikigai-wordmark-white.png"
+          alt=""
+          width="1461"
+          height="452"
+          decoding="async"
+          aria-hidden="true"
+        />
       </h1>
-      <p class="prog-lead">{programs.lead}</p>
+      <p class="prog-lead">{launchpad.lead}</p>
       <div class="prog-hero-actions">
         <a
           class="btn-pri prog-cta"
-          href={ikigai.cta.href}
+          href={launchpad.cta.href}
           target="_blank"
           rel="noopener noreferrer"
           data-analytics-event="application_started"
           data-analytics-placement="programs_hero"
         >
-          Apply to ikigai Launchpad
+          {launchpad.cta.label}
         </a>
-        <p class="prog-next-batch">{nextBatch}</p>
+        <p class="prog-next-batch">{launchpad.status.summary}</p>
       </div>
     </div>
+
     <aside class="prog-brief-card" aria-label="ikigai Launchpad facts">
       <dl class="prog-brief-facts">
-        {quickFacts.map((fact) => (
+        {launchpad.facts.map((fact) => (
           <div class="prog-brief-fact">
             <dt>{fact.label}</dt>
             <dd>
@@ -147,12 +70,12 @@ const specPillars = [
   <section class="prog-media" aria-label="ikigai Launchpad in session">
     <figure class="prog-hero-photo">
       <img
-        src={heroPhoto.src}
-        srcset={heroPhoto.srcset}
-        sizes={heroPhoto.sizes}
-        alt={heroPhoto.alt}
-        width="1920"
-        height="1280"
+        src={launchpad.heroPhoto.src}
+        srcset={launchpad.heroPhoto.srcset}
+        sizes={launchpad.heroPhoto.sizes}
+        alt={launchpad.heroPhoto.alt}
+        width={launchpad.heroPhoto.width}
+        height={launchpad.heroPhoto.height}
         decoding="async"
         loading="eager"
         fetchpriority="high"
@@ -162,65 +85,94 @@ const specPillars = [
 
   <div class="prog-body">
     <section class="prog-pillars reveal" aria-labelledby="prog-includes-heading">
-      <header class="prog-section-header">
+      <header class="prog-section-header prog-section-header--solo">
         <div class="prog-section-heading">
           <h2 class="prog-section-title" id="prog-includes-heading">What founders get</h2>
         </div>
-        <p class="prog-section-copy">{founderBenefitsIntro}</p>
       </header>
+
       <div class="prog-pillar-grid">
-        {specPillars.map((p) => (
-          <article class="prog-pillar-card">
-            <figure class="prog-pillar-media">
-              <picture>
-                <source type="image/avif" srcset={p.photo.avifSrcset} sizes={p.photo.sizes} />
-                <source type="image/webp" srcset={p.photo.webpSrcset} sizes={p.photo.sizes} />
-                <img
-                  src={p.photo.src}
-                  srcset={p.photo.jpgSrcset}
-                  sizes={p.photo.sizes}
-                  alt={p.photo.alt}
-                  width={p.photo.width}
-                  height={p.photo.height}
-                  decoding="async"
-                  loading="lazy"
-                />
-              </picture>
-            </figure>
-            <div class="prog-pillar-copy">
-              <p class="prog-pillar-label">{p.title}</p>
-              <h3 class="prog-spec-name">{p.headline}</h3>
-              <ul class="prog-proof-list" aria-label={`${p.title} proof points`}>
-                {p.proofPoints.map((point) => (
-                  <li class="prog-proof-item">{point}</li>
-                ))}
-              </ul>
-            </div>
-          </article>
-        ))}
+        {launchpad.benefits.map((benefit) => {
+          const photo = getPillarPhoto(benefit.photo);
+
+          return (
+            <article class="prog-pillar-card">
+              <figure class="prog-pillar-media">
+                <picture>
+                  <source type="image/avif" srcset={photo.avifSrcset} sizes={photo.sizes} />
+                  <source type="image/webp" srcset={photo.webpSrcset} sizes={photo.sizes} />
+                  <img
+                    src={photo.src}
+                    srcset={photo.jpgSrcset}
+                    sizes={photo.sizes}
+                    alt={photo.alt}
+                    width={photo.width}
+                    height={photo.height}
+                    decoding="async"
+                    loading="lazy"
+                  />
+                </picture>
+              </figure>
+              <div class="prog-pillar-copy">
+                <p class="prog-pillar-label">{benefit.title}</p>
+                <h3 class="prog-spec-name">{benefit.headline}</h3>
+                <ul class="prog-proof-list" aria-label={`${benefit.title} details`}>
+                  {benefit.proofPoints.map((point) => (
+                    <li class="prog-proof-item">{point}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          );
+        })}
       </div>
     </section>
 
-    <section class="prog-apply reveal" id="prog-apply" aria-label="Apply to ikigai Launchpad">
-      <div class="prog-apply-copy">
-        <span class="prog-band-label">Applications</span>
-        <h2 class="prog-apply-h2">Apply to ikigai Launchpad.</h2>
-        <a
-          class="btn-pri prog-cta"
-          href={ikigai.cta.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-analytics-event="application_started"
-          data-analytics-placement="programs_apply_section"
-        >
-          Apply to ikigai Launchpad
-        </a>
-        <p class="prog-next-batch prog-next-batch--apply">{nextBatch}</p>
+    <section class="prog-fit reveal" aria-labelledby="prog-fit-heading">
+      <header class="prog-section-header prog-section-header--top">
+        <div class="prog-section-heading">
+          <p class="prog-band-label">{launchpad.fit.eyebrow}</p>
+          <h2 class="prog-section-title" id="prog-fit-heading">{launchpad.fit.title}</h2>
+        </div>
+      </header>
+
+      <div class="prog-fit-layout">
+        <dl class="prog-fit-list">
+          {launchpad.fit.criteria.map((criterion) => (
+            <div class="prog-fit-item">
+              <dt>{criterion.label}</dt>
+              <dd>{criterion.body}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
+    </section>
+
+    <section class="prog-apply reveal" id="prog-apply" aria-labelledby="prog-apply-heading">
+      <header class="prog-apply-copy">
+        <p class="prog-band-label">{launchpad.application.eyebrow}</p>
+        <h2 class="prog-apply-h2" id="prog-apply-heading">{launchpad.application.title}</h2>
+        {launchpad.application.intro && (
+          <p class="prog-apply-intro">{launchpad.application.intro}</p>
+        )}
+      </header>
+
+      <div class="prog-application-dates" aria-labelledby="prog-dates-lbl">
+        <h3 class="prog-process-lbl" id="prog-dates-lbl">Application timeline</h3>
+        <dl class="prog-milestones" aria-label="Fall 2026 application dates">
+          {launchpad.application.milestones.map((milestone) => (
+            <div class="prog-milestone">
+              <dt>{milestone.date}</dt>
+              <dd>{milestone.label}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
       <div class="prog-process-card" aria-labelledby="prog-process-lbl">
-        <h3 class="prog-process-lbl" id="prog-process-lbl">Timeline</h3>
+        <h3 class="prog-process-lbl" id="prog-process-lbl">Application process</h3>
         <ol class="prog-process-list">
-          {applicationSteps.map((step, index) => (
+          {launchpad.application.steps.map((step, index) => (
             <li class="prog-process-item">
               <span class="prog-process-num">{index + 1}</span>
               <span class="prog-process-step-wrap">
@@ -230,37 +182,341 @@ const specPillars = [
           ))}
         </ol>
       </div>
+
+      <div class="prog-apply-action">
+        <a
+          class="btn-pri prog-cta"
+          href={launchpad.cta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-analytics-event="application_started"
+          data-analytics-placement="programs_apply_section"
+        >
+          {launchpad.cta.label}
+        </a>
+      </div>
     </section>
 
-    {launchStation && launchStationHref && (
-      <a class="prog-launch reveal" aria-labelledby="prog-launch-heading" href={launchStationHref}>
-        <figure class="prog-launch-photo">
-          <img
-            src={launchStationPhoto.src}
-            alt={launchStationPhoto.alt}
-            width={programs.launchStation.poster.width}
-            height={programs.launchStation.poster.height}
-            decoding="async"
-            loading="lazy"
-          />
-        </figure>
-        <div class="prog-launch-copy">
-          <span class="prog-band-label">Also available</span>
-          <h2 class="prog-launch-name" id="prog-launch-heading">{launchStation.name}</h2>
-          <p class="prog-launch-body">
-            Free desk inside{" "}
-            <span class="prog-inline-link prog-inline-link--static">
-              Taiwan Tech Arena
-            </span>{" "}
-            for founders who build better around other ambitious peers.
-          </p>
-          <ul class="prog-launch-highlights">
-            {launchStation.highlights.map((highlight) => <li>{highlight}</li>)}
-          </ul>
-          <span class="prog-launch-status">{launchStation.cta.label}</span>
+    <section class="prog-testimonials reveal" aria-labelledby="prog-testimonials-heading">
+      <header class="prog-section-header prog-section-header--solo">
+        <div class="prog-section-heading">
+          <p class="prog-band-label">Testimonials</p>
+          <h2 class="prog-section-title" id="prog-testimonials-heading">From our founders.</h2>
         </div>
-      </a>
-    )}
+      </header>
 
+      <div class="prog-testimonial-mobile-guide" aria-hidden="true">
+        <span>Swipe to browse</span>
+        <span data-testimonial-counter>1 / {launchpad.testimonials.length}</span>
+      </div>
+
+      <div class="prog-testimonial-list" aria-label="Founder testimonials">
+        {launchpad.testimonials.map((testimonial) => (
+            <article
+              class:list={[
+                "prog-testimonial-card",
+                { "prog-testimonial-card--dense": testimonial.quote.length > 320 },
+                { "prog-testimonial-card--long": testimonial.quote.length > 420 },
+              ]}
+              data-founder={testimonial.name}
+              style={`--testimonial-photo-position: ${testimonial.photo.position};`}
+            >
+              <div class="prog-testimonial-card-inner">
+                <div class="prog-testimonial-face prog-testimonial-front" aria-hidden="false">
+                  <img
+                    src={testimonial.photo.src}
+                    alt={testimonial.photo.alt}
+                    width={testimonial.photo.width}
+                    height={testimonial.photo.height}
+                    loading="lazy"
+                    decoding="async"
+                    draggable="false"
+                  />
+                  <div class="prog-testimonial-front-id">
+                    <span class="prog-testimonial-logo" aria-hidden="true">
+                      <img
+                        src={testimonial.logo.src}
+                        alt=""
+                        width={testimonial.logo.width}
+                        height={testimonial.logo.height}
+                        loading="lazy"
+                        decoding="async"
+                        draggable="false"
+                      />
+                    </span>
+                    <span class="prog-testimonial-front-id-copy">
+                      <strong>{testimonial.name}</strong>
+                      <span>{testimonial.company}</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="prog-testimonial-face prog-testimonial-back" aria-hidden="true">
+                  <blockquote>
+                    <p>“{testimonial.quote}”</p>
+                  </blockquote>
+                  <div class="prog-testimonial-attribution">
+                    <span class="prog-testimonial-attribution-copy">
+                      <strong>{testimonial.name}</strong>
+                      <span>{testimonial.company}</span>
+                    </span>
+                    <a
+                      class="prog-testimonial-company-link"
+                      href={testimonial.profileUrl}
+                      aria-label={`View ${testimonial.profileLabel} on the 886 Studios portfolio`}
+                    >
+                      Profile <span aria-hidden="true">→</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="prog-testimonial-toggle"
+                type="button"
+                aria-label={`Read testimonial from ${testimonial.name}`}
+                aria-pressed="false"
+                data-testimonial-toggle
+              ></button>
+            </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="prog-faq reveal" id="faq" aria-labelledby="prog-faq-heading">
+      <header class="prog-faq-header">
+        <p class="prog-band-label">Frequently Asked Questions</p>
+        <h2 class="prog-section-title prog-section-title--flush" id="prog-faq-heading">FAQ</h2>
+      </header>
+
+      <div class="prog-faq-list">
+        {launchpad.faqs.map((faq) => (
+          <details class="prog-faq-item">
+            <summary>{faq.question}</summary>
+            <div class="prog-faq-answer">
+              <p>{faq.answer}</p>
+              {"links" in faq && faq.links && (
+                <div class="prog-faq-links">
+                  {faq.links.map((link) => (
+                    <a href={link.href}>{link.label}</a>
+                  ))}
+                </div>
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <a
+      class="prog-launch reveal"
+      aria-labelledby="prog-launch-heading"
+      href={launchStation.card.cta.href}
+    >
+      <figure class="prog-launch-media">
+        <img
+          src={launchStation.poster.src}
+          alt={launchStation.poster.alt}
+          width={launchStation.poster.width}
+          height={launchStation.poster.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+      <div class="prog-launch-content">
+        <span class="prog-band-label">Also available</span>
+        <div class="prog-launch-copy">
+          <h2 class="prog-launch-name" id="prog-launch-heading">{launchStation.title}</h2>
+          <p class="prog-launch-body">{launchStation.card.body}</p>
+        </div>
+      </div>
+      <span class="prog-launch-status">{launchStation.card.cta.label}</span>
+    </a>
   </div>
 </div>
+
+<script>
+  const testimonialList = document.querySelector<HTMLElement>(".prog-testimonial-list");
+  const testimonialCards = Array.from(
+    document.querySelectorAll<HTMLElement>(".prog-testimonial-card"),
+  );
+  const testimonialCounter = document.querySelector<HTMLElement>("[data-testimonial-counter]");
+  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const brushReleaseTimers = new WeakMap<HTMLElement, number>();
+  let activeBrushCard: HTMLElement | null = null;
+  let previousBrushX: number | null = null;
+  let dragStart: { x: number; y: number } | null = null;
+  let didDrag = false;
+  let suppressNextClick = false;
+  let testimonialScrollFrame = 0;
+
+  const updateTestimonialCounter = () => {
+    if (!testimonialList || !testimonialCounter || testimonialCards.length === 0) return;
+
+    const listLeft = testimonialList.getBoundingClientRect().left;
+    let closestIndex = 0;
+    let closestDistance = Number.POSITIVE_INFINITY;
+
+    testimonialCards.forEach((card, index) => {
+      const distance = Math.abs(card.getBoundingClientRect().left - listLeft);
+
+      if (distance < closestDistance) {
+        closestIndex = index;
+        closestDistance = distance;
+      }
+    });
+
+    testimonialCounter.textContent = `${closestIndex + 1} / ${testimonialCards.length}`;
+  };
+
+  testimonialList?.addEventListener(
+    "scroll",
+    () => {
+      window.cancelAnimationFrame(testimonialScrollFrame);
+      testimonialScrollFrame = window.requestAnimationFrame(updateTestimonialCounter);
+    },
+    { passive: true },
+  );
+
+  window.addEventListener("resize", updateTestimonialCounter, { passive: true });
+  updateTestimonialCounter();
+
+  const releaseBrush = (card: HTMLElement) => {
+    const timer = brushReleaseTimers.get(card);
+
+    if (timer) {
+      window.clearTimeout(timer);
+      brushReleaseTimers.delete(card);
+    }
+
+    card.classList.remove("is-brushed");
+  };
+
+  const scheduleBrushRelease = (card: HTMLElement) => {
+    const existingTimer = brushReleaseTimers.get(card);
+
+    if (existingTimer) window.clearTimeout(existingTimer);
+
+    const timer = window.setTimeout(() => {
+      card.classList.remove("is-brushed");
+      brushReleaseTimers.delete(card);
+    }, 240);
+
+    brushReleaseTimers.set(card, timer);
+  };
+
+  const brushCard = (card: HTMLElement, direction: "forward" | "backward") => {
+    if (card.classList.contains("is-flipped")) return;
+
+    const timer = brushReleaseTimers.get(card);
+    if (timer) {
+      window.clearTimeout(timer);
+      brushReleaseTimers.delete(card);
+    }
+
+    card.dataset.brushDirection = direction;
+    card.classList.add("is-brushed");
+  };
+
+  testimonialList?.addEventListener("pointerdown", (event) => {
+    if (event.pointerType !== "mouse" || event.button !== 0) return;
+
+    dragStart = { x: event.clientX, y: event.clientY };
+    didDrag = false;
+  });
+
+  testimonialList?.addEventListener("pointermove", (event) => {
+    if (!finePointer.matches || reducedMotion.matches || !(event.target instanceof Element)) {
+      return;
+    }
+
+    if (dragStart && !didDrag) {
+      const horizontalTravel = Math.abs(event.clientX - dragStart.x);
+      const verticalTravel = Math.abs(event.clientY - dragStart.y);
+
+      if (horizontalTravel > 8 && horizontalTravel > verticalTravel) {
+        didDrag = true;
+        testimonialList.classList.add("is-brushing");
+      }
+    }
+
+    const nextCard = event.target.closest<HTMLElement>(".prog-testimonial-card");
+    if (!nextCard || nextCard === activeBrushCard) return;
+
+    const nextIndex = testimonialCards.indexOf(nextCard);
+    const direction =
+      previousBrushX === null
+        ? nextIndex >= testimonialCards.length / 2
+          ? "backward"
+          : "forward"
+        : event.clientX >= previousBrushX
+          ? "forward"
+          : "backward";
+
+    if (activeBrushCard) scheduleBrushRelease(activeBrushCard);
+
+    brushCard(nextCard, direction);
+    activeBrushCard = nextCard;
+    previousBrushX = event.clientX;
+  });
+
+  testimonialList?.addEventListener("pointerleave", () => {
+    if (activeBrushCard) scheduleBrushRelease(activeBrushCard);
+    activeBrushCard = null;
+    previousBrushX = null;
+  });
+
+  testimonialList?.addEventListener(
+    "click",
+    (event) => {
+      if (!suppressNextClick) return;
+
+      event.preventDefault();
+      event.stopPropagation();
+      suppressNextClick = false;
+    },
+    true,
+  );
+
+  const finishDrag = () => {
+    if (didDrag) {
+      suppressNextClick = true;
+      window.setTimeout(() => {
+        suppressNextClick = false;
+      }, 80);
+    }
+
+    testimonialList?.classList.remove("is-brushing");
+    dragStart = null;
+    didDrag = false;
+  };
+
+  window.addEventListener("pointerup", finishDrag);
+  window.addEventListener("pointercancel", finishDrag);
+
+  testimonialCards.forEach((card) => {
+    const front = card.querySelector<HTMLElement>(".prog-testimonial-front");
+    const back = card.querySelector<HTMLElement>(".prog-testimonial-back");
+    const toggle = card.querySelector<HTMLButtonElement>("[data-testimonial-toggle]");
+    const founder = card.dataset.founder ?? "this founder";
+
+    const setFlipped = (isFlipped: boolean) => {
+      if (isFlipped) releaseBrush(card);
+
+      card.classList.toggle("is-flipped", isFlipped);
+      toggle?.setAttribute("aria-pressed", String(isFlipped));
+      toggle?.setAttribute(
+        "aria-label",
+        isFlipped ? `Show photo of ${founder}` : `Read testimonial from ${founder}`,
+      );
+      front?.setAttribute("aria-hidden", String(isFlipped));
+      back?.setAttribute("aria-hidden", String(!isFlipped));
+    };
+
+    const toggleCard = () => {
+      setFlipped(!card.classList.contains("is-flipped"));
+    };
+
+    toggle?.addEventListener("click", toggleCard);
+  });
+</script>
