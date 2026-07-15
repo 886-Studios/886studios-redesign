@@ -3049,6 +3049,10 @@ body.is-home nav.site-nav.is-scrolled {
       padding-bottom: var(--prog-section-half-gap);
     }
 
+    .prog-faq-launch-divider {
+      margin: 0;
+    }
+
     .prog-faq-header {
       margin-bottom: clamp(24px, 2.5vw, 32px);
     }
@@ -5809,22 +5813,11 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .about-careers {
-  display: grid;
-  grid-template-columns: clamp(260px, 25vw, 320px) minmax(0, 1fr);
-  gap: clamp(28px, 3vw, 40px);
-  align-items: center;
   padding: 6px 0 4px;
 }
 
-.about-careers .section-h2 {
-  margin-bottom: 0;
-  text-align: center;
-}
-
 .about-careers-copy {
-  min-width: 0;
-  padding-left: clamp(28px, 3vw, 40px);
-  border-left: 1px solid var(--border-bright);
+  width: 100%;
 }
 
 .about-careers .prose {
@@ -5930,10 +5923,6 @@ body.is-home nav.site-nav.is-scrolled {
 
 .about-collaboration-links a:hover svg {
   transform: translate(2px, -2px);
-}
-
-.about-news-title {
-  margin-bottom: 24px;
 }
 
 .about-news-grid {
@@ -7893,18 +7882,7 @@ footer {
   }
 
   #page-about .about-careers {
-    grid-template-columns: 1fr;
-    gap: 16px;
     padding: 0;
-  }
-
-  #page-about .about-careers .section-h2 {
-    text-align: left;
-  }
-
-  #page-about .about-careers-copy {
-    padding-left: 0;
-    border-left: 0;
   }
 
   #page-about .about-collaboration {
@@ -7931,10 +7909,6 @@ footer {
   #page-about .about-collaboration-copy {
     padding-left: 0;
     border-left: 0;
-  }
-
-  #page-about .about-news-title {
-    margin-bottom: 18px;
   }
 
   #page-about .about-news-grid {
