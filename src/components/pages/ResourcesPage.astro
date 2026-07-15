@@ -56,7 +56,14 @@ const libraryColors = ["gold", "jade", "purple", "jade", "purple", "gold"];
           <div class="section-tag">Community</div>
           <h2 id="res-ama-heading">{resources.ama.title}</h2>
           <p class="res-ama-lead">{resources.ama.lead}</p>
-          <a class="btn-pri" href={resources.ama.ctaHref} target="_blank" rel="noopener noreferrer">
+          <a
+            class="btn-pri"
+            href={resources.ama.ctaHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics-event="founder_ama_opened"
+            data-analytics-placement="resources_ama"
+          >
             {resources.ama.ctaLabel}
           </a>
         </div>

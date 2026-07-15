@@ -24,7 +24,14 @@ const isActiveNavItem = (href: string) => href === "/" ? currentPath === "/" : c
         ))
       }
     </div>
-    <a class="nav-cta nav-cta--desktop" href={siteContent.nav.cta.href} target="_blank" rel="noopener noreferrer">
+    <a
+      class="nav-cta nav-cta--desktop"
+      href={siteContent.nav.cta.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-analytics-event="application_started"
+      data-analytics-placement="global_nav_desktop"
+    >
       {siteContent.nav.cta.label}
     </a>
     <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
@@ -56,7 +63,14 @@ const isActiveNavItem = (href: string) => href === "/" ? currentPath === "/" : c
       }
     </nav>
     <div class="mobile-drawer-footer">
-      <a class="btn-pri btn-pri--full" href={siteContent.nav.cta.href} target="_blank" rel="noopener noreferrer">
+      <a
+        class="btn-pri btn-pri--full"
+        href={siteContent.nav.cta.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        data-analytics-event="application_started"
+        data-analytics-placement="global_nav_mobile"
+      >
         {siteContent.nav.cta.label}
       </a>
     </div>

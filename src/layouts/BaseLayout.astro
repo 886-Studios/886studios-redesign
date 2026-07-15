@@ -82,6 +82,7 @@ const structuredDataJson = JSON.stringify(
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <GoogleAnalytics measurementId={googleAnalyticsId} />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="color-scheme" content="dark" />
@@ -156,7 +157,6 @@ const structuredDataJson = JSON.stringify(
       href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
-    <GoogleAnalytics measurementId={googleAnalyticsId} />
     <script type="application/ld+json" is:inline set:html={structuredDataJson} />
   </head>
   <body class:list={[currentPath === "/" && "is-home", isPortfolioProfilePage && "is-portfolio-profile"]}>

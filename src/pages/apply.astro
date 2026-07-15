@@ -9,12 +9,12 @@ const googleAnalyticsId = getGoogleAnalyticsId();
 
 <html lang="en">
   <head>
+    <GoogleAnalytics measurementId={googleAnalyticsId} />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex, nofollow" />
     <meta http-equiv="refresh" content={`0;url=${applicationUrl}`} />
     <title>{`Redirecting to application - ${siteConfig.name}`}</title>
-    <GoogleAnalytics measurementId={googleAnalyticsId} />
   </head>
   <body>
     <script is:inline define:vars={{ applicationUrl }}>window.location.replace(applicationUrl);</script>

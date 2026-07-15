@@ -1,3 +1,5 @@
+import "./analytics";
+
 const select = <T extends Element>(selector: string) => document.querySelector<T>(selector);
 const selectAll = <T extends Element>(selector: string) => Array.from(document.querySelectorAll<T>(selector));
 const focusableSelector = [

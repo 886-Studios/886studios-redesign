@@ -17,7 +17,15 @@ const tagLabel = isLearnMore ? "Learn more →" : tag;
 
 {
   event.url ? (
-    <a class={cardClass} href={event.url} target="_blank" rel="noopener noreferrer">
+    <a
+      class={cardClass}
+      href={event.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-analytics-event={isLearnMore ? "event_details_opened" : "event_registration_started"}
+      data-analytics-placement="events_list"
+      data-analytics-label={event.title}
+    >
       <div class={mediaClass}>
         <div class="ev-date">
           <div class="ev-month">{event.month}</div>

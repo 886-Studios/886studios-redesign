@@ -68,6 +68,8 @@ Do not commit `.env`, `.env.local`, or any `.env.*.local` file. These files are 
 
 Google Analytics uses the production fallback ID in `src/config/site.ts`; there is no separate local analytics env var. Vercel Analytics renders only when Vercel sets `VERCEL=1`.
 
+Shared conversion events are sent to both providers by `src/scripts/analytics.ts`. Trackable links and forms opt in with `data-analytics-event`, plus optional `data-analytics-placement` and `data-analytics-label` attributes. Do not put email addresses, names, form values, or other personal data in these attributes. Current funnel events are `program_interest`, `application_started`, `newsletter_signup`, `event_registration_started`, `event_details_opened`, `event_calendar_opened`, and `founder_ama_opened`.
+
 ## Deployment
 
 The site is a static Astro build deployed on Vercel.

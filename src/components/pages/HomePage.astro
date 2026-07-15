@@ -36,6 +36,9 @@ const portfolioPreviewItems = portfolioPreviewSlugs
           href={home.hero.cta.href}
           target={isExternalHeroCta ? "_blank" : undefined}
           rel={isExternalHeroCta ? "noopener noreferrer" : undefined}
+          data-analytics-event="program_interest"
+          data-analytics-placement="home_hero"
+          data-analytics-label="ikigai_launchpad"
         >
           {home.hero.cta.label}
         </a>
@@ -78,7 +81,13 @@ const portfolioPreviewItems = portfolioPreviewSlugs
             <h3 class="home-program-feature-title">{home.programs.featured.title}</h3>
             <p class="home-program-feature-copy">{home.programs.featured.body}</p>
           </div>
-          <a class="card-cta home-program-feature-link" href={home.programs.featured.ctaHref}>
+          <a
+            class="card-cta home-program-feature-link"
+            href={home.programs.featured.ctaHref}
+            data-analytics-event="program_interest"
+            data-analytics-placement="home_program_card"
+            data-analytics-label="ikigai_launchpad"
+          >
             {home.programs.featured.ctaLabel}
           </a>
         </div>
@@ -91,7 +100,13 @@ const portfolioPreviewItems = portfolioPreviewSlugs
                 <h3 class="home-program-mini-title">{item.title}</h3>
                 <p class="home-program-mini-copy">{item.body}</p>
               </div>
-              <a class="card-cta" href={item.ctaHref}>
+              <a
+                class="card-cta"
+                href={item.ctaHref}
+                data-analytics-event="program_interest"
+                data-analytics-placement="home_program_card"
+                data-analytics-label="launch_station"
+              >
                 {item.ctaLabel}
               </a>
             </article>
@@ -181,6 +196,8 @@ const portfolioPreviewItems = portfolioPreviewSlugs
         action={home.newsletter.action}
         method="post"
         target="substack-subscribe-frame"
+        data-analytics-event="newsletter_signup"
+        data-analytics-placement="home_newsletter"
       >
         <label class="sr-only" for="newsletter-email">Email address</label>
         <input

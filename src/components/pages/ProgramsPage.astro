@@ -116,7 +116,14 @@ const specPillars = [
       </h1>
       <p class="prog-lead">{programs.lead}</p>
       <div class="prog-hero-actions">
-        <a class="btn-pri prog-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
+        <a
+          class="btn-pri prog-cta"
+          href={ikigai.cta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-analytics-event="application_started"
+          data-analytics-placement="programs_hero"
+        >
           Apply to ikigai Launchpad
         </a>
         <p class="prog-next-batch">{nextBatch}</p>
@@ -198,7 +205,14 @@ const specPillars = [
       <div class="prog-apply-copy">
         <span class="prog-band-label">Applications</span>
         <h2 class="prog-apply-h2">Apply to ikigai Launchpad.</h2>
-        <a class="btn-pri prog-cta" href={ikigai.cta.href} target="_blank" rel="noopener noreferrer">
+        <a
+          class="btn-pri prog-cta"
+          href={ikigai.cta.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-analytics-event="application_started"
+          data-analytics-placement="programs_apply_section"
+        >
           Apply to ikigai Launchpad
         </a>
         <p class="prog-next-batch prog-next-batch--apply">{nextBatch}</p>

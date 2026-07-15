@@ -13,7 +13,7 @@ export const siteConfig = {
   ogLocale: "en_US",
   twitterSite: "@886Studios",
   themeColor: "#050507",
-  googleAnalyticsFallbackId: "G-GPGM23G5QK",
+  googleAnalyticsFallbackId: "G-HWJ420T1HT",
 } as const;
 
 interface RouteImagePreload {
