@@ -212,11 +212,8 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
               class:list={[
                 "prog-testimonial-card",
                 { "prog-testimonial-card--dense": testimonial.quote.length > 320 },
+                { "prog-testimonial-card--long": testimonial.quote.length > 420 },
               ]}
-              role="button"
-              tabindex="0"
-              aria-label={`Read testimonial from ${testimonial.name}`}
-              aria-pressed="false"
               data-founder={testimonial.name}
               style={`--testimonial-photo-position: ${testimonial.photo.position};`}
             >
@@ -269,6 +266,13 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
                   </div>
                 </div>
               </div>
+              <button
+                class="prog-testimonial-toggle"
+                type="button"
+                aria-label={`Read testimonial from ${testimonial.name}`}
+                aria-pressed="false"
+                data-testimonial-toggle
+              ></button>
             </article>
         ))}
       </div>
@@ -398,7 +402,7 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
   };
 
   const brushCard = (card: HTMLElement, direction: "forward" | "backward") => {
-    if (card.getAttribute("aria-pressed") === "true") return;
+    if (card.classList.contains("is-flipped")) return;
 
     const timer = brushReleaseTimers.get(card);
     if (timer) {
@@ -489,13 +493,15 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
   testimonialCards.forEach((card) => {
     const front = card.querySelector<HTMLElement>(".prog-testimonial-front");
     const back = card.querySelector<HTMLElement>(".prog-testimonial-back");
+    const toggle = card.querySelector<HTMLButtonElement>("[data-testimonial-toggle]");
     const founder = card.dataset.founder ?? "this founder";
 
     const setFlipped = (isFlipped: boolean) => {
       if (isFlipped) releaseBrush(card);
 
-      card.setAttribute("aria-pressed", String(isFlipped));
-      card.setAttribute(
+      card.classList.toggle("is-flipped", isFlipped);
+      toggle?.setAttribute("aria-pressed", String(isFlipped));
+      toggle?.setAttribute(
         "aria-label",
         isFlipped ? `Show photo of ${founder}` : `Read testimonial from ${founder}`,
       );
@@ -504,20 +510,9 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
     };
 
     const toggleCard = () => {
-      setFlipped(card.getAttribute("aria-pressed") !== "true");
+      setFlipped(!card.classList.contains("is-flipped"));
     };
 
-    card.addEventListener("click", (event) => {
-      if ((event.target as Element).closest("a")) return;
-      toggleCard();
-    });
-    card.addEventListener("keydown", (event) => {
-      if ((event.target as Element).closest("a")) return;
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        toggleCard();
-      }
-    });
-
+    toggle?.addEventListener("click", toggleCard);
   });
 </script>

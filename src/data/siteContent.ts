@@ -877,11 +877,11 @@ export const siteContent = {
           profileUrl: "/portfolio/lfg",
           profileLabel: "lfg",
           photo: {
-            src: "/assets/programs/testimonials/julia-cheung.jpg",
-            alt: "Julia Cheung working with other builders at a community event",
-            width: 1200,
-            height: 799,
-            position: "69% 48%",
+            src: "/assets/programs/testimonials/julia-cheung-speaking.png",
+            alt: "Julia Cheung speaking at a founder community event",
+            width: 420,
+            height: 900,
+            position: "50% 45%",
           },
           logo: {
             src: "/assets/portfolio/lfg.jpg",
@@ -982,7 +982,7 @@ export const siteContent = {
       },
       application: {
         eyebrow: "Applications",
-        title: "Join the Fall 2026 batch.",
+        title: "Join the Fall 2026 batch!",
         intro: "",
         milestones: [
           {
@@ -991,7 +991,7 @@ export const siteContent = {
           },
           {
             date: "July 31, 2026",
-            label: "First acceptances begin",
+            label: "First acceptances end",
           },
           {
             date: "Fall 2026",

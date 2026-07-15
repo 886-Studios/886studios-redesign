@@ -494,15 +494,20 @@ body.is-home nav.site-nav.is-scrolled {
   position: sticky;
   top: var(--nav-height);
   z-index: 190;
+  margin-top: var(--nav-height);
   flex: 0 0 auto;
   background: var(--purple-action);
   color: #fff;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.28);
+  box-shadow: none;
   transform: translateY(0);
   opacity: 1;
   transition:
     transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
     opacity 180ms ease;
+}
+
+.application-banner:not([hidden]) + .site-main .page {
+  padding-top: 0;
 }
 
 .application-banner[hidden] {
@@ -567,10 +572,15 @@ body.is-home nav.site-nav.is-scrolled {
   height: 36px;
   padding: 0;
   border: 0;
-  border-radius: 50%;
-  background: #fff;
-  color: var(--purple-action);
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
   cursor: pointer;
+  transition: opacity 160ms ease;
+}
+
+.application-banner-close:hover {
+  opacity: 0.72;
 }
 
 .application-banner-close svg {
@@ -589,9 +599,15 @@ body.is-home nav.site-nav.is-scrolled {
 
 @media (max-width: 640px) {
   .application-banner-inner {
+    grid-template-columns: minmax(0, 1fr) 44px;
     gap: 12px;
     min-height: 64px;
     padding: 8px clamp(18px, 6vw, 24px);
+  }
+
+  .application-banner-close {
+    width: 44px;
+    height: 44px;
   }
 
   .application-banner-message {
@@ -606,6 +622,12 @@ body.is-home nav.site-nav.is-scrolled {
 
   .application-banner a {
     font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 880px) {
+  .application-banner {
+    top: 0;
   }
 }
 
@@ -2436,18 +2458,36 @@ body.is-home nav.site-nav.is-scrolled {
       transition: transform 500ms cubic-bezier(0.65, 0, 0.35, 1);
     }
 
-    .prog-testimonial-card[aria-pressed="true"] {
+    .prog-testimonial-card.is-flipped {
       z-index: 2;
     }
 
-    .prog-testimonial-card[aria-pressed="true"] .prog-testimonial-card-inner {
+    .prog-testimonial-card.is-flipped .prog-testimonial-card-inner {
       transform: rotateY(-180deg);
       will-change: transform;
     }
 
-    .prog-testimonial-card:focus-visible {
+    .prog-testimonial-toggle {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      border-radius: var(--r-sm);
+      background: transparent;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    .prog-testimonial-toggle:focus-visible {
       outline: 2px solid var(--purple-bright);
       outline-offset: 5px;
+    }
+
+    .prog-testimonial-card.is-flipped .prog-testimonial-toggle {
+      clip-path: inset(0 0 68px 0);
     }
 
     .prog-testimonial-face {
@@ -2578,6 +2618,20 @@ body.is-home nav.site-nav.is-scrolled {
         margin-top: 12px;
         padding-top: 10px;
       }
+
+      .prog-testimonial-card--long .prog-testimonial-back {
+        padding: 14px;
+      }
+
+      .prog-testimonial-card--long .prog-testimonial-back blockquote p {
+        font-size: 0.7rem;
+        line-height: 1.38;
+      }
+
+      .prog-testimonial-card--long .prog-testimonial-attribution {
+        margin-top: 8px;
+        padding-top: 8px;
+      }
     }
 
     @media (min-width: 981px) and (max-width: 1180px) {
@@ -2647,13 +2701,17 @@ body.is-home nav.site-nav.is-scrolled {
         will-change: transform;
       }
 
+      .prog-testimonial-card:is(:hover, .is-brushed) .prog-testimonial-toggle {
+        clip-path: inset(0 0 68px 0);
+      }
+
       .prog-testimonial-card.is-brushed[data-brush-direction="backward"]
         .prog-testimonial-card-inner {
         transform: rotateY(180deg);
       }
 
       .prog-testimonial-card:is(:hover, .is-brushed)
-        + .prog-testimonial-card:not([aria-pressed="true"]):not(:hover):not(.is-brushed)
+        + .prog-testimonial-card:not(.is-flipped):not(:hover):not(.is-brushed)
         .prog-testimonial-card-inner {
         transform: rotateY(-3deg);
         transition-delay: 70ms;
@@ -2661,7 +2719,7 @@ body.is-home nav.site-nav.is-scrolled {
 
       .prog-testimonial-card:is(:hover, .is-brushed)
         + .prog-testimonial-card
-        + .prog-testimonial-card:not([aria-pressed="true"]):not(:hover):not(.is-brushed)
+        + .prog-testimonial-card:not(.is-flipped):not(:hover):not(.is-brushed)
         .prog-testimonial-card-inner {
         transform: rotateY(-1.25deg);
         transition-delay: 120ms;
@@ -2998,11 +3056,6 @@ body.is-home nav.site-nav.is-scrolled {
     .prog-faq-list {
       width: 100%;
       margin: 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    .prog-faq-item {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .prog-faq-item summary {
@@ -7624,7 +7677,7 @@ footer {
 
   .prog-testimonial-card-inner,
   .prog-testimonial-card:hover .prog-testimonial-card-inner,
-  .prog-testimonial-card[aria-pressed="true"] .prog-testimonial-card-inner {
+  .prog-testimonial-card.is-flipped .prog-testimonial-card-inner {
     transform: none;
   }
 
@@ -7639,12 +7692,12 @@ footer {
   }
 
   .prog-testimonial-card:hover .prog-testimonial-front,
-  .prog-testimonial-card[aria-pressed="true"] .prog-testimonial-front {
+  .prog-testimonial-card.is-flipped .prog-testimonial-front {
     opacity: 0;
   }
 
   .prog-testimonial-card:hover .prog-testimonial-back,
-  .prog-testimonial-card[aria-pressed="true"] .prog-testimonial-back {
+  .prog-testimonial-card.is-flipped .prog-testimonial-back {
     opacity: 1;
   }
 
