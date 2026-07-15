@@ -1,3 +1,5 @@
+import { applicationUrl } from "../config/site";
+
 export const brand = {
   name: "886 Studios",
   logoAlt: "886 Studios",
@@ -513,7 +515,7 @@ export const siteContent = {
   nav: {
     cta: {
       label: "Apply Now",
-      href: "https://tally.so/r/w5p4jQ",
+      href: applicationUrl,
     },
     items: [
       { id: "home", label: "Home", href: "/" },
@@ -816,7 +818,7 @@ export const siteContent = {
         cta: {
           type: "link",
           label: "Apply to ikigai Launchpad →",
-          href: "https://tally.so/r/w5p4jQ",
+          href: applicationUrl,
         },
       },
       {

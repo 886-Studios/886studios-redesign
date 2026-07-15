@@ -1,3 +1,5 @@
+export const applicationUrl = "https://tally.so/r/w5p4jQ";
+
 export const siteConfig = {
   name: "886 Studios",
   url: "https://www.886studios.com",

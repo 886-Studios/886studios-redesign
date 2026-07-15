@@ -1,3 +1,5 @@
+import { applicationUrl } from "../config/site";
+
 type ResourceLink = {
   label: string;
   href: string;
@@ -164,7 +166,7 @@ export const resourceArticles: ResourceArticle[] = [
           "After going through the checklist, you may decide to apply to an accelerator. Depending on your company stage, industry, and timeline, the program you choose should fit your startup needs.",
           "There are several options in Taiwan’s startup ecosystem. To apply to the ikigai Launchpad program, use the application link below.",
         ],
-        links: [{ label: "Apply Now", href: "https://withikigai.com/" }],
+        links: [{ label: "Apply Now", href: applicationUrl }],
       },
       {
         title: "How to Answer Application Questions",

@@ -1,9 +1,7 @@
 ---
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
-import { getGoogleAnalyticsId, siteConfig } from "../config/site";
-import { siteContent } from "../data/siteContent";
+import { applicationUrl, getGoogleAnalyticsId, siteConfig } from "../config/site";
 
-const applicationUrl = siteContent.nav.cta.href;
 const googleAnalyticsId = getGoogleAnalyticsId();
 ---
 
