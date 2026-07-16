@@ -70,6 +70,49 @@ Google Analytics uses the production fallback ID in `src/config/site.ts`; there 
 
 Shared conversion events are sent to both providers by `src/scripts/analytics.ts`. Trackable links and forms opt in with `data-analytics-event`, plus optional `data-analytics-placement` and `data-analytics-label` attributes. Do not put email addresses, names, form values, or other personal data in these attributes. Current funnel events are `program_interest`, `application_started`, `newsletter_signup`, `event_registration_started`, `event_details_opened`, `event_calendar_opened`, and `founder_ama_opened`.
 
+## Search indexing
+
+The production site exposes:
+
+- `https://www.886studios.com/robots.txt`
+- `https://www.886studios.com/sitemap.xml`
+- `https://www.886studios.com/indexnow-key.txt`
+
+After the initial production deployment or a site-wide content refresh, notify
+IndexNow-compatible search engines with the full sitemap:
+
+```bash
+npm run build
+npm run indexnow
+```
+
+Use `npm run indexnow:dry-run` to inspect the URL count and request configuration without
+making a submission. The command reads canonical URLs from the generated sitemap, verifies
+that the public key file is live, and submits the URL set to the shared IndexNow endpoint.
+
+For routine releases, submit only URLs that were added, changed, redirected, or removed:
+
+```bash
+npm run indexnow -- \
+  --url=https://www.886studios.com/resources/example \
+  --url=https://www.886studios.com/old-page
+```
+
+Google Search Console, Bing Webmaster Tools, Yandex Webmaster, and Baidu Search Resource
+Platform still require an owner account. Add any requested HTML meta verification token as a
+production environment variable and redeploy:
+
+```bash
+GOOGLE_SITE_VERIFICATION=
+BING_SITE_VERIFICATION=
+YANDEX_SITE_VERIFICATION=
+BAIDU_SITE_VERIFICATION=
+```
+
+Enter `https://www.886studios.com/sitemap.xml` in each webmaster dashboard after ownership
+verification. Bing can also import the verified property and sitemap directly from Google
+Search Console.
+
 ## Deployment
 
 The site is a static Astro build deployed on Vercel.

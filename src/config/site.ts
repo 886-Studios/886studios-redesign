@@ -18,6 +18,13 @@ export const siteConfig = {
   googleAnalyticsFallbackId: "G-HWJ420T1HT",
 } as const;
 
+export interface SearchEngineVerification {
+  google?: string;
+  bing?: string;
+  yandex?: string;
+  baidu?: string;
+}
+
 interface RouteImagePreload {
   href: string;
   type?: string;
@@ -57,4 +64,15 @@ export function getRouteImagePreloads(pathname: string) {
 
 export function getGoogleAnalyticsId() {
   return siteConfig.googleAnalyticsFallbackId;
+}
+
+export function getSearchEngineVerification(): SearchEngineVerification {
+  const getToken = (value: string | undefined) => value?.trim() || undefined;
+
+  return {
+    google: getToken(import.meta.env.GOOGLE_SITE_VERIFICATION),
+    bing: getToken(import.meta.env.BING_SITE_VERIFICATION),
+    yandex: getToken(import.meta.env.YANDEX_SITE_VERIFICATION),
+    baidu: getToken(import.meta.env.BAIDU_SITE_VERIFICATION),
+  };
 }

@@ -9,6 +9,7 @@ import {
   getCanonicalUrl,
   getGoogleAnalyticsId,
   getRouteImagePreloads,
+  getSearchEngineVerification,
   normalizePath,
   siteConfig,
 } from "../config/site";
@@ -61,6 +62,7 @@ const showSocialPreviewImage = showSocialPreview && Boolean(ogImage);
 const canonicalUrl = canonical === false ? undefined : canonical ?? getCanonicalUrl(currentPath);
 const absoluteOgImage = showSocialPreviewImage ? getAbsoluteUrl(ogImage) : undefined;
 const googleAnalyticsId = getGoogleAnalyticsId();
+const searchEngineVerification = getSearchEngineVerification();
 const routeImagePreloads = getRouteImagePreloads(currentPath);
 const structuredDataJson = JSON.stringify(
   getStructuredDataGraph({
@@ -95,6 +97,18 @@ const structuredDataJson = JSON.stringify(
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content={robots} />
+    {searchEngineVerification.google && (
+      <meta name="google-site-verification" content={searchEngineVerification.google} />
+    )}
+    {searchEngineVerification.bing && (
+      <meta name="msvalidate.01" content={searchEngineVerification.bing} />
+    )}
+    {searchEngineVerification.yandex && (
+      <meta name="yandex-verification" content={searchEngineVerification.yandex} />
+    )}
+    {searchEngineVerification.baidu && (
+      <meta name="baidu-site-verification" content={searchEngineVerification.baidu} />
+    )}
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
