@@ -2599,17 +2599,12 @@ body.is-home nav.site-nav.is-scrolled {
       }
 
       .prog-testimonial-back blockquote p {
-        font-size: clamp(0.76rem, 0.86vw, 0.84rem);
-        line-height: 1.46;
+        font-size: 0.74rem;
+        line-height: 1.43;
       }
 
       .prog-testimonial-card--dense .prog-testimonial-back {
         padding: 16px;
-      }
-
-      .prog-testimonial-card--dense .prog-testimonial-back blockquote p {
-        font-size: clamp(0.74rem, 0.8vw, 0.78rem);
-        line-height: 1.43;
       }
 
       .prog-testimonial-card--dense .prog-testimonial-attribution {
@@ -2619,11 +2614,6 @@ body.is-home nav.site-nav.is-scrolled {
 
       .prog-testimonial-card--long .prog-testimonial-back {
         padding: 14px;
-      }
-
-      .prog-testimonial-card--long .prog-testimonial-back blockquote p {
-        font-size: 0.7rem;
-        line-height: 1.38;
       }
 
       .prog-testimonial-card--long .prog-testimonial-attribution {
@@ -3411,8 +3401,8 @@ body.is-home nav.site-nav.is-scrolled {
       }
 
       .prog-testimonial-back blockquote p {
-        font-size: 0.92rem;
-        line-height: 1.55;
+        font-size: 0.84rem;
+        line-height: 1.48;
       }
 
       .prog-testimonial-card:nth-child(2) {
@@ -3494,11 +3484,6 @@ body.is-home nav.site-nav.is-scrolled {
         padding: 18px;
       }
 
-      .prog-testimonial-card--dense .prog-testimonial-back blockquote p {
-        font-size: 0.84rem;
-        line-height: 1.48;
-      }
-
       @media (pointer: coarse), (hover: none) {
         .prog-testimonial-card:active {
           transform: scale(0.985);
@@ -3518,7 +3503,7 @@ body.is-home nav.site-nav.is-scrolled {
           padding: 16px;
         }
 
-        .prog-testimonial-card--dense .prog-testimonial-back blockquote p {
+        .prog-testimonial-back blockquote p {
           font-size: 0.82rem;
           line-height: 1.46;
         }
