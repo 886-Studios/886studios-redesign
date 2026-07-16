@@ -40,7 +40,7 @@ interface StructuredDataOptions {
 
 const organizationId = `${siteConfig.url}/#organization`;
 const websiteId = `${siteConfig.url}/#website`;
-const contentModified = "2026-07-10";
+const contentModified = "2026-07-16";
 
 export const pageMeta = {
   home: {
@@ -86,6 +86,11 @@ export const pageMeta = {
     title: "Contact - 886 Studios",
     description:
       "Contact 886 Studios about founder programs, ikigai Launchpad, Launch Station, partnerships, events, or startup community support in Taipei.",
+  },
+  privacy: {
+    title: "Privacy Notice - 886 Studios",
+    description:
+      "Learn how 886 Studios handles information collected through its website, program applications, newsletter subscriptions, analytics, and communications.",
   },
 } as const;
 

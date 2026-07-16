@@ -1,0 +1,14 @@
+---
+import PrivacyPage from "../components/pages/PrivacyPage.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { pageMeta } from "../lib/seo";
+---
+
+<BaseLayout
+  title={pageMeta.privacy.title}
+  description={pageMeta.privacy.description}
+  pageType="WebPage"
+  breadcrumbs={[{ name: "Privacy Notice", path: "/privacy" }]}
+>
+  <PrivacyPage />
+</BaseLayout>

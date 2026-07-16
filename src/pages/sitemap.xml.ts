@@ -4,7 +4,7 @@ import { partnerProfiles } from "../data/partnerProfiles";
 import { portfolioCompanies } from "../data/siteContent";
 import { resourceArticles, standaloneResourceArticles } from "../data/resourceArticles";
 
-const lastModified = "2026-07-10";
+const lastModified = "2026-07-16";
 
 const staticRoutes = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
@@ -15,6 +15,7 @@ const staticRoutes = [
   { path: "/portfolio", priority: "0.7", changefreq: "weekly" },
   { path: "/resources", priority: "0.8", changefreq: "weekly" },
   { path: "/contact", priority: "0.6", changefreq: "monthly" },
+  { path: "/privacy", priority: "0.3", changefreq: "yearly" },
 ];
 
 const profileRoutes = partnerProfiles.map((profile) => ({
