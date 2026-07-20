@@ -8,6 +8,7 @@ import {
   type PortfolioCompany,
 } from "../data/siteContent";
 import type { ResourceArticle } from "../data/resourceArticles";
+import type { LumaEventCard } from "./luma";
 
 export type JsonLdPrimitive = string | number | boolean | null;
 export type JsonLdValue = JsonLdPrimitive | JsonLdObject | JsonLdValue[];
@@ -40,7 +41,6 @@ interface StructuredDataOptions {
 
 const organizationId = `${siteConfig.url}/#organization`;
 const websiteId = `${siteConfig.url}/#website`;
-const contentModified = "2026-07-16";
 
 export const pageMeta = {
   home: {
@@ -48,12 +48,17 @@ export const pageMeta = {
     description: siteConfig.defaultDescription,
   },
   programs: {
-    title: "ikigai Launchpad - 886 Studios",
+    title: "ikigai Launchpad Startup Accelerator | 886 Studios",
     description:
       "ikigai Launchpad is 886 Studios' 10-week, in-person Taipei accelerator with a standard $100K-for-8% SAFE, weekly mentor office hours, and investor access.",
+    ogImage: `${siteConfig.url}/assets/programs/ikigai-audience-theater-1280.webp`,
+    ogImageAlt: "Founders, mentors, and guests gathered for ikigai Launchpad in Taipei",
+    ogImageWidth: 1280,
+    ogImageHeight: 853,
+    ogImageType: "image/webp",
   },
   launchStation: {
-    title: "Launch Station - 886 Studios",
+    title: "Launch Station Founder Coworking | 886 Studios",
     description:
       "Launch Station is 886 Studios' free dedicated desk and founder community program inside Taiwan Tech Arena.",
     ogImage: `${siteConfig.url}/assets/programs/launch-station-community-collage-2026.jpg`,
@@ -63,32 +68,32 @@ export const pageMeta = {
     ogImageType: "image/jpeg",
   },
   about: {
-    title: "About - 886 Studios",
+    title: "About Our Team and Venture Firm | 886 Studios",
     description:
       "886 Studios is built by founders and partners behind Twitch, Kabam, Guitar Hero, Playdom, Orbit Baby, HTC Vive, and other global companies.",
   },
   events: {
-    title: "Events - 886 Studios",
+    title: "Startup Events in Taipei | 886 Studios",
     description:
       "Meet 886 Studios through Taipei founder meetups, workshops, demo days, and community events for early-stage startups.",
   },
   portfolio: {
-    title: "Portfolio - 886 Studios",
+    title: "Startup Portfolio | 886 Studios",
     description:
       "Explore startups backed by 886 Studios and partner-backed companies connected to the 886 Studios founder network.",
   },
   resources: {
-    title: "Resources - 886 Studios",
+    title: "Founder Resources | 886 Studios",
     description:
       "Founder guides from 886 Studios covering accelerator applications, incorporation, Taiwan startup ecosystem resources, interviews, and fundraising advice.",
   },
   contact: {
-    title: "Contact - 886 Studios",
+    title: "Contact | 886 Studios",
     description:
       "Contact 886 Studios about founder programs, ikigai Launchpad, Launch Station, partnerships, events, or startup community support in Taipei.",
   },
   privacy: {
-    title: "Privacy Notice - 886 Studios",
+    title: "Privacy Notice | 886 Studios",
     description:
       "Learn how 886 Studios handles information collected through its website, program applications, newsletter subscriptions, analytics, and communications.",
   },
@@ -97,6 +102,19 @@ export const pageMeta = {
 export function getAbsoluteUrl(value: string) {
   if (/^https?:\/\//i.test(value)) return value;
   return new URL(value, `${siteConfig.url}/`).toString();
+}
+
+export function getImageMimeType(value: string) {
+  const pathname = value.split(/[?#]/, 1)[0]?.toLowerCase() ?? "";
+
+  if (pathname.endsWith(".avif")) return "image/avif";
+  if (pathname.endsWith(".jpg") || pathname.endsWith(".jpeg")) return "image/jpeg";
+  if (pathname.endsWith(".png")) return "image/png";
+  if (pathname.endsWith(".webp")) return "image/webp";
+  if (pathname.endsWith(".gif")) return "image/gif";
+  if (pathname.endsWith(".svg")) return "image/svg+xml";
+
+  return undefined;
 }
 
 export function cleanText(value: string) {
@@ -117,14 +135,25 @@ export function getPortfolioDescription(company: PortfolioCompany) {
 }
 
 export function getProfileDescription(profile: PartnerProfile) {
-  return getMetaDescription(profile.profile.map(profileParagraphToText).join(" "));
+  const profileText = cleanText(profile.profile.map(profileParagraphToText).join(" "));
+  if (profileText) return getMetaDescription(profileText);
+
+  const operatingRole = getOperatingRole(profile.name);
+  const fallback = operatingRole
+    ? `${profile.name} is the ${operatingRole} at 886 Studios in Taipei.`
+    : `${profile.name} is a partner at 886 Studios associated with ${profile.company}.`;
+
+  return getMetaDescription(fallback);
 }
 
 export function getResourceDescription(article: ResourceArticle) {
   const firstSection = article.sections?.[0];
   const firstDirectoryGroup = article.directoryGroups?.[0];
+  const genericPartnerIntro = article.intro?.startsWith("We asked ");
   const candidate =
-    article.intro ??
+    (genericPartnerIntro && firstSection?.title
+      ? `${firstSection.title} Read perspectives from 886 Studios partners.`
+      : article.intro) ??
     firstSection?.paragraphs?.[0] ??
     firstSection?.list?.[0] ??
     firstSection?.cards?.find((card) => card.body)?.body ??
@@ -182,7 +211,7 @@ export function getOrganizationSchema(): JsonLdObject {
     areaServed: ["Taiwan", "Silicon Valley", "Global"],
     knowsAbout: [
       "Startup accelerator",
-      "Venture studio",
+      "Venture capital",
       "Early-stage startups",
       "Founder mentorship",
       "Taiwan startup ecosystem",
@@ -226,20 +255,33 @@ export function getProgramSchema(): JsonLdObject {
       "@type": "Audience",
       audienceType: "Early-stage startup founders",
     },
-    availableLanguage: ["English", "Chinese"],
     description: pageMeta.programs.description,
-    offers: {
-      "@type": "Offer",
-      name: `${launchpad.name} ${launchpad.status.batch}`,
-      description: "Standard $100,000 USD investment for 8% through a SAFE.",
-      availability: "https://schema.org/InStock",
-      validFrom: launchpad.status.applicationOpenDate,
-      url: launchpad.cta.href,
-    },
-    additionalProperty: launchpad.facts.map((fact) => ({
-      "@type": "PropertyValue",
-      name: fact.label,
-      value: fact.note ? `${fact.value} - ${fact.note}` : fact.value,
+    additionalProperty: [
+      {
+        "@type": "PropertyValue",
+        name: "Standard investment terms",
+        value: "$100,000 USD investment for 8% through a SAFE",
+      },
+      ...launchpad.facts.map((fact) => ({
+        "@type": "PropertyValue",
+        name: fact.label,
+        value: fact.note ? `${fact.value}: ${fact.note}` : fact.value,
+      })),
+    ],
+  };
+}
+
+export function getProgramFaqSchema(): JsonLdObject {
+  return {
+    "@type": "FAQPage",
+    "@id": `${siteConfig.url}/programs#faq`,
+    mainEntity: siteContent.programs.launchpad.faqs.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
     })),
   };
 }
@@ -278,7 +320,7 @@ export function getPortfolioItemListSchema() {
 
   return getItemListSchema(
     `${siteConfig.url}/portfolio#portfolio-companies`,
-    "886 Studios portfolio companies",
+    "886 Studios portfolio and partner-backed companies",
     companies.map((company) => ({
       name: company.name,
       url: `${siteConfig.url}/portfolio/${company.slug}`,
@@ -289,6 +331,14 @@ export function getPortfolioItemListSchema() {
 export function getPortfolioCompanySchema(company: PortfolioCompany): JsonLdObject {
   const pageUrl = `${siteConfig.url}/portfolio/${company.slug}`;
   const additionalProperty: JsonLdObject[] = [
+    {
+      "@type": "PropertyValue",
+      name: "Relationship",
+      value:
+        company.relationship === "886-backed"
+          ? "Backed by 886 Studios"
+          : "Backed by an 886 Studios partner",
+    },
     {
       "@type": "PropertyValue",
       name: "Category",
@@ -330,7 +380,7 @@ export function getPortfolioCompanySchema(company: PortfolioCompany): JsonLdObje
       name: founder.name,
       sameAs: [founder.linkedinUrl, founder.xUrl].filter((value): value is string => Boolean(value)),
     })),
-    memberOf: { "@id": organizationId },
+    mainEntityOfPage: { "@id": getPageFragmentId(`/portfolio/${company.slug}`, "webpage") },
     additionalProperty,
   };
 }
@@ -346,19 +396,49 @@ export function getResourcesItemListSchema() {
   );
 }
 
-export function getEventsCollectionSchema(): JsonLdObject {
-  return {
-    "@type": "EventSeries",
-    "@id": `${siteConfig.url}/events#events`,
-    name: "886 Studios events",
-    url: `${siteConfig.url}/events`,
-    description: pageMeta.events.description,
-    organizer: { "@id": organizationId },
-    location: {
-      "@type": "Place",
-      name: "Taipei, Taiwan",
-    },
-  };
+export function getEventsStructuredData(events: LumaEventCard[]): JsonLdObject[] {
+  const eventSchemas = events.flatMap((event) => {
+    if (!event.url) return [];
+
+    const location = event.isOnline
+      ? {
+          "@type": "VirtualLocation",
+          url: event.url,
+        }
+      : event.locationName && event.locationName !== "Location TBD"
+        ? {
+            "@type": "Place",
+            name: event.locationName,
+          }
+        : undefined;
+
+    if (!location) return [];
+
+    const eventId = `${siteConfig.url}/events#event-${event.id.replace(/[^a-zA-Z0-9_-]+/g, "-")}`;
+
+    return [{
+      "@type": "Event",
+      "@id": eventId,
+      name: event.title,
+      startDate: event.startAt,
+      endDate: event.endAt,
+      eventStatus: "https://schema.org/EventScheduled",
+      eventAttendanceMode: event.isOnline
+        ? "https://schema.org/OnlineEventAttendanceMode"
+        : "https://schema.org/OfflineEventAttendanceMode",
+      location,
+      image: event.coverUrl ? [event.coverUrl] : undefined,
+      url: event.url,
+    } satisfies JsonLdObject];
+  });
+
+  const eventList = getItemListSchema(
+    `${siteConfig.url}/events#events`,
+    "886 Studios events",
+    events.map((event) => ({ name: event.title, url: event.url })),
+  );
+
+  return [eventList, ...eventSchemas];
 }
 
 export function getPersonSchema(profile: PartnerProfile): JsonLdObject {
@@ -370,7 +450,7 @@ export function getPersonSchema(profile: PartnerProfile): JsonLdObject {
     name: profile.name,
     url: pageUrl,
     image: getAbsoluteUrl(profile.photo),
-    jobTitle: getOperatingRole(profile.name),
+    jobTitle: getPersonRole(profile.name),
     description: getProfileDescription(profile),
     affiliation: { "@id": organizationId },
     sameAs: profile.socials?.map((link) => link.href),
@@ -418,7 +498,6 @@ export function getResourceArticleSchema(article: ResourceArticle, path: string)
     author: { "@id": organizationId },
     publisher: { "@id": organizationId },
     inLanguage: siteConfig.locale,
-    dateModified: contentModified,
     about: getArticleTopics(article),
   };
 }
@@ -469,7 +548,7 @@ function getWebPageSchema(options: StructuredDataOptions): JsonLdObject {
     inLanguage: siteConfig.locale,
     isPartOf: { "@id": websiteId },
     publisher: { "@id": organizationId },
-    dateModified: contentModified,
+    about: { "@id": organizationId },
     image: options.image
       ? {
           "@type": "ImageObject",
@@ -540,6 +619,11 @@ function getProfileUrl(name: string) {
 
 function getOperatingRole(name: string) {
   return siteContent.about.team.find((person) => person.name === name)?.role;
+}
+
+function getPersonRole(name: string) {
+  return getOperatingRole(name) ??
+    (siteContent.about.partners.some((person) => person.name === name) ? "Partner" : undefined);
 }
 
 function getVisibleRole(name: string) {

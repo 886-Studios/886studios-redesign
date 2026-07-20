@@ -1,0 +1,24 @@
+# 886 Studios
+
+> 886 Studios is a Taipei-based venture firm and startup accelerator helping early-stage founders build global technology companies.
+
+Canonical website: https://www.886studios.com/
+
+## Programs
+
+- [ikigai Launchpad](https://www.886studios.com/programs): A 10-week, in-person startup accelerator in Taipei with $100K USD in funding, weekly mentor office hours, workshops, investor introductions, and founder community support.
+- [Launch Station](https://www.886studios.com/programs/launch-station): A separate founder community program offering a free dedicated desk inside Taiwan Tech Arena.
+
+## Organization
+
+- [About 886 Studios](https://www.886studios.com/about): The operating team, partners, organizational background, and links to official profiles.
+- [Portfolio](https://www.886studios.com/portfolio): Companies backed by 886 Studios and companies backed by 886 Studios partners.
+- [Events](https://www.886studios.com/events): Current and past founder meetups, workshops, demo days, and community events.
+- [Contact](https://www.886studios.com/contact): Contact options for founders, partners, and community members.
+
+## Founder resources
+
+- [Resource library](https://www.886studios.com/resources): Guides covering accelerator applications, incorporation, interviews, fundraising, and the Taiwan startup ecosystem.
+- [Application guide](https://www.886studios.com/resources/application-guide): Preparation guidance for startup accelerator applications.
+- [Interview guidebook](https://www.886studios.com/interview-guidebook): How 886 Studios program interviews work and how founders can prepare.
+- [Taiwan ecosystem database](https://www.886studios.com/resources/ecosystem-database): A directory of startup ecosystem organizations and services in Taiwan.

@@ -84,6 +84,7 @@ const portfolioPreviewItems = portfolioPreviewSlugs
           <a
             class="card-cta home-program-feature-link"
             href={home.programs.featured.ctaHref}
+            aria-label="Learn more about ikigai Launchpad"
             data-analytics-event="program_interest"
             data-analytics-placement="home_program_card"
             data-analytics-label="ikigai_launchpad"
@@ -103,6 +104,7 @@ const portfolioPreviewItems = portfolioPreviewSlugs
               <a
                 class="card-cta"
                 href={item.ctaHref}
+                aria-label={`Learn more about ${item.title}`}
                 data-analytics-event="program_interest"
                 data-analytics-placement="home_program_card"
                 data-analytics-label="launch_station"
@@ -150,12 +152,11 @@ const portfolioPreviewItems = portfolioPreviewSlugs
                     "portfolio-logo-mark",
                     item.logo.imageClass === "is-app-icon" && "portfolio-logo-mark--app-icon",
                   ]}
-                  aria-hidden="true"
                 >
                   <img
                     class:list={["portfolio-logo-image", item.logo.imageClass]}
                     src={item.logo.src}
-                    alt=""
+                    alt={item.logo.alt}
                     width={item.logo.width}
                     height={item.logo.height}
                     loading="lazy"

@@ -1,7 +1,11 @@
 ---
 import EventsPage from "../components/pages/EventsPage.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getEventsCollectionSchema, pageMeta } from "../lib/seo";
+import { getLumaEvents } from "../lib/luma";
+import { getEventsStructuredData, pageMeta } from "../lib/seo";
+
+const lumaEvents = await getLumaEvents();
+const allEvents = [...lumaEvents.upcomingEvents, ...lumaEvents.pastEvents];
 ---
 
 <BaseLayout
@@ -9,7 +13,7 @@ import { getEventsCollectionSchema, pageMeta } from "../lib/seo";
   description={pageMeta.events.description}
   pageType="CollectionPage"
   breadcrumbs={[{ name: "Events", path: "/events" }]}
-  structuredData={getEventsCollectionSchema()}
+  structuredData={getEventsStructuredData(allEvents)}
 >
-  <EventsPage />
+  <EventsPage lumaEvents={lumaEvents} />
 </BaseLayout>

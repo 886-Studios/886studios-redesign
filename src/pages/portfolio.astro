@@ -36,12 +36,11 @@ const alphabeticalPortfolioCompanies = [...portfolioCompanies].sort((a, b) =>
                     "portfolio-logo-mark",
                     item.logo.imageClass === "is-app-icon" && "portfolio-logo-mark--app-icon",
                   ]}
-                  aria-hidden="true"
                 >
                   <img
                     class:list={["portfolio-logo-image", item.logo.imageClass]}
                     src={item.logo.src}
-                    alt=""
+                    alt={item.logo.alt}
                     width={item.logo.width}
                     height={item.logo.height}
                     loading="lazy"

@@ -3,9 +3,9 @@ export const applicationUrl = "https://tally.so/r/w5p4jQ";
 export const siteConfig = {
   name: "886 Studios",
   url: "https://www.886studios.com",
-  defaultTitle: "886 Studios | Startup Accelerator in Taipei",
+  defaultTitle: "886 Studios | Startup Accelerator and Venture Firm in Taipei",
   defaultDescription:
-    "886 Studios backs ambitious early-stage founders in Taipei through ikigai Launchpad, founder mentorship, community, and Silicon Valley operator experience.",
+    "886 Studios is a Taipei-based venture firm and startup accelerator helping ambitious founders build global technology companies through funding, mentorship, and ikigai Launchpad.",
   defaultOgImage: "https://www.886studios.com/assets/hero/sf-tpe-hero.jpg",
   defaultOgImageWidth: 1774,
   defaultOgImageHeight: 887,
@@ -55,7 +55,7 @@ export function normalizePath(pathname: string) {
 
 export function getCanonicalUrl(pathname: string) {
   const currentPath = normalizePath(pathname);
-  return currentPath === "/" ? siteConfig.url : `${siteConfig.url}${currentPath}`;
+  return currentPath === "/" ? `${siteConfig.url}/` : `${siteConfig.url}${currentPath}`;
 }
 
 export function getRouteImagePreloads(pathname: string) {

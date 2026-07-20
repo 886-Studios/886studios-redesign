@@ -530,7 +530,7 @@ export const siteContent = {
     hero: {
       titleLead: "Build what",
       titleAccent: "matters.",
-      body: "886 Studios is where the next generation of global tech companies are built.\nWe run ikigai Launchpad, the premier Silicon Valley-style accelerator in Taipei\nbrought to you by the founders of Twitch, Guitar Hero, Playdom, Kabam, & more.",
+      body: "886 Studios is a Taipei-based venture firm and startup accelerator.\nWe run ikigai Launchpad, a 10-week program for ambitious early-stage founders,\nwith $100K USD in funding, hands-on mentorship, and investor introductions.",
       cta: {
         label: "Learn more about ikigai Launchpad",
         href: "/programs",
@@ -1060,6 +1060,17 @@ export const siteContent = {
             "886 Studios is the venture firm. ikigai Launchpad is the accelerator program that we run.",
         },
         {
+          question: "How is Launch Station different from ikigai Launchpad?",
+          answer:
+            "ikigai Launchpad is 886 Studios' 10-week accelerator with a standard $100,000 USD investment for 8% through a SAFE. Launch Station is a separate community program offering a free dedicated desk and founder network inside Taiwan Tech Arena.",
+          links: [
+            {
+              label: "Explore Launch Station",
+              href: "/programs/launch-station",
+            },
+          ],
+        },
+        {
           question: "What happens after the program ends?",
           answer:
             "Support continues beyond week 10. We provide tailored introductions, resources, and company-building support based on each alumnus’s stage and funding needs, while the founder community remains active beyond the batch.",
@@ -1144,13 +1155,13 @@ export const siteContent = {
         source: "CONNECTED on TaiwanPlus",
         image: {
           src: "/assets/resources/news/kevin-lin-taiwanplus.jpg",
-          alt: "Kevin Lin featured in the TaiwanPlus interview Finding Your Ikigai",
+          alt: "Kevin Lin featured in the TaiwanPlus interview Finding Your ikigai",
           width: 1280,
           height: 720,
         },
       },
       {
-        title: "Silicon Valley Founders Launch Ikigai to Help Taiwanese Startups Go Global",
+        title: "Silicon Valley Founders Launch ikigai to Help Taiwanese Startups Go Global",
         href: "https://meet-global.bnext.com.tw/articles/view/48182",
         source: "Meet Global",
         image: {
@@ -1165,7 +1176,7 @@ export const siteContent = {
         },
       },
       {
-        title: "A look into ikigai — an inside look into the first few weeks of the Summer 2025 batch",
+        title: "A look into ikigai: an inside look into the first few weeks of the Summer 2025 batch",
         href: "https://886studios.substack.com/p/a-look-into-ikigai",
         source: "ikigai Insights",
         image: {
@@ -1328,7 +1339,7 @@ export const siteContent = {
         eyebrow: "Who We Are",
         title: "",
         paragraphs: [
-          "886 Studios is a group of experienced founders dedicated to building and launching startups globally. Our partners include the founders of Twitch, Kabam, RedOctane (creators of Guitar Hero), Playdom, OrbitBaby, HTC Vive, and other successful companies.",
+          "886 Studios is a Taipei-based venture firm and startup accelerator supporting early-stage founders building for global markets. Our partners include the founders of Twitch, Kabam, RedOctane (creators of Guitar Hero), Playdom, OrbitBaby, HTC Vive, and other successful companies.",
           "Our portfolio spans industries and geographies, including Discord, OURA, Crunchyroll, Gogoro, P. LEAGUE+, KKBOX, and more. We back ambitious early-stage founders with a commitment to empowering Taiwan's startup ecosystem.",
           "What makes 886 Studios unique is our ability to combine Silicon Valley experience with deep knowledge of Taiwan's talent and market strengths. Based in Taipei, we serve as a bridge between Taiwan and Silicon Valley.",
         ],
@@ -1338,8 +1349,8 @@ export const siteContent = {
         title: "",
         paragraphs: [
           "Named after Taiwan's international country code, 886 Studios was born with a singular mission: to foster and grow Taiwan's startup ecosystem.",
-          "In our early days, 886 Studios operated as a venture studio. This insight drove us to create the ikigai Launchpad — our startup accelerator designed to propel founders toward global growth.",
-          "Our vision is simple: create an environment where founders can thrive with the right mix of funding, mentorship, resources, and networks. We are not just building companies — we are shaping the future of innovation in Taiwan and beyond.",
+          "In our early days, 886 Studios operated as a venture studio. This insight drove us to create ikigai Launchpad, our startup accelerator designed to propel founders toward global growth.",
+          "Our vision is simple: create an environment where founders can thrive with the right mix of funding, mentorship, resources, and networks. We are not just building companies. We are shaping the future of innovation in Taiwan and beyond.",
         ],
       },
     ],

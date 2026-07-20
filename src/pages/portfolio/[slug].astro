@@ -2,7 +2,11 @@
 import { portfolioCompanies } from "../../data/siteContent";
 import type { PortfolioCompany } from "../../data/siteContent";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getPortfolioCompanySchema, getPortfolioDescription } from "../../lib/seo";
+import {
+  getImageMimeType,
+  getPortfolioCompanySchema,
+  getPortfolioDescription,
+} from "../../lib/seo";
 
 export function getStaticPaths() {
   return portfolioCompanies.map((company) => ({
@@ -12,8 +16,9 @@ export function getStaticPaths() {
 }
 
 const { company } = Astro.props as { company: PortfolioCompany };
-const pageTitle = `${company.name} — 886 Studios Portfolio`;
+const pageTitle = `${company.name} Company Profile | 886 Studios`;
 const pageDescription = getPortfolioDescription(company);
+const socialImage = company.logo.src.endsWith(".svg") ? undefined : company.logo;
 const websiteLink = typeof company.websiteUrl === "string" && company.websiteUrl.length > 0 ? company.websiteUrl : undefined;
 const appStoreBadgeUrl = "https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg";
 const playStoreBadgeUrl =
@@ -80,6 +85,11 @@ function getDescriptionSegments(paragraph: string) {
 <BaseLayout
   title={pageTitle}
   description={pageDescription}
+  ogImage={socialImage?.src}
+  ogImageAlt={socialImage?.alt}
+  ogImageWidth={socialImage?.width}
+  ogImageHeight={socialImage?.height}
+  ogImageType={socialImage ? getImageMimeType(socialImage.src) : undefined}
   pageType="ProfilePage"
   breadcrumbs={[
     { name: "Portfolio", path: "/portfolio" },
@@ -110,12 +120,11 @@ function getDescriptionSegments(paragraph: string) {
               "startup-detail-mark--logo",
               company.logo.imageClass === "is-app-icon" && "portfolio-logo-mark--app-icon",
             ]}
-            aria-hidden="true"
           >
             <img
               class:list={["portfolio-logo-image", company.logo.imageClass]}
               src={company.logo.src}
-              alt=""
+              alt={company.logo.alt}
               width={company.logo.width}
               height={company.logo.height}
               decoding="async"
@@ -168,6 +177,8 @@ function getDescriptionSegments(paragraph: string) {
                           <img
                             src={link.badgeSrc}
                             alt={link.label}
+                            width={link.platform === "app-store" ? "119" : "150"}
+                            height={link.platform === "app-store" ? "40" : "58"}
                             loading="lazy"
                             decoding="async"
                           />
@@ -230,6 +241,14 @@ function getDescriptionSegments(paragraph: string) {
 
       <aside class="startup-detail-sidebar" aria-label={`${company.name} facts`}>
         <dl class="startup-detail-facts">
+          <div>
+            <dt>Relationship</dt>
+            <dd>
+              {company.relationship === "886-backed"
+                ? "Backed by 886 Studios"
+                : "Backed by an 886 Studios partner"}
+            </dd>
+          </div>
           <div>
             <dt>Category</dt>
             <dd>{company.category}</dd>

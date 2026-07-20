@@ -4,8 +4,6 @@ import { partnerProfiles } from "../data/partnerProfiles";
 import { portfolioCompanies } from "../data/siteContent";
 import { resourceArticles, standaloneResourceArticles } from "../data/resourceArticles";
 
-const lastModified = "2026-07-16";
-
 const staticRoutes = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
   { path: "/programs", priority: "0.9", changefreq: "weekly" },
@@ -63,7 +61,7 @@ export const GET: APIRoute = () => {
   const urls = routes
     .map(
       (route) =>
-        `  <url><loc>${escapeXml(getAbsoluteUrl(route.path))}</loc><lastmod>${lastModified}</lastmod><changefreq>${route.changefreq}</changefreq><priority>${route.priority}</priority></url>`
+        `  <url><loc>${escapeXml(getAbsoluteUrl(route.path))}</loc><changefreq>${route.changefreq}</changefreq><priority>${route.priority}</priority></url>`,
     )
     .join("\n");
 

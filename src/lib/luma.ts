@@ -3,11 +3,15 @@ type LumaRecord = Record<string, unknown>;
 export interface LumaEventCard {
   id: string;
   sortAt: string;
+  startAt: string;
+  endAt?: string;
   title: string;
   month: string;
   day: string;
   year: string;
   meta: string;
+  locationName: string;
+  isOnline: boolean;
   coverUrl?: string;
   url?: string;
 }
@@ -28,7 +32,7 @@ export async function getLumaEvents(): Promise<LumaEventsResult> {
   const apiKey = getEnvValue("LUMA_API_KEY");
 
   if (!apiKey) {
-    console.warn("[luma] LUMA_API_KEY is not set — skipping API call.");
+    console.warn("[luma] LUMA_API_KEY is not set, skipping API call.");
 
     return {
       upcomingEvents: [],
@@ -159,12 +163,15 @@ function toEventCard(event: LumaRecord | null): LumaEventCard | null {
   const endAt = getString(event, "end_at");
   const title = getString(event, "name") ?? "Untitled event";
   const location = getLocation(event);
+  const isOnline = isOnlineEvent(event);
   const time = formatTimeRange(start, endAt ? new Date(endAt) : null, timeZone);
   const meta = [time, location].filter(Boolean).join(" | ");
 
   return {
     id: getString(event, "api_id") ?? getString(event, "event_api_id") ?? start.toISOString(),
     sortAt: start.toISOString(),
+    startAt: start.toISOString(),
+    endAt: endAt && !Number.isNaN(new Date(endAt).valueOf()) ? new Date(endAt).toISOString() : undefined,
     title,
     month: new Intl.DateTimeFormat("en-US", {
       month: "short",
@@ -179,6 +186,8 @@ function toEventCard(event: LumaRecord | null): LumaEventCard | null {
       timeZone,
     }).format(start),
     meta,
+    locationName: location,
+    isOnline,
     coverUrl: getCoverUrl(event),
     url: getEventUrl(event),
   };
@@ -194,8 +203,7 @@ function getCoverUrl(event: LumaRecord): string | undefined {
 }
 
 function getLocation(event: LumaRecord): string {
-  const locationType = getString(event, "location_type")?.toLowerCase();
-  if (locationType?.includes("online") || getString(event, "meeting_url")) {
+  if (isOnlineEvent(event)) {
     return "Online";
   }
 
@@ -205,6 +213,11 @@ function getLocation(event: LumaRecord): string {
     getNestedLocation(event, "location");
 
   return location ?? "Location TBD";
+}
+
+function isOnlineEvent(event: LumaRecord) {
+  const locationType = getString(event, "location_type")?.toLowerCase();
+  return Boolean(locationType?.includes("online") || getString(event, "meeting_url"));
 }
 
 function getNestedLocation(event: LumaRecord, key: string): string | undefined {

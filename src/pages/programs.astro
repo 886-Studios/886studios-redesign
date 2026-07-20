@@ -1,14 +1,19 @@
 ---
 import ProgramsPage from "../components/pages/ProgramsPage.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { getProgramSchema, pageMeta } from "../lib/seo";
+import { getProgramFaqSchema, getProgramSchema, pageMeta } from "../lib/seo";
 ---
 
 <BaseLayout
   title={pageMeta.programs.title}
   description={pageMeta.programs.description}
+  ogImage={pageMeta.programs.ogImage}
+  ogImageAlt={pageMeta.programs.ogImageAlt}
+  ogImageWidth={pageMeta.programs.ogImageWidth}
+  ogImageHeight={pageMeta.programs.ogImageHeight}
+  ogImageType={pageMeta.programs.ogImageType}
   breadcrumbs={[{ name: "ikigai Launchpad", path: "/programs" }]}
-  structuredData={getProgramSchema()}
+  structuredData={[getProgramSchema(), getProgramFaqSchema()]}
 >
   <ProgramsPage />
 </BaseLayout>

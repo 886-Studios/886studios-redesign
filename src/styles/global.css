@@ -630,7 +630,7 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 /* ===========================
-       HOME — HERO
+       HOME: HERO
     =========================== */
 .hero {
   position: relative;
@@ -1263,7 +1263,7 @@ body.is-home nav.site-nav.is-scrolled {
   white-space: nowrap;
 }
 .home-program-feature-meta span::before {
-  content: "— ";
+  content: "• ";
   color: var(--text-muted);
 }
 

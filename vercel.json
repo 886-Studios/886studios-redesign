@@ -1,5 +1,17 @@
 {
+  "trailingSlash": false,
   "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "886studios.com"
+        }
+      ],
+      "destination": "https://www.886studios.com/:path*",
+      "permanent": true
+    },
     {
       "source": "/(.*)",
       "has": [
@@ -173,9 +185,19 @@
       "permanent": true
     },
     {
+      "source": "/apply",
+      "destination": "https://tally.so/r/w5p4jQ",
+      "permanent": false
+    },
+    {
+      "source": "/apply/",
+      "destination": "https://tally.so/r/w5p4jQ",
+      "permanent": false
+    },
+    {
       "source": "/apply-now/:path*",
-      "destination": "/apply",
-      "permanent": true
+      "destination": "https://tally.so/r/w5p4jQ",
+      "permanent": false
     },
     {
       "source": "/:slug(choosing-the-right-co-founder|dos-and-donts|encouraging-leadership|engagement-during-fundraising|finding-a-co-founder|leadership-in-funding-rounds|lessons-learned|negotiating-with-lead-investors|the-role-of-expertise|warm-introductions)/:path*",

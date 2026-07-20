@@ -982,7 +982,7 @@ export const resourceArticles: ResourceArticle[] = [
           {
             title: "Charles Huang",
             meta: "Co-founder of RedOctane",
-            body: "I started 3 companies with my brother. I started 2 companies with former co-workers. I started 1 company by myself. I started 1 company with a high school classmate. Based on that set of experiences, I highly recommend you have a co-founder. I prefer someone I have known for years. It eliminates a few risks: 1. Chemistry risk — we can work with each other. 2. Skills fit risk — we know what each person can do.",
+            body: "I started 3 companies with my brother. I started 2 companies with former co-workers. I started 1 company by myself. I started 1 company with a high school classmate. Based on that set of experiences, I highly recommend you have a co-founder. I prefer someone I have known for years. It eliminates a few risks: 1. Chemistry risk: we can work with each other. 2. Skills fit risk: we know what each person can do.",
           },
           {
             title: "Kai Huang",
@@ -1056,7 +1056,7 @@ export const resourceArticles: ResourceArticle[] = [
           {
             title: "Joseph Hei",
             meta: "Co-founder of OrbitBaby",
-            body: 'One comment here is that if you\'re truly "co" founders, then they are choosing you as much as you are choosing them. Otherwise you\'re just hiring them. An underrated quality I think co-founders need is the attitude that they are trying to build on your ideas and efforts, and vice versa — not trying to find holes or blockers in what you\'re doing. I think startup co-founders need to have an everyday "yes, and…" approach, and fundamentally be optimistic that things can be done.',
+            body: 'One comment here is that if you\'re truly "co" founders, then they are choosing you as much as you are choosing them. Otherwise you\'re just hiring them. An underrated quality I think co-founders need is the attitude that they are trying to build on your ideas and efforts, and vice versa, not trying to find holes or blockers in what you\'re doing. I think startup co-founders need to have an everyday "yes, and…" approach, and fundamentally be optimistic that things can be done.',
           },
         ],
       },
@@ -1088,7 +1088,7 @@ export const resourceArticles: ResourceArticle[] = [
           {
             title: "Joseph Hei",
             meta: "Co-founder of OrbitBaby",
-            body: "Starting Orbit Baby with my wife would probably be the more dramatic and interesting story. I think what made it work is that we had some good boundaries and rules — for example, a rule of not talking about the business during or after dinner. We also tried to carve out different business responsibilities. It was a good lesson in general: if you're really building something with people, you need to trust them and let them do their thing. It's such a common problem for leaders to want to micro manage, and because it definitely does not work to attempt to micro manage your wife, you end up realizing it's a good lesson in how to work with your co-founders in general.",
+            body: "Starting Orbit Baby with my wife would probably be the more dramatic and interesting story. I think what made it work is that we had some good boundaries and rules, for example, a rule of not talking about the business during or after dinner. We also tried to carve out different business responsibilities. It was a good lesson in general: if you're really building something with people, you need to trust them and let them do their thing. It's such a common problem for leaders to want to micro manage, and because it definitely does not work to attempt to micro manage your wife, you end up realizing it's a good lesson in how to work with your co-founders in general.",
           },
         ],
       },
@@ -1218,7 +1218,7 @@ export const resourceArticles: ResourceArticle[] = [
           {
             title: "James Hong",
             meta: "Co-Founder of HOTorNOT",
-            body: "Never ask for an introduction — ask if someone would be willing to forward something like an email. Then provide the introducer with an email they can forward that explains what you are doing and why you are trying to make contact with the target person. That person can then just forward the email and ask if they'd be interested in an introduction. Basically the person making the introduction needs to make sure it's ok with the other person first, so make it as easy as possible for them to do that step.",
+            body: "Never ask for an introduction. Ask if someone would be willing to forward something like an email. Then provide the introducer with an email they can forward that explains what you are doing and why you are trying to make contact with the target person. That person can then just forward the email and ask if they'd be interested in an introduction. Basically the person making the introduction needs to make sure it's ok with the other person first, so make it as easy as possible for them to do that step.",
           },
         ],
       },
@@ -1240,7 +1240,7 @@ export const resourceArticles: ResourceArticle[] = [
           {
             title: "James Hong",
             meta: "Co-Founder of HOTorNOT",
-            body: "The best time to network is when you don't actually want anything from someone (you are not trying to pitch them). It's almost always best to meet people under some other context where you don't have any objective. The best way to grow your network is to offer your network to other people. Connecting someone to someone else where they both benefit from the introduction makes your own network stronger and increases the chance you can grow it as well. The secret to networking is to primarily give, not take. But you have to do so with discretion too — never make an introduction that won't benefit both parties involved.",
+            body: "The best time to network is when you don't actually want anything from someone (you are not trying to pitch them). It's almost always best to meet people under some other context where you don't have any objective. The best way to grow your network is to offer your network to other people. Connecting someone to someone else where they both benefit from the introduction makes your own network stronger and increases the chance you can grow it as well. The secret to networking is to primarily give, not take. But you have to do so with discretion too. Never make an introduction that won't benefit both parties involved.",
           },
         ],
       },
@@ -1437,7 +1437,7 @@ export const standaloneResourceArticles: ResourceArticle[] = [
           "When have you pivoted and why?",
           "What stage of the process are you in? What does your timeline look like?",
           "How do you plan to scale your product? Who is your target audience?",
-          "What do you hope to gain out of our program? What makes Ikigai a good fit for you?",
+          "What do you hope to gain out of our program? What makes ikigai a good fit for you?",
         ],
       },
       {

@@ -2,11 +2,10 @@
 import EventCard from "../EventCard.astro";
 import PageHero from "../PageHero.astro";
 import { siteContent } from "../../data/siteContent";
-import { getLumaEvents } from "../../lib/luma";
-import type { LumaEventCard } from "../../lib/luma";
+import type { LumaEventCard, LumaEventsResult } from "../../lib/luma";
 
 const { events } = siteContent;
-const lumaEvents = await getLumaEvents();
+const { lumaEvents } = Astro.props as { lumaEvents: LumaEventsResult };
 
 function groupEventsByYear(items: LumaEventCard[]) {
   return items.reduce<Array<{ year: string; events: LumaEventCard[] }>>((groups, item) => {

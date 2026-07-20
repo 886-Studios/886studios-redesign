@@ -37,7 +37,7 @@ export const partnerProfiles: PartnerProfile[] = [
     profile: [
       `Freya Wu is passionate about startups, talent development, and storytelling. She is the General Manager at 886 Studios, where she helps early-stage founders turn ideas into global companies through investment, mentorship, and community.`,
       `Previously, she served as Startup Development Director at Taiwan Startup Stadium, where she mentored early-stage startups, supported their global market expansion, and helped build one of Taiwan’s most active founder communities.`,
-      `Freya believes in nurturing the entrepreneurial spirit — not just in business, but as a mindset for navigating life with curiosity and courage.`,
+      `Freya believes in nurturing the entrepreneurial spirit, not just in business, but as a mindset for navigating life with curiosity and courage.`,
       [
         `Beyond her professional work, Freya is also a dedicated career coach, helping young professionals discover confidence, self-worth, and direction in their career paths. In her free time, she hosts the podcast `,
         { text: `On the Road`, href: "https://open.firstory.me/user/otr/platforms" },

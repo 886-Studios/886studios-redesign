@@ -14,16 +14,18 @@ export function getStaticPaths() {
 
 const { profile } = Astro.props as { profile: PartnerProfile };
 const profileDescription = getProfileDescription(profile);
+const profileImageSize = profile.slug === "patryk-chojecki" ? 931 : 400;
 ---
 
 <BaseLayout
-  title={`${profile.name} — 886 Studios Profile`}
+  title={`${profile.name} | 886 Studios`}
   description={profileDescription}
   ogImage={getAbsoluteUrl(profile.photo)}
   ogImageAlt={`${profile.name}, ${profile.company}`}
-  ogImageWidth={400}
-  ogImageHeight={400}
+  ogImageWidth={profileImageSize}
+  ogImageHeight={profileImageSize}
   ogImageType="image/webp"
+  ogType="profile"
   pageType="ProfilePage"
   breadcrumbs={[
     { name: "About", path: "/about" },
