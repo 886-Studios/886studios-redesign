@@ -30,9 +30,11 @@ npm run dev
 Before handing work back or opening a PR, run:
 
 ```bash
-npm run check
-npm run build
+npm run validate
 ```
+
+This runs Astro and TypeScript diagnostics, creates the production build, and checks the
+generated site for SEO regressions. A successful run ends with `SEO validation passed`.
 
 To inspect the production build locally:
 
@@ -50,19 +52,30 @@ Use the URL printed by Astro.
 | `npm run dev` | Start the local Astro dev server. |
 | `npm run check` | Run Astro diagnostics and TypeScript checks. |
 | `npm run build` | Build all static routes into `dist/`. |
+| `npm run check:seo` | Validate metadata, schema, links, images, robots, and sitemap parity in an existing `dist/` build. |
+| `npm run validate` | Run diagnostics, build the site, and run the SEO regression suite. |
 | `npm run preview` | Serve the latest `dist/` build locally. |
+| `npm run indexnow:dry-run` | Inspect the generated IndexNow submission without sending it. |
+| `npm run indexnow` | Submit generated or explicitly provided production URLs to IndexNow. |
 
 Use `npm install <package>` only when intentionally changing dependencies. For normal setup and CI-style installs, use `npm ci` so `package-lock.json` is respected exactly.
 
 ## Environment
 
-`.env.example` contains the only local environment variable currently used:
+Copy `.env.example` to `.env` for local configuration. Every supported variable is optional:
 
 ```bash
 LUMA_API_KEY=
+GOOGLE_SITE_VERIFICATION=
+BING_SITE_VERIFICATION=
+YANDEX_SITE_VERIFICATION=
+BAIDU_SITE_VERIFICATION=
 ```
 
 `LUMA_API_KEY` is optional. Without it, the Events page renders the configured fallback state. With it, `npm run build` fetches approved Luma events through `src/lib/luma.ts`. If the key is missing, invalid, or the Luma API request fails, the site should still build successfully with fallback Events copy.
+
+The four site-verification variables emit ownership meta tags when they are set. They are
+normally configured in Vercel for production verification and are not needed for local work.
 
 Do not commit `.env`, `.env.local`, or any `.env.*.local` file. These files are ignored by git and should hold local or deployment secrets only.
 
@@ -76,6 +89,7 @@ The production site exposes:
 
 - `https://www.886studios.com/robots.txt`
 - `https://www.886studios.com/sitemap.xml`
+- `https://www.886studios.com/llms.txt`
 - `https://www.886studios.com/indexnow-key.txt`
 
 After the initial production deployment or a site-wide content refresh, notify
@@ -122,7 +136,8 @@ The site is a static Astro build deployed on Vercel.
 - Canonical site URL: `https://www.886studios.com`
 - Redirects and security headers: `vercel.json`
 - Required production env vars: none
-- Optional production env vars: `LUMA_API_KEY`
+- Optional production env vars: `LUMA_API_KEY` and the four search-engine verification tokens listed above
+- Production branch: pushes to `main` deploy through the connected Vercel project
 
 If `LUMA_API_KEY` is present in production, the Events page is generated from approved Luma events at build time. If it is absent or the API request fails, the build still completes and the page renders fallback copy.
 
@@ -133,6 +148,8 @@ If `LUMA_API_KEY` is present in production, the Events page is generated from ap
 - If `npm run build` logs a Luma warning, check the API key and network access. The page should still render a fallback state.
 - If `npm run dev` is already using port `4173`, use the alternate URL printed by Astro or stop the existing process.
 - If `npm run preview` serves stale output, run `npm run build` first.
+- If `npm run check:seo` says `dist` is missing, run `npm run build` first or use `npm run validate`.
+- If `npm run check:seo` reports sitemap parity errors, ensure every indexable page has one self-referencing canonical and that `src/pages/sitemap.xml.ts` contains the same route set.
 - If a changed image still looks stale in the browser, confirm the asset URL changed or clear the browser/CDN cache. Public assets are served by stable paths unless renamed.
 - Do not edit generated files in `dist/`; source changes belong under `src/`.
 - Keep screenshots, traces, `.env` files, and OS metadata out of the repo.
@@ -158,14 +175,18 @@ src/
     BaseLayout.astro            document shell, metadata, global chrome
   lib/
     luma.ts                     Luma API adapter and event-card normalization
+    seo.ts                      metadata content and reusable JSON-LD helpers
     urls.ts                     shared safe-link helpers for data-driven links
-  pages/                        Astro route entrypoints
+  pages/                        Astro route entrypoints and generated sitemap
   scripts/
     site.ts                     global browser behavior
     home.ts                     homepage-only browser behavior
   styles/
     global.css                  visual system and page styles
 public/                         static assets
+scripts/
+  check-seo.mjs                 generated-site SEO regression checks
+  submit-indexnow.mjs           IndexNow URL submission utility
 vercel.json                     redirects and production security headers
 ```
 
@@ -181,7 +202,7 @@ Use this path for most changes:
 4. Edit metadata, canonical behavior, analytics IDs, or preloads in `src/config/site.ts`.
 5. Edit shared chrome in `SiteNav.astro`, `SiteFooter.astro`, or `BaseLayout.astro`.
 6. Edit browser behavior in `src/scripts/`, not inline in page markup.
-7. Run `npm run check` and `npm run build`.
+7. Run `npm run validate`.
 8. For visual or interaction changes, start `npm run dev` and live-test the affected route.
 
 Commit small, reviewed slices.
@@ -207,6 +228,7 @@ When working from this tracker, fetch the database first to confirm the current 
 - About page team and partner lists: `siteContent.about`
 - Events labels/fallback copy: `siteContent.events`
 - Contact page form labels: `siteContent.contact`
+- Page titles, descriptions, and structured data: `src/lib/seo.ts`
 - Long-form resource pages: `src/data/resourceArticles.ts`
 - Partner detail pages: `src/data/partnerProfiles.ts`
 
@@ -223,9 +245,13 @@ Current visual direction: dark 886 language, restrained purple accents, real fou
 For routine changes:
 
 ```bash
-npm run check
-npm run build
+npm run validate
 ```
+
+`npm run check:seo` reads generated files from `dist/`, so do not run it before the first
+build. The regression suite checks titles, descriptions, canonicals, Open Graph and Twitter
+metadata, JSON-LD parsing, internal links, image attributes, labels, `robots.txt`, `llms.txt`,
+the sitemap, and production URL safety.
 
 For local performance checks, build and serve the production output first:
 
