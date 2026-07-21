@@ -48,7 +48,7 @@ const {
   ogImageHeight = siteConfig.defaultOgImageHeight,
   ogImageType,
   ogType = "website",
-  robots = "index, follow",
+  robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
   pageType = "WebPage",
   breadcrumbs,
   structuredData,
@@ -59,7 +59,7 @@ const {
 const currentPath = normalizePath(Astro.url.pathname);
 const isPortfolioProfilePage = currentPath.startsWith("/portfolio/");
 const canonicalUrl = canonical === false ? undefined : canonical ?? getCanonicalUrl(currentPath);
-const showSocialPreview = Boolean(canonicalUrl);
+const showSocialPreview = Boolean(canonicalUrl) && !/\bnoindex\b/i.test(robots);
 const showSocialPreviewImage = showSocialPreview && Boolean(ogImage);
 const absoluteOgImage = showSocialPreviewImage ? getAbsoluteUrl(ogImage) : undefined;
 const resolvedOgImageType = ogImageType ?? getImageMimeType(ogImage) ?? siteConfig.defaultOgImageType;
@@ -128,6 +128,7 @@ const structuredDataJson = canonicalUrl
             absoluteOgImage && (
               <>
                 <meta property="og:image" content={absoluteOgImage} />
+                <meta property="og:image:url" content={absoluteOgImage} />
                 <meta property="og:image:secure_url" content={absoluteOgImage} />
                 <meta property="og:image:type" content={resolvedOgImageType} />
                 <meta property="og:image:width" content={String(ogImageWidth)} />
@@ -141,6 +142,7 @@ const structuredDataJson = canonicalUrl
           <meta name="twitter:card" content={absoluteOgImage ? twitterCard : "summary"} />
           <meta name="twitter:site" content={siteConfig.twitterSite} />
           <meta name="twitter:domain" content="886studios.com" />
+          <meta name="twitter:url" content={canonicalUrl} />
           <meta name="twitter:title" content={title} />
           <meta name="twitter:description" content={description} />
           {

@@ -48,7 +48,7 @@ export const pageMeta = {
     description: siteConfig.defaultDescription,
   },
   programs: {
-    title: "ikigai Launchpad Startup Accelerator | 886 Studios",
+    title: "ikigai Launchpad Taipei Accelerator | 886 Studios",
     description:
       "ikigai Launchpad is 886 Studios' 10-week, in-person Taipei accelerator with a standard $100K-for-8% SAFE, weekly mentor office hours, and investor access.",
     ogImage: `${siteConfig.url}/assets/programs/ikigai-audience-theater-1280.webp`,
@@ -58,7 +58,7 @@ export const pageMeta = {
     ogImageType: "image/webp",
   },
   launchStation: {
-    title: "Launch Station Founder Coworking | 886 Studios",
+    title: "Launch Station Founder Coworking in Taipei | 886 Studios",
     description:
       "Launch Station is 886 Studios' free dedicated desk and founder community program inside Taiwan Tech Arena.",
     ogImage: `${siteConfig.url}/assets/programs/launch-station-community-collage-2026.jpg`,
@@ -83,7 +83,7 @@ export const pageMeta = {
       "Explore startups backed by 886 Studios and partner-backed companies connected to the 886 Studios founder network.",
   },
   resources: {
-    title: "Founder Resources | 886 Studios",
+    title: "Startup Resources for Founders | 886 Studios",
     description:
       "Founder guides from 886 Studios covering accelerator applications, incorporation, Taiwan startup ecosystem resources, interviews, and fundraising advice.",
   },
@@ -163,6 +163,19 @@ export function getResourceDescription(article: ResourceArticle) {
   return getMetaDescription(`${article.title}: ${candidate}`);
 }
 
+export function getResourcePageTitle(article: ResourceArticle) {
+  const optimizedTitles: Record<string, string> = {
+    "y-combinator-101": "Y Combinator (YC) Application Guide | 886 Studios",
+    "application-guide": "Startup Accelerator Application Guide | 886 Studios",
+    "ecosystem-database": "Taiwan Startup Ecosystem Database | 886 Studios",
+    "founders-frequently-asked-questions": "Startup Founder FAQs | 886 Studios",
+    "incorporation-101": "Startup Incorporation Guide | 886 Studios",
+    "interview-guidebook": "Startup Accelerator Interview Guide | 886 Studios",
+  };
+
+  return optimizedTitles[article.slug] ?? `${article.title} | 886 Studios`;
+}
+
 export function getStructuredDataGraph(options: StructuredDataOptions) {
   const graph: JsonLdObject[] = [
     getOrganizationSchema(),
@@ -210,8 +223,10 @@ export function getOrganizationSchema(): JsonLdObject {
     },
     areaServed: ["Taiwan", "Silicon Valley", "Global"],
     knowsAbout: [
-      "Startup accelerator",
+      "Startup accelerator in Taipei",
       "Venture capital",
+      "Early-stage startup funding in Taiwan",
+      "Global startup founders",
       "Early-stage startups",
       "Founder mentorship",
       "Taiwan startup ecosystem",
@@ -221,6 +236,13 @@ export function getOrganizationSchema(): JsonLdObject {
       "@type": "ContactPoint",
       contactType: "Founder and partnership inquiries",
       url: `${siteConfig.url}/contact`,
+      availableLanguage: "English",
+    },
+    brand: {
+      "@type": "Brand",
+      "@id": `${siteConfig.url}/programs#ikigai-brand`,
+      name: "ikigai Launchpad",
+      url: `${siteConfig.url}/programs`,
     },
   };
 }
@@ -234,18 +256,22 @@ export function getWebsiteSchema(): JsonLdObject {
     description: siteConfig.defaultDescription,
     inLanguage: siteConfig.locale,
     publisher: { "@id": organizationId },
+    copyrightHolder: { "@id": organizationId },
   };
 }
 
 export function getProgramSchema(): JsonLdObject {
   const { launchpad } = siteContent.programs;
+  const programUrl = `${siteConfig.url}/programs`;
 
   return {
     "@type": "Service",
     "@id": `${siteConfig.url}/programs#ikigai-launchpad`,
     name: launchpad.name,
     serviceType: "Startup accelerator",
-    url: `${siteConfig.url}/programs`,
+    category: "Early-stage startup accelerator program",
+    url: programUrl,
+    mainEntityOfPage: { "@id": getPageFragmentId("/programs", "webpage") },
     provider: { "@id": organizationId },
     areaServed: {
       "@type": "Place",
@@ -253,9 +279,42 @@ export function getProgramSchema(): JsonLdObject {
     },
     audience: {
       "@type": "Audience",
-      audienceType: "Early-stage startup founders",
+      audienceType: "Early-stage startup founders from Taiwan and around the world",
     },
+    image: {
+      "@type": "ImageObject",
+      url: pageMeta.programs.ogImage,
+      width: pageMeta.programs.ogImageWidth,
+      height: pageMeta.programs.ogImageHeight,
+      caption: pageMeta.programs.ogImageAlt,
+    },
+    brand: { "@id": `${siteConfig.url}/programs#ikigai-brand` },
+    sameAs: socialLinks
+      .filter((link) => ["instagram", "threads"].includes(link.platform))
+      .map((link) => link.href),
     description: pageMeta.programs.description,
+    availableChannel: {
+      "@type": "ServiceChannel",
+      serviceUrl: programUrl,
+      availableLanguage: "English",
+      serviceLocation: {
+        "@type": "Place",
+        name: "Taipei, Taiwan",
+      },
+    },
+    potentialAction: {
+      "@type": "ApplyAction",
+      name: launchpad.cta.label,
+      object: { "@id": `${siteConfig.url}/programs#ikigai-launchpad` },
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: launchpad.cta.href,
+        actionPlatform: [
+          "https://schema.org/DesktopWebPlatform",
+          "https://schema.org/MobileWebPlatform",
+        ],
+      },
+    },
     additionalProperty: [
       {
         "@type": "PropertyValue",
@@ -275,12 +334,13 @@ export function getProgramFaqSchema(): JsonLdObject {
   return {
     "@type": "FAQPage",
     "@id": `${siteConfig.url}/programs#faq`,
-    mainEntity: siteContent.programs.launchpad.faqs.map((item) => ({
+    url: `${siteConfig.url}/programs#faq`,
+    mainEntity: siteContent.programs.launchpad.faqs.map((faq) => ({
       "@type": "Question",
-      name: item.question,
+      name: faq.question,
       acceptedAnswer: {
         "@type": "Answer",
-        text: item.answer,
+        text: faq.answer,
       },
     })),
   };
@@ -295,6 +355,7 @@ export function getLaunchStationSchema(): JsonLdObject {
     name: launchStation.title,
     serviceType: "Founder coworking and community program",
     url: `${siteConfig.url}/programs/launch-station`,
+    mainEntityOfPage: { "@id": getPageFragmentId("/programs/launch-station", "webpage") },
     provider: { "@id": organizationId },
     areaServed: {
       "@type": "Place",
@@ -367,6 +428,8 @@ export function getPortfolioCompanySchema(company: PortfolioCompany): JsonLdObje
     "@id": `${pageUrl}#portfolio-company`,
     name: company.name,
     url: company.websiteUrl,
+    mainEntityOfPage: { "@id": getPageFragmentId(`/portfolio/${company.slug}`, "webpage") },
+    sameAs: company.websiteUrl ? [company.websiteUrl] : undefined,
     description: getPortfolioDescription(company),
     logo: {
       "@type": "ImageObject",
@@ -380,7 +443,6 @@ export function getPortfolioCompanySchema(company: PortfolioCompany): JsonLdObje
       name: founder.name,
       sameAs: [founder.linkedinUrl, founder.xUrl].filter((value): value is string => Boolean(value)),
     })),
-    mainEntityOfPage: { "@id": getPageFragmentId(`/portfolio/${company.slug}`, "webpage") },
     additionalProperty,
   };
 }
@@ -449,6 +511,7 @@ export function getPersonSchema(profile: PartnerProfile): JsonLdObject {
     "@id": `${pageUrl}#person`,
     name: profile.name,
     url: pageUrl,
+    mainEntityOfPage: { "@id": getPageFragmentId(`/about/${profile.slug}`, "webpage") },
     image: getAbsoluteUrl(profile.photo),
     jobTitle: getPersonRole(profile.name),
     description: getProfileDescription(profile),
@@ -494,9 +557,11 @@ export function getResourceArticleSchema(article: ResourceArticle, path: string)
     headline: article.title,
     description,
     url: canonicalUrl,
-    mainEntityOfPage: canonicalUrl,
+    mainEntityOfPage: { "@id": getPageFragmentId(path, "webpage") },
     author: { "@id": organizationId },
     publisher: { "@id": organizationId },
+    isPartOf: { "@id": websiteId },
+    isAccessibleForFree: true,
     inLanguage: siteConfig.locale,
     about: getArticleTopics(article),
   };
@@ -538,6 +603,17 @@ export function getResourceFaqSchema(article: ResourceArticle, path: string): Js
 
 function getWebPageSchema(options: StructuredDataOptions): JsonLdObject {
   const canonicalUrl = getCanonicalUrl(options.path);
+  const primaryImage = options.image
+    ? {
+        "@type": "ImageObject",
+        "@id": getPageFragmentId(options.path, "primaryimage"),
+        url: getAbsoluteUrl(options.image.url),
+        contentUrl: getAbsoluteUrl(options.image.url),
+        caption: options.image.alt,
+        width: options.image.width,
+        height: options.image.height,
+      }
+    : undefined;
 
   return {
     "@type": options.pageType ?? "WebPage",
@@ -549,15 +625,9 @@ function getWebPageSchema(options: StructuredDataOptions): JsonLdObject {
     isPartOf: { "@id": websiteId },
     publisher: { "@id": organizationId },
     about: { "@id": organizationId },
-    image: options.image
-      ? {
-          "@type": "ImageObject",
-          url: getAbsoluteUrl(options.image.url),
-          caption: options.image.alt,
-          width: options.image.width,
-          height: options.image.height,
-        }
-      : undefined,
+    isAccessibleForFree: true,
+    image: primaryImage,
+    primaryImageOfPage: primaryImage,
     breadcrumb: options.breadcrumbs?.length
       ? { "@id": getPageFragmentId(options.path, "breadcrumb") }
       : undefined,

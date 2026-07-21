@@ -20,5 +20,13 @@ Canonical website: https://www.886studios.com/
 
 - [Resource library](https://www.886studios.com/resources): Guides covering accelerator applications, incorporation, interviews, fundraising, and the Taiwan startup ecosystem.
 - [Application guide](https://www.886studios.com/resources/application-guide): Preparation guidance for startup accelerator applications.
+- [Y Combinator (YC) application guide](https://www.886studios.com/resources/y-combinator-101): A founder-focused guide to YC applications, interviews, and accelerator preparation.
 - [Interview guidebook](https://www.886studios.com/interview-guidebook): How 886 Studios program interviews work and how founders can prepare.
 - [Taiwan ecosystem database](https://www.886studios.com/resources/ecosystem-database): A directory of startup ecosystem organizations and services in Taiwan.
+
+## Official profiles
+
+- [LinkedIn](https://www.linkedin.com/company/886studios/)
+- [X](https://x.com/886Studios)
+- [Instagram](https://www.instagram.com/ikigai_launchpad/)
+- [Threads](https://www.threads.net/@ikigai_launchpad)

@@ -305,9 +305,31 @@ if (!/^User-agent: \*$/m.test(robots)) fail("robots.txt: missing the general use
 if (!/^Allow: \/$/m.test(robots)) fail("robots.txt: public crawling is not explicitly allowed");
 if (!/^Sitemap: https:\/\/www\.886studios\.com\/sitemap\.xml$/m.test(robots)) fail("robots.txt: missing the production sitemap directive");
 
+for (const crawler of [
+  "OAI-SearchBot",
+  "PerplexityBot",
+  "Perplexity-User",
+  "Claude-SearchBot",
+  "Claude-User",
+  "GPTBot",
+  "ClaudeBot",
+  "Google-Extended",
+]) {
+  const escapedCrawler = crawler.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  if (!new RegExp(`^User-agent: ${escapedCrawler}\\nAllow: \\/$`, "m").test(robots)) {
+    fail(`robots.txt: ${crawler} is not explicitly allowed`);
+  }
+}
+
 const llms = await readFile(path.join(distRoot, "llms.txt"), "utf8");
 if (!llms.startsWith("# 886 Studios")) fail("llms.txt: missing the organization heading");
 if (/http:\/\/|localhost|\.vercel\.app/i.test(llms)) fail("llms.txt: contains a non-production URL");
+for (const requiredSection of ["## Programs", "## Organization", "## Founder resources", "## Official profiles"]) {
+  if (!llms.includes(requiredSection)) fail(`llms.txt: missing ${requiredSection}`);
+}
+if (!llms.includes("https://www.886studios.com/resources/y-combinator-101")) {
+  fail("llms.txt: missing the Y Combinator founder resource");
+}
 
 const deploymentConfig = JSON.parse(await readFile(path.join(projectRoot, "vercel.json"), "utf8"));
 const redirects = Array.isArray(deploymentConfig.redirects) ? deploymentConfig.redirects : [];

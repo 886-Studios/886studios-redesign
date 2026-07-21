@@ -6,6 +6,7 @@ import {
   getResourceArticleSchema,
   getResourceDescription,
   getResourceFaqSchema,
+  getResourcePageTitle,
 } from "../lib/seo";
 
 const article = standaloneResourceArticles.find((item) => item.slug === "interview-guidebook");
@@ -19,7 +20,7 @@ const faqSchema = getResourceFaqSchema(article, pagePath);
 ---
 
 <BaseLayout
-  title="Interview Guidebook | 886 Studios"
+  title={getResourcePageTitle(article)}
   description={getResourceDescription(article)}
   ogType="article"
   breadcrumbs={[
