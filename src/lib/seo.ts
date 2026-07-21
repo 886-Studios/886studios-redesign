@@ -51,11 +51,12 @@ export const pageMeta = {
     title: "ikigai Launchpad Taipei Accelerator | 886 Studios",
     description:
       "ikigai Launchpad is 886 Studios' 10-week, in-person Taipei accelerator with a standard $100K-for-8% SAFE, weekly mentor office hours, and investor access.",
-    ogImage: `${siteConfig.url}/assets/programs/ikigai-audience-theater-1280.webp`,
-    ogImageAlt: "Founders, mentors, and guests gathered for ikigai Launchpad in Taipei",
-    ogImageWidth: 1280,
-    ogImageHeight: 853,
-    ogImageType: "image/webp",
+    ogImage: `${siteConfig.url}/assets/programs/ikigai-launchpad-fall-2026-applications-open.png`,
+    ogImageAlt:
+      "ikigai Launchpad Fall 2026 applications are open: $100K, 10 weeks, Taipei",
+    ogImageWidth: 1254,
+    ogImageHeight: 1254,
+    ogImageType: "image/png",
   },
   launchStation: {
     title: "Launch Station Founder Coworking in Taipei | 886 Studios",
