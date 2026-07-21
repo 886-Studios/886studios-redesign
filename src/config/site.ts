@@ -25,6 +25,11 @@ export interface SearchEngineVerification {
   baidu?: string;
 }
 
+// Search verification tokens are public by design. Keep the production Google
+// token as a fallback so ownership survives deployments from environments that
+// do not share the locally linked Vercel project's variables.
+const googleSiteVerificationFallback = "YIlkZaBUMZkiKjEm8Ph2VZhitwzzs1zxCCQv97WduDg";
+
 interface RouteImagePreload {
   href: string;
   type?: string;
@@ -70,7 +75,7 @@ export function getSearchEngineVerification(): SearchEngineVerification {
   const getToken = (value: string | undefined) => value?.trim() || undefined;
 
   return {
-    google: getToken(import.meta.env.GOOGLE_SITE_VERIFICATION),
+    google: getToken(import.meta.env.GOOGLE_SITE_VERIFICATION) ?? googleSiteVerificationFallback,
     bing: getToken(import.meta.env.BING_SITE_VERIFICATION),
     yandex: getToken(import.meta.env.YANDEX_SITE_VERIFICATION),
     baidu: getToken(import.meta.env.BAIDU_SITE_VERIFICATION),
