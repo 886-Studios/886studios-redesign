@@ -15,7 +15,16 @@ const autocompleteByLabel: Record<string, string> = {
   <PageHero eyebrow={contact.eyebrow} title={contact.title} />
   <div class="section">
     <div class="contact-cols">
-      <form class="form-stack" aria-label="Contact form">
+      <form
+        class="form-stack"
+        aria-label="Contact form"
+        action="/api/contact"
+        method="post"
+        data-contact-form
+        data-sending-label={contact.form.sending}
+        data-success-message={contact.form.success}
+        data-error-message={contact.form.error}
+      >
         {
           contact.form.fields.map((field) => (
             <div class="form-group">
@@ -27,6 +36,8 @@ const autocompleteByLabel: Record<string, string> = {
                 name={field.label.toLowerCase()}
                 placeholder={field.placeholder}
                 autocomplete={autocompleteByLabel[field.label]}
+                maxlength={field.label === "Email" ? 254 : field.label === "Subject" ? 200 : 120}
+                required
               />
             </div>
           ))
@@ -39,12 +50,83 @@ const autocompleteByLabel: Record<string, string> = {
             name="message"
             placeholder={contact.form.messagePlaceholder}
             autocomplete="off"
+            minlength="10"
+            maxlength="5000"
+            required
           ></textarea>
         </div>
-        <div>
-          <button class="btn-pri" type="button">{contact.form.button}</button>
+        <div class="contact-honeypot" aria-hidden="true">
+          <label for="contact-company">Company website</label>
+          <input
+            id="contact-company"
+            type="text"
+            name="company"
+            tabindex="-1"
+            autocomplete="off"
+          />
         </div>
+        <div class="contact-form-actions">
+          <button class="btn-pri contact-submit" type="submit" data-contact-submit>
+            {contact.form.button}
+          </button>
+          <p class="contact-form-status" role="status" aria-live="polite" data-contact-status></p>
+        </div>
+        <p class="contact-email-fallback">
+          {contact.form.fallbackPrefix}{" "}
+          <a href={contact.form.fallbackHref}>{contact.form.fallbackLabel}</a>
+        </p>
       </form>
     </div>
   </div>
 </div>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>("[data-contact-form]");
+  const submitButton = form?.querySelector<HTMLButtonElement>("[data-contact-submit]");
+  const status = form?.querySelector<HTMLElement>("[data-contact-status]");
+
+  if (form && submitButton && status) {
+    const defaultButtonLabel = submitButton.textContent?.trim() || "Send Message";
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!form.reportValidity()) return;
+
+      submitButton.disabled = true;
+      submitButton.textContent = form.dataset.sendingLabel || "Sending...";
+      status.textContent = "";
+      status.removeAttribute("data-state");
+
+      try {
+        const payload = Object.fromEntries(new FormData(form).entries());
+        const response = await fetch(form.action, {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json().catch(() => null);
+        if (!response.ok) {
+          throw new Error(result?.error || "Contact request failed");
+        }
+
+        form.reset();
+        status.dataset.state = "success";
+        status.textContent =
+          form.dataset.successMessage || "Thanks, your message has been sent.";
+      } catch {
+        status.dataset.state = "error";
+        status.textContent =
+          form.dataset.errorMessage ||
+          "We couldn't send your message. Please try again or email us directly.";
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = defaultButtonLabel;
+      }
+    });
+  }
+</script>

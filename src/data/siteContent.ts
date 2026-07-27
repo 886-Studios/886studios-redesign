@@ -1540,6 +1540,14 @@ export const siteContent = {
       messagePlaceholder:
         "Tell us about yourself and why you're reaching out...",
       button: "Send Message",
+      sending: "Sending...",
+      success:
+        "Thanks, your message has been sent. We'll get back to you soon.",
+      error:
+        "We couldn't send your message. Please try again or email us directly.",
+      fallbackPrefix: "Prefer email?",
+      fallbackLabel: "it@886studios.com",
+      fallbackHref: "mailto:it@886studios.com",
     },
   },
   footer: {

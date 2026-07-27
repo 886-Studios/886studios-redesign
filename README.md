@@ -66,6 +66,9 @@ Copy `.env.example` to `.env` for local configuration. Every supported variable 
 
 ```bash
 LUMA_API_KEY=
+RESEND_API_KEY=
+CONTACT_TO_EMAIL=it@886studios.com
+CONTACT_FROM_EMAIL=886 Studios Website <website@886studios.com>
 GOOGLE_SITE_VERIFICATION=
 BING_SITE_VERIFICATION=
 YANDEX_SITE_VERIFICATION=
@@ -73,6 +76,13 @@ BAIDU_SITE_VERIFICATION=
 ```
 
 `LUMA_API_KEY` is optional. Without it, the Events page renders the configured fallback state. With it, `npm run build` fetches approved Luma events through `src/lib/luma.ts`. If the key is missing, invalid, or the Luma API request fails, the site should still build successfully with fallback Events copy.
+
+`RESEND_API_KEY` is required for the contact form. Create it through the Resend
+integration in Vercel, verify `886studios.com` as a sending domain, and scope the
+key to Production and Preview. Contact messages go to `it@886studios.com` by
+default and are sent from `886 Studios Website <website@886studios.com>`.
+`CONTACT_TO_EMAIL` and `CONTACT_FROM_EMAIL` can override those defaults without
+changing source code.
 
 The four site-verification variables emit ownership meta tags when they are set. They are
 normally configured in Vercel for production verification and are not needed for local work.
@@ -135,11 +145,16 @@ The site is a static Astro build deployed on Vercel.
 - Output directory: `dist/`
 - Canonical site URL: `https://www.886studios.com`
 - Redirects and security headers: `vercel.json`
-- Required production env vars: none
-- Optional production env vars: `LUMA_API_KEY` and the four search-engine verification tokens listed above
+- Required production env vars: `RESEND_API_KEY`
+- Optional production env vars: `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`, `LUMA_API_KEY`, and the four search-engine verification tokens listed above
 - Production branch: pushes to `main` deploy through the connected Vercel project
 
 If `LUMA_API_KEY` is present in production, the Events page is generated from approved Luma events at build time. If it is absent or the API request fails, the build still completes and the page renders fallback copy.
+
+The contact form posts to `api/contact.js`, a Vercel Function that validates the
+request server-side and calls Resend. If the form reports that email delivery is
+unavailable, confirm the Resend key is present, the sending domain is verified,
+and the latest deployment includes the environment variable.
 
 ## Common Pitfalls
 
