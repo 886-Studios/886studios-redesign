@@ -1041,11 +1041,16 @@ export const siteContent = {
           answer: "Nope, we are open to founders anywhere.",
         },
         {
+          question: "Do I need a Taiwan entity to apply? Or any entity?",
+          answer:
+            "No, you don't need any entity to apply. If you're accepted into the program, you'll typically need to set up a US entity to receive funding.",
+        },
+        {
           question: "Is there a program fee on top of the equity?",
           answer: "No. The SAFE is the only ask.",
         },
         {
-          question: "How long is ikigai Launchpad?",
+          question: "What is the duration of the program?",
           answer:
             "The program runs for 10 weeks and includes in-person working sessions, office hours, workshops, community programming, and fundraising help, and investor matching.",
         },
