@@ -1522,32 +1522,14 @@ export const siteContent = {
   contact: {
     eyebrow: "Contact",
     title: "Get in touch",
-    form: {
-      fields: [
-        { label: "Name", type: "text" as const, placeholder: "Your name" },
-        {
-          label: "Email",
-          type: "email" as const,
-          placeholder: "you@company.com",
-        },
-        {
-          label: "Subject",
-          type: "text" as const,
-          placeholder: "What's this about?",
-        },
-      ],
-      messageLabel: "Message",
-      messagePlaceholder:
-        "Tell us about yourself and why you're reaching out...",
-      button: "Send Message",
-      sending: "Sending...",
-      success:
-        "Thanks, your message has been sent. We'll get back to you soon.",
-      error:
-        "We couldn't send your message. Please try again or email us directly.",
-      fallbackPrefix: "Prefer email?",
-      fallbackLabel: "it@886studios.com",
-      fallbackHref: "mailto:it@886studios.com",
+    email: {
+      label: "Email us directly",
+      description:
+        "For partnerships, program questions, or anything else, reach us at:",
+      address: "it@886studios.com",
+      href: "mailto:it@886studios.com",
+      button: "Email us",
+      note: "This opens your default email app.",
     },
   },
   footer: {
