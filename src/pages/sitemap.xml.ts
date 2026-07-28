@@ -1,4 +1,5 @@
 import type { APIRoute } from "astro";
+import { getCollection } from "astro:content";
 import { siteConfig } from "../config/site";
 import { partnerProfiles } from "../data/partnerProfiles";
 import { portfolioCompanies } from "../data/siteContent";
@@ -12,6 +13,7 @@ const staticRoutes = [
   { path: "/events", priority: "0.7", changefreq: "daily" },
   { path: "/portfolio", priority: "0.7", changefreq: "weekly" },
   { path: "/resources", priority: "0.8", changefreq: "weekly" },
+  { path: "/blog", priority: "0.8", changefreq: "weekly" },
   { path: "/contact", priority: "0.6", changefreq: "monthly" },
   { path: "/privacy", priority: "0.3", changefreq: "yearly" },
 ];
@@ -50,12 +52,19 @@ const escapeXml = (value: string) =>
 
 const getAbsoluteUrl = (path: string) => new URL(path, siteConfig.url).toString();
 
-export const GET: APIRoute = () => {
+export const GET: APIRoute = async () => {
+  const blogPosts = await getCollection("blog", ({ data }) => !data.draft);
+  const blogRoutes = blogPosts.map((post) => ({
+    path: `/blog/${post.id}`,
+    priority: "0.6",
+    changefreq: "monthly",
+  }));
   const routes = [
     ...staticRoutes,
     ...profileRoutes,
     ...portfolioRoutes,
     ...resourceRoutes,
+    ...blogRoutes,
     ...standaloneResourceRoutes,
   ];
   const urls = routes

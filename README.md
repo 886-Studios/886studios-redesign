@@ -143,6 +143,36 @@ If `LUMA_API_KEY` is present in production, the Events page is generated from ap
 The Contact page links directly to `it@886studios.com` with a `mailto:` URL, so
 it does not require an email provider or server-side configuration.
 
+## Adding blog posts
+
+The blog uses Astro content collections and plain Markdown. Add a `.md` file to
+`src/content/blog/` with this frontmatter:
+
+```md
+---
+title: Your post title
+description: A 50 to 180 character summary used on the blog index and in search results.
+publishedAt: 2026-07-28
+author: 886 Studios
+category: Founder Notes
+readingMinutes: 5
+featured: false
+draft: false
+image:
+  src: /assets/programs/example-1280.webp
+  alt: A useful description of the image
+  width: 1280
+  height: 853
+---
+
+Write the post in Markdown here.
+```
+
+The filename becomes the public slug. For example, `your-post.md` is rendered at
+`/blog/your-post`. Set `draft: true` to keep a post out of the build, navigation,
+and sitemap. Store post images under `public/assets/` and include their real
+dimensions in frontmatter.
+
 ## Common Pitfalls
 
 - If `npm ci` fails after dependency edits, regenerate the lockfile intentionally with `npm install` and commit `package-lock.json`.
@@ -173,6 +203,9 @@ src/
     siteContent.ts              global/nav/page copy and structured content
     partnerProfiles.ts          partner profile content and lookup map
     resourceArticles.ts         resource article content
+  content/
+    blog/                       Markdown blog posts
+  content.config.ts             blog frontmatter schema and Markdown loader
   layouts/
     BaseLayout.astro            document shell, metadata, global chrome
   lib/

@@ -1,0 +1,24 @@
+---
+import { getCollection } from "astro:content";
+import BlogPage from "../components/pages/BlogPage.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { sortBlogPosts } from "../lib/blog";
+import { getBlogItemListSchema, pageMeta } from "../lib/seo";
+
+const posts = sortBlogPosts(await getCollection("blog", ({ data }) => !data.draft));
+const leadPost = posts[0];
+---
+
+<BaseLayout
+  title={pageMeta.blog.title}
+  description={pageMeta.blog.description}
+  ogImage={leadPost?.data.image.src}
+  ogImageAlt={leadPost?.data.image.alt}
+  ogImageWidth={leadPost?.data.image.width}
+  ogImageHeight={leadPost?.data.image.height}
+  pageType="CollectionPage"
+  breadcrumbs={[{ name: "Blog", path: "/blog" }]}
+  structuredData={getBlogItemListSchema(posts)}
+>
+  <BlogPage posts={posts} />
+</BaseLayout>

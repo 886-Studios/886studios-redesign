@@ -1,0 +1,63 @@
+---
+import PageHero from "../PageHero.astro";
+import {
+  formatBlogDate,
+  getBlogPostPath,
+  type BlogPost,
+} from "../../lib/blog";
+
+interface Props {
+  posts: BlogPost[];
+}
+
+const { posts } = Astro.props;
+---
+
+<div class="page blog-page" id="page-blog">
+  <PageHero
+    title="Blog"
+    className="blog-index-hero"
+  />
+
+  <section class="blog-index" aria-labelledby="blog-latest-heading">
+    <div class="blog-index-label-row">
+      <h2 class="section-tag" id="blog-latest-heading">Latest</h2>
+      <span>{posts.length} {posts.length === 1 ? "article" : "articles"}</span>
+    </div>
+
+    <div class="blog-post-list">
+      {posts.map((post, index) => (
+        <article class="blog-feature">
+          <a class="blog-feature-link" href={getBlogPostPath(post)}>
+            <div class="blog-feature-copy">
+              <p class="blog-meta">
+                <span>{post.data.category}</span>
+                <span aria-hidden="true">·</span>
+                <time datetime={post.data.publishedAt.toISOString()}>
+                  {formatBlogDate(post.data.publishedAt)}
+                </time>
+                <span aria-hidden="true">·</span>
+                <span>{post.data.readingMinutes} min read</span>
+              </p>
+              <h3>{post.data.title}</h3>
+              <p class="blog-feature-description">{post.data.description}</p>
+              <span class="blog-read-link">Read article <span aria-hidden="true">→</span></span>
+            </div>
+
+            <div class="blog-feature-media">
+              <img
+                src={post.data.image.src}
+                alt=""
+                width={post.data.image.width}
+                height={post.data.image.height}
+                loading={index === 0 ? "eager" : "lazy"}
+                decoding="async"
+                fetchpriority={index === 0 ? "high" : "auto"}
+              />
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+</div>

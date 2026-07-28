@@ -8,6 +8,7 @@ import {
   type PortfolioCompany,
 } from "../data/siteContent";
 import type { ResourceArticle } from "../data/resourceArticles";
+import type { BlogPost } from "./blog";
 import type { LumaEventCard } from "./luma";
 
 export type JsonLdPrimitive = string | number | boolean | null;
@@ -87,6 +88,11 @@ export const pageMeta = {
     title: "Startup Resources for Founders | 886 Studios",
     description:
       "Founder guides from 886 Studios covering accelerator applications, incorporation, Taiwan startup ecosystem resources, interviews, and fundraising advice.",
+  },
+  blog: {
+    title: "Startup Founder Blog | 886 Studios",
+    description:
+      "Read founder notes from 886 Studios on company building, fundraising, product, and growing global startups from Taiwan.",
   },
   contact: {
     title: "Contact | 886 Studios",
@@ -457,6 +463,45 @@ export function getResourcesItemListSchema() {
       url: getAbsoluteUrl(item.href),
     })),
   );
+}
+
+export function getBlogItemListSchema(posts: BlogPost[]) {
+  return getItemListSchema(
+    `${siteConfig.url}/blog#blog-posts`,
+    "886 Studios founder blog",
+    posts.map((post) => ({
+      name: post.data.title,
+      url: `${siteConfig.url}/blog/${post.id}`,
+    })),
+  );
+}
+
+export function getBlogArticleSchema(post: BlogPost, path: string): JsonLdObject {
+  const canonicalUrl = getCanonicalUrl(path);
+
+  return {
+    "@type": "Article",
+    "@id": `${canonicalUrl}#article`,
+    headline: post.data.title,
+    description: post.data.description,
+    url: canonicalUrl,
+    mainEntityOfPage: { "@id": getPageFragmentId(path, "webpage") },
+    datePublished: post.data.publishedAt.toISOString(),
+    dateModified: (post.data.updatedAt ?? post.data.publishedAt).toISOString(),
+    author: { "@id": organizationId },
+    publisher: { "@id": organizationId },
+    isPartOf: { "@id": websiteId },
+    isAccessibleForFree: true,
+    inLanguage: siteConfig.locale,
+    articleSection: post.data.category,
+    image: {
+      "@type": "ImageObject",
+      url: getAbsoluteUrl(post.data.image.src),
+      width: post.data.image.width,
+      height: post.data.image.height,
+      caption: post.data.image.alt,
+    },
+  };
 }
 
 export function getEventsStructuredData(events: LumaEventCard[]): JsonLdObject[] {

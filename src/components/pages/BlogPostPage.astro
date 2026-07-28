@@ -1,0 +1,74 @@
+---
+import {
+  formatBlogDate,
+  type BlogPost,
+} from "../../lib/blog";
+import { brand } from "../../data/siteContent";
+
+interface Props {
+  post: BlogPost;
+  Content: any;
+}
+
+const { post, Content } = Astro.props;
+---
+
+<article class="blog-article">
+  <header class="blog-article-header">
+    <a class="blog-back-link" href="/blog">
+      <span aria-hidden="true">←</span>
+      All posts
+    </a>
+    <p class="section-tag">{post.data.category}</p>
+    <h1>{post.data.title}</h1>
+    <p class="blog-article-dek">{post.data.description}</p>
+    <p class="blog-meta blog-article-meta">
+      <time datetime={post.data.publishedAt.toISOString()}>
+        {formatBlogDate(post.data.publishedAt)}
+      </time>
+      <span aria-hidden="true">·</span>
+      <span>by {post.data.author}</span>
+      <span aria-hidden="true">·</span>
+      <span>{post.data.readingMinutes} min read</span>
+    </p>
+  </header>
+
+  <figure class="blog-article-hero">
+    <img
+      src={post.data.image.src}
+      alt={post.data.image.alt}
+      width={post.data.image.width}
+      height={post.data.image.height}
+      loading="eager"
+      decoding="async"
+      fetchpriority="high"
+    />
+  </figure>
+
+  <div class="blog-article-body">
+    <div class="blog-prose">
+      <Content />
+    </div>
+
+    <footer class="blog-article-footer">
+      <div class="blog-article-category">
+        <span>Category</span>
+        <strong>{post.data.category}</strong>
+      </div>
+      <div class="blog-author">
+        <img
+          src={brand.logoUrl}
+          alt=""
+          width={brand.logoWidth}
+          height={brand.logoHeight}
+          loading="lazy"
+          decoding="async"
+        />
+        <div>
+          <strong>{post.data.author}</strong>
+          <p>Founder perspectives, practical guidance, and company-building notes from Taiwan.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+</article>
