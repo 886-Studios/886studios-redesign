@@ -7,19 +7,29 @@ const { contact } = siteContent;
 
 <div class="page" id="page-contact">
   <PageHero eyebrow={contact.eyebrow} title={contact.title} />
-  <div class="section">
-    <div class="contact-cols">
-      <div class="contact-email-card">
-        <p class="contact-email-label">{contact.email.label}</p>
-        <p class="contact-email-copy">{contact.email.description}</p>
-        <a class="contact-email-address" href={contact.email.href}>
-          {contact.email.address}
-        </a>
-        <a class="btn-pri contact-email-action" href={contact.email.href}>
-          {contact.email.button}
-        </a>
-        <p class="contact-email-note">{contact.email.note}</p>
+  <div class="section contact-section">
+    <section class="contact-direct reveal" aria-labelledby="contact-email-title">
+      <div class="contact-direct-heading">
+        <p class="section-tag contact-direct-tag">{contact.email.label}</p>
+        <h2 class="contact-direct-title" id="contact-email-title">
+          <a class="contact-email-address" href={contact.email.href}>
+            <span>{contact.email.address}</span>
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+              <path d="M6 14 14 6M7 6h7v7" />
+            </svg>
+          </a>
+        </h2>
       </div>
-    </div>
+
+      <div class="contact-direct-copy">
+        <p class="contact-email-copy">{contact.email.description}</p>
+        <div class="contact-direct-actions">
+          <a class="btn-pri contact-email-action" href={contact.email.href}>
+            {contact.email.button}
+          </a>
+          <p class="contact-email-note">{contact.email.note}</p>
+        </div>
+      </div>
+    </section>
   </div>
 </div>
