@@ -311,7 +311,7 @@ export const portfolioCompanies = [
       },
     ],
     logo: {
-      src: "/assets/portfolio/kardomo.png",
+      src: "/assets/portfolio/kardomo.webp",
       alt: "Kardomo logo",
       width: 879,
       height: 1149,
@@ -540,43 +540,43 @@ export const siteContent = {
     photos: {
       items: [
         {
-          src: "/assets/landing/launchpad-01.jpg",
+          src: "/assets/landing/launchpad-01-960.webp",
           alt: "886 Studios founders gathered during a community event",
           width: 1800,
           height: 1013,
         },
         {
-          src: "/assets/landing/launchpad-02.jpg",
+          src: "/assets/landing/launchpad-02-960.webp",
           alt: "Founders and mentors in conversation at 886 Studios",
           width: 1800,
           height: 1350,
         },
         {
-          src: "/assets/landing/launchpad-03.jpg",
+          src: "/assets/landing/launchpad-03-960.webp",
           alt: "886 Studios community members at a founder session",
           width: 1800,
           height: 1350,
         },
         {
-          src: "/assets/landing/launchpad-04.jpg",
+          src: "/assets/landing/launchpad-04-960.webp",
           alt: "A workshop moment with the 886 Studios founder community",
           width: 1800,
           height: 1332,
         },
         {
-          src: "/assets/landing/launchpad-05.jpg",
+          src: "/assets/landing/launchpad-05-960.webp",
           alt: "Founders watching a presentation during an 886 Studios community session",
           width: 1800,
           height: 1350,
         },
         {
-          src: "/assets/landing/launchpad-06.jpg",
+          src: "/assets/landing/launchpad-06-960.webp",
           alt: "886 Studios founders meeting during an in-person program session",
           width: 1800,
           height: 1350,
         },
         {
-          src: "/assets/landing/launchpad-07.jpg",
+          src: "/assets/landing/launchpad-07-960.webp",
           alt: "886 Studios founders gathered around a table during a program session",
           width: 1800,
           height: 1350,
@@ -619,7 +619,7 @@ export const siteContent = {
         },
         {
           name: "Kabam",
-          src: "/assets/logos/kabam.png",
+          src: "/assets/logos/kabam.webp",
           alt: "Kabam logo",
           width: 316,
           height: 316,
@@ -629,7 +629,7 @@ export const siteContent = {
         },
         {
           name: "Guitar Hero",
-          src: "/assets/logos/guitar-hero.png",
+          src: "/assets/logos/guitar-hero.webp",
           alt: "Guitar Hero logo",
           width: 489,
           height: 352,
@@ -639,7 +639,7 @@ export const siteContent = {
         },
         {
           name: "Playdom",
-          src: "/assets/logos/playdom-alt.png",
+          src: "/assets/logos/playdom-alt.webp",
           alt: "Playdom logo",
           width: 1000,
           height: 244,
@@ -649,7 +649,7 @@ export const siteContent = {
         },
         {
           name: "Metatheory",
-          src: "/assets/logos/metatheory.png",
+          src: "/assets/logos/metatheory.webp",
           alt: "Metatheory logo",
           width: 400,
           height: 400,
@@ -657,7 +657,7 @@ export const siteContent = {
         },
         {
           name: "Mochi Media",
-          src: "/assets/logos/mochimedia.png",
+          src: "/assets/logos/mochimedia.webp",
           alt: "Mochi Media logo",
           width: 820,
           height: 750,
@@ -667,7 +667,7 @@ export const siteContent = {
         },
         {
           name: "Orbit Baby",
-          src: "/assets/logos/orbitbaby.png",
+          src: "/assets/logos/orbitbaby.webp",
           alt: "Orbit Baby logo",
           width: 456,
           height: 80,
@@ -677,7 +677,7 @@ export const siteContent = {
         },
         {
           name: "Blue Goji",
-          src: "/assets/logos/bluegoji.png",
+          src: "/assets/logos/bluegoji.webp",
           alt: "Blue Goji logo",
           width: 256,
           height: 256,
@@ -685,7 +685,7 @@ export const siteContent = {
         },
         {
           name: "Gen.G",
-          src: "/assets/logos/geng.png",
+          src: "/assets/logos/geng.webp",
           alt: "Gen.G logo",
           width: 820,
           height: 956,
@@ -693,7 +693,7 @@ export const siteContent = {
         },
         {
           name: "Hot or Not",
-          src: "/assets/logos/hotornot.png",
+          src: "/assets/logos/hotornot.webp",
           alt: "Hot or Not logo",
           width: 1920,
           height: 1272,
@@ -703,7 +703,7 @@ export const siteContent = {
         },
         {
           name: "Rally",
-          src: "/assets/logos/rally-official.png",
+          src: "/assets/logos/rally-official.webp",
           alt: "Rally logo",
           width: 300,
           height: 300,
@@ -711,7 +711,7 @@ export const siteContent = {
         },
         {
           name: "Tiburon Entertainment",
-          src: "/assets/logos/tiburon.png",
+          src: "/assets/logos/tiburon.webp",
           alt: "Tiburon Entertainment logo",
           width: 184,
           height: 184,
@@ -719,7 +719,7 @@ export const siteContent = {
         },
         {
           name: "Catalyte",
-          src: "/assets/logos/catalyte-official.png",
+          src: "/assets/logos/catalyte-official.webp",
           alt: "Catalyte logo",
           width: 1920,
           height: 1920,
@@ -735,7 +735,7 @@ export const siteContent = {
         },
         {
           name: "New Taipei Kings",
-          src: "/assets/logos/new-taipei-kings.png",
+          src: "/assets/logos/new-taipei-kings.webp",
           alt: "New Taipei Kings logo",
           width: 1500,
           height: 771,
@@ -859,7 +859,7 @@ export const siteContent = {
           profileUrl: "/portfolio/o3o-labs",
           profileLabel: "PicPet",
           photo: {
-            src: "/assets/programs/testimonials/jimmy-huang.jpg",
+            src: "/assets/programs/testimonials/jimmy-huang.webp",
             alt: "Jimmy Huang smiling in front of the Golden Gate Bridge",
             width: 620,
             height: 880,
@@ -880,7 +880,7 @@ export const siteContent = {
           profileUrl: "/portfolio/lfg",
           profileLabel: "lfg",
           photo: {
-            src: "/assets/programs/testimonials/julia-cheung-speaking.png",
+            src: "/assets/programs/testimonials/julia-cheung-speaking.webp",
             alt: "Julia Cheung speaking at a founder community event",
             width: 420,
             height: 900,
@@ -901,7 +901,7 @@ export const siteContent = {
           profileUrl: "/portfolio/dentscape",
           profileLabel: "Dentscape",
           photo: {
-            src: "/assets/programs/testimonials/sylvie-liu.jpg",
+            src: "/assets/programs/testimonials/sylvie-liu.webp",
             alt: "Sylvie Liu speaking at a professional dental event",
             width: 800,
             height: 533,
@@ -922,7 +922,7 @@ export const siteContent = {
           profileUrl: "/portfolio",
           profileLabel: "Sendjoy",
           photo: {
-            src: "/assets/programs/testimonials/ser-en-low.jpg",
+            src: "/assets/programs/testimonials/ser-en-low.webp",
             alt: "Ser En Low smiling with participants at an AI video event in New York",
             width: 400,
             height: 700,
@@ -943,7 +943,7 @@ export const siteContent = {
           profileUrl: "/portfolio/preciser",
           profileLabel: "Preciser",
           photo: {
-            src: "/assets/programs/testimonials/shirley-chen.jpg",
+            src: "/assets/programs/testimonials/shirley-chen.webp",
             alt: "Shirley Chen seated in a Preciser shirt",
             width: 400,
             height: 420,
@@ -1102,7 +1102,7 @@ export const siteContent = {
       title: "Launch Station",
       eyebrow: "Community program",
       poster: {
-        src: "/assets/programs/launch-station-community-collage-2026.jpg",
+        src: "/assets/programs/launch-station-community-collage-800.webp",
         alt: "Launch Station community collage",
         width: 800,
         height: 800,
@@ -1149,7 +1149,7 @@ export const siteContent = {
         href: "https://meet-global.bnext.com.tw/articles/view/48332",
         source: "Meet Global",
         image: {
-          src: "/assets/resources/news/launchpad-debut.jpg",
+          src: "/assets/resources/news/launchpad-debut-960.webp",
           alt: "ikigai Launchpad founders presenting at Demo Day in Taipei",
           width: 1920,
           height: 1440,
@@ -1160,7 +1160,7 @@ export const siteContent = {
         href: "https://youtu.be/wOHsOPxHO58?si=RLMXSJ1yHY5tEmqB",
         source: "CONNECTED on TaiwanPlus",
         image: {
-          src: "/assets/resources/news/kevin-lin-taiwanplus.jpg",
+          src: "/assets/resources/news/kevin-lin-taiwanplus-960.webp",
           alt: "Kevin Lin featured in the TaiwanPlus interview Finding Your ikigai",
           width: 1280,
           height: 720,
@@ -1171,7 +1171,7 @@ export const siteContent = {
         href: "https://meet-global.bnext.com.tw/articles/view/48182",
         source: "Meet Global",
         image: {
-          src: "/assets/resources/news/global-founders.jpg",
+          src: "/assets/resources/news/global-founders-960.webp",
           alt: "Phil Chen and Kai Huang at Dreamers Coffee Roasters",
           width: 1920,
           height: 1279,
@@ -1186,7 +1186,7 @@ export const siteContent = {
         href: "https://886studios.substack.com/p/a-look-into-ikigai",
         source: "ikigai Insights",
         image: {
-          src: "/assets/resources/news/inside-ikigai.jpg",
+          src: "/assets/resources/news/inside-ikigai-960.webp",
           alt: "The ikigai Launchpad Summer 2025 batch gathered outdoors",
           width: 1920,
           height: 1440,
@@ -1197,7 +1197,7 @@ export const siteContent = {
         href: "https://meet.bnext.com.tw/articles/view/52115",
         source: "Meet Global",
         image: {
-          src: "/assets/resources/news/preciser.jpg",
+          src: "/assets/resources/news/preciser-960.webp",
           alt: "The Preciser founding team seated together in their office",
           width: 1920,
           height: 1279,

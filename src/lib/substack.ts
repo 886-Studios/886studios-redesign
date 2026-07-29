@@ -6,7 +6,9 @@ export const blogConfig = {
   label: "Blog",
   publicationName: "ikigai Insights",
   publicationUrl: "https://886studios.substack.com",
-  publicationImage: "/assets/ikigai-insights-substack-wide.jpg",
+  publicationImage: "/assets/ikigai-insights-substack-wide-1280.webp",
+  publicationImageSrcset:
+    "/assets/ikigai-insights-substack-wide-640.webp 640w, /assets/ikigai-insights-substack-wide-1280.webp 1280w",
   feedUrl: "https://886studios.substack.com/feed",
   subscribeUrl: "https://886studios.substack.com/subscribe",
   subscribeAction: "https://886studios.substack.com/api/v1/free",
@@ -56,6 +58,8 @@ const parser = new XMLParser({
 });
 
 const supportedImagePattern = /\.(?:avif|gif|jpe?g|png|webp)(?:[?#]|$)/i;
+const substackImageHost = "substack-post-media.s3.amazonaws.com";
+const substackCdnHost = "substackcdn.com";
 let substackPostsPromise: Promise<BlogPost[]> | undefined;
 
 export function getSubstackPosts() {
@@ -73,6 +77,28 @@ export function formatBlogDate(value: string, style: "long" | "short" = "long") 
     year: "numeric",
     timeZone: "UTC",
   }).format(date);
+}
+
+export function getBlogImageUrl(value: string, width = 960) {
+  const originalUrl = getOriginalSubstackImageUrl(value);
+  if (!originalUrl) return value;
+
+  return [
+    "https://substackcdn.com/image/fetch/",
+    `w_${width},c_limit,f_auto,q_auto:good,fl_progressive:steep/`,
+    encodeURIComponent(originalUrl),
+  ].join("");
+}
+
+export function getBlogImageSrcset(
+  value: string,
+  widths: readonly number[] = [480, 960, 1440],
+) {
+  if (!getOriginalSubstackImageUrl(value)) return undefined;
+
+  return widths
+    .map((width) => `${getBlogImageUrl(value, width)} ${width}w`)
+    .join(", ");
 }
 
 export function parseBlogFeed(xml: string): BlogPost[] {
@@ -196,6 +222,31 @@ function isSupportedImage(value: string) {
   } catch {
     return false;
   }
+}
+
+function getOriginalSubstackImageUrl(value: string) {
+  if (!value) return "";
+
+  try {
+    const url = new URL(value);
+
+    if (url.hostname === substackImageHost) {
+      return url.toString();
+    }
+
+    if (url.hostname === substackCdnHost) {
+      const encodedOriginal = url.pathname.match(/\/(https?%3A%2F%2F.+)$/i)?.[1];
+      if (!encodedOriginal) return "";
+
+      const decodedOriginal = decodeURIComponent(encodedOriginal);
+      const originalUrl = new URL(decodedOriginal);
+      return originalUrl.protocol === "https:" ? originalUrl.toString() : "";
+    }
+  } catch {
+    return "";
+  }
+
+  return "";
 }
 
 function getFirstImageUrl(html: string) {
@@ -373,11 +424,18 @@ function sanitizePostHtml(html: string) {
       },
       img: (tagName, attributes) => {
         const dimensions = getImageDimensions(attributes.src ?? "");
+        const optimizedSrc = getBlogImageUrl(attributes.src ?? "", 760);
+        const optimizedSrcset = getBlogImageSrcset(
+          attributes.src ?? "",
+          [480, 760, 1200, 1520],
+        );
 
         return {
           tagName,
           attribs: {
             ...attributes,
+            src: optimizedSrc,
+            ...(optimizedSrcset ? { srcset: optimizedSrcset } : {}),
             alt: attributes.alt ?? "",
             width: attributes.width ?? String(dimensions.width),
             height: attributes.height ?? String(dimensions.height),

@@ -4,6 +4,8 @@ import PageHero from "../PageHero.astro";
 import {
   blogConfig,
   formatBlogDate,
+  getBlogImageSrcset,
+  getBlogImageUrl,
 } from "../../lib/substack";
 import type { BlogPost } from "../../types/blog";
 
@@ -29,11 +31,14 @@ const [featuredPost, ...archivePosts] = posts;
             <div class="blog-feature-media">
               {featuredPost.imageUrl ? (
                 <img
-                  src={featuredPost.imageUrl}
+                  src={getBlogImageUrl(featuredPost.imageUrl, 960)}
+                  srcset={getBlogImageSrcset(featuredPost.imageUrl)}
+                  sizes="(max-width: 720px) calc(100vw - 36px), (max-width: 1180px) 48vw, 560px"
                   alt=""
                   width={featuredPost.imageWidth ?? 1600}
                   height={featuredPost.imageHeight ?? 900}
                   loading="eager"
+                  fetchpriority="high"
                   decoding="async"
                   referrerpolicy="no-referrer"
                 />
@@ -76,7 +81,9 @@ const [featuredPost, ...archivePosts] = posts;
                   <span class="blog-archive-media">
                     {post.imageUrl ? (
                       <img
-                        src={post.imageUrl}
+                        src={getBlogImageUrl(post.imageUrl, 640)}
+                        srcset={getBlogImageSrcset(post.imageUrl, [320, 640, 960])}
+                        sizes="(max-width: 520px) calc(100vw - 40px), 220px"
                         alt=""
                         width={post.imageWidth ?? 1600}
                         height={post.imageHeight ?? 900}

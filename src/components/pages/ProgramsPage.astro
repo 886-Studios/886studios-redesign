@@ -317,6 +317,8 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
       <figure class="prog-launch-media">
         <img
           src={launchStation.poster.src}
+          srcset={`${launchStation.poster.src.replace("-800.webp", "-480.webp")} 480w, ${launchStation.poster.src} 800w`}
+          sizes="(max-width: 640px) calc(100vw - 36px), 420px"
           alt={launchStation.poster.alt}
           width={launchStation.poster.width}
           height={launchStation.poster.height}

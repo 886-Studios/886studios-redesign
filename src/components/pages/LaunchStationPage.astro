@@ -19,6 +19,8 @@ const { launchStation } = siteContent.programs;
       <figure class="ls-poster">
         <img
           src={launchStation.poster.src}
+          srcset={`${launchStation.poster.src.replace("-800.webp", "-480.webp")} 480w, ${launchStation.poster.src} 800w`}
+          sizes="(max-width: 760px) min(calc(100vw - 36px), 300px), 380px"
           alt={launchStation.poster.alt}
           width={launchStation.poster.width}
           height={launchStation.poster.height}

@@ -8,6 +8,8 @@ const portfolioPreviewSlugs = ["o3o-labs", "preciser", "dentscape", "gitroll", "
 const portfolioPreviewItems = portfolioPreviewSlugs
   .map((slug) => home.founders.portfolio.find((item) => item.slug === slug))
   .filter((item): item is NonNullable<typeof item> => Boolean(item));
+const getPhotoSrcset = (src: string) =>
+  `${src.replace("-960.webp", "-480.webp")} 480w, ${src} 960w`;
 ---
 
 <div class="page" id="page-home">
@@ -56,6 +58,8 @@ const portfolioPreviewItems = portfolioPreviewSlugs
                 <figure class="photo-slide">
                   <img
                     src={photo.src}
+                    srcset={getPhotoSrcset(photo.src)}
+                    sizes="(max-width: 520px) 72vw, (max-width: 1267px) 30vw, 380px"
                     alt={isHidden ? "" : photo.alt}
                     width={photo.width}
                     height={photo.height}

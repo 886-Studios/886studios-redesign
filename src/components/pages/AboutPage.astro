@@ -4,6 +4,8 @@ import { siteContent } from "../../data/siteContent";
 import { partnerProfileByName } from "../../data/partnerProfiles";
 
 const { about, resources } = siteContent;
+const getNewsImageSrcset = (src: string) =>
+  `${src.replace("-960.webp", "-480.webp")} 480w, ${src} 960w`;
 ---
 
 <div class="page" id="page-about">
@@ -43,7 +45,7 @@ const { about, resources } = siteContent;
                 )}
                 <div class="avatar-wrap">
                   {person.photo
-                    ? <img class="avatar-photo" src={person.photo} alt={person.name} width="80" height="80" style={person.objectPosition ? `object-position: ${person.objectPosition}` : undefined} />
+                    ? <img class="avatar-photo" src={person.photo} alt={person.name} width="80" height="80" loading="lazy" decoding="async" style={person.objectPosition ? `object-position: ${person.objectPosition}` : undefined} />
                     : <div class="avatar">{person.initials}</div>
                   }
                 </div>
@@ -101,7 +103,7 @@ const { about, resources } = siteContent;
                 )}
                 <div class="avatar-wrap">
                   {partner.photo
-                    ? <img class="avatar-photo" src={partner.photo} alt={partner.name} width="80" height="80" />
+                    ? <img class="avatar-photo" src={partner.photo} alt={partner.name} width="80" height="80" loading="lazy" decoding="async" />
                     : <div class="avatar">{partner.initials}</div>
                   }
                 </div>
@@ -201,6 +203,8 @@ const { about, resources } = siteContent;
             >
               <img
                 src={item.image.src}
+                srcset={getNewsImageSrcset(item.image.src)}
+                sizes="(max-width: 720px) calc(100vw - 36px), (max-width: 1180px) calc((100vw - 96px) / 2), 552px"
                 alt={item.image.alt}
                 width={item.image.width}
                 height={item.image.height}

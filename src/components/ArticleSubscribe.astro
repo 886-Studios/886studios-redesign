@@ -32,6 +32,8 @@ const frameName = `article-subscribe-frame-${safePlacement}`;
     <img
       class="blog-post-subscribe-artwork"
       src={blogConfig.publicationImage}
+      srcset={blogConfig.publicationImageSrcset}
+      sizes="(max-width: 520px) calc(100vw - 52px), (max-width: 820px) 38vw, 520px"
       alt="ikigai Insights"
       width="1280"
       height="640"
