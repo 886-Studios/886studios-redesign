@@ -15,7 +15,13 @@ const [featuredPost, ...archivePosts] = posts;
 ---
 
 <div class="page blog-page" id="page-blog">
-  <PageHero title={blogConfig.label} titleId="blog-title" showDivider={false} />
+  <PageHero
+    title={blogConfig.label}
+    titleId="blog-title"
+    titleHref={blogConfig.publicationUrl}
+    titleLinkTarget="_blank"
+    showDivider={false}
+  />
 
   <div class="blog-shell">
     {featuredPost ? (

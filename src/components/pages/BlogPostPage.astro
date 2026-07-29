@@ -20,7 +20,19 @@ const authorHref = getBlogAuthorHref(post.author);
       </a>
 
       <div class="blog-post-publication">
-        {post.source === "substack" ? blogConfig.publicationName : "886 Studios"}
+        {post.source === "substack" ? (
+          <a
+            href={blogConfig.publicationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics-event="substack_publication_opened"
+            data-analytics-placement="blog_post_header"
+          >
+            {blogConfig.publicationName}
+          </a>
+        ) : (
+          "886 Studios"
+        )}
       </div>
       <h1>{post.title}</h1>
       {post.description && <p class="blog-post-dek">{post.description}</p>}

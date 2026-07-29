@@ -4,17 +4,41 @@ interface Props {
   title: string;
   lead?: string;
   titleId?: string;
+  titleHref?: string;
+  titleLinkTarget?: "_blank" | "_self";
   className?: string;
   showDivider?: boolean;
 }
 
-const { eyebrow, title, lead, titleId = "page-title", className, showDivider = true } = Astro.props;
+const {
+  eyebrow,
+  title,
+  lead,
+  titleId = "page-title",
+  titleHref,
+  titleLinkTarget = "_self",
+  className,
+  showDivider = true,
+} = Astro.props;
 ---
 
 <section class:list={["pg-hero", className]} aria-labelledby={titleId}>
   <div class="pg-hero-glow"></div>
   {eyebrow && <div class="section-tag">{eyebrow}</div>}
-  <h1 class="section-h2 pg-hero-title" id={titleId}>{title}</h1>
+  <h1 class="section-h2 pg-hero-title" id={titleId}>
+    {titleHref ? (
+      <a
+        class="pg-hero-title-link"
+        href={titleHref}
+        target={titleLinkTarget}
+        rel={titleLinkTarget === "_blank" ? "noopener noreferrer" : undefined}
+      >
+        {title}
+      </a>
+    ) : (
+      title
+    )}
+  </h1>
   {lead && <p class="section-lead section-lead--flush">{lead}</p>}
 </section>
 {showDivider && <div class="pg-divider"></div>}
