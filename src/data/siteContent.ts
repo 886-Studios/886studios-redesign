@@ -1089,7 +1089,7 @@ export const siteContent = {
         {
           question: "How should I prepare for interviews or ask another question?",
           answer:
-            "The first interview is a 30-minute conversation with the 886 Studios team and does not require a pitch deck. Review the Interview Guidebook before meeting us, or contact the 886 team if your question is not covered here.",
+            "The first interview is a 20-minute conversation with the 886 Studios team and does not require a pitch deck. Review the Interview Guidebook before meeting us, or contact the 886 team if your question is not covered here.",
           links: [
             {
               label: "Read the Interview Guidebook",
