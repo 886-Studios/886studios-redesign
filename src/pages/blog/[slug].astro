@@ -1,0 +1,78 @@
+---
+import { getEntry, render } from "astro:content";
+import BlogPostPage from "../../components/pages/BlogPostPage.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getBlogMetaDescription, getBlogPosts } from "../../lib/blog";
+import { getAbsoluteUrl, getImageMimeType, getMetaDescription } from "../../lib/seo";
+import type { BlogPost } from "../../types/blog";
+
+export async function getStaticPaths() {
+  const posts = await getBlogPosts();
+
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as { post: BlogPost };
+const pagePath = `/blog/${post.slug}`;
+const pageUrl = getAbsoluteUrl(pagePath);
+const description = getMetaDescription(getBlogMetaDescription(post));
+const localEntry = post.localEntryId
+  ? await getEntry("blog", post.localEntryId)
+  : undefined;
+const LocalContent = localEntry ? (await render(localEntry)).Content : undefined;
+---
+
+<BaseLayout
+  title={`${post.title} | 886 Studios`}
+  description={description}
+  ogImage={post.imageUrl}
+  ogImageAlt={post.imageAlt || post.title}
+  ogImageWidth={post.imageWidth ?? 1600}
+  ogImageHeight={post.imageHeight ?? 900}
+  ogImageType={post.imageUrl ? getImageMimeType(post.imageUrl) : undefined}
+  ogType="article"
+  pageType="WebPage"
+  breadcrumbs={[
+    { name: "Blog", path: "/blog" },
+    { name: post.title, path: pagePath },
+  ]}
+  structuredData={{
+    "@type": "Article",
+    "@id": `${pageUrl}#article`,
+    headline: post.title,
+    description,
+    url: pageUrl,
+    mainEntityOfPage: { "@id": `${pageUrl}#webpage` },
+    datePublished: post.publishedAt,
+    dateModified: post.updatedAt ?? post.publishedAt,
+    author:
+      post.author === "886 Studios"
+        ? {
+            "@type": "Organization",
+            name: post.author,
+            url: "https://www.886studios.com",
+          }
+        : {
+            "@type": "Person",
+            name: post.author,
+            ...(post.author === "Carter Wang"
+              ? { url: getAbsoluteUrl("/about/carter-wang") }
+              : {}),
+          },
+    publisher: { "@id": "https://www.886studios.com/#organization" },
+    isAccessibleForFree: true,
+    image: post.imageUrl,
+    ...(post.substackUrl ? { sameAs: post.substackUrl } : {}),
+  }}
+>
+  {LocalContent ? (
+    <BlogPostPage post={post}>
+      <LocalContent />
+    </BlogPostPage>
+  ) : (
+    <BlogPostPage post={post} />
+  )}
+</BaseLayout>

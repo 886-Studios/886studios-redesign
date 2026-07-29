@@ -88,6 +88,11 @@ export const pageMeta = {
     description:
       "Founder guides from 886 Studios covering accelerator applications, incorporation, Taiwan startup ecosystem resources, interviews, and fundraising advice.",
   },
+  blog: {
+    title: "Blog and Startup Insights | 886 Studios",
+    description:
+      "Read ikigai Insights from 886 Studios: founder perspectives, startup lessons, technology stories, and updates from the Taiwan startup ecosystem.",
+  },
   contact: {
     title: "Contact | 886 Studios",
     description:

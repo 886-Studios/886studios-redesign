@@ -3,6 +3,7 @@ import { siteConfig } from "../config/site";
 import { partnerProfiles } from "../data/partnerProfiles";
 import { portfolioCompanies } from "../data/siteContent";
 import { resourceArticles, standaloneResourceArticles } from "../data/resourceArticles";
+import { getBlogPosts } from "../lib/blog";
 
 const staticRoutes = [
   { path: "/", priority: "1.0", changefreq: "weekly" },
@@ -12,6 +13,7 @@ const staticRoutes = [
   { path: "/events", priority: "0.7", changefreq: "daily" },
   { path: "/portfolio", priority: "0.7", changefreq: "weekly" },
   { path: "/resources", priority: "0.8", changefreq: "weekly" },
+  { path: "/blog", priority: "0.8", changefreq: "weekly" },
   { path: "/contact", priority: "0.6", changefreq: "monthly" },
   { path: "/privacy", priority: "0.3", changefreq: "yearly" },
 ];
@@ -50,13 +52,20 @@ const escapeXml = (value: string) =>
 
 const getAbsoluteUrl = (path: string) => new URL(path, siteConfig.url).toString();
 
-export const GET: APIRoute = () => {
+export const GET: APIRoute = async () => {
+  const blogPosts = await getBlogPosts();
+  const blogRoutes = blogPosts.map((post) => ({
+    path: `/blog/${post.slug}`,
+    priority: "0.6",
+    changefreq: "monthly",
+  }));
   const routes = [
     ...staticRoutes,
     ...profileRoutes,
     ...portfolioRoutes,
     ...resourceRoutes,
     ...standaloneResourceRoutes,
+    ...blogRoutes,
   ];
   const urls = routes
     .map(
