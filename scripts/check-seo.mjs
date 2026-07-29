@@ -138,10 +138,22 @@ for (const filePath of htmlFiles) {
 
   const descriptionValues = getMetaContent(head, "name", "description");
   const canonicalValues = getLinkHref(head, "canonical");
+  const rssLinks = getTags(head, "link").filter(
+    (tag) =>
+      tag.attributes.get("rel")?.split(/\s+/).includes("alternate") &&
+      tag.attributes.get("type") === "application/rss+xml",
+  );
 
   if (isIndexable) {
     const description = assertSingle(descriptionValues, "meta description", route);
     const canonical = assertSingle(canonicalValues, "canonical", route);
+    if (
+      rssLinks.length !== 1 ||
+      rssLinks[0].attributes.get("href") !== `${productionOrigin}/rss.xml` ||
+      rssLinks[0].attributes.get("title") !== "886 Studios Blog"
+    ) {
+      fail(`${route}: expected one valid RSS auto-discovery link`);
+    }
 
     if (description) {
       if (description.length < 50 || description.length > 180) {
@@ -298,6 +310,62 @@ for (const canonical of indexableCanonicals) {
 }
 for (const url of sitemapUrls) {
   if (!indexableCanonicals.has(url)) fail(`sitemap.xml: includes non-indexable or non-canonical URL ${url}`);
+}
+
+const rssXml = await readFile(path.join(distRoot, "rss.xml"), "utf8");
+if (!/^<\?xml version="1\.0" encoding="UTF-8"\?>/.test(rssXml)) {
+  fail("rss.xml: missing XML declaration");
+}
+if (!/<rss\b[^>]*\bversion="2\.0"/i.test(rssXml)) fail("rss.xml: missing RSS 2.0 root");
+if (!/xmlns:atom="http:\/\/www\.w3\.org\/2005\/Atom"/.test(rssXml)) {
+  fail("rss.xml: missing Atom namespace");
+}
+if (!/xmlns:dc="http:\/\/purl\.org\/dc\/elements\/1\.1\/"/.test(rssXml)) {
+  fail("rss.xml: missing Dublin Core creator namespace");
+}
+
+const rssChannel = rssXml.match(/<channel>([\s\S]*?)<\/channel>/i)?.[1] ?? "";
+for (const [element, expected] of [
+  ["title", "886 Studios Blog"],
+  ["link", productionOrigin],
+  ["language", "en-us"],
+]) {
+  if (!new RegExp(`<${element}>${expected.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}</${element}>`).test(rssChannel)) {
+    fail(`rss.xml: missing valid channel ${element}`);
+  }
+}
+if (!/<description>[^<]+<\/description>/.test(rssChannel)) {
+  fail("rss.xml: missing channel description");
+}
+if (
+  !new RegExp(
+    `<atom:link\\b(?=[^>]*\\bhref="${productionOrigin.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\/rss\\.xml")(?=[^>]*\\brel="self")(?=[^>]*\\btype="application/rss\\+xml")[^>]*/>`,
+  ).test(rssChannel)
+) {
+  fail("rss.xml: missing valid Atom self link");
+}
+
+const rssItems = [...rssChannel.matchAll(/<item>([\s\S]*?)<\/item>/gi)].map((match) => match[1]);
+for (const [index, item] of rssItems.entries()) {
+  for (const element of ["title", "link", "guid", "description", "pubDate", "dc:creator"]) {
+    if (!new RegExp(`<${element}\\b[^>]*>[^<]+</${element}>`, "i").test(item)) {
+      fail(`rss.xml: item ${index + 1} is missing ${element}`);
+    }
+  }
+
+  const link = decodeHtml(item.match(/<link>([\s\S]*?)<\/link>/i)?.[1]?.trim() ?? "");
+  const guid = decodeHtml(item.match(/<guid\b[^>]*>([\s\S]*?)<\/guid>/i)?.[1]?.trim() ?? "");
+  if (!link.startsWith(`${productionOrigin}/blog/`)) {
+    fail(`rss.xml: item ${index + 1} does not link to a canonical blog URL`);
+  }
+  if (guid !== link || !/<guid\b[^>]*\bisPermaLink="true"/i.test(item)) {
+    fail(`rss.xml: item ${index + 1} has an invalid permanent GUID`);
+  }
+
+  const pubDate = decodeHtml(item.match(/<pubDate>([\s\S]*?)<\/pubDate>/i)?.[1]?.trim() ?? "");
+  if (Number.isNaN(Date.parse(pubDate))) {
+    fail(`rss.xml: item ${index + 1} has an invalid publication date`);
+  }
 }
 
 const robots = await readFile(path.join(distRoot, "robots.txt"), "utf8");

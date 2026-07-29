@@ -116,6 +116,12 @@ const structuredDataJson = canonicalUrl
     )}
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
     <link rel="sitemap" type="application/xml" href={`${siteConfig.url}/sitemap.xml`} />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="886 Studios Blog"
+      href={`${siteConfig.url}/rss.xml`}
+    />
 
     {
       showSocialPreview && (

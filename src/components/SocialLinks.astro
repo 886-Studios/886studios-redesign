@@ -11,7 +11,13 @@ const { className = "socials" } = Astro.props;
 <div class={className}>
   {
     socialLinks.map((link) => (
-      <a class="social-btn" href={link.href} target="_blank" rel="noopener noreferrer" aria-label={link.ariaLabel}>
+      <a
+        class="social-btn"
+        href={link.href}
+        target={link.platform === "rss" ? undefined : "_blank"}
+        rel={link.platform === "rss" ? undefined : "noopener noreferrer"}
+        aria-label={link.ariaLabel}
+      >
         {link.platform === "x" && (
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M18.901 1.153h3.68l-8.04 9.19 9.458 12.504H16.594l-5.8-7.584-6.64 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.9 1.153Zm-1.291 19.492h2.04L6.486 3.24H4.298L17.61 20.645Z" />
@@ -40,6 +46,11 @@ const { className = "socials" } = Astro.props;
         {link.platform === "substack" && (
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M5 3h14v2H5V3Zm0 4h14v2H5V7Zm0 4h14v10.5l-7-3.9-7 3.9V11Z" />
+          </svg>
+        )}
+        {link.platform === "rss" && (
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4.5 3.5v3a13 13 0 0 1 13 13h3a16 16 0 0 0-16-16Zm0 6v3a7 7 0 0 1 7 7h3a10 10 0 0 0-10-10Zm2.25 6.25a2.25 2.25 0 1 0 0 4.5 2.25 2.25 0 0 0 0-4.5Z" />
           </svg>
         )}
       </a>

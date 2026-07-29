@@ -39,6 +39,11 @@ export const socialLinks = [
     href: "https://886studios.substack.com/",
     ariaLabel: "ikigai Insights on Substack",
   },
+  {
+    platform: "rss",
+    href: "/rss.xml",
+    ariaLabel: "Subscribe to the 886 Studios blog RSS feed",
+  },
 ] as const;
 
 export interface PortfolioCompany {

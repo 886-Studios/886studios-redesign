@@ -221,7 +221,9 @@ export function getOrganizationSchema(): JsonLdObject {
       height: brand.logoHeight,
       caption: brand.logoAlt,
     },
-    sameAs: socialLinks.map((link) => link.href),
+    sameAs: socialLinks
+      .filter((link) => link.platform !== "rss")
+      .map((link) => link.href),
     address: {
       "@type": "PostalAddress",
       addressLocality: "Taipei",
