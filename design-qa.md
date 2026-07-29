@@ -50,6 +50,53 @@ The extended-page contact sheet verifies the initial benefits, fit, beyond-the-b
 
 Final result: passed
 
+## Blog newsletter card — July 29, 2026
+
+### Source and implementation evidence
+
+- Source visual truth: `.artifacts/design-qa/ikigai-subscribe-reference-full.png`
+- Normalized source card: `.artifacts/design-qa/ikigai-subscribe-reference-card.png`
+- Desktop implementation: `.artifacts/design-qa/ikigai-blog-subscribe-implementation-refined.png`
+- Same-input comparison: `.artifacts/design-qa/ikigai-subscribe-qa-final.png`
+- Mobile implementation: `.artifacts/design-qa/ikigai-blog-subscribe-mobile.png`
+
+### Viewport and normalization
+
+- Desktop browser viewport: 1656 × 1144 CSS pixels at device scale 1.
+- Source image: 2078 × 638 pixels. The card region was cropped and normalized to 1096 × 290 pixels.
+- Desktop implementation card: 1096 × 295 pixels at the same visual width as the normalized source.
+- Mobile browser viewport: 500 × 844 CSS pixels at device scale 1. The screenshot content area is 485 × 819 pixels after browser scrollbars.
+- State: Blog index scrolled to its final newsletter card; email form idle.
+
+### Full-view and focused comparison
+
+The source and implementation cards appear together in `ikigai-subscribe-qa-final.png`. The implementation preserves the source hierarchy: branded artwork, publication title and description, a short subscription prompt, and a single-row email action. The comparison is intentionally component-focused because the source is a newsletter-card reference rather than a full Blog page.
+
+The implementation retains the existing 886 product system instead of copying another publication's identity: Geist typography, real ikigai Insights artwork, restrained purple border, purple pill action, and the site's dark surface. The supplied 1280 × 640 ikigai image remains at its natural 2:1 aspect ratio without stretching or an invented replacement.
+
+### Required fidelity surfaces
+
+- Fonts and typography: Hierarchy and relative scale match the reference. Geist is retained as an intentional 886 brand adaptation instead of cloning the source serif face.
+- Spacing and layout rhythm: Desktop composition follows the same artwork-left/content-right structure. The final card differs by only 5 pixels in normalized height. Mobile collapses to one column without horizontal overflow.
+- Colors and visual tokens: The reference's orange palette is intentionally translated to existing 886 purple, background, border, and text tokens.
+- Image quality and asset fidelity: The real ikigai Insights asset is sharp, correctly cropped, and rendered at 2:1. No generated, placeholder, CSS-drawn, or invented brand asset is used.
+- Copy and content: The card uses the real publication name and description plus a concise subscription prompt. The existing Substack form action is preserved.
+
+### Findings and comparison history
+
+1. The first desktop implementation measured 1096 × 335 pixels versus the normalized 1096 × 290 source, creating a visibly taller and denser block (P2). Reduced the vertical padding from 50px to 30px. The revised implementation measures 1096 × 295 and matches the source proportion closely.
+2. The reference uses a square publication icon, while the established ikigai artwork is a wide 2:1 brand image. Retaining the real rectangular asset is an intentional product constraint based on the site's existing branding, not a fidelity defect.
+3. The 500px responsive pass shows no horizontal overflow, clipped copy, distorted image, or collapsed controls.
+4. The email field accepted and cleared a test value, and the Subscribe button remained enabled. The form was not submitted to the external service during QA.
+5. Browser console check returned no errors.
+
+### Remaining acceptable differences
+
+- The source's warm orange glow, serif wordmark, and square artwork belong to Flying Arrows. The implementation intentionally uses ikigai's image and 886's typography and purple interaction styling.
+- The mobile state has no direct source reference; it was checked for faithful hierarchy, readability, and functional responsiveness.
+
+Final result: passed
+
 ## Testimonial card revision — July 13, 2026
 
 ### Evidence

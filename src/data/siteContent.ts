@@ -523,6 +523,7 @@ export const siteContent = {
       { id: "about", label: "About Us", href: "/about" },
       { id: "events", label: "Events", href: "/events" },
       { id: "resources", label: "Resources", href: "/resources" },
+      { id: "blog", label: "Blog", href: "/blog" },
       { id: "contact", label: "Contact", href: "/contact" },
     ],
   },

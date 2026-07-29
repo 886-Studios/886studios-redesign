@@ -1,0 +1,65 @@
+---
+import ArticleSubscribe from "../ArticleSubscribe.astro";
+import {
+  blogConfig,
+  formatBlogDate,
+} from "../../lib/substack";
+import type { BlogPost } from "../../types/blog";
+
+const { post } = Astro.props as { post: BlogPost };
+const hasLocalContent = Astro.slots.has("default");
+---
+
+<article class="page blog-post-page">
+  <header class="blog-post-header">
+    <div class="blog-post-header-inner">
+      <a class="blog-back-link" href="/blog">
+        <span aria-hidden="true">←</span> Back to Blog
+      </a>
+
+      <div class="blog-post-publication">
+        {post.source === "substack" ? blogConfig.publicationName : "886 Studios"}
+      </div>
+      <h1>{post.title}</h1>
+      {post.description && <p class="blog-post-dek">{post.description}</p>}
+
+      <div class="blog-post-byline">
+        <span>By {post.author}</span>
+        <span aria-hidden="true">·</span>
+        <time datetime={post.publishedAt}>{formatBlogDate(post.publishedAt)}</time>
+        <span aria-hidden="true">·</span>
+        <span>{post.readingMinutes} min read</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="pg-divider"></div>
+
+  <div class="blog-post-layout">
+    <div class="blog-post-content">
+      {hasLocalContent ? <slot /> : <Fragment set:html={post.contentHtml ?? ""} />}
+    </div>
+
+    <ArticleSubscribe placement={post.slug} showPublicationBrand />
+  </div>
+
+  {post.substackUrl && (
+    <footer class="blog-post-footer">
+      <div class="blog-post-footer-inner">
+        <div class="blog-post-origin">
+          <span>Originally published in</span>
+          <a
+            href={post.substackUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics-event="substack_post_opened"
+            data-analytics-placement="blog_post_footer"
+            data-analytics-label={post.title}
+          >
+            {blogConfig.publicationName}
+          </a>
+        </div>
+      </div>
+    </footer>
+  )}
+</article>

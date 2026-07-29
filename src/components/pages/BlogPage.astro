@@ -1,0 +1,123 @@
+---
+import ArticleSubscribe from "../ArticleSubscribe.astro";
+import PageHero from "../PageHero.astro";
+import {
+  blogConfig,
+  formatBlogDate,
+} from "../../lib/substack";
+import type { BlogPost } from "../../types/blog";
+
+const { posts } = Astro.props as { posts: BlogPost[] };
+const [featuredPost, ...archivePosts] = posts;
+---
+
+<div class="page blog-page" id="page-blog">
+  <PageHero title={blogConfig.label} titleId="blog-title" showDivider={false} />
+
+  <div class="blog-shell">
+    {featuredPost ? (
+      <>
+        <section class="blog-feature" aria-labelledby="blog-latest-heading">
+          <div class="blog-section-label" id="blog-latest-heading">Latest</div>
+          <a
+            class="blog-feature-link"
+            href={`/blog/${featuredPost.slug}`}
+            data-analytics-event="blog_post_opened"
+            data-analytics-placement="blog_feature"
+            data-analytics-label={featuredPost.title}
+          >
+            <div class="blog-feature-media">
+              {featuredPost.imageUrl ? (
+                <img
+                  src={featuredPost.imageUrl}
+                  alt=""
+                  width={featuredPost.imageWidth ?? 1600}
+                  height={featuredPost.imageHeight ?? 900}
+                  loading="eager"
+                  decoding="async"
+                  referrerpolicy="no-referrer"
+                />
+              ) : (
+                <div class="blog-image-fallback" aria-hidden="true">
+                  <span>886</span>
+                </div>
+              )}
+            </div>
+            <div class="blog-feature-copy">
+              <time class="blog-feature-date" datetime={featuredPost.publishedAt}>
+                {formatBlogDate(featuredPost.publishedAt)}
+              </time>
+              <h2>{featuredPost.title}</h2>
+              <p>{featuredPost.description}</p>
+              <span class="blog-feature-author">By {featuredPost.author}</span>
+            </div>
+          </a>
+        </section>
+
+        {archivePosts.length > 0 && (
+          <section class="blog-archive" aria-label="More articles">
+            <div class="blog-archive-list">
+              {archivePosts.map((post) => (
+                <a
+                  class="blog-archive-item"
+                  href={`/blog/${post.slug}`}
+                  data-analytics-event="blog_post_opened"
+                  data-analytics-placement="blog_archive"
+                  data-analytics-label={post.title}
+                >
+                  <time class="blog-archive-date" datetime={post.publishedAt}>
+                    {formatBlogDate(post.publishedAt, "short")}
+                  </time>
+                  <span class="blog-archive-main">
+                    <span class="blog-archive-title">{post.title}</span>
+                    <span class="blog-archive-description">{post.description}</span>
+                    <span class="blog-archive-author">By {post.author}</span>
+                  </span>
+                  <span class="blog-archive-media">
+                    {post.imageUrl ? (
+                      <img
+                        src={post.imageUrl}
+                        alt=""
+                        width={post.imageWidth ?? 1600}
+                        height={post.imageHeight ?? 900}
+                        loading="lazy"
+                        decoding="async"
+                        referrerpolicy="no-referrer"
+                      />
+                    ) : (
+                      <span class="blog-image-fallback" aria-hidden="true">
+                        <span>886</span>
+                      </span>
+                    )}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+      </>
+    ) : (
+      <section class="blog-empty" aria-labelledby="blog-empty-heading">
+        <div class="blog-section-label">Latest</div>
+        <h2 id="blog-empty-heading">The feed is taking a moment.</h2>
+        <p>Read the latest edition directly on ikigai Insights.</p>
+        <a
+          href={blogConfig.publicationUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-analytics-event="substack_publication_opened"
+          data-analytics-placement="blog_empty"
+        >
+          Open ikigai Insights
+        </a>
+      </section>
+    )}
+
+    <ArticleSubscribe
+      placement="blog-index"
+      analyticsPlacement="blog_index"
+      showPublicationBrand
+      contained
+    />
+  </div>
+</div>

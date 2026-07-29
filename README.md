@@ -81,7 +81,7 @@ Do not commit `.env`, `.env.local`, or any `.env.*.local` file. These files are 
 
 Google Analytics uses the production fallback ID in `src/config/site.ts`; there is no separate local analytics env var. Vercel Analytics renders only when Vercel sets `VERCEL=1`.
 
-Shared conversion events are sent to both providers by `src/scripts/analytics.ts`. Trackable links and forms opt in with `data-analytics-event`, plus optional `data-analytics-placement` and `data-analytics-label` attributes. Do not put email addresses, names, form values, or other personal data in these attributes. Current funnel events are `program_interest`, `application_started`, `newsletter_signup`, `event_registration_started`, `event_details_opened`, `event_calendar_opened`, and `founder_ama_opened`.
+Shared conversion events are sent to both providers by `src/scripts/analytics.ts`. Trackable links and forms opt in with `data-analytics-event`, plus optional `data-analytics-placement` and `data-analytics-label` attributes. Do not put email addresses, names, form values, or other personal data in these attributes. Current funnel events are `program_interest`, `application_started`, `newsletter_signup`, `event_registration_started`, `event_details_opened`, `event_calendar_opened`, `founder_ama_opened`, `blog_post_opened`, `substack_publication_opened`, and `substack_post_opened`.
 
 ## Search indexing
 
@@ -127,6 +127,41 @@ Enter `https://www.886studios.com/sitemap.xml` in each webmaster dashboard after
 verification. Bing can also import the verified property and sitemap directly from Google
 Search Console.
 
+## Blog content
+
+The Blog supports two sources that are merged by publication date during the static build:
+
+- ikigai Insights posts imported from the Substack RSS feed;
+- website-only Markdown articles stored in `src/content/blog/`.
+
+To add a website-only article, copy `src/content/blog/local-article-template.md`, rename it to
+the intended URL slug, replace the frontmatter and body, and set `draft: false`.
+
+```md
+---
+title: "Article title"
+description: "A concise description used on the Blog page and in search metadata."
+publishedAt: 2026-07-28
+author: "886 Studios"
+image: "/assets/blog/article-image.jpg"
+imageAlt: "A useful description of the image"
+imageWidth: 1600
+imageHeight: 900
+draft: false
+---
+
+Write the article in Markdown here.
+```
+
+The filename becomes the URL by default, such as
+`src/content/blog/founder-lessons.md` → `/blog/founder-lessons`. An optional `slug` field can
+override the filename. Store article images in `public/assets/blog/`.
+
+Local articles use the same Blog index and article design as Substack posts. They do not show
+the “Originally published in ikigai Insights” footer unless an optional `substackUrl` is added.
+If a local article and a Substack post share a slug, the local article takes precedence.
+Drafts are excluded from builds, the sitemap, and the Blog index.
+
 ## Deployment
 
 The site is a static Astro build deployed on Vercel.
@@ -167,6 +202,9 @@ src/
     pages/                      route body components
   config/
     site.ts                     canonical URL, metadata, analytics, route preloads
+  content/
+    blog/                       website-only Markdown blog articles
+  content.config.ts             typed schema and loader for local articles
   data/
     siteContent.ts              global/nav/page copy and structured content
     partnerProfiles.ts          partner profile content and lookup map
@@ -174,8 +212,10 @@ src/
   layouts/
     BaseLayout.astro            document shell, metadata, global chrome
   lib/
+    blog.ts                     merged local Markdown and Substack blog source
     luma.ts                     Luma API adapter and event-card normalization
     seo.ts                      metadata content and reusable JSON-LD helpers
+    substack.ts                 Substack RSS adapter and article normalization
     urls.ts                     shared safe-link helpers for data-driven links
   pages/                        Astro route entrypoints and generated sitemap
   scripts/
