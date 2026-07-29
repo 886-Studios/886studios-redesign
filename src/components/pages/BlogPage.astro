@@ -1,6 +1,7 @@
 ---
 import ArticleSubscribe from "../ArticleSubscribe.astro";
 import PageHero from "../PageHero.astro";
+import { getBlogAuthorHref } from "../../lib/blog";
 import {
   blogConfig,
   formatBlogDate,
@@ -21,13 +22,15 @@ const [featuredPost, ...archivePosts] = posts;
       <>
         <section class="blog-feature" aria-labelledby="blog-latest-heading">
           <div class="blog-section-label" id="blog-latest-heading">Latest</div>
-          <a
-            class="blog-feature-link"
-            href={`/blog/${featuredPost.slug}`}
-            data-analytics-event="blog_post_opened"
-            data-analytics-placement="blog_feature"
-            data-analytics-label={featuredPost.title}
-          >
+          <article class="blog-feature-link">
+            <a
+              class="blog-card-hit-link"
+              href={`/blog/${featuredPost.slug}`}
+              aria-label={`Read ${featuredPost.title}`}
+              data-analytics-event="blog_post_opened"
+              data-analytics-placement="blog_feature"
+              data-analytics-label={featuredPost.title}
+            ></a>
             <div class="blog-feature-media">
               {featuredPost.imageUrl ? (
                 <img
@@ -54,29 +57,49 @@ const [featuredPost, ...archivePosts] = posts;
               </time>
               <h2>{featuredPost.title}</h2>
               <p>{featuredPost.description}</p>
-              <span class="blog-feature-author">By {featuredPost.author}</span>
+              {getBlogAuthorHref(featuredPost.author) ? (
+                <a
+                  class="blog-feature-author blog-author-link"
+                  href={getBlogAuthorHref(featuredPost.author)}
+                >
+                  By {featuredPost.author}
+                </a>
+              ) : (
+                <span class="blog-feature-author">By {featuredPost.author}</span>
+              )}
             </div>
-          </a>
+          </article>
         </section>
 
         {archivePosts.length > 0 && (
           <section class="blog-archive" aria-label="More articles">
             <div class="blog-archive-list">
               {archivePosts.map((post) => (
-                <a
-                  class="blog-archive-item"
-                  href={`/blog/${post.slug}`}
-                  data-analytics-event="blog_post_opened"
-                  data-analytics-placement="blog_archive"
-                  data-analytics-label={post.title}
-                >
+                <article class="blog-archive-item">
+                  <a
+                    class="blog-card-hit-link"
+                    href={`/blog/${post.slug}`}
+                    aria-label={`Read ${post.title}`}
+                    data-analytics-event="blog_post_opened"
+                    data-analytics-placement="blog_archive"
+                    data-analytics-label={post.title}
+                  ></a>
                   <time class="blog-archive-date" datetime={post.publishedAt}>
                     {formatBlogDate(post.publishedAt, "short")}
                   </time>
                   <span class="blog-archive-main">
                     <span class="blog-archive-title">{post.title}</span>
                     <span class="blog-archive-description">{post.description}</span>
-                    <span class="blog-archive-author">By {post.author}</span>
+                    {getBlogAuthorHref(post.author) ? (
+                      <a
+                        class="blog-archive-author blog-author-link"
+                        href={getBlogAuthorHref(post.author)}
+                      >
+                        By {post.author}
+                      </a>
+                    ) : (
+                      <span class="blog-archive-author">By {post.author}</span>
+                    )}
                   </span>
                   <span class="blog-archive-media">
                     {post.imageUrl ? (
@@ -97,7 +120,7 @@ const [featuredPost, ...archivePosts] = posts;
                       </span>
                     )}
                   </span>
-                </a>
+                </article>
               ))}
             </div>
           </section>

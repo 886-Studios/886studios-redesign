@@ -22,6 +22,10 @@ export function getBlogMetaDescription(post: BlogPost) {
   return `${lead}Read ${post.title} from ${source}.`;
 }
 
+export function getBlogAuthorHref(author: string) {
+  return author === "Carter Wang" ? "/about/carter-wang" : undefined;
+}
+
 async function loadBlogPosts() {
   const [localEntries, substackPosts] = await Promise.all([
     getCollection("blog", ({ data }) => !data.draft),
