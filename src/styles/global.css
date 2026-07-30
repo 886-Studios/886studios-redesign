@@ -5073,6 +5073,10 @@ body.is-home nav.site-nav.is-scrolled {
   background: var(--bg);
 }
 
+.resources-page .pg-hero .section-lead {
+  max-width: none;
+}
+
 .resources-page .btn-pri {
   padding-inline: 24px;
 }
