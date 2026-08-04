@@ -34,7 +34,10 @@ export const GET: APIRoute = async ({ site }) => {
     customData: channelData,
     items: posts.map((post) => ({
       title: post.title,
-      description: post.description,
+      // Some RSS clients render `description` and ignore `content:encoded`.
+      // Keep the complete article in both fields so those clients do not fall
+      // back to the short card excerpt.
+      description: post.contentHtml ?? post.description,
       content: post.contentHtml,
       pubDate: new Date(post.publishedAt),
       link: `/blog/${post.slug}`,

@@ -51,6 +51,7 @@ test("pages advertise the RSS feed for reader auto-discovery", () => {
 });
 
 test("RSS items include the complete article HTML", () => {
+  assert.match(feedRoute, /description:\s*post\.contentHtml\s*\?\?\s*post\.description/);
   assert.match(feedRoute, /content:\s*post\.contentHtml/);
   assert.match(blogLoader, /contentHtml:\s*entry\.rendered\?\.html/);
 });
