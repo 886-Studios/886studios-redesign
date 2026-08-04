@@ -346,6 +346,12 @@ if (
 }
 
 const rssItems = [...rssChannel.matchAll(/<item>([\s\S]*?)<\/item>/gi)].map((match) => match[1]);
+if (
+  rssItems.length > 0 &&
+  !/xmlns:content="http:\/\/purl\.org\/rss\/1\.0\/modules\/content\/"/.test(rssXml)
+) {
+  fail("rss.xml: missing RSS content namespace");
+}
 for (const [index, item] of rssItems.entries()) {
   for (const element of ["title", "link", "guid", "description", "pubDate", "dc:creator"]) {
     if (!new RegExp(`<${element}\\b[^>]*>[^<]+</${element}>`, "i").test(item)) {
@@ -365,6 +371,13 @@ for (const [index, item] of rssItems.entries()) {
   const pubDate = decodeHtml(item.match(/<pubDate>([\s\S]*?)<\/pubDate>/i)?.[1]?.trim() ?? "");
   if (Number.isNaN(Date.parse(pubDate))) {
     fail(`rss.xml: item ${index + 1} has an invalid publication date`);
+  }
+
+  const content = decodeHtml(
+    item.match(/<content:encoded>([\s\S]*?)<\/content:encoded>/i)?.[1]?.trim() ?? "",
+  );
+  if (!/<(?:p|figure|blockquote|h[1-6]|ul|ol|pre)\b/i.test(content)) {
+    fail(`rss.xml: item ${index + 1} is missing full article HTML`);
   }
 }
 

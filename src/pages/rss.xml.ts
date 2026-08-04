@@ -35,6 +35,7 @@ export const GET: APIRoute = async ({ site }) => {
     items: posts.map((post) => ({
       title: post.title,
       description: post.description,
+      content: post.contentHtml,
       pubDate: new Date(post.publishedAt),
       link: `/blog/${post.slug}`,
       customData: `<dc:creator>${escapeXml(post.author)}</dc:creator>`,

@@ -14,6 +14,14 @@ const layout = await readFile(
   new URL("../src/layouts/BaseLayout.astro", import.meta.url),
   "utf8",
 );
+const feedRoute = await readFile(
+  new URL("../src/pages/rss.xml.ts", import.meta.url),
+  "utf8",
+);
+const blogLoader = await readFile(
+  new URL("../src/lib/blog.ts", import.meta.url),
+  "utf8",
+);
 
 test("RSS is the last footer social link", () => {
   const rssPosition = socialContent.indexOf('platform: "rss"');
@@ -40,4 +48,9 @@ test("pages advertise the RSS feed for reader auto-discovery", () => {
     layout,
     /rel="alternate"[\s\S]*type="application\/rss\+xml"[\s\S]*href=\{`\$\{siteConfig\.url\}\/rss\.xml`\}/,
   );
+});
+
+test("RSS items include the complete article HTML", () => {
+  assert.match(feedRoute, /content:\s*post\.contentHtml/);
+  assert.match(blogLoader, /contentHtml:\s*entry\.rendered\?\.html/);
 });

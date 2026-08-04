@@ -46,6 +46,7 @@ async function loadBlogPosts() {
     imageHeight: entry.data.imageHeight,
     readingMinutes: getMarkdownReadingMinutes(entry.body ?? ""),
     substackUrl: entry.data.substackUrl,
+    contentHtml: entry.rendered?.html,
     localEntryId: entry.id,
   }));
 
