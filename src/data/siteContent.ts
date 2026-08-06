@@ -1071,17 +1071,6 @@ export const siteContent = {
             "886 Studios is the venture firm. ikigai Launchpad is the accelerator program that we run.",
         },
         {
-          question: "How is Launch Station different from ikigai Launchpad?",
-          answer:
-            "ikigai Launchpad is 886 Studios' 10-week accelerator with a standard $100,000 USD investment for 8% through a SAFE. Launch Station is a separate community program offering a free dedicated desk and founder network inside Taiwan Tech Arena.",
-          links: [
-            {
-              label: "Explore Launch Station",
-              href: "/programs/launch-station",
-            },
-          ],
-        },
-        {
           question: "What happens after the program ends?",
           answer:
             "Support continues beyond week 10. We provide tailored introductions, resources, and company-building support based on each alumnus’s stage and funding needs, while the founder community remains active beyond the batch.",

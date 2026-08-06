@@ -48,7 +48,7 @@ export const pageMeta = {
     description: siteConfig.defaultDescription,
   },
   programs: {
-    title: "ikigai Launchpad Taipei Accelerator | 886 Studios",
+    title: "ikigai Launchpad | 886 Studios",
     description:
       "ikigai Launchpad is 886 Studios' 10-week, in-person Taipei accelerator with a standard $100K-for-8% SAFE, weekly mentor office hours, and investor access.",
     ogImage: `${siteConfig.url}/assets/programs/ikigai-launchpad-fall-2026-applications-open.png`,
@@ -59,7 +59,7 @@ export const pageMeta = {
     ogImageType: "image/png",
   },
   launchStation: {
-    title: "Launch Station Founder Coworking in Taipei | 886 Studios",
+    title: "Launch Station | 886 Studios",
     description:
       "Launch Station is 886 Studios' free dedicated desk and founder community program inside Taiwan Tech Arena.",
     ogImage: `${siteConfig.url}/assets/programs/launch-station-community-collage-2026.jpg`,
@@ -69,12 +69,12 @@ export const pageMeta = {
     ogImageType: "image/jpeg",
   },
   about: {
-    title: "About Our Team and Venture Firm | 886 Studios",
+    title: "About | 886 Studios",
     description:
       "886 Studios is built by founders and partners behind Twitch, Kabam, Guitar Hero, Playdom, Orbit Baby, HTC Vive, and other global companies.",
   },
   events: {
-    title: "Startup Events in Taipei | 886 Studios",
+    title: "Taipei Startup Events | 886 Studios",
     description:
       "Meet 886 Studios through Taipei founder meetups, workshops, demo days, and community events for early-stage startups.",
   },
@@ -84,12 +84,12 @@ export const pageMeta = {
       "Explore startups backed by 886 Studios and partner-backed companies connected to the 886 Studios founder network.",
   },
   resources: {
-    title: "Startup Resources for Founders | 886 Studios",
+    title: "Founder Resources | 886 Studios",
     description:
       "Founder guides from 886 Studios covering accelerator applications, incorporation, Taiwan startup ecosystem resources, interviews, and fundraising advice.",
   },
   blog: {
-    title: "Blog and Startup Insights | 886 Studios",
+    title: "Startup Insights | 886 Studios",
     description:
       "Read ikigai Insights from 886 Studios: founder perspectives, startup lessons, technology stories, and updates from the Taiwan startup ecosystem.",
   },
@@ -170,16 +170,16 @@ export function getResourceDescription(article: ResourceArticle) {
 }
 
 export function getResourcePageTitle(article: ResourceArticle) {
-  const optimizedTitles: Record<string, string> = {
-    "y-combinator-101": "Y Combinator (YC) Application Guide | 886 Studios",
-    "application-guide": "Startup Accelerator Application Guide | 886 Studios",
-    "ecosystem-database": "Taiwan Startup Ecosystem Database | 886 Studios",
-    "founders-frequently-asked-questions": "Startup Founder FAQs | 886 Studios",
-    "incorporation-101": "Startup Incorporation Guide | 886 Studios",
-    "interview-guidebook": "Startup Accelerator Interview Guide | 886 Studios",
+  const descriptiveTitles: Record<string, string> = {
+    "y-combinator-101": "YC Application Guide",
+    "application-guide": "Accelerator Application Guide",
+    "ecosystem-database": "Taiwan Startup Ecosystem Database",
+    "founders-frequently-asked-questions": "Founder FAQs",
+    "incorporation-101": "Startup Incorporation Guide",
+    "interview-guidebook": "Accelerator Interview Guide",
   };
 
-  return optimizedTitles[article.slug] ?? `${article.title} | 886 Studios`;
+  return `${descriptiveTitles[article.slug] ?? article.title} | 886 Studios`;
 }
 
 export function getStructuredDataGraph(options: StructuredDataOptions) {
