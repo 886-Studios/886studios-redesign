@@ -2,6 +2,24 @@ function initPhotoMarquee() {
   const photoTracks = Array.from(document.querySelectorAll<HTMLElement>(".photo-track"));
   if (photoTracks.length === 0) return;
 
+  const waitForImageDecode = (image: HTMLImageElement) =>
+    new Promise<void>((resolve) => {
+      const decodeImage = () => {
+        image
+          .decode()
+          .catch(() => undefined)
+          .finally(resolve);
+      };
+
+      if (image.complete) {
+        decodeImage();
+        return;
+      }
+
+      image.addEventListener("load", decodeImage, { once: true });
+      image.addEventListener("error", () => resolve(), { once: true });
+    });
+
   let animationFrame = 0;
   const syncPhotoTracks = () => {
     const isCompact = window.matchMedia("(max-width: 720px)").matches;
@@ -32,6 +50,17 @@ function initPhotoMarquee() {
     const photoResizeObserver = new ResizeObserver(queueSyncPhotoTracks);
     photoTracks.forEach((track) => photoResizeObserver.observe(track));
   }
+
+  photoTracks.forEach((track) => {
+    const firstSet = track.querySelector<HTMLElement>(".photo-track-set");
+    if (!firstSet) return;
+
+    const firstSetImages = Array.from(firstSet.querySelectorAll<HTMLImageElement>("img"));
+    void Promise.all(firstSetImages.map(waitForImageDecode)).then(() => {
+      track.classList.add("is-ready");
+      queueSyncPhotoTracks();
+    });
+  });
 
   window.addEventListener("load", queueSyncPhotoTracks, { once: true });
   window.addEventListener("resize", queueSyncPhotoTracks);

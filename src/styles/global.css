@@ -601,22 +601,37 @@ body.is-home nav.site-nav.is-scrolled {
 @media (max-width: 640px) {
   .application-banner-inner {
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: 16px;
-    align-items: stretch;
-    min-height: 92px;
-    padding: 10px clamp(16px, 5vw, 20px);
+    gap: clamp(8px, 3vw, 14px);
+    align-items: center;
+    min-height: 72px;
+    padding: 8px clamp(16px, 5vw, 20px);
+  }
+
+  .application-banner p {
+    min-width: 0;
+    font-size: clamp(0.8rem, 3.7vw, 0.88rem);
+    line-height: 1.32;
   }
 
   .application-banner-actions {
     display: flex;
     grid-column: 2;
     grid-row: 1;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+  }
+
+  .application-banner a {
+    order: 1;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: 4px;
   }
 
   .application-banner-close {
+    order: 2;
     width: 44px;
     height: 44px;
   }
@@ -1020,8 +1035,13 @@ body.is-home nav.site-nav.is-scrolled {
   min-width: max-content;
   transform: translate3d(0, 0, 0);
   animation: photoMarquee var(--photo-marquee-duration) linear infinite;
+  animation-play-state: paused;
   backface-visibility: hidden;
   will-change: transform;
+}
+
+.photo-track.is-ready {
+  animation-play-state: running;
 }
 
 .photo-track-set {
@@ -8731,8 +8751,8 @@ footer {
   }
 
   .social-btn {
-    width: clamp(23px, 7vw, 30px);
-    height: 34px;
+    width: clamp(27px, 7vw, 30px);
+    height: 44px;
   }
 
   .social-btn::before {
@@ -8753,11 +8773,17 @@ footer {
   .startup-home-link,
   .ls-back {
     align-items: center;
-    min-height: 40px;
+    min-height: 44px;
   }
 
   .card-cta {
     padding-block: 8px;
+  }
+
+  .footer-privacy-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
   }
 
   .res-perk-tool,

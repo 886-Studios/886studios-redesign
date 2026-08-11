@@ -40,7 +40,8 @@ interface RouteImagePreload {
 const routeImagePreloads: Record<string, RouteImagePreload[]> = {
   "/": [
     {
-      href: "/assets/hero/sf-tpe-hero.jpg",
+      href: "/assets/hero/sf-tpe-hero-1280.webp",
+      type: "image/webp",
     },
   ],
   "/programs": [

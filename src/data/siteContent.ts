@@ -536,7 +536,7 @@ export const siteContent = {
     hero: {
       titleLead: "Build what",
       titleAccent: "matters.",
-      body: "886 Studios is a Taipei-based venture firm and startup accelerator.\nWe run ikigai Launchpad, a 10-week program for ambitious early-stage founders,\nwith $100K USD in funding, hands-on mentorship, and investor introductions.",
+      body: "886 Studios is where the next generation of global tech companies are built.\nWe run ikigai Launchpad, the premier Silicon Valley-style accelerator in Taipei\nbrought to you by the founders of Twitch, Guitar Hero, Playdom, Kabam, & more.",
       cta: {
         label: "Learn more about ikigai Launchpad",
         href: "/programs",
@@ -1350,7 +1350,7 @@ export const siteContent = {
         paragraphs: [
           "Named after Taiwan's international country code, 886 Studios was born with a singular mission: to foster and grow Taiwan's startup ecosystem.",
           "In our early days, 886 Studios operated as a venture studio. This insight drove us to create ikigai Launchpad, our startup accelerator designed to propel founders toward global growth.",
-          "Our vision is simple: create an environment where founders can thrive with the right mix of funding, mentorship, resources, and networks. We are not just building companies. We are shaping the future of innovation in Taiwan and beyond.",
+          "Our vision is to create an environment where founders can thrive with the right mix of funding, mentorship, resources, and networks. We are not just building companies. We are shaping the future of innovation in Taiwan and beyond.",
         ],
       },
     ],

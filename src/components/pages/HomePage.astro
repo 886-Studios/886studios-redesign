@@ -54,7 +54,7 @@ const getPhotoSrcset = (src: string) =>
         {photoLoopSets.map((isHidden) => (
           <div class="photo-track-set" aria-hidden={isHidden ? "true" : undefined}>
             {
-              home.photos.items.map((photo) => (
+              home.photos.items.map((photo, photoIndex) => (
                 <figure class="photo-slide">
                   <img
                     src={photo.src}
@@ -63,7 +63,8 @@ const getPhotoSrcset = (src: string) =>
                     alt={isHidden ? "" : photo.alt}
                     width={photo.width}
                     height={photo.height}
-                    loading="lazy"
+                    loading={isHidden ? "lazy" : "eager"}
+                    fetchpriority={!isHidden && photoIndex < 2 ? "high" : undefined}
                     decoding="async"
                   />
                 </figure>
