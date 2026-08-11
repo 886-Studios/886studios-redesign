@@ -18,6 +18,7 @@ export const blogConfig = {
 } as const;
 
 const substackAuthorOverrides: Record<string, string> = {
+  "on-our-radar-ai-native-professional": "Max Hsieh",
   "find-truth-faster": "Carter Wang",
   "5-thing-we-learned-from-the-founders": "Carter Wang",
   "ikigai-launchpad-spring-2026-sp26": "Carter Wang",
