@@ -1002,6 +1002,10 @@ export const siteContent = {
             label: "First acceptances end",
           },
           {
+            date: "August 16, 2026",
+            label: "2nd Round of Acceptances end",
+          },
+          {
             date: "Fall 2026",
             label: "Next batch",
           },
