@@ -1260,6 +1260,11 @@ export const siteContent = {
               logoSrc: "https://www.google.com/s2/favicons?domain=notion.so&sz=64",
             },
             {
+              label: "Craft",
+              href: "https://www.craft.do/",
+              logoSrc: "https://www.google.com/s2/favicons?domain=craft.do&sz=64",
+            },
+            {
               label: "Coda",
               href: "https://coda.io",
               logoSrc: "https://www.google.com/s2/favicons?domain=coda.io&sz=64",
