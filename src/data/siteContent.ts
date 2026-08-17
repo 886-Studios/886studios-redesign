@@ -1255,19 +1255,14 @@ export const siteContent = {
           title: "Productivity",
           items: [
             {
-              label: "Notion",
-              href: "https://notion.so",
-              logoSrc: "https://www.google.com/s2/favicons?domain=notion.so&sz=64",
+              label: "Coda",
+              href: "https://coda.io",
+              logoSrc: "https://www.google.com/s2/favicons?domain=coda.io&sz=64",
             },
             {
               label: "Craft",
               href: "https://www.craft.do/",
               logoSrc: "/assets/logos/craft-logo-white.svg",
-            },
-            {
-              label: "Coda",
-              href: "https://coda.io",
-              logoSrc: "https://www.google.com/s2/favicons?domain=coda.io&sz=64",
             },
             {
               label: "DocSend",
@@ -1279,15 +1274,20 @@ export const siteContent = {
               href: "https://miro.com",
               logoSrc: "https://www.google.com/s2/favicons?domain=miro.com&sz=64",
             },
+            {
+              label: "Notion",
+              href: "https://notion.so",
+              logoSrc: "https://www.google.com/s2/favicons?domain=notion.so&sz=64",
+            },
           ],
         },
         {
           title: "Finances",
           items: [
             {
-              label: "Ramp",
-              href: "https://ramp.com",
-              logoSrc: "https://www.google.com/s2/favicons?domain=ramp.com&sz=64",
+              label: "Carta",
+              href: "https://carta.com/sg/en/",
+              logoSrc: "https://www.google.com/s2/favicons?domain=carta.com&sz=64",
             },
             {
               label: "Mercury",
@@ -1295,9 +1295,9 @@ export const siteContent = {
               logoSrc: "https://www.google.com/s2/favicons?domain=mercury.com&sz=64",
             },
             {
-              label: "Carta",
-              href: "https://carta.com/sg/en/",
-              logoSrc: "https://www.google.com/s2/favicons?domain=carta.com&sz=64",
+              label: "Ramp",
+              href: "https://ramp.com",
+              logoSrc: "https://www.google.com/s2/favicons?domain=ramp.com&sz=64",
             },
           ],
         },
@@ -1325,14 +1325,14 @@ export const siteContent = {
               logoSrc: "https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64",
             },
             {
-              label: "Google Cloud Startup Program",
-              href: "https://cloud.google.com/startup/",
-              logoSrc: "https://www.google.com/s2/favicons?domain=cloud.google.com&sz=64",
-            },
-            {
               label: "GitHub",
               href: "https://github.com",
               logoSrc: "https://www.google.com/s2/favicons?domain=github.com&sz=64",
+            },
+            {
+              label: "Google Cloud Startup Program",
+              href: "https://cloud.google.com/startup/",
+              logoSrc: "https://www.google.com/s2/favicons?domain=cloud.google.com&sz=64",
             },
           ],
         },
