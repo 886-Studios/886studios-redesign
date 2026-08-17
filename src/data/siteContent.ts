@@ -1257,7 +1257,7 @@ export const siteContent = {
             {
               label: "Coda",
               href: "https://coda.io",
-              logoSrc: "https://www.google.com/s2/favicons?domain=coda.io&sz=64",
+              logoSrc: "/assets/logos/coda.webp",
             },
             {
               label: "Craft",
@@ -1267,17 +1267,17 @@ export const siteContent = {
             {
               label: "DocSend",
               href: "https://www.docsend.com",
-              logoSrc: "https://www.google.com/s2/favicons?domain=docsend.com&sz=64",
+              logoSrc: "/assets/logos/docsend.webp",
             },
             {
               label: "Miro",
               href: "https://miro.com",
-              logoSrc: "https://www.google.com/s2/favicons?domain=miro.com&sz=64",
+              logoSrc: "/assets/logos/miro.webp",
             },
             {
               label: "Notion",
               href: "https://notion.so",
-              logoSrc: "https://www.google.com/s2/favicons?domain=notion.so&sz=64",
+              logoSrc: "/assets/logos/notion.webp",
             },
           ],
         },
@@ -1287,17 +1287,17 @@ export const siteContent = {
             {
               label: "Carta",
               href: "https://carta.com/sg/en/",
-              logoSrc: "https://www.google.com/s2/favicons?domain=carta.com&sz=64",
+              logoSrc: "/assets/logos/carta.webp",
             },
             {
               label: "Mercury",
               href: "https://mercury.com",
-              logoSrc: "https://www.google.com/s2/favicons?domain=mercury.com&sz=64",
+              logoSrc: "/assets/logos/mercury.svg",
             },
             {
               label: "Ramp",
               href: "https://ramp.com",
-              logoSrc: "https://www.google.com/s2/favicons?domain=ramp.com&sz=64",
+              logoSrc: "/assets/logos/ramp.webp",
             },
           ],
         },
@@ -1307,12 +1307,12 @@ export const siteContent = {
             {
               label: "Hubspot",
               href: "https://www.hubspot.com",
-              logoSrc: "https://www.google.com/s2/favicons?domain=hubspot.com&sz=64",
+              logoSrc: "/assets/logos/hubspot.webp",
             },
             {
               label: "Webflow",
               href: "https://webflow.com",
-              logoSrc: "https://www.google.com/s2/favicons?domain=webflow.com&sz=64",
+              logoSrc: "/assets/logos/webflow.svg",
             },
           ],
         },
@@ -1322,17 +1322,17 @@ export const siteContent = {
             {
               label: "AWS Activate",
               href: "https://aws.amazon.com/activate/",
-              logoSrc: "https://www.google.com/s2/favicons?domain=aws.amazon.com&sz=64",
+              logoSrc: "/assets/logos/aws.webp",
             },
             {
               label: "GitHub",
               href: "https://github.com",
-              logoSrc: "https://www.google.com/s2/favicons?domain=github.com&sz=64",
+              logoSrc: "/assets/logos/github.svg",
             },
             {
               label: "Google Cloud Startup Program",
               href: "https://cloud.google.com/startup/",
-              logoSrc: "https://www.google.com/s2/favicons?domain=cloud.google.com&sz=64",
+              logoSrc: "/assets/logos/google-cloud.webp",
             },
           ],
         },
