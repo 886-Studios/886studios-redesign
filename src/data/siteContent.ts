@@ -1262,7 +1262,7 @@ export const siteContent = {
             {
               label: "Craft",
               href: "https://www.craft.do/",
-              logoSrc: "https://www.google.com/s2/favicons?domain=craft.do&sz=64",
+              logoSrc: "/assets/logos/craft-logo-white.svg",
             },
             {
               label: "Coda",
