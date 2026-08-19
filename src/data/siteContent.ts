@@ -1330,6 +1330,11 @@ export const siteContent = {
               href: "https://cloud.google.com/startup/",
               logoSrc: "/assets/logos/google-cloud.webp",
             },
+            {
+              label: "OpenAI",
+              href: "https://openai.com/startups",
+              logoSrc: "/assets/logos/openai.svg",
+            },
           ],
         },
       ],
