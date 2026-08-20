@@ -23,16 +23,17 @@ test("contact page uses a direct email link instead of a submission form", () =>
   assert.doesNotMatch(component, /\/api\/contact/);
 });
 
-test("contact page uses the shared hero and primary CTA without location details", () => {
+test("contact page uses the shared hero and understated action links without location details", () => {
   assert.match(content, /title: "Let’s build together"/);
   assert.match(content, /label: "Founders"/);
   assert.match(content, /title: "Building an ambitious startup"/);
   assert.doesNotMatch(content, /Whether you’re building a company/);
   assert.doesNotMatch(content, /label: "Based in"/);
-  assert.equal((component.match(/class="btn-pri"/g) ?? []).length, 3);
+  assert.equal((component.match(/class="contact-action-link"/g) ?? []).length, 3);
+  assert.doesNotMatch(component, /class="btn-pri"/);
   assert.match(
     component,
-    /class="btn-pri" href=\{contact\.general\.href\}>Contact us<\/a>/,
+    /class="contact-action-link" href=\{contact\.general\.href\}>\s+Contact us/,
   );
   assert.doesNotMatch(component, /contact\.lead/);
   assert.doesNotMatch(component, /contact\.location/);
@@ -49,7 +50,17 @@ test("contact page presents Discord as a secondary community path", () => {
   assert.match(component, /class="contact-path-copy">\{contact\.community\.description\}/);
   assert.match(
     component,
-    /<a\s+class="btn-pri"\s+href=\{contact\.community\.href\}/,
+    /<a\s+class="contact-action-link"\s+href=\{contact\.community\.href\}/,
   );
   assert.match(component, /href=\{contact\.community\.href\}/);
+});
+
+test("contact page keeps the primary routes before the secondary community path", () => {
+  assert.match(
+    component,
+    /<section class="contact-primary reveal" aria-label="Ways to contact 886 Studios">/,
+  );
+  assert.doesNotMatch(component, /Primary contact options/);
+  assert.equal((component.match(/<h2 class="contact-path-title"/g) ?? []).length, 3);
+  assert.match(component, /<section class="contact-path contact-community reveal"/);
 });

@@ -9,33 +9,43 @@ const [communityTitleBefore, communityTitleAfter = ""] = contact.community.title
 <div class="page" id="page-contact">
   <PageHero eyebrow={contact.eyebrow} title={contact.title} />
   <div class="section contact-section">
-    <section class="contact-paths reveal" aria-label="Ways to contact 886 Studios">
-      <article class="contact-path contact-path--founders" aria-labelledby="contact-founders-title">
-        <p class="section-tag contact-path-label">{contact.founders.label}</p>
-        <h2 class="contact-path-title" id="contact-founders-title">
-          {contact.founders.title}
-        </h2>
-        <p class="contact-path-copy">{contact.founders.description}</p>
-        <a
-          class="btn-pri"
-          href={contact.founders.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          data-analytics-event="application_started"
-          data-analytics-placement="contact_founders"
-        >
-          {contact.founders.cta}
-        </a>
-      </article>
+    <section class="contact-primary reveal" aria-label="Ways to contact 886 Studios">
+      <div class="contact-paths">
+        <article class="contact-path contact-path--founders" aria-labelledby="contact-founders-title">
+          <p class="section-tag contact-path-label">{contact.founders.label}</p>
+          <h2 class="contact-path-title" id="contact-founders-title">
+            {contact.founders.title}
+          </h2>
+          <p class="contact-path-copy">{contact.founders.description}</p>
+          <a
+            class="contact-action-link"
+            href={contact.founders.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics-event="application_started"
+            data-analytics-placement="contact_founders"
+          >
+            {contact.founders.cta}
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M5 11 11 5M6 5h5v5" />
+            </svg>
+          </a>
+        </article>
 
-      <article class="contact-path contact-path--general" aria-labelledby="contact-general-title">
-        <p class="section-tag contact-path-label">{contact.general.label}</p>
-        <h2 class="contact-path-title" id="contact-general-title">
-          {contact.general.title}
-        </h2>
-        <p class="contact-path-copy">{contact.general.description}</p>
-        <a class="btn-pri" href={contact.general.href}>Contact us</a>
-      </article>
+        <article class="contact-path contact-path--general" aria-labelledby="contact-general-title">
+          <p class="section-tag contact-path-label">{contact.general.label}</p>
+          <h2 class="contact-path-title" id="contact-general-title">
+            {contact.general.title}
+          </h2>
+          <p class="contact-path-copy">{contact.general.description}</p>
+          <a class="contact-action-link" href={contact.general.href}>
+            Contact us
+            <svg viewBox="0 0 16 16" aria-hidden="true">
+              <path d="M5 11 11 5M6 5h5v5" />
+            </svg>
+          </a>
+        </article>
+      </div>
     </section>
 
     <section class="contact-path contact-community reveal" aria-labelledby="contact-community-title">
@@ -52,12 +62,15 @@ const [communityTitleBefore, communityTitleAfter = ""] = contact.community.title
         <p class="contact-path-copy">{contact.community.description}</p>
       </div>
       <a
-        class="btn-pri"
+        class="contact-action-link"
         href={contact.community.href}
         target="_blank"
         rel="noopener noreferrer"
       >
         {contact.community.cta}
+        <svg viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M5 11 11 5M6 5h5v5" />
+        </svg>
       </a>
     </section>
   </div>
