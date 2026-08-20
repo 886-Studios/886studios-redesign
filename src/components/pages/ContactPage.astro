@@ -8,28 +8,33 @@ const { contact } = siteContent;
 <div class="page" id="page-contact">
   <PageHero eyebrow={contact.eyebrow} title={contact.title} />
   <div class="section contact-section">
-    <section class="contact-direct reveal" aria-labelledby="contact-email-title">
-      <div class="contact-direct-heading">
-        <p class="section-tag contact-direct-tag">{contact.email.label}</p>
-        <h2 class="contact-direct-title" id="contact-email-title">
-          <a class="contact-email-address" href={contact.email.href}>
-            <span>{contact.email.address}</span>
-            <svg viewBox="0 0 20 20" aria-hidden="true">
-              <path d="M6 14 14 6M7 6h7v7" />
-            </svg>
-          </a>
+    <section class="contact-paths reveal" aria-label="Ways to contact 886 Studios">
+      <article class="contact-path contact-path--founders" aria-labelledby="contact-founders-title">
+        <p class="section-tag contact-path-label">{contact.founders.label}</p>
+        <h2 class="contact-path-title" id="contact-founders-title">
+          {contact.founders.title}
         </h2>
-      </div>
+        <p class="contact-path-copy">{contact.founders.description}</p>
+        <a
+          class="btn-pri"
+          href={contact.founders.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-analytics-event="application_started"
+          data-analytics-placement="contact_founders"
+        >
+          {contact.founders.cta}
+        </a>
+      </article>
 
-      <div class="contact-direct-copy">
-        <p class="contact-email-copy">{contact.email.description}</p>
-        <div class="contact-direct-actions">
-          <a class="btn-pri contact-email-action" href={contact.email.href}>
-            {contact.email.button}
-          </a>
-          <p class="contact-email-note">{contact.email.note}</p>
-        </div>
-      </div>
+      <article class="contact-path contact-path--general" aria-labelledby="contact-general-title">
+        <p class="section-tag contact-path-label">{contact.general.label}</p>
+        <h2 class="contact-path-title" id="contact-general-title">
+          {contact.general.title}
+        </h2>
+        <p class="contact-path-copy">{contact.general.description}</p>
+        <a class="btn-pri" href={contact.general.href}>Contact us</a>
+      </article>
     </section>
   </div>
 </div>

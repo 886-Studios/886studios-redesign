@@ -1526,15 +1526,22 @@ export const siteContent = {
   },
   contact: {
     eyebrow: "Contact",
-    title: "Get in touch",
-    email: {
-      label: "Email us directly",
+    title: "Let’s build together",
+    founders: {
+      label: "For founders",
+      title: "Building an ambitious startup",
       description:
-        "For partnerships, program questions, or anything else, reach us at:",
+        "Tell us what you’re working on and apply to ikigai Launchpad.",
+      cta: "Apply to ikigai",
+      href: applicationUrl,
+    },
+    general: {
+      label: "Partnerships & press",
+      title: "Work with 886 Studios",
+      description:
+        "For ecosystem partnerships, media, events, and general questions.",
       address: "it@886studios.com",
       href: "mailto:it@886studios.com",
-      button: "Email us",
-      note: "This opens your default email app.",
     },
   },
   footer: {
