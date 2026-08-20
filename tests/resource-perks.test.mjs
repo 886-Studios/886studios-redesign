@@ -6,6 +6,10 @@ const content = await readFile(
   new URL("../src/data/siteContent.ts", import.meta.url),
   "utf8",
 );
+const mercuryLogo = await readFile(
+  new URL("../public/assets/logos/mercury.svg", import.meta.url),
+  "utf8",
+);
 
 test("resource perks stay alphabetized within each category", () => {
   const perks = content.slice(
@@ -34,4 +38,12 @@ test("OpenAI is listed as an Engineering perk without publishing the credit amou
   assert.match(engineering, /href: "https:\/\/openai\.com\/startups"/);
   assert.match(engineering, /logoSrc: "\/assets\/logos\/openai\.svg"/);
   assert.doesNotMatch(engineering, /5\s*k|5,000|5000/i);
+});
+
+test("Mercury uses a compact, high-contrast mark for the perks icon slot", () => {
+  assert.match(content, /logoSrc: "\/assets\/logos\/mercury\.svg"/);
+  assert.match(mercuryLogo, /viewBox="43\.5 8 13\.5 16"/);
+  assert.match(mercuryLogo, /fill="#f4f5f9"/);
+  assert.equal((mercuryLogo.match(/<path\b/g) ?? []).length, 1);
+  assert.doesNotMatch(mercuryLogo, /prefers-color-scheme|viewBox="0 0 500 500"/);
 });
