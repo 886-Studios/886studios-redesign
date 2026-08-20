@@ -7803,6 +7803,23 @@ body.is-home nav.site-nav.is-scrolled {
   margin-top: auto;
 }
 
+.contact-community {
+  max-width: 680px;
+  margin-top: clamp(64px, 7vw, 88px);
+}
+
+.contact-community-brand {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: -0.06em;
+}
+
+.contact-community-title-icon {
+  width: 0.82em;
+  height: 0.82em;
+  fill: var(--purple-bright);
+}
+
 @media (max-width: 1080px) {
   .contact-paths {
     grid-template-columns: 1fr;

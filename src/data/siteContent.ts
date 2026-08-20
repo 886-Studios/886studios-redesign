@@ -8,6 +8,8 @@ export const brand = {
   logoHeight: 384,
 };
 
+export const discordCommunityUrl = "https://discord.gg/FGcEHJyB3F";
+
 export const socialLinks = [
   {
     platform: "x",
@@ -31,7 +33,7 @@ export const socialLinks = [
   },
   {
     platform: "discord",
-    href: "https://discord.gg/FGcEHJyB3F",
+    href: discordCommunityUrl,
     ariaLabel: "886 Studios on Discord",
   },
   {
@@ -1528,7 +1530,7 @@ export const siteContent = {
     eyebrow: "Contact",
     title: "Let’s build together",
     founders: {
-      label: "For founders",
+      label: "Founders",
       title: "Building an ambitious startup",
       description:
         "Tell us what you’re working on and apply to ikigai Launchpad.",
@@ -1542,6 +1544,14 @@ export const siteContent = {
         "For ecosystem partnerships, media, events, and general questions.",
       address: "it@886studios.com",
       href: "mailto:it@886studios.com",
+    },
+    community: {
+      label: "Community",
+      title: "Join our Discord community",
+      description:
+        "Connect with founders, builders, and the wider 886 Studios community on Discord.",
+      cta: "Join us on Discord",
+      href: discordCommunityUrl,
     },
   },
   footer: {

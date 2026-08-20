@@ -3,6 +3,7 @@ import PageHero from "../PageHero.astro";
 import { siteContent } from "../../data/siteContent";
 
 const { contact } = siteContent;
+const [communityTitleBefore, communityTitleAfter = ""] = contact.community.title.split("Discord");
 ---
 
 <div class="page" id="page-contact">
@@ -35,6 +36,29 @@ const { contact } = siteContent;
         <p class="contact-path-copy">{contact.general.description}</p>
         <a class="btn-pri" href={contact.general.href}>Contact us</a>
       </article>
+    </section>
+
+    <section class="contact-path contact-community reveal" aria-labelledby="contact-community-title">
+      <div class="contact-community-copy-wrap">
+        <p class="section-tag contact-path-label">{contact.community.label}</p>
+        <h2 class="contact-path-title" id="contact-community-title">
+          {communityTitleBefore}<span class="contact-community-brand">
+            <span class="sr-only">Discord</span>
+            <svg class="contact-community-title-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.317 4.369A19.791 19.791 0 0 0 15.558 3c-.206.37-.444.87-.608 1.264a18.27 18.27 0 0 0-5.9 0A12.64 12.64 0 0 0 8.442 3a19.736 19.736 0 0 0-4.76 1.369C.673 8.874-.148 13.267.263 17.608a19.934 19.934 0 0 0 5.844 2.948c.47-.648.889-1.334 1.25-2.05a12.97 12.97 0 0 1-1.969-.95c.165-.123.326-.251.482-.383 3.798 1.781 7.92 1.781 11.673 0 .16.132.321.26.485.383-.625.366-1.282.685-1.972.95.361.716.779 1.402 1.25 2.05a19.887 19.887 0 0 0 5.847-2.948c.482-5.033-.822-9.385-3.836-13.239ZM8.02 14.973c-1.147 0-2.089-1.053-2.089-2.343 0-1.29.92-2.343 2.089-2.343 1.178 0 2.11 1.062 2.089 2.343 0 1.29-.921 2.343-2.089 2.343Zm7.96 0c-1.147 0-2.089-1.053-2.089-2.343 0-1.29.92-2.343 2.089-2.343 1.178 0 2.11 1.062 2.089 2.343 0 1.29-.911 2.343-2.089 2.343Z" />
+            </svg>
+          </span>{communityTitleAfter}
+        </h2>
+        <p class="contact-path-copy">{contact.community.description}</p>
+      </div>
+      <a
+        class="btn-pri"
+        href={contact.community.href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {contact.community.cta}
+      </a>
     </section>
   </div>
 </div>

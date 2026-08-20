@@ -25,14 +25,31 @@ test("contact page uses a direct email link instead of a submission form", () =>
 
 test("contact page uses the shared hero and primary CTA without location details", () => {
   assert.match(content, /title: "Let’s build together"/);
+  assert.match(content, /label: "Founders"/);
   assert.match(content, /title: "Building an ambitious startup"/);
   assert.doesNotMatch(content, /Whether you’re building a company/);
   assert.doesNotMatch(content, /label: "Based in"/);
-  assert.equal((component.match(/class="btn-pri"/g) ?? []).length, 2);
+  assert.equal((component.match(/class="btn-pri"/g) ?? []).length, 3);
   assert.match(
     component,
     /class="btn-pri" href=\{contact\.general\.href\}>Contact us<\/a>/,
   );
   assert.doesNotMatch(component, /contact\.lead/);
   assert.doesNotMatch(component, /contact\.location/);
+});
+
+test("contact page presents Discord as a secondary community path", () => {
+  assert.match(content, /discordCommunityUrl = "https:\/\/discord\.gg\/FGcEHJyB3F"/);
+  assert.match(content, /title: "Join our Discord community"/);
+  assert.match(content, /cta: "Join us on Discord"/);
+  assert.match(component, /class="section-tag contact-path-label">\{contact\.community\.label\}/);
+  assert.match(component, /class="contact-path-title" id="contact-community-title"/);
+  assert.match(component, /class="sr-only">Discord<\/span>/);
+  assert.match(component, /class="contact-community-title-icon"[^>]*aria-hidden="true"/);
+  assert.match(component, /class="contact-path-copy">\{contact\.community\.description\}/);
+  assert.match(
+    component,
+    /<a\s+class="btn-pri"\s+href=\{contact\.community\.href\}/,
+  );
+  assert.match(component, /href=\{contact\.community\.href\}/);
 });
