@@ -1373,12 +1373,12 @@ export const siteContent = {
     teamTitle: "Operating Team",
     team: [
       {
-        initials: "FW",
-        name: "Freya Wu",
-        role: "General Manager",
-        photo: "/assets/headshots/freya-wu.webp",
-        objectPosition: "center 40%",
-        linkedinUrl: "https://www.linkedin.com/in/freyawwc/",
+        initials: "MH",
+        name: "Max Hsieh",
+        role: "Venture Partner & General Manager",
+        photo: "/assets/headshots/max-hsieh.webp",
+        objectPosition: "top center",
+        linkedinUrl: "https://www.linkedin.com/in/max-hsieh-8045875a",
       },
       {
         initials: "PC",

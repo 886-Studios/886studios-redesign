@@ -28,27 +28,22 @@ export interface PartnerProfile {
 
 export const partnerProfiles: PartnerProfile[] = [
   {
-    slug: "freya-wu",
-    name: "Freya Wu",
-    company: "General Manager",
-    photo: "/assets/headshots/freya-wu.webp",
-    sourceUrl: "https://www.886studios.com/about/freya-wu",
-    profileTitle: "About Freya",
+    slug: "max-hsieh",
+    name: "Max Hsieh",
+    company: "Venture Partner & General Manager",
+    photo: "/assets/headshots/max-hsieh.webp",
+    sourceUrl: "https://www.886studios.com/about/max-hsieh",
+    profileTitle: "About Max",
     profile: [
-      `Freya Wu is passionate about startups, talent development, and storytelling. She is the General Manager at 886 Studios, where she helps early-stage founders turn ideas into global companies through investment, mentorship, and community.`,
-      `Previously, she served as Startup Development Director at Taiwan Startup Stadium, where she mentored early-stage startups, supported their global market expansion, and helped build one of Taiwan’s most active founder communities.`,
-      `Freya believes in nurturing the entrepreneurial spirit, not just in business, but as a mindset for navigating life with curiosity and courage.`,
-      [
-        `Beyond her professional work, Freya is also a dedicated career coach, helping young professionals discover confidence, self-worth, and direction in their career paths. In her free time, she hosts the podcast `,
-        { text: `On the Road`, href: "https://open.firstory.me/user/otr/platforms" },
-        `, where she interviews entrepreneurs to share stories of resilience, creativity, and personal growth.`,
-      ],
+      `Max Hsieh is a technology entrepreneur and product & engineering leader with over a decade of experience building products from the ground up. He was the Co-founder and Chief Technology Officer of Forma, the flexible benefits platform that helps modern companies scale global benefits programs.`,
+      `Max is well versed in compliance, security, banking, and complex enterprise requirements that underpins any platform handling sensitive financial data at scale. That experience navigating regulated, high-stakes infrastructure is also what draws Max most to B2B, enterprise, and fintech companies.`,
+      `Max also has a passion for working with startups and early-stage founders, and wants to help build a buzzing startup ecosystem in Taiwan.`,
     ],
     socials: [
       {
         platform: "linkedin",
-        href: "https://www.linkedin.com/in/freyawwc/",
-        ariaLabel: "Freya Wu on LinkedIn",
+        href: "https://www.linkedin.com/in/max-hsieh-8045875a",
+        ariaLabel: "Max Hsieh on LinkedIn",
       },
     ],
     companiesBuilt: [],
