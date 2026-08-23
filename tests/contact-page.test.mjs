@@ -35,6 +35,11 @@ test("contact page uses the shared hero and understated action links without loc
     component,
     /class="contact-action-link" href=\{contact\.general\.href\}>\s+Contact us/,
   );
+  assert.match(component, /Contact us\s+<span class="sr-only"> by email at \{contact\.general\.address\}<\/span>/);
+  assert.equal(
+    (component.match(/<span class="sr-only"> \(opens in a new tab\)<\/span>/g) ?? []).length,
+    2,
+  );
   assert.doesNotMatch(component, /contact\.lead/);
   assert.doesNotMatch(component, /contact\.location/);
 });

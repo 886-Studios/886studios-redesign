@@ -6945,14 +6945,25 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .contact-action-link {
-  min-height: 42px;
+  min-height: 44px;
   color: var(--purple-bright);
   font-size: 15px;
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+  transition:
+    color 0.18s,
+    text-decoration-color 0.18s;
 }
 
 .about-collaboration-links a:hover,
 .contact-action-link:hover {
   color: var(--text-primary);
+}
+
+.contact-action-link:hover {
+  text-decoration-color: color-mix(in srgb, currentColor 72%, transparent);
 }
 
 .about-collaboration-links a:focus-visible,
@@ -6961,6 +6972,7 @@ body.is-home nav.site-nav.is-scrolled {
   outline: 2px solid var(--purple-bright);
   outline-offset: 3px;
   border-radius: 2px;
+  text-decoration-color: currentColor;
 }
 
 .about-collaboration-links svg,
@@ -6976,8 +6988,18 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .about-collaboration-links a:hover svg,
-.contact-action-link:hover svg {
+.contact-action-link:hover svg,
+.contact-action-link:focus-visible svg {
   transform: translate(2px, -2px);
+}
+
+.contact-action-link[href^="mailto:"]:hover svg,
+.contact-action-link[href^="mailto:"]:focus-visible svg {
+  transform: translateX(2px);
+}
+
+.contact-action-link:active {
+  color: var(--purple-bright);
 }
 
 .contact-action-link svg {
@@ -7817,6 +7839,7 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .contact-path {
+  position: relative;
   display: flex;
   min-width: 0;
   min-height: 0;
@@ -7836,6 +7859,7 @@ body.is-home nav.site-nav.is-scrolled {
   font-weight: 650;
   letter-spacing: -0.035em;
   line-height: 1.08;
+  text-wrap: balance;
   white-space: nowrap;
 }
 
@@ -7845,6 +7869,7 @@ body.is-home nav.site-nav.is-scrolled {
   color: var(--text-secondary);
   font-size: 16px;
   line-height: 1.6;
+  text-wrap: pretty;
   white-space: nowrap;
 }
 
@@ -7853,15 +7878,13 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .contact-community {
-  display: grid;
-  grid-template-columns: minmax(0, 680px) auto;
-  gap: clamp(32px, 5vw, 72px);
-  align-items: end;
-  justify-content: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
   max-width: none;
-  margin-top: clamp(36px, 4vw, 48px);
-  padding-top: clamp(28px, 3vw, 36px);
+  margin-top: var(--space-xl);
+  padding-top: var(--space-lg);
   border-top: 1px solid var(--border);
 }
 
@@ -7870,33 +7893,37 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .contact-community .contact-path-label {
-  margin-bottom: 14px;
+  margin-bottom: var(--space-xs);
   color: var(--text-muted);
 }
 
 .contact-community .contact-path-title {
   font-size: clamp(23px, 2.4vw, 27px);
+  white-space: normal;
 }
 
 .contact-community .contact-path-copy {
-  margin: 14px 0 0;
+  max-width: 58ch;
+  margin: var(--space-xs) 0 0;
   font-size: 15px;
+  white-space: normal;
 }
 
 .contact-community .contact-action-link {
-  justify-self: start;
-  margin-top: 0;
+  margin-top: var(--space-md);
 }
 
 .contact-community-brand {
   display: inline-flex;
   align-items: center;
   vertical-align: -0.06em;
+  white-space: nowrap;
 }
 
 .contact-community-title-icon {
   width: 0.82em;
   height: 0.82em;
+  margin-inline-end: 0.18em;
   fill: var(--purple-bright);
 }
 
@@ -7910,6 +7937,15 @@ body.is-home nav.site-nav.is-scrolled {
     min-height: 0;
   }
 
+  .contact-primary .contact-path + .contact-path::before {
+    position: absolute;
+    top: -24px;
+    right: 0;
+    left: 0;
+    border-top: 1px solid var(--border);
+    content: "";
+  }
+
   .contact-path-copy {
     margin-bottom: 26px;
   }
@@ -7918,10 +7954,8 @@ body.is-home nav.site-nav.is-scrolled {
     margin-top: 0;
   }
 
-  .contact-community {
-    grid-template-columns: 1fr;
-    gap: 24px;
-    align-items: start;
+  .contact-community .contact-action-link {
+    margin-top: var(--space-md);
   }
 }
 
