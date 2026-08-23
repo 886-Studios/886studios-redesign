@@ -14,6 +14,15 @@ const focusableSelector = [
 const getFocusableElements = (container: HTMLElement) =>
   Array.from(container.querySelectorAll<HTMLElement>(focusableSelector)).filter((element) => element.getClientRects().length > 0);
 
+const scrollToImmediately = (top: number) => {
+  const rootStyle = document.documentElement.style;
+  const previousScrollBehavior = rootStyle.scrollBehavior;
+
+  rootStyle.scrollBehavior = "auto";
+  window.scrollTo({ top, left: 0, behavior: "auto" });
+  rootStyle.scrollBehavior = previousScrollBehavior;
+};
+
 function initNavChrome() {
   const nav = select<HTMLElement>(".site-nav");
   const hamburger = select<HTMLButtonElement>(".nav-hamburger");
@@ -29,11 +38,21 @@ function initNavChrome() {
   let previousBodyTop = "";
   let previousBodyWidth = "";
   let lockedScrollY = 0;
+  let navScrollFrame = 0;
 
   if (!nav || !hamburger || !drawer || !overlay || !closeButton) return;
 
   const updateNav = () => {
     nav.classList.toggle("is-scrolled", window.scrollY > 12);
+  };
+
+  const queueNavUpdate = () => {
+    if (navScrollFrame) return;
+
+    navScrollFrame = window.requestAnimationFrame(() => {
+      navScrollFrame = 0;
+      updateNav();
+    });
   };
 
   const openDrawer = () => {
@@ -78,7 +97,7 @@ function initNavChrome() {
     document.body.style.position = previousBodyPosition;
     document.body.style.top = previousBodyTop;
     document.body.style.width = previousBodyWidth;
-    window.scrollTo(0, lockedScrollY);
+    scrollToImmediately(lockedScrollY);
     const focusTarget = previouslyFocusedElement && document.contains(previouslyFocusedElement) ? previouslyFocusedElement : hamburger;
     focusTarget.focus({ preventScroll: true });
     previouslyFocusedElement = null;
@@ -116,7 +135,7 @@ function initNavChrome() {
   };
 
   updateNav();
-  window.addEventListener("scroll", updateNav, { passive: true });
+  window.addEventListener("scroll", queueNavUpdate, { passive: true });
   hamburger.addEventListener("click", () => {
     if (drawer.classList.contains("is-open")) {
       closeDrawer();
@@ -185,7 +204,7 @@ function initPortfolioReturnPosition() {
     if (!Number.isFinite(scrollY)) return;
 
     window.requestAnimationFrame(() => {
-      window.scrollTo({ top: scrollY, behavior: "auto" });
+      scrollToImmediately(scrollY);
     });
   };
 

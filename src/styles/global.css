@@ -56,6 +56,30 @@ html {
   min-height: 100%;
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
+  scrollbar-color: color-mix(in srgb, var(--text-muted) 68%, var(--bg)) var(--bg);
+}
+
+html::-webkit-scrollbar {
+  width: 12px;
+}
+
+html::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+html::-webkit-scrollbar-thumb {
+  min-height: 48px;
+  border: 3px solid var(--bg);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text-muted) 68%, var(--bg));
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--purple-bright) 72%, var(--bg));
+}
+
+:where(.site-main, .page [id]) {
+  scroll-margin-top: calc(var(--nav-height) + var(--space-md));
 }
 
 body {
@@ -8301,6 +8325,10 @@ footer {
 
 /* Responsive nav breakpoint */
 @media (max-width: 880px) {
+  :where(.site-main, .page [id]) {
+    scroll-margin-top: var(--space-xl);
+  }
+
   nav.site-nav {
     position: absolute;
   }
