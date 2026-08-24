@@ -22,12 +22,13 @@ const tagLabel = isLearnMore ? "Learn more →" : tag;
       href={event.url}
       target="_blank"
       rel="noopener noreferrer"
+      aria-label={`${event.title}: ${tag} (opens in a new tab)`}
       data-analytics-event={isLearnMore ? "event_details_opened" : "event_registration_started"}
       data-analytics-placement="events_list"
       data-analytics-label={event.title}
     >
       <div class={mediaClass}>
-        <div class="ev-date">
+        <div class="ev-date" aria-hidden="true">
           <div class="ev-month">{event.month}</div>
           <div class="ev-day">{event.day}</div>
           <div class="ev-year">{event.year}</div>
@@ -36,7 +37,7 @@ const tagLabel = isLearnMore ? "Learn more →" : tag;
           <img
             class="ev-thumb"
             src={event.coverUrl}
-            alt={`${event.title} event cover`}
+            alt=""
             width="96"
             height="96"
             loading="lazy"
@@ -54,7 +55,7 @@ const tagLabel = isLearnMore ? "Learn more →" : tag;
   ) : (
     <div class={cardClass}>
       <div class={mediaClass}>
-        <div class="ev-date">
+        <div class="ev-date" aria-hidden="true">
           <div class="ev-month">{event.month}</div>
           <div class="ev-day">{event.day}</div>
           <div class="ev-year">{event.year}</div>
@@ -63,7 +64,7 @@ const tagLabel = isLearnMore ? "Learn more →" : tag;
           <img
             class="ev-thumb"
             src={event.coverUrl}
-            alt={`${event.title} event cover`}
+            alt=""
             width="96"
             height="96"
             loading="lazy"

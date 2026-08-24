@@ -38,13 +38,9 @@ const pastEventsByYear = groupEventsByYear(lumaEvents.pastEvents);
           </div>
         </section>
       ) : (
-        <div class="events-empty">
-          <div class="ev-title">
-            {lumaEvents.error ? events.errorTitle : lumaEvents.isConfigured ? events.emptyTitle : events.setupTitle}
-          </div>
-          <div class="ev-meta">
-            {lumaEvents.error ? events.errorText : lumaEvents.isConfigured ? events.emptyText : events.setupText}
-          </div>
+        <div class="events-empty" role="status">
+          <div class="ev-title">{events.emptyTitle}</div>
+          <div class="ev-meta">{events.emptyText}</div>
         </div>
       )
     }
@@ -55,8 +51,8 @@ const pastEventsByYear = groupEventsByYear(lumaEvents.pastEvents);
           <h2 class="events-section-title" id="past-events-title">{events.pastTitle}</h2>
           <div class="events-year-stack">
             {pastEventsByYear.map((group) => (
-              <section class="events-year-group" aria-label={`${group.year} past events`}>
-                <h3 class="events-year-heading">{group.year}</h3>
+              <section class="events-year-group" aria-labelledby={`past-events-${group.year}`}>
+                <h3 class="events-year-heading" id={`past-events-${group.year}`}>{group.year}</h3>
                 <div class="events-list">
                   {group.events.map((item) => <EventCard event={item} tag="Learn more" />)}
                 </div>
@@ -77,6 +73,7 @@ const pastEventsByYear = groupEventsByYear(lumaEvents.pastEvents);
         href={events.calendarUrl}
         target="_blank"
         rel="noopener noreferrer"
+        aria-label={`${events.calendarCta} (opens in a new tab)`}
         data-analytics-event="event_calendar_opened"
         data-analytics-placement="events_page"
       >

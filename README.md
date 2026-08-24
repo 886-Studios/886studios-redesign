@@ -65,14 +65,11 @@ Use `npm install <package>` only when intentionally changing dependencies. For n
 Copy `.env.example` to `.env` for local configuration. Every supported variable is optional:
 
 ```bash
-LUMA_API_KEY=
 GOOGLE_SITE_VERIFICATION=
 BING_SITE_VERIFICATION=
 YANDEX_SITE_VERIFICATION=
 BAIDU_SITE_VERIFICATION=
 ```
-
-`LUMA_API_KEY` is optional. Without it, the Events page renders the configured fallback state. With it, `npm run build` fetches approved Luma events through `src/lib/luma.ts`. If the key is missing, invalid, or the Luma API request fails, the site should still build successfully with fallback Events copy.
 
 The four site-verification variables emit ownership meta tags when they are set. They are
 normally configured in Vercel for production verification and are not needed for local work.
@@ -170,10 +167,14 @@ The site is a static Astro build deployed on Vercel.
 - Output directory: `dist/`
 - Canonical site URL: `https://www.886studios.com`
 - Redirects and security headers: `vercel.json`
-- Optional production env vars: `LUMA_API_KEY` and the four search-engine verification tokens listed above
+- Optional production env vars: the four search-engine verification tokens listed above
 - Production branch: pushes to `main` deploy through the connected Vercel project
 
-If `LUMA_API_KEY` is present in production, the Events page is generated from approved Luma events at build time. If it is absent or the API request fails, the build still completes and the page renders fallback copy.
+The Events page is generated from `src/data/luma-events.json`; no Luma API key is required. The
+`Sync Luma events` GitHub Actions workflow checks Luma's public calendar every 30 minutes, merges
+new and updated events into the archive, and commits only when the event data changes. That commit
+triggers the normal Vercel rebuild. Past events are retained permanently even after they fall out of
+Luma's limited public history feed, while unpublished future events are removed.
 
 The Contact page links directly to `it@886studios.com` with a `mailto:` URL, so
 it does not require an email provider or server-side configuration.
@@ -181,8 +182,10 @@ it does not require an email provider or server-side configuration.
 ## Common Pitfalls
 
 - If `npm ci` fails after dependency edits, regenerate the lockfile intentionally with `npm install` and commit `package-lock.json`.
-- If `/events` shows fallback copy locally, confirm `LUMA_API_KEY` is present in `.env` and restart the dev server.
-- If `npm run build` logs a Luma warning, check the API key and network access. The page should still render a fallback state.
+- If `/events` is stale locally, run `npm run events:sync` before building. The sync reads Luma's
+  public calendar and does not need `LUMA_API_KEY`.
+- If the scheduled event sync fails, use the `Sync Luma events` workflow's manual run button and
+  inspect its log. The script falls back to Luma's public iCal feed if the richer event feed is unavailable.
 - If `npm run dev` is already using port `4173`, use the alternate URL printed by Astro or stop the existing process.
 - If `npm run preview` serves stale output, run `npm run build` first.
 - If `npm run check:seo` says `dist` is missing, run `npm run build` first or use `npm run validate`.
@@ -215,7 +218,7 @@ src/
     BaseLayout.astro            document shell, metadata, global chrome
   lib/
     blog.ts                     merged local Markdown and Substack blog source
-    luma.ts                     Luma API adapter and event-card normalization
+    luma.ts                     archived Luma event-card normalization
     seo.ts                      metadata content and reusable JSON-LD helpers
     substack.ts                 Substack RSS adapter and article normalization
     urls.ts                     shared safe-link helpers for data-driven links
@@ -268,7 +271,8 @@ When working from this tracker, fetch the database first to confirm the current 
 - Programs and Launch Station copy: `siteContent.programs`
 - Resources landing page: `siteContent.resources`
 - About page team and partner lists: `siteContent.about`
-- Events labels/fallback copy: `siteContent.events`
+- Events labels/supporting copy: `siteContent.events`
+- Events archive: `src/data/luma-events.json` (maintained by `npm run events:sync`)
 - Contact page form labels: `siteContent.contact`
 - Page titles, descriptions, and structured data: `src/lib/seo.ts`
 - Long-form resource pages: `src/data/resourceArticles.ts`

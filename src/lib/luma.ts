@@ -1,4 +1,4 @@
-type LumaRecord = Record<string, unknown>;
+import archive from "../data/luma-events.json";
 
 export interface LumaEventCard {
   id: string;
@@ -23,244 +23,61 @@ export interface LumaEventsResult {
   error?: string;
 }
 
-const LUMA_EVENTS_ENDPOINT = "https://public-api.luma.com/v1/calendar/list-events";
+interface ArchivedLumaEvent {
+  id: string;
+  title: string;
+  startAt: string;
+  endAt?: string;
+  timezone: string;
+  coverUrl?: string;
+  url?: string;
+  locationName: string;
+  isOnline: boolean;
+}
+
 const DEFAULT_TIME_ZONE = "Asia/Taipei";
-const PAGE_LIMIT = 50;
-const MAX_PAGES_PER_SECTION = 10;
 
-export async function getLumaEvents(): Promise<LumaEventsResult> {
-  const apiKey = getEnvValue("LUMA_API_KEY");
-
-  if (!apiKey) {
-    console.warn("[luma] LUMA_API_KEY is not set, skipping API call.");
-
-    return {
-      upcomingEvents: [],
-      pastEvents: [],
-      isConfigured: false,
-      error: "Luma is not configured.",
-    };
-  }
-
-  console.log("[luma] API key found, fetching events...");
-
-  const now = new Date().toISOString();
-  const [upcoming, past] = await Promise.all([
-    fetchLumaEvents(apiKey, {
-      after: now,
-      sortDirection: "asc",
-    }),
-    fetchLumaEvents(apiKey, {
-      before: now,
-      sortDirection: "desc",
-    }),
-  ]);
-
-  const error = upcoming.error && past.error ? "Unable to load Luma events." : undefined;
+export function getLumaEvents(now = new Date()): LumaEventsResult {
+  const events = (archive.events as ArchivedLumaEvent[])
+    .map(toEventCard)
+    .filter((event): event is LumaEventCard => Boolean(event));
+  const nowValue = now.valueOf();
 
   return {
-    upcomingEvents: upcoming.events,
-    pastEvents: past.events,
+    upcomingEvents: events
+      .filter((event) => new Date(event.endAt ?? event.startAt).valueOf() >= nowValue)
+      .sort((a, b) => a.sortAt.localeCompare(b.sortAt)),
+    pastEvents: events
+      .filter((event) => new Date(event.endAt ?? event.startAt).valueOf() < nowValue)
+      .sort((a, b) => b.sortAt.localeCompare(a.sortAt)),
     isConfigured: true,
-    error,
   };
 }
 
-async function fetchLumaEvents(
-  apiKey: string,
-  options: {
-    after?: string;
-    before?: string;
-    sortDirection: "asc" | "desc";
-  }
-): Promise<{ events: LumaEventCard[]; error?: string }> {
-  const events: LumaEventCard[] = [];
-  let cursor: string | undefined;
-  try {
-    for (let page = 0; page < MAX_PAGES_PER_SECTION; page += 1) {
-      const url = new URL(LUMA_EVENTS_ENDPOINT);
-      if (options.after) url.searchParams.set("after", options.after);
-      if (options.before) url.searchParams.set("before", options.before);
-      if (cursor) url.searchParams.set("pagination_cursor", cursor);
-      url.searchParams.set("pagination_limit", String(PAGE_LIMIT));
-      url.searchParams.set("sort_column", "start_at");
-      url.searchParams.set("sort_direction", options.sortDirection);
-      url.searchParams.set("status", "approved");
-      url.searchParams.append("platforms", "luma");
-      url.searchParams.append("platforms", "external");
-
-      const response = await fetch(url, {
-        headers: { "x-luma-api-key": apiKey },
-      });
-
-      if (!response.ok) {
-        console.warn(`[luma] Request failed with status ${response.status}.`);
-        return { events: [], error: "Unable to load Luma events." };
-      }
-
-      const payload = (await response.json()) as LumaRecord;
-      events.push(
-        ...getEntries(payload)
-          .map(getEventFromEntry)
-          .map(toEventCard)
-          .filter((event): event is LumaEventCard => Boolean(event))
-      );
-
-      cursor = getString(payload, "next_cursor");
-      if (!cursor || payload.has_more !== true) break;
-    }
-
-    return {
-      events: events.sort((a, b) =>
-        options.sortDirection === "asc"
-          ? a.sortAt.localeCompare(b.sortAt)
-          : b.sortAt.localeCompare(a.sortAt)
-      ),
-    };
-  } catch (err) {
-    console.warn("[luma] Request threw an exception:", err);
-    return {
-      events: [],
-      error: "Unable to load Luma events.",
-    };
-  }
-}
-
-function getEnvValue(name: string): string {
-  const value = import.meta.env[name];
-  if (typeof value === "string" && value.trim()) return value.trim();
-
-  const processEnv = (
-    globalThis as typeof globalThis & {
-      process?: { env?: Record<string, string | undefined> };
-    }
-  ).process?.env?.[name];
-
-  return typeof processEnv === "string" ? processEnv.trim() : "";
-}
-
-function getEntries(payload: LumaRecord): unknown[] {
-  if (Array.isArray(payload.entries)) return payload.entries;
-  if (Array.isArray(payload.events)) return payload.events;
-  return [];
-}
-
-function getEventFromEntry(entry: unknown): LumaRecord | null {
-  if (!isRecord(entry)) return null;
-  return isRecord(entry.event) ? entry.event : entry;
-}
-
-function toEventCard(event: LumaRecord | null): LumaEventCard | null {
-  if (!event) return null;
-
-  const startAt = getString(event, "start_at");
-  if (!startAt) return null;
-
-  const start = new Date(startAt);
+function toEventCard(event: ArchivedLumaEvent): LumaEventCard | null {
+  const start = new Date(event.startAt);
   if (Number.isNaN(start.valueOf())) return null;
 
-  const timeZone = getSafeTimeZone(getString(event, "timezone"));
-  const endAt = getString(event, "end_at");
-  const title = getString(event, "name") ?? "Untitled event";
-  const location = getLocation(event);
-  const isOnline = isOnlineEvent(event);
-  const time = formatTimeRange(start, endAt ? new Date(endAt) : null, timeZone);
-  const meta = [time, location].filter(Boolean).join(" | ");
+  const end = event.endAt ? new Date(event.endAt) : null;
+  const timeZone = getSafeTimeZone(event.timezone);
+  const time = formatTimeRange(start, end, timeZone);
+  const locationName = event.locationName || "Location TBD";
 
   return {
-    id: getString(event, "api_id") ?? getString(event, "event_api_id") ?? start.toISOString(),
+    id: event.id,
     sortAt: start.toISOString(),
     startAt: start.toISOString(),
-    endAt: endAt && !Number.isNaN(new Date(endAt).valueOf()) ? new Date(endAt).toISOString() : undefined,
-    title,
-    month: new Intl.DateTimeFormat("en-US", {
-      month: "short",
-      timeZone,
-    }).format(start),
-    day: new Intl.DateTimeFormat("en-US", {
-      day: "numeric",
-      timeZone,
-    }).format(start),
-    year: new Intl.DateTimeFormat("en-US", {
-      year: "numeric",
-      timeZone,
-    }).format(start),
-    meta,
-    locationName: location,
-    isOnline,
-    coverUrl: getCoverUrl(event),
-    url: getEventUrl(event),
+    endAt: end && !Number.isNaN(end.valueOf()) ? end.toISOString() : undefined,
+    title: event.title,
+    month: new Intl.DateTimeFormat("en-US", { month: "short", timeZone }).format(start),
+    day: new Intl.DateTimeFormat("en-US", { day: "numeric", timeZone }).format(start),
+    year: new Intl.DateTimeFormat("en-US", { year: "numeric", timeZone }).format(start),
+    meta: [time, locationName].filter(Boolean).join(" | "),
+    locationName,
+    isOnline: event.isOnline,
+    coverUrl: getSafeHttpsUrl(event.coverUrl),
+    url: getSafeHttpsUrl(event.url),
   };
-}
-
-function getCoverUrl(event: LumaRecord): string | undefined {
-  return getSafeHttpsUrl(
-    getString(event, "cover_url") ??
-    getString(event, "coverUrl") ??
-    getString(event, "thumbnail_url") ??
-    getString(event, "image_url")
-  );
-}
-
-function getLocation(event: LumaRecord): string {
-  if (isOnlineEvent(event)) {
-    return "Online";
-  }
-
-  const location =
-    getNestedLocation(event, "geo_address_json") ??
-    getNestedLocation(event, "geo_address_info") ??
-    getNestedLocation(event, "location");
-
-  return location ?? "Location TBD";
-}
-
-function isOnlineEvent(event: LumaRecord) {
-  const locationType = getString(event, "location_type")?.toLowerCase();
-  return Boolean(locationType?.includes("online") || getString(event, "meeting_url"));
-}
-
-function getNestedLocation(event: LumaRecord, key: string): string | undefined {
-  const value = event[key];
-  if (typeof value === "string" && value.trim()) return value.trim();
-  if (!isRecord(value)) return undefined;
-
-  const city = getString(value, "city");
-  const country = getString(value, "country") ?? getString(value, "country_code");
-  if (city && country) return `${city}, ${country}`;
-  if (city) return city;
-
-  return (
-    getString(value, "full_address") ??
-    getString(value, "formatted_address") ??
-    getString(value, "address") ??
-    getString(value, "name")
-  );
-}
-
-function getEventUrl(event: LumaRecord): string | undefined {
-  const url =
-    getString(event, "url") ??
-    getString(event, "event_url") ??
-    getString(event, "registration_url") ??
-    getString(event, "share_url");
-
-  const safeUrl = getSafeHttpsUrl(url);
-  if (safeUrl) return safeUrl;
-
-  const slug = getString(event, "slug");
-  return slug ? `https://luma.com/${encodeURIComponent(slug)}` : undefined;
-}
-
-function getSafeHttpsUrl(value: string | undefined): string | undefined {
-  if (!value) return undefined;
-
-  try {
-    const url = new URL(value);
-    return url.protocol === "https:" ? url.href : undefined;
-  } catch {
-    return undefined;
-  }
 }
 
 function formatTimeRange(start: Date, end: Date | null, timeZone: string): string {
@@ -270,10 +87,7 @@ function formatTimeRange(start: Date, end: Date | null, timeZone: string): strin
     timeZone,
   });
 
-  if (!end || Number.isNaN(end.valueOf())) {
-    return formatter.format(start);
-  }
-
+  if (!end || Number.isNaN(end.valueOf())) return formatter.format(start);
   return `${formatter.format(start)} - ${formatter.format(end)}`;
 }
 
@@ -288,11 +102,13 @@ function getSafeTimeZone(timeZone: string | undefined): string {
   }
 }
 
-function getString(record: LumaRecord, key: string): string | undefined {
-  const value = record[key];
-  return typeof value === "string" && value.trim() ? value.trim() : undefined;
-}
+function getSafeHttpsUrl(value: string | undefined): string | undefined {
+  if (!value) return undefined;
 
-function isRecord(value: unknown): value is LumaRecord {
-  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" ? url.href : undefined;
+  } catch {
+    return undefined;
+  }
 }

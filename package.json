@@ -16,6 +16,8 @@
     "check": "astro check",
     "test": "node --test tests/*.test.mjs",
     "check:seo": "node scripts/check-seo.mjs",
+    "events:sync": "node scripts/sync-luma-events.mjs",
+    "events:sync:dry-run": "node scripts/sync-luma-events.mjs --dry-run",
     "validate": "npm run check && npm run test && npm run build && npm run check:seo",
     "indexnow": "node scripts/submit-indexnow.mjs",
     "indexnow:dry-run": "node scripts/submit-indexnow.mjs --dry-run"
