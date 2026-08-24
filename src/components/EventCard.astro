@@ -5,14 +5,13 @@ interface Props {
   event: LumaEventCard;
   tag: string;
   highlight?: boolean;
-  highlightLabel?: string;
 }
 
-const { event, tag, highlight = false, highlightLabel = "Upcoming event" } = Astro.props;
+const { event, tag, highlight = false } = Astro.props;
 const mediaClass = event.coverUrl ? "ev-media" : "ev-media ev-media--date-only";
 const cardClass = `ev-card${event.url ? " ev-card--link" : ""}${highlight ? " ev-card--featured" : ""}`;
 const isLearnMore = tag.toLowerCase() === "learn more";
-const tagLabel = isLearnMore ? "Learn more →" : tag;
+const tagLabel = isLearnMore ? "Learn more" : tag;
 ---
 
 {
@@ -22,17 +21,16 @@ const tagLabel = isLearnMore ? "Learn more →" : tag;
       href={event.url}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`${event.title}: ${tag} (opens in a new tab)`}
       data-analytics-event={isLearnMore ? "event_details_opened" : "event_registration_started"}
       data-analytics-placement="events_list"
       data-analytics-label={event.title}
     >
       <div class={mediaClass}>
-        <div class="ev-date" aria-hidden="true">
+        <time class="ev-date" datetime={event.startAt} aria-label={`${event.month} ${event.day}, ${event.year}`}>
           <div class="ev-month">{event.month}</div>
           <div class="ev-day">{event.day}</div>
           <div class="ev-year">{event.year}</div>
-        </div>
+        </time>
         {event.coverUrl && (
           <img
             class="ev-thumb"
@@ -40,26 +38,32 @@ const tagLabel = isLearnMore ? "Learn more →" : tag;
             alt=""
             width="96"
             height="96"
-            loading="lazy"
+            loading={highlight ? "eager" : "lazy"}
             decoding="async"
+            fetchpriority={highlight ? "high" : undefined}
           />
         )}
       </div>
       <div class="ev-copy">
-        {highlight && <div class="ev-featured-label">{highlightLabel}</div>}
         <div class="ev-title">{event.title}</div>
         <div class="ev-meta">{event.meta}</div>
       </div>
-      <div class:list={["ev-tag", isLearnMore && "card-cta"]}>{tagLabel}</div>
+      <div class="ev-tag">
+        <span>{tagLabel}</span>
+        <svg class="ev-tag-icon" viewBox="0 0 20 20" aria-hidden="true">
+          <path d="M6 14 14 6M8 6h6v6" />
+        </svg>
+        <span class="sr-only"> (opens in a new tab)</span>
+      </div>
     </a>
   ) : (
     <div class={cardClass}>
       <div class={mediaClass}>
-        <div class="ev-date" aria-hidden="true">
+        <time class="ev-date" datetime={event.startAt} aria-label={`${event.month} ${event.day}, ${event.year}`}>
           <div class="ev-month">{event.month}</div>
           <div class="ev-day">{event.day}</div>
           <div class="ev-year">{event.year}</div>
-        </div>
+        </time>
         {event.coverUrl && (
           <img
             class="ev-thumb"
@@ -73,11 +77,10 @@ const tagLabel = isLearnMore ? "Learn more →" : tag;
         )}
       </div>
       <div class="ev-copy">
-        {highlight && <div class="ev-featured-label">{highlightLabel}</div>}
         <div class="ev-title">{event.title}</div>
         <div class="ev-meta">{event.meta}</div>
       </div>
-      <div class:list={["ev-tag", isLearnMore && "card-cta"]}>{tagLabel}</div>
+      <div class="ev-tag">{tagLabel}</div>
     </div>
   )
 }

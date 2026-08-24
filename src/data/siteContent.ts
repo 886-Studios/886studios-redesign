@@ -1517,7 +1517,6 @@ export const siteContent = {
       "All of our events are available on Luma. Subscribe there to get the latest sessions, reminders, and updates as soon as they are published.",
     calendarCta: "Subscribe on Luma",
     upcomingTitle: "Upcoming events",
-    upcomingHighlightLabel: "Upcoming event",
     pastTitle: "Past events",
     emptyTitle: "No upcoming events are published yet.",
     emptyText: "Check back soon for new 886 Studios events.",

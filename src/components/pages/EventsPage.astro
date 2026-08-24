@@ -22,37 +22,46 @@ function groupEventsByYear(items: LumaEventCard[]) {
 }
 
 const pastEventsByYear = groupEventsByYear(lumaEvents.pastEvents);
+const eventCountLabel = (count: number) => `${count} ${count === 1 ? "event" : "events"}`;
 ---
 
 <div class="page" id="page-events">
-  <PageHero eyebrow={events.eyebrow} title={events.title} lead={events.lead} />
+  <PageHero title={events.title} lead={events.lead} />
   <div class="section">
-    {
-      lumaEvents.upcomingEvents.length > 0 ? (
-        <section class="events-section" aria-labelledby="upcoming-events-title">
-          <h2 class="events-section-title" id="upcoming-events-title">{events.upcomingTitle}</h2>
+    <section class="events-section" aria-labelledby="upcoming-events-title">
+      <header class="events-section-heading">
+        <h2 class="events-section-title" id="upcoming-events-title">{events.upcomingTitle}</h2>
+        <span class="events-section-count">{eventCountLabel(lumaEvents.upcomingEvents.length)}</span>
+      </header>
+      {
+        lumaEvents.upcomingEvents.length > 0 ? (
           <div class="events-list" aria-label="Upcoming events">
             {lumaEvents.upcomingEvents.map((item) => (
-              <EventCard event={item} tag="RSVP" highlight highlightLabel={events.upcomingHighlightLabel} />
+              <EventCard event={item} tag="RSVP" highlight />
             ))}
           </div>
-        </section>
-      ) : (
-        <div class="events-empty" role="status">
-          <div class="ev-title">{events.emptyTitle}</div>
-          <div class="ev-meta">{events.emptyText}</div>
-        </div>
-      )
-    }
+        ) : (
+          <div class="events-empty" role="status">
+            <div class="ev-title">{events.emptyTitle}</div>
+            <div class="ev-meta">{events.emptyText}</div>
+          </div>
+        )
+      }
+    </section>
 
     {
       lumaEvents.pastEvents.length > 0 && (
         <section class="events-section" aria-labelledby="past-events-title">
-          <h2 class="events-section-title" id="past-events-title">{events.pastTitle}</h2>
+          <header class="events-section-heading">
+            <h2 class="events-section-title" id="past-events-title">{events.pastTitle}</h2>
+            <span class="events-section-count">{eventCountLabel(lumaEvents.pastEvents.length)}</span>
+          </header>
           <div class="events-year-stack">
             {pastEventsByYear.map((group) => (
               <section class="events-year-group" aria-labelledby={`past-events-${group.year}`}>
-                <h3 class="events-year-heading" id={`past-events-${group.year}`}>{group.year}</h3>
+                <h3 class="events-year-heading" id={`past-events-${group.year}`}>
+                  <span>{group.year}</span>
+                </h3>
                 <div class="events-list">
                   {group.events.map((item) => <EventCard event={item} tag="Learn more" />)}
                 </div>
@@ -64,9 +73,16 @@ const pastEventsByYear = groupEventsByYear(lumaEvents.pastEvents);
     }
 
     <div class="events-calendar-note">
-      <div class="events-calendar-copy">
-        <div class="ev-title">{events.calendarTitle}</div>
-        <div class="ev-meta">{events.calendarText}</div>
+      <div class="events-calendar-intro">
+        <span class="events-calendar-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M7 3v3M17 3v3M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
+          </svg>
+        </span>
+        <div class="events-calendar-copy">
+          <div class="ev-title">{events.calendarTitle}</div>
+          <div class="ev-meta">{events.calendarText}</div>
+        </div>
       </div>
       <a
         class="events-calendar-cta"
@@ -78,7 +94,11 @@ const pastEventsByYear = groupEventsByYear(lumaEvents.pastEvents);
         data-analytics-placement="events_page"
       >
         <span>{events.calendarCta}</span>
-        <span class="events-calendar-cta-mark" aria-hidden="true">→</span>
+        <span class="events-calendar-cta-mark" aria-hidden="true">
+          <svg viewBox="0 0 20 20">
+            <path d="M6 14 14 6M8 6h6v6" />
+          </svg>
+        </span>
       </a>
     </div>
   </div>
