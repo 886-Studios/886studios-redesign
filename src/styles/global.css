@@ -5372,75 +5372,96 @@ body.is-home nav.site-nav.is-scrolled {
 
 .res-perks-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 28px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px;
 }
 
 .res-perk-card {
+  min-width: 0;
+  padding: 16px 0 0;
   background: transparent;
   border: 0;
   border-top: 1px solid var(--border-bright);
-  border-radius: 0;
-  padding: 18px 0 0;
-}
-
-.res-perk-hdr {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--border);
 }
 
 .res-perk-label {
-  font-family: var(--font-mono);
-  font-size: 10px;
+  font-family: var(--font-display);
+  font-size: 14.5px;
   font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--text-muted);
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  line-height: 1.3;
+  margin-bottom: 14px;
 }
 
 .res-perk-tools {
+  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 4px;
+}
+
+.res-perk-tools li {
+  min-width: 0;
 }
 
 .res-perk-tool {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
+  min-height: 44px;
+  padding: 5px 0;
   font-size: 13.5px;
   font-weight: 500;
   color: var(--text-secondary);
   text-decoration: none;
-  padding: 0;
   background: transparent;
   border: 0;
-  border-radius: 0;
-  transition: color 0.15s;
+  border-radius: var(--r-sm);
+  transition:
+    color 180ms ease;
 }
 
 .res-perk-tool:hover {
-  color: var(--purple-bright);
+  color: var(--text-primary);
+}
+
+.res-perk-tool:focus-visible {
+  color: var(--text-primary);
+  outline: 2px solid var(--purple-bright);
+  outline-offset: 2px;
 }
 
 .res-perk-logo {
   display: grid;
   place-items: center;
-  width: 24px;
-  height: 24px;
-  flex: 0 0 24px;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 6px;
+  border-radius: var(--r-sm);
+  transition:
+    background-color 180ms ease,
+    border-color 180ms ease;
 }
 
 .res-perk-logo img {
-  width: 16px;
-  height: 16px;
+  width: 19px;
+  height: 19px;
   object-fit: contain;
+}
+
+.res-perk-name {
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.res-perk-tool:hover .res-perk-logo,
+.res-perk-tool:focus-visible .res-perk-logo {
+  background: var(--bg-elevated);
+  border-color: var(--border-accent);
 }
 
 /* ── Responsive ── */
@@ -5462,7 +5483,8 @@ body.is-home nav.site-nav.is-scrolled {
   }
 
   .res-perks-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px 40px;
   }
 
   .res-section-hdr {
@@ -5494,6 +5516,7 @@ body.is-home nav.site-nav.is-scrolled {
 
   .res-perks-grid {
     grid-template-columns: 1fr;
+    gap: 30px;
   }
 }
 
