@@ -1297,6 +1297,11 @@ export const siteContent = {
               href: "https://ramp.com",
               logoSrc: "/assets/logos/ramp.webp",
             },
+            {
+              label: "Stripe",
+              href: "https://stripe.com",
+              logoSrc: "/assets/logos/stripe.svg",
+            },
           ],
         },
         {

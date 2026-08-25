@@ -47,3 +47,14 @@ test("Mercury uses a compact, high-contrast mark for the perks icon slot", () =>
   assert.equal((mercuryLogo.match(/<path\b/g) ?? []).length, 1);
   assert.doesNotMatch(mercuryLogo, /prefers-color-scheme|viewBox="0 0 500 500"/);
 });
+
+test("Stripe is listed as a Finances perk", () => {
+  const finances = content.slice(
+    content.indexOf('title: "Finances"'),
+    content.indexOf("          ],", content.indexOf('title: "Finances"')),
+  );
+
+  assert.match(finances, /label: "Stripe"/);
+  assert.match(finances, /href: "https:\/\/stripe\.com"/);
+  assert.match(finances, /logoSrc: "\/assets\/logos\/stripe\.svg"/);
+});
