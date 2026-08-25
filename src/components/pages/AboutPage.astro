@@ -177,17 +177,6 @@ const getNewsImageSrcset = (src: string) =>
 
     <hr class="divider divider--spaced">
 
-    <div class="reveal reveal-delay-1">
-      <h2 class="section-tag" id="about-careers-title">{about.careers.title}</h2>
-      <section class="about-careers" aria-labelledby="about-careers-title">
-        <div class="about-careers-copy">
-          {about.careers.paragraphs.map((paragraph) => <p class="prose">{paragraph}</p>)}
-        </div>
-      </section>
-    </div>
-
-    <hr class="divider divider--spaced">
-
     <section class="about-news reveal reveal-delay-1" aria-labelledby="about-news-title">
       <h2 class="section-tag" id="about-news-title">In the News</h2>
 
@@ -235,5 +224,16 @@ const getNewsImageSrcset = (src: string) =>
         ))}
       </div>
     </section>
+
+    <hr class="divider divider--spaced">
+
+    <div class="reveal reveal-delay-1">
+      <h2 class="section-tag" id="about-careers-title">{about.careers.title}</h2>
+      <section class="about-careers" aria-labelledby="about-careers-title">
+        <div class="about-careers-copy">
+          {about.careers.paragraphs.map((paragraph) => <p class="prose">{paragraph}</p>)}
+        </div>
+      </section>
+    </div>
   </div>
 </div>
