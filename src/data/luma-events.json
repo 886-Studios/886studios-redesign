@@ -1,6 +1,7 @@
 {
   "calendarId": "cal-YDazDmfi5UlPvrC",
   "upcomingEventIds": [
+    "evt-LWWyG4z7FdrtK4V",
     "evt-gUg5eDr1ZdDDH5q"
   ],
   "events": [
@@ -168,6 +169,17 @@
       "url": "https://luma.com/rg1tu08w",
       "locationName": "Online",
       "isOnline": true
+    },
+    {
+      "id": "evt-LWWyG4z7FdrtK4V",
+      "title": "Founders vs Investors Pickleball Open - Boba Tech Afters",
+      "startAt": "2026-09-11T08:00:00.000Z",
+      "endAt": "2026-09-11T10:00:00.000Z",
+      "timezone": "Asia/Taipei",
+      "coverUrl": "https://images.lumacdn.com/uploads/mc/57ff42bb-45e3-487c-b1f5-a7dec38cd020.png",
+      "url": "https://luma.com/ct9tj4n0",
+      "locationName": "Location TBD",
+      "isOnline": false
     }
   ]
 }
