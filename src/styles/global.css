@@ -8281,20 +8281,20 @@ footer {
   gap: 32px;
 }
 
-.nl-text h3 {
+.nl-text h2 {
   font-family: var(--font-display);
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 4px;
 }
 
-.nl-text h3 a {
+.nl-text h2 a {
   color: var(--purple-bright);
   text-decoration: none;
 }
 
-.nl-text h3 a:hover,
-.nl-text h3 a:focus-visible {
+.nl-text h2 a:hover,
+.nl-text h2 a:focus-visible {
   color: var(--text-primary);
   text-decoration: underline;
   text-underline-offset: 4px;
