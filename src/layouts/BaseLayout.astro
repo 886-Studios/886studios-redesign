@@ -125,6 +125,14 @@ const structuredDataJson = canonicalUrl
       title="886 Studios Blog"
       href={`${siteConfig.url}/rss.xml`}
     />
+    {currentPath === "/" && (
+      <link
+        rel="alternate"
+        type="text/markdown"
+        title="886 Studios machine-readable summary"
+        href={`${siteConfig.url}/llms.txt`}
+      />
+    )}
 
     {
       showSocialPreview && (

@@ -143,6 +143,11 @@ for (const filePath of htmlFiles) {
       tag.attributes.get("rel")?.split(/\s+/).includes("alternate") &&
       tag.attributes.get("type") === "application/rss+xml",
   );
+  const llmsLinks = getTags(head, "link").filter(
+    (tag) =>
+      tag.attributes.get("rel")?.split(/\s+/).includes("alternate") &&
+      tag.attributes.get("type") === "text/markdown",
+  );
 
   if (isIndexable) {
     const description = assertSingle(descriptionValues, "meta description", route);
@@ -153,6 +158,14 @@ for (const filePath of htmlFiles) {
       rssLinks[0].attributes.get("title") !== "886 Studios Blog"
     ) {
       fail(`${route}: expected one valid RSS auto-discovery link`);
+    }
+    if (
+      route === "/" &&
+      (llmsLinks.length !== 1 ||
+        llmsLinks[0].attributes.get("href") !== `${productionOrigin}/llms.txt` ||
+        llmsLinks[0].attributes.get("title") !== "886 Studios machine-readable summary")
+    ) {
+      fail("/: expected one valid llms.txt discovery link");
     }
 
     if (description) {
@@ -225,6 +238,21 @@ for (const filePath of htmlFiles) {
           );
           if (!/^\d{4}-\d{2}-\d{2}$/.test(homepageSchema?.dateModified ?? "")) {
             fail("/: homepage WebPage schema is missing a valid ISO dateModified");
+          }
+          if (homepageSchema?.abstract !== description) {
+            fail("/: homepage WebPage abstract does not match the existing page summary");
+          }
+          if (homepageSchema?.mainEntity?.["@id"] !== `${productionOrigin}/#organization`) {
+            fail("/: homepage WebPage mainEntity does not identify 886 Studios");
+          }
+          if (
+            homepageSchema?.mentions?.["@id"] !==
+            `${productionOrigin}/programs#ikigai-launchpad`
+          ) {
+            fail("/: homepage WebPage does not identify ikigai Launchpad as its primary mention");
+          }
+          if (homepageSchema?.significantLink !== `${productionOrigin}/programs`) {
+            fail("/: homepage WebPage does not identify the ikigai Launchpad page as significant");
           }
         }
 

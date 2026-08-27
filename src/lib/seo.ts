@@ -613,6 +613,8 @@ export function getResourceFaqSchema(article: ResourceArticle, path: string): Js
 
 function getWebPageSchema(options: StructuredDataOptions): JsonLdObject {
   const canonicalUrl = getCanonicalUrl(options.path);
+  const isHomepage = canonicalUrl === `${siteConfig.url}/`;
+  const launchpadId = `${siteConfig.url}/programs#ikigai-launchpad`;
   const primaryImage = options.image
     ? {
         "@type": "ImageObject",
@@ -631,11 +633,15 @@ function getWebPageSchema(options: StructuredDataOptions): JsonLdObject {
     url: canonicalUrl,
     name: options.title,
     description: options.description,
+    abstract: isHomepage ? options.description : undefined,
     dateModified: options.dateModified,
     inLanguage: siteConfig.locale,
     isPartOf: { "@id": websiteId },
     publisher: { "@id": organizationId },
     about: { "@id": organizationId },
+    mainEntity: isHomepage ? { "@id": organizationId } : undefined,
+    mentions: isHomepage ? { "@id": launchpadId } : undefined,
+    significantLink: isHomepage ? `${siteConfig.url}/programs` : undefined,
     isAccessibleForFree: true,
     image: primaryImage,
     primaryImageOfPage: primaryImage,
