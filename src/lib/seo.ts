@@ -28,6 +28,7 @@ interface StructuredDataOptions {
   path: string;
   title: string;
   description: string;
+  dateModified?: string;
   pageType?: PageSchemaType;
   breadcrumbs?: BreadcrumbItem[];
   additionalSchema?: JsonLdObject | JsonLdObject[];
@@ -46,6 +47,7 @@ export const pageMeta = {
   home: {
     title: siteConfig.defaultTitle,
     description: siteConfig.defaultDescription,
+    dateModified: "2026-08-27",
   },
   programs: {
     title: "ikigai Launchpad | 886 Studios",
@@ -629,6 +631,7 @@ function getWebPageSchema(options: StructuredDataOptions): JsonLdObject {
     url: canonicalUrl,
     name: options.title,
     description: options.description,
+    dateModified: options.dateModified,
     inLanguage: siteConfig.locale,
     isPartOf: { "@id": websiteId },
     publisher: { "@id": organizationId },

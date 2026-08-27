@@ -219,6 +219,15 @@ for (const filePath of htmlFiles) {
           fail(`${route}: JSON-LD contains a local, preview, or non-HTTPS URL`);
         }
 
+        if (route === "/") {
+          const homepageSchema = graph.find(
+            (node) => node["@id"] === `${productionOrigin}/#webpage`,
+          );
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(homepageSchema?.dateModified ?? "")) {
+            fail("/: homepage WebPage schema is missing a valid ISO dateModified");
+          }
+        }
+
         for (const event of graph.filter((node) => node["@type"] === "Event")) {
           if (!event.name || !event.startDate || !event.location || !event.url) {
             fail(`${route}: Event schema is missing a required factual field`);

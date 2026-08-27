@@ -7,6 +7,7 @@ import { getPortfolioItemListSchema, getProgramSchema, pageMeta } from "../lib/s
 <BaseLayout
   title={pageMeta.home.title}
   description={pageMeta.home.description}
+  dateModified={pageMeta.home.dateModified}
   structuredData={[getProgramSchema(), getPortfolioItemListSchema()]}
 >
   <HomePage />

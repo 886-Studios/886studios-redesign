@@ -25,6 +25,7 @@ import {
 interface Props {
   title?: string;
   description?: string;
+  dateModified?: string;
   ogImage?: string;
   ogImageAlt?: string;
   ogImageWidth?: number;
@@ -42,6 +43,7 @@ interface Props {
 const {
   title = siteConfig.defaultTitle,
   description = siteConfig.defaultDescription,
+  dateModified,
   ogImage = siteConfig.defaultOgImage,
   ogImageAlt = siteConfig.ogImageAlt,
   ogImageWidth = siteConfig.defaultOgImageWidth,
@@ -73,6 +75,7 @@ const structuredDataJson = canonicalUrl
         path: currentPath,
         title,
         description,
+        dateModified,
         pageType,
         breadcrumbs,
         additionalSchema: structuredData,
