@@ -1,5 +1,6 @@
 ---
 import ResourceArticlePage from "../../components/pages/ResourceArticlePage.astro";
+import { contentDates } from "../../data/contentDates.generated";
 import { resourceArticles } from "../../data/resourceArticles";
 import type { ResourceArticle } from "../../data/resourceArticles";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -19,19 +20,24 @@ export function getStaticPaths() {
 
 const { article } = Astro.props as { article: ResourceArticle };
 const pagePath = `/resources/${article.slug}`;
+const dateModified = contentDates[pagePath];
 const faqSchema = getResourceFaqSchema(article, pagePath);
 ---
 
 <BaseLayout
   title={getResourcePageTitle(article)}
   description={getResourceDescription(article)}
+  dateModified={dateModified}
   ogType="article"
   breadcrumbs={[
     { name: "Resources", path: "/resources" },
     ...(article.parent ? [{ name: article.parent.label, path: article.parent.href }] : []),
     { name: article.title, path: pagePath },
   ]}
-  structuredData={[getResourceArticleSchema(article, pagePath), ...(faqSchema ? [faqSchema] : [])]}
+  structuredData={[
+    getResourceArticleSchema(article, pagePath, dateModified),
+    ...(faqSchema ? [faqSchema] : []),
+  ]}
 >
   <ResourceArticlePage article={article} />
 </BaseLayout>

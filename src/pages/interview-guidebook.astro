@@ -1,5 +1,6 @@
 ---
 import ResourceArticlePage from "../components/pages/ResourceArticlePage.astro";
+import { contentDates } from "../data/contentDates.generated";
 import { standaloneResourceArticles } from "../data/resourceArticles";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import {
@@ -16,18 +17,23 @@ if (!article) {
 }
 
 const pagePath = "/interview-guidebook";
+const dateModified = contentDates[pagePath];
 const faqSchema = getResourceFaqSchema(article, pagePath);
 ---
 
 <BaseLayout
   title={getResourcePageTitle(article)}
   description={getResourceDescription(article)}
+  dateModified={dateModified}
   ogType="article"
   breadcrumbs={[
     { name: "Resources", path: "/resources" },
     { name: article.title, path: pagePath },
   ]}
-  structuredData={[getResourceArticleSchema(article, pagePath), ...(faqSchema ? [faqSchema] : [])]}
+  structuredData={[
+    getResourceArticleSchema(article, pagePath, dateModified),
+    ...(faqSchema ? [faqSchema] : []),
+  ]}
 >
   <ResourceArticlePage article={article} />
 </BaseLayout>

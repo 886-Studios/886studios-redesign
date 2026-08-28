@@ -22,6 +22,14 @@ export function getBlogMetaDescription(post: BlogPost) {
   return `${lead}Read ${post.title} from ${source}.`;
 }
 
+export function getBlogModifiedDate(post: BlogPost) {
+  return new Date(post.updatedAt ?? post.publishedAt).toISOString().slice(0, 10);
+}
+
+export function getLatestBlogModifiedDate(posts: BlogPost[]) {
+  return posts.map(getBlogModifiedDate).sort().at(-1);
+}
+
 export function getBlogAuthorHref(author: string) {
   return author === "Carter Wang" ? "/about/carter-wang" : undefined;
 }

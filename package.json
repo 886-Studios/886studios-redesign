@@ -8,11 +8,14 @@
     "npm": ">=9.6.5"
   },
   "scripts": {
+    "predev": "npm run content-dates:generate",
     "dev": "astro dev",
+    "content-dates:generate": "node scripts/generate-content-dates.mjs",
     "images:optimize": "node scripts/optimize-images.mjs",
-    "prebuild": "npm run images:optimize",
+    "prebuild": "npm run content-dates:generate && npm run images:optimize",
     "build": "astro build",
     "preview": "astro preview",
+    "precheck": "npm run content-dates:generate",
     "check": "astro check",
     "test": "node --test tests/*.test.mjs",
     "check:seo": "node scripts/check-seo.mjs",

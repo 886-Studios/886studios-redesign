@@ -4,6 +4,7 @@ import path from "node:path";
 const projectRoot = process.cwd();
 const distRoot = path.join(projectRoot, "dist");
 const productionOrigin = "https://www.886studios.com";
+const currentIsoDate = new Date().toISOString().slice(0, 10);
 const failures = [];
 
 const fail = (message) => failures.push(message);
@@ -112,7 +113,7 @@ const pages = [];
 const titles = new Map();
 const descriptions = new Map();
 const indexableCanonicals = new Set();
-let homepageDateModified;
+const pageModifiedDates = new Map();
 
 for (const filePath of htmlFiles) {
   const html = await readFile(filePath, "utf8");
@@ -233,14 +234,50 @@ for (const filePath of htmlFiles) {
           fail(`${route}: JSON-LD contains a local, preview, or non-HTTPS URL`);
         }
 
+        const webpageSchema = graph.find(
+          (node) => typeof node["@id"] === "string" && node["@id"].endsWith("#webpage"),
+        );
+        const webpageDateModified = webpageSchema?.dateModified;
+        const requiresSourcedModifiedDate =
+          [
+            "/",
+            "/blog",
+            "/incorporation-101",
+            "/interview-guidebook",
+            "/programs",
+            "/programs/launch-station",
+            "/resources",
+          ].includes(route) ||
+          route.startsWith("/blog/") ||
+          route.startsWith("/resources/");
+        if (requiresSourcedModifiedDate && !webpageDateModified) {
+          fail(`${route}: WebPage schema is missing its required sourced dateModified`);
+        }
+        if (webpageDateModified !== undefined) {
+          if (!/^\d{4}-\d{2}-\d{2}$/.test(webpageDateModified)) {
+            fail(`${route}: WebPage dateModified is not an ISO date`);
+          } else if (webpageDateModified > currentIsoDate) {
+            fail(`${route}: WebPage dateModified is in the future`);
+          } else if (canonical) {
+            pageModifiedDates.set(canonical, webpageDateModified);
+          }
+        }
+
+        for (const article of graph.filter((node) => node["@type"] === "Article")) {
+          if (!article.dateModified) {
+            fail(`${route}: Article schema is missing dateModified`);
+          } else if (article.dateModified !== webpageDateModified) {
+            fail(`${route}: Article and WebPage dateModified values do not match`);
+          }
+        }
+
         if (route === "/") {
-          const homepageSchema = graph.find(
-            (node) => node["@id"] === `${productionOrigin}/#webpage`,
-          );
-          if (!/^\d{4}-\d{2}-\d{2}$/.test(homepageSchema?.dateModified ?? "")) {
+          const homepageSchema = webpageSchema?.["@id"] === `${productionOrigin}/#webpage`
+            ? webpageSchema
+            : undefined;
+          if (!homepageSchema?.dateModified) {
             fail("/: homepage WebPage schema is missing a valid ISO dateModified");
           }
-          homepageDateModified = homepageSchema?.dateModified;
           if (homepageSchema?.abstract !== description) {
             fail("/: homepage WebPage abstract does not match the existing page summary");
           }
@@ -350,14 +387,29 @@ if (!/^<\?xml version="1\.0" encoding="UTF-8"\?>/.test(sitemapXml)) fail("sitema
 if (!sitemapXml.includes('xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"')) fail("sitemap.xml: missing sitemap namespace");
 
 const homepageSitemapEntry = sitemapEntries.find((entry) => entry.loc === `${productionOrigin}/`);
-if (homepageSitemapEntry?.lastmods.length !== 1) {
-  fail("sitemap.xml: homepage must have exactly one sourced lastmod value");
-} else if (homepageSitemapEntry.lastmods[0] !== homepageDateModified) {
-  fail("sitemap.xml: homepage lastmod does not match its WebPage dateModified");
-}
+if (!homepageSitemapEntry) fail("sitemap.xml: homepage entry is missing");
 for (const entry of sitemapEntries) {
-  if (entry.loc !== `${productionOrigin}/` && entry.lastmods.length > 0) {
-    fail(`sitemap.xml: ${entry.loc} has a lastmod value without a reliable content date source`);
+  const pageModifiedDate = pageModifiedDates.get(entry.loc);
+  if (entry.lastmods.length > 1) {
+    fail(`sitemap.xml: ${entry.loc} has multiple lastmod values`);
+    continue;
+  }
+  if (entry.lastmods.length === 0) {
+    if (pageModifiedDate) {
+      fail(`sitemap.xml: ${entry.loc} is missing its sourced lastmod value`);
+    }
+    continue;
+  }
+
+  const [lastmod] = entry.lastmods;
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(lastmod)) {
+    fail(`sitemap.xml: ${entry.loc} lastmod is not an ISO date`);
+  } else if (lastmod > currentIsoDate) {
+    fail(`sitemap.xml: ${entry.loc} lastmod is in the future`);
+  } else if (!pageModifiedDate) {
+    fail(`sitemap.xml: ${entry.loc} has a lastmod value without a reliable page date`);
+  } else if (lastmod !== pageModifiedDate) {
+    fail(`sitemap.xml: ${entry.loc} lastmod does not match its WebPage dateModified`);
   }
 }
 

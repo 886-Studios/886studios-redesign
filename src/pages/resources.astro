@@ -1,5 +1,6 @@
 ---
 import ResourcesPage from "../components/pages/ResourcesPage.astro";
+import { contentDates } from "../data/contentDates.generated";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { getResourcesItemListSchema, pageMeta } from "../lib/seo";
 ---
@@ -7,6 +8,7 @@ import { getResourcesItemListSchema, pageMeta } from "../lib/seo";
 <BaseLayout
   title={pageMeta.resources.title}
   description={pageMeta.resources.description}
+  dateModified={contentDates["/resources"]}
   pageType="CollectionPage"
   breadcrumbs={[{ name: "Resources", path: "/resources" }]}
   structuredData={getResourcesItemListSchema()}

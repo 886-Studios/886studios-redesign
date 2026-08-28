@@ -557,7 +557,11 @@ export function getPeopleItemListSchema() {
   );
 }
 
-export function getResourceArticleSchema(article: ResourceArticle, path: string): JsonLdObject {
+export function getResourceArticleSchema(
+  article: ResourceArticle,
+  path: string,
+  dateModified: string,
+): JsonLdObject {
   const canonicalUrl = getCanonicalUrl(path);
   const description = getResourceDescription(article);
 
@@ -566,6 +570,7 @@ export function getResourceArticleSchema(article: ResourceArticle, path: string)
     "@id": `${canonicalUrl}#article`,
     headline: article.title,
     description,
+    dateModified,
     url: canonicalUrl,
     mainEntityOfPage: { "@id": getPageFragmentId(path, "webpage") },
     author: { "@id": organizationId },

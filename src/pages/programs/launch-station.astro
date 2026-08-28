@@ -1,5 +1,6 @@
 ---
 import LaunchStationPage from "../../components/pages/LaunchStationPage.astro";
+import { contentDates } from "../../data/contentDates.generated";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { getLaunchStationSchema, pageMeta } from "../../lib/seo";
 ---
@@ -7,6 +8,7 @@ import { getLaunchStationSchema, pageMeta } from "../../lib/seo";
 <BaseLayout
   title={pageMeta.launchStation.title}
   description={pageMeta.launchStation.description}
+  dateModified={contentDates["/programs/launch-station"]}
   ogImage={pageMeta.launchStation.ogImage}
   ogImageAlt={pageMeta.launchStation.ogImageAlt}
   ogImageWidth={pageMeta.launchStation.ogImageWidth}
