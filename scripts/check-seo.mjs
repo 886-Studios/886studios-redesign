@@ -112,6 +112,7 @@ const pages = [];
 const titles = new Map();
 const descriptions = new Map();
 const indexableCanonicals = new Set();
+let homepageDateModified;
 
 for (const filePath of htmlFiles) {
   const html = await readFile(filePath, "utf8");
@@ -239,6 +240,7 @@ for (const filePath of htmlFiles) {
           if (!/^\d{4}-\d{2}-\d{2}$/.test(homepageSchema?.dateModified ?? "")) {
             fail("/: homepage WebPage schema is missing a valid ISO dateModified");
           }
+          homepageDateModified = homepageSchema?.dateModified;
           if (homepageSchema?.abstract !== description) {
             fail("/: homepage WebPage abstract does not match the existing page summary");
           }
@@ -334,13 +336,30 @@ for (const page of pages) {
 }
 
 const sitemapXml = await readFile(path.join(distRoot, "sitemap.xml"), "utf8");
-const sitemapUrls = new Set(
-  [...sitemapXml.matchAll(/<loc>([\s\S]*?)<\/loc>/g)].map((match) => decodeHtml(match[1].trim())),
-);
+const sitemapEntries = [...sitemapXml.matchAll(/<url>([\s\S]*?)<\/url>/g)].map((match) => {
+  const entry = match[1];
+  const loc = decodeHtml(entry.match(/<loc>([\s\S]*?)<\/loc>/)?.[1]?.trim() ?? "");
+  const lastmods = [...entry.matchAll(/<lastmod>([\s\S]*?)<\/lastmod>/g)].map((lastmod) =>
+    decodeHtml(lastmod[1].trim()),
+  );
+  return { loc, lastmods };
+});
+const sitemapUrls = new Set(sitemapEntries.map((entry) => entry.loc));
 
 if (!/^<\?xml version="1\.0" encoding="UTF-8"\?>/.test(sitemapXml)) fail("sitemap.xml: missing XML declaration");
 if (!sitemapXml.includes('xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"')) fail("sitemap.xml: missing sitemap namespace");
-if (/<lastmod>/i.test(sitemapXml)) fail("sitemap.xml: contains lastmod values without a reliable content date source");
+
+const homepageSitemapEntry = sitemapEntries.find((entry) => entry.loc === `${productionOrigin}/`);
+if (homepageSitemapEntry?.lastmods.length !== 1) {
+  fail("sitemap.xml: homepage must have exactly one sourced lastmod value");
+} else if (homepageSitemapEntry.lastmods[0] !== homepageDateModified) {
+  fail("sitemap.xml: homepage lastmod does not match its WebPage dateModified");
+}
+for (const entry of sitemapEntries) {
+  if (entry.loc !== `${productionOrigin}/` && entry.lastmods.length > 0) {
+    fail(`sitemap.xml: ${entry.loc} has a lastmod value without a reliable content date source`);
+  }
+}
 
 for (const canonical of indexableCanonicals) {
   if (!sitemapUrls.has(canonical)) fail(`sitemap.xml: missing ${canonical}`);

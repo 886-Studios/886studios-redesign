@@ -4,9 +4,15 @@ import { partnerProfiles } from "../data/partnerProfiles";
 import { portfolioCompanies } from "../data/siteContent";
 import { resourceArticles, standaloneResourceArticles } from "../data/resourceArticles";
 import { getBlogPosts } from "../lib/blog";
+import { pageMeta } from "../lib/seo";
 
 const staticRoutes = [
-  { path: "/", priority: "1.0", changefreq: "weekly" },
+  {
+    path: "/",
+    priority: "1.0",
+    changefreq: "weekly",
+    lastmod: pageMeta.home.dateModified,
+  },
   { path: "/programs", priority: "0.9", changefreq: "weekly" },
   { path: "/programs/launch-station", priority: "0.7", changefreq: "monthly" },
   { path: "/about", priority: "0.9", changefreq: "monthly" },
@@ -68,10 +74,14 @@ export const GET: APIRoute = async () => {
     ...blogRoutes,
   ];
   const urls = routes
-    .map(
-      (route) =>
-        `  <url><loc>${escapeXml(getAbsoluteUrl(route.path))}</loc><changefreq>${route.changefreq}</changefreq><priority>${route.priority}</priority></url>`,
-    )
+    .map((route) => {
+      const lastmod =
+        "lastmod" in route && typeof route.lastmod === "string"
+          ? `<lastmod>${escapeXml(route.lastmod)}</lastmod>`
+          : "";
+
+      return `  <url><loc>${escapeXml(getAbsoluteUrl(route.path))}</loc>${lastmod}<changefreq>${route.changefreq}</changefreq><priority>${route.priority}</priority></url>`;
+    })
     .join("\n");
 
   return new Response(`<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`, {
