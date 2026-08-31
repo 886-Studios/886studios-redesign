@@ -1,7 +1,6 @@
 {
   "calendarId": "cal-YDazDmfi5UlPvrC",
   "upcomingEventIds": [
-    "evt-LWWyG4z7FdrtK4V",
     "evt-gUg5eDr1ZdDDH5q"
   ],
   "events": [
@@ -169,17 +168,6 @@
       "url": "https://luma.com/rg1tu08w",
       "locationName": "Online",
       "isOnline": true
-    },
-    {
-      "id": "evt-LWWyG4z7FdrtK4V",
-      "title": "ikigai Pickleball League - Founders v. Investors",
-      "startAt": "2026-09-11T07:30:00.000Z",
-      "endAt": "2026-09-11T10:00:00.000Z",
-      "timezone": "Asia/Taipei",
-      "coverUrl": "https://images.lumacdn.com/uploads/pa/4ea9c3b3-252e-4082-91b4-e87cce910107.png",
-      "url": "https://luma.com/ct9tj4n0",
-      "locationName": "Location TBD",
-      "isOnline": false
     }
   ]
 }
