@@ -1202,16 +1202,10 @@ export const siteContent = {
     ],
     libraryItems: [
       {
-        title: "Y Combinator 101",
-        href: "/resources/y-combinator-101",
+        title: "Founders FAQs",
+        href: "/resources/founders-frequently-asked-questions",
         description:
-          "Partner notes, application tips, and mock interview prep from YC visiting partners and experienced founders.",
-      },
-      {
-        title: "Incorporation 101",
-        href: "/incorporation-101",
-        description:
-          "Jurisdiction comparisons, common business structures, and practical guidance on forming your company.",
+          "Seasoned founders answer the most common questions on co-founders, investor relations, and networking.",
       },
       {
         title: "Application Guide",
@@ -1220,22 +1214,28 @@ export const siteContent = {
           "A step-by-step checklist to prepare your team, pitch, and materials before applying to any accelerator.",
       },
       {
+        title: "Incorporation 101",
+        href: "/incorporation-101",
+        description:
+          "Jurisdiction comparisons, common business structures, and practical guidance on forming your company.",
+      },
+      {
         title: "Ecosystem Database",
         href: "/resources/ecosystem-database",
         description:
           "A curated directory of accelerators, VC firms, co-working spaces, and communities across Taiwan.",
       },
       {
-        title: "Founders FAQs",
-        href: "/resources/founders-frequently-asked-questions",
-        description:
-          "Seasoned founders answer the most common questions on co-founders, investor relations, and networking.",
-      },
-      {
         title: "Interview Guidebook",
         href: "/interview-guidebook",
         description:
           "How 886 program interviews work, what we look for, and how to prepare your team and pitch.",
+      },
+      {
+        title: "Y Combinator 101",
+        href: "/resources/y-combinator-101",
+        description:
+          "Partner notes, application tips, and mock interview prep from YC visiting partners and experienced founders.",
       },
     ],
     ama: {
@@ -1249,6 +1249,36 @@ export const siteContent = {
       title: "Exclusive Perks",
       programHref: "/programs",
       categories: [
+        {
+          title: "Engineering",
+          items: [
+            {
+              label: "OpenAI",
+              href: "https://openai.com/startups",
+              logoSrc: "/assets/logos/openai.svg",
+            },
+            {
+              label: "AWS Activate",
+              href: "https://aws.amazon.com/activate/",
+              logoSrc: "/assets/logos/aws.webp",
+            },
+            {
+              label: "GitHub",
+              href: "https://github.com",
+              logoSrc: "/assets/logos/github.svg",
+            },
+            {
+              label: "Google Cloud Startup Program",
+              href: "https://cloud.google.com/startup/",
+              logoSrc: "/assets/logos/google-cloud.webp",
+            },
+            {
+              label: "Zettabyte",
+              href: "https://www.zettabyte.space/",
+              logoSrc: "/assets/logos/zettabyte.svg",
+            },
+          ],
+        },
         {
           title: "Productivity",
           items: [
@@ -1316,36 +1346,6 @@ export const siteContent = {
               label: "Webflow",
               href: "https://webflow.com",
               logoSrc: "/assets/logos/webflow.svg",
-            },
-          ],
-        },
-        {
-          title: "Engineering",
-          items: [
-            {
-              label: "AWS Activate",
-              href: "https://aws.amazon.com/activate/",
-              logoSrc: "/assets/logos/aws.webp",
-            },
-            {
-              label: "GitHub",
-              href: "https://github.com",
-              logoSrc: "/assets/logos/github.svg",
-            },
-            {
-              label: "Google Cloud Startup Program",
-              href: "https://cloud.google.com/startup/",
-              logoSrc: "/assets/logos/google-cloud.webp",
-            },
-            {
-              label: "OpenAI",
-              href: "https://openai.com/startups",
-              logoSrc: "/assets/logos/openai.svg",
-            },
-            {
-              label: "Zettabyte",
-              href: "https://www.zettabyte.space/",
-              logoSrc: "/assets/logos/zettabyte.svg",
             },
           ],
         },

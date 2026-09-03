@@ -37,45 +37,6 @@ const libraryColors = ["gold", "jade", "purple", "jade", "purple", "gold"];
       </div>
     </section>
 
-    <!-- AMA Feature Card -->
-    <section class="res-section res-ama" aria-labelledby="res-ama-heading">
-      <div class="res-ama-card">
-        <div class="res-ama-body">
-          <div class="section-tag">Community</div>
-          <h2 id="res-ama-heading">{resources.ama.title}</h2>
-          <p class="res-ama-lead">{resources.ama.lead}</p>
-          <a
-            class="btn-pri"
-            href={resources.ama.ctaHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-analytics-event="founder_ama_opened"
-            data-analytics-placement="resources_ama"
-          >
-            {resources.ama.ctaLabel}
-          </a>
-        </div>
-
-        <div class="res-ama-panel">
-          <p class="res-ama-panel-label">How it works</p>
-          <ol class="res-ama-steps">
-            <li>
-              <span class="res-step-num">1</span>
-              <span>Submit your question anonymously</span>
-            </li>
-            <li>
-              <span class="res-step-num">2</span>
-              <span>Reviewed by our venture partners</span>
-            </li>
-            <li>
-              <span class="res-step-num">3</span>
-              <span>Receive a thoughtful, experienced response</span>
-            </li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
     <!-- Exclusive Perks -->
     <section class="res-section res-perks" aria-labelledby="res-perks-heading">
       <header class="res-section-hdr">
@@ -118,6 +79,45 @@ const libraryColors = ["gold", "jade", "purple", "jade", "purple", "gold"];
             </ul>
           </section>
         ))}
+      </div>
+    </section>
+
+    <!-- AMA Feature Card -->
+    <section class="res-section res-ama" aria-labelledby="res-ama-heading">
+      <div class="res-ama-card">
+        <div class="res-ama-body">
+          <div class="section-tag">Community</div>
+          <h2 id="res-ama-heading">{resources.ama.title}</h2>
+          <p class="res-ama-lead">{resources.ama.lead}</p>
+          <a
+            class="btn-pri"
+            href={resources.ama.ctaHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-analytics-event="founder_ama_opened"
+            data-analytics-placement="resources_ama"
+          >
+            {resources.ama.ctaLabel}
+          </a>
+        </div>
+
+        <div class="res-ama-panel">
+          <p class="res-ama-panel-label">How it works</p>
+          <ol class="res-ama-steps">
+            <li>
+              <span class="res-step-num">1</span>
+              <span>Submit your question anonymously</span>
+            </li>
+            <li>
+              <span class="res-step-num">2</span>
+              <span>Reviewed by our venture partners</span>
+            </li>
+            <li>
+              <span class="res-step-num">3</span>
+              <span>Receive a thoughtful, experienced response</span>
+            </li>
+          </ol>
+        </div>
       </div>
     </section>
 

@@ -6,8 +6,16 @@ const content = await readFile(
   new URL("../src/data/siteContent.ts", import.meta.url),
   "utf8",
 );
+const resourcesPage = await readFile(
+  new URL("../src/components/pages/ResourcesPage.astro", import.meta.url),
+  "utf8",
+);
 const mercuryLogo = await readFile(
   new URL("../public/assets/logos/mercury.svg", import.meta.url),
+  "utf8",
+);
+const stripeLogo = await readFile(
+  new URL("../public/assets/logos/stripe.svg", import.meta.url),
   "utf8",
 );
 const zettabyteLogo = await readFile(
@@ -15,7 +23,32 @@ const zettabyteLogo = await readFile(
   "utf8",
 );
 
-test("resource perks stay alphabetized within each category", () => {
+test("Founder AMA follows Exclusive Perks on the resources page", () => {
+  const perksPosition = resourcesPage.indexOf("<!-- Exclusive Perks -->");
+  const amaPosition = resourcesPage.indexOf("<!-- AMA Feature Card -->");
+
+  assert.ok(perksPosition >= 0);
+  assert.ok(amaPosition > perksPosition);
+});
+
+test("resource guides keep the requested display order", () => {
+  const library = content.slice(
+    content.indexOf("    libraryItems: ["),
+    content.indexOf("    ama: {"),
+  );
+  const titles = [...library.matchAll(/title: "([^"]+)"/g)].map((match) => match[1]);
+
+  assert.deepEqual(titles, [
+    "Founders FAQs",
+    "Application Guide",
+    "Incorporation 101",
+    "Ecosystem Database",
+    "Interview Guidebook",
+    "Y Combinator 101",
+  ]);
+});
+
+test("resource perks keep their intentional category and item order", () => {
   const perks = content.slice(
     content.indexOf("    perks: {"),
     content.indexOf("  about: {"),
@@ -23,12 +56,20 @@ test("resource perks stay alphabetized within each category", () => {
   const categories = [...perks.matchAll(/title: "([^"]+)",\n\s+items: \[([\s\S]*?)\n\s+\],/g)];
 
   assert.equal(categories.length, 4);
+  assert.deepEqual(
+    categories.map(([, category]) => category),
+    ["Engineering", "Productivity", "Finances", "Marketing"],
+  );
 
   for (const [, category, items] of categories) {
     const labels = [...items.matchAll(/label: "([^"]+)"/g)].map((match) => match[1]);
-    const sortedLabels = [...labels].sort((a, b) => a.localeCompare(b));
+    const sortableLabels = category === "Engineering" ? labels.slice(1) : labels;
+    const sortedLabels = [...sortableLabels].sort((a, b) => a.localeCompare(b));
 
-    assert.deepEqual(labels, sortedLabels, `${category} perks are not alphabetized`);
+    if (category === "Engineering") {
+      assert.equal(labels[0], "OpenAI");
+    }
+    assert.deepEqual(sortableLabels, sortedLabels, `${category} perks are not alphabetized`);
   }
 });
 
@@ -65,7 +106,7 @@ test("Zettabyte is listed as an Engineering perk with its official mark", () => 
   assert.equal((zettabyteLogo.match(/<path\b/g) ?? []).length, 3);
 });
 
-test("Stripe is listed as a Finances perk", () => {
+test("Stripe is listed as a Finances perk with its purple wordmark", () => {
   const finances = content.slice(
     content.indexOf('title: "Finances"'),
     content.indexOf("          ],", content.indexOf('title: "Finances"')),
@@ -74,4 +115,6 @@ test("Stripe is listed as a Finances perk", () => {
   assert.match(finances, /label: "Stripe"/);
   assert.match(finances, /href: "https:\/\/stripe\.com"/);
   assert.match(finances, /logoSrc: "\/assets\/logos\/stripe\.svg"/);
+  assert.match(stripeLogo, /fill="#635BFF"/);
+  assert.doesNotMatch(stripeLogo, /fill="white"/);
 });
