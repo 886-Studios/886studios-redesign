@@ -10,6 +10,10 @@ const mercuryLogo = await readFile(
   new URL("../public/assets/logos/mercury.svg", import.meta.url),
   "utf8",
 );
+const zettabyteLogo = await readFile(
+  new URL("../public/assets/logos/zettabyte.svg", import.meta.url),
+  "utf8",
+);
 
 test("resource perks stay alphabetized within each category", () => {
   const perks = content.slice(
@@ -40,12 +44,25 @@ test("OpenAI is listed as an Engineering perk without publishing the credit amou
   assert.doesNotMatch(engineering, /5\s*k|5,000|5000/i);
 });
 
-test("Mercury uses a compact, high-contrast mark for the perks icon slot", () => {
+test("Mercury uses its current fintech mark in the perks icon slot", () => {
   assert.match(content, /logoSrc: "\/assets\/logos\/mercury\.svg"/);
-  assert.match(mercuryLogo, /viewBox="43\.5 8 13\.5 16"/);
+  assert.match(mercuryLogo, /viewBox="0 0 500 500"/);
   assert.match(mercuryLogo, /fill="#f4f5f9"/);
   assert.equal((mercuryLogo.match(/<path\b/g) ?? []).length, 1);
-  assert.doesNotMatch(mercuryLogo, /prefers-color-scheme|viewBox="0 0 500 500"/);
+  assert.doesNotMatch(mercuryLogo, /prefers-color-scheme|viewBox="43\.5 8 13\.5 16"/);
+});
+
+test("Zettabyte is listed as an Engineering perk with its official mark", () => {
+  const engineering = content.slice(
+    content.indexOf('title: "Engineering"'),
+    content.indexOf("          ],", content.indexOf('title: "Engineering"')),
+  );
+
+  assert.match(engineering, /label: "Zettabyte"/);
+  assert.match(engineering, /href: "https:\/\/www\.zettabyte\.space\/"/);
+  assert.match(engineering, /logoSrc: "\/assets\/logos\/zettabyte\.svg"/);
+  assert.match(zettabyteLogo, /viewBox="0 0 54 54"/);
+  assert.equal((zettabyteLogo.match(/<path\b/g) ?? []).length, 3);
 });
 
 test("Stripe is listed as a Finances perk", () => {

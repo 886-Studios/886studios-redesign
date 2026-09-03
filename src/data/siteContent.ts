@@ -1342,6 +1342,11 @@ export const siteContent = {
               href: "https://openai.com/startups",
               logoSrc: "/assets/logos/openai.svg",
             },
+            {
+              label: "Zettabyte",
+              href: "https://www.zettabyte.space/",
+              logoSrc: "/assets/logos/zettabyte.svg",
+            },
           ],
         },
       ],
