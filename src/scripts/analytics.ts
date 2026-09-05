@@ -23,6 +23,8 @@ function getDestination(element: HTMLElement) {
 }
 
 function sendAnalyticsEvent(element: HTMLElement) {
+  if (!document.querySelector("script[data-google-analytics-id]")) return;
+
   const name = element.dataset.analyticsEvent;
   if (!name) return;
 

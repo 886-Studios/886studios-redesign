@@ -15,7 +15,10 @@ const googleAnalyticsId = getGoogleAnalyticsId();
     <title>{`Apply | ${siteConfig.name}`}</title>
   </head>
   <body>
-    <script is:inline define:vars={{ applicationUrl }}>window.location.replace(applicationUrl);</script>
+    <script>
+      import { applicationUrl } from "../config/site";
+      window.location.replace(applicationUrl);
+    </script>
     <main>
       <p>Redirecting to application form... <a href={applicationUrl}>Click here</a> if not redirected.</p>
     </main>

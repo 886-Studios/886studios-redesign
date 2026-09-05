@@ -1,3 +1,12 @@
+import { isProductionDeployment } from "./deployment";
+
+// Explicit references let Vite substitute the server-only flags at build time.
+export const productionAnalyticsEnabled = isProductionDeployment({
+  PROD: import.meta.env.PROD,
+  VERCEL: import.meta.env.VERCEL,
+  VERCEL_ENV: import.meta.env.VERCEL_ENV,
+});
+
 export const applicationUrl = "https://tally.so/r/w5p4jQ";
 
 export const siteConfig = {
@@ -69,7 +78,7 @@ export function getRouteImagePreloads(pathname: string) {
 }
 
 export function getGoogleAnalyticsId() {
-  return siteConfig.googleAnalyticsFallbackId;
+  return productionAnalyticsEnabled ? siteConfig.googleAnalyticsFallbackId : undefined;
 }
 
 export function getSearchEngineVerification(): SearchEngineVerification {

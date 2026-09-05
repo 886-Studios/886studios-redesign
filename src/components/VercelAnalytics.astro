@@ -1,18 +1,14 @@
 ---
 import Analytics from "@vercel/analytics/astro";
+import { productionAnalyticsEnabled } from "../config/site";
+import runtimePathScript from "../scripts/vercel-analytics-path.js?url";
 
-const locals = Astro.locals as { runtime?: { env?: Record<string, string | undefined> } };
-const buildEnv = import.meta.env as Record<string, string | undefined>;
-const isVercelBuild = locals.runtime?.env?.VERCEL === "1" || buildEnv.VERCEL === "1";
 const useRuntimePath = Astro.url.pathname === "/404" || Astro.url.pathname === "/404/";
 ---
 
 {
-  useRuntimePath && (
-    <script is:inline>
-      window.webAnalyticsBeforeSend = (event) =>
-        event.type === "pageview" ? { ...event, url: window.location.pathname } : event;
-    </script>
+  productionAnalyticsEnabled && useRuntimePath && (
+    <script is:inline src={runtimePathScript}></script>
   )
 }
-{isVercelBuild && <Analytics />}
+{productionAnalyticsEnabled && <Analytics />}

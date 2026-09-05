@@ -1,6 +1,8 @@
 ---
+import initializationScript from "../scripts/google-analytics.js?url";
+
 interface Props {
-  measurementId: string;
+  measurementId?: string;
 }
 
 const { measurementId } = Astro.props;
@@ -10,14 +12,7 @@ const { measurementId } = Astro.props;
   measurementId && (
     <>
       <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}></script>
-      <script is:inline define:vars={{ measurementId }}>
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = window.gtag || function gtag() {
-          window.dataLayer.push(arguments);
-        };
-        window.gtag("js", new Date());
-        window.gtag("config", measurementId);
-      </script>
+      <script is:inline src={initializationScript} data-google-analytics-id={measurementId}></script>
     </>
   )
 }
