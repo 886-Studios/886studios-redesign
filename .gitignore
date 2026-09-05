@@ -4,7 +4,6 @@ dist
 .DS_Store
 .gstack/
 .vercel
-.env
-.env.local
-.env.*.local
+.env*
+!.env.example
 .artifacts/

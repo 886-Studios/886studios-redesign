@@ -4,10 +4,12 @@ Astro static site for 886 Studios. The codebase is intentionally small and struc
 
 ## Prerequisites
 
-- Node `22.12.0+`
+- Node 22 LTS (`22.12.0` or newer within Node 22); run `nvm install && nvm use` to use `.nvmrc`
 - npm `9.6.5+`
 
 This repo uses `package-lock.json`, so prefer npm over pnpm or yarn unless the package manager strategy changes.
+Node's supported range is enforced during installation. Local development, GitHub Actions,
+and Vercel use Node 22; switch to that runtime before running `npm ci`.
 
 ## Quick Start
 
@@ -20,6 +22,8 @@ npm run dev
 ```
 
 Open `http://127.0.0.1:4173/`. If port `4173` is already in use, Astro prints the alternate local URL in the terminal. Use that printed URL instead.
+The server binds to localhost by default. For intentional testing from another device,
+use `npm run dev -- --host 0.0.0.0` on a trusted network.
 
 For day-to-day development after dependencies are installed:
 
@@ -74,7 +78,8 @@ BAIDU_SITE_VERIFICATION=
 The four site-verification variables emit ownership meta tags when they are set. They are
 normally configured in Vercel for production verification and are not needed for local work.
 
-Do not commit `.env`, `.env.local`, or any `.env.*.local` file. These files are ignored by git and should hold local or deployment secrets only.
+All `.env*` files are ignored except the empty `.env.example` template, including
+`.env.production` and `.env.staging`. Keep credentials in ignored files or deployment secrets.
 
 Google Analytics uses the production fallback ID in `src/config/site.ts`; there is no separate local analytics env var. Vercel Analytics renders only when Vercel sets `VERCEL=1`.
 
