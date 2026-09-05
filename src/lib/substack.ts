@@ -11,7 +11,6 @@ export const blogConfig = {
     "/assets/ikigai-insights-substack-wide-640.webp 640w, /assets/ikigai-insights-substack-wide-1280.webp 1280w",
   feedUrl: "https://886studios.substack.com/feed",
   subscribeUrl: "https://886studios.substack.com/subscribe",
-  subscribeAction: "https://886studios.substack.com/api/v1/free",
   description:
     "Curated stories, fresh takes, and hidden gems from the tech and startup world - brought to you monthly by 886 Studios",
   subscriberNote: "Every new post will be sent directly to your email inbox.",

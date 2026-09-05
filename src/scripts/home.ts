@@ -67,19 +67,4 @@ function initPhotoMarquee() {
   queueSyncPhotoTracks();
 }
 
-function initNewsletterForm() {
-  const newsletterForm = document.querySelector<HTMLFormElement>(".nl-form");
-  if (!newsletterForm) return;
-
-  newsletterForm.addEventListener("submit", () => {
-    const button = newsletterForm.querySelector<HTMLButtonElement>(".nl-btn");
-    newsletterForm.classList.add("is-submitted");
-
-    if (button) {
-      button.textContent = "Check your inbox";
-    }
-  });
-}
-
 initPhotoMarquee();
-initNewsletterForm();

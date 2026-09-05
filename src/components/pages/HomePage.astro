@@ -200,8 +200,9 @@ const getPhotoSrcset = (src: string) =>
       <form
         class="nl-form"
         action={home.newsletter.action}
-        method="post"
-        target="substack-subscribe-frame"
+        method="get"
+        target="_blank"
+        rel="noopener noreferrer"
         data-analytics-event="newsletter_signup"
         data-analytics-placement="home_newsletter"
       >
@@ -215,15 +216,8 @@ const getPhotoSrcset = (src: string) =>
           autocomplete="email"
           required
         />
-        <button class="nl-btn" type="submit">{home.newsletter.button}</button>
+        <button class="nl-btn" type="submit">{home.newsletter.button}<span class="sr-only"> (opens Substack in a new tab)</span></button>
       </form>
-      <iframe
-        class="nl-frame"
-        name="substack-subscribe-frame"
-        title="Newsletter signup status"
-        sandbox="allow-forms allow-scripts"
-        referrerpolicy="strict-origin-when-cross-origin"
-      ></iframe>
     </div>
   </div>
 </div>

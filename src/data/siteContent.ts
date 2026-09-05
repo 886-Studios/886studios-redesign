@@ -758,7 +758,7 @@ export const siteContent = {
       body: "Only cool things, we promise.",
       placeholder: "you@company.com",
       button: "Subscribe",
-      action: "https://886studios.substack.com/api/v1/free",
+      action: "https://886studios.substack.com/subscribe",
     },
   },
   programs: {

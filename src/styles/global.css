@@ -6584,10 +6584,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   transform: translateY(-1px);
 }
 
-.blog-post-subscribe-form.is-submitted button {
-  min-width: 158px;
-}
-
 .blog-post-subscribe-note {
   margin-top: 11px;
   color: color-mix(in srgb, var(--text-muted) 78%, transparent);
@@ -8424,19 +8420,6 @@ footer {
   box-shadow:
     0 16px 42px rgba(139, 92, 246, 0.42),
     inset 0 1px 0 rgba(255, 255, 255, 0.28);
-}
-
-.nl-form.is-submitted .nl-btn::after {
-  content: none;
-}
-
-.nl-frame {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  border: 0;
-  opacity: 0;
-  pointer-events: none;
 }
 
 /* ===========================

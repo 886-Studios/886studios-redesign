@@ -17,7 +17,6 @@ const {
 const safePlacement = placement.replace(/[^a-zA-Z0-9_-]/g, "");
 const headingId = `article-subscribe-heading-${safePlacement}`;
 const inputId = `article-subscribe-email-${safePlacement}`;
-const frameName = `article-subscribe-frame-${safePlacement}`;
 ---
 
 <section
@@ -51,9 +50,10 @@ const frameName = `article-subscribe-frame-${safePlacement}`;
 
   <form
     class="blog-post-subscribe-form"
-    action={blogConfig.subscribeAction}
-    method="post"
-    target={frameName}
+    action={blogConfig.subscribeUrl}
+    method="get"
+    target="_blank"
+    rel="noopener noreferrer"
     data-article-subscribe
     data-analytics-event="newsletter_signup"
     data-analytics-placement={analyticsPlacement}
@@ -71,34 +71,11 @@ const frameName = `article-subscribe-frame-${safePlacement}`;
         autocomplete="email"
         required
       />
-      <button type="submit">Subscribe</button>
+      <button type="submit">Subscribe<span class="sr-only"> (opens Substack in a new tab)</span></button>
     </div>
-    <p class="blog-post-subscribe-note" aria-live="polite">
-      {blogConfig.subscriberNote}
+    <p class="blog-post-subscribe-note">
+      Complete your subscription on Substack. {blogConfig.subscriberNote}
     </p>
   </form>
 
-  <iframe
-    class="nl-frame"
-    name={frameName}
-    title="Newsletter signup status"
-    sandbox="allow-forms allow-scripts"
-    referrerpolicy="strict-origin-when-cross-origin"
-  ></iframe>
 </section>
-
-<script>
-  document.querySelectorAll<HTMLFormElement>("[data-article-subscribe]").forEach((form) => {
-    if (form.dataset.enhanced === "true") return;
-    form.dataset.enhanced = "true";
-
-    form.addEventListener("submit", () => {
-      const button = form.querySelector<HTMLButtonElement>("button[type='submit']");
-      const note = form.querySelector<HTMLElement>(".blog-post-subscribe-note");
-
-      form.classList.add("is-submitted");
-      if (button) button.textContent = "Check your inbox";
-      if (note) note.textContent = "Almost there. Confirm your subscription from your inbox.";
-    });
-  });
-</script>
