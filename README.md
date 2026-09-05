@@ -37,8 +37,9 @@ Before handing work back or opening a PR, run:
 npm run validate
 ```
 
-This runs Astro and TypeScript diagnostics, creates the production build, and checks the
-generated site for SEO regressions. A successful run ends with `SEO validation passed`.
+This runs Astro and TypeScript diagnostics, regression tests, the production build, and
+checks the generated site for SEO and security regressions. A successful run ends with
+`Security validation passed`.
 
 To inspect the production build locally:
 
@@ -57,7 +58,8 @@ Use the URL printed by Astro.
 | `npm run check` | Run Astro diagnostics and TypeScript checks. |
 | `npm run build` | Build all static routes into `dist/`. |
 | `npm run check:seo` | Validate metadata, schema, links, images, robots, and sitemap parity in an existing `dist/` build. |
-| `npm run validate` | Run diagnostics, build the site, and run the SEO regression suite. |
+| `npm run check:security` | Check built scripts against CSP and verify analytics are gated by deployment environment. |
+| `npm run validate` | Run diagnostics, tests, build, and the SEO and security regression suites. |
 | `npm run preview` | Serve the latest `dist/` build locally. |
 | `npm run indexnow:dry-run` | Inspect the generated IndexNow submission without sending it. |
 | `npm run indexnow` | Submit generated or explicitly provided production URLs to IndexNow. |
@@ -81,7 +83,10 @@ normally configured in Vercel for production verification and are not needed for
 All `.env*` files are ignored except the empty `.env.example` template, including
 `.env.production` and `.env.staging`. Keep credentials in ignored files or deployment secrets.
 
-Google Analytics uses the production fallback ID in `src/config/site.ts`; there is no separate local analytics env var. Vercel Analytics renders only when Vercel sets `VERCEL=1`.
+Google Analytics and Vercel Analytics run only in a production build where Vercel sets
+`VERCEL=1` and `VERCEL_ENV=production`. Local development, local builds, and Vercel previews
+do not send analytics. The production Google measurement ID remains in `src/config/site.ts`.
+Do not copy Vercel's production environment flags into local environment files.
 
 Shared conversion events are sent to both providers by `src/scripts/analytics.ts`. Trackable links and forms opt in with `data-analytics-event`, plus optional `data-analytics-placement` and `data-analytics-label` attributes. Do not put email addresses, names, form values, or other personal data in these attributes. Current funnel events are `program_interest`, `application_started`, `newsletter_signup`, `event_registration_started`, `event_details_opened`, `event_calendar_opened`, `founder_ama_opened`, `blog_post_opened`, `substack_publication_opened`, and `substack_post_opened`.
 
@@ -105,6 +110,15 @@ npm run indexnow
 Use `npm run indexnow:dry-run` to inspect the URL count and request configuration without
 making a submission. The command reads canonical URLs from the generated sitemap, verifies
 that the public key file is live, and submits the URL set to the shared IndexNow endpoint.
+
+Optional CLI overrides are documented in `.env.example`: `INDEXNOW_SITE_URL`,
+`INDEXNOW_ENDPOINT`, `INDEXNOW_KEY_FILE`, and `INDEXNOW_KEY`. Export them in the shell
+when invoking the CLI; it does not load `.env` automatically. The site must be a canonical
+HTTPS origin and the endpoint must use HTTPS without embedded credentials or fragments.
+The key file must resolve inside `public/`, including when symlinks are used. Requests
+time out after 15 seconds and reject redirects; replace old HTTP or redirecting overrides
+with their final HTTPS URLs. The IndexNow key and search-verification tokens are public
+ownership proofs, not private credentials.
 
 For routine releases, submit only URLs that were added, changed, redirected, or removed:
 
@@ -197,6 +211,11 @@ passing. The scheduled sync needs a GitHub Actions exception to this status-chec
 GitHub attaches its check to the starting commit, while the sync creates a new data commit
 after validation. Keep the no-force-push and no-deletion rules separate with no bypass.
 Human code changes must pass validation on a branch before they can update `main`.
+
+The script CSP rejects inline JavaScript. Astro keeps executable scripts external,
+including analytics initialization and redirect helpers; JSON-LD remains inline data.
+Keep new executable scripts external as well. Inline styles are still allowed to preserve
+the existing design and dynamic layout behavior.
 
 The Contact page links directly to `it@886studios.com` with a `mailto:` URL, so
 it does not require an email provider or server-side configuration.

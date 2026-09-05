@@ -1,9 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
+import { fetchIndexNow, getIndexNowConfig } from "./lib/indexnow-config.mjs";
 
-const defaultSiteUrl = "https://www.886studios.com";
-const defaultEndpoint = "https://api.indexnow.org/indexnow";
-const defaultKeyFile = "indexnow-key.txt";
 const isDryRun = process.argv.includes("--dry-run");
 const requestedUrls = process.argv
   .filter((argument) => argument.startsWith("--url="))
@@ -22,14 +20,11 @@ const decodeXml = (value) =>
     .replaceAll("&quot;", '"')
     .replaceAll("&apos;", "'");
 
-const siteUrl = new URL(process.env.INDEXNOW_SITE_URL?.trim() || defaultSiteUrl);
-const endpoint = process.env.INDEXNOW_ENDPOINT?.trim() || defaultEndpoint;
-const keyFile = process.env.INDEXNOW_KEY_FILE?.trim() || defaultKeyFile;
+const { siteUrl, endpoint, keyPath, keyLocation } = await getIndexNowConfig();
 const sitemapPath = path.resolve(
   process.cwd(),
   getArgumentValue("--sitemap") || "dist/sitemap.xml",
 );
-const keyPath = path.resolve(process.cwd(), "public", keyFile);
 
 const [sitemapXml, keyFileContents] = await Promise.all([
   requestedUrls.length === 0 ? readFile(sitemapPath, "utf8") : Promise.resolve(undefined),
@@ -72,7 +67,6 @@ if (urlList.length > 10_000) {
   throw new Error("IndexNow accepts at most 10,000 URLs per request.");
 }
 
-const keyLocation = new URL(`/${keyFile}`, siteUrl).toString();
 const payload = {
   host: siteUrl.host,
   key,
@@ -99,7 +93,7 @@ if (isDryRun) {
   process.exit(0);
 }
 
-const keyResponse = await fetch(keyLocation);
+const keyResponse = await fetchIndexNow(keyLocation);
 const publishedKey = (await keyResponse.text()).trim();
 
 if (!keyResponse.ok || publishedKey !== key) {
@@ -108,7 +102,7 @@ if (!keyResponse.ok || publishedKey !== key) {
   );
 }
 
-const response = await fetch(endpoint, {
+const response = await fetchIndexNow(endpoint, {
   method: "POST",
   headers: {
     "Content-Type": "application/json; charset=utf-8",
