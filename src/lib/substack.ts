@@ -63,7 +63,10 @@ const substackCdnHost = "substackcdn.com";
 let substackPostsPromise: Promise<BlogPost[]> | undefined;
 
 export function getSubstackPosts() {
-  substackPostsPromise ??= fetchBlogPosts();
+  substackPostsPromise ??= fetchBlogPosts().catch((error) => {
+    substackPostsPromise = undefined;
+    throw error;
+  });
   return substackPostsPromise;
 }
 
@@ -171,11 +174,18 @@ async function fetchBlogPosts() {
       throw new Error(`Substack returned ${response.status}`);
     }
 
-    return parseBlogFeed(await response.text());
+    const posts = parseBlogFeed(await response.text());
+    if (posts.length === 0) {
+      throw new Error("Substack returned no readable articles");
+    }
+    return posts;
   } catch (error) {
     const reason = error instanceof Error ? error.message : String(error);
-    console.warn(`[blog] Could not load ikigai Insights: ${reason}`);
-    return [];
+    // A successful empty build would delete all imported article routes, RSS
+    // entries, and sitemap URLs from the next production deployment.
+    throw new Error(`[blog] Could not load ikigai Insights: ${reason}. Refusing to publish without the blog archive.`, {
+      cause: error,
+    });
   }
 }
 

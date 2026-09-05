@@ -159,6 +159,13 @@ the “Originally published in ikigai Insights” footer unless an optional `sub
 If a local article and a Substack post share a slug, the local article takes precedence.
 Drafts are excluded from builds, the sitemap, and the Blog index.
 
+If the Substack feed is unreachable, invalid, or empty, the build fails to protect
+published article URLs from being removed. Retry after the feed recovers; Vercel
+keeps the previous successful production deployment live.
+
+Newsletter forms open Substack's subscription page in a new tab with the entered
+email prefilled. Substack handles confirmation and any signup errors.
+
 ## Deployment
 
 The site is a static Astro build deployed on Vercel.

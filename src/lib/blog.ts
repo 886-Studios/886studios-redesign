@@ -5,7 +5,10 @@ import type { BlogPost } from "../types/blog";
 let blogPostsPromise: Promise<BlogPost[]> | undefined;
 
 export function getBlogPosts() {
-  blogPostsPromise ??= loadBlogPosts();
+  blogPostsPromise ??= loadBlogPosts().catch((error) => {
+    blogPostsPromise = undefined;
+    throw error;
+  });
   return blogPostsPromise;
 }
 
