@@ -1,4 +1,7 @@
 {
+  "buildCommand": "npm run validate",
+  "installCommand": "npm ci",
+  "outputDirectory": "dist",
   "trailingSlash": false,
   "rewrites": [
     {

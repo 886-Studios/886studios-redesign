@@ -175,7 +175,8 @@ email prefilled. Substack handles confirmation and any signup errors.
 
 The site is a static Astro build deployed on Vercel.
 
-- Build command: `npm run build`
+- Build command: `npm run validate` (enforced by `vercel.json`)
+- Install command: `npm ci`; runtime: Node 22
 - Output directory: `dist/`
 - Canonical site URL: `https://www.886studios.com`
 - Redirects and security headers: `vercel.json`
@@ -187,6 +188,15 @@ The Events page is generated from `src/data/luma-events.json`; no Luma API key i
 new and updated events into the archive, and commits only when the event data changes. That commit
 triggers the normal Vercel rebuild. Past events are retained permanently even after they fall out of
 Luma's limited public history feed, while unpublished future events are removed.
+The sync runs the full validation suite before committing an event update. Other changes
+receive the same checks through the `Validate site` workflow. Both workflows pin their
+actions to reviewed commit SHAs and use full Git history for content-date generation.
+
+Enable the required `Validate` check on `main` only after this workflow is deployed and
+passing. The scheduled sync needs a GitHub Actions exception to this status-check rule:
+GitHub attaches its check to the starting commit, while the sync creates a new data commit
+after validation. Keep the no-force-push and no-deletion rules separate with no bypass.
+Human code changes must pass validation on a branch before they can update `main`.
 
 The Contact page links directly to `it@886studios.com` with a `mailto:` URL, so
 it does not require an email provider or server-side configuration.
