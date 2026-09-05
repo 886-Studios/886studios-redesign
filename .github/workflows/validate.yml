@@ -28,7 +28,6 @@ jobs:
           cache: npm
       - run: node --version
       - run: npm ci
-      - run: npm run validate
-        env:
-          VERCEL: "1"
-          VERCEL_ENV: production
+      # Substack blocks GitHub runner IPs. Vercel runs the full live-feed build,
+      # SEO, and CSP checks; its status is separately required on main.
+      - run: npm run validate:code

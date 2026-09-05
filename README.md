@@ -59,6 +59,7 @@ Use the URL printed by Astro.
 | `npm run build` | Build all static routes into `dist/`. |
 | `npm run check:seo` | Validate metadata, schema, links, images, robots, and sitemap parity in an existing `dist/` build. |
 | `npm run check:security` | Check built scripts against CSP and verify analytics are gated by deployment environment. |
+| `npm run validate:code` | Run type checks and regression tests without external feed access. |
 | `npm run validate` | Run diagnostics, tests, build, and the SEO and security regression suites. |
 | `npm run preview` | Serve the latest `dist/` build locally. |
 | `npm run indexnow:dry-run` | Inspect the generated IndexNow submission without sending it. |
@@ -202,21 +203,25 @@ The Events page is generated from `src/data/luma-events.json`; no Luma API key i
 new and updated events into the archive, and commits only when the event data changes. That commit
 triggers the normal Vercel rebuild. Past events are retained permanently even after they fall out of
 Luma's limited public history feed, while unpublished future events are removed.
-The sync runs the full validation suite before publishing an event update. Other changes
-receive the same checks through the `Validate site` workflow. Both workflows pin their
-actions to reviewed commit SHAs and use full Git history for content-date generation.
+GitHub's `Validate site` workflow runs type checks and regression tests. Vercel runs the
+full `npm run validate` command, including the live Substack feed, generated pages, SEO,
+and CSP checks. This split avoids Substack's HTTP 403 responses to GitHub-hosted runners
+while keeping the production feed and website content unchanged. Both GitHub workflows
+pin their actions to reviewed commit SHAs and use full Git history for content dates.
 
-`.github/main-branch-protection.json` defines the required `Validate` check on `main`,
-including administrators, and blocks force pushes and deletion. Apply it only after the
-validation workflow is deployed and passing. Human code changes must pass validation on
-a branch before updating `main`; a separate review approval is not required.
+`.github/main-branch-protection.json` requires both `Validate` from GitHub Actions and
+`Vercel – 886studios-redesign` from Vercel on `main`, including administrators, and blocks
+force pushes and deletion. Apply it only after both checks are deployed and passing.
+Code changes must pass both checks on a branch before updating `main`; a separate review
+approval is not required.
 
-Event sync validates its exact candidate commit, publishes it on a temporary branch,
-records the successful `Validate` status with the GitHub Actions token, and only then
-updates `main`. It removes that run's temporary branch afterward. This is necessary because
+Event sync checks its exact candidate commit, publishes it on a temporary branch, records
+the successful `Validate` status with the GitHub Actions token, and waits for the candidate's
+Vercel preview to pass the full validation suite before updating `main`. It removes that
+run's temporary branch afterward. Recording the code-check status is necessary because
 token-created pushes do not trigger another Actions workflow. The sync has no branch-rule
-bypass. If `main` advances during validation, its push fails safely and the next run retries
-from the latest code.
+bypass. A failed build, a ten-minute deployment timeout, or a newer commit on `main` stops
+publication; the next run retries from the latest code.
 
 The script CSP rejects inline JavaScript. Astro keeps executable scripts external,
 including analytics initialization and redirect helpers; JSON-LD remains inline data.

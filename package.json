@@ -22,7 +22,8 @@
     "check:security": "node scripts/check-security.mjs",
     "events:sync": "node scripts/sync-luma-events.mjs",
     "events:sync:dry-run": "node scripts/sync-luma-events.mjs --dry-run",
-    "validate": "npm run check && npm run test && npm run build && npm run check:seo && npm run check:security",
+    "validate:code": "npm run check && npm run test",
+    "validate": "npm run validate:code && npm run build && npm run check:seo && npm run check:security",
     "indexnow": "node scripts/submit-indexnow.mjs",
     "indexnow:dry-run": "node scripts/submit-indexnow.mjs --dry-run"
   },

@@ -46,12 +46,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: sync Luma events"
-      - name: Validate before publishing event changes
+      - name: Check candidate types and regression tests
         if: steps.changes.outputs.changed == 'true'
-        run: npm run validate
-        env:
-          VERCEL: "1"
-          VERCEL_ENV: production
+        run: npm run validate:code
       - name: Publish validated event changes
         id: publish
         if: steps.changes.outputs.changed == 'true'
@@ -66,10 +63,22 @@ jobs:
           # completed validation on the exact candidate SHA before updating main.
           gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${commit}" \
             -f state=success -f context=Validate \
-            -f description="Full site validation passed in the event-sync workflow" \
+            -f description="Type checks and regression tests passed for this commit" \
             -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
             --silent
-          git push origin HEAD:main
+          # The candidate's Vercel preview runs the full live-feed build, SEO,
+          # and CSP validation. Both statuses must pass before main can move.
+          for attempt in {1..60}; do
+            state="$(gh api "repos/${GITHUB_REPOSITORY}/commits/${commit}/status" \
+              --jq '.statuses | map(select(.context == "Vercel – 886studios-redesign")) | .[0].state // "pending"')"
+            case "$state" in
+              success) git push origin HEAD:main; exit 0 ;;
+              error|failure) echo "Candidate Vercel validation failed." >&2; exit 1 ;;
+            esac
+            sleep 10
+          done
+          echo "Timed out waiting for candidate Vercel validation." >&2
+          exit 1
       - name: Remove this run's temporary candidate branch
         if: always() && steps.publish.outputs.candidate != ''
         env:
