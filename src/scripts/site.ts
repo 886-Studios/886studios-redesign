@@ -31,6 +31,8 @@ function initNavChrome() {
   const closeButton = drawer?.querySelector<HTMLButtonElement>(".mobile-drawer-close");
   const main = select<HTMLElement>("#main-content");
   const footer = select<HTMLElement>("footer");
+  const banner = select<HTMLElement>("[data-application-banner]");
+  const desktopViewport = window.matchMedia("(min-width: 881px)");
   let previouslyFocusedElement: HTMLElement | null = null;
   let previousBodyOverflow = "";
   let previousHtmlOverflow = "";
@@ -64,6 +66,8 @@ function initNavChrome() {
     drawer.classList.add("is-open");
     main?.setAttribute("inert", "");
     footer?.setAttribute("inert", "");
+    nav.setAttribute("inert", "");
+    banner?.setAttribute("inert", "");
     previousBodyOverflow = document.body.style.overflow;
     previousHtmlOverflow = document.documentElement.style.overflow;
     previousBodyPosition = document.body.style.position;
@@ -90,6 +94,8 @@ function initNavChrome() {
     drawer.classList.remove("is-open");
     main?.removeAttribute("inert");
     footer?.removeAttribute("inert");
+    nav.removeAttribute("inert");
+    banner?.removeAttribute("inert");
     document.documentElement.classList.remove("mobile-menu-open");
     document.body.classList.remove("mobile-menu-open");
     document.documentElement.style.overflow = previousHtmlOverflow;
@@ -98,8 +104,10 @@ function initNavChrome() {
     document.body.style.top = previousBodyTop;
     document.body.style.width = previousBodyWidth;
     scrollToImmediately(lockedScrollY);
-    const focusTarget = previouslyFocusedElement && document.contains(previouslyFocusedElement) ? previouslyFocusedElement : hamburger;
-    focusTarget.focus({ preventScroll: true });
+    const focusTarget = previouslyFocusedElement?.getClientRects().length
+      ? previouslyFocusedElement
+      : nav.querySelector<HTMLElement>("a[href]");
+    focusTarget?.focus({ preventScroll: true });
     previouslyFocusedElement = null;
     previousBodyOverflow = "";
     previousHtmlOverflow = "";
@@ -147,6 +155,13 @@ function initNavChrome() {
   closeButton.addEventListener("click", closeDrawer);
   overlay.addEventListener("click", closeDrawer);
   drawer.addEventListener("keydown", trapDrawerFocus);
+  drawer.addEventListener("click", (event) => {
+    if (event.target instanceof Element && event.target.closest("a[href]")) closeDrawer();
+  });
+  desktopViewport.addEventListener("change", (event) => {
+    if (event.matches) closeDrawer();
+  });
+  window.addEventListener("pagehide", closeDrawer);
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeDrawer();
@@ -186,7 +201,10 @@ function initScrollReveal() {
     { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
   );
 
-  revealElements.forEach((element) => observer.observe(element));
+  revealElements.forEach((element) => {
+    element.classList.add("is-pending");
+    observer.observe(element);
+  });
 }
 
 function initPortfolioReturnPosition() {
@@ -196,11 +214,15 @@ function initPortfolioReturnPosition() {
   const restorePortfolioPosition = () => {
     if (!isPortfolioIndex) return;
 
-    const storedPosition = window.sessionStorage.getItem(storageKey);
+    let storedPosition: string | null;
+    try {
+      storedPosition = window.sessionStorage.getItem(storageKey);
+      window.sessionStorage.removeItem(storageKey);
+    } catch {
+      return;
+    }
     if (!storedPosition) return;
-
     const scrollY = Number.parseInt(storedPosition, 10);
-    window.sessionStorage.removeItem(storageKey);
     if (!Number.isFinite(scrollY)) return;
 
     window.requestAnimationFrame(() => {
@@ -213,7 +235,11 @@ function initPortfolioReturnPosition() {
 
     selectAll<HTMLAnchorElement>(".portfolio-directory .portfolio-link").forEach((link) => {
       link.addEventListener("click", () => {
-        window.sessionStorage.setItem(storageKey, String(window.scrollY));
+        try {
+          window.sessionStorage.setItem(storageKey, String(window.scrollY));
+        } catch {
+          // Navigation still works when the browser blocks session storage.
+        }
       });
     });
   }

@@ -113,11 +113,13 @@ body.mobile-menu-open {
 
 /* Scroll reveal */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
   transition:
     opacity 0.6s ease,
     transform 0.6s ease;
+}
+.reveal.is-pending {
+  opacity: 0;
+  transform: translateY(24px);
 }
 .reveal.is-visible {
   opacity: 1;
@@ -530,7 +532,7 @@ body.is-home nav.site-nav.is-scrolled {
     opacity 180ms ease;
 }
 
-.application-banner:not([hidden]) + .site-main .page {
+body:has(.application-banner:not([hidden])) .site-main .page {
   padding-top: 0;
 }
 
@@ -9297,7 +9299,8 @@ footer {
     transition-duration: 0.01ms !important;
   }
 
-  .reveal {
+  .reveal,
+  .reveal.is-pending {
     opacity: 1;
     transform: none;
   }
