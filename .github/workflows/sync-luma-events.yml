@@ -19,6 +19,7 @@ jobs:
     timeout-minutes: 15
     permissions:
       contents: write
+      statuses: write
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -38,21 +39,40 @@ jobs:
       - name: Install dependencies
         if: steps.changes.outputs.changed == 'true'
         run: npm ci
+      - name: Commit candidate event changes
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git add src/data/luma-events.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: sync Luma events"
       - name: Validate before publishing event changes
         if: steps.changes.outputs.changed == 'true'
         run: npm run validate
         env:
           VERCEL: "1"
           VERCEL_ENV: production
-      - name: Commit changes
+      - name: Publish validated event changes
+        id: publish
         if: steps.changes.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
-          git add src/data/luma-events.json
-          if git diff --cached --quiet; then
-            echo "The event archive is already current."
-            exit 0
-          fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "chore: sync Luma events"
-          git push
+          candidate="automation/luma-events-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}"
+          commit="$(git rev-parse HEAD)"
+          git push origin "HEAD:refs/heads/${candidate}"
+          echo "candidate=${candidate}" >> "$GITHUB_OUTPUT"
+          # Token-created pushes do not start another Actions workflow. Record the
+          # completed validation on the exact candidate SHA before updating main.
+          gh api --method POST "repos/${GITHUB_REPOSITORY}/statuses/${commit}" \
+            -f state=success -f context=Validate \
+            -f description="Full site validation passed in the event-sync workflow" \
+            -f target_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
+            --silent
+          git push origin HEAD:main
+      - name: Remove this run's temporary candidate branch
+        if: always() && steps.publish.outputs.candidate != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CANDIDATE_BRANCH: ${{ steps.publish.outputs.candidate }}
+        run: gh api --method DELETE "repos/${GITHUB_REPOSITORY}/git/refs/heads/${CANDIDATE_BRANCH}" --silent

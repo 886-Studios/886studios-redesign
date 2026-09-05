@@ -80,7 +80,7 @@ BAIDU_SITE_VERIFICATION=
 The four site-verification variables emit ownership meta tags when they are set. They are
 normally configured in Vercel for production verification and are not needed for local work.
 
-All `.env*` files are ignored except the empty `.env.example` template, including
+All `.env*` files are ignored except the credential-free `.env.example` template, including
 `.env.production` and `.env.staging`. Keep credentials in ignored files or deployment secrets.
 
 Google Analytics and Vercel Analytics run only in a production build where Vercel sets
@@ -202,15 +202,21 @@ The Events page is generated from `src/data/luma-events.json`; no Luma API key i
 new and updated events into the archive, and commits only when the event data changes. That commit
 triggers the normal Vercel rebuild. Past events are retained permanently even after they fall out of
 Luma's limited public history feed, while unpublished future events are removed.
-The sync runs the full validation suite before committing an event update. Other changes
+The sync runs the full validation suite before publishing an event update. Other changes
 receive the same checks through the `Validate site` workflow. Both workflows pin their
 actions to reviewed commit SHAs and use full Git history for content-date generation.
 
-Enable the required `Validate` check on `main` only after this workflow is deployed and
-passing. The scheduled sync needs a GitHub Actions exception to this status-check rule:
-GitHub attaches its check to the starting commit, while the sync creates a new data commit
-after validation. Keep the no-force-push and no-deletion rules separate with no bypass.
-Human code changes must pass validation on a branch before they can update `main`.
+`.github/main-branch-protection.json` defines the required `Validate` check on `main`,
+including administrators, and blocks force pushes and deletion. Apply it only after the
+validation workflow is deployed and passing. Human code changes must pass validation on
+a branch before updating `main`; a separate review approval is not required.
+
+Event sync validates its exact candidate commit, publishes it on a temporary branch,
+records the successful `Validate` status with the GitHub Actions token, and only then
+updates `main`. It removes that run's temporary branch afterward. This is necessary because
+token-created pushes do not trigger another Actions workflow. The sync has no branch-rule
+bypass. If `main` advances during validation, its push fails safely and the next run retries
+from the latest code.
 
 The script CSP rejects inline JavaScript. Astro keeps executable scripts external,
 including analytics initialization and redirect helpers; JSON-LD remains inline data.
