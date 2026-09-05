@@ -211,7 +211,7 @@ function initPortfolioReturnPosition() {
   const storageKey = "886:portfolio-scroll-y";
   const isPortfolioIndex = window.location.pathname.replace(/\/$/, "") === "/portfolio";
 
-  const restorePortfolioPosition = () => {
+  const restorePortfolioPosition = async () => {
     if (!isPortfolioIndex) return;
 
     let storedPosition: string | null;
@@ -225,13 +225,16 @@ function initPortfolioReturnPosition() {
     const scrollY = Number.parseInt(storedPosition, 10);
     if (!Number.isFinite(scrollY)) return;
 
+    // Font swaps can wrap the heading and shift every company row on mobile.
+    // Restore after the final layout and the browser's own page restoration.
+    await document.fonts.ready;
     window.requestAnimationFrame(() => {
       scrollToImmediately(scrollY);
     });
   };
 
   if (isPortfolioIndex) {
-    restorePortfolioPosition();
+    if (document.readyState === "complete") void restorePortfolioPosition();
 
     selectAll<HTMLAnchorElement>(".portfolio-directory .portfolio-link").forEach((link) => {
       link.addEventListener("click", () => {
