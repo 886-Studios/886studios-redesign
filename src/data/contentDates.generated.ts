@@ -8,7 +8,7 @@ export const contentDates: Readonly<Record<string, string>> = {
   "/resources/application-guide": "2026-07-15",
   "/resources/choosing-the-right-co-founder": "2026-07-20",
   "/resources/dos-and-donts": "2026-07-20",
-  "/resources/ecosystem-database": "2026-07-10",
+  "/resources/ecosystem-database": "2026-09-05",
   "/resources/encouraging-leadership": "2026-06-23",
   "/resources/engagement-during-fundraising": "2026-06-23",
   "/resources/finding-a-co-founder": "2026-07-20",

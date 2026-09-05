@@ -323,8 +323,8 @@ export const resourceArticles: ResourceArticle[] = [
           {
             name: "TAcc+",
             focus: "AI, IoT, Cybersecurity, Healthcare, Sustainability, etc.",
-            url: "taccplus.com",
-            href: "https://taccplus.com/",
+            url: "startup.sme.gov.tw/taccplus",
+            href: "https://startup.sme.gov.tw/taccplus/",
             year: "2019",
             contact: "support@taccplus.com",
           },
@@ -739,13 +739,13 @@ export const resourceArticles: ResourceArticle[] = [
           },
           {
             name: "FITI",
-            url: "exp.stpi.narl.org.tw",
-            href: "https://exp.stpi.narl.org.tw/",
+            url: "fiti.stpi.narl.org.tw",
+            href: "https://fiti.stpi.narl.org.tw/",
           },
           {
-            name: "ASVDA",
-            url: "www.asvda.org",
-            href: "https://www.asvda.org/",
+            name: "ASVA (formerly ASVDA)",
+            url: "www.asva.org.tw",
+            href: "https://www.asva.org.tw/",
           },
           {
             name: "TRIPLE",
@@ -887,9 +887,9 @@ export const resourceArticles: ResourceArticle[] = [
           },
           { name: "500", url: "500.co", href: "https://500.co/" },
           {
-            name: "China Development Financial",
-            url: "www.cdfholding.com",
-            href: "https://www.cdfholding.com/",
+            name: "KGI Financial (formerly China Development Financial)",
+            url: "www.kgi.com/en",
+            href: "https://www.kgi.com/en",
           },
           {
             name: "TAIWANIA",

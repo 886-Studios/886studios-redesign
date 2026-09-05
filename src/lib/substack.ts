@@ -27,6 +27,15 @@ const substackAuthorOverrides: Record<string, string> = {
   "rocket-launches-wooly-mammoths-the": "Carter Wang",
 };
 
+// Verified replacements for moved pages linked from the imported archive.
+const archivedLinkReplacements: Record<string, string> = {
+  "https://withikigai.com/partners/886-partners-1/kai-huang": "https://www.886studios.com/about/kai-huang",
+  "https://withikigai.com/partners/886-partners-1/kevin-lin": "https://www.886studios.com/about/kevin-lin",
+  "https://withikigai.com/partners/886-partners-1/chris-wang": "https://www.886studios.com/about/chris-wang",
+  "https://withikigai.com/partners/886-partners-1/jacob-hsu": "https://www.886studios.com/about/jacob-hsu",
+  "https://ramp.com/leading-indicators/april-2026-ai-index": "https://ramp.com/data/april-2026-ai-index",
+};
+
 interface ParsedFeedItem {
   title?: unknown;
   description?: unknown;
@@ -464,6 +473,8 @@ function getSafePostHref(value: string) {
 
   try {
     const url = new URL(value);
+    const replacement = archivedLinkReplacements[`${url.origin}${url.pathname.replace(/\/$/, "")}`];
+    if (replacement) return `${replacement}${url.search}${url.hash}`;
     return ["http:", "https:", "mailto:"].includes(url.protocol) ? url.toString() : "";
   } catch {
     return "";

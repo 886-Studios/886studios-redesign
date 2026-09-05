@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "src/lib/substack.ts"
+        ],
+        "createdAt": "2026-09-05T14:10:00.397Z",
+        "reason": "Codex review: the flagged line is a regular expression extracting image URLs from HTML, not a rendered img element; browser audit found no broken images."
+      }
+    ]
+  }
+}

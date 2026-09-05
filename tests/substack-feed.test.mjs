@@ -81,3 +81,22 @@ test("the merged blog also recovers after an upstream failure", async () => {
   assert.equal((await exports.getBlogPosts())[0].slug, "founder-lessons");
   assert.equal(requests, 2);
 });
+
+test("imported articles and RSS retain working destinations for moved references", () => {
+  const { parseBlogFeed } = loadAdapter();
+  const links = [
+    ...["kai-huang", "kevin-lin", "chris-wang", "jacob-hsu"].map((slug) => [
+      `https://withikigai.com/partners/886-partners-1/${slug}`,
+      `https://www.886studios.com/about/${slug}`,
+    ]),
+    ["https://ramp.com/leading-indicators/april-2026-ai-index", "https://ramp.com/data/april-2026-ai-index"],
+  ];
+  for (const [oldUrl, newUrl] of links) {
+    const xml = feed.replace("<p>Lessons for founders.</p>", `<p><a href="${oldUrl}/?source=archive#details">Read more</a></p>`);
+    const html = parseBlogFeed(xml)[0].contentHtml;
+    assert.ok(html.includes(`href="${newUrl}?source=archive#details"`));
+    assert.ok(!html.includes(oldUrl));
+  }
+  const unrelated = feed.replace("<p>Lessons for founders.</p>", '<p><a href="https://example.com/reference">Reference</a></p>');
+  assert.ok(parseBlogFeed(unrelated)[0].contentHtml.includes('href="https://example.com/reference"'));
+});
