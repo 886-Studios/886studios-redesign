@@ -1032,7 +1032,7 @@ export const siteContent = {
         {
           question: "When is the next batch?",
           answer:
-            "The next batch begins in Fall 2026. Applications opened July 10, 2026. The first acceptances end on July 31, 2026.",
+            "The next batch begins in Fall 2026. Applications opened July 10, 2026. The application deadline is September 11, 2026.",
         },
         {
           question: "What are the investment terms?",
