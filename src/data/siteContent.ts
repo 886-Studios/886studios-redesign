@@ -807,6 +807,11 @@ export const siteContent = {
           value: "1-on-1 Weekly Office Hours",
           note: "Plus: Workshops, guest speakers, team building, customer and investor intros, and more.",
         },
+        {
+          label: "Application Deadline for the Fall batch",
+          value: "September 11",
+          note: "",
+        },
       ],
       benefits: [
         {
@@ -1000,8 +1005,8 @@ export const siteContent = {
             label: "Applications open",
           },
           {
-            date: "September 4, 2026",
-            label: "Next round of acceptances end",
+            date: "September 11, 2026",
+            label: "Application deadline",
           },
           {
             date: "Fall 2026",
