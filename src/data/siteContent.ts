@@ -808,7 +808,7 @@ export const siteContent = {
           note: "Plus: Workshops, guest speakers, team building, customer and investor intros, and more.",
         },
         {
-          label: "Application Deadline for the Fall batch",
+          label: "Deadline to apply to F'26 batch",
           value: "September 11",
           note: "",
         },
