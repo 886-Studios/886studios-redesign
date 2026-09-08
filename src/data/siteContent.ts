@@ -79,6 +79,26 @@ export interface PortfolioCompany {
 
 export const portfolioCompanies = [
   {
+    name: "footnotes",
+    slug: "footnotes",
+    relationship: "886-backed",
+    category: "Productivity",
+    program: "ikigai S'26",
+    status: "Active",
+    websiteUrl: "https://footnotes.rest/",
+    appStoreUrl: "https://apps.apple.com/app/footnotes-notes-for-noticing/id6803869918",
+    playStoreUrl: "https://play.google.com/store/apps/details?id=com.doppler.capture",
+    logo: {
+      src: "/assets/portfolio/footnotes.png",
+      alt: "footnotes logo",
+      width: 499,
+      height: 500,
+      imageClass: "is-app-icon",
+    },
+    description:
+      "footnotes is a quiet notebook for the photographs, voices, passing thoughts and ordinary moments that make up a life.",
+  },
+  {
     name: "diffusr.",
     slug: "diffusr",
     relationship: "886-backed",
