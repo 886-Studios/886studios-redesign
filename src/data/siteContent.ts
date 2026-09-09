@@ -1343,6 +1343,11 @@ export const siteContent = {
               logoSrc: "/assets/logos/carta.webp",
             },
             {
+              label: "Deel",
+              href: "https://www.deel.com/",
+              logoSrc: "/assets/logos/deel.svg",
+            },
+            {
               label: "Mercury",
               href: "https://mercury.com",
               logoSrc: "/assets/logos/mercury.svg",

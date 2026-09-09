@@ -5470,6 +5470,12 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   object-fit: contain;
 }
 
+/* Deel's official SVG includes clear space around the lettermark. */
+.res-perk-logo img[src="/assets/logos/deel.svg"] {
+  width: 30px;
+  height: 30px;
+}
+
 .res-perk-name {
   min-width: 0;
   line-height: 1.35;
