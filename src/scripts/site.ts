@@ -33,6 +33,7 @@ function initNavChrome() {
   const footer = select<HTMLElement>("footer");
   const banner = select<HTMLElement>("[data-application-banner]");
   const desktopViewport = window.matchMedia("(min-width: 881px)");
+  const sectionDrawers = selectAll<HTMLDetailsElement>("[data-nav-group]");
   let previouslyFocusedElement: HTMLElement | null = null;
   let previousBodyOverflow = "";
   let previousHtmlOverflow = "";
@@ -43,6 +44,32 @@ function initNavChrome() {
   let navScrollFrame = 0;
 
   if (!nav || !hamburger || !drawer || !overlay || !closeButton) return;
+
+  const closeSectionDrawers = () => {
+    sectionDrawers.forEach((section) => { section.open = false; });
+  };
+
+  sectionDrawers.forEach((section) => {
+    const trigger = section.querySelector("summary");
+    trigger?.addEventListener("click", (event) => {
+      event.preventDefault();
+      const shouldOpen = !section.open;
+      closeSectionDrawers();
+      section.open = shouldOpen;
+    });
+    section.addEventListener("focusout", (event) => {
+      if (event.relatedTarget instanceof Node && !section.contains(event.relatedTarget)) {
+        section.open = false;
+      }
+    });
+  });
+
+  document.addEventListener("click", (event) => {
+    const target = event.target;
+    if (target instanceof Node && !sectionDrawers.some((section) => section.contains(target))) {
+      closeSectionDrawers();
+    }
+  });
 
   const updateNav = () => {
     nav.classList.toggle("is-scrolled", window.scrollY > 12);
@@ -58,6 +85,7 @@ function initNavChrome() {
   };
 
   const openDrawer = () => {
+    closeSectionDrawers();
     previouslyFocusedElement = document.activeElement instanceof HTMLElement ? document.activeElement : hamburger;
     drawer.setAttribute("aria-hidden", "false");
     hamburger.setAttribute("aria-expanded", "true");
@@ -159,12 +187,18 @@ function initNavChrome() {
     if (event.target instanceof Element && event.target.closest("a[href]")) closeDrawer();
   });
   desktopViewport.addEventListener("change", (event) => {
+    closeSectionDrawers();
     if (event.matches) closeDrawer();
   });
   window.addEventListener("pagehide", closeDrawer);
+  window.addEventListener("pagehide", closeSectionDrawers);
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeDrawer();
+    if (event.key !== "Escape") return;
+    const openSection = sectionDrawers.find((section) => section.open);
+    closeSectionDrawers();
+    openSection?.querySelector("summary")?.focus();
+    closeDrawer();
   });
 }
 

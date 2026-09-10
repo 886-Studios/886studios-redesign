@@ -128,7 +128,9 @@ for (const filePath of htmlFiles) {
 
   if (!/<html\b[^>]*\blang="en"/i.test(html)) fail(`${route}: missing html lang=\"en\"`);
   if (html.includes("—")) fail(`${route}: generated copy contains an em dash`);
-  if (/\bIkigai\b/.test(html)) fail(`${route}: generated copy capitalizes ikigai`);
+  // The IA uses "Ikigai" as a navigation label; editorial copy retains the brand casing.
+  const editorialHtml = html.replace(/<nav\b[\s\S]*?<\/nav>/gi, "");
+  if (/\bIkigai\b/.test(editorialHtml)) fail(`${route}: generated copy capitalizes ikigai`);
 
   const h1Count = (html.match(/<h1\b/gi) ?? []).length;
   if (isIndexable && h1Count !== 1) fail(`${route}: expected one H1, found ${h1Count}`);

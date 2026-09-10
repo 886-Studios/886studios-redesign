@@ -546,12 +546,33 @@ export const siteContent = {
     },
     items: [
       { id: "home", label: "Home", href: "/" },
-      { id: "programs", label: "ikigai Launchpad", href: "/programs" },
-      { id: "about", label: "About Us", href: "/about" },
-      { id: "events", label: "Events", href: "/events" },
-      { id: "resources", label: "Resources", href: "/resources" },
-      { id: "blog", label: "Blog", href: "/blog" },
-      { id: "contact", label: "Contact", href: "/contact" },
+      {
+        id: "programs",
+        label: "Programs",
+        children: [
+          { id: "bamboo", label: "Bamboo", href: "/programs/bamboo" },
+          { id: "ikigai", label: "Ikigai", href: "/programs" },
+        ],
+      },
+      {
+        id: "community",
+        label: "Community",
+        children: [
+          { id: "events", label: "Events", href: "/events" },
+          { id: "newsletter", label: "Newsletter", href: "/blog" },
+          { id: "resources", label: "Resources", href: "/resources" },
+          { id: "rising-star", label: "Rising Star", href: "/community/rising-star" },
+        ],
+      },
+      {
+        id: "about",
+        label: "About us",
+        children: [
+          { id: "manifesto", label: "Manifesto", href: "/about/manifesto" },
+          { id: "team", label: "Team", href: "/about/team" },
+          { id: "newsroom", label: "Newsroom", href: "/about/newsroom" },
+        ],
+      },
     ],
   },
   home: {

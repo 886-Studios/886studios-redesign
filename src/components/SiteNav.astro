@@ -1,5 +1,6 @@
 ---
 import { brand, siteContent } from "../data/siteContent";
+import { partnerProfiles } from "../data/partnerProfiles";
 
 interface Props {
   currentPath: string;
@@ -7,18 +8,53 @@ interface Props {
 
 const { currentPath } = Astro.props;
 
-const isActiveNavItem = (href: string) => href === "/" ? currentPath === "/" : currentPath === href || currentPath.startsWith(`${href}/`);
+const isActiveNavItem = (href: string) => {
+  if (href === "/programs") {
+    return currentPath === href || currentPath === "/programs/launch-station";
+  }
+  if (href === "/about/team" && partnerProfiles.some((profile) => currentPath === `/about/${profile.slug}`)) {
+    return true;
+  }
+  return href === "/" ? currentPath === "/" : currentPath === href || currentPath.startsWith(`${href}/`);
+};
 ---
 
-<nav class="site-nav">
+<nav class="site-nav" aria-label="Main navigation">
   <div class="nav-inner">
     <a class="nav-logo" href="/">
       <img src={brand.logoUrl} alt={brand.logoAlt} width={brand.logoWidth} height={brand.logoHeight} decoding="async" />
     </a>
     <div class="nav-links">
       {
-        siteContent.nav.items.map((item) => (
-          <a class:list={["nav-link", isActiveNavItem(item.href) && "active"]} href={item.href} aria-current={isActiveNavItem(item.href) ? "page" : undefined}>
+        siteContent.nav.items.map((item) => item.children ? (
+          <details class="nav-group" data-nav-group>
+            <summary
+              class:list={["nav-link", item.children.some((child) => isActiveNavItem(child.href)) && "active"]}
+              aria-controls={`nav-drawer-${item.id}`}
+            >
+              {item.label}
+              <svg class="nav-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </summary>
+            <div class="nav-section-drawer" id={`nav-drawer-${item.id}`}>
+              <div class="nav-section-inner">
+                <p class="nav-section-label">{item.label}</p>
+                <ul class="nav-section-links">
+                  {item.children.map((child) => (
+                    <li>
+                      <a class:list={["nav-section-link", isActiveNavItem(child.href) && "active"]} href={child.href} aria-current={currentPath === child.href ? "page" : undefined}>
+                        {child.label}
+                        <span aria-hidden="true">↗</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </details>
+        ) : (
+          <a class:list={["nav-link", isActiveNavItem(item.href) && "active"]} href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
             {item.label}
           </a>
         ))
@@ -53,10 +89,23 @@ const isActiveNavItem = (href: string) => href === "/" ? currentPath === "/" : c
         </svg>
       </button>
     </div>
-    <nav class="mobile-drawer-nav">
+    <nav class="mobile-drawer-nav" aria-label="Mobile navigation">
       {
-        siteContent.nav.items.map((item) => (
-          <a class:list={["mobile-nav-link", isActiveNavItem(item.href) && "active"]} href={item.href} aria-current={isActiveNavItem(item.href) ? "page" : undefined}>
+        siteContent.nav.items.map((item) => item.children ? (
+          <div class="mobile-nav-group">
+            <h2 class="mobile-nav-group-label">{item.label}</h2>
+            <ul class="mobile-nav-children">
+              {item.children.map((child) => (
+                <li>
+                  <a class:list={["mobile-nav-link", isActiveNavItem(child.href) && "active"]} href={child.href} aria-current={currentPath === child.href ? "page" : undefined}>
+                    {child.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <a class:list={["mobile-nav-link", isActiveNavItem(item.href) && "active"]} href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
             {item.label}
           </a>
         ))

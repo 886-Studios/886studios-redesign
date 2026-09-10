@@ -318,6 +318,40 @@ When working from this tracker, fetch the database first to confirm the current 
 
 ## Content Boundaries
 
+### Information architecture workspace
+
+`feature/new-information-architecture` is the local working branch for the new IA.
+Keep its commits local until publication is explicitly requested.
+
+The top bar contains Home plus three section drawers. The same hierarchy is shown
+in the mobile side drawer. Programs, Community, and About us are navigation groups;
+existing content keeps its established URLs.
+
+| Group | Page | Route | Starting content |
+| --- | --- | --- | --- |
+| | Home | `/` | Existing homepage |
+| Programs | Bamboo | `/programs/bamboo` | Blank |
+| Programs | Ikigai | `/programs` | Existing ikigai Launchpad page |
+| Community | Events | `/events` | Existing events page |
+| Community | Newsletter | `/blog` | Existing newsletter and article archive |
+| Community | Resources | `/resources` | Existing resources page |
+| Community | Rising Star | `/community/rising-star` | Blank |
+| About us | Manifesto | `/about/manifesto` | Blank |
+| About us | Team | `/about/team` | Existing operating team and partners |
+| About us | Newsroom | `/about/newsroom` | Existing In the News coverage |
+
+Edit the navigation hierarchy in `siteContent.nav.items`. Team and Newsroom use
+`src/components/AboutTeam.astro` and `src/components/AboutNews.astro`, also shared
+with the existing `/about` page. Article and profile URLs remain available, as do
+the existing About, Contact, Portfolio, and Launch Station pages.
+
+Blank pages use `src/layouts/BlankPageLayout.astro`: the shared site shell, section
+label, and page heading, with an empty body ready for content. They are `noindex`
+and excluded from the sitemap while blank. When a page is ready, give it its own
+metadata and content with `BaseLayout`, then add its route to `src/pages/sitemap.xml.ts`.
+
+### Existing content sources
+
 - Navigation and main CTA: `siteContent.nav`
 - Homepage copy and logo wall: `siteContent.home`
 - Programs and Launch Station copy: `siteContent.programs`
