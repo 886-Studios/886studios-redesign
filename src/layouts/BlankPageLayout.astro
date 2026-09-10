@@ -1,0 +1,22 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+interface Props {
+  title: string;
+  section: string;
+}
+
+const { title, section } = Astro.props;
+---
+
+<BaseLayout
+  title={`${title} | 886 Studios`}
+  description={`${title}, part of ${section} at 886 Studios.`}
+  robots="noindex, follow"
+>
+  <div class="page">
+    <PageHero eyebrow={section} title={title} showDivider={false} />
+    <slot />
+  </div>
+</BaseLayout>
