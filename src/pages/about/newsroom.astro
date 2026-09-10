@@ -1,0 +1,23 @@
+---
+import AboutNews from "../../components/AboutNews.astro";
+import PageHero from "../../components/PageHero.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { pageMeta } from "../../lib/seo";
+---
+
+<BaseLayout
+  title={pageMeta.newsroom.title}
+  description={pageMeta.newsroom.description}
+  pageType="CollectionPage"
+  breadcrumbs={[
+    { name: "About us", path: "/about" },
+    { name: "Newsroom", path: "/about/newsroom" },
+  ]}
+>
+  <div class="page">
+    <PageHero eyebrow="About us" title="Newsroom" />
+    <div class="section">
+      <AboutNews />
+    </div>
+  </div>
+</BaseLayout>

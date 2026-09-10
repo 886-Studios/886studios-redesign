@@ -28,7 +28,8 @@ const profileImageSize = profile.slug === "patryk-chojecki" ? 931 : 400;
   ogType="profile"
   pageType="ProfilePage"
   breadcrumbs={[
-    { name: "About", path: "/about" },
+    { name: "About us", path: "/about" },
+    { name: "Team", path: "/about/team" },
     { name: profile.name, path: `/about/${profile.slug}` },
   ]}
   structuredData={getPersonSchema(profile)}

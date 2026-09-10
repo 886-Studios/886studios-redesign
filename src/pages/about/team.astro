@@ -1,0 +1,24 @@
+---
+import AboutTeam from "../../components/AboutTeam.astro";
+import PageHero from "../../components/PageHero.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getPeopleItemListSchema, pageMeta } from "../../lib/seo";
+---
+
+<BaseLayout
+  title={pageMeta.team.title}
+  description={pageMeta.team.description}
+  pageType="AboutPage"
+  breadcrumbs={[
+    { name: "About us", path: "/about" },
+    { name: "Team", path: "/about/team" },
+  ]}
+  structuredData={getPeopleItemListSchema("/about/team")}
+>
+  <div class="page">
+    <PageHero eyebrow="About us" title="Team" />
+    <div class="section">
+      <AboutTeam />
+    </div>
+  </div>
+</BaseLayout>

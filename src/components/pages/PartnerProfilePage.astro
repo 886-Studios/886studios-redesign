@@ -7,7 +7,7 @@ const { profile } = Astro.props as { profile: PartnerProfile };
 <div class="page partner-profile-page">
   <section class="partner-profile-hero" aria-labelledby="partner-profile-title">
     <div class="partner-profile-hero-copy">
-      <a class="partner-profile-back" href="/about">← About</a>
+      <a class="partner-profile-back" href="/about/team">← Team</a>
       <h1 class="partner-profile-title" id="partner-profile-title">{profile.name}</h1>
       <p class="partner-profile-company">{profile.company}</p>
       {profile.socials && profile.socials.length > 0 && (

@@ -1,11 +1,10 @@
 ---
 import PageHero from "../PageHero.astro";
 import { siteContent } from "../../data/siteContent";
-import { partnerProfileByName } from "../../data/partnerProfiles";
+import AboutTeam from "../AboutTeam.astro";
+import AboutNews from "../AboutNews.astro";
 
-const { about, resources } = siteContent;
-const getNewsImageSrcset = (src: string) =>
-  `${src.replace("-960.webp", "-480.webp")} 480w, ${src} 960w`;
+const { about } = siteContent;
 ---
 
 <div class="page" id="page-about">
@@ -31,107 +30,7 @@ const getNewsImageSrcset = (src: string) =>
 
     <hr class="divider divider--spaced">
 
-    <div class="reveal">
-      <div class="section-tag">{about.teamTitle}</div>
-      <div class="team-grid team-grid--ops">
-        {
-          about.team.map((person) => {
-            const teamProfile = partnerProfileByName.get(person.name);
-
-            return (
-              <div class:list={["team-card", teamProfile && "team-card--link", teamProfile && "team-card--profile"]}>
-                {teamProfile && (
-                  <a class="team-card-hit-link" href={`/about/${teamProfile.slug}`} aria-label={`View profile for ${person.name}`}></a>
-                )}
-                <div class="avatar-wrap">
-                  {person.photo
-                    ? <img class="avatar-photo" src={person.photo} alt={person.name} width="80" height="80" loading="lazy" decoding="async" style={person.objectPosition ? `object-position: ${person.objectPosition}` : undefined} />
-                    : <div class="avatar">{person.initials}</div>
-                  }
-                </div>
-                <div class="team-name-row">
-                  <div class="team-name">{person.name}</div>
-                  <div class="team-socials">
-                    <a
-                      class="team-social-link team-social-link--linkedin"
-                      href={person.linkedinUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={`${person.name} on LinkedIn`}
-                    >
-                      <svg viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M4.98 3.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM3.5 8.5h2.96V20.5H3.5V8.5Zm5.28 0h2.84v1.64h.04c.4-.75 1.37-1.84 3.34-1.84 3.57 0 4.23 2.35 4.23 5.41v6.79h-2.96v-6.01c0-1.43-.03-3.27-1.99-3.27-2 0-2.31 1.56-2.31 3.17v6.11H8.78V8.5Z" />
-                      </svg>
-                    </a>
-                    {person.xUrl && (
-                      <a
-                        class="team-social-link team-social-link--x"
-                        href={person.xUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${person.name} on X`}
-                      >
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M18.901 1.153h3.68l-8.04 9.19 9.458 12.504H16.594l-5.8-7.584-6.64 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.9 1.153Zm-1.291 19.492h2.04L6.486 3.24H4.298L17.61 20.645Z" />
-                        </svg>
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <div class="team-role">{person.role}</div>
-              </div>
-            );
-          })
-        }
-      </div>
-    </div>
-
-    <hr class="divider divider--spaced">
-
-    <div class="reveal reveal-delay-1">
-      <div class="section-tag">{about.partnersTitle}</div>
-      <div class="team-grid team-grid--partners">
-        {
-          about.partners.map((partner) => {
-            const partnerProfile = partnerProfileByName.get(partner.name);
-            const linkedin = partnerProfile?.socials?.find((link) => link.platform === "linkedin");
-
-            return (
-              <div class:list={["team-card", partnerProfile && "team-card--link", partnerProfile && "team-card--profile"]}>
-                {partnerProfile && (
-                  <a class="team-card-hit-link" href={`/about/${partnerProfile.slug}`} aria-label={`View profile for ${partner.name}`}></a>
-                )}
-                <div class="avatar-wrap">
-                  {partner.photo
-                    ? <img class="avatar-photo" src={partner.photo} alt={partner.name} width="80" height="80" loading="lazy" decoding="async" />
-                    : <div class="avatar">{partner.initials}</div>
-                  }
-                </div>
-                <div class="team-name-row">
-                  <div class="team-name">{partner.name}</div>
-                  {linkedin && (
-                    <div class="team-socials">
-                      <a
-                        class="team-social-link team-social-link--linkedin"
-                        href={linkedin.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={linkedin.ariaLabel}
-                      >
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M4.98 3.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM3.5 8.5h2.96V20.5H3.5V8.5Zm5.28 0h2.84v1.64h.04c.4-.75 1.37-1.84 3.34-1.84 3.57 0 4.23 2.35 4.23 5.41v6.79h-2.96v-6.01c0-1.43-.03-3.27-1.99-3.27-2 0-2.31 1.56-2.31 3.17v6.11H8.78V8.5Z" />
-                        </svg>
-                      </a>
-                    </div>
-                  )}
-                </div>
-                {partner.company && <div class="team-company">{partner.company}</div>}
-              </div>
-            );
-          })
-        }
-      </div>
-    </div>
+    <AboutTeam />
 
     <hr class="divider divider--spaced">
 
@@ -177,53 +76,7 @@ const getNewsImageSrcset = (src: string) =>
 
     <hr class="divider divider--spaced">
 
-    <section class="about-news reveal reveal-delay-1" aria-labelledby="about-news-title">
-      <h2 class="section-tag" id="about-news-title">In the News</h2>
-
-      <div class="about-news-grid">
-        {resources.newsItems.map((item) => (
-          <article class="about-news-item">
-            <a
-              class="about-news-media"
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Read “${item.title}”`}
-            >
-              <img
-                src={item.image.src}
-                srcset={getNewsImageSrcset(item.image.src)}
-                sizes="(max-width: 720px) calc(100vw - 36px), (max-width: 1180px) calc((100vw - 96px) / 2), 552px"
-                alt={item.image.alt}
-                width={item.image.width}
-                height={item.image.height}
-                loading="lazy"
-                decoding="async"
-              />
-            </a>
-
-            <div class="about-news-copy">
-              <div class="about-news-meta">
-                <p>{item.source}</p>
-                {item.secondaryLink && (
-                  <a href={item.secondaryLink.href} target="_blank" rel="noopener noreferrer">
-                    {item.secondaryLink.label}
-                  </a>
-                )}
-              </div>
-              <h3>
-                <a href={item.href} target="_blank" rel="noopener noreferrer">
-                  <span>{item.title}</span>
-                  <svg viewBox="0 0 16 16" aria-hidden="true">
-                    <path d="M5 11 11 5M6 5h5v5" />
-                  </svg>
-                </a>
-              </h3>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
+    <AboutNews />
 
     <hr class="divider divider--spaced">
 

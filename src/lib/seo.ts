@@ -75,6 +75,16 @@ export const pageMeta = {
     description:
       "886 Studios is built by founders and partners behind Twitch, Kabam, Guitar Hero, Playdom, Orbit Baby, HTC Vive, and other global companies.",
   },
+  team: {
+    title: "Team | 886 Studios",
+    description:
+      "Meet the operating team and partners at 886 Studios, supporting ambitious founders with experience building global technology companies.",
+  },
+  newsroom: {
+    title: "Newsroom | 886 Studios",
+    description:
+      "Read press coverage and news about 886 Studios, our founders, and the startup community connecting Taiwan with global technology markets.",
+  },
   events: {
     title: "Taipei Startup Events | 886 Studios",
     description:
@@ -91,7 +101,7 @@ export const pageMeta = {
       "Founder guides from 886 Studios covering accelerator applications, incorporation, Taiwan startup ecosystem resources, interviews, and fundraising advice.",
   },
   blog: {
-    title: "Startup Insights | 886 Studios",
+    title: "Newsletter | 886 Studios",
     description:
       "Read ikigai Insights from 886 Studios: founder perspectives, startup lessons, technology stories, and updates from the Taiwan startup ecosystem.",
   },
@@ -533,7 +543,7 @@ export function getPersonSchema(profile: PartnerProfile): JsonLdObject {
   };
 }
 
-export function getPeopleItemListSchema() {
+export function getPeopleItemListSchema(path = "/about") {
   const visiblePeople = [
     ...siteContent.about.team.map((person) => ({
       name: person.name,
@@ -548,7 +558,7 @@ export function getPeopleItemListSchema() {
   ];
 
   return getItemListSchema(
-    `${siteConfig.url}/about#people`,
+    `${siteConfig.url}${path}#people`,
     "886 Studios operating team and partners",
     visiblePeople.map((person) => ({
       name: person.role ? `${person.name}, ${person.role}` : person.name,
