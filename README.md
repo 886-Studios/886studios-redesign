@@ -323,7 +323,7 @@ When working from this tracker, fetch the database first to confirm the current 
 `feature/new-information-architecture` is the local working branch for the new IA.
 Keep its commits local until publication is explicitly requested.
 
-The top bar contains Home plus three section drawers. The same hierarchy is shown
+The top bar contains Home plus three compact menus below their labels. The same hierarchy is shown
 in the mobile side drawer. Programs, Community, and About us are navigation groups;
 existing content keeps its established URLs.
 

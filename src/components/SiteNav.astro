@@ -37,21 +37,15 @@ const isActiveNavItem = (href: string) => {
                 <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
             </summary>
-            <div class="nav-section-drawer" id={`nav-drawer-${item.id}`}>
-              <div class="nav-section-inner">
-                <p class="nav-section-label">{item.label}</p>
-                <ul class="nav-section-links">
-                  {item.children.map((child) => (
-                    <li>
-                      <a class:list={["nav-section-link", isActiveNavItem(child.href) && "active"]} href={child.href} aria-current={currentPath === child.href ? "page" : undefined}>
-                        {child.label}
-                        <span aria-hidden="true">↗</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+            <ul class="nav-submenu" id={`nav-drawer-${item.id}`}>
+              {item.children.map((child) => (
+                <li>
+                  <a class:list={["nav-submenu-link", isActiveNavItem(child.href) && "active"]} href={child.href} aria-current={currentPath === child.href ? "page" : undefined}>
+                    {child.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </details>
         ) : (
           <a class:list={["nav-link", isActiveNavItem(item.href) && "active"]} href={item.href} aria-current={currentPath === item.href ? "page" : undefined}>
