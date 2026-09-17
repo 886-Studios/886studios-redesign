@@ -22,6 +22,10 @@ const zettabyteLogo = await readFile(
   new URL("../public/assets/logos/zettabyte.svg", import.meta.url),
   "utf8",
 );
+const linearLogo = await readFile(
+  new URL("../public/assets/logos/linear.svg", import.meta.url),
+  "utf8",
+);
 
 test("Founder AMA follows Exclusive Perks on the resources page", () => {
   const perksPosition = resourcesPage.indexOf("<!-- Exclusive Perks -->");
@@ -73,6 +77,24 @@ test("resource perks keep their intentional category and item order", () => {
   }
 });
 
+test("resource perk links use public company homepages", () => {
+  const perks = content.slice(
+    content.indexOf("    perks: {"),
+    content.indexOf("  about: {"),
+  );
+  const hrefs = [...perks.matchAll(/href: "(https:\/\/[^\"]+)"/g)].map(
+    (match) => match[1],
+  );
+
+  assert.equal(hrefs.length, 18);
+  for (const href of hrefs) {
+    const url = new URL(href);
+    assert.equal(url.pathname, "/", `${href} is not a company homepage`);
+    assert.equal(url.search, "", `${href} includes query parameters`);
+    assert.equal(url.hash, "", `${href} includes a fragment`);
+  }
+});
+
 test("OpenAI is listed as an Engineering perk without publishing the credit amount", () => {
   const engineering = content.slice(
     content.indexOf('title: "Engineering"'),
@@ -80,7 +102,7 @@ test("OpenAI is listed as an Engineering perk without publishing the credit amou
   );
 
   assert.match(engineering, /label: "OpenAI"/);
-  assert.match(engineering, /href: "https:\/\/openai\.com\/startups"/);
+  assert.match(engineering, /href: "https:\/\/openai\.com"/);
   assert.match(engineering, /logoSrc: "\/assets\/logos\/openai\.svg"/);
   assert.doesNotMatch(engineering, /5\s*k|5,000|5000/i);
 });
@@ -117,4 +139,18 @@ test("Stripe is listed as a Finances perk with its purple wordmark", () => {
   assert.match(finances, /logoSrc: "\/assets\/logos\/stripe\.svg"/);
   assert.match(stripeLogo, /fill="#635BFF"/);
   assert.doesNotMatch(stripeLogo, /fill="white"/);
+});
+
+test("Linear is listed as a Productivity perk with its public website and official mark", () => {
+  const productivity = content.slice(
+    content.indexOf('title: "Productivity"'),
+    content.indexOf("          ],", content.indexOf('title: "Productivity"')),
+  );
+
+  assert.match(productivity, /label: "Linear"/);
+  assert.match(productivity, /href: "https:\/\/linear\.app"/);
+  assert.match(productivity, /logoSrc: "\/assets\/logos\/linear\.svg"/);
+  assert.match(linearLogo, /viewBox="0 0 100 100"/);
+  assert.match(linearLogo, /fill="#fff"/);
+  assert.equal((linearLogo.match(/<path\b/g) ?? []).length, 1);
 });
