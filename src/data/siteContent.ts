@@ -1279,12 +1279,12 @@ export const siteContent = {
           items: [
             {
               label: "OpenAI",
-              href: "https://openai.com/startups",
+              href: "https://openai.com",
               logoSrc: "/assets/logos/openai.svg",
             },
             {
               label: "AWS Activate",
-              href: "https://aws.amazon.com/activate/",
+              href: "https://aws.amazon.com",
               logoSrc: "/assets/logos/aws.webp",
             },
             {
@@ -1294,7 +1294,7 @@ export const siteContent = {
             },
             {
               label: "Google Cloud Startup Program",
-              href: "https://cloud.google.com/startup/",
+              href: "https://cloud.google.com",
               logoSrc: "/assets/logos/google-cloud.webp",
             },
             {
@@ -1323,6 +1323,11 @@ export const siteContent = {
               logoSrc: "/assets/logos/docsend.webp",
             },
             {
+              label: "Linear",
+              href: "https://linear.app",
+              logoSrc: "/assets/logos/linear.svg",
+            },
+            {
               label: "Miro",
               href: "https://miro.com",
               logoSrc: "/assets/logos/miro.webp",
@@ -1339,7 +1344,7 @@ export const siteContent = {
           items: [
             {
               label: "Carta",
-              href: "https://carta.com/sg/en/",
+              href: "https://carta.com",
               logoSrc: "/assets/logos/carta.webp",
             },
             {
