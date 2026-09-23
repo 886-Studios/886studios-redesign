@@ -88,6 +88,35 @@ test('search query injection is escaped and unknown categories are discarded',as
   assert.match(result.body,/0 partners/);
 });
 
+test('sorting is rendered on the server and combines with search, filters, and subpath reset',async()=>{
+  const origin='https://www.886studios.com';
+  const catalog={perks:[
+    {...fake.perks[0],id:'zulu',name:'Zulu',category:'Engineering'},
+    {...fake.perks[0],id:'alpha',name:'Alpha',category:'Design'},
+    {...fake.perks[0],id:'beta',name:'Beta',category:'Engineering'}
+  ]};
+  const handler=make({origin,basePath:'/perks',catalog});
+  const signed=await request(handler,'/perks/login',{method:'POST',headers:{origin,'content-type':'application/x-www-form-urlencoded'},body:new URLSearchParams({code:config.code}).toString()});
+  const headers={cookie:signed.headers['set-cookie'].split(';')[0]};
+  const rows=html=>[...html.matchAll(/<details class="perk-row" id="([^"]+)"([^>]*)>/g)];
+  for(const query of ['', '?sort=unknown']) {
+    const result=await request(handler,'/perks'+query,{headers});
+    assert.deepEqual(rows(result.body).map(row=>row[1]),['beta','zulu','alpha']);
+    assert.match(result.body,/<option value="category" selected>/);
+  }
+  const result=await request(handler,'/perks?sort=alphabetical&category=Engineering&q=beta',{headers});
+  assert.deepEqual(rows(result.body).map(row=>row[1]),['alpha','beta','zulu']);
+  assert.deepEqual(rows(result.body).filter(row=>!row[2].includes('hidden')).map(row=>row[1]),['beta']);
+  assert.match(result.body,/<option value="alphabetical" selected>/);
+  assert.match(result.body,/href="\/perks\?sort=alphabetical" data-reset/);
+  assert.match(result.body,/1 partner/);
+  assert.match(result.headers['x-robots-tag'],/noindex/);
+  assert.match(result.headers['cache-control'],/no-store/);
+  const beta=rows(result.body).find(row=>row[1]==='beta')[2];
+  assert.match(beta,/data-sort-category="0"/);
+  assert.match(beta,/data-sort-alphabetical="1"/);
+});
+
 test('a subpath keeps login, filters, assets, and redirects inside the portal',async()=>{
   const origin='https://www.886studios.com';
   const handler=make({origin,basePath:'/perks',catalog:{perks:[{...fake.perks[0],logo:'/assets/logos/notion.webp'}]}});

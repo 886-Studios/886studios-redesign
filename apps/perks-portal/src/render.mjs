@@ -1,6 +1,6 @@
 import { createHash } from 'node:crypto';
 import { readFileSync } from 'node:fs';
-import { CATEGORIES, matches } from './catalog.mjs';
+import { CATEGORIES, SORT_OPTIONS, matches, normalizeSort, sortPerks } from './catalog.mjs';
 
 const assetVersion = path => createHash('sha256').update(readFileSync(new URL(path, import.meta.url))).digest('hex').slice(0, 12);
 const stylesVersion = assetVersion('../public/styles.css');
@@ -25,9 +25,9 @@ export function renderLogin({ error = '', ready = true, basePath = '' } = {}) {
   return page(`<main id="main-content" class="login-main"><div class="login-intro"><h1>886 Studios Exclusive Perks</h1></div><section class="login-panel" aria-labelledby="login-title"><div class="lock-tile">${lock}</div><h2 id="login-title">Welcome to your perks.</h2><p>Enter your portfolio access code to explore<br class="desktop-break"> partner offers and redemption details.</p><form action="${basePath}/login" method="post"><label for="access-code">Portfolio access code</label><div class="password-field"><input id="access-code" name="code" type="password" autocomplete="current-password" required maxlength="256" placeholder="Enter your access code" aria-describedby="login-message" ${error ? 'aria-invalid="true"' : ''}><button class="password-toggle" type="button" aria-label="Show access code" aria-pressed="false" data-password-toggle hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg></button></div><p id="login-message" class="form-message" ${error ? 'role="alert"' : ''}>${escape(error || (!ready ? 'Portfolio access is being set up. Please contact the team.' : 'Your access code is case-sensitive.'))}</p><button class="button button-primary login-submit" type="submit" ${!ready ? 'disabled' : ''}>Explore your perks <span aria-hidden="true">→</span></button></form><div class="access-help">Need an access code? <a href="mailto:carter@886studios.com?subject=Portfolio%20perks%20access">Ask the 886 team ${arrow}</a></div></section></main>`, { basePath });
 }
 
-function row(perk, query, category, basePath) {
+function row(perk, query, category, basePath, ranks) {
   const searchable = [perk.name, perk.category, perk.headline, perk.description, perk.offer, perk.eligibility].join(' ').toLowerCase();
-  return `<details class="perk-row" id="${perk.id}" data-perk data-category="${escape(perk.category)}" data-search="${escape(searchable)}" ${matches(perk, query, category) ? '' : 'hidden'}>
+  return `<details class="perk-row" id="${perk.id}" data-perk data-category="${escape(perk.category)}" data-search="${escape(searchable)}" data-sort-category="${ranks.category.get(perk.id)}" data-sort-alphabetical="${ranks.alphabetical.get(perk.id)}" ${matches(perk, query, category) ? '' : 'hidden'}>
     <summary>
       <span class="partner"><span class="partner-logo">${perk.logo ? `<img src="${basePath}${perk.logo}" alt="" width="40" height="40" loading="lazy">` : `<span class="wordmark wordmark-${perk.id}" aria-hidden="true">${escape(perk.name === 'Beyond Border' ? 'BB' : perk.name === 'Goodwin' ? 'G' : perk.name)}</span>`}</span><span class="partner-name">${escape(perk.name)}</span></span>
       <span class="benefit"><span class="benefit-title">${escape(perk.headline)}</span><span class="benefit-description">${escape(perk.description)}</span></span>
@@ -42,16 +42,21 @@ function row(perk, query, category, basePath) {
   </details>`;
 }
 
-export function renderDirectory(catalog, { query = '', category = '', basePath = '' } = {}) {
+export function renderDirectory(catalog, { query = '', category = '', sort = 'category', basePath = '' } = {}) {
+  sort = normalizeSort(sort);
+  const orders = Object.fromEntries(SORT_OPTIONS.map(option => [option.value, sortPerks(catalog.perks, option.value)]));
+  const ranks = Object.fromEntries(SORT_OPTIONS.map(option => [option.value, new Map(orders[option.value].map((perk, index) => [perk.id, index]))]));
+  const resetHref = `${basePath || '/'}${sort === 'alphabetical' ? '?sort=alphabetical' : ''}`;
   const count = catalog.perks.filter(perk => matches(perk, query, category)).length;
   return page(`<main id="main-content" class="directory-main"><section class="hero" aria-labelledby="page-title"><div><h1 id="page-title">886 Studios Exclusive Perks</h1></div></section>
   <section class="directory" aria-label="Partner perks"><form class="filter-form" action="${basePath || '/'}" method="get" role="search">
     <div class="search-row">
       <div class="search-field">${searchIcon}<label class="sr-only" for="perk-search">Search partners or perks</label><input id="perk-search" name="q" type="search" placeholder="Search partners or perks" autocomplete="off" value="${escape(query)}"></div>
+      <div class="sort-control"><label for="perk-sort">Sort by</label><select id="perk-sort" name="sort">${SORT_OPTIONS.map(option => `<option value="${option.value}"${sort === option.value ? ' selected' : ''}>${option.label}</option>`).join('')}</select></div>
       <button type="submit" name="category" value="${escape(category)}" class="button button-subtle filter-submit">Search</button>
     </div>
     <div class="filters" role="group" aria-label="Filter by type">${['', ...CATEGORIES].map(item => `<button type="submit" name="category" value="${escape(item)}" class="filter ${item === category ? 'is-active' : ''}" aria-pressed="${item === category}" data-filter="${escape(item)}">${escape(item || 'All perks')}</button>`).join('')}</div>
     <p class="result-count" id="result-count" role="status" aria-live="polite">${count} ${count === 1 ? 'partner' : 'partners'}</p>
-  </form><div class="list-header" aria-hidden="true"><span>Partner</span><span>Type</span><span>Perk</span></div><div class="perk-list">${catalog.perks.map(perk => row(perk, query, category, basePath)).join('')}</div><div class="empty-state" ${count ? 'hidden' : ''}><h2>No perks found.</h2><p>Try another partner, benefit, or category.</p><a class="button button-subtle" href="${basePath || '/'}" data-reset>Clear filters</a></div></section>
+  </form><div class="list-header" aria-hidden="true"><span>Partner</span><span>Type</span><span>Perk</span></div><div class="perk-list">${orders[sort].map(perk => row(perk, query, category, basePath, ranks)).join('')}</div><div class="empty-state" ${count ? 'hidden' : ''}><h2>No perks found.</h2><p>Try another partner, benefit, or category.</p><a class="button button-subtle" href="${escape(resetHref)}" data-reset>Clear filters</a></div></section>
   <div class="directory-footer"><p class="directory-note">For ikigai Launchpad and Launch Station teams only. Please keep partner links and codes within your company. Offers are subject to partner eligibility and approval.</p><p class="perk-request">Have any products &amp; services you use but that's not on this list? Contact Carter or Patryk and we'll try to get them for you!</p></div></main>`, { basePath });
 }
