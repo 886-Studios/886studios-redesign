@@ -74,7 +74,7 @@ export function renderDirectory(catalog, { query = '', category = '', sort = 'ca
   <section class="directory" aria-label="Partner perks"><form class="filter-form" action="${basePath || '/'}" method="get" role="search">
     <div class="search-row">
       <div class="search-field">${searchIcon}<label class="sr-only" for="perk-search">Search partners or perks</label><input id="perk-search" name="q" type="search" placeholder="Search partners or perks" autocomplete="off" value="${escape(query)}"></div>
-      <div class="sort-control"><label for="perk-sort">Sort by</label><select id="perk-sort" name="sort">${SORT_OPTIONS.map(option => `<option value="${option.value}"${sort === option.value ? ' selected' : ''}>${option.label}</option>`).join('')}</select></div>
+      <fieldset class="sort-toggle"><legend class="sr-only">Sort by</legend>${SORT_OPTIONS.map(option => `<label class="sort-option"><input type="radio" name="sort" value="${option.value}" aria-label="${option.label}"${sort === option.value ? ' checked' : ''}><span>${option.value === 'alphabetical' ? 'A–Z' : option.label}</span></label>`).join('')}</fieldset>
       <button type="submit" name="category" value="${escape(category)}" class="button button-subtle filter-submit">Search</button>
     </div>
     <div class="filters" role="group" aria-label="Filter by type">${['', ...CATEGORIES].map(item => `<button type="submit" name="category" value="${escape(item)}" class="filter ${item === category ? 'is-active' : ''}" aria-pressed="${item === category}" data-filter="${escape(item)}">${escape(item || 'All perks')}</button>`).join('')}</div>

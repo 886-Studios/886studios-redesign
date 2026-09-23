@@ -102,12 +102,13 @@ test('sorting is rendered on the server and combines with search, filters, and s
   for(const query of ['', '?sort=unknown']) {
     const result=await request(handler,'/perks'+query,{headers});
     assert.deepEqual(rows(result.body).map(row=>row[1]),['beta','zulu','alpha']);
-    assert.match(result.body,/<option value="category" selected>/);
+    assert.match(result.body,/<input type="radio" name="sort" value="category" aria-label="Category" checked>/);
   }
   const result=await request(handler,'/perks?sort=alphabetical&category=Engineering&q=beta',{headers});
   assert.deepEqual(rows(result.body).map(row=>row[1]),['alpha','beta','zulu']);
   assert.deepEqual(rows(result.body).filter(row=>!row[2].includes('hidden')).map(row=>row[1]),['beta']);
-  assert.match(result.body,/<option value="alphabetical" selected>/);
+  assert.match(result.body,/<input type="radio" name="sort" value="alphabetical" aria-label="Alphabetical \(A–Z\)" checked>/);
+  assert.equal((result.body.match(/name="sort"[^>]* checked/g)||[]).length,1);
   assert.match(result.body,/href="\/perks\?sort=alphabetical" data-reset/);
   assert.match(result.body,/1 partner/);
   assert.match(result.headers['x-robots-tag'],/noindex/);
