@@ -50,8 +50,8 @@ svg{flex-shrink:0}img{display:block;max-width:100%}[hidden]{display:none!importa
 .perk-row summary{list-style:none;cursor:pointer;min-height:92px;padding:20px 0;gap:0}
 .perk-row summary::-webkit-details-marker{display:none}
 .partner{grid-column:1;grid-row:1;display:flex;align-items:center;gap:12px;min-width:0;padding-right:20px}
-.partner-logo{display:flex;align-items:center;justify-content:center;width:36px;min-width:36px;height:36px}
-.partner-logo img{width:32px;height:32px;object-fit:contain}
+.partner-logo{display:flex;align-items:center;justify-content:center;width:44px;min-width:44px;height:44px}
+.partner-logo img{width:40px;height:40px;object-fit:contain}
 .partner-name{font-size:16px;font-weight:500;line-height:1.4}
 .perk-type{grid-column:2;grid-row:1;padding-right:24px;color:var(--muted);font-size:13px;line-height:1.5}
 .mobile-field-label{display:none}
@@ -63,7 +63,7 @@ svg{flex-shrink:0}img{display:block;max-width:100%}[hidden]{display:none!importa
 .perk-row summary:hover .partner-name{color:var(--bright)}
 .chevron{transition:transform .18s}.perk-row[open] .chevron{transform:rotate(180deg)}
 .open-label,.perk-row[open] .closed-label{display:none}.perk-row[open] .open-label{display:block}
-.wordmark{font-weight:600;font-size:18px;letter-spacing:-.6px}.wordmark-goodwin{font-family:Georgia,serif;font-size:32px}.wordmark-beyond-border{color:#a8d8ce}.wordmark-uxy{color:var(--bright)}
+.wordmark{font-weight:600;font-size:22px;letter-spacing:-.6px}.wordmark-goodwin{font-family:Georgia,serif;font-size:40px}.wordmark-beyond-border{color:#a8d8ce}.wordmark-uxy{color:var(--bright)}
 
 /* Solid purple details box; introduction above the three-column perk layout. */
 .perk-detail{--text:#f5f0fc;--secondary:#d3c9dd;--muted:#ac9cbb;--bright:#cfb4ff;background:#20112f;color:var(--text);border:1px solid #352241;border-radius:2px;box-shadow:none;backdrop-filter:none;opacity:1;padding:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin:8px 0 28px}
