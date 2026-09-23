@@ -48,7 +48,7 @@ export function renderLogin({ error = '', ready = true, basePath = '' } = {}) {
 }
 
 function row(perk, query, category, basePath, ranks) {
-  const searchable = [perk.name, perk.category, perk.headline, perk.description, perk.offer, perk.eligibility].join(' ').toLowerCase();
+  const searchable = [perk.name, perk.category, perk.headline, perk.description, perk.about, perk.offer, perk.eligibility].join(' ').toLowerCase();
   return `<details class="perk-row" id="${perk.id}" data-perk data-category="${escape(perk.category)}" data-search="${escape(searchable)}" data-sort-category="${ranks.category.get(perk.id)}" data-sort-alphabetical="${ranks.alphabetical.get(perk.id)}" ${matches(perk, query, category) ? '' : 'hidden'}>
     <summary>
       <span class="partner"><span class="partner-logo">${perk.logo ? `<img src="${basePath}${perk.logo}" alt="" width="40" height="40" loading="lazy">` : `<span class="wordmark wordmark-${perk.id}" aria-hidden="true">${escape(perk.name === 'Beyond Border' ? 'BB' : perk.name === 'Goodwin' ? 'G' : perk.name)}</span>`}</span><span class="partner-name">${escape(perk.name)}</span></span>
@@ -57,6 +57,7 @@ function row(perk, query, category, basePath, ranks) {
       <span class="view-perk"><span class="closed-label">View perk</span><span class="open-label">Close details</span><svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
     </summary>
     <div class="perk-detail">
+      <div class="detail-about"><h3>About ${escape(perk.name)}</h3><div class="detail-copy">${paragraphs(perk.about)}</div></div>
       <div class="detail-offer"><h3>Perk</h3><div class="detail-copy">${paragraphs(perk.offer)}${perk.pending ? '<p class="pending-note">Availability and terms are awaiting confirmation.</p>' : ''}</div></div>
       <div class="detail-eligibility"><h3>Eligibility</h3><div class="detail-copy">${paragraphs(perk.eligibility || 'For 886 Studios companies. The partner will confirm your eligibility and current terms.')}</div></div>
       <div class="detail-redemption"><h3>How to redeem</h3><div class="detail-copy">${paragraphs(perk.instructions)}${perk.code ? `<div class="redemption-code"><span>Organization ID</span><code id="code-${perk.id}">${escape(perk.code)}</code><button type="button" data-copy="code-${perk.id}" hidden>Copy</button></div><p class="small-note">For eligible portfolio companies only. Keep this ID within your company.</p>` : ''}<div class="redemption-actions">${link(perk.href, perk.action, 'button button-primary redeem-link')}${perk.links.length ? `<div class="secondary-links">${perk.links.map(item => link(item.href, item.label)).join('')}</div>` : ''}</div></div></div>

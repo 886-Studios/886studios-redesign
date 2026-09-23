@@ -65,9 +65,10 @@ svg{flex-shrink:0}img{display:block;max-width:100%}[hidden]{display:none!importa
 .open-label,.perk-row[open] .closed-label{display:none}.perk-row[open] .open-label{display:block}
 .wordmark{font-weight:600;font-size:18px;letter-spacing:-.6px}.wordmark-goodwin{font-family:Georgia,serif;font-size:32px}.wordmark-beyond-border{color:#a8d8ce}.wordmark-uxy{color:var(--bright)}
 
-/* Solid purple details box; retain the three-column information layout. */
+/* Solid purple details box; introduction above the three-column perk layout. */
 .perk-detail{--text:#f5f0fc;--secondary:#d3c9dd;--muted:#ac9cbb;--bright:#cfb4ff;background:#20112f;color:var(--text);border:1px solid #352241;border-radius:2px;box-shadow:none;backdrop-filter:none;opacity:1;padding:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;margin:8px 0 28px}
 .perk-detail>div{display:block;min-width:0}
+.detail-about{grid-column:1/-1}.detail-about .detail-copy{max-width:80ch}
 .perk-detail h3{font-size:15px;font-weight:600;line-height:1.5;color:var(--text);margin-bottom:10px}
 .detail-copy{min-width:0}
 .perk-detail p{font-size:14px;line-height:1.7;color:var(--secondary);overflow-wrap:anywhere}

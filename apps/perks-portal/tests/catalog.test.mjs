@@ -12,15 +12,16 @@ test('private catalog has sourced, redeemable records and distinguishes pending 
   assert.ok(catalog.perks.find(p=>p.id==='zettabyte').pending);
   assert.ok(catalog.perks.find(p=>p.id==='linear'));
   assert.ok(catalog.perks.find(p=>p.id==='deel'));
-  for(const perk of catalog.perks){assert.ok(!/^(TBD|See below)$/i.test(perk.instructions));assert.ok(perk.source.startsWith('https://'));}
+  for(const perk of catalog.perks){assert.ok(!/^(TBD|See below)$/i.test(perk.instructions));assert.ok(perk.source.startsWith('https://'));assert.ok(perk.about.length>=60&&perk.about.length<=360,perk.id);assert.ok(perk.aboutSource.startsWith('https://'));}
   const json=readFileSync(catalogPath,'utf8');
   for(const excluded of ['Granola','Wispr Flow','Devin (Cognition)','Supabase','PostHog','Perplexity'])assert.ok(!json.includes(excluded));
 });
 test('search combines category and words across benefits',()=>{
-  const perk={name:'Partner',category:'Engineering',headline:'Cloud credits',description:'Build globally',offer:'Starter benefit',eligibility:''};
+  const perk={name:'Partner',category:'Engineering',headline:'Cloud credits',description:'Build globally',about:'Tools for prototyping.',offer:'Starter benefit',eligibility:''};
   assert.equal(matches(perk,'CLOUD build','Engineering'),true);
   assert.equal(matches(perk,'cloud','Marketing'),false);
   assert.equal(matches(perk,'missing','Engineering'),false);
+  assert.equal(matches(perk,'prototyping','Engineering'),true);
 });
 
 test('category sorting groups types in filter order and alphabetizes their partners',()=>{

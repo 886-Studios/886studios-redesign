@@ -20,18 +20,19 @@ export function loadCatalog(path) {
     if (!/^[a-z0-9-]+$/.test(perk.id) || ids.has(perk.id)) throw new Error('Invalid or duplicate perk ID.');
     ids.add(perk.id);
     if (!CATEGORIES.includes(perk.category)) throw new Error(`Invalid category: ${perk.id}`);
-    for (const field of ['name', 'headline', 'description', 'offer', 'instructions', 'href', 'source', 'action']) {
+    for (const field of ['name', 'headline', 'description', 'about', 'aboutSource', 'offer', 'instructions', 'href', 'source', 'action']) {
       if (typeof perk[field] !== 'string' || !perk[field]) throw new Error(`Missing ${field}: ${perk.id}`);
     }
     for (const href of [perk.href, ...perk.links.map(link => link.href)]) {
       if (!['https:', 'mailto:'].includes(new URL(href).protocol)) throw new Error(`Unsafe link: ${perk.id}`);
     }
+    if (new URL(perk.aboutSource).protocol !== 'https:') throw new Error(`Unsafe about source: ${perk.id}`);
     if (perk.logo && !/^\/assets\/logos\/[a-z0-9.-]+$/.test(perk.logo)) throw new Error('Invalid logo path.');
   }
   return catalog;
 }
 
 export function matches(perk, query = '', category = '') {
-  const text = [perk.name, perk.category, perk.headline, perk.description, perk.offer, perk.eligibility].join(' ').toLowerCase();
+  const text = [perk.name, perk.category, perk.headline, perk.description, perk.about, perk.offer, perk.eligibility].join(' ').toLowerCase();
   return (!category || category === perk.category) && query.toLowerCase().split(/\s+/).every(word => text.includes(word));
 }
