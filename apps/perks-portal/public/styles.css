@@ -78,7 +78,7 @@ svg{flex-shrink:0}img{display:block;max-width:100%}[hidden]{display:none!importa
 .empty-state{padding:64px 24px;text-align:center}.empty-state h2{font-size:24px;font-weight:500;letter-spacing:-.4px}.empty-state p{color:var(--secondary);margin:8px 0 24px}
 .directory-footer{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;padding:32px 0 40px}
 .directory-note{max-width:520px;flex:1;font-size:12px;line-height:1.7;color:var(--muted)}
-.perk-request{max-width:440px;flex:1;font-size:14px;line-height:1.65;color:var(--secondary);text-align:right}
+.perk-request{max-width:440px;flex:1;font-size:12px;line-height:1.65;color:var(--secondary);text-align:right}
 
 /* The access form uses the same restrained typography and solid controls. */
 .login-main{max-width:1184px;margin:0 auto;padding:96px var(--gutter);display:grid;grid-template-columns:minmax(0,1fr) 380px;gap:80px;align-items:start}
@@ -128,7 +128,7 @@ svg{flex-shrink:0}img{display:block;max-width:100%}[hidden]{display:none!importa
   .redemption-actions{align-items:stretch;flex-direction:column}
   .secondary-links{flex-direction:column;align-items:flex-start;gap:4px}.secondary-links a{font-size:14px}
   .redemption-code{gap:8px 12px}.redemption-code>span{font-size:13px}
-  .directory-footer{flex-direction:column;align-items:stretch;gap:24px;padding:28px 0}.perk-request{max-width:none;font-size:15px}
+  .directory-footer{flex-direction:column;align-items:stretch;gap:24px;padding:28px 0}.perk-request{max-width:none}
   .login-main{padding:24px var(--gutter) 40px;gap:32px}.login-intro h1{font-size:32px;letter-spacing:-1px;text-wrap:balance}
   .login-panel h2{font-size:23px}.login-panel>p{font-size:16px}.desktop-break{display:none}.login-submit{font-size:16px}.access-help{font-size:14px}
 }
