@@ -58,7 +58,7 @@ function row(perk, query, category, basePath, ranks) {
     </summary>
     <div class="perk-detail">
       <div class="detail-offer"><h3>Perk</h3><div class="detail-copy">${paragraphs(perk.offer)}${perk.pending ? '<p class="pending-note">Availability and terms are awaiting confirmation.</p>' : ''}</div></div>
-      <div class="detail-eligibility"><h3>Eligibility</h3><div class="detail-copy">${paragraphs(perk.eligibility || 'For 886 Studios companies. The partner will confirm your eligibility and current terms.')}${perk.programs.length ? `<p class="program-note">Listed for: ${escape(perk.programs.join(' · '))}.</p>` : ''}</div></div>
+      <div class="detail-eligibility"><h3>Eligibility</h3><div class="detail-copy">${paragraphs(perk.eligibility || 'For 886 Studios companies. The partner will confirm your eligibility and current terms.')}</div></div>
       <div class="detail-redemption"><h3>How to redeem</h3><div class="detail-copy">${paragraphs(perk.instructions)}${perk.code ? `<div class="redemption-code"><span>Organization ID</span><code id="code-${perk.id}">${escape(perk.code)}</code><button type="button" data-copy="code-${perk.id}" hidden>Copy</button></div><p class="small-note">For eligible portfolio companies only. Keep this ID within your company.</p>` : ''}<div class="redemption-actions">${link(perk.href, perk.action, 'button button-primary redeem-link')}${perk.links.length ? `<div class="secondary-links">${perk.links.map(item => link(item.href, item.label)).join('')}</div>` : ''}</div></div></div>
     </div>
   </details>`;
