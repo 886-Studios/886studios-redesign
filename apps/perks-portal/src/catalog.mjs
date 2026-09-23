@@ -1,6 +1,16 @@
 import { readFileSync } from 'node:fs';
 
 export const CATEGORIES = ['Engineering', 'Productivity', 'Finance & legal', 'Marketing', 'Design'];
+export const SORT_OPTIONS = [{ value: 'category', label: 'Category' }, { value: 'alphabetical', label: 'Alphabetical (A–Z)' }];
+export const normalizeSort = value => value === 'alphabetical' ? value : 'category';
+
+export function sortPerks(perks, order = 'category') {
+  const byCategory = normalizeSort(order) === 'category';
+  return [...perks].sort((a, b) => {
+    const categoryOrder = byCategory ? CATEGORIES.indexOf(a.category) - CATEGORIES.indexOf(b.category) : 0;
+    return categoryOrder || a.name.localeCompare(b.name, 'en', { sensitivity: 'base', numeric: true }) || a.id.localeCompare(b.id, 'en');
+  });
+}
 
 export function loadCatalog(path) {
   const catalog = JSON.parse(readFileSync(path, 'utf8'));

@@ -2,7 +2,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { join, extname } from 'node:path';
 import { createAuth, createRateLimiter } from './auth.mjs';
 import { renderDirectory, renderLogin } from './render.mjs';
-import { CATEGORIES, loadCatalog } from './catalog.mjs';
+import { CATEGORIES, loadCatalog, normalizeSort } from './catalog.mjs';
 
 const TYPES = { '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.avif': 'image/avif', '.webp': 'image/webp', '.png': 'image/png', '.ttf': 'font/ttf', '.txt': 'text/plain' };
 const HEADERS = {
@@ -82,7 +82,8 @@ export function createHandler({ root, code, secret, origin, basePath = '', secur
         if (path === '/login') return redirect(home);
         const query = (url.searchParams.get('q') ?? '').slice(0, 200).trim();
         const category = CATEGORIES.includes(url.searchParams.get('category')) ? url.searchParams.get('category') : '';
-        return send(200, renderDirectory(perks, { query, category, basePath }));
+        const sort = normalizeSort(url.searchParams.get('sort'));
+        return send(200, renderDirectory(perks, { query, category, sort, basePath }));
       }
       if (req.method !== 'POST') { res.setHeader('Allow', 'GET, HEAD, POST'); return send(405, 'Method not allowed.', 'text/plain'); }
       if (!['/login', '/logout'].includes(path)) return send(404, 'Not found.', 'text/plain');
