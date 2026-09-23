@@ -31,3 +31,4 @@ jobs:
       # Substack blocks GitHub runner IPs. Vercel runs the full live-feed build,
       # SEO, and CSP checks; its status is separately required on main.
       - run: npm run validate:code
+      - run: npm --prefix apps/perks-portal test
