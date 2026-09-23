@@ -7,7 +7,7 @@ import { createHandler } from '../src/server.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const config = { root, code: 'test-portfolio-code-123', secret: 'test-session-secret-at-least-thirty-two-characters', origin: 'https://perks.886studios.com' };
-const fake = { perks: [{ id:'test-partner',name:'Private Test Partner',category:'Engineering',headline:'Private test offer',description:'Private test description',offer:'Confidential credit allowance',instructions:'Use the partner link.',eligibility:'Portfolio companies',programs:[],href:'https://partner.example/private-referral',source:'https://notion.so/example',action:'Redeem perk',links:[] }] };
+const fake = { perks: [{ id:'test-partner',name:'Private Test Partner',category:'Engineering',headline:'Private test offer',description:'Private test description',about:'A platform for prototyping & collaboration.',offer:'Confidential credit allowance',instructions:'Use the partner link.',eligibility:'Portfolio companies',programs:[],href:'https://partner.example/private-referral',source:'https://notion.so/example',action:'Redeem perk',links:[] }] };
 const make = extra => createHandler({ ...config, catalog:fake, ...extra });
 async function request(handler, path='/', { method='GET', headers={}, body='' }={}) {
   const req=Readable.from(body ? [Buffer.from(body)] : []);
@@ -24,7 +24,7 @@ test('locked HTML and every public asset contain no private partner data',async(
   for(const path of ['/','/login','/?q=Private','/styles.css','/app.js']) {
     const result=await request(handler,path);
     assert.equal(result.status,200);
-    assert.doesNotMatch(result.body,/Private Test Partner|private-referral|Confidential credit allowance|test-portfolio-code-123/);
+    assert.doesNotMatch(result.body,/Private Test Partner|private-referral|Confidential credit allowance|prototyping|test-portfolio-code-123/);
   }
 });
 test('private data and server files cannot be requested directly, even with a session',async()=>{
@@ -42,6 +42,10 @@ test('valid code creates an HTTP-only secure session and unlocks partner links',
   for(const flag of ['HttpOnly','Secure','SameSite=Strict','Path=/'])assert.ok(signed.headers['set-cookie'].includes(flag));
   const result=await request(handler,'/',{headers:{cookie:signed.headers['set-cookie'].split(';')[0]}});
   assert.equal(result.status,200);assert.match(result.body,/https:\/\/partner.example\/private-referral/);
+  assert.match(result.body,/<h3>About Private Test Partner<\/h3>/);
+  assert.match(result.body,/A platform for prototyping &amp; collaboration\./);
+  const searched=await request(handler,'/?q=prototyping',{headers:{cookie:signed.headers['set-cookie'].split(';')[0]}});
+  assert.match(searched.body,/1 partner/);
   assert.match(result.headers['cache-control'],/no-store/);assert.equal(result.headers['vercel-cdn-cache-control'],'no-store');
 });
 test('invalid codes and forged cookies do not unlock the directory',async()=>{
