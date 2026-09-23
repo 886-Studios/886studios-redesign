@@ -12,9 +12,31 @@ const lock = '<svg width="18" height="20" viewBox="0 0 24 24" fill="none" aria-h
 const searchIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
 const paragraphs = text => text.split('\n').filter(Boolean).map(line => `<p>${escape(line)}</p>`).join('');
 const link = (href, label, className = '') => `<a class="${className}" href="${escape(href)}"${href.startsWith('https:') ? ' target="_blank" rel="noopener noreferrer"' : ''}>${escape(label)}${arrow}${href.startsWith('https:') ? '<span class="sr-only"> (opens in a new tab)</span>' : ''}</a>`;
+// Reuse the main site's public logo sharing image; never include private offers.
+const sharingImage = 'https://www.886studios.com/assets/886-studios-preview.png';
+const sharingImageAlt = 'Purple 886 Studios logo on a dark purple and blue background';
 
 function page(body, { title = '886 Studios Exclusive Perks', basePath = '' } = {}) {
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow, noarchive"><meta name="referrer" content="same-origin"><meta name="theme-color" content="#050507"><meta name="description" content="Partner benefits for 886 Studios portfolio companies."><title>${escape(title)}</title><link rel="icon" href="${basePath}/assets/favicon-32.png"><link rel="stylesheet" href="${basePath}/styles.css?v=${stylesVersion}"><link rel="preload" as="font" type="font/ttf" href="${basePath}/assets/fonts/geist-400.ttf" crossorigin><script src="${basePath}/app.js?v=${scriptVersion}" defer></script></head><body>
+  const description = 'Partner benefits for 886 Studios portfolio companies.';
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow, noarchive"><meta name="referrer" content="same-origin"><meta name="theme-color" content="#050507"><meta name="description" content="${description}"><title>${escape(title)}</title>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="886 Studios">
+  <meta property="og:url" content="https://www.886studios.com/perks">
+  <meta property="og:title" content="${escape(title)}">
+  <meta property="og:description" content="${description}">
+  <meta property="og:image" content="${sharingImage}">
+  <meta property="og:image:secure_url" content="${sharingImage}">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="${sharingImageAlt}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@886Studios">
+  <meta name="twitter:title" content="${escape(title)}">
+  <meta name="twitter:description" content="${description}">
+  <meta name="twitter:image" content="${sharingImage}">
+  <meta name="twitter:image:alt" content="${sharingImageAlt}">
+  <link rel="icon" href="${basePath}/assets/favicon-32.png"><link rel="stylesheet" href="${basePath}/styles.css?v=${stylesVersion}"><link rel="preload" as="font" type="font/ttf" href="${basePath}/assets/fonts/geist-400.ttf" crossorigin><script src="${basePath}/app.js?v=${scriptVersion}" defer></script></head><body>
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="site-header"><nav class="nav-inner" aria-label="Main navigation"><a class="brand" href="https://www.886studios.com" aria-label="886 Studios home"><img src="${basePath}/assets/886-logo.avif" width="384" height="384" alt="886 Studios"></a></nav></header>
   ${body}
