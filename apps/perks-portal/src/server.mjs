@@ -41,14 +41,17 @@ async function readBody(req) {
   return new URLSearchParams(Buffer.concat(chunks).toString('utf8'));
 }
 
-export function createHandler({ root, code, secret, origin, secure = true, now, catalog, limiter = createRateLimiter() }) {
+export function createHandler({ root, code, secret, origin, basePath = '', secure = true, now, catalog, limiter = createRateLimiter() }) {
+  if (basePath && !/^\/[a-z0-9-]+(?:\/[a-z0-9-]+)*$/.test(basePath)) throw new Error('Invalid application base path.');
   const publicOrigin = new URL(origin).origin;
+  const home = basePath || '/';
+  const loginPage = options => renderLogin({ ...options, basePath });
   if (secure && new URL(origin).protocol !== 'https:') throw new Error('Production requires an HTTPS origin.');
   const assets = publicFiles(join(root, 'public'));
   let auth;
   let perks;
   try {
-    auth = createAuth({ code, secret, secure, now });
+    auth = createAuth({ code, secret, secure, now, basePath });
     perks = catalog ?? loadCatalog(join(root, 'private/catalog.json'));
   } catch (error) {
     // Fail closed: never render the catalog if credentials or data are missing.
@@ -64,7 +67,8 @@ export function createHandler({ root, code, secret, origin, secure = true, now, 
     const redirect = location => { res.writeHead(303, { Location: location }); res.end(); };
     try {
       const url = new URL(req.url, publicOrigin);
-      const path = url.pathname;
+      if (basePath && url.pathname !== basePath && !url.pathname.startsWith(`${basePath}/`)) return send(404, 'Not found.', 'text/plain');
+      const path = url.pathname.slice(basePath.length) || '/';
       if (req.method === 'GET' || req.method === 'HEAD') {
         if (path === '/robots.txt') return send(200, 'User-agent: *\nDisallow: /\n', 'text/plain; charset=utf-8');
         if (assets.has(path)) {
@@ -73,31 +77,31 @@ export function createHandler({ root, code, secret, origin, secure = true, now, 
           return send(200, readFileSync(asset.path), asset.type);
         }
         if (path !== '/' && path !== '/login') return send(404, 'Not found.', 'text/plain; charset=utf-8');
-        if (!auth || !perks) return send(503, renderLogin({ ready: false }));
-        if (!auth.valid(req.headers.cookie)) return send(200, renderLogin());
-        if (path === '/login') return redirect('/');
+        if (!auth || !perks) return send(503, loginPage({ ready: false }));
+        if (!auth.valid(req.headers.cookie)) return send(200, loginPage());
+        if (path === '/login') return redirect(home);
         const query = (url.searchParams.get('q') ?? '').slice(0, 200).trim();
         const category = CATEGORIES.includes(url.searchParams.get('category')) ? url.searchParams.get('category') : '';
-        return send(200, renderDirectory(perks, { query, category }));
+        return send(200, renderDirectory(perks, { query, category, basePath }));
       }
       if (req.method !== 'POST') { res.setHeader('Allow', 'GET, HEAD, POST'); return send(405, 'Method not allowed.', 'text/plain'); }
       if (!['/login', '/logout'].includes(path)) return send(404, 'Not found.', 'text/plain');
       if (req.headers.origin !== publicOrigin || req.headers['sec-fetch-site'] === 'cross-site') return send(403, 'Please submit this form from the perks website.', 'text/plain');
-      if (!auth || !perks) return send(503, renderLogin({ ready: false }));
-      if (path === '/logout') { res.setHeader('Set-Cookie', auth.clear()); return redirect('/'); }
+      if (!auth || !perks) return send(503, loginPage({ ready: false }));
+      if (path === '/logout') { res.setHeader('Set-Cookie', auth.clear()); return redirect(home); }
       if (!String(req.headers['content-type'] ?? '').startsWith('application/x-www-form-urlencoded')) return send(415, 'Unsupported form format.', 'text/plain');
       // Vercel overwrites this platform header. Never trust arbitrary forwarded-for headers.
       const ip = secure && process.env.VERCEL ? req.headers['x-vercel-forwarded-for'] || 'unknown' : req.socket?.remoteAddress || 'unknown';
-      if (limiter.blocked(ip)) { res.setHeader('Retry-After', '900'); return send(429, renderLogin({ error: 'Too many attempts. Please try again in 15 minutes.' })); }
+      if (limiter.blocked(ip)) { res.setHeader('Retry-After', '900'); return send(429, loginPage({ error: 'Too many attempts. Please try again in 15 minutes.' })); }
       const form = await readBody(req);
       const value = form.get('code');
       if (!value || value.length > 256 || !auth.verifyCode(value)) {
         limiter.fail(ip);
-        return send(401, renderLogin({ error: 'That code doesn’t look right. Please try again or ask the 886 team.' }));
+        return send(401, loginPage({ error: 'That code doesn’t look right. Please try again or ask the 886 team.' }));
       }
       limiter.reset(ip);
       res.setHeader('Set-Cookie', auth.issue());
-      return redirect('/');
+      return redirect(home);
     } catch (error) {
       if (!res.headersSent) return send(error.status ?? 500, error.status ? error.message : 'Something went wrong. Please try again.', 'text/plain');
       res.end();

@@ -18,4 +18,4 @@ writeFileSync(join(fn, '.vc-config.json'), JSON.stringify({ runtime: 'nodejs22.x
 // All requests pass through the same server. No HTML, JSON, or source snapshots
 // are emitted as static public files; private source records stay local.
 writeFileSync(join(output, 'config.json'), JSON.stringify({ version: 3, routes: [{ src: '/(.*)', dest: '/index' }] }, null, 2));
-console.log(`Built ${catalog.perks.length} partner entries for perks.886studios.com. Local output only; nothing deployed.`);
+console.log(`Built ${catalog.perks.length} partner entries for www.886studios.com/perks. Local output only; nothing deployed.`);

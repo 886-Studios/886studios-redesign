@@ -1,7 +1,7 @@
-@font-face{font-family:Geist;src:url('/assets/fonts/geist-400.ttf') format('truetype');font-weight:400;font-display:swap}
-@font-face{font-family:Geist;src:url('/assets/fonts/geist-500.ttf') format('truetype');font-weight:500;font-display:swap}
-@font-face{font-family:Geist;src:url('/assets/fonts/geist-600.ttf') format('truetype');font-weight:600;font-display:swap}
-@font-face{font-family:Geist;src:url('/assets/fonts/geist-700.ttf') format('truetype');font-weight:700;font-display:swap}
+@font-face{font-family:Geist;src:url('assets/fonts/geist-400.ttf') format('truetype');font-weight:400;font-display:swap}
+@font-face{font-family:Geist;src:url('assets/fonts/geist-500.ttf') format('truetype');font-weight:500;font-display:swap}
+@font-face{font-family:Geist;src:url('assets/fonts/geist-600.ttf') format('truetype');font-weight:600;font-display:swap}
+@font-face{font-family:Geist;src:url('assets/fonts/geist-700.ttf') format('truetype');font-weight:700;font-display:swap}
 :root{color-scheme:dark;--bg:#050507;--text:#f5f3f7;--secondary:#bdb7c6;--muted:#9b93a7;--purple:#8b5cf6;--bright:#c4a8fb;--border:#343039;--max:1184px;--gutter:clamp(24px,4vw,48px)}
 *,*::before,*::after{box-sizing:border-box}
 body,h1,h2,h3,p{margin:0}

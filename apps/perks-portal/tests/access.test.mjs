@@ -87,3 +87,41 @@ test('search query injection is escaped and unknown categories are discarded',as
   assert.doesNotMatch(result.body,/<img src=x/);assert.match(result.body,/&lt;img src=x/);
   assert.match(result.body,/0 partners/);
 });
+
+test('a subpath keeps login, filters, assets, and redirects inside the portal',async()=>{
+  const origin='https://www.886studios.com';
+  const handler=make({origin,basePath:'/perks',catalog:{perks:[{...fake.perks[0],logo:'/assets/logos/notion.webp'}]}});
+  const locked=await request(handler,'/perks');
+  assert.equal(locked.status,200);
+  assert.match(locked.body,/action="\/perks\/login"/);
+  assert.doesNotMatch(locked.body,/private-referral/);
+  const signed=await request(handler,'/perks/login',{method:'POST',headers:{origin,'content-type':'application/x-www-form-urlencoded'},body:new URLSearchParams({code:config.code}).toString()});
+  assert.equal(signed.status,303);
+  assert.equal(signed.headers.location,'/perks');
+  assert.match(signed.headers['set-cookie'],/^__Secure-886_perks=/);
+  assert.match(signed.headers['set-cookie'],/Path=\/perks;/);
+  assert.doesNotMatch(signed.headers['set-cookie'],/Domain=/i);
+  const headers={cookie:signed.headers['set-cookie'].split(';')[0]};
+  const unlocked=await request(handler,'/perks?category=Engineering&q=Private',{headers});
+  assert.match(unlocked.body,/1 partner/);
+  assert.match(unlocked.body,/private-referral/);
+  assert.match(unlocked.body,/href="\/perks" data-reset/);
+  assert.match(unlocked.body,/src="\/perks\/assets\/logos\/notion.webp"/);
+  for(const html of [locked.body,unlocked.body])for(const [,url]of html.matchAll(/(?:href|src|action)="(\/[^\"]*)"/g))assert.ok(url==='/perks'||url.startsWith('/perks/'),url);
+  for(const path of ['/perks/styles.css','/perks/app.js','/perks/assets/fonts/geist-400.ttf','/perks/assets/886-logo.avif'])assert.equal((await request(handler,path)).status,200,path);
+  assert.equal((await request(handler,'/perks/login',{headers})).headers.location,'/perks');
+  const signedOut=await request(handler,'/perks/logout',{method:'POST',headers:{...headers,origin}});
+  assert.equal(signedOut.headers.location,'/perks');
+  assert.match(signedOut.headers['set-cookie'],/Max-Age=0; Path=\/perks;/);
+});
+
+test('the subpath rejects other routes, private files, and the old login origin',async()=>{
+  const handler=make({origin:'https://www.886studios.com',basePath:'/perks'});
+  for(const path of ['/','/login','/styles.css','/perks-other','/perks/private/catalog.json','/perks/src/server.mjs','/perks/../private/catalog.json'])assert.equal((await request(handler,path)).status,404,path);
+  const rejected=await request(handler,'/perks/login',{method:'POST',headers:{origin:config.origin,'content-type':'application/x-www-form-urlencoded'},body:new URLSearchParams({code:config.code}).toString()});
+  assert.equal(rejected.status,403);
+  const missing=await request(make({basePath:'/perks',code:undefined}),'/perks');
+  assert.equal(missing.status,503);
+  assert.match(missing.body,/action="\/perks\/login"/);
+  assert.throws(()=>make({basePath:'/perks/../'}),/Invalid application base path/);
+});

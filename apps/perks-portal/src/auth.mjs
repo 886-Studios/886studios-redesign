@@ -4,15 +4,15 @@ export const SESSION_SECONDS = 7 * 24 * 60 * 60;
 const digest = value => createHash('sha256').update(value).digest();
 export const equal = (a, b) => timingSafeEqual(digest(a), digest(b));
 
-export function createAuth({ code, secret, secure = true, now = Date.now }) {
+export function createAuth({ code, secret, secure = true, now = Date.now, basePath = '' }) {
   if (typeof code !== 'string' || code.length < 6 || typeof secret !== 'string' || secret.length < 32) {
     throw new Error('Configure a portfolio access code of at least 6 characters and a session secret of at least 32 characters.');
   }
   // Rotating either credential immediately invalidates all existing sessions.
   const key = createHmac('sha256', secret).update(code).digest();
   const sign = value => createHmac('sha256', key).update(value).digest('base64url');
-  const cookieName = secure ? '__Host-886_perks' : '886_perks';
-  const attributes = `Path=/; HttpOnly; SameSite=Strict${secure ? '; Secure' : ''}`;
+  const cookieName = secure ? (basePath ? '__Secure-886_perks' : '__Host-886_perks') : '886_perks';
+  const attributes = `Path=${basePath || '/'}; HttpOnly; SameSite=Strict${secure ? '; Secure' : ''}`;
   return {
     verifyCode: value => equal(String(value), code),
     issue() {

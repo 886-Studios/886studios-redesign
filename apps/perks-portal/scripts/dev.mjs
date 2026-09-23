@@ -10,7 +10,7 @@ if (!existsSync(configPath)) writeFileSync(configPath, JSON.stringify({ code: ra
 const config = JSON.parse(readFileSync(configPath, 'utf8'));
 const port = Number(process.env.PORT ?? 4186);
 const origin = `http://localhost:${port}`;
-const server = createServer(createHandler({ root, code: config.code, secret: config.secret, origin, secure: false }));
+const server = createServer(createHandler({ root, code: config.code, secret: config.secret, origin, basePath: process.env.APP_BASE_PATH ?? '', secure: false }));
 server.listen(port, '127.0.0.1', () => {
   console.log(`Local preview: ${origin}\nLocal access code: ${config.code}\nThis code is for this local preview only. No deployment has been made.`);
 });
