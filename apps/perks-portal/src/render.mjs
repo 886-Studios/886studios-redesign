@@ -1,0 +1,57 @@
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { CATEGORIES, matches } from './catalog.mjs';
+
+const assetVersion = path => createHash('sha256').update(readFileSync(new URL(path, import.meta.url))).digest('hex').slice(0, 12);
+const stylesVersion = assetVersion('../public/styles.css');
+const scriptVersion = assetVersion('../public/app.js');
+
+export const escape = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const lock = '<svg width="18" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>';
+const searchIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="m16 16 5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>';
+const paragraphs = text => text.split('\n').filter(Boolean).map(line => `<p>${escape(line)}</p>`).join('');
+const link = (href, label, className = '') => `<a class="${className}" href="${escape(href)}"${href.startsWith('https:') ? ' target="_blank" rel="noopener noreferrer"' : ''}>${escape(label)}${arrow}${href.startsWith('https:') ? '<span class="sr-only"> (opens in a new tab)</span>' : ''}</a>`;
+
+function page(body, { title = '886 Studios Exclusive Perks', ready = true } = {}) {
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow, noarchive"><meta name="referrer" content="same-origin"><meta name="theme-color" content="#050507"><meta name="description" content="Partner benefits for 886 Studios portfolio companies."><title>${escape(title)}</title><link rel="icon" href="/assets/favicon-32.png"><link rel="stylesheet" href="/styles.css?v=${stylesVersion}"><link rel="preload" as="font" type="font/ttf" href="/assets/fonts/geist-400.ttf" crossorigin><script src="/app.js?v=${scriptVersion}" defer></script></head><body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header"><nav class="nav-inner" aria-label="Main navigation"><a class="brand" href="https://www.886studios.com" aria-label="886 Studios home"><img src="/assets/886-logo.avif" width="384" height="384" alt="886 Studios"></a></nav></header>
+  ${body}
+  </body></html>`;
+}
+
+export function renderLogin({ error = '', ready = true } = {}) {
+  return page(`<main id="main-content" class="login-main"><div class="login-intro"><h1>886 Studios Exclusive Perks</h1></div><section class="login-panel" aria-labelledby="login-title"><div class="lock-tile">${lock}</div><h2 id="login-title">Welcome to your perks.</h2><p>Enter your portfolio access code to explore<br class="desktop-break"> partner offers and redemption details.</p><form action="/login" method="post"><label for="access-code">Portfolio access code</label><div class="password-field"><input id="access-code" name="code" type="password" autocomplete="current-password" required maxlength="256" placeholder="Enter your access code" aria-describedby="login-message" ${error ? 'aria-invalid="true"' : ''}><button class="password-toggle" type="button" aria-label="Show access code" aria-pressed="false" data-password-toggle hidden><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/></svg></button></div><p id="login-message" class="form-message" ${error ? 'role="alert"' : ''}>${escape(error || (!ready ? 'Portfolio access is being set up. Please contact the team.' : 'Your access code is case-sensitive.'))}</p><button class="button button-primary login-submit" type="submit" ${!ready ? 'disabled' : ''}>Explore your perks <span aria-hidden="true">→</span></button></form><div class="access-help">Need an access code? <a href="mailto:carter@886studios.com?subject=Portfolio%20perks%20access">Ask the 886 team ${arrow}</a></div></section></main>`, { ready });
+}
+
+function row(perk, query, category) {
+  const searchable = [perk.name, perk.category, perk.headline, perk.description, perk.offer, perk.eligibility].join(' ').toLowerCase();
+  return `<details class="perk-row" id="${perk.id}" data-perk data-category="${escape(perk.category)}" data-search="${escape(searchable)}" ${matches(perk, query, category) ? '' : 'hidden'}>
+    <summary>
+      <span class="partner"><span class="partner-logo">${perk.logo ? `<img src="${perk.logo}" alt="" width="40" height="40" loading="lazy">` : `<span class="wordmark wordmark-${perk.id}" aria-hidden="true">${escape(perk.name === 'Beyond Border' ? 'BB' : perk.name === 'Goodwin' ? 'G' : perk.name)}</span>`}</span><span class="partner-name">${escape(perk.name)}</span></span>
+      <span class="benefit"><span class="benefit-title">${escape(perk.headline)}</span><span class="benefit-description">${escape(perk.description)}</span></span>
+      <span class="perk-type"><span class="mobile-field-label">Type</span><span>${escape(perk.category)}</span></span>
+      <span class="view-perk"><span class="closed-label">View perk</span><span class="open-label">Close details</span><svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </summary>
+    <div class="perk-detail">
+      <div class="detail-offer"><h3>Perk</h3><div class="detail-copy">${paragraphs(perk.offer)}${perk.pending ? '<p class="pending-note">Availability and terms are awaiting confirmation.</p>' : ''}</div></div>
+      <div class="detail-eligibility"><h3>Eligibility</h3><div class="detail-copy">${paragraphs(perk.eligibility || 'For 886 Studios companies. The partner will confirm your eligibility and current terms.')}${perk.programs.length ? `<p class="program-note">Listed for: ${escape(perk.programs.join(' · '))}.</p>` : ''}</div></div>
+      <div class="detail-redemption"><h3>How to redeem</h3><div class="detail-copy">${paragraphs(perk.instructions)}${perk.code ? `<div class="redemption-code"><span>Organization ID</span><code id="code-${perk.id}">${escape(perk.code)}</code><button type="button" data-copy="code-${perk.id}" hidden>Copy</button></div><p class="small-note">For eligible portfolio companies only. Keep this ID within your company.</p>` : ''}<div class="redemption-actions">${link(perk.href, perk.action, 'button button-primary redeem-link')}${perk.links.length ? `<div class="secondary-links">${perk.links.map(item => link(item.href, item.label)).join('')}</div>` : ''}</div></div></div>
+    </div>
+  </details>`;
+}
+
+export function renderDirectory(catalog, { query = '', category = '' } = {}) {
+  const count = catalog.perks.filter(perk => matches(perk, query, category)).length;
+  return page(`<main id="main-content" class="directory-main"><section class="hero" aria-labelledby="page-title"><div><h1 id="page-title">886 Studios Exclusive Perks</h1></div></section>
+  <section class="directory" aria-label="Partner perks"><form class="filter-form" action="/" method="get" role="search">
+    <div class="search-row">
+      <div class="search-field">${searchIcon}<label class="sr-only" for="perk-search">Search partners or perks</label><input id="perk-search" name="q" type="search" placeholder="Search partners or perks" autocomplete="off" value="${escape(query)}"></div>
+      <button type="submit" name="category" value="${escape(category)}" class="button button-subtle filter-submit">Search</button>
+    </div>
+    <div class="filters" role="group" aria-label="Filter by type">${['', ...CATEGORIES].map(item => `<button type="submit" name="category" value="${escape(item)}" class="filter ${item === category ? 'is-active' : ''}" aria-pressed="${item === category}" data-filter="${escape(item)}">${escape(item || 'All perks')}</button>`).join('')}</div>
+    <p class="result-count" id="result-count" role="status" aria-live="polite">${count} ${count === 1 ? 'partner' : 'partners'}</p>
+  </form><div class="list-header" aria-hidden="true"><span>Partner</span><span>Type</span><span>Perk</span></div><div class="perk-list">${catalog.perks.map(perk => row(perk, query, category)).join('')}</div><div class="empty-state" ${count ? 'hidden' : ''}><h2>No perks found.</h2><p>Try another partner, benefit, or category.</p><a class="button button-subtle" href="/" data-reset>Clear filters</a></div></section>
+  <div class="directory-footer"><p class="directory-note">For ikigai Launchpad and Launch Station teams only. Please keep partner links and codes within your company. Offers are subject to partner eligibility and approval.</p><p class="perk-request">Have any products &amp; services you use but that's not on this list? Contact Carter &amp; Patryk and we'll try to get them for you!</p></div></main>`);
+}

@@ -1,0 +1,27 @@
+import { readFileSync } from 'node:fs';
+
+export const CATEGORIES = ['Engineering', 'Productivity', 'Finance & legal', 'Marketing', 'Design'];
+
+export function loadCatalog(path) {
+  const catalog = JSON.parse(readFileSync(path, 'utf8'));
+  const ids = new Set();
+  if (!Array.isArray(catalog.perks) || !catalog.perks.length) throw new Error('The private perk catalog is missing or empty.');
+  for (const perk of catalog.perks) {
+    if (!/^[a-z0-9-]+$/.test(perk.id) || ids.has(perk.id)) throw new Error('Invalid or duplicate perk ID.');
+    ids.add(perk.id);
+    if (!CATEGORIES.includes(perk.category)) throw new Error(`Invalid category: ${perk.id}`);
+    for (const field of ['name', 'headline', 'description', 'offer', 'instructions', 'href', 'source', 'action']) {
+      if (typeof perk[field] !== 'string' || !perk[field]) throw new Error(`Missing ${field}: ${perk.id}`);
+    }
+    for (const href of [perk.href, ...perk.links.map(link => link.href)]) {
+      if (!['https:', 'mailto:'].includes(new URL(href).protocol)) throw new Error(`Unsafe link: ${perk.id}`);
+    }
+    if (perk.logo && !/^\/assets\/logos\/[a-z0-9.-]+$/.test(perk.logo)) throw new Error('Invalid logo path.');
+  }
+  return catalog;
+}
+
+export function matches(perk, query = '', category = '') {
+  const text = [perk.name, perk.category, perk.headline, perk.description, perk.offer, perk.eligibility].join(' ').toLowerCase();
+  return (!category || category === perk.category) && query.toLowerCase().split(/\s+/).every(word => text.includes(word));
+}
