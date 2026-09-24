@@ -1,6 +1,5 @@
 ---
 import "../styles/global.css";
-import ApplicationBanner from "../components/ApplicationBanner.astro";
 import GoogleAnalytics from "../components/GoogleAnalytics.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteNav from "../components/SiteNav.astro";
@@ -204,7 +203,6 @@ const structuredDataJson = canonicalUrl
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header>
       <SiteNav currentPath={currentPath} />
-      <ApplicationBanner />
     </header>
     <main id="main-content" class="site-main" tabindex="-1">
       <slot />
