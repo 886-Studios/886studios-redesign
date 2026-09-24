@@ -100,3 +100,36 @@ test("imported articles and RSS retain working destinations for moved references
   const unrelated = feed.replace("<p>Lessons for founders.</p>", '<p><a href="https://example.com/reference">Reference</a></p>');
   assert.ok(parseBlogFeed(unrelated)[0].contentHtml.includes('href="https://example.com/reference"'));
 });
+
+test("legacy batch names are consistent in imported titles, summaries, body text, and image labels", () => {
+  const { parseBlogFeed } = loadAdapter();
+  const slug = "ikigai-launchpad-spring-2026-sp26";
+  const articleUrl = `https://886studios.substack.com/p/${slug}`;
+  const imageUrl = "https://example.com/ikigai-S'25.jpg";
+  const xml = feed
+    .replace("Founder lessons", "ikigai Launchpad Spring 2026 (Sp'26) Applications Are Now OPEN")
+    .replace("https://886studios.substack.com/p/founder-lessons", articleUrl)
+    .replace("<pubDate>", "<description>ikigai Launchpad S'26 batch</description><pubDate>")
+    .replace("<p>Lessons for founders.</p>", `
+      <h2>ikigai Launchpad Spring 2026 (Sp&#8217;26)</h2>
+      <p>Summer 2025 (S&#8217;25) batch; ikigai F'24; ikigai S'26.</p>
+      <p>Happening in <strong>Spring 2026</strong>. March 3, 2026.</p>
+      <a href="${articleUrl}">ikigai S'25</a>
+      <img src="${imageUrl}" alt="ikigai Launchpad S'25 batch" title="ikigai S'26">
+    `);
+  const post = parseBlogFeed(xml)[0];
+  assert.equal(post.title, "ikigai #03 Applications Are Now OPEN");
+  assert.equal(post.description, "ikigai #03 batch");
+  assert.equal(post.slug, slug);
+  assert.equal(post.substackUrl, articleUrl);
+  assert.ok(post.contentHtml.includes("<h2>ikigai #03</h2>"));
+  assert.ok(post.contentHtml.includes("ikigai #02 batch; ikigai #01; ikigai #03."));
+  assert.ok(post.contentHtml.includes('alt="ikigai #02 batch"'));
+  assert.ok(post.contentHtml.includes('title="ikigai #03"'));
+  assert.ok(post.contentHtml.includes(`src="${imageUrl}"`));
+  assert.ok(post.contentHtml.includes(`href="${articleUrl}"`));
+  assert.ok(post.contentHtml.includes("Happening in <strong>Spring 2026</strong>. March 3, 2026."));
+
+  const unrelated = feed.replace("Founder lessons", "YC S'25 and Fall 2026 applications");
+  assert.equal(parseBlogFeed(unrelated)[0].title, "YC S'25 and Fall 2026 applications");
+});
