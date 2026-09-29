@@ -625,7 +625,7 @@ export const siteContent = {
         {
           label: "Community",
           title: "Launch Station",
-          body: "Free coworking space and a founder community inside Taiwan Tech Arena.",
+          body: "Launch Station, our founder community-building program, is coming back...",
           ctaLabel: "Learn more →",
           ctaHref: "/programs/launch-station",
         },
@@ -1129,31 +1129,10 @@ export const siteContent = {
         height: 800,
       },
       lead:
-        "Launch Station gives early-stage founders a free dedicated desk inside Taiwan Tech Arena, plus the builder energy, resources, and community around 886 Studios.",
-      status: "Applications will open at the beginning of October.",
-      essentials: [
-        {
-          label: "Location",
-          value: "Taiwan Tech Arena",
-        },
-        {
-          label: "Workspace",
-          value: "Free dedicated desk",
-        },
-        {
-          label: "Community",
-          value: "Founders, investors, and 886",
-        },
-      ],
-      benefits: [
-        "Free dedicated desk space inside 886 Studios' open startup office",
-        "Exclusive startup software perks across AWS, Notion, Ramp, Webflow, and more",
-        "Founder and investor community at Taiwan Tech Arena",
-      ],
-      contribution:
-        "In return, Launch Station members contribute to the community by hosting a session, sharing what they are learning, giving a demo, or helping other founders move faster.",
+        "Launch Station, our founder community-building program, is coming back...",
+      status: "Interested? Follow us on Substack to hear when it resumes",
       card: {
-        body: "Our community-building program for founders who move faster alongside ambitious peers.",
+        body: "Launch Station, our founder community-building program, is coming back...",
         cta: {
           label: "Learn more →",
           href: "/programs/launch-station",
