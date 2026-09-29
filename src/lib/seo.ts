@@ -63,7 +63,7 @@ export const pageMeta = {
   launchStation: {
     title: "Launch Station | 886 Studios",
     description:
-      "Launch Station is 886 Studios' free dedicated desk and founder community program inside Taiwan Tech Arena.",
+      "Launch Station is 886 Studios' invitation-only residency for full-time builders, with hot desks and an active community at Taiwan Tech Arena in Taipei.",
     ogImage: `${siteConfig.url}/assets/programs/launch-station-community-collage-2026.jpg`,
     ogImageAlt: "Launch Station founder community collage",
     ogImageWidth: 800,
@@ -373,7 +373,7 @@ export function getLaunchStationSchema(): JsonLdObject {
     "@type": "Service",
     "@id": `${siteConfig.url}/programs/launch-station#launch-station`,
     name: launchStation.title,
-    serviceType: "Founder coworking and community program",
+    serviceType: "Invitation-only builder residency",
     url: `${siteConfig.url}/programs/launch-station`,
     mainEntityOfPage: { "@id": getPageFragmentId("/programs/launch-station", "webpage") },
     provider: { "@id": organizationId },
@@ -383,7 +383,7 @@ export function getLaunchStationSchema(): JsonLdObject {
     },
     audience: {
       "@type": "Audience",
-      audienceType: "Early-stage founders in Taipei",
+      audienceType: "Full-time technical builders and founders in Taipei",
     },
     description: pageMeta.launchStation.description,
     additionalProperty: launchStation.essentials.map((item) => ({

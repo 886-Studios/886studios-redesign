@@ -330,8 +330,8 @@ existing content keeps its established URLs.
 | Group | Page | Route | Starting content |
 | --- | --- | --- | --- |
 | | Home | `/` | Existing homepage |
-| Programs | Bamboo | `/programs/bamboo` | Blank |
-| Programs | Ikigai | `/programs` | Existing ikigai Launchpad page |
+| Programs | ikigai Launchpad | `/programs` | Existing ikigai Launchpad page |
+| Programs | Launch Station | `/programs/launch-station` | Existing Launch Station content in the shared program layout |
 | Community | Events | `/events` | Existing events page |
 | Community | Newsletter | `/blog` | Existing newsletter and article archive |
 | Community | Resources | `/resources` | Existing resources page |

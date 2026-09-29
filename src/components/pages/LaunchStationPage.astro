@@ -4,63 +4,111 @@ import { siteContent } from "../../data/siteContent";
 const { launchStation } = siteContent.programs;
 ---
 
-<div class="page ls-page" id="page-launch-station">
-  <section class="ls-hero" aria-labelledby="ls-heading">
-    <div class="ls-hero-grid">
-      <div class="ls-hero-copy">
-        <div class="ls-topline">
-          <a class="ls-back" href="/programs">Programs</a>
-          <p class="prog-band-label">{launchStation.eyebrow}</p>
-        </div>
-        <h1 class="ls-h1" id="ls-heading">{launchStation.title}</h1>
-        <p class="ls-lead">{launchStation.lead}</p>
-        <p class="ls-status-note">{launchStation.status}</p>
-      </div>
-      <figure class="ls-poster">
-        <img
-          src={launchStation.poster.src}
-          srcset={`${launchStation.poster.src.replace("-800.webp", "-480.webp")} 480w, ${launchStation.poster.src} 800w`}
-          sizes="(max-width: 760px) min(calc(100vw - 36px), 300px), 380px"
-          alt={launchStation.poster.alt}
-          width={launchStation.poster.width}
-          height={launchStation.poster.height}
-          decoding="async"
-          loading="eager"
-          fetchpriority="high"
-        />
-      </figure>
-      <div class="ls-hero-signals" aria-label="Launch Station essentials">
-        <span class="prog-card-kicker">At a glance</span>
-        {launchStation.essentials.map((item) => (
-          <article class="ls-signal">
-            <p>{item.label}</p>
-            <strong>{item.value}</strong>
-          </article>
-        ))}
+<div class="page program-page" id="page-launch-station">
+  <section class="prog-hero" aria-labelledby="ls-heading">
+    <div class="prog-hero-copy">
+      <h1 class="launch-station-title" id="ls-heading">{launchStation.title}</h1>
+      <p class="prog-lead">{launchStation.lead}</p>
+      <div class="prog-hero-actions">
+        <a class="btn-pri prog-cta" href="#ls-fit-heading">Explore the residency</a>
+        <p class="prog-next-batch">{launchStation.status}</p>
       </div>
     </div>
+
+    <aside class="prog-brief-card" aria-label="Launch Station facts">
+      <dl class="prog-brief-facts">
+        {launchStation.essentials.map((item) => (
+          <div class="prog-brief-fact">
+            <dt>{item.label}</dt>
+            <dd><strong>{item.value}</strong></dd>
+          </div>
+        ))}
+      </dl>
+    </aside>
   </section>
 
-  <div class="ls-body">
-    <section class="ls-benefits reveal" aria-labelledby="ls-benefits-heading">
-      <div class="ls-benefits-copy">
-        <div class="ls-section-kicker">What you get</div>
-        <h2 id="ls-benefits-heading">A free desk, exclusive perks, and a community of founders</h2>
+  <div class="prog-body">
+    <section class="prog-pillars launch-station-benefits reveal" aria-labelledby="ls-benefits-heading">
+      <header class="prog-section-header prog-section-header--solo">
+        <div class="prog-section-heading">
+          <h2 class="prog-section-title" id="ls-benefits-heading">{launchStation.benefitsTitle}</h2>
+        </div>
+      </header>
+
+      <div class="launch-station-benefits-grid">
+        <figure class="launch-station-photo">
+          <img
+            src={launchStation.poster.src}
+            srcset={`${launchStation.poster.src.replace("-800.webp", "-480.webp")} 480w, ${launchStation.poster.src} 800w`}
+            sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 980px) min(560px, calc(100vw - 64px)), 465px"
+            alt={launchStation.poster.alt}
+            width={launchStation.poster.width}
+            height={launchStation.poster.height}
+            decoding="async"
+            loading="eager"
+          />
+        </figure>
+        <dl class="prog-fit-list launch-station-benefit-list">
+          {launchStation.benefits.map((benefit) => (
+            <div class="prog-fit-item">
+              <dt>{benefit.title}</dt>
+              <dd>{benefit.body}</dd>
+            </div>
+          ))}
+        </dl>
       </div>
-      <ul class="ls-benefit-list">
-        {launchStation.benefits.map((benefit, index) => (
-          <li>
-            <span>{index + 1}</span>
-            <strong>{benefit}</strong>
-          </li>
-        ))}
-      </ul>
     </section>
 
-    <section class="ls-note reveal" aria-labelledby="ls-contribution-heading">
-      <div class="ls-section-kicker">Community contribution</div>
-      <h2 id="ls-contribution-heading">Contribute to the room.</h2>
-      <p>{launchStation.contribution}</p>
+    <section class="prog-fit reveal" aria-labelledby="ls-fit-heading">
+      <header class="prog-section-header prog-section-header--top">
+        <div class="prog-section-heading">
+          <h2 class="prog-section-title" id="ls-fit-heading" tabindex="-1">{launchStation.fit.title}</h2>
+        </div>
+      </header>
+      <dl class="prog-fit-list">
+        {launchStation.fit.criteria.map((criterion) => (
+          <div class="prog-fit-item">
+            <dt>{criterion.label}</dt>
+            <dd>{criterion.body}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <section class="launch-station-contribution reveal" aria-labelledby="ls-contribution-heading">
+      <div class="prog-section-header prog-section-header--top">
+        <div class="prog-section-heading">
+          <h2 class="prog-section-title" id="ls-contribution-heading">Contribute to the room.</h2>
+        </div>
+        <div>
+          <p class="prog-section-copy">{launchStation.contribution}</p>
+          <ul class="prog-proof-list" aria-label="Community activities">
+            {launchStation.activities.map((activity) => (
+              <li class="prog-proof-item">{activity}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="launch-station-contribution reveal" aria-labelledby="ls-joining-heading">
+      <div class="prog-section-header prog-section-header--top">
+        <div class="prog-section-heading">
+          <h2 class="prog-section-title" id="ls-joining-heading">{launchStation.joining.title}</h2>
+        </div>
+        <div>
+          <p class="prog-section-copy">{launchStation.joining.body}</p>
+          <div class="prog-hero-actions">
+            <a
+              class="btn-pri prog-cta"
+              href={launchStation.joining.cta.href}
+              data-analytics-event="program_interest"
+              data-analytics-placement="launch_station_joining"
+              data-analytics-label="launch_station"
+            >{launchStation.joining.cta.label}</a>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 </div>

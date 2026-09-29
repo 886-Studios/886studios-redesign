@@ -1437,7 +1437,7 @@ export const standaloneResourceArticles: ResourceArticle[] = [
           "When have you pivoted and why?",
           "What stage of the process are you in? What does your timeline look like?",
           "How do you plan to scale your product? Who is your target audience?",
-          "What do you hope to gain out of our program? What makes ikigai a good fit for you?",
+          "What do you hope to gain out of our program? What makes ikigai Launchpad a good fit for you?",
         ],
       },
       {

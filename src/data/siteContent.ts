@@ -83,7 +83,7 @@ export const portfolioCompanies = [
     slug: "footnotes",
     relationship: "886-backed",
     category: "Productivity",
-    program: "ikigai S'26",
+    program: "ikigai Launchpad S'26",
     status: "Active",
     websiteUrl: "https://footnotes.rest/",
     appStoreUrl: "https://apps.apple.com/app/footnotes-notes-for-noticing/id6803869918",
@@ -103,7 +103,7 @@ export const portfolioCompanies = [
     slug: "diffusr",
     relationship: "886-backed",
     category: "AI",
-    program: "ikigai S'26",
+    program: "ikigai Launchpad S'26",
     status: "Active",
     websiteUrl: "https://www.diffusr.ai",
     founders: [
@@ -135,7 +135,7 @@ export const portfolioCompanies = [
     slug: "peeps",
     relationship: "886-backed",
     category: "Consumer",
-    program: "ikigai S'26",
+    program: "ikigai Launchpad S'26",
     status: "Active",
     websiteUrl: "https://playpeeps.app",
     appStoreUrl: "https://apps.apple.com/tw/app/peeps-%E8%88%87%E6%9C%8B%E5%8F%8B%E5%90%8C%E5%B1%85/id6753601581",
@@ -164,7 +164,7 @@ export const portfolioCompanies = [
     slug: "lfg",
     relationship: "886-backed",
     category: "Consumer",
-    program: "ikigai S'26",
+    program: "ikigai Launchpad S'26",
     status: "Active",
     websiteUrl: "https://lfg.place/",
     appStoreUrl: "https://apps.apple.com/us/app/lfg-on-demand-hangouts/id6762966872",
@@ -182,7 +182,7 @@ export const portfolioCompanies = [
     slug: "persona2-ai",
     relationship: "886-backed",
     category: "Gaming",
-    program: "ikigai S'26",
+    program: "ikigai Launchpad S'26",
     status: "Active",
     websiteUrl: "https://persona2.ai/",
     playStoreUrl: "https://play.google.com/store/apps/details?id=ai.persona2.app",
@@ -201,7 +201,7 @@ export const portfolioCompanies = [
     slug: "hushli",
     relationship: "886-backed",
     category: "Health",
-    program: "ikigai S'25",
+    program: "ikigai Launchpad S'25",
     status: "Active",
     websiteUrl: "https://hushli.ai/",
     appStoreUrl: "https://apps.apple.com/tw/app/hushli-ai-confidant-journal/id6748250163?l=en-GB",
@@ -229,7 +229,7 @@ export const portfolioCompanies = [
     slug: "instapodz",
     relationship: "886-backed",
     category: "AI",
-    program: "ikigai S'25",
+    program: "ikigai Launchpad S'25",
     status: "Active",
     websiteUrl: "https://instapodz.com/",
     appStoreUrl: "https://apps.apple.com/us/app/instapodz-ai-podcast-creator/id6744011584",
@@ -247,7 +247,7 @@ export const portfolioCompanies = [
     slug: "picturecook",
     relationship: "886-backed",
     category: "Education",
-    program: "ikigai S'25",
+    program: "ikigai Launchpad S'25",
     status: "Active",
     websiteUrl: "https://picture-cook.com/",
     appStoreUrl: "https://apps.apple.com/sg/app/picturecook-kid-english-buddy/id6746742382",
@@ -266,7 +266,7 @@ export const portfolioCompanies = [
     slug: "sugar-ai",
     relationship: "886-backed",
     category: "AI",
-    program: "ikigai S'25",
+    program: "ikigai Launchpad S'25",
     status: "Active",
     websiteUrl: "https://sugarai.tw/",
     appStoreUrl: "https://apps.apple.com/tw/app/sugar-%E4%BD%A0%E7%9A%84%E6%AD%A3%E7%89%88%E6%BC%AB%E7%95%ABai%E8%A7%92%E8%89%B2/id6744877922",
@@ -285,7 +285,7 @@ export const portfolioCompanies = [
     slug: "tellit-now",
     relationship: "886-backed",
     category: "Marketing",
-    program: "ikigai S'25",
+    program: "ikigai Launchpad S'25",
     status: "Active",
     websiteUrl: "https://www.tellitapp.ai/",
     appStoreUrl: "https://apps.apple.com/us/app/tell-it-now-%E6%8E%A2%E5%BA%97%E5%A4%A7%E8%81%B2%E5%85%AC/id6448947278",
@@ -304,7 +304,7 @@ export const portfolioCompanies = [
     slug: "gitroll",
     relationship: "886-backed",
     category: "HRTech",
-    program: "ikigai F'24",
+    program: "ikigai Launchpad F'24",
     status: "Acquired",
     websiteUrl: "https://gitroll.io/",
     logo: {
@@ -322,7 +322,7 @@ export const portfolioCompanies = [
     slug: "kardomo",
     relationship: "886-backed",
     category: "Consumer",
-    program: "ikigai S'26",
+    program: "ikigai Launchpad S'26",
     status: "Active",
     websiteUrl: "https://kardomo.com/",
     appStoreUrl: "https://apps.apple.com/tw/app/kardomo-%E5%8F%B0%E7%81%A3%E5%B0%88%E5%B1%AC%E7%9A%84-kpop-%E4%BA%A4%E5%8F%8B%E5%9C%88/id6748519302",
@@ -352,7 +352,7 @@ export const portfolioCompanies = [
     slug: "o3o-labs",
     relationship: "886-backed",
     category: "Social",
-    program: "ikigai F'24",
+    program: "ikigai Launchpad F'24",
     status: "Active",
     appStoreUrl: "https://apps.apple.com/us/app/picpet/id6742077014",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.o3o.android.picpet",
@@ -550,8 +550,8 @@ export const siteContent = {
         id: "programs",
         label: "Programs",
         children: [
-          { id: "bamboo", label: "Bamboo", href: "/programs/bamboo" },
-          { id: "ikigai", label: "Ikigai", href: "/programs" },
+          { id: "ikigai", label: "ikigai Launchpad", href: "/programs" },
+          { id: "launch-station", label: "Launch Station", href: "/programs/launch-station" },
         ],
       },
       {
@@ -644,9 +644,9 @@ export const siteContent = {
       },
       secondary: [
         {
-          label: "Community",
+          label: "Residency",
           title: "Launch Station",
-          body: "Free coworking space and a founder community inside Taiwan Tech Arena.",
+          body: "An invitation-only residency for full-time builders, with hot desks and an active community at Taiwan Tech Arena.",
           ctaLabel: "Learn more →",
           ctaHref: "/programs/launch-station",
         },
@@ -1142,7 +1142,7 @@ export const siteContent = {
     },
     launchStation: {
       title: "Launch Station",
-      eyebrow: "Community program",
+      eyebrow: "Builder residency",
       poster: {
         src: "/assets/programs/launch-station-community-collage-800.webp",
         alt: "Launch Station community collage",
@@ -1150,8 +1150,8 @@ export const siteContent = {
         height: 800,
       },
       lead:
-        "Launch Station gives early-stage founders a free dedicated desk inside Taiwan Tech Arena, plus the builder energy, resources, and community around 886 Studios.",
-      status: "Applications will open at the beginning of October.",
+        "An invitation-only residency for full-time builders turning ambitious ideas into products and companies. Work alongside the 886 Studios community at Taiwan Tech Arena, exchange ideas, and help each other build better.",
+      status: "Invitation only. Rolling entry.",
       essentials: [
         {
           label: "Location",
@@ -1159,22 +1159,65 @@ export const siteContent = {
         },
         {
           label: "Workspace",
-          value: "Free dedicated desk",
+          value: "Shared hot desks",
         },
         {
-          label: "Community",
-          value: "Founders, investors, and 886",
+          label: "Format",
+          value: "A defined residency term",
+        },
+        {
+          label: "Commitment",
+          value: "Full-time builders, in person",
         },
       ],
+      benefitsTitle: "A place to build together",
       benefits: [
-        "Free dedicated desk space inside 886 Studios' open startup office",
-        "Exclusive startup software perks across AWS, Notion, Ramp, Webflow, and more",
-        "Founder and investor community at Taiwan Tech Arena",
+        {
+          title: "Workspace",
+          body: "Hot-desk access in 886 Studios' shared startup office at Taiwan Tech Arena. Come in regularly to work alongside other builders.",
+        },
+        {
+          title: "Startup perks",
+          body: "Exclusive startup software perks across AWS, Notion, Ramp, Webflow, and more",
+        },
+        {
+          title: "Community",
+          body: "An active community of builders and founders who exchange ideas, share feedback, and learn from one another in person.",
+        },
       ],
+      fit: {
+        eyebrow: "Who it's for",
+        title: "Builders who follow through.",
+        criteria: [
+          {
+            label: "Technical depth",
+            body: "You have built real products and have the technical ability to take an idea through to a commercial company.",
+          },
+          {
+            label: "Full-time commitment",
+            body: "You are working full-time on what you are building and can participate in person at Taiwan Tech Arena regularly. Daily attendance is not required, but frequent presence is part of the residency.",
+          },
+          {
+            label: "Curiosity & character",
+            body: "You stay curious about technology and AI, take your work seriously, and bring a generous, collaborative approach to the people around you.",
+          },
+        ],
+      },
       contribution:
-        "In return, Launch Station members contribute to the community by hosting a session, sharing what they are learning, giving a demo, or helping other founders move faster.",
+        "Active contribution is part of the residency. Share what you are learning, show your work, lead a workshop, or help another member solve a problem. The value of the community grows through what each person brings to it.",
+      activities: [
+        "Practical workshops on product, engineering, and go-to-market",
+        "Member-led sessions, demos, and peer feedback",
+        "In-person gatherings that connect ideas and talent",
+      ],
+      joining: {
+        eyebrow: "Joining Launch Station",
+        title: "Build with the community.",
+        body: "Launch Station is invitation only, with rolling entry for a defined residency term. Get in touch to tell us what you are building and how you would contribute.",
+        cta: { label: "Get in touch", href: "/contact" },
+      },
       card: {
-        body: "Our community-building program for founders who move faster alongside ambitious peers.",
+        body: "An invitation-only residency for full-time builders, with shared hot desks and an active community at Taiwan Tech Arena.",
         cta: {
           label: "Learn more →",
           href: "/programs/launch-station",
@@ -1590,7 +1633,7 @@ export const siteContent = {
       title: "Building an ambitious startup",
       description:
         "Tell us what you’re working on and apply to ikigai Launchpad.",
-      cta: "Apply to ikigai",
+      cta: "Apply to ikigai Launchpad",
       href: applicationUrl,
     },
     general: {
