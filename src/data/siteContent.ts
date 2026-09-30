@@ -1160,8 +1160,6 @@ export const siteContent = {
       communityPhotos: [
         {
           src: "/assets/launch-station/community-dinner-960.webp",
-          fullSrc: "/assets/launch-station/community-dinner.jpg",
-          caption: "Prezzy Day, then dinner.",
           srcset: "/assets/launch-station/community-dinner-480.webp 480w, /assets/launch-station/community-dinner-960.webp 960w, /assets/launch-station/community-dinner-1440.webp 1440w",
           alt: "Friends smiling for a selfie around a shared dinner table after Launch Station Prezzy Day",
           width: 960,
@@ -1169,8 +1167,6 @@ export const siteContent = {
         },
         {
           src: "/assets/launch-station/community-lunch-960.webp",
-          fullSrc: "/assets/launch-station/community-lunch.jpg",
-          caption: "Lunch with the community.",
           srcset: "/assets/launch-station/community-lunch-480.webp 480w, /assets/launch-station/community-lunch-960.webp 960w, /assets/launch-station/community-lunch-1440.webp 1440w",
           alt: "Six people smiling around a restaurant table during a Launch Station community lunch",
           width: 960,
@@ -1178,7 +1174,7 @@ export const siteContent = {
         },
       ],
       lead:
-        "An invitation-only residency for full-time builders turning ambitious ideas into products and companies. Work alongside the 886 Studios community at Taiwan Tech Arena, exchange ideas, and help each other build better.",
+        "A residency for founders and builders working on their next company. Join the 886 Studios community in Taipei.",
       status: "Invitation only. Rolling entry.",
       essentials: [
         {
@@ -1191,57 +1187,57 @@ export const siteContent = {
         },
         {
           label: "Format",
-          value: "A defined residency term",
+          value: "Fixed-term residency",
         },
         {
           label: "Commitment",
           value: "Full-time builders, in person",
         },
       ],
-      benefitsTitle: "A place to build together",
+      benefitsTitle: "What you'll get",
       benefits: [
         {
           title: "Workspace",
-          body: "Hot-desk access in 886 Studios' shared startup office at Taiwan Tech Arena. Come in regularly to work alongside other builders.",
+          body: "Free desk space in our shared startup office.",
         },
         {
           title: "Startup perks",
-          body: "Exclusive startup software perks across AWS, Notion, Ramp, Webflow, and more",
+          body: "Offers from AWS, Notion, Ramp, Webflow, and more to help you get started.",
         },
         {
           title: "Community",
-          body: "An active community of builders and founders who exchange ideas, share feedback, and learn from one another in person.",
+          body: "Other founders to talk things through with, get feedback from, and learn alongside.",
         },
       ],
       fit: {
         eyebrow: "Who it's for",
-        title: "Builders who follow through.",
+        title: "Who it's for",
         criteria: [
           {
             label: "Technical depth",
-            body: "You have built real products and have the technical ability to take an idea through to a commercial company.",
+            body: "You've built real products and have the technical skills to turn an idea into a business.",
           },
           {
             label: "Full-time commitment",
-            body: "You are working full-time on what you are building and can participate in person at Taiwan Tech Arena regularly. Daily attendance is not required, but frequent presence is part of the residency.",
+            body: "You're working on your project full-time and can join us in the office regularly. You don't need to be here every day.",
           },
           {
             label: "Curiosity & character",
-            body: "You stay curious about technology and AI, take your work seriously, and bring a generous, collaborative approach to the people around you.",
+            body: "You're curious about technology and AI, take your work seriously, and enjoy helping others.",
           },
         ],
       },
       contribution:
-        "Active contribution is part of the residency. Share what you are learning, show your work, lead a workshop, or help another member solve a problem. The value of the community grows through what each person brings to it.",
+        "We ask every member to take part. Bring your questions, share what you're learning, and make time to help others.",
       activities: [
-        "Practical workshops on product, engineering, and go-to-market",
-        "Member-led sessions, demos, and peer feedback",
-        "In-person gatherings that connect ideas and talent",
+        "Workshops on product, engineering, and go-to-market",
+        "Member-led demos and feedback sessions",
+        "Community lunches and gatherings",
       ],
       joining: {
         eyebrow: "Joining Launch Station",
-        title: "Build with the community.",
-        body: "Launch Station is invitation only, with rolling entry for a defined residency term. Get in touch to tell us what you are building and how you would contribute.",
+        title: "Interested in joining?",
+        body: "Tell us what you're working on and what you'd bring to Launch Station.",
         cta: { label: "Get in touch", href: "/contact" },
       },
       card: {

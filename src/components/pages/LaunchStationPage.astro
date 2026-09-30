@@ -17,7 +17,12 @@ const { launchStation } = siteContent.programs;
             data-analytics-event="program_interest"
             data-analytics-placement="launch_station_hero"
             data-analytics-label="launch_station"
-          >{launchStation.joining.cta.label}</a>
+          >
+            {launchStation.joining.cta.label}
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 12h16m-7-7 7 7-7 7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </a>
           <a class="launch-station-explore" href="#ls-fit-heading">Explore the residency</a>
         </div>
         <p class="launch-station-status">{launchStation.status}</p>
@@ -70,38 +75,22 @@ const { launchStation } = siteContent.programs;
       </dl>
       <div class="launch-station-community-photos">
         {launchStation.communityPhotos.map((photo) => (
-          <a
-            class="launch-station-memory-link"
-            href={photo.fullSrc}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${photo.caption} View full-size photo (opens in a new tab)`}
-          >
-            <figure class="launch-station-memory">
-              <img
-                src={photo.src}
-                srcset={photo.srcset}
-                sizes="(max-width: 560px) calc(100vw - 48px), (max-width: 640px) calc(100vw - 64px), (max-width: 1160px) calc(50vw - 44px), 536px"
-                alt={photo.alt}
-                width={photo.width}
-                height={photo.height}
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>
-                <span>{photo.caption}</span>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <path d="M7 17 17 7M7 7h10v10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </figcaption>
-            </figure>
-          </a>
+          <img
+            src={photo.src}
+            srcset={photo.srcset}
+            sizes="(max-width: 560px) calc(100vw - 48px), (max-width: 640px) calc(100vw - 64px), (max-width: 1160px) calc(50vw - 44px), 536px"
+            alt={photo.alt}
+            width={photo.width}
+            height={photo.height}
+            loading="lazy"
+            decoding="async"
+          />
         ))}
       </div>
     </section>
 
     <section class="launch-station-contribution" aria-labelledby="ls-contribution-heading">
-      <h2 id="ls-contribution-heading">Contribute to the room.</h2>
+      <h2 id="ls-contribution-heading">Being part of the community</h2>
       <p>{launchStation.contribution}</p>
       <ul class="launch-station-activities" aria-label="Community activities">
         {launchStation.activities.map((activity) => <li>{activity}</li>)}
@@ -117,7 +106,12 @@ const { launchStation } = siteContent.programs;
         data-analytics-event="program_interest"
         data-analytics-placement="launch_station_joining"
         data-analytics-label="launch_station"
-      >{launchStation.joining.cta.label}</a>
+      >
+        {launchStation.joining.cta.label}
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M4 12h16m-7-7 7 7-7 7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
     </section>
   </div>
 </div>

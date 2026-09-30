@@ -64,7 +64,7 @@ const { article } = Astro.props as { article: ResourceArticle };
         )}
 
         {section.table && (
-          <div class="resource-table-wrap">
+          <div class="resource-table-wrap" tabindex="0" role="region" aria-label={`${section.title} table`}>
             <table class="resource-table">
               <thead>
                 <tr>

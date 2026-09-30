@@ -64,7 +64,7 @@ const isActiveNavItem = (href: string) => {
     >
       {siteContent.nav.cta.label}
     </a>
-    <button class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
+    <button type="button" class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -77,8 +77,8 @@ const isActiveNavItem = (href: string) => {
       <a class="nav-logo" href="/">
         <img src={brand.logoUrl} alt={brand.logoAlt} width={brand.logoWidth} height={brand.logoHeight} decoding="async" />
       </a>
-      <button class="mobile-drawer-close" aria-label="Close menu">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <button type="button" class="mobile-drawer-close" aria-label="Close menu">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
           <path d="M15 5L5 15M5 5l10 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
         </svg>
       </button>

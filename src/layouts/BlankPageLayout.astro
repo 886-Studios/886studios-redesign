@@ -16,7 +16,7 @@ const { title, section } = Astro.props;
   robots="noindex, follow"
 >
   <div class="page">
-    <PageHero eyebrow={section} title={title} showDivider={false} />
+    <PageHero title={title} showDivider={false} />
     <slot />
   </div>
 </BaseLayout>

@@ -30,7 +30,7 @@ function initNavChrome() {
   const overlay = drawer?.querySelector<HTMLElement>(".mobile-drawer-overlay");
   const closeButton = drawer?.querySelector<HTMLButtonElement>(".mobile-drawer-close");
   const main = select<HTMLElement>("#main-content");
-  const footer = select<HTMLElement>("footer");
+  const footer = select<HTMLElement>(".site-footer");
   const banner = select<HTMLElement>("[data-application-banner]");
   const desktopViewport = window.matchMedia("(min-width: 881px)");
   const sectionDrawers = selectAll<HTMLDetailsElement>("[data-nav-group]");

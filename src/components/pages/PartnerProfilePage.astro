@@ -71,7 +71,7 @@ const { profile } = Astro.props as { profile: PartnerProfile };
 
     {profile.recommendations && profile.recommendations.length > 0 && (
       <section class="partner-profile-section">
-        <h2>Reading Recommendations:</h2>
+        <h2>Reading recommendations</h2>
         <ul class="partner-profile-list">
           {profile.recommendations.map((item) => <li>{item}</li>)}
         </ul>
@@ -80,7 +80,7 @@ const { profile } = Astro.props as { profile: PartnerProfile };
 
     {profile.companiesBuilt.length > 0 && (
       <section class="partner-profile-section">
-        <h2>Companies he’s Built</h2>
+        <h2>Companies built</h2>
         <ul class="partner-company-list">
           {profile.companiesBuilt.map((company) => <li>{company}</li>)}
         </ul>
