@@ -1,13 +1,15 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
 import PageHero from "../components/PageHero.astro";
+import "../styles/draft-pages.css";
 
 interface Props {
   title: string;
   section: string;
+  lead?: string;
 }
 
-const { title, section } = Astro.props;
+const { title, section, lead } = Astro.props;
 ---
 
 <BaseLayout
@@ -15,8 +17,10 @@ const { title, section } = Astro.props;
   description={`${title}, part of ${section} at 886 Studios.`}
   robots="noindex, follow"
 >
-  <div class="page">
-    <PageHero title={title} showDivider={false} />
-    <slot />
+  <div class="page draft-page">
+    <PageHero title={title} lead={lead} />
+    <div class="draft-content">
+      <slot />
+    </div>
   </div>
 </BaseLayout>
