@@ -7,15 +7,17 @@ const { launchStation } = siteContent.programs;
 <div class="page ls-page" id="page-launch-station">
   <section class="ls-hero" aria-labelledby="ls-heading">
     <div class="ls-hero-copy">
-      <div class="ls-topline">
-        <a class="ls-back" href="/programs">Programs</a>
-        <p class="prog-band-label">{launchStation.eyebrow}</p>
+      <div class="ls-announcement">
+        <h1 class="ls-h1" id="ls-heading">{launchStation.title}</h1>
+        <p class="ls-lead">{launchStation.lead}</p>
       </div>
-      <h1 class="ls-h1" id="ls-heading">{launchStation.title}</h1>
-      <p class="ls-lead">{launchStation.lead}</p>
       <p class="ls-status-note">
-        <em><a href={siteContent.home.newsletter.publicationUrl}>{launchStation.status}</a></em>
+        <em>
+          <span>{launchStation.status.prompt}{" "}<a href={siteContent.home.newsletter.publicationUrl}>{launchStation.status.action}</a></span>
+          <span class="ls-status-detail">{launchStation.status.detail}</span>
+        </em>
       </p>
+      <a class="ls-back" href="/programs">Programs</a>
     </div>
   </section>
 </div>

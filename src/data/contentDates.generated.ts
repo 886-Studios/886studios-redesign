@@ -3,7 +3,7 @@ export const contentDates: Readonly<Record<string, string>> = {
   "/incorporation-101": "2026-06-23",
   "/interview-guidebook": "2026-07-20",
   "/programs": "2026-09-07",
-  "/programs/launch-station": "2026-09-29",
+  "/programs/launch-station": "2026-09-30",
   "/resources": "2026-09-24",
   "/resources/application-guide": "2026-07-15",
   "/resources/choosing-the-right-co-founder": "2026-07-20",
