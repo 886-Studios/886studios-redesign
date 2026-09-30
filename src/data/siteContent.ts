@@ -1131,9 +1131,9 @@ export const siteContent = {
       lead:
         "Launch Station, our founder community-building program, is coming back...",
       status: {
-        prompt: "Interested?",
-        action: "Follow us on Substack",
-        detail: "to hear when it resumes",
+        prompt: "Interested? Follow us on",
+        action: "Substack",
+        detail: "for updates.",
       },
       card: {
         body: "Launch Station, our founder community-building program, is coming back...",
