@@ -27,6 +27,32 @@ const substackAuthorOverrides: Record<string, string> = {
   "rocket-launches-wooly-mammoths-the": "Carter Wang",
 };
 
+// These archive posts use the old cohort names, including standalone abbreviations.
+// Keep their original slugs and destinations; normalize only editorial text.
+const legacyBatchPosts = new Set([
+  "find-truth-faster",
+  "ikigai-launchpad-spring-2026-sp26",
+  "ikigai-launchpad-s25-demo-day",
+  "a-look-into-ikigai",
+]);
+
+function normalizeBatchNames(value: string) {
+  const apostrophe = "(?:['’]|&#(?:39|8217);|&#x(?:27|2019);|&apos;)";
+  for (const [season, abbreviation, name] of [
+    ["Fall 2024", `F${apostrophe}24`, "ikigai #01"],
+    ["Summer 2025", `S${apostrophe}25`, "ikigai #02"],
+    ["Spring 2026", `Sp?${apostrophe}26`, "ikigai #03"],
+  ]) {
+    // Dates such as "happening in Spring 2026" remain historical schedule details.
+    const batchName = new RegExp(
+      `\\b(?:ikigai(?: Launchpad)?\\s+(?:${season}|${abbreviation})|${season}(?=\\s+(?:\\(${abbreviation}\\)|batch\\b|applications\\b))|${abbreviation})(?:\\s+\\(${abbreviation}\\))?(?!\\w)(?:\\s+ikigai\\b)?`,
+      "gi",
+    );
+    value = value.replace(batchName, name);
+  }
+  return value;
+}
+
 // Verified replacements for moved pages linked from the imported archive.
 const archivedLinkReplacements: Record<string, string> = {
   "https://withikigai.com/partners/886-partners-1/kai-huang": "https://www.886studios.com/about/kai-huang",
@@ -119,11 +145,14 @@ export function parseBlogFeed(xml: string): BlogPost[] {
   const seenSlugs = new Set<string>();
 
   return items.flatMap((item) => {
-    const title = normalizeEditorialText(readValue(item.title));
     const substackUrl = readValue(item.link);
     const publishedAt = readValue(item.pubDate);
     const rawContent = readValue(item["content:encoded"]);
     const slug = getSlug(substackUrl);
+    const normalizeText = (value: string) => normalizeEditorialText(
+      legacyBatchPosts.has(slug) ? normalizeBatchNames(value) : value,
+    );
+    const title = normalizeText(readValue(item.title));
 
     if (!title || !slug || !substackUrl || !rawContent || !isValidDate(publishedAt)) {
       return [];
@@ -133,9 +162,9 @@ export function parseBlogFeed(xml: string): BlogPost[] {
     seenSlugs.add(slug);
 
     const contentWithGalleries = replaceImageGalleries(rawContent);
-    const contentHtml = normalizeEditorialText(sanitizePostHtml(contentWithGalleries));
+    const contentHtml = sanitizePostHtml(contentWithGalleries, normalizeText);
     const textContent = toPlainText(contentHtml);
-    const description = normalizeEditorialText(
+    const description = normalizeText(
       toPlainText(readValue(item.description)) ||
       `${textContent.slice(0, 157).trimEnd()}${textContent.length > 157 ? "..." : ""}`,
     );
@@ -331,7 +360,7 @@ function replaceImageGalleries(html: string) {
   );
 }
 
-function sanitizePostHtml(html: string) {
+function sanitizePostHtml(html: string, normalizeText: (value: string) => string) {
   const withoutSubstackWidgets = sanitizeHtml(html, {
     allowedTags: [
       "a",
@@ -378,6 +407,7 @@ function sanitizePostHtml(html: string) {
   });
 
   return sanitizeHtml(withoutSubstackWidgets, {
+    textFilter: normalizeText,
     allowedTags: [
       "a",
       "blockquote",
@@ -455,7 +485,8 @@ function sanitizePostHtml(html: string) {
             ...attributes,
             src: optimizedSrc,
             ...(optimizedSrcset ? { srcset: optimizedSrcset } : {}),
-            alt: attributes.alt ?? "",
+            alt: normalizeText(attributes.alt ?? ""),
+            ...(attributes.title ? { title: normalizeText(attributes.title) } : {}),
             width: attributes.width ?? String(dimensions.width),
             height: attributes.height ?? String(dimensions.height),
             loading: "lazy",

@@ -20,6 +20,7 @@ declare module "sanitize-html" {
     enforceHtmlBoundary?: boolean;
     nonTextTags?: string[];
     exclusiveFilter?: (frame: SanitizeHtmlFrame) => boolean;
+    textFilter?: (text: string, tagName: string) => string;
     transformTags?: Record<
       string,
       string | ((tagName: string, attribs: Record<string, string>) => TransformResult)

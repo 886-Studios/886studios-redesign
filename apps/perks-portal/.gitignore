@@ -1,0 +1,8 @@
+private/*
+!private/.gitkeep
+.env*
+!.env.example
+.vercel/
+node_modules/
+.qa/
+design/*.png
