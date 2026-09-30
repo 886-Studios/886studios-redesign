@@ -550,8 +550,8 @@ export const siteContent = {
         id: "programs",
         label: "Programs",
         children: [
-          { id: "ikigai", label: "ikigai Launchpad", href: "/programs" },
-          { id: "launch-station", label: "Launch Station", href: "/programs/launch-station" },
+          { id: "ikigai", label: "ikigai Launchpad", href: "/ikigai-launchpad" },
+          { id: "launch-station", label: "Launch Station", href: "/launch-station" },
         ],
       },
       {
@@ -573,6 +573,7 @@ export const siteContent = {
           { id: "newsroom", label: "Newsroom", href: "/about/newsroom" },
         ],
       },
+      { id: "contact", label: "Contact us", href: "/contact" },
     ],
   },
   home: {
@@ -582,7 +583,7 @@ export const siteContent = {
       body: "886 Studios is where the next generation of global tech companies are built.\nWe run ikigai Launchpad, the premier Silicon Valley-style accelerator in Taipei\nbrought to you by the founders of Twitch, Guitar Hero, Playdom, Kabam, & more.",
       cta: {
         label: "Learn more about ikigai Launchpad",
-        href: "/programs",
+        href: "/ikigai-launchpad",
       },
     },
     photos: {
@@ -640,7 +641,7 @@ export const siteContent = {
         body: "$100K USD in funding, hands-on mentorship from successful Silicon Valley founders, and a tight-knit 10-week accelerator program designed for startups that want to move fast.",
         meta: ["$100K USD funding", "Partner office hours", "Batch community"],
         ctaLabel: "Learn more →",
-        ctaHref: "/programs",
+        ctaHref: "/ikigai-launchpad",
       },
       secondary: [
         {
@@ -648,7 +649,7 @@ export const siteContent = {
           title: "Launch Station",
           body: "An invitation-only residency for full-time builders, with hot desks and an active community at Taiwan Tech Arena.",
           ctaLabel: "Learn more →",
-          ctaHref: "/programs/launch-station",
+          ctaHref: "/launch-station",
         },
       ],
     },
@@ -1149,6 +1150,29 @@ export const siteContent = {
         width: 800,
         height: 800,
       },
+      heroPhoto: {
+        src: "/assets/launch-station/prezzy-day-960.webp",
+        srcset: "/assets/launch-station/prezzy-day-480.webp 480w, /assets/launch-station/prezzy-day-960.webp 960w, /assets/launch-station/prezzy-day-1440.webp 1440w",
+        alt: "People smiling and sitting together on chairs and floor cushions at Launch Station Prezzy Day",
+        width: 960,
+        height: 720,
+      },
+      communityPhotos: [
+        {
+          src: "/assets/launch-station/community-dinner-960.webp",
+          srcset: "/assets/launch-station/community-dinner-480.webp 480w, /assets/launch-station/community-dinner-960.webp 960w, /assets/launch-station/community-dinner-1440.webp 1440w",
+          alt: "Friends smiling for a selfie around a shared dinner table after Launch Station Prezzy Day",
+          width: 960,
+          height: 720,
+        },
+        {
+          src: "/assets/launch-station/community-lunch-960.webp",
+          srcset: "/assets/launch-station/community-lunch-480.webp 480w, /assets/launch-station/community-lunch-960.webp 960w, /assets/launch-station/community-lunch-1440.webp 1440w",
+          alt: "Six people smiling around a restaurant table during a Launch Station community lunch",
+          width: 960,
+          height: 720,
+        },
+      ],
       lead:
         "An invitation-only residency for full-time builders turning ambitious ideas into products and companies. Work alongside the 886 Studios community at Taiwan Tech Arena, exchange ideas, and help each other build better.",
       status: "Invitation only. Rolling entry.",
@@ -1220,7 +1244,7 @@ export const siteContent = {
         body: "An invitation-only residency for full-time builders, with shared hot desks and an active community at Taiwan Tech Arena.",
         cta: {
           label: "Learn more →",
-          href: "/programs/launch-station",
+          href: "/launch-station",
         },
       },
     },
@@ -1336,7 +1360,7 @@ export const siteContent = {
     },
     perks: {
       title: "Exclusive Perks",
-      programHref: "/programs",
+      programHref: "/ikigai-launchpad",
       categories: [
         {
           title: "Engineering",
@@ -1588,7 +1612,7 @@ export const siteContent = {
         "886 Studios and Lifelike Capital work together to support founders building ambitious companies with global potential.",
       program: {
         label: "ikigai Launchpad",
-        href: "/programs",
+        href: "/ikigai-launchpad",
       },
       programDescription:
         "is the result of our collaboration, a shared program created to help the next generation of startups grow globally.",

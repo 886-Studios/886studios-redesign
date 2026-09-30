@@ -6,6 +6,12 @@ const publicAssets = path.resolve("public/assets");
 
 const imageGroups = [
   {
+    directory: "launch-station",
+    pattern: /\.(?:jpe?g|png)$/i,
+    widths: [480, 960, 1440],
+    quality: 82,
+  },
+  {
     directory: "landing",
     pattern: /\.(?:jpe?g|png)$/i,
     widths: [480, 960],

@@ -244,8 +244,8 @@ for (const filePath of htmlFiles) {
             "/blog",
             "/incorporation-101",
             "/interview-guidebook",
-            "/programs",
-            "/programs/launch-station",
+            "/ikigai-launchpad",
+            "/launch-station",
             "/resources",
           ].includes(route) ||
           route.startsWith("/blog/") ||
@@ -286,11 +286,11 @@ for (const filePath of htmlFiles) {
           }
           if (
             homepageSchema?.mentions?.["@id"] !==
-            `${productionOrigin}/programs#ikigai-launchpad`
+            `${productionOrigin}/ikigai-launchpad#ikigai-launchpad`
           ) {
             fail("/: homepage WebPage does not identify ikigai Launchpad as its primary mention");
           }
-          if (homepageSchema?.significantLink !== `${productionOrigin}/programs`) {
+          if (homepageSchema?.significantLink !== `${productionOrigin}/ikigai-launchpad`) {
             fail("/: homepage WebPage does not identify the ikigai Launchpad page as significant");
           }
         }
@@ -522,6 +522,33 @@ if (!llms.includes("https://www.886studios.com/resources/y-combinator-101")) {
 
 const deploymentConfig = JSON.parse(await readFile(path.join(projectRoot, "vercel.json"), "utf8"));
 const redirects = Array.isArray(deploymentConfig.redirects) ? deploymentConfig.redirects : [];
+for (const source of ["/programs", "/programs/"]) {
+  if (!redirects.some((redirect) =>
+    redirect.source === source &&
+    redirect.destination === "/ikigai-launchpad" &&
+    redirect.permanent === true
+  )) fail(`${source}: missing permanent redirect to /ikigai-launchpad`);
+}
+if (!pages.some((page) => page.route === "/ikigai-launchpad" && page.isIndexable)) {
+  fail("/ikigai-launchpad: missing indexable Launchpad page");
+}
+if (!pages.some((page) => page.route === "/programs" && !page.isIndexable)) {
+  fail("/programs: missing noindex redirect fallback");
+}
+if (!redirects.some((redirect) =>
+  redirect.source === "/programs/launch-station/:path*" &&
+  redirect.destination === "/launch-station" &&
+  redirect.permanent === true
+)) fail("/programs/launch-station: missing permanent redirect to /launch-station");
+if (!pages.some((page) => page.route === "/launch-station" && page.isIndexable)) {
+  fail("/launch-station: missing indexable Launch Station page");
+}
+if (!pages.some((page) => page.route === "/programs/launch-station" && !page.isIndexable)) {
+  fail("/programs/launch-station: missing noindex redirect fallback");
+}
+if (redirects.some((redirect) => redirect.source === "/launch-station/:path*")) {
+  fail("/launch-station: legacy redirect must not intercept the current route");
+}
 if (deploymentConfig.trailingSlash !== false) fail("vercel.json: trailing slash normalization is not enabled");
 if (!redirects.some((redirect) =>
   redirect.has?.some((condition) => condition.type === "host" && condition.value === "886studios.com") &&

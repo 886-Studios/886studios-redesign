@@ -9,7 +9,7 @@ interface Props {
 const { currentPath } = Astro.props;
 
 const isActiveNavItem = (href: string) => {
-  if (href === "/programs") {
+  if (href === "/ikigai-launchpad") {
     return currentPath === href;
   }
   if (href === "/about/team" && partnerProfiles.some((profile) => currentPath === `/about/${profile.slug}`)) {

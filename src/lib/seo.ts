@@ -64,10 +64,10 @@ export const pageMeta = {
     title: "Launch Station | 886 Studios",
     description:
       "Launch Station is 886 Studios' invitation-only residency for full-time builders, with hot desks and an active community at Taiwan Tech Arena in Taipei.",
-    ogImage: `${siteConfig.url}/assets/programs/launch-station-community-collage-2026.jpg`,
-    ogImageAlt: "Launch Station founder community collage",
-    ogImageWidth: 800,
-    ogImageHeight: 800,
+    ogImage: `${siteConfig.url}/assets/launch-station/prezzy-day.jpg`,
+    ogImageAlt: "The community gathered at Launch Station Prezzy Day",
+    ogImageWidth: 1920,
+    ogImageHeight: 1440,
     ogImageType: "image/jpeg",
   },
   about: {
@@ -260,9 +260,9 @@ export function getOrganizationSchema(): JsonLdObject {
     },
     brand: {
       "@type": "Brand",
-      "@id": `${siteConfig.url}/programs#ikigai-brand`,
+      "@id": `${siteConfig.url}/ikigai-launchpad#ikigai-brand`,
       name: "ikigai Launchpad",
-      url: `${siteConfig.url}/programs`,
+      url: `${siteConfig.url}/ikigai-launchpad`,
     },
   };
 }
@@ -282,16 +282,16 @@ export function getWebsiteSchema(): JsonLdObject {
 
 export function getProgramSchema(): JsonLdObject {
   const { launchpad } = siteContent.programs;
-  const programUrl = `${siteConfig.url}/programs`;
+  const programUrl = `${siteConfig.url}/ikigai-launchpad`;
 
   return {
     "@type": "Service",
-    "@id": `${siteConfig.url}/programs#ikigai-launchpad`,
+    "@id": `${siteConfig.url}/ikigai-launchpad#ikigai-launchpad`,
     name: launchpad.name,
     serviceType: "Startup accelerator",
     category: "Early-stage startup accelerator program",
     url: programUrl,
-    mainEntityOfPage: { "@id": getPageFragmentId("/programs", "webpage") },
+    mainEntityOfPage: { "@id": getPageFragmentId("/ikigai-launchpad", "webpage") },
     provider: { "@id": organizationId },
     areaServed: {
       "@type": "Place",
@@ -308,7 +308,7 @@ export function getProgramSchema(): JsonLdObject {
       height: pageMeta.programs.ogImageHeight,
       caption: pageMeta.programs.ogImageAlt,
     },
-    brand: { "@id": `${siteConfig.url}/programs#ikigai-brand` },
+    brand: { "@id": `${siteConfig.url}/ikigai-launchpad#ikigai-brand` },
     sameAs: socialLinks
       .filter((link) => ["instagram", "threads"].includes(link.platform))
       .map((link) => link.href),
@@ -325,7 +325,7 @@ export function getProgramSchema(): JsonLdObject {
     potentialAction: {
       "@type": "ApplyAction",
       name: launchpad.cta.label,
-      object: { "@id": `${siteConfig.url}/programs#ikigai-launchpad` },
+      object: { "@id": `${siteConfig.url}/ikigai-launchpad#ikigai-launchpad` },
       target: {
         "@type": "EntryPoint",
         urlTemplate: launchpad.cta.href,
@@ -353,8 +353,8 @@ export function getProgramSchema(): JsonLdObject {
 export function getProgramFaqSchema(): JsonLdObject {
   return {
     "@type": "FAQPage",
-    "@id": `${siteConfig.url}/programs#faq`,
-    url: `${siteConfig.url}/programs#faq`,
+    "@id": `${siteConfig.url}/ikigai-launchpad#faq`,
+    url: `${siteConfig.url}/ikigai-launchpad#faq`,
     mainEntity: siteContent.programs.launchpad.faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
@@ -371,11 +371,11 @@ export function getLaunchStationSchema(): JsonLdObject {
 
   return {
     "@type": "Service",
-    "@id": `${siteConfig.url}/programs/launch-station#launch-station`,
+    "@id": `${siteConfig.url}/launch-station#launch-station`,
     name: launchStation.title,
     serviceType: "Invitation-only builder residency",
-    url: `${siteConfig.url}/programs/launch-station`,
-    mainEntityOfPage: { "@id": getPageFragmentId("/programs/launch-station", "webpage") },
+    url: `${siteConfig.url}/launch-station`,
+    mainEntityOfPage: { "@id": getPageFragmentId("/launch-station", "webpage") },
     provider: { "@id": organizationId },
     areaServed: {
       "@type": "Place",
@@ -629,7 +629,7 @@ export function getResourceFaqSchema(article: ResourceArticle, path: string): Js
 function getWebPageSchema(options: StructuredDataOptions): JsonLdObject {
   const canonicalUrl = getCanonicalUrl(options.path);
   const isHomepage = canonicalUrl === `${siteConfig.url}/`;
-  const launchpadId = `${siteConfig.url}/programs#ikigai-launchpad`;
+  const launchpadId = `${siteConfig.url}/ikigai-launchpad#ikigai-launchpad`;
   const primaryImage = options.image
     ? {
         "@type": "ImageObject",
@@ -656,7 +656,7 @@ function getWebPageSchema(options: StructuredDataOptions): JsonLdObject {
     about: { "@id": organizationId },
     mainEntity: isHomepage ? { "@id": organizationId } : undefined,
     mentions: isHomepage ? { "@id": launchpadId } : undefined,
-    significantLink: isHomepage ? `${siteConfig.url}/programs` : undefined,
+    significantLink: isHomepage ? `${siteConfig.url}/ikigai-launchpad` : undefined,
     isAccessibleForFree: true,
     image: primaryImage,
     primaryImageOfPage: primaryImage,

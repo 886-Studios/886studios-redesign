@@ -330,8 +330,8 @@ existing content keeps its established URLs.
 | Group | Page | Route | Starting content |
 | --- | --- | --- | --- |
 | | Home | `/` | Existing homepage |
-| Programs | ikigai Launchpad | `/programs` | Existing ikigai Launchpad page |
-| Programs | Launch Station | `/programs/launch-station` | Existing Launch Station content in the shared program layout |
+| Programs | ikigai Launchpad | `/ikigai-launchpad` | Existing ikigai Launchpad page |
+| Programs | Launch Station | `/launch-station` | Existing Launch Station content in the shared program layout |
 | Community | Events | `/events` | Existing events page |
 | Community | Newsletter | `/blog` | Existing newsletter and article archive |
 | Community | Resources | `/resources` | Existing resources page |
@@ -396,7 +396,7 @@ Then run Lighthouse against the affected route and save the report outside track
 
 ```bash
 mkdir -p .artifacts/performance
-npx --yes lighthouse http://127.0.0.1:4173/programs \
+npx --yes lighthouse http://127.0.0.1:4173/ikigai-launchpad \
   --only-categories=performance \
   --preset=desktop \
   --chrome-flags="--headless=new" \
@@ -409,7 +409,7 @@ For production Core Web Vitals, run WebPageTest against the deployed URL with at
 For frontend QA, verify at least:
 
 - `/`
-- `/programs`
+- `/ikigai-launchpad`
 - `/about`
 - `/events`
 - `/contact`

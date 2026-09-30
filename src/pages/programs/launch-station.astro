@@ -1,25 +1,27 @@
 ---
-import LaunchStationPage from "../../components/pages/LaunchStationPage.astro";
-import { contentDates } from "../../data/contentDates.generated";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getLaunchStationSchema, pageMeta } from "../../lib/seo";
+import GoogleAnalytics from "../../components/GoogleAnalytics.astro";
+import VercelAnalytics from "../../components/VercelAnalytics.astro";
+import { getGoogleAnalyticsId, siteConfig } from "../../config/site";
 ---
 
-<BaseLayout
-  title={pageMeta.launchStation.title}
-  description={pageMeta.launchStation.description}
-  dateModified={contentDates["/programs/launch-station"]}
-  ogImage={pageMeta.launchStation.ogImage}
-  ogImageAlt={pageMeta.launchStation.ogImageAlt}
-  ogImageWidth={pageMeta.launchStation.ogImageWidth}
-  ogImageHeight={pageMeta.launchStation.ogImageHeight}
-  ogImageType={pageMeta.launchStation.ogImageType}
-  breadcrumbs={[
-    { name: "Programs", path: "/programs" },
-    { name: "Launch Station", path: "/programs/launch-station" },
-  ]}
-  structuredData={getLaunchStationSchema()}
-  hideFooterSocials
->
-  <LaunchStationPage />
-</BaseLayout>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content="0;url=/launch-station" />
+    <link rel="canonical" href={`${siteConfig.url}/launch-station`} />
+    <title>Launch Station has moved | 886 Studios</title>
+    <GoogleAnalytics measurementId={getGoogleAnalyticsId()} />
+  </head>
+  <body>
+    <main>
+      <p><a href="/launch-station">Continue to Launch Station</a></p>
+    </main>
+    <script>
+      window.location.replace(`/launch-station${window.location.search}${window.location.hash}`);
+    </script>
+    <VercelAnalytics />
+  </body>
+</html>

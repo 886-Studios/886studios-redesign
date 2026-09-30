@@ -289,8 +289,8 @@ export const resourceArticles: ResourceArticle[] = [
             name: "ikigai Launchpad",
             focus:
               "AI, IoT, Gaming, Consumer, Digital Transformation, Sportstech, Web 3, etc",
-            url: "886studios.com/programs",
-            href: "/programs",
+            url: "886studios.com/ikigai-launchpad",
+            href: "/ikigai-launchpad",
             year: "2024",
             contact: "carter@886studios.com",
           },
