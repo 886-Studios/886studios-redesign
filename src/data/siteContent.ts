@@ -625,7 +625,7 @@ export const siteContent = {
         {
           label: "Community",
           title: "Launch Station",
-          body: "Free coworking space and a founder community inside Taiwan Tech Arena.",
+          body: "Our founder community-building program. Members receive free desk space at our office, access to exclusive corporate perks, and a community of ambitious founders.",
           ctaLabel: "Learn more →",
           ctaHref: "/programs/launch-station",
         },
