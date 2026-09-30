@@ -1151,15 +1151,17 @@ export const siteContent = {
         height: 800,
       },
       heroPhoto: {
-        src: "/assets/launch-station/prezzy-day-960.webp",
-        srcset: "/assets/launch-station/prezzy-day-480.webp 480w, /assets/launch-station/prezzy-day-960.webp 960w, /assets/launch-station/prezzy-day-1440.webp 1440w",
-        alt: "People smiling and sitting together on chairs and floor cushions at Launch Station Prezzy Day",
-        width: 960,
-        height: 720,
+        src: "/assets/programs/launch-station-community-collage-800.webp",
+        srcset: "/assets/programs/launch-station-community-collage-480.webp 480w, /assets/programs/launch-station-community-collage-800.webp 800w",
+        alt: "Launch Station workspace collage with purple 886 lettering at Taiwan Tech Arena",
+        width: 800,
+        height: 800,
       },
       communityPhotos: [
         {
           src: "/assets/launch-station/community-dinner-960.webp",
+          fullSrc: "/assets/launch-station/community-dinner.jpg",
+          caption: "Prezzy Day, then dinner.",
           srcset: "/assets/launch-station/community-dinner-480.webp 480w, /assets/launch-station/community-dinner-960.webp 960w, /assets/launch-station/community-dinner-1440.webp 1440w",
           alt: "Friends smiling for a selfie around a shared dinner table after Launch Station Prezzy Day",
           width: 960,
@@ -1167,6 +1169,8 @@ export const siteContent = {
         },
         {
           src: "/assets/launch-station/community-lunch-960.webp",
+          fullSrc: "/assets/launch-station/community-lunch.jpg",
+          caption: "Lunch with the community.",
           srcset: "/assets/launch-station/community-lunch-480.webp 480w, /assets/launch-station/community-lunch-960.webp 960w, /assets/launch-station/community-lunch-1440.webp 1440w",
           alt: "Six people smiling around a restaurant table during a Launch Station community lunch",
           width: 960,

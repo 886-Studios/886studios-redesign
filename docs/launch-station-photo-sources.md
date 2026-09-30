@@ -6,7 +6,7 @@ The image optimization script generates 480, 960, and 1440 pixel WebP versions.
 
 | Local master | Placement | Original |
 | --- | --- | --- |
-| `public/assets/launch-station/prezzy-day.jpg` | Hero and social preview | [PXL_20250523_101818420.jpg](https://drive.google.com/file/d/19g6uKddMyJ45oeaqUWKowsMEK77KTqFW/view) |
+| `public/assets/launch-station/prezzy-day.jpg` | Social preview | [PXL_20250523_101818420.jpg](https://drive.google.com/file/d/19g6uKddMyJ45oeaqUWKowsMEK77KTqFW/view) |
 | `public/assets/launch-station/community-dinner.jpg` | Community photo row, first | [PXL_20250523_134619375.jpg](https://drive.google.com/file/d/19fRMBWbWUkdt5MoP_XtlTGresCurpc1K/view) |
 | `public/assets/launch-station/community-lunch.jpg` | Community photo row, second | [fxn 2025-03-24 124820.141.jpg](https://drive.google.com/file/d/1Y1Ir52-y_EMoZtNwG1lshD0ZayjMO25W/view) |
 

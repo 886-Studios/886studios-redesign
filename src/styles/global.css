@@ -385,26 +385,35 @@ body.is-home nav.site-nav.is-scrolled {
 }
 
 .nav-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
   font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 13.5px;
+  font-weight: 700;
   color: #fff;
   text-decoration: none;
-  padding: 8px 16px;
-  border-radius: 6px;
+  padding: 9px 20px;
+  border-radius: 999px;
   background: var(--purple-action);
-  transition: background 0.18s;
+  border: 1px solid rgba(167, 139, 250, 0.44);
+  box-shadow:
+    0 4px 18px rgba(139, 92, 246, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transition:
+    transform 0.2s,
+    background 0.2s,
+    box-shadow 0.2s,
+    border-color 0.2s;
   cursor: pointer;
   white-space: nowrap;
   flex-shrink: 0;
 }
 
 .nav-cta:hover {
+  transform: translateY(-1px);
   background: var(--purple-action-hover);
+  border-color: rgba(255, 255, 255, 0.34);
+  box-shadow:
+    0 8px 28px rgba(139, 92, 246, 0.36),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
 }
 
 .nav-cta:focus-visible {
@@ -3912,6 +3921,64 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-md);
   margin-top: var(--space-lg);
+}
+
+.launch-station-memory {
+  min-width: 0;
+  margin: 0;
+}
+
+.launch-station-memory-link {
+  position: relative;
+  display: block;
+  border-radius: var(--r-sm);
+  cursor: zoom-in;
+  text-decoration: none;
+}
+
+.launch-station-memory figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: var(--space-xs);
+  color: var(--purple-bright);
+  font-size: 0.9375rem;
+}
+
+.launch-station-memory figcaption span {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+.launch-station-memory figcaption span::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transform: scaleX(0.18);
+  transform-origin: left;
+  transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.launch-station-memory-link:focus-visible figcaption span::after {
+  transform: scaleX(1);
+}
+
+@media (hover: hover) {
+  .launch-station-memory-link:hover figcaption span::after {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce), (hover: none) {
+  .launch-station-memory figcaption span::after {
+    transform: none;
+    transition: none;
+  }
 }
 
 .launch-station-contribution,
