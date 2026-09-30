@@ -58,6 +58,7 @@ const {
 } = Astro.props;
 
 const currentPath = normalizePath(Astro.url.pathname);
+const isManifestoPage = currentPath === "/about/manifesto";
 const isPortfolioProfilePage = currentPath.startsWith("/portfolio/");
 const canonicalUrl = canonical === false ? undefined : canonical ?? getCanonicalUrl(currentPath);
 const showSocialPreview = Boolean(canonicalUrl) && !/\bnoindex\b/i.test(robots);
@@ -194,12 +195,14 @@ const structuredDataJson = canonicalUrl
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500&display=swap"
+      href={isManifestoPage
+        ? "https://fonts.googleapis.com/css2?family=Geist:wght@400..750&family=Geist+Mono:wght@400..700&display=swap"
+        : "https://fonts.googleapis.com/css2?family=Geist:wght@400..750&display=swap"}
       rel="stylesheet"
     />
     {structuredDataJson && <script type="application/ld+json" is:inline set:html={structuredDataJson} />}
   </head>
-  <body class:list={[currentPath === "/" && "is-home", isPortfolioProfilePage && "is-portfolio-profile"]}>
+  <body class:list={[currentPath === "/" && "is-home", isPortfolioProfilePage && "is-portfolio-profile", isManifestoPage && "is-manifesto"]}>
     <a class="skip-link" href="#main-content">Skip to content</a>
     <header>
       <SiteNav currentPath={currentPath} />
