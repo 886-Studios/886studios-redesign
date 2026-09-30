@@ -5113,13 +5113,20 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
 /* Launch Station return announcement */
 #page-launch-station {
-  --ls-copy-gap: var(--space-md);
   --ls-group-gap: var(--space-xl);
   display: grid;
-  align-items: center;
+  grid-template-rows: auto 1fr;
+}
+
+#page-launch-station .ls-return {
+  width: 100%;
+  max-width: var(--max);
+  margin-inline: auto;
+  padding: 72px var(--home-section-x) 0;
 }
 
 #page-launch-station .ls-hero {
+  align-self: center;
   padding-block: clamp(var(--space-xl), 8vw, var(--space-3xl));
 }
 
@@ -5127,56 +5134,30 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   display: grid;
   justify-items: center;
   gap: var(--ls-group-gap);
-  max-width: 960px;
+  max-width: none;
   margin-inline: auto;
   text-align: center;
 }
 
-#page-launch-station .ls-announcement {
-  display: grid;
-  justify-items: center;
-  gap: var(--ls-copy-gap);
-  min-width: 0;
-}
-
-#page-launch-station .ls-h1 {
-  margin: 0;
-  font-size: clamp(3rem, 7.5vw, 6rem);
-  line-height: 1.05;
-  white-space: normal;
-  text-wrap: balance;
-}
-
 #page-launch-station .ls-lead {
-  max-width: 40ch;
+  max-width: none;
   margin: 0;
-  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 400;
   line-height: 1.5;
   text-wrap: balance;
   hyphens: none;
 }
 
 #page-launch-station .ls-status-note {
-  max-width: 48ch;
+  max-width: none;
   margin: 0;
-  font-size: clamp(1.125rem, 1.8vw, 1.375rem);
+  font-size: 1rem;
   line-height: 1.6;
   text-wrap: balance;
 }
 
-#page-launch-station .ls-status-note em {
-  display: grid;
-  justify-items: center;
-}
-
-#page-launch-station .ls-status-detail {
-  font-size: 1rem;
-}
-
 #page-launch-station .ls-status-note a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
   color: var(--purple-bright);
   text-decoration: underline;
   text-underline-offset: 0.2em;
@@ -5189,6 +5170,17 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 #page-launch-station .ls-back {
   min-height: 44px;
   margin: 0;
+  color: var(--text-muted);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+}
+
+#page-launch-station .ls-back::before {
+  content: "←";
+}
+
+#page-launch-station .ls-back:hover {
+  color: var(--purple-bright);
 }
 
 #page-launch-station :is(.ls-status-note a, .ls-back):focus-visible {
@@ -5200,6 +5192,10 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 @media (max-width: 640px) {
   #page-launch-station {
     --ls-group-gap: var(--space-lg);
+  }
+
+  #page-launch-station .ls-return {
+    padding-top: var(--space-lg);
   }
 }
 
