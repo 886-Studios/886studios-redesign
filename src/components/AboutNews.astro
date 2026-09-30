@@ -1,13 +1,19 @@
 ---
 import { siteContent } from "../data/siteContent";
 
+interface Props {
+  spacious?: boolean;
+}
+
+const { spacious = false } = Astro.props;
+const Headline = spacious ? "h2" : "h3";
 const { resources } = siteContent;
 const getNewsImageSrcset = (src: string) =>
   `${src.replace("-960.webp", "-480.webp")} 480w, ${src} 960w`;
 ---
 
-<section class="about-news reveal reveal-delay-1" aria-labelledby="about-news-title">
-  <h2 class="section-tag" id="about-news-title">In the News</h2>
+<section class="about-news reveal reveal-delay-1" aria-labelledby={spacious ? undefined : "about-news-title"} aria-label={spacious ? "Press coverage" : undefined}>
+  {!spacious && <h2 class="section-tag" id="about-news-title">In the News</h2>}
 
   <div class="about-news-grid">
     {resources.newsItems.map((item) => (
@@ -22,7 +28,9 @@ const getNewsImageSrcset = (src: string) =>
           <img
             src={item.image.src}
             srcset={getNewsImageSrcset(item.image.src)}
-            sizes="(max-width: 720px) calc(100vw - 36px), (max-width: 1180px) calc((100vw - 96px) / 2), 552px"
+            sizes={spacious
+              ? "(max-width: 720px) calc(100vw - 48px), (max-width: 1160px) calc((100vw - 112px) / 2), 524px"
+              : "(max-width: 720px) 104px, (max-width: 980px) 30vw, 208px"}
             alt={item.image.alt}
             width={item.image.width}
             height={item.image.height}
@@ -40,14 +48,14 @@ const getNewsImageSrcset = (src: string) =>
               </a>
             )}
           </div>
-          <h3>
+          <Headline class="about-news-headline">
             <a href={item.href} target="_blank" rel="noopener noreferrer">
               <span>{item.title}</span>
               <svg viewBox="0 0 16 16" aria-hidden="true">
                 <path d="M5 11 11 5M6 5h5v5" />
               </svg>
             </a>
-          </h3>
+          </Headline>
         </div>
       </article>
     ))}

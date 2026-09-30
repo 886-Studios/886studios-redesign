@@ -3,6 +3,7 @@ import AboutNews from "../../components/AboutNews.astro";
 import PageHero from "../../components/PageHero.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { pageMeta } from "../../lib/seo";
+import "../../styles/newsroom.css";
 ---
 
 <BaseLayout
@@ -14,10 +15,10 @@ import { pageMeta } from "../../lib/seo";
     { name: "Newsroom", path: "/about/newsroom" },
   ]}
 >
-  <div class="page">
+  <div class="page newsroom-page">
     <PageHero title="Newsroom" />
-    <div class="section">
-      <AboutNews />
+    <div class="section newsroom-section">
+      <AboutNews spacious />
     </div>
   </div>
 </BaseLayout>
