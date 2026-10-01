@@ -50,11 +50,22 @@ export const socialLinks = [
   },
 ] as const;
 
+// Categorize by the core product and customer, rather than enabling technologies
+// such as AI or individual verticals such as recruiting, dental care, or sports.
+export type PortfolioCategory =
+  | "Consumer Social"
+  | "Consumer Apps"
+  | "B2B SaaS"
+  | "Marketing Tech"
+  | "Health & Wellness"
+  | "Media & Entertainment"
+  | "Hardware & Infrastructure";
+
 export interface PortfolioCompany {
   name: string;
   slug: string;
   relationship: "Partner-backed" | "886-backed";
-  category: string;
+  category: PortfolioCategory;
   program?: string;
   status?: "Active" | "Inactive" | "Acquired";
   websiteUrl?: string;
@@ -84,7 +95,7 @@ export const portfolioCompanies = [
     name: "footnotes",
     slug: "footnotes",
     relationship: "886-backed",
-    category: "Productivity",
+    category: "Consumer Apps",
     program: "ikigai #03",
     status: "Active",
     websiteUrl: "https://footnotes.rest/",
@@ -104,7 +115,7 @@ export const portfolioCompanies = [
     name: "diffusr.",
     slug: "diffusr",
     relationship: "886-backed",
-    category: "AI",
+    category: "Marketing Tech",
     program: "ikigai #03",
     status: "Active",
     websiteUrl: "https://www.diffusr.ai",
@@ -136,7 +147,7 @@ export const portfolioCompanies = [
     name: "Peeps",
     slug: "peeps",
     relationship: "886-backed",
-    category: "Consumer",
+    category: "Consumer Social",
     program: "ikigai #03",
     status: "Active",
     websiteUrl: "https://playpeeps.app",
@@ -165,7 +176,7 @@ export const portfolioCompanies = [
     name: "lfg",
     slug: "lfg",
     relationship: "886-backed",
-    category: "Consumer",
+    category: "Consumer Social",
     program: "ikigai #03",
     status: "Active",
     websiteUrl: "https://lfg.place/",
@@ -183,7 +194,7 @@ export const portfolioCompanies = [
     name: "Persona2 AI",
     slug: "persona2-ai",
     relationship: "886-backed",
-    category: "Gaming",
+    category: "Media & Entertainment",
     program: "ikigai #03",
     status: "Active",
     websiteUrl: "https://persona2.ai/",
@@ -202,7 +213,7 @@ export const portfolioCompanies = [
     name: "Hushli",
     slug: "hushli",
     relationship: "886-backed",
-    category: "Health",
+    category: "Health & Wellness",
     program: "ikigai #02",
     status: "Active",
     websiteUrl: "https://hushli.ai/",
@@ -230,7 +241,7 @@ export const portfolioCompanies = [
     name: "InstaPodz",
     slug: "instapodz",
     relationship: "886-backed",
-    category: "AI",
+    category: "Media & Entertainment",
     program: "ikigai #02",
     status: "Active",
     websiteUrl: "https://instapodz.com/",
@@ -248,7 +259,7 @@ export const portfolioCompanies = [
     name: "PictureCook",
     slug: "picturecook",
     relationship: "886-backed",
-    category: "Education",
+    category: "Consumer Apps",
     program: "ikigai #02",
     status: "Active",
     websiteUrl: "https://picture-cook.com/",
@@ -267,7 +278,7 @@ export const portfolioCompanies = [
     name: "Sugar AI",
     slug: "sugar-ai",
     relationship: "886-backed",
-    category: "AI",
+    category: "Media & Entertainment",
     program: "ikigai #02",
     status: "Active",
     websiteUrl: "https://sugarai.tw/",
@@ -286,7 +297,7 @@ export const portfolioCompanies = [
     name: "Tellit Now",
     slug: "tellit-now",
     relationship: "886-backed",
-    category: "Marketing",
+    category: "Marketing Tech",
     program: "ikigai #02",
     status: "Active",
     websiteUrl: "https://www.tellitapp.ai/",
@@ -305,7 +316,7 @@ export const portfolioCompanies = [
     name: "GitRoll",
     slug: "gitroll",
     relationship: "886-backed",
-    category: "HRTech",
+    category: "B2B SaaS",
     program: "ikigai #01",
     status: "Acquired",
     websiteUrl: "https://gitroll.io/",
@@ -323,7 +334,7 @@ export const portfolioCompanies = [
     name: "Kardomo",
     slug: "kardomo",
     relationship: "886-backed",
-    category: "Consumer",
+    category: "Consumer Social",
     program: "ikigai #03",
     status: "Active",
     websiteUrl: "https://kardomo.com/",
@@ -353,7 +364,7 @@ export const portfolioCompanies = [
     name: "PicPet",
     slug: "o3o-labs",
     relationship: "886-backed",
-    category: "Social",
+    category: "Consumer Social",
     program: "ikigai #01",
     status: "Active",
     appStoreUrl: "https://apps.apple.com/us/app/picpet/id6742077014",
@@ -377,7 +388,7 @@ export const portfolioCompanies = [
     name: "Dentscape",
     slug: "dentscape",
     relationship: "886-backed",
-    category: "Health",
+    category: "B2B SaaS",
     program: "Velocity",
     status: "Active",
     websiteUrl: "https://dentscape.ai/",
@@ -394,7 +405,7 @@ export const portfolioCompanies = [
     name: "Preciser",
     slug: "preciser",
     relationship: "886-backed",
-    category: "Sports",
+    category: "B2B SaaS",
     program: "Velocity",
     status: "Active",
     websiteUrl: "https://www.preciser.io/",
@@ -411,7 +422,7 @@ export const portfolioCompanies = [
     name: "Valtec",
     slug: "valtec",
     relationship: "886-backed",
-    category: "Drones",
+    category: "Hardware & Infrastructure",
     websiteUrl: "https://www.valtec.ai/",
     logo: {
       src: "/assets/portfolio/valtec.png",
@@ -426,7 +437,7 @@ export const portfolioCompanies = [
     name: "Miso",
     slug: "miso",
     relationship: "886-backed",
-    category: "AI",
+    category: "B2B SaaS",
     websiteUrl: "https://miso.ai/",
     logo: {
       src: "/assets/portfolio/miso.png",
@@ -441,7 +452,7 @@ export const portfolioCompanies = [
     name: "Discord",
     slug: "discord",
     relationship: "Partner-backed",
-    category: "Consumer",
+    category: "Consumer Social",
     websiteUrl: "https://discord.com/",
     appStoreUrl: "https://apps.apple.com/us/app/discord-talk-play-hang-out/id985746746",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.discord",
@@ -458,7 +469,7 @@ export const portfolioCompanies = [
     name: "OURA",
     slug: "oura",
     relationship: "Partner-backed",
-    category: "Health",
+    category: "Health & Wellness",
     websiteUrl: "https://ouraring.com/",
     appStoreUrl: "https://apps.apple.com/us/app/oura/id1043837948",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.ouraring.oura",
@@ -475,7 +486,7 @@ export const portfolioCompanies = [
     name: "Crunchyroll",
     slug: "crunchyroll",
     relationship: "Partner-backed",
-    category: "Media",
+    category: "Media & Entertainment",
     websiteUrl: "https://www.crunchyroll.com/",
     appStoreUrl: "https://apps.apple.com/us/app/crunchyroll/id329913454",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.crunchyroll.crunchyroid",
@@ -492,7 +503,7 @@ export const portfolioCompanies = [
     name: "Gogoro",
     slug: "gogoro",
     relationship: "Partner-backed",
-    category: "Climate",
+    category: "Hardware & Infrastructure",
     websiteUrl: "https://www.gogoro.com/",
     appStoreUrl: "https://apps.apple.com/us/app/gogoro/id927757129",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.gogoro.smartclient",
@@ -509,7 +520,7 @@ export const portfolioCompanies = [
     name: "P. LEAGUE+",
     slug: "p-league-plus",
     relationship: "Partner-backed",
-    category: "Sports",
+    category: "Media & Entertainment",
     websiteUrl: "https://pleagueofficial.com/",
     logo: {
       src: "/assets/portfolio/p-league-plus.png",
@@ -525,7 +536,7 @@ export const portfolioCompanies = [
     name: "KKBOX",
     slug: "kkbox",
     relationship: "Partner-backed",
-    category: "Media",
+    category: "Media & Entertainment",
     websiteUrl: "https://www.kkbox.com/",
     appStoreUrl: "https://apps.apple.com/tw/app/kkbox-%E9%9F%B3%E6%A8%82-podcast/id300915900",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.skysoft.kkbox.android",
