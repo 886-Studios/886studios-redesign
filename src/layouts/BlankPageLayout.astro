@@ -7,9 +7,10 @@ interface Props {
   title: string;
   section: string;
   lead?: string;
+  accentHeader?: boolean;
 }
 
-const { title, section, lead } = Astro.props;
+const { title, section, lead, accentHeader } = Astro.props;
 ---
 
 <BaseLayout
@@ -18,7 +19,7 @@ const { title, section, lead } = Astro.props;
   robots="noindex, follow"
 >
   <div class="page draft-page">
-    <PageHero title={title} lead={lead}>
+    <PageHero title={title} lead={lead} accentHeader={accentHeader}>
       <p class="draft-notice">Draft page · Placeholder copy</p>
     </PageHero>
     <div class="draft-content">

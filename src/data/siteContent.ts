@@ -1490,7 +1490,7 @@ export const siteContent = {
   },
   about: {
     eyebrow: "About Us",
-    title: "Built by founders, for founders.",
+    title: "Built by real founders, for founders.",
     lead: "886 Studios backs ambitious early-stage founders building companies with global potential.",
     columns: [
       {
@@ -1512,10 +1512,6 @@ export const siteContent = {
         ],
       },
     ],
-    portfolioCta: {
-      label: "Check out our portfolio companies →",
-      href: "/portfolio",
-    },
     teamTitle: "Operating Team",
     team: [
       {

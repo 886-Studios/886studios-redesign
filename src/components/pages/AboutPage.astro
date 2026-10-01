@@ -1,14 +1,17 @@
 ---
 import PageHero from "../PageHero.astro";
 import { siteContent } from "../../data/siteContent";
-import AboutTeam from "../AboutTeam.astro";
-import AboutNews from "../AboutNews.astro";
 
 const { about } = siteContent;
+const [titleBeforeSticker, titleAfterSticker] = about.title.split(" real ");
 ---
 
 <div class="page" id="page-about">
-  <PageHero title={about.title} lead={about.lead} />
+  <PageHero title={about.title} lead={about.lead} accentHeader>
+    <Fragment slot="title">
+      {titleBeforeSticker}{" "}<span class="founder-sticker"><span class="founder-sticker-text">real</span></span>{" "}{titleAfterSticker}
+    </Fragment>
+  </PageHero>
   <div class="section">
     <div class="about-cols reveal">
       {
@@ -23,14 +26,6 @@ const { about } = siteContent;
         ))
       }
     </div>
-
-    <p class="about-portfolio-cta reveal">
-      <a href={about.portfolioCta.href}>{about.portfolioCta.label}</a>
-    </p>
-
-    <hr class="divider divider--spaced">
-
-    <AboutTeam />
 
     <hr class="divider divider--spaced">
 
@@ -74,19 +69,34 @@ const { about } = siteContent;
       </section>
     </div>
 
-    <hr class="divider divider--spaced">
-
-    <div class="reveal reveal-delay-1">
-      <h2 class="section-tag" id="about-careers-title">{about.careers.title}</h2>
-      <section class="about-careers" aria-labelledby="about-careers-title">
-        <div class="about-careers-copy">
-          {about.careers.paragraphs.map((paragraph) => <p class="prose">{paragraph}</p>)}
-        </div>
-      </section>
-    </div>
-
-    <hr class="divider divider--spaced">
-
-    <AboutNews />
   </div>
 </div>
+
+<style>
+  .founder-sticker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+    margin-inline: 0.06em 0.12em;
+    padding: 0.2em 0.42em;
+    border: 2px solid #e9dfff;
+    border-radius: 6px;
+    background: #c4a8ff;
+    color: #241045;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 24%);
+    font-size: 0.5em;
+    font-weight: 750;
+    font-style: italic;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+    transform: translateY(-0.12em) rotate(-9deg);
+  }
+
+  .founder-sticker-text {
+    /* Compensate for the italic lettering’s visual lean. */
+    transform: translateX(-0.06em);
+  }
+</style>

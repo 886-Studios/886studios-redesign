@@ -2,7 +2,10 @@
 import AboutTeam from "../components/AboutTeam.astro";
 import PageHero from "../components/PageHero.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { siteContent } from "../data/siteContent";
 import { getPeopleItemListSchema, pageMeta } from "../lib/seo";
+
+const { careers } = siteContent.about;
 ---
 
 <BaseLayout
@@ -15,10 +18,21 @@ import { getPeopleItemListSchema, pageMeta } from "../lib/seo";
   ]}
   structuredData={getPeopleItemListSchema("/team")}
 >
-  <div class="page">
-    <PageHero title="Team" />
+  <div class="page" id="page-team">
+    <PageHero title="Team" accentHeader />
     <div class="section">
       <AboutTeam />
+
+      <hr class="divider divider--spaced">
+
+      <div class="reveal reveal-delay-1" id="careers">
+        <h2 class="section-tag" id="team-careers-title">{careers.title}</h2>
+        <section class="team-careers" aria-labelledby="team-careers-title">
+          <div class="team-careers-copy">
+            {careers.paragraphs.map((paragraph) => <p class="prose">{paragraph}</p>)}
+          </div>
+        </section>
+      </div>
     </div>
   </div>
 </BaseLayout>

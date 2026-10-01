@@ -36,6 +36,8 @@
   --font-manifesto: "Geist Mono", ui-monospace, "SF Mono", monospace;
   --font-display: var(--font-sans);
   --font-body: var(--font-sans);
+  --text-page-title-max: 3rem;
+  --text-page-title: clamp(1.75rem, 4.5vw, var(--text-page-title-max));
   --text-reading: 1.0625rem;
   --text-reading-line: 1.8;
   --text-meta: 0.875rem;
@@ -104,10 +106,9 @@ body {
   font-family: inherit;
 }
 
-/* Manifesto content is the sole monospace exception; site chrome stays Geist. */
+/* Manifesto body copy uses monospace; headings and site chrome stay Geist. */
 .is-manifesto .site-main {
   --font-body: var(--font-manifesto);
-  --font-display: var(--font-manifesto);
   font-family: var(--font-body);
 }
 
@@ -1055,10 +1056,8 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
 .hero-h1 em {
   font-style: normal;
-  background: linear-gradient(135deg, #c4b5fd 0%, #a78bfa 40%, #7c3aed 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: inherit;
+  font-weight: inherit;
 }
 
 .hero-sub {
@@ -1973,7 +1972,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   margin: 0;
   color: var(--text-primary);
   font-family: var(--font-display);
-  font-size: clamp(2.45rem, 4vw, 3.5rem);
+  font-size: var(--text-page-title);
   font-weight: 700;
   letter-spacing: 0;
   line-height: 1.04;
@@ -2279,7 +2278,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
     }
 
     .prog-wordmark {
-      width: min(80%, 500px);
+      width: min(60%, 300px);
       margin: 0 0 24px;
     }
 
@@ -3373,10 +3372,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
         grid-template-columns: 1fr;
       }
 
-      .prog-wordmark {
-        max-width: 620px;
-      }
-
       .prog-brief-card {
         max-width: 620px;
       }
@@ -3419,7 +3414,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
         padding-top: var(--space-lg);
       }
       .prog-wordmark {
-        width: 80%;
+        width: min(60%, 220px);
         margin-bottom: 22px;
       }
 
@@ -4524,7 +4519,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   z-index: 1;
   max-width: 880px;
   font-family: var(--font-display);
-  font-size: clamp(40px, 5.5vw, 72px);
+  font-size: var(--text-page-title);
   line-height: 1;
   letter-spacing: 0;
   font-weight: 700;
@@ -5170,7 +5165,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 .blog-post-header h1 {
   max-width: 940px;
   font-family: var(--font-display);
-  font-size: clamp(42px, 6.4vw, 78px);
+  font-size: var(--text-page-title);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1.06;
@@ -5668,7 +5663,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   }
 
   .blog-post-header h1 {
-    font-size: clamp(38px, 11vw, 52px);
     line-height: 1;
   }
 
@@ -5829,28 +5823,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   margin-bottom: 18px;
 }
 
-.about-portfolio-cta {
-  margin-top: 34px;
-  font-family: var(--font-body);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  text-align: right;
-}
-
-.about-portfolio-cta a {
-  color: var(--purple-bright);
-  text-decoration: none;
-  text-underline-offset: 4px;
-}
-
-.about-portfolio-cta a:hover,
-.about-portfolio-cta a:focus-visible {
-  color: var(--text-primary);
-  text-decoration: underline;
-  outline: none;
-}
-
 .prose {
   font-size: 15px;
   color: var(--text-secondary);
@@ -5862,15 +5834,15 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   margin-top: 18px;
 }
 
-.about-careers {
+.team-careers {
   padding: 6px 0 4px;
 }
 
-.about-careers-copy {
+.team-careers-copy {
   width: 100%;
 }
 
-.about-careers .prose {
+.team-careers .prose {
   max-width: none;
   white-space: normal;
 }
@@ -6328,7 +6300,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   margin: 0;
   color: var(--text-primary);
   font-family: var(--font-display);
-  font-size: clamp(48px, 7.6vw, 96px);
+  font-size: var(--text-page-title);
   font-weight: 700;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -7649,7 +7621,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
   .startup-detail-title {
     max-width: none;
-    font-size: 2.35rem;
     line-height: 1.04;
   }
 
@@ -8116,10 +8087,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  .partner-profile-title {
-    font-size: clamp(42px, 14vw, 64px);
-  }
-
   .partner-profile-section {
     padding: 34px 0;
   }
@@ -8260,7 +8227,9 @@ body:has(.application-banner:not([hidden])) .site-main .page {
        STRUCTURE HELPERS
     =========================== */
 .pg-hero-title {
-  font-size: clamp(34px, 5vw, 60px);
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: var(--text-page-title);
   letter-spacing: -0.04em;
 }
 
@@ -8273,8 +8242,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 }
 
 .pg-hero-title-link:hover {
-  color: color-mix(in srgb, var(--text-primary) 82%, var(--purple-bright));
-  text-shadow: 0 0 36px color-mix(in srgb, var(--purple-bright) 25%, transparent);
+  color: var(--text-primary);
 }
 
 .pg-hero-title-link:focus-visible {
@@ -8317,11 +8285,8 @@ body:has(.application-banner:not([hidden])) .site-main .page {
     gap: 34px;
   }
 
-  #page-about .about-portfolio-cta {
-    text-align: left;
-  }
-
-  #page-about .divider--spaced {
+  #page-about .divider--spaced,
+  #page-team .divider--spaced {
     margin: 46px 0;
   }
 
@@ -8329,7 +8294,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
     margin-top: 18px;
   }
 
-  #page-about .about-careers {
+  .team-careers {
     padding: 0;
   }
 
