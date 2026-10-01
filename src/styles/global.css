@@ -1053,17 +1053,13 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 .hero-sub {
   font-size: 19px;
   color: var(--text-secondary);
-  max-width: 800px;
+  max-width: none;
   margin-bottom: 48px;
   line-height: 1.75;
   font-weight: 400;
   opacity: 0;
   animation: fadeUp 0.6s 0.2s ease forwards;
   text-shadow: 0 8px 34px rgba(0, 0, 0, 0.82);
-}
-
-.hero-sub span {
-  display: inline;
 }
 
 .hero-actions {
@@ -1135,10 +1131,10 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 .section-lead {
   font-size: 17px;
   color: var(--text-secondary);
-  max-width: 500px;
+  max-width: none;
   line-height: 1.75;
   margin-bottom: 56px;
-  text-wrap: pretty;
+  text-wrap: wrap;
 }
 
 .divider {
@@ -2300,7 +2296,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
     .prog-lead {
       margin: 0;
-      max-width: 660px;
+      max-width: none;
       color: var(--text-secondary);
       font-size: clamp(1rem, 1.25vw, 1.12rem);
       line-height: 1.72;
@@ -3433,7 +3429,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
       }
 
       .prog-lead {
-        max-width: 30ch;
         font-size: 1rem;
         line-height: 1.62;
       }
@@ -3855,7 +3850,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 .launch-station-lead {
   font-size: 1.125rem;
   line-height: 1.75;
-  text-wrap: pretty;
+  text-wrap: wrap;
 }
 
 .launch-station-actions {
@@ -4107,11 +4102,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
 .resources-page .pg-hero {
   padding-bottom: clamp(36px, 4vw, 48px);
-}
-
-.resources-page .pg-hero .section-lead {
-  max-width: 68ch;
-  text-wrap: balance;
 }
 
 .resources-page .btn-pri {
@@ -6547,11 +6537,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 /* ===========================
        EVENTS
     =========================== */
-#page-events .section-lead {
-  max-width: none;
-  white-space: nowrap;
-}
-
 #page-events .section {
   padding-top: clamp(44px, 6vw, 72px);
   padding-bottom: clamp(80px, 9vw, 112px);
@@ -7463,7 +7448,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
 #page-home .hero-sub {
   margin-bottom: var(--space-xl);
-  max-width: 800px;
 }
 
 #page-home .section {
@@ -7472,8 +7456,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
 #page-home .section-lead {
   margin-bottom: var(--space-xl);
-  white-space: nowrap;
-  max-width: none;
 }
 
 #page-home .logo-card {
@@ -7489,11 +7471,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
 #page-home .nl-strip {
   padding: var(--space-xl) var(--home-section-x);
-}
-
-#page-about .pg-hero .section-lead {
-  max-width: none;
-  white-space: nowrap;
 }
 
 /* Responsive nav breakpoint */
@@ -7592,31 +7569,13 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
   #page-home .hero-sub {
     inline-size: 100%;
-    max-inline-size: 300px;
+    max-inline-size: 100%;
     min-width: 0;
     font-size: clamp(14px, 3.7vw, 14.75px);
     line-height: 1.5;
     margin-bottom: var(--space-lg);
     overflow-wrap: anywhere;
     word-break: break-word;
-  }
-
-  #page-home .hero-sub br {
-    display: none;
-  }
-
-  #page-home .hero-sub span {
-    display: block;
-    overflow-wrap: anywhere;
-    word-break: break-word;
-  }
-
-  #page-home .hero-sub span + span {
-    margin-top: 2px;
-  }
-
-  #page-home .hero-sub span + span::before {
-    content: none;
   }
 
   #page-home .hero-actions .btn-pri {
@@ -7667,7 +7626,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
   #page-home .section-lead {
     margin-bottom: var(--space-lg);
-    white-space: normal;
   }
 
   .home-program-feature,
@@ -7874,10 +7832,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
     min-height: 44px;
     white-space: normal;
     text-align: center;
-  }
-
-  #page-events .section-lead {
-    white-space: normal;
   }
 
   .events-section {
@@ -8248,7 +8202,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
     letter-spacing: -0.03em;
   }
   #page-home .hero-sub {
-    max-inline-size: 248px;
     font-size: 13.5px;
   }
   #page-home .hero-actions .btn-pri {
@@ -8400,11 +8353,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 }
 
 @media (max-width: 720px) {
-  #page-about .pg-hero .section-lead {
-    max-width: 34rem;
-    white-space: normal;
-  }
-
   #page-about .about-cols {
     gap: 34px;
   }

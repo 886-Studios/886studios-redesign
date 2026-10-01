@@ -25,12 +25,7 @@ const getPhotoSrcset = (src: string) =>
         {home.hero.titleLead}<br /><em>{home.hero.titleAccent}</em>
       </h1>
       <p class="hero-sub">
-        {home.hero.body.split("\n").map((line, index) => (
-          <>
-            {index > 0 && <br />}
-            <span>{line}</span>
-          </>
-        ))}
+        {home.hero.body.replace(/\s*\n\s*/g, " ")}
       </p>
       <div class="hero-actions">
         <a
