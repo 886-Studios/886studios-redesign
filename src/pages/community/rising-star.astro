@@ -1,52 +1,27 @@
 ---
-import BlankPageLayout from "../../layouts/BlankPageLayout.astro";
+import GoogleAnalytics from "../../components/GoogleAnalytics.astro";
+import VercelAnalytics from "../../components/VercelAnalytics.astro";
+import { getGoogleAnalyticsId, siteConfig } from "../../config/site";
 ---
 
-<BlankPageLayout
-  title="Rising Star"
-  section="Community"
-  lead="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
->
-  <!-- Draft copy and community imagery: replace with approved Rising Star content. -->
-  <section class="draft-feature" aria-labelledby="rising-star-feature">
-    <img
-      class="draft-feature-photo"
-      src="/assets/launch-station/community-dinner-960.webp"
-      srcset="/assets/launch-station/community-dinner-480.webp 480w, /assets/launch-station/community-dinner-960.webp 960w, /assets/launch-station/community-dinner-1440.webp 1440w"
-      sizes="(max-width: 720px) calc(100vw - 48px), (max-width: 1160px) 54vw, 604px"
-      alt="Friends smiling around a shared dinner table in the 886 Studios community"
-      width="960"
-      height="720"
-      decoding="async"
-    />
-    <div class="draft-feature-copy">
-      <h2 id="rising-star-feature">Lorem ipsum dolor sit amet, consectetur.</h2>
-      <div class="draft-prose">
-        <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="draft-columns">
-    <section aria-labelledby="rising-star-sed">
-      <h2 id="rising-star-sed">Sed ut perspiciatis.</h2>
-      <div class="draft-prose">
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-        <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-      </div>
-    </section>
-    <section aria-labelledby="rising-star-nemo">
-      <h2 id="rising-star-nemo">Nemo enim ipsam.</h2>
-      <div class="draft-prose">
-        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-        <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est.</p>
-      </div>
-    </section>
-  </div>
-
-  <div class="draft-end">
-    <a class="draft-link" href="/events">Explore events<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7" /></svg></a>
-    <a class="draft-link" href="/contact">Contact us<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7" /></svg></a>
-  </div>
-</BlankPageLayout>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content="0;url=/rising-star" />
+    <link rel="canonical" href={`${siteConfig.url}/rising-star`} />
+    <title>Rising Star has moved | 886 Studios</title>
+    <GoogleAnalytics measurementId={getGoogleAnalyticsId()} />
+  </head>
+  <body>
+    <main>
+      <p><a href="/rising-star">Continue to Rising Star</a></p>
+    </main>
+    <script>
+      window.location.replace(`/rising-star${window.location.search}${window.location.hash}`);
+    </script>
+    <VercelAnalytics />
+  </body>
+</html>

@@ -23,6 +23,11 @@
   ],
   "redirects": [
     {
+      "source": "/community/rising-star/:path*",
+      "destination": "/rising-star",
+      "permanent": true
+    },
+    {
       "source": "/programs",
       "destination": "/ikigai-launchpad",
       "permanent": true

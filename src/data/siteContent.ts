@@ -560,7 +560,7 @@ export const siteContent = {
         children: [
           { id: "events", label: "Events", href: "/events" },
           { id: "resources", label: "Resources", href: "/resources" },
-          { id: "rising-star", label: "Rising Star", href: "/community/rising-star" },
+          { id: "rising-star", label: "Rising Star", href: "/rising-star" },
         ],
       },
       {
