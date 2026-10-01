@@ -1,34 +1,54 @@
 # 886 Studios Website
 
-Astro static site for 886 Studios. The codebase is intentionally small and structured for agentic maintenance: thin route files, page-level Astro components, shared site configuration, data-driven content, and isolated browser scripts.
+Astro static site for 886 Studios, deployed on Vercel at `https://www.886studios.com`.
+Routes use page-level Astro components, shared configuration, data-driven content, and isolated browser scripts.
+
+This README covers the public website. The separately deployed `/perks` app has its own
+[setup and deployment guide](apps/perks-portal/README.md); root npm commands do not build or test it.
+
+[Quick start](#quick-start) · [Scripts](#scripts) · [Troubleshooting](#common-pitfalls) ·
+[Environment](#environment) · [Content](#content-boundaries) · [Deployment](#deployment)
 
 ## Prerequisites
 
-- Node 22 LTS (`22.12.0` or newer within Node 22); run `nvm install && nvm use` to use `.nvmrc`
+- Node 22 (`22.12.0` or newer within Node 22), matching `.nvmrc`
 - npm `9.6.5+`
+- Git, with a full clone for accurate generated content dates
 
 This repo uses `package-lock.json`, so prefer npm over pnpm or yarn unless the package manager strategy changes.
-Node's supported range is enforced during installation. Local development, GitHub Actions,
-and Vercel use Node 22; switch to that runtime before running `npm ci`.
+`.npmrc` enforces the supported Node range during installation, including the upper limit
+of Node 22. GitHub Actions reads `.nvmrc`; use the same major version locally and on Vercel.
 
 ## Quick Start
 
-First-time local setup:
+Run all commands from the repository root unless noted otherwise. With nvm installed,
+select the runtime before installing dependencies:
+
+```bash
+nvm install
+nvm use
+```
+
+If you use another version manager, select Node 22.12+ within Node 22 yourself.
+Then install and start the website:
 
 ```bash
 npm ci
-cp .env.example .env
 npm run dev
 ```
+
+No environment variables or API keys are required for the public website. If you need local
+configuration, copy `.env.example` to `.env` only when `.env` does not already exist.
 
 Open `http://127.0.0.1:4173/`. If port `4173` is already in use, Astro prints the alternate local URL in the terminal. Use that printed URL instead.
 The server binds to localhost by default. For intentional testing from another device,
 use `npm run dev -- --host 0.0.0.0` on a trusted network.
 
-For day-to-day development after dependencies are installed:
+For day-to-day development, use `npm run dev`. Check types and regression tests without
+fetching external feeds:
 
 ```bash
-npm run dev
+npm run validate:code
 ```
 
 Before handing work back or opening a PR, run:
@@ -37,9 +57,13 @@ Before handing work back or opening a PR, run:
 npm run validate
 ```
 
-This runs Astro and TypeScript diagnostics, regression tests, the production build, and
-checks the generated site for SEO and security regressions. A successful run ends with
-`Security validation passed`.
+This runs diagnostics, tests, the production build, and generated-site SEO and security checks.
+A successful run ends with `Security validation passed`.
+
+**The build requires access to the live Substack feed.** An unavailable, blocked, or empty
+feed fails the build to protect existing article URLs. Pages that load blog content also
+need that feed during development. `npm run validate:code` can run without external feed
+access after dependencies are installed, but does not validate the production output.
 
 To inspect the production build locally:
 
@@ -56,20 +80,56 @@ Use the URL printed by Astro.
 | --- | --- |
 | `npm run dev` | Start the local Astro dev server. |
 | `npm run check` | Run Astro diagnostics and TypeScript checks. |
+| `npm test` | Run the website's Node regression tests in `tests/`. |
 | `npm run build` | Build all static routes into `dist/`. |
 | `npm run check:seo` | Validate metadata, schema, links, images, robots, and sitemap parity in an existing `dist/` build. |
 | `npm run check:security` | Check built scripts against CSP and verify analytics are gated by deployment environment. |
 | `npm run validate:code` | Run type checks and regression tests without external feed access. |
 | `npm run validate` | Run diagnostics, tests, build, and the SEO and security regression suites. |
 | `npm run preview` | Serve the latest `dist/` build locally. |
+| `npm run events:sync:dry-run` | Fetch Luma events and report changes without writing the archive. |
+| `npm run events:sync` | Fetch Luma events and update `src/data/luma-events.json`. |
+| `npm run content-dates:generate` | Regenerate content dates from Git history. |
+| `npm run images:optimize` | Generate WebP variants for configured images in `public/assets/`. |
 | `npm run indexnow:dry-run` | Inspect the generated IndexNow submission without sending it. |
 | `npm run indexnow` | Submit generated or explicitly provided production URLs to IndexNow. |
 
+The `dev`, `check`, and `build` commands generate content dates automatically; `build` also
+runs image optimization. These hooks can update generated source dates and image files.
+Review any resulting diff before committing. Do not hand-edit `src/data/contentDates.generated.ts`.
+
 Use `npm install <package>` only when intentionally changing dependencies. For normal setup and CI-style installs, use `npm ci` so `package-lock.json` is respected exactly.
+
+## Common Pitfalls
+
+| Symptom | What to do |
+| --- | --- |
+| `npm ci` reports an unsupported engine | Run `nvm install && nvm use`, then retry. Node versions above 22 are also outside the supported range. |
+| `npm ci` reports a lockfile mismatch | If dependency edits were intentional, run `npm install` and commit `package-lock.json` with `package.json`. |
+| Build fails with `Could not load ikigai Insights` | Check access to the feed configured in `src/lib/substack.ts` and retry when it recovers. Use `npm run validate:code` for checks that do not fetch the feed. |
+| Port `4173` is occupied | Use Astro's printed URL or choose a port with `npm run dev -- --port 4174`. |
+| Preview is stale, or a check reports missing `dist/` | Run `npm run build` first. SEO and security checks inspect the existing build. |
+| `/events` is stale | Run `npm run events:sync`, review the archive diff, then rebuild. No Luma API key is needed. |
+| `/perks` is unavailable locally | Run the separate app using its [local preview instructions](apps/perks-portal/README.md#local-preview). Astro does not apply Vercel's proxy rules. |
+| SEO checks report sitemap parity errors | Give every indexable page one self-referencing canonical and include its route in `src/pages/sitemap.xml.ts`. |
+| An image still looks stale | Regenerate its variants with `npm run images:optimize` when applicable, then check the asset URL and browser/CDN cache. |
+| Content generation warns that Git metadata is unavailable | Use a full Git clone for accurate dates. The generator keeps the committed fallback when it cannot derive dates. |
+
+Edit source under `src/` and `public/`, not generated files in `dist/`. Keep screenshots,
+traces, local environment files, and OS metadata out of commits; `.artifacts/` is ignored.
 
 ## Environment
 
-Copy `.env.example` to `.env` for local configuration. Every supported variable is optional:
+All variables in the root [.env.example](.env.example) are optional for the public website.
+The perks portal has [separate configuration](apps/perks-portal/README.md#deployment).
+
+To create local configuration without replacing an existing file:
+
+```bash
+test -f .env || cp .env.example .env
+```
+
+Optional ownership tokens:
 
 ```bash
 GOOGLE_SITE_VERIFICATION=
@@ -81,8 +141,11 @@ BAIDU_SITE_VERIFICATION=
 The four site-verification variables emit ownership meta tags when they are set. They are
 normally configured in Vercel for production verification and are not needed for local work.
 
-All `.env*` files are ignored except the credential-free `.env.example` template, including
-`.env.production` and `.env.staging`. Keep credentials in ignored files or deployment secrets.
+All `.env*` files, including `.env.local`, `.env.production`, and `.env.staging`, are ignored
+except `.env.example` templates. Keep credentials in ignored files or deployment secrets.
+
+The template also lists optional `INDEXNOW_*` overrides. These are read from exported shell
+variables, not loaded automatically from `.env`; see [Search indexing](#search-indexing).
 
 Google Analytics and Vercel Analytics run only in a production build where Vercel sets
 `VERCEL=1` and `VERCEL_ENV=production`. Local development, local builds, and Vercel previews
@@ -108,9 +171,10 @@ npm run build
 npm run indexnow
 ```
 
-Use `npm run indexnow:dry-run` to inspect the URL count and request configuration without
-making a submission. The command reads canonical URLs from the generated sitemap, verifies
-that the public key file is live, and submits the URL set to the shared IndexNow endpoint.
+Use `npm run indexnow:dry-run` after building to print the URL count and request configuration
+without making network requests. The real submission reads canonical URLs from the generated
+sitemap, verifies that the public key file is live, and sends the URLs to the shared endpoint.
+A successful submission prints `IndexNow accepted … URLs`.
 
 Optional CLI overrides are documented in `.env.example`: `INDEXNOW_SITE_URL`,
 `INDEXNOW_ENDPOINT`, `INDEXNOW_KEY_FILE`, and `INDEXNOW_KEY`. Export them in the shell
@@ -130,15 +194,8 @@ npm run indexnow -- \
 ```
 
 Google Search Console, Bing Webmaster Tools, Yandex Webmaster, and Baidu Search Resource
-Platform still require an owner account. Add any requested HTML meta verification token as a
-production environment variable and redeploy:
-
-```bash
-GOOGLE_SITE_VERIFICATION=
-BING_SITE_VERIFICATION=
-YANDEX_SITE_VERIFICATION=
-BAIDU_SITE_VERIFICATION=
-```
+Platform still require an owner account. Add the requested HTML meta verification token as
+the matching production variable listed under [Environment](#environment), then redeploy.
 
 Enter `https://www.886studios.com/sitemap.xml` in each webmaster dashboard after ownership
 verification. Bing can also import the verified property and sitemap directly from Google
@@ -146,7 +203,8 @@ Search Console.
 
 ## Blog content
 
-The Blog supports two sources that are merged by publication date during the static build:
+The Blog supports two sources, merged by publication date during the static build and
+published in both `/blog` and the site's `/rss.xml` feed:
 
 - ikigai Insights posts imported from the Substack RSS feed;
 - website-only Markdown articles stored in `src/content/blog/`.
@@ -177,7 +235,7 @@ override the filename. Store article images in `public/assets/blog/`.
 Local articles use the same Blog index and article design as Substack posts. They do not show
 the “Originally published in ikigai Insights” footer unless an optional `substackUrl` is added.
 If a local article and a Substack post share a slug, the local article takes precedence.
-Drafts are excluded from builds, the sitemap, and the Blog index.
+Drafts are excluded from builds, the sitemap, the Blog index, and the RSS feed.
 
 If the Substack feed is unreachable, invalid, or empty, the build fails to protect
 published article URLs from being removed. Retry after the feed recovers; Vercel
@@ -198,20 +256,27 @@ The site is a static Astro build deployed on Vercel.
 - Optional production env vars: the four search-engine verification tokens listed above
 - Production branch: pushes to `main` deploy through the connected Vercel project
 
+Vercel also proxies `/perks` to the separate perks project and `/timer` to the timer app.
+`npm run dev` and `npm run preview` serve only the Astro site; they do not emulate the
+redirects, proxy rules, or response headers in `vercel.json`. Verify those on a Vercel deployment.
+
 The Events page is generated from `src/data/luma-events.json`; no Luma API key is required. The
 `Sync Luma events` GitHub Actions workflow checks Luma's public calendar every 30 minutes, merges
 new and updated events into the archive, and commits only when the event data changes. That commit
 triggers the normal Vercel rebuild. Past events are retained permanently even after they fall out of
 Luma's limited public history feed, while unpublished future events are removed.
-GitHub's `Validate site` workflow runs type checks and regression tests. Vercel runs the
+GitHub's `Validate site` workflow runs `npm run validate:code` and
+`npm --prefix apps/perks-portal test`. Vercel runs the
 full `npm run validate` command, including the live Substack feed, generated pages, SEO,
 and CSP checks. This split avoids Substack's HTTP 403 responses to GitHub-hosted runners
 while keeping the production feed and website content unchanged. Both GitHub workflows
 pin their actions to reviewed commit SHAs and use full Git history for content dates.
 
-`.github/main-branch-protection.json` requires both `Validate` from GitHub Actions and
+The branch-protection template in `.github/main-branch-protection.json` requires both
+`Validate` from GitHub Actions and
 `Vercel – 886studios-redesign` from Vercel on `main`, including administrators, and blocks
-force pushes and deletion. Apply it only after both checks are deployed and passing.
+force pushes and deletion when applied. Committing the file does not enable those rules;
+apply it only after both checks are deployed and passing.
 Code changes must pass both checks on a branch before updating `main`; a separate review
 approval is not required.
 
@@ -231,20 +296,8 @@ the existing design and dynamic layout behavior.
 The Contact page links directly to `it@886studios.com` with a `mailto:` URL, so
 it does not require an email provider or server-side configuration.
 
-## Common Pitfalls
-
-- If `npm ci` fails after dependency edits, regenerate the lockfile intentionally with `npm install` and commit `package-lock.json`.
-- If `/events` is stale locally, run `npm run events:sync` before building. The sync reads Luma's
-  public calendar and does not need `LUMA_API_KEY`.
-- If the scheduled event sync fails, use the `Sync Luma events` workflow's manual run button and
-  inspect its log. The script falls back to Luma's public iCal feed if the richer event feed is unavailable.
-- If `npm run dev` is already using port `4173`, use the alternate URL printed by Astro or stop the existing process.
-- If `npm run preview` serves stale output, run `npm run build` first.
-- If `npm run check:seo` says `dist` is missing, run `npm run build` first or use `npm run validate`.
-- If `npm run check:seo` reports sitemap parity errors, ensure every indexable page has one self-referencing canonical and that `src/pages/sitemap.xml.ts` contains the same route set.
-- If a changed image still looks stale in the browser, confirm the asset URL changed or clear the browser/CDN cache. Public assets are served by stable paths unless renamed.
-- Do not edit generated files in `dist/`; source changes belong under `src/`.
-- Keep screenshots, traces, `.env` files, and OS metadata out of the repo.
+If the scheduled event sync fails, manually run `Sync Luma events` on `main` and inspect its
+log. The sync script falls back to Luma's public iCal feed if the richer feed is unavailable.
 
 ## Architecture Map
 
@@ -266,6 +319,8 @@ src/
     siteContent.ts              global/nav/page copy and structured content
     partnerProfiles.ts          partner profile content and lookup map
     resourceArticles.ts         resource article content
+    luma-events.json             archived Luma events
+    contentDates.generated.ts    generated dates; do not edit manually
   layouts/
     BaseLayout.astro            document shell, metadata, global chrome
   lib/
@@ -283,11 +338,19 @@ src/
 public/                         static assets
 scripts/
   check-seo.mjs                 generated-site SEO regression checks
+  check-security.mjs            generated-site CSP and analytics checks
+  generate-content-dates.mjs     Git-derived content dates
+  optimize-images.mjs           configured image variants
+  sync-luma-events.mjs           event archive refresh
   submit-indexnow.mjs           IndexNow URL submission utility
+tests/                          website regression tests
+apps/perks-portal/               independent Node app with its own tests and build
+.github/workflows/              validation and scheduled event sync
 vercel.json                     redirects and production security headers
 ```
 
-Keep images in `public/` unless Astro image processing is intentionally introduced later.
+Public images live in `public/`. Configured WebP variants are generated by
+`scripts/optimize-images.mjs`; when adding an image, update that script if it needs variants.
 
 ## Editing Workflow
 
@@ -296,7 +359,7 @@ Use this path for most changes:
 1. Identify the route in `src/pages/`.
 2. Open the matching body component in `src/components/pages/`.
 3. Edit copy/data in `src/data/` when possible.
-4. Edit metadata, canonical behavior, analytics IDs, or preloads in `src/config/site.ts`.
+4. Edit page metadata and structured data in `src/lib/seo.ts`; edit shared defaults, canonical origin, analytics IDs, or preloads in `src/config/site.ts`.
 5. Edit shared chrome in `SiteNav.astro`, `SiteFooter.astro`, or `BaseLayout.astro`.
 6. Edit browser behavior in `src/scripts/`, not inline in page markup.
 7. Run `npm run validate`.
@@ -323,32 +386,34 @@ When working from this tracker, fetch the database first to confirm the current 
 `feature/new-information-architecture` is the local working branch for the new IA.
 Keep its commits local until publication is explicitly requested.
 
-The top bar contains Home plus three compact menus below their labels. The same hierarchy is shown
-in the mobile side drawer. Programs, Community, and About us are navigation groups;
-existing content keeps its established URLs.
+The top bar contains Home, three menus, Contact us, and the application CTA. The mobile
+drawer uses the same hierarchy. Edit it in `siteContent.nav.items`.
 
-| Group | Page | Route | Starting content |
+| Group | Page | Route | Content |
 | --- | --- | --- | --- |
-| | Home | `/` | Existing homepage |
-| Programs | ikigai Launchpad | `/ikigai-launchpad` | Existing ikigai Launchpad page |
-| Programs | Launch Station | `/launch-station` | Existing Launch Station content in the shared program layout |
-| Community | Events | `/events` | Existing events page |
-| Community | Newsletter | `/blog` | Existing newsletter and article archive |
-| Community | Resources | `/resources` | Existing resources page |
-| Community | Rising Star | `/community/rising-star` | Blank |
-| About us | Manifesto | `/about/manifesto` | Blank |
-| About us | Team | `/about/team` | Existing operating team and partners |
-| About us | Newsroom | `/about/newsroom` | Existing In the News coverage |
+| | Home | `/` | Homepage |
+| Programs | ikigai Launchpad | `/ikigai-launchpad` | Program overview |
+| Programs | Launch Station | `/launch-station` | Launch Station overview |
+| Community | Events | `/events` | Luma event archive |
+| Community | Resources | `/resources` | Resource library |
+| Community | Rising Star | `/rising-star` | Draft placeholder content; noindex |
+| About us | Manifesto | `/manifesto` | Draft placeholder content; noindex |
+| About us | Team | `/team` | Operating team and partners |
+| About us | Blog | `/blog` | Local articles and ikigai Insights |
+| About us | In the News | `/newsroom` | Media coverage |
+| | Contact us | `/contact` | Application, email, and community links |
 
-Edit the navigation hierarchy in `siteContent.nav.items`. Team and Newsroom use
+Team and Newsroom use
 `src/components/AboutTeam.astro` and `src/components/AboutNews.astro`, also shared
 with the existing `/about` page. Article and profile URLs remain available, as do
 the existing About, Contact, Portfolio, and Launch Station pages.
 
-Blank pages use `src/layouts/BlankPageLayout.astro`: the shared site shell, section
-label, and page heading, with an empty body ready for content. They are `noindex`
-and excluded from the sitemap while blank. When a page is ready, give it its own
-metadata and content with `BaseLayout`, then add its route to `src/pages/sitemap.xml.ts`.
+The former `/about/manifesto`, `/about/team`, `/about/newsroom`, and
+`/community/rising-star` paths redirect to their root-level routes.
+
+Draft pages use `src/layouts/BlankPageLayout.astro` and remain `noindex` and excluded
+from the sitemap while their content is unfinished. When a page is ready, replace its
+placeholder content, give it metadata with `BaseLayout`, and add it to `src/pages/sitemap.xml.ts`.
 
 ### Existing content sources
 
@@ -359,7 +424,7 @@ metadata and content with `BaseLayout`, then add its route to `src/pages/sitemap
 - About page team and partner lists: `siteContent.about`
 - Events labels/supporting copy: `siteContent.events`
 - Events archive: `src/data/luma-events.json` (maintained by `npm run events:sync`)
-- Contact page form labels: `siteContent.contact`
+- Contact page copy and destination links: `siteContent.contact`
 - Page titles, descriptions, and structured data: `src/lib/seo.ts`
 - Long-form resource pages: `src/data/resourceArticles.ts`
 - Partner detail pages: `src/data/partnerProfiles.ts`
@@ -374,11 +439,17 @@ Current visual direction: dark 886 language, restrained purple accents, real fou
 
 ## Validation Checklist
 
-For routine changes:
+For website changes, run the full validation described in [Quick start](#quick-start).
+To reproduce GitHub's checks without external feed access:
 
 ```bash
-npm run validate
+npm run validate:code
+npm --prefix apps/perks-portal test
 ```
+
+Root validation does not include the perks app. Its tests skip the private-catalog check
+when that ignored file is absent; its build requires the catalog. Follow the
+[portal guide](apps/perks-portal/README.md) when changing that app.
 
 `npm run check:seo` reads generated files from `dist/`, so do not run it before the first
 build. The regression suite checks titles, descriptions, canonicals, Open Graph and Twitter
@@ -410,8 +481,11 @@ For frontend QA, verify at least:
 
 - `/`
 - `/ikigai-launchpad`
+- `/launch-station`
 - `/about`
+- `/team` and `/newsroom`
 - `/events`
+- `/resources` and `/blog`
 - `/contact`
 - mobile navigation open/close
 - `/apply` redirect markup when touching CTA or redirect behavior
