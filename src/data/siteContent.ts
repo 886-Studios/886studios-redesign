@@ -1590,7 +1590,7 @@ export const siteContent = {
       {
         initials: "KL",
         name: "Kevin Lin",
-        role: "Partner",
+        role: "Batch Partner",
         company: "Twitch / Metatheory",
         photo: "/assets/headshots/kevin-lin.webp",
       },

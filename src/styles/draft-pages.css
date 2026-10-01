@@ -81,43 +81,6 @@
   border-top: 1px solid var(--border-bright);
 }
 
-.draft-end {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-md) var(--space-xl);
-  margin-top: var(--space-md);
-  padding-top: var(--space-lg);
-  border-top: 1px solid var(--border-bright);
-}
-
-.draft-link {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  min-height: 44px;
-  color: var(--purple-bright);
-  font-size: 16px;
-  font-weight: 600;
-  text-decoration: none;
-  text-underline-offset: 5px;
-}
-
-.draft-link:hover {
-  color: var(--text-primary);
-  text-decoration: underline;
-}
-
-.draft-link svg {
-  flex-shrink: 0;
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
 @media (max-width: 720px) {
   .draft-content {
     padding: var(--space-xl) var(--space-md) var(--space-2xl);

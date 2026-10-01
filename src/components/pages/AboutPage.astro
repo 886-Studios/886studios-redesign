@@ -58,11 +58,24 @@ const [titleBeforeSticker, titleAfterSticker] = about.title.split(" real ");
 
         <div class="about-collaboration-links" aria-label="Lifelike Capital links">
           {about.collaboration.links.map((link) => (
-            <a href={link.href} target="_blank" rel="noopener noreferrer">
-              {link.label}
-              <svg viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M5 11 11 5M6 5h5v5" />
-              </svg>
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${about.collaboration.title} ${link.label}`}
+              title={link.label}
+            >
+              {link.label === "LinkedIn" ? (
+                <svg class="about-collaboration-linkedin" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M4.98 3.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM3.5 8.5h2.96V20.5H3.5V8.5Zm5.28 0h2.84v1.64h.04c.4-.75 1.37-1.84 3.34-1.84 3.57 0 4.23 2.35 4.23 5.41v6.79h-2.96v-6.01c0-1.43-.03-3.27-1.99-3.27-2 0-2.31 1.56-2.31 3.17v6.11H8.78V8.5Z" />
+                </svg>
+              ) : (
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" />
+                  <ellipse cx="12" cy="12" rx="4" ry="9" />
+                  <path d="M3 12h18" />
+                </svg>
+              )}
             </a>
           ))}
         </div>
