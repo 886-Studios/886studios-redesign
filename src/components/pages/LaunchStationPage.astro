@@ -8,7 +8,17 @@ const { launchStation, launchpad } = siteContent.programs;
   <div class="launch-station-content">
     <section class="launch-station-intro" aria-labelledby="ls-heading">
       <div class="launch-station-intro-copy">
-        <h1 id="ls-heading">{launchStation.title}</h1>
+        <h1 class="prog-wordmark" id="ls-heading">
+          <span class="sr-only">{launchStation.title}</span>
+          <img
+            src="/assets/logos/launch-station-wordmark-white.svg"
+            alt=""
+            width="302"
+            height="149"
+            decoding="async"
+            aria-hidden="true"
+          />
+        </h1>
         <p class="launch-station-lead">{launchStation.lead}</p>
         <div class="launch-station-actions">
           <a
