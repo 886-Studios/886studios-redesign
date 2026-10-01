@@ -823,7 +823,7 @@ export const siteContent = {
     launchpad: {
       name: "ikigai Launchpad",
       lead:
-        "886 Studios’ 10-week, in-person accelerator in Taipei with $100K USD, mentor office hours, investor intros, and support beyond the batch.",
+        "Our flagship program. $100K USD, mentor office hours, investor intros, and support beyond the batch. From refining their vision to building lasting connections, we help founders move their companies forward. Join us in Taipei.",
       status: {
         announcement: launchpadScheduleNote,
         summary: `Next batch: ${launchpadNextBatch}.`,
