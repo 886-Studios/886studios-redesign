@@ -102,6 +102,20 @@ export const portfolioCompanies = [
     websiteUrl: "https://footnotes.rest/",
     appStoreUrl: "https://apps.apple.com/app/footnotes-notes-for-noticing/id6803869918",
     playStoreUrl: "https://play.google.com/store/apps/details?id=com.doppler.capture",
+    founders: [
+      {
+        name: "Julia Cheung",
+        linkedinUrl: "https://www.linkedin.com/in/cheungjw/",
+      },
+      {
+        name: "Prasenjit Das",
+        linkedinUrl: "https://www.linkedin.com/in/prasenjitdasln/",
+      },
+      {
+        name: "Kartikay S.",
+        linkedinUrl: "https://www.linkedin.com/in/kartikaysh/",
+      },
+    ],
     logo: {
       src: "/assets/portfolio/footnotes.png",
       alt: "footnotes logo",
@@ -182,6 +196,20 @@ export const portfolioCompanies = [
     status: "Active",
     websiteUrl: "https://lfg.place/",
     appStoreUrl: "https://apps.apple.com/us/app/lfg-on-demand-hangouts/id6762966872",
+    founders: [
+      {
+        name: "Julia Cheung",
+        linkedinUrl: "https://www.linkedin.com/in/cheungjw/",
+      },
+      {
+        name: "Prasenjit Das",
+        linkedinUrl: "https://www.linkedin.com/in/prasenjitdasln/",
+      },
+      {
+        name: "Kartikay S.",
+        linkedinUrl: "https://www.linkedin.com/in/kartikaysh/",
+      },
+    ],
     logo: {
       src: "/assets/portfolio/lfg.jpg",
       alt: "lfg logo",
