@@ -81,7 +81,7 @@ export const pageMeta = {
       "Meet the operating team and partners at 886 Studios, supporting ambitious founders with experience building global technology companies.",
   },
   newsroom: {
-    title: "Newsroom | 886 Studios",
+    title: "In the News | 886 Studios",
     description:
       "Read press coverage and news about 886 Studios, our founders, and the startup community connecting Taiwan with global technology markets.",
   },
