@@ -23,6 +23,21 @@
   ],
   "redirects": [
     {
+      "source": "/about/manifesto/:path*",
+      "destination": "/manifesto",
+      "permanent": true
+    },
+    {
+      "source": "/about/team/:path*",
+      "destination": "/team",
+      "permanent": true
+    },
+    {
+      "source": "/about/newsroom/:path*",
+      "destination": "/newsroom",
+      "permanent": true
+    },
+    {
       "source": "/community/rising-star/:path*",
       "destination": "/rising-star",
       "permanent": true

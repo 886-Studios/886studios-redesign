@@ -27,8 +27,8 @@ const staticRoutes = [
     lastmod: contentDates["/launch-station"],
   },
   { path: "/about", priority: "0.9", changefreq: "monthly" },
-  { path: "/about/team", priority: "0.7", changefreq: "monthly" },
-  { path: "/about/newsroom", priority: "0.7", changefreq: "monthly" },
+  { path: "/team", priority: "0.7", changefreq: "monthly" },
+  { path: "/newsroom", priority: "0.7", changefreq: "monthly" },
   { path: "/events", priority: "0.7", changefreq: "daily" },
   { path: "/portfolio", priority: "0.7", changefreq: "weekly" },
   {

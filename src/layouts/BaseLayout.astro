@@ -58,7 +58,7 @@ const {
 } = Astro.props;
 
 const currentPath = normalizePath(Astro.url.pathname);
-const isManifestoPage = currentPath === "/about/manifesto";
+const isManifestoPage = currentPath === "/manifesto";
 const isPortfolioProfilePage = currentPath.startsWith("/portfolio/");
 const canonicalUrl = canonical === false ? undefined : canonical ?? getCanonicalUrl(currentPath);
 const showSocialPreview = Boolean(canonicalUrl) && !/\bnoindex\b/i.test(robots);

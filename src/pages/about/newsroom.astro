@@ -1,24 +1,27 @@
 ---
-import AboutNews from "../../components/AboutNews.astro";
-import PageHero from "../../components/PageHero.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { pageMeta } from "../../lib/seo";
-import "../../styles/newsroom.css";
+import GoogleAnalytics from "../../components/GoogleAnalytics.astro";
+import VercelAnalytics from "../../components/VercelAnalytics.astro";
+import { getGoogleAnalyticsId, siteConfig } from "../../config/site";
 ---
 
-<BaseLayout
-  title={pageMeta.newsroom.title}
-  description={pageMeta.newsroom.description}
-  pageType="CollectionPage"
-  breadcrumbs={[
-    { name: "About us", path: "/about" },
-    { name: "In the News", path: "/about/newsroom" },
-  ]}
->
-  <div class="page newsroom-page">
-    <PageHero title="In the News" />
-    <div class="section newsroom-section">
-      <AboutNews spacious />
-    </div>
-  </div>
-</BaseLayout>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content="0;url=/newsroom" />
+    <link rel="canonical" href={`${siteConfig.url}/newsroom`} />
+    <title>In the News has moved | 886 Studios</title>
+    <GoogleAnalytics measurementId={getGoogleAnalyticsId()} />
+  </head>
+  <body>
+    <main>
+      <p><a href="/newsroom">Continue to In the News</a></p>
+    </main>
+    <script>
+      window.location.replace(`/newsroom${window.location.search}${window.location.hash}`);
+    </script>
+    <VercelAnalytics />
+  </body>
+</html>

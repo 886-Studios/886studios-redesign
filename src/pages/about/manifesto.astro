@@ -1,46 +1,27 @@
 ---
-import BlankPageLayout from "../../layouts/BlankPageLayout.astro";
+import GoogleAnalytics from "../../components/GoogleAnalytics.astro";
+import VercelAnalytics from "../../components/VercelAnalytics.astro";
+import { getGoogleAnalyticsId, siteConfig } from "../../config/site";
 ---
 
-<BlankPageLayout
-  title="Manifesto"
-  section="About us"
-  lead="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
->
-  <!-- Draft copy: replace the Latin text with the approved manifesto. -->
-  <div class="draft-opening">
-    <p class="draft-statement">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-    <div class="draft-prose">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec ullamcorper nulla non metus auctor fringilla. Aenean lacinia bibendum nulla sed consectetur.</p>
-      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </div>
-  </div>
-
-  <section class="draft-row" aria-labelledby="manifesto-lorem">
-    <h2 id="manifesto-lorem">Lorem ipsum<br />dolor sit amet.</h2>
-    <div class="draft-prose">
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium. Totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-      <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-    </div>
-  </section>
-
-  <section class="draft-row" aria-labelledby="manifesto-sed">
-    <h2 id="manifesto-sed">Sed ut perspiciatis unde omnis.</h2>
-    <div class="draft-prose">
-      <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.</p>
-      <p>Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus. Omnis voluptas assumenda est, omnis dolor repellendus.</p>
-    </div>
-  </section>
-
-  <section class="draft-row" aria-labelledby="manifesto-duis">
-    <h2 id="manifesto-duis">Duis aute irure dolor.</h2>
-    <div class="draft-prose">
-      <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit. Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-      <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur.</p>
-    </div>
-  </section>
-
-  <div class="draft-end">
-    <a class="draft-link" href="/about/team">Meet the team<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-7-7 7 7-7 7" /></svg></a>
-  </div>
-</BlankPageLayout>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content="0;url=/manifesto" />
+    <link rel="canonical" href={`${siteConfig.url}/manifesto`} />
+    <title>Manifesto has moved | 886 Studios</title>
+    <GoogleAnalytics measurementId={getGoogleAnalyticsId()} />
+  </head>
+  <body>
+    <main>
+      <p><a href="/manifesto">Continue to Manifesto</a></p>
+    </main>
+    <script>
+      window.location.replace(`/manifesto${window.location.search}${window.location.hash}`);
+    </script>
+    <VercelAnalytics />
+  </body>
+</html>

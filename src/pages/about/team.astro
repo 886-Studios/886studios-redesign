@@ -1,24 +1,27 @@
 ---
-import AboutTeam from "../../components/AboutTeam.astro";
-import PageHero from "../../components/PageHero.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getPeopleItemListSchema, pageMeta } from "../../lib/seo";
+import GoogleAnalytics from "../../components/GoogleAnalytics.astro";
+import VercelAnalytics from "../../components/VercelAnalytics.astro";
+import { getGoogleAnalyticsId, siteConfig } from "../../config/site";
 ---
 
-<BaseLayout
-  title={pageMeta.team.title}
-  description={pageMeta.team.description}
-  pageType="AboutPage"
-  breadcrumbs={[
-    { name: "About us", path: "/about" },
-    { name: "Team", path: "/about/team" },
-  ]}
-  structuredData={getPeopleItemListSchema("/about/team")}
->
-  <div class="page">
-    <PageHero title="Team" />
-    <div class="section">
-      <AboutTeam />
-    </div>
-  </div>
-</BaseLayout>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content="0;url=/team" />
+    <link rel="canonical" href={`${siteConfig.url}/team`} />
+    <title>Team has moved | 886 Studios</title>
+    <GoogleAnalytics measurementId={getGoogleAnalyticsId()} />
+  </head>
+  <body>
+    <main>
+      <p><a href="/team">Continue to Team</a></p>
+    </main>
+    <script>
+      window.location.replace(`/team${window.location.search}${window.location.hash}`);
+    </script>
+    <VercelAnalytics />
+  </body>
+</html>

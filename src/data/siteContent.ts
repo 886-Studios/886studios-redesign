@@ -567,10 +567,10 @@ export const siteContent = {
         id: "about",
         label: "About us",
         children: [
-          { id: "manifesto", label: "Manifesto", href: "/about/manifesto" },
-          { id: "team", label: "Team", href: "/about/team" },
+          { id: "manifesto", label: "Manifesto", href: "/manifesto" },
+          { id: "team", label: "Team", href: "/team" },
           { id: "blog", label: "Blog", href: "/blog" },
-          { id: "newsroom", label: "In the News", href: "/about/newsroom" },
+          { id: "newsroom", label: "In the News", href: "/newsroom" },
         ],
       },
       { id: "contact", label: "Contact us", href: "/contact" },

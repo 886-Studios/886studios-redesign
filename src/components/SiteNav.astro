@@ -12,7 +12,7 @@ const isActiveNavItem = (href: string) => {
   if (href === "/ikigai-launchpad") {
     return currentPath === href;
   }
-  if (href === "/about/team" && partnerProfiles.some((profile) => currentPath === `/about/${profile.slug}`)) {
+  if (href === "/team" && partnerProfiles.some((profile) => currentPath === `/about/${profile.slug}`)) {
     return true;
   }
   return href === "/" ? currentPath === "/" : currentPath === href || currentPath.startsWith(`${href}/`);

@@ -1,0 +1,24 @@
+---
+import AboutNews from "../components/AboutNews.astro";
+import PageHero from "../components/PageHero.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { pageMeta } from "../lib/seo";
+import "../styles/newsroom.css";
+---
+
+<BaseLayout
+  title={pageMeta.newsroom.title}
+  description={pageMeta.newsroom.description}
+  pageType="CollectionPage"
+  breadcrumbs={[
+    { name: "About us", path: "/about" },
+    { name: "In the News", path: "/newsroom" },
+  ]}
+>
+  <div class="page newsroom-page">
+    <PageHero title="In the News" />
+    <div class="section newsroom-section">
+      <AboutNews spacious />
+    </div>
+  </div>
+</BaseLayout>
