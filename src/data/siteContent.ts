@@ -807,13 +807,10 @@ export const siteContent = {
     launchpad: {
       name: "ikigai Launchpad",
       lead:
-        "A 10-week, in-person accelerator in Taipei with $100K USD, mentor office hours, investor intros, and support beyond the batch.",
+        "886 Studios’ 10-week, in-person accelerator in Taipei with $100K USD, mentor office hours, investor intros, and support beyond the batch.",
       status: {
-        announcement: "Applications for the Fall 2026 batch are now open.",
-        batch: "Fall 2026",
-        summary: "Next batch starts Fall 2026.",
-        applicationOpenDate: "2026-07-10",
-        firstAcceptancesDate: "2026-07-31",
+        announcement: "The next ikigai Launchpad batch has not been announced yet.",
+        summary: "Next batch to be announced.",
       },
       cta: {
         label: "Apply to ikigai Launchpad",
@@ -850,8 +847,8 @@ export const siteContent = {
           note: "Plus: Workshops, guest speakers, team building, customer and investor intros, and more.",
         },
         {
-          label: "Deadline to apply to F'26 batch",
-          value: "September 11",
+          label: "Next batch",
+          value: "To be announced",
           note: "",
         },
       ],
@@ -1039,19 +1036,19 @@ export const siteContent = {
       },
       application: {
         eyebrow: "Applications",
-        title: "Join the Fall 2026 batch!",
+        title: "Build with ikigai Launchpad.",
         intro: "",
         milestones: [
           {
-            date: "July 10, 2026",
+            date: "To be announced",
             label: "Applications open",
           },
           {
-            date: "September 11, 2026",
+            date: "No current deadline",
             label: "Application deadline",
           },
           {
-            date: "Fall 2026",
+            date: "To be announced",
             label: "Next batch",
           },
         ],
@@ -1074,7 +1071,7 @@ export const siteContent = {
         {
           question: "When is the next batch?",
           answer:
-            "The next batch begins in Fall 2026. Applications opened July 10, 2026. The application deadline is September 11, 2026.",
+            "The next batch has not been announced yet. There is no current application deadline.",
         },
         {
           question: "What are the investment terms?",
@@ -1174,27 +1171,31 @@ export const siteContent = {
         },
       ],
       lead:
-        "A residency for founders and builders working on their next company. Join the 886 Studios community in Taipei.",
+        "A 90-day builder residency from 886 Studios in Taipei. Shared workspace, startup perks, and a community to build alongside.",
       status: "Invitation only. Rolling entry.",
       essentials: [
         {
           label: "Location",
-          value: "Taiwan Tech Arena",
+          value: "Taipei",
+          note: "Taiwan Tech Arena",
         },
         {
-          label: "Workspace",
-          value: "Shared hot desks",
+          label: "Length",
+          value: "90 days",
+          note: "In-person residency",
         },
         {
-          label: "Format",
-          value: "Fixed-term residency",
+          label: "Entry",
+          value: "Invitation only",
+          note: "Rolling entry",
         },
         {
-          label: "Commitment",
-          value: "Full-time builders, in person",
+          label: "Cost & equity",
+          value: "No cost. No equity.",
+          note: "",
         },
       ],
-      benefitsTitle: "What you'll get",
+      benefitsTitle: "What founders get",
       benefits: [
         {
           title: "Workspace",
@@ -1238,12 +1239,15 @@ export const siteContent = {
         eyebrow: "Joining Launch Station",
         title: "Interested in joining?",
         body: "Tell us what you're working on and what you'd bring to Launch Station.",
-        cta: { label: "Get in touch", href: "/contact" },
+        cta: {
+          label: "Ask about the residency",
+          href: "mailto:it@886studios.com?subject=Launch%20Station%20residency%20inquiry",
+        },
       },
       card: {
-        body: "An invitation-only residency for full-time builders, with shared hot desks and an active community at Taiwan Tech Arena.",
+        body: "886 Studios’ invitation-only, 90-day builder residency in Taipei. Rolling entry, shared workspace, startup perks, and community. No cost or equity.",
         cta: {
-          label: "Learn more →",
+          label: "Explore Launch Station →",
           href: "/launch-station",
         },
       },

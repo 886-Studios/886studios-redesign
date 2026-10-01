@@ -159,7 +159,7 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
 
       <div class="prog-application-dates" aria-labelledby="prog-dates-lbl">
         <h3 class="prog-process-lbl" id="prog-dates-lbl">Application timeline</h3>
-        <dl class="prog-milestones" aria-label="Fall 2026 application dates">
+        <dl class="prog-milestones" aria-label="Upcoming application dates">
           {launchpad.application.milestones.map((milestone) => (
             <div class="prog-milestone">
               <dt>{milestone.date}</dt>
@@ -251,7 +251,7 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
                   </div>
                 </div>
 
-                <div class="prog-testimonial-face prog-testimonial-back" aria-hidden="true">
+                <div class="prog-testimonial-face prog-testimonial-back" aria-hidden="true" inert>
                   <blockquote>
                     <p>“{testimonial.quote}”</p>
                   </blockquote>
@@ -515,6 +515,7 @@ const getPillarPhoto = (photo: (typeof launchpad.benefits)[number]["photo"]) => 
       );
       front?.setAttribute("aria-hidden", String(isFlipped));
       back?.setAttribute("aria-hidden", String(!isFlipped));
+      if (back) back.inert = !isFlipped;
     };
 
     const toggleCard = () => {

@@ -7,6 +7,8 @@ interface Props {
 }
 
 const { currentPath } = Astro.props;
+const isResidencyPage = currentPath === "/launch-station" || currentPath === "/programs/launch-station";
+const navCta = isResidencyPage ? siteContent.programs.launchStation.joining.cta : siteContent.nav.cta;
 
 const isActiveNavItem = (href: string) => {
   if (href === "/ikigai-launchpad") {
@@ -56,13 +58,14 @@ const isActiveNavItem = (href: string) => {
     </div>
     <a
       class="nav-cta nav-cta--desktop"
-      href={siteContent.nav.cta.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      data-analytics-event="application_started"
+      href={navCta.href}
+      target={isResidencyPage ? undefined : "_blank"}
+      rel={isResidencyPage ? undefined : "noopener noreferrer"}
+      data-analytics-event={isResidencyPage ? "program_interest" : "application_started"}
+      data-analytics-label={isResidencyPage ? "launch_station" : undefined}
       data-analytics-placement="global_nav_desktop"
     >
-      {siteContent.nav.cta.label}
+      {navCta.label}
     </a>
     <button type="button" class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
       <span></span><span></span><span></span>
@@ -108,13 +111,14 @@ const isActiveNavItem = (href: string) => {
     <div class="mobile-drawer-footer">
       <a
         class="btn-pri btn-pri--full"
-        href={siteContent.nav.cta.href}
-        target="_blank"
-        rel="noopener noreferrer"
-        data-analytics-event="application_started"
+        href={navCta.href}
+        target={isResidencyPage ? undefined : "_blank"}
+        rel={isResidencyPage ? undefined : "noopener noreferrer"}
+        data-analytics-event={isResidencyPage ? "program_interest" : "application_started"}
+        data-analytics-label={isResidencyPage ? "launch_station" : undefined}
         data-analytics-placement="global_nav_mobile"
       >
-        {siteContent.nav.cta.label}
+        {navCta.label}
       </a>
     </div>
   </div>

@@ -1,10 +1,10 @@
 ---
 import { siteContent } from "../../data/siteContent";
 
-const { launchStation } = siteContent.programs;
+const { launchStation, launchpad } = siteContent.programs;
 ---
 
-<div class="page" id="page-launch-station">
+<div class="page program-page" id="page-launch-station">
   <div class="launch-station-content">
     <section class="launch-station-intro" aria-labelledby="ls-heading">
       <div class="launch-station-intro-copy">
@@ -19,19 +19,24 @@ const { launchStation } = siteContent.programs;
             data-analytics-label="launch_station"
           >
             {launchStation.joining.cta.label}
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M4 12h16m-7-7 7 7-7 7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
           </a>
           <a class="launch-station-explore" href="#ls-fit-heading">Explore the residency</a>
         </div>
         <p class="launch-station-status">{launchStation.status}</p>
       </div>
+      <dl class="launch-station-facts" aria-label="Launch Station facts">
+        {launchStation.essentials.map((item) => (
+          <div class="prog-brief-fact">
+            <dt>{item.label}</dt>
+            <dd><strong>{item.value}</strong>{item.note && <span>{item.note}</span>}</dd>
+          </div>
+        ))}
+      </dl>
       <figure class="launch-station-photo">
         <img
           src={launchStation.heroPhoto.src}
           srcset={launchStation.heroPhoto.srcset}
-          sizes="(max-width: 560px) calc(100vw - 48px), (max-width: 704px) calc(100vw - 64px), (max-width: 860px) 640px, (max-width: 1160px) 40vw, 470px"
+          sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 704px) calc(100vw - 64px), (max-width: 860px) 640px, (max-width: 1160px) 40vw, 470px"
           alt={launchStation.heroPhoto.alt}
           width={launchStation.heroPhoto.width}
           height={launchStation.heroPhoto.height}
@@ -41,15 +46,6 @@ const { launchStation } = siteContent.programs;
         />
       </figure>
     </section>
-
-    <dl class="launch-station-facts" aria-label="Launch Station facts">
-      {launchStation.essentials.map((item) => (
-        <div>
-          <dt>{item.label}</dt>
-          <dd>{item.value}</dd>
-        </div>
-      ))}
-    </dl>
 
     <section class="launch-station-fit" aria-labelledby="ls-fit-heading">
       <h2 id="ls-fit-heading" tabindex="-1">{launchStation.fit.title}</h2>
@@ -108,10 +104,29 @@ const { launchStation } = siteContent.programs;
         data-analytics-label="launch_station"
       >
         {launchStation.joining.cta.label}
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M4 12h16m-7-7 7 7-7 7" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
       </a>
+      <p class="launch-station-email">Email <a href={launchStation.joining.cta.href}>it@886studios.com</a> about Launch Station.</p>
     </section>
+
+    <a class="prog-launch launch-station-alternative" href="/ikigai-launchpad" aria-labelledby="ls-launchpad-heading">
+      <figure class="prog-launch-media">
+        <img
+          src="/assets/landing/launchpad-01-480.webp"
+          alt="Founders and the ikigai Launchpad community"
+          width="480"
+          height="270"
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+      <div class="prog-launch-content">
+        <span class="prog-band-label">Also available</span>
+        <div class="prog-launch-copy">
+          <h2 class="prog-launch-name" id="ls-launchpad-heading">{launchpad.name}</h2>
+          <p class="prog-launch-body">Looking for funding and structured mentor support? Explore 886 Studios’ 10-week accelerator in Taipei with $100K USD and weekly mentor office hours.</p>
+        </div>
+      </div>
+      <span class="prog-launch-status">Explore ikigai Launchpad →</span>
+    </a>
   </div>
 </div>
