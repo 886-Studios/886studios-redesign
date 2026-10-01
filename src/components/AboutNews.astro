@@ -38,7 +38,7 @@ const getNewsImageSrcset = (src: string) =>
             src={item.image.src}
             srcset={getNewsImageSrcset(item.image.src)}
             sizes={spacious
-              ? "(max-width: 720px) calc(100vw - 48px), (max-width: 1160px) calc((100vw - 112px) / 2), 524px"
+              ? "(max-width: 380px) 80px, (max-width: 720px) 96px, (max-width: 980px) 192px, 240px"
               : "(max-width: 720px) 104px, (max-width: 980px) 30vw, 208px"}
             alt={item.image.alt}
             width={item.image.width}
