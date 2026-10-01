@@ -1,6 +1,7 @@
 import { applicationUrl } from "../config/site";
 
-const launchpadScheduleNote = "The next batch dates have not been announced. There is no current application deadline.";
+const launchpadNextBatch = "Spring 2027";
+const launchpadScheduleNote = `The next ikigai Launchpad batch will take place in ${launchpadNextBatch}. Application dates and the deadline will be announced later.`;
 
 export const brand = {
   name: "886 Studios",
@@ -825,7 +826,7 @@ export const siteContent = {
         "886 Studios’ 10-week, in-person accelerator in Taipei with $100K USD, mentor office hours, investor intros, and support beyond the batch.",
       status: {
         announcement: launchpadScheduleNote,
-        summary: "Next batch to be announced.",
+        summary: `Next batch: ${launchpadNextBatch}.`,
       },
       cta: {
         label: "Apply to ikigai Launchpad",
@@ -863,7 +864,7 @@ export const siteContent = {
         },
         {
           label: "Next batch",
-          value: "To be announced",
+          value: launchpadNextBatch,
           note: "",
         },
       ],
@@ -942,9 +943,9 @@ export const siteContent = {
           quote:
             "Personally, ikigai showed me different ways to approach uncertainty. With Kevin Lin, it was always about possibility: “Hmm, that could work,” and a why-not-try attitude. With Max Hsieh, it was systematic, actionable, and logical: experiment X, measure Y, define success or failure, learn, and iterate. With Kai Huang, it was about weighing options and trusting your best judgment; even the wrong decision beats no decision because indecision teaches you nothing.",
           name: "Julia Cheung",
-          company: "Doppler",
-          profileUrl: "/portfolio/lfg",
-          profileLabel: "lfg",
+          company: "footnotes",
+          profileUrl: "/portfolio/footnotes",
+          profileLabel: "footnotes",
           photo: {
             src: "/assets/programs/testimonials/julia-cheung-speaking.webp",
             alt: "Julia Cheung speaking at a founder community event",
@@ -953,10 +954,10 @@ export const siteContent = {
             position: "50% 45%",
           },
           logo: {
-            src: "/assets/portfolio/lfg.jpg",
-            alt: "lfg logo",
-            width: 512,
-            height: 512,
+            src: "/assets/portfolio/footnotes.png",
+            alt: "footnotes logo",
+            width: 499,
+            height: 500,
           },
         },
         {
@@ -1063,7 +1064,7 @@ export const siteContent = {
             label: "Application deadline",
           },
           {
-            date: "To be announced",
+            date: launchpadNextBatch,
             label: "Next batch",
           },
         ],
@@ -1554,12 +1555,14 @@ export const siteContent = {
       {
         initials: "KH",
         name: "Kai Huang",
+        role: "Managing Partner",
         company: "Guitar Hero / Blue Goji",
         photo: "/assets/headshots/kai-huang.webp",
       },
       {
         initials: "KL",
         name: "Kevin Lin",
+        role: "Partner",
         company: "Twitch / Metatheory",
         photo: "/assets/headshots/kevin-lin.webp",
       },

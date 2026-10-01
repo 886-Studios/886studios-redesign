@@ -80,7 +80,8 @@ const [titleBeforeSticker, titleAfterSticker] = about.title.split(" real ");
     text-align: center;
     vertical-align: middle;
     margin-inline: 0.06em 0.12em;
-    padding: 0.2em 0.42em;
+    min-height: calc(1.5em + 4px);
+    padding: 0 0.42em;
     border: 2px solid #e9dfff;
     border-radius: 6px;
     background: #c4a8ff;
@@ -96,7 +97,9 @@ const [titleBeforeSticker, titleAfterSticker] = about.title.split(" real ");
   }
 
   .founder-sticker-text {
-    /* Compensate for the italic lettering’s visual lean. */
-    transform: translateX(-0.06em);
+    /* Center the visible letter height, excluding the font's line-box space. */
+    display: block;
+    text-box-trim: trim-both;
+    text-box-edge: cap alphabetic;
   }
 </style>
