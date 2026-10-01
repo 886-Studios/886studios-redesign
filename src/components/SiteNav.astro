@@ -11,8 +11,11 @@ const isResidencyPage = currentPath === "/launch-station" || currentPath === "/p
 const navCta = isResidencyPage ? siteContent.programs.launchStation.joining.cta : siteContent.nav.cta;
 
 const isActiveNavItem = (href: string) => {
-  if (href === "/ikigai-launchpad") {
+  if (href === "/ikigai-launchpad" || href === "/about") {
     return currentPath === href;
+  }
+  if (href === "/resources" && ["/incorporation-101", "/interview-guidebook"].includes(currentPath)) {
+    return true;
   }
   if (href === "/team" && partnerProfiles.some((profile) => currentPath === `/about/${profile.slug}`)) {
     return true;
@@ -64,9 +67,11 @@ const isActiveNavItem = (href: string) => {
       data-analytics-event={isResidencyPage ? "program_interest" : "application_started"}
       data-analytics-label={isResidencyPage ? "launch_station" : undefined}
       data-analytics-placement="global_nav_desktop"
+      aria-describedby={isResidencyPage ? undefined : "nav-application-status"}
     >
       {navCta.label}
     </a>
+    {!isResidencyPage && <span class="sr-only" id="nav-application-status">{siteContent.programs.launchpad.status.announcement}</span>}
     <button type="button" class="nav-hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer">
       <span></span><span></span><span></span>
     </button>
@@ -109,6 +114,7 @@ const isActiveNavItem = (href: string) => {
       }
     </nav>
     <div class="mobile-drawer-footer">
+      {!isResidencyPage && <p class="mobile-application-status" id="mobile-application-status">{siteContent.programs.launchpad.status.announcement}</p>}
       <a
         class="btn-pri btn-pri--full"
         href={navCta.href}
@@ -117,6 +123,7 @@ const isActiveNavItem = (href: string) => {
         data-analytics-event={isResidencyPage ? "program_interest" : "application_started"}
         data-analytics-label={isResidencyPage ? "launch_station" : undefined}
         data-analytics-placement="global_nav_mobile"
+        aria-describedby={isResidencyPage ? undefined : "mobile-application-status"}
       >
         {navCta.label}
       </a>

@@ -1,4 +1,5 @@
 ---
+import BackLink from "../../components/BackLink.astro";
 import { portfolioCompanies } from "../../data/siteContent";
 import type { PortfolioCompany } from "../../data/siteContent";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -100,10 +101,7 @@ function getDescriptionSegments(paragraph: string) {
   <article class="startup-detail-page">
     <section class="startup-detail-shell" aria-labelledby="startup-detail-title">
       <nav class="startup-return-links" aria-label="Portfolio navigation">
-        <a class="startup-back-link" href="/portfolio">
-          <span aria-hidden="true">&larr;</span>
-          <span>Back to portfolio</span>
-        </a>
+        <BackLink href="/portfolio" label="Portfolio" />
       </nav>
 
       <div class="startup-detail-main">

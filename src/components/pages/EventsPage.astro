@@ -49,29 +49,6 @@ const eventCountLabel = (count: number) => `${count} ${count === 1 ? "event" : "
       }
     </section>
 
-    {
-      lumaEvents.pastEvents.length > 0 && (
-        <section class="events-section" aria-labelledby="past-events-title">
-          <header class="events-section-heading">
-            <h2 class="events-section-title" id="past-events-title">{events.pastTitle}</h2>
-            <span class="events-section-count">{eventCountLabel(lumaEvents.pastEvents.length)}</span>
-          </header>
-          <div class="events-year-stack">
-            {pastEventsByYear.map((group) => (
-              <section class="events-year-group" aria-labelledby={`past-events-${group.year}`}>
-                <h3 class="events-year-heading" id={`past-events-${group.year}`}>
-                  <span>{group.year}</span>
-                </h3>
-                <div class="events-list">
-                  {group.events.map((item) => <EventCard event={item} tag="Learn more" />)}
-                </div>
-              </section>
-            ))}
-          </div>
-        </section>
-      )
-    }
-
     <div class="events-calendar-note">
       <div class="events-calendar-intro">
         <span class="events-calendar-icon" aria-hidden="true">
@@ -101,5 +78,28 @@ const eventCountLabel = (count: number) => `${count} ${count === 1 ? "event" : "
         </span>
       </a>
     </div>
+
+    {
+      lumaEvents.pastEvents.length > 0 && (
+        <section class="events-section" aria-labelledby="past-events-title">
+          <header class="events-section-heading">
+            <h2 class="events-section-title" id="past-events-title">{events.pastTitle}</h2>
+            <span class="events-section-count">{eventCountLabel(lumaEvents.pastEvents.length)}</span>
+          </header>
+          <div class="events-year-stack">
+            {pastEventsByYear.map((group) => (
+              <section class="events-year-group" aria-labelledby={`past-events-${group.year}`}>
+                <h3 class="events-year-heading" id={`past-events-${group.year}`}>
+                  <span>{group.year}</span>
+                </h3>
+                <div class="events-list">
+                  {group.events.map((item) => <EventCard event={item} tag="Learn more" />)}
+                </div>
+              </section>
+            ))}
+          </div>
+        </section>
+      )
+    }
   </div>
 </div>

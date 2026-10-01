@@ -1,3 +1,11 @@
+.draft-notice {
+  position: relative;
+  margin-top: var(--space-md);
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: var(--text-meta);
+}
+
 .draft-content {
   width: 100%;
   max-width: var(--max);

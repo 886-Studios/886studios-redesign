@@ -3,7 +3,7 @@ import sanitizeHtml from "sanitize-html";
 import type { BlogPost } from "../types/blog";
 
 export const blogConfig = {
-  label: "Newsletter",
+  label: "Blog",
   publicationName: "ikigai Insights",
   publicationUrl: "https://886studios.substack.com",
   publicationImage: "/assets/ikigai-insights-substack-wide-1280.webp",

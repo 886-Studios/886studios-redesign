@@ -36,6 +36,10 @@
   --font-manifesto: "Geist Mono", ui-monospace, "SF Mono", monospace;
   --font-display: var(--font-sans);
   --font-body: var(--font-sans);
+  --text-reading: 1.0625rem;
+  --text-reading-line: 1.8;
+  --text-meta: 0.875rem;
+  --measure-reading: 72ch;
   --nav-height: 56px;
   --max: 1160px;
   --r: 12px;
@@ -412,7 +416,7 @@ body.is-home nav.site-nav.is-scrolled {
 @media (min-width: 881px) {
   .nav-inner {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr);
   }
 
   .nav-inner > .nav-logo {
@@ -642,6 +646,13 @@ body.is-home nav.site-nav.is-scrolled {
 
 .mobile-nav-children {
   list-style: none;
+}
+
+.mobile-application-status {
+  margin-bottom: var(--space-sm);
+  color: var(--text-secondary);
+  font-size: var(--text-meta);
+  line-height: 1.5;
 }
 
 .mobile-drawer-footer {
@@ -1889,6 +1900,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 }
 
 .startup-detail-page {
+  padding-top: var(--nav-height);
   background:
     radial-gradient(ellipse 32% 18% at 72% 0%, rgba(255, 255, 255, 0.04), transparent 70%),
     var(--bg);
@@ -1906,29 +1918,12 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 }
 
 .startup-return-links {
+  --back-link-space: 0px;
   grid-column: 1 / -1;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 10px 18px;
-}
-
-.startup-back-link {
-  display: inline-flex;
-  align-items: center;
-  justify-self: start;
-  gap: 0.55em;
-  color: var(--text-muted);
-  font-family: var(--font-body);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-.startup-back-link:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 4px;
 }
 
 .startup-detail-main {
@@ -4524,24 +4519,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   padding-bottom: 44px;
 }
 
-.resource-back-link {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  margin-bottom: 26px;
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--text-muted);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
-.resource-back-link:hover {
-  color: var(--purple-bright);
-}
-
 .resource-article-title {
   position: relative;
   z-index: 1;
@@ -4597,10 +4574,10 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 }
 
 .resource-article-section p {
-  max-width: 72ch;
+  max-width: var(--measure-reading);
   color: var(--text-secondary);
-  font-size: 16px;
-  line-height: 1.82;
+  font-size: var(--text-reading);
+  line-height: var(--text-reading-line);
 }
 
 .resource-article-section p + p {
@@ -4613,9 +4590,9 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   margin-top: 16px;
   padding-left: 18px;
   color: var(--text-secondary);
-  font-size: 16px;
-  max-width: 72ch;
-  line-height: 1.7;
+  font-size: var(--text-reading);
+  max-width: var(--measure-reading);
+  line-height: var(--text-reading-line);
 }
 
 .resource-card-list,
@@ -4643,6 +4620,28 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   background: var(--bg-elevated);
 }
 
+.resource-info-card h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-sm);
+}
+
+.resource-info-card h3 svg { flex-shrink: 0; }
+
+.resource-info-card:focus-visible {
+  outline: 2px solid var(--purple-bright);
+  outline-offset: 4px;
+}
+
+.resource-info-card--static {
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: transparent;
+  padding: 20px 0;
+}
+
 .resource-card-meta {
   margin-bottom: 10px;
   color: var(--text-muted);
@@ -4652,8 +4651,8 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
 .resource-info-card p,
 .resource-subsection p {
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: var(--text-reading);
+  line-height: var(--text-reading-line);
 }
 
 .resource-link-row {
@@ -4815,10 +4814,29 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 .blog-author-link:focus-visible,
 .blog-post-author-link:focus-visible,
 .blog-post-publication a:focus-visible,
-.blog-back-link:focus-visible,
 .blog-post-origin a:focus-visible {
   outline: 2px solid var(--purple-bright);
   outline-offset: 5px;
+}
+
+.blog-publication-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: var(--space-sm);
+  color: var(--purple-bright);
+  font-size: var(--text-meta);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.blog-publication-link svg { flex-shrink: 0; }
+.blog-publication-link:hover { color: var(--text-primary); }
+.blog-publication-link:focus-visible {
+  outline: 2px solid var(--purple-bright);
+  outline-offset: 4px;
 }
 
 .blog-shell {
@@ -5127,23 +5145,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   margin: 0 auto;
 }
 
-.blog-back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  min-height: 44px;
-  margin-bottom: clamp(44px, 7vw, 72px);
-  color: var(--text-muted);
-  font-family: var(--font-body);
-  font-size: 14px;
-  text-decoration: none;
-  transition: color 180ms ease;
-}
-
-.blog-back-link:hover {
-  color: var(--purple-bright);
-}
-
 .blog-post-publication {
   margin-bottom: 20px;
   color: var(--purple-bright);
@@ -5206,8 +5207,8 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 .blog-post-content {
   min-width: 0;
   color: var(--text-secondary);
-  font-size: 17px;
-  line-height: 1.82;
+  font-size: var(--text-reading);
+  line-height: var(--text-reading-line);
 }
 
 .blog-post-content > :first-child {
@@ -5666,10 +5667,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
     padding: 42px 20px 48px;
   }
 
-  .blog-back-link {
-    margin-bottom: 42px;
-  }
-
   .blog-post-header h1 {
     font-size: clamp(38px, 11vw, 52px);
     line-height: 1;
@@ -5688,11 +5685,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
   .blog-post-layout {
     padding: 38px 20px 84px;
-  }
-
-  .blog-post-content {
-    font-size: 16px;
-    line-height: 1.78;
   }
 
   .blog-post-content h2 {
@@ -6331,26 +6323,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   padding: clamp(58px, 8vw, 96px) 32px 54px;
 }
 
-.partner-profile-back {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  margin-bottom: 34px;
-  color: var(--text-muted);
-  font-family: var(--font-body);
-  font-size: 14px;
-  text-decoration: none;
-}
-
-.partner-profile-back:hover {
-  color: var(--text-primary);
-}
-
-.partner-profile-back:focus-visible {
-  outline: 2px solid var(--purple-bright);
-  outline-offset: 5px;
-}
-
 .partner-profile-title {
   max-width: 10ch;
   margin: 0;
@@ -6473,8 +6445,8 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 .partner-profile-copy p {
   margin: 0;
   color: var(--text-secondary);
-  font-size: 1rem;
-  line-height: 1.82;
+  font-size: var(--text-reading);
+  line-height: var(--text-reading-line);
 }
 
 .partner-profile-copy a {
@@ -6840,7 +6812,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   align-items: center;
   justify-content: space-between;
   gap: clamp(28px, 4vw, 52px);
-  margin-top: clamp(72px, 9vw, 108px);
+  margin-top: var(--space-lg);
   padding: clamp(28px, 3.5vw, 40px);
   border: 1px solid var(--border);
   border-radius: var(--r);
@@ -6993,6 +6965,14 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   line-height: 1.6;
   text-wrap: pretty;
   white-space: nowrap;
+}
+
+.contact-schedule-note {
+  max-width: 52ch;
+  margin: -10px 0 22px;
+  color: var(--text-secondary);
+  font-size: var(--text-meta);
+  line-height: 1.6;
 }
 
 .contact-path .contact-action-link {
@@ -7737,7 +7717,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
     width: 100%;
     max-width: 100%;
     grid-template-columns: 1fr;
-    gap: 26px;
+    gap: var(--space-lg);
     padding-top: 52px;
     padding-inline: var(--home-section-x);
     padding-bottom: 72px;
@@ -8065,8 +8045,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
   .card-cta,
   .portfolio-see-more,
-  .resource-back-link,
-  .startup-back-link,
   .ls-back {
     align-items: center;
     min-height: 44px;
@@ -8144,11 +8122,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
 
   .partner-profile-section {
     padding: 34px 0;
-  }
-
-  .partner-profile-copy p {
-    font-size: 0.96rem;
-    line-height: 1.74;
   }
 
   .partner-profile-list,

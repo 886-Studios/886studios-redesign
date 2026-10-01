@@ -6,7 +6,7 @@ const { launchpad } = siteContent.programs;
 
 <aside
   class="application-banner"
-  aria-label="Applications open"
+  aria-label="Application dates"
   data-application-banner
 >
   <div class="application-banner-inner">
@@ -37,7 +37,7 @@ const { launchpad } = siteContent.programs;
     "[data-application-banner-close]",
   );
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const storageKey = "886-launchpad-fall-2026-banner-dismissed";
+  const storageKey = "886-launchpad-dates-unannounced-banner-dismissed";
 
   try {
     if (window.sessionStorage.getItem(storageKey) === "true") {

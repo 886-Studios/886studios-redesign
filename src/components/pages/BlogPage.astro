@@ -18,10 +18,21 @@ const [featuredPost, ...archivePosts] = posts;
   <PageHero
     title={blogConfig.label}
     titleId="blog-title"
-    titleHref={blogConfig.publicationUrl}
-    titleLinkTarget="_blank"
     showDivider={false}
-  />
+  >
+    <a
+      class="blog-publication-link"
+      href={blogConfig.publicationUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-analytics-event="substack_publication_opened"
+      data-analytics-placement="blog_header"
+    >
+      Read {blogConfig.publicationName} on Substack
+      <span class="sr-only"> (opens in a new tab)</span>
+      <svg viewBox="0 0 20 20" width="18" height="18" fill="none" aria-hidden="true"><path d="m5 15 10-10M6 5h9v9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </a>
+  </PageHero>
 
   <div class="blog-shell">
     {featuredPost ? (

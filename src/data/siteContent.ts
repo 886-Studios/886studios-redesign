@@ -1,5 +1,7 @@
 import { applicationUrl } from "../config/site";
 
+const launchpadScheduleNote = "The next batch dates have not been announced. There is no current application deadline.";
+
 export const brand = {
   name: "886 Studios",
   logoAlt: "886 Studios",
@@ -558,6 +560,7 @@ export const siteContent = {
         id: "community",
         label: "Community",
         children: [
+          { id: "portfolio", label: "Portfolio", href: "/portfolio" },
           { id: "events", label: "Events", href: "/events" },
           { id: "resources", label: "Resources", href: "/resources" },
           { id: "rising-star", label: "Rising Star", href: "/rising-star" },
@@ -567,6 +570,7 @@ export const siteContent = {
         id: "about",
         label: "About us",
         children: [
+          { id: "overview", label: "Overview", href: "/about" },
           { id: "manifesto", label: "Manifesto", href: "/manifesto" },
           { id: "team", label: "Team", href: "/team" },
           { id: "blog", label: "Blog", href: "/blog" },
@@ -809,7 +813,7 @@ export const siteContent = {
       lead:
         "886 Studios’ 10-week, in-person accelerator in Taipei with $100K USD, mentor office hours, investor intros, and support beyond the batch.",
       status: {
-        announcement: "The next ikigai Launchpad batch has not been announced yet.",
+        announcement: launchpadScheduleNote,
         summary: "Next batch to be announced.",
       },
       cta: {
@@ -1037,11 +1041,11 @@ export const siteContent = {
       application: {
         eyebrow: "Applications",
         title: "Build with ikigai Launchpad.",
-        intro: "",
+        intro: launchpadScheduleNote,
         milestones: [
           {
             date: "To be announced",
-            label: "Applications open",
+            label: "Application dates",
           },
           {
             date: "No current deadline",
@@ -1071,7 +1075,7 @@ export const siteContent = {
         {
           question: "When is the next batch?",
           answer:
-            "The next batch has not been announced yet. There is no current application deadline.",
+            launchpadScheduleNote,
         },
         {
           question: "What are the investment terms?",
@@ -1671,6 +1675,7 @@ export const siteContent = {
       title: "Building an ambitious startup",
       description:
         "Tell us what you’re working on and apply to ikigai Launchpad.",
+      scheduleNote: launchpadScheduleNote,
       cta: "Apply to ikigai Launchpad",
       href: applicationUrl,
     },

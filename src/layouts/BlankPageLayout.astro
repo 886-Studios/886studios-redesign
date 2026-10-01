@@ -18,7 +18,9 @@ const { title, section, lead } = Astro.props;
   robots="noindex, follow"
 >
   <div class="page draft-page">
-    <PageHero title={title} lead={lead} />
+    <PageHero title={title} lead={lead}>
+      <p class="draft-notice">Draft page · Placeholder copy</p>
+    </PageHero>
     <div class="draft-content">
       <slot />
     </div>

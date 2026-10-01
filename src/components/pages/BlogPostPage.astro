@@ -1,5 +1,6 @@
 ---
 import ArticleSubscribe from "../ArticleSubscribe.astro";
+import BackLink from "../BackLink.astro";
 import { getBlogAuthorHref } from "../../lib/blog";
 import {
   blogConfig,
@@ -15,9 +16,7 @@ const authorHref = getBlogAuthorHref(post.author);
 <article class="page blog-post-page">
   <header class="blog-post-header">
     <div class="blog-post-header-inner">
-      <a class="blog-back-link" href="/blog">
-        <span aria-hidden="true">←</span> Back to Blog
-      </a>
+      <BackLink href="/blog" label={blogConfig.label} />
 
       <div class="blog-post-publication">
         {post.source === "substack" ? (
