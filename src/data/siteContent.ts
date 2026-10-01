@@ -1257,6 +1257,7 @@ export const siteContent = {
         title: "ikigai Launchpad Debuts in Taipei, Showcasing Taiwan’s Next Generation Startups",
         href: "https://meet-global.bnext.com.tw/articles/view/48332",
         source: "Meet Global",
+        publishedAt: "2025-09-25",
         image: {
           src: "/assets/resources/news/launchpad-debut-960.webp",
           alt: "ikigai Launchpad founders presenting at Demo Day in Taipei",
@@ -1268,6 +1269,7 @@ export const siteContent = {
         title: "Kevin Lin on Finding Your ikigai: From Twitch to Taiwanese Startups",
         href: "https://youtu.be/wOHsOPxHO58?si=RLMXSJ1yHY5tEmqB",
         source: "CONNECTED on TaiwanPlus",
+        publishedAt: "2025-08-14",
         image: {
           src: "/assets/resources/news/kevin-lin-taiwanplus-960.webp",
           alt: "Kevin Lin featured in the TaiwanPlus interview Finding Your ikigai",
@@ -1279,6 +1281,7 @@ export const siteContent = {
         title: "Silicon Valley Founders Launch ikigai to Help Taiwanese Startups Go Global",
         href: "https://meet-global.bnext.com.tw/articles/view/48182",
         source: "Meet Global",
+        publishedAt: "2025-03-26",
         image: {
           src: "/assets/resources/news/global-founders-960.webp",
           alt: "Phil Chen and Kai Huang at Dreamers Coffee Roasters",
@@ -1294,6 +1297,7 @@ export const siteContent = {
         title: "A look into ikigai: an inside look into the first few weeks of ikigai #02",
         href: "https://886studios.substack.com/p/a-look-into-ikigai",
         source: "ikigai Insights",
+        publishedAt: "2025-07-21",
         image: {
           src: "/assets/resources/news/inside-ikigai-960.webp",
           alt: "The ikigai #02 founders gathered outdoors",
@@ -1305,6 +1309,7 @@ export const siteContent = {
         title: "團隊崩潰、FBI上門到獲得大咖合作，AI數據公司Preciser成「最靠近NBA的台灣新創」",
         href: "https://meet.bnext.com.tw/articles/view/52115",
         source: "Meet Global",
+        publishedAt: "2025-03-12",
         image: {
           src: "/assets/resources/news/preciser-960.webp",
           alt: "The Preciser founding team seated together in their office",

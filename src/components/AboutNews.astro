@@ -8,6 +8,15 @@ interface Props {
 const { spacious = false } = Astro.props;
 const Headline = spacious ? "h2" : "h3";
 const { resources } = siteContent;
+const newsItems = spacious
+  ? [...resources.newsItems].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+  : resources.newsItems;
+const dateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "short",
+  day: "numeric",
+  year: "numeric",
+  timeZone: "UTC",
+});
 const getNewsImageSrcset = (src: string) =>
   `${src.replace("-960.webp", "-480.webp")} 480w, ${src} 960w`;
 ---
@@ -16,7 +25,7 @@ const getNewsImageSrcset = (src: string) =>
   {!spacious && <h2 class="section-tag" id="about-news-title">In the News</h2>}
 
   <div class="about-news-grid">
-    {resources.newsItems.map((item) => (
+    {newsItems.map((item) => (
       <article class="about-news-item">
         <a
           class="about-news-media"
@@ -46,6 +55,11 @@ const getNewsImageSrcset = (src: string) =>
               <a href={item.secondaryLink.href} target="_blank" rel="noopener noreferrer">
                 {item.secondaryLink.label}
               </a>
+            )}
+            {spacious && (
+              <time datetime={item.publishedAt}>
+                {dateFormatter.format(new Date(`${item.publishedAt}T00:00:00Z`))}
+              </time>
             )}
           </div>
           <Headline class="about-news-headline">
