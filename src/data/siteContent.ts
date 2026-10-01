@@ -569,7 +569,7 @@ export const siteContent = {
         children: [
           { id: "manifesto", label: "Manifesto", href: "/about/manifesto" },
           { id: "team", label: "Team", href: "/about/team" },
-          { id: "newsletter", label: "Newsletter", href: "/blog" },
+          { id: "blog", label: "Blog", href: "/blog" },
           { id: "newsroom", label: "In the News", href: "/about/newsroom" },
         ],
       },
