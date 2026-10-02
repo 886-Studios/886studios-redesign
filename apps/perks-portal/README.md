@@ -89,6 +89,8 @@ Source snapshots and development credentials are excluded. Nothing is deployed b
 | `npm test` | Run tests; skip the private-catalog check when its file is absent. |
 | `npm run build` | Build `.vercel/output`; requires the private catalog but does not run tests. |
 | `npm run validate` | Run tests and then build the portal artifact. |
+| `npm run preflight` | Check release configuration and the local perks project link; print variable names only. |
+| `npm run validate:release` | Run the production configuration preflight, tests, and build. Requires securely supplied credentials, project link, and catalog. |
 | `npm start` | Run the production handler on loopback; requires runtime credentials and an HTTPS origin served through a TLS proxy. |
 
 From the repository root, the equivalent validation command is:
@@ -113,20 +115,23 @@ production must receive real credentials through the deployment environment.
 
 | Variable | Development | Production handler |
 | --- | --- | --- |
-| `PERKS_ACCESS_CODE` | Generated in `private/dev-access.json`; the env value is ignored by dev | Required. Use a random code of at least 16 characters, no more than 256, and distribute it only to approved companies. Current validation only enforces a six-character minimum. |
-| `PERKS_SESSION_SECRET` | Generated in `private/dev-access.json`; the env value is ignored by dev | Required. Generate at least 32 random bytes and store the encoded value as a server-side secret. Current validation only enforces a 32-character minimum. |
-| `APP_ORIGIN` | Dev computes `http://localhost:<PORT>` | Set `https://www.886studios.com`, without a path, query, fragment, or embedded credentials. HTTPS is required. |
+| `PERKS_ACCESS_CODE` | Generated in `private/dev-access.json`; the env value is ignored by dev | Release preflight requires 16–256 characters and rejects surrounding whitespace, control characters, and known placeholders. Generate randomly and share only with approved companies. Runtime retains the existing six-character minimum until coordinated rotation. |
+| `PERKS_SESSION_SECRET` | Generated in `private/dev-access.json`; the env value is ignored by dev | Generate at least 32 random bytes, encoded as base64url or hex. Preflight requires 43–512 encoded characters, rejects placeholders, and requires a value different from the code. Runtime retains the existing 32-character minimum. |
+| `APP_ORIGIN` | Dev computes `http://localhost:<PORT>` | Set `https://www.886studios.com`. Runtime validates a complete HTTPS origin, rejecting embedded credentials, non-root paths, query strings, and fragments. The existing origin fallback remains supported. |
 | `APP_BASE_PATH` | Empty by default; set `/perks` for a subpath preview | Set `/perks` explicitly; this is also the runtime fallback. |
-| `PORT` | Defaults to `4186` | Used by standalone `npm start`; Vercel invokes the function directly. Use a valid local port from 1 to 65535. |
+| `PORT` | Defaults to `4186` | Used by standalone `npm start`; Vercel invokes the function directly. Must be decimal digits representing an integer from 1 to 65535; empty and malformed settings are rejected. |
 
 Store the two production credentials in the perks project's Vercel Secret variables.
 Keep them out of the public-site project, browser code, logs, and shared files. Existing
 Sensitive variables continue to work as Secrets. Use separate credentials and synthetic
 catalog data for previews. [Vercel Secret variables](https://vercel.com/docs/environment-variables/sensitive-environment-variables).
 
-The [configuration hardening checklist](../../docs/config-hardening-checklist.md) records
-remaining credential/origin validation gaps and migration notes. The recommendations above
-do not mean those stronger checks are already enforced in code.
+The stronger credential rules are enforced by the explicit release preflight, preserving
+existing runtime credentials and signed sessions. Coordinate credential rotation before
+using that release gate; changing either credential invalidates sessions. Values are never
+silently trimmed, and length checks cannot establish randomness. The
+[configuration hardening checklist](../../docs/config-hardening-checklist.md) tracks the
+remaining deployment work. No new database or Redis service is required by this release.
 
 ## Access
 
@@ -137,7 +142,10 @@ Private HTML uses `no-store` for browser and CDN caches. Every response sends `X
 There is an eight-attempt, 15-minute throttle per process. Production also needs a
 durable/platform rate limit for **POST `/perks/login`**, covering the public proxy and
 direct portal entry points. Cold starts and separate instances have separate in-process
-counters. A shared code controls possession of access, not individual company identity.
+counters. The in-process check and failure accounting run synchronously after reading the
+bounded request body, so concurrent requests cannot exceed the failure budget. A full
+counter table blocks new keys until space is available. Successful login still clears
+that client's failures. A shared code controls possession of access, not individual company identity.
 Only distribute the production code to approved portfolio companies.
 
 ## Deployment
@@ -156,7 +164,12 @@ Complete these checks for each release; local tests do not confirm deployed proj
 - [ ] Supply the current private catalog securely and select Node 22 on the exact release commit.
 - [ ] Set the two runtime credentials as Secrets in the perks project's production environment,
   with `APP_ORIGIN=https://www.886studios.com` and `APP_BASE_PATH=/perks`.
-- [ ] Run `npm run validate` from this app and resolve failures or unexpected skipped tests.
+- [ ] Supply the same intended release settings securely to `npm run preflight`. It checks
+  Node 22, credential format, origin, base path, port, and `.vercel/project.json` project name/IDs.
+  It also rejects a conflicting `VERCEL_PROJECT_ID` or `VERCEL_ORG_ID`. Refresh an old link
+  missing `projectName` using `vercel link --project 886-studios-perks` from this app.
+  This is a local configuration check, not a remote project lookup or secret rotation.
+- [ ] Run `npm run validate:release` from this app and resolve failures or unexpected skipped tests.
   Review `.vercel/output`; only the function should contain the catalog, and development
   credentials, `.env*`, and private source snapshots must be absent.
 - [ ] Confirm this app's `.vercel/project.json` targets `886-studios-perks`. Deploy the validated
@@ -169,7 +182,10 @@ Complete these checks for each release; local tests do not confirm deployed proj
   new deployments. [Vercel environment variables](https://vercel.com/docs/environment-variables).
 
 The Vercel build command is `npm run build`, so it does not run the test suite itself.
-Run the validation step before publishing any manually prepared artifact.
+Run the release validation step before publishing any manually prepared artifact. Normal
+fixture builds and `npm run validate` still work without production credentials or a
+project link. Tests package synthetic data in a temporary directory and check that only
+the catalog enters the private function; local credentials and source snapshots stay out.
 
 ## Content and sources
 

@@ -1,16 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { Readable } from 'node:stream';
+import { Readable, PassThrough } from 'node:stream';
 import { fileURLToPath } from 'node:url';
 import { createAuth, createRateLimiter, SESSION_SECONDS } from '../src/auth.mjs';
 import { createHandler } from '../src/server.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const config = { root, code: 'test-portfolio-code-123', secret: 'test-session-secret-at-least-thirty-two-characters', origin: 'https://perks.886studios.com' };
+const config = { root, code: 'N8pvR6hZ1qLm2sK5', secret: '73415f9a0d63e8b7f3a296bc90d74e285bf3c60498d1a275ec639bd07f4a6e82', origin: 'https://perks.886studios.com' };
 const fake = { perks: [{ id:'test-partner',name:'Private Test Partner',category:'Engineering',headline:'Private test offer',description:'Private test description',about:'A platform for prototyping & collaboration.',offer:'Confidential credit allowance',instructions:'Use the partner link.',eligibility:'Portfolio companies',programs:[],href:'https://partner.example/private-referral',source:'https://notion.so/example',action:'Redeem perk',links:[] }] };
-const make = extra => createHandler({ ...config, catalog:fake, ...extra });
-async function request(handler, path='/', { method='GET', headers={}, body='' }={}) {
-  const req=Readable.from(body ? [Buffer.from(body)] : []);
+const make = extra => createHandler({ ...config, catalog:fake, limiter:createRateLimiter(), ...extra });
+async function request(handler, path='/', { method='GET', headers={}, body='', stream }={}) {
+  const req=stream ?? Readable.from(body ? [Buffer.from(body)] : []);
   Object.assign(req,{url:path,method,headers,socket:{remoteAddress:'127.0.0.1'}});
   const result={headers:{},status:0,body:''};
   const res={headersSent:false,setHeader(k,v){result.headers[k.toLowerCase()]=v},writeHead(status,values={}){result.status=status;for(const [k,v]of Object.entries(values))this.setHeader(k,v);this.headersSent=true},end(body){result.body=String(body??'')}};
@@ -68,7 +68,7 @@ test('private data and server files cannot be requested directly, even with a se
   }
 });
 test('valid code creates an HTTP-only secure session and unlocks partner links',async()=>{
-  const handler=make({code:'sample'});const signed=await login(handler,'sample');
+  const handler=make();const signed=await login(handler);
   assert.equal(signed.status,303);assert.equal(signed.headers.location,'/');
   assert.match(signed.headers['set-cookie'],/^__Host-886_perks=/);
   for(const flag of ['HttpOnly','Secure','SameSite=Strict','Path=/'])assert.ok(signed.headers['set-cookie'].includes(flag));
@@ -105,6 +105,51 @@ test('failed attempts are throttled and recover after the window',async()=>{
   let now=0;const limiter=createRateLimiter({now:()=>now});const handler=make({limiter});
   for(let i=0;i<8;i++)assert.equal((await login(handler,'bad')).status,401);
   assert.equal((await login(handler)).status,429);now+=900_001;assert.equal((await login(handler)).status,303);
+});
+test('concurrent delayed login bodies cannot exceed the failed-attempt budget', async () => {
+  const handler = make();
+  const streams = Array.from({ length: 20 }, () => new PassThrough());
+  const pending = streams.map(stream => request(handler, '/login', {
+    method: 'POST', headers: { origin: config.origin, 'content-type': 'application/x-www-form-urlencoded' }, stream,
+  }));
+  // All handlers have started reading before any body completes.
+  await new Promise(resolve => setImmediate(resolve));
+  streams.forEach(stream => stream.end('code=wrong'));
+  const results = await Promise.all(pending);
+  assert.equal(results.filter(result => result.status === 401).length, 8);
+  assert.equal(results.filter(result => result.status === 429).length, 12);
+  assert.equal((await login(handler)).status, 429);
+});
+test('successful logins retain the existing counter-reset behavior', async () => {
+  const handler = make();
+  for (let cycle = 0; cycle < 3; cycle++) {
+    for (let i = 0; i < 7; i++) assert.equal((await login(handler, 'wrong')).status, 401);
+    assert.equal((await login(handler)).status, 303);
+  }
+});
+test('local limiter capacity fails closed and expired keys free capacity', () => {
+  let now = 0;
+  const limiter = createRateLimiter({ now: () => now, capacity: 2 });
+  limiter.fail('a'); limiter.fail('b');
+  assert.equal(limiter.blocked('c'), true);
+  assert.equal(limiter.blocked('a'), false);
+  now = 900_001;
+  assert.equal(limiter.blocked('c'), false);
+  limiter.fail('c');
+  assert.equal(limiter.blocked('d'), false);
+});
+test('legacy valid credentials and already-issued sessions remain compatible', async () => {
+  const legacy = { code: 'sample', secret: 'legacy-session-key-32-characters!' };
+  const now = () => 1_800_000_001_000;
+  const handler = make({ ...legacy, now });
+  const signed = await login(handler, legacy.code);
+  assert.equal(signed.status, 303);
+  const auth = createAuth({ ...config, ...legacy, now });
+  assert.equal(auth.valid(signed.headers['set-cookie'].split(';')[0]), true);
+  // Fixed token from the original signing format, independent of current issue().
+  const existingCookie = '__Host-886_perks=1800000000.AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA.5Kriu6aIRY_kTC6019fneVe3tFR3rtfO4eLb9-k3Jt0';
+  const authenticated = await request(handler, '/', { headers: { cookie: existingCookie } });
+  assert.match(authenticated.body, /private-referral/);
 });
 test('sign out clears the browser session and direct GET cannot sign out',async()=>{
   const handler=make();const result=await request(handler,'/logout',{method:'POST',headers:{origin:config.origin}});
@@ -189,5 +234,5 @@ test('the subpath rejects other routes, private files, and the old login origin'
   const missing=await request(make({basePath:'/perks',code:undefined}),'/perks');
   assert.equal(missing.status,503);
   assert.match(missing.body,/action="\/perks\/login"/);
-  assert.throws(()=>make({basePath:'/perks/../'}),/Invalid application base path/);
+  assert.throws(()=>make({basePath:'/perks/../'}),/APP_BASE_PATH/);
 });

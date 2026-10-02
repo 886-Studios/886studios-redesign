@@ -3,6 +3,7 @@ import { join, extname } from 'node:path';
 import { createAuth, createRateLimiter } from './auth.mjs';
 import { renderDirectory, renderLogin } from './render.mjs';
 import { CATEGORIES, loadCatalog, normalizeSort } from './catalog.mjs';
+import { ACCESS_CODE_MAX, validateOrigin, validateBasePath } from './config.mjs';
 
 const TYPES = { '.css': 'text/css', '.js': 'text/javascript', '.svg': 'image/svg+xml', '.avif': 'image/avif', '.webp': 'image/webp', '.png': 'image/png', '.ttf': 'font/ttf', '.txt': 'text/plain' };
 const HEADERS = {
@@ -41,12 +42,21 @@ async function readBody(req) {
   return new URLSearchParams(Buffer.concat(chunks).toString('utf8'));
 }
 
-export function createHandler({ root, code, secret, origin, basePath = '', secure = true, now, catalog, limiter = createRateLimiter() }) {
-  if (basePath && !/^\/[a-z0-9-]+(?:\/[a-z0-9-]+)*$/.test(basePath)) throw new Error('Invalid application base path.');
-  const publicOrigin = new URL(origin).origin;
+export function createUnavailableHandler() {
+  return (req, res) => {
+    for (const [name, value] of Object.entries(HEADERS)) res.setHeader(name, value);
+    res.setHeader('Strict-Transport-Security', 'max-age=31536000');
+    res.writeHead(503, { 'Content-Type': 'text/plain; charset=utf-8', 'Retry-After': '60' });
+    res.end(req.method === 'HEAD' ? undefined : 'Portfolio access is temporarily unavailable.');
+  };
+}
+
+export function createHandler({ root, code, secret, origin, basePath = '', secure = true, now, catalog,
+  limiter = createRateLimiter(), vercel = secure && process.env.VERCEL === '1' }) {
+  validateBasePath(basePath);
+  const publicOrigin = validateOrigin(origin, { secure });
   const home = basePath || '/';
   const loginPage = options => renderLogin({ ...options, basePath });
-  if (secure && new URL(origin).protocol !== 'https:') throw new Error('Production requires an HTTPS origin.');
   const assets = publicFiles(join(root, 'public'));
   let auth;
   let perks;
@@ -91,12 +101,17 @@ export function createHandler({ root, code, secret, origin, basePath = '', secur
       if (!auth || !perks) return send(503, loginPage({ ready: false }));
       if (path === '/logout') { res.setHeader('Set-Cookie', auth.clear()); return redirect(home); }
       if (!String(req.headers['content-type'] ?? '').startsWith('application/x-www-form-urlencoded')) return send(415, 'Unsupported form format.', 'text/plain');
-      // Vercel overwrites this platform header. Never trust arbitrary forwarded-for headers.
-      const ip = secure && process.env.VERCEL ? req.headers['x-vercel-forwarded-for'] || 'unknown' : req.socket?.remoteAddress || 'unknown';
-      if (limiter.blocked(ip)) { res.setHeader('Retry-After', '900'); return send(429, loginPage({ error: 'Too many attempts. Please try again in 15 minutes.' })); }
       const form = await readBody(req);
+      // Vercel overwrites this header. Standalone servers use the socket address.
+      const ip = vercel ? req.headers['x-vercel-forwarded-for'] || 'unknown' : req.socket?.remoteAddress || 'unknown';
+      // No await between this check, verification and accounting: concurrent
+      // bodies cannot pass a stale check before another request records failure.
+      if (limiter.blocked(ip)) {
+        res.setHeader('Retry-After', '900');
+        return send(429, loginPage({ error: 'Too many attempts. Please try again in 15 minutes.' }));
+      }
       const value = form.get('code');
-      if (!value || value.length > 256 || !auth.verifyCode(value)) {
+      if (!value || value.length > ACCESS_CODE_MAX || !auth.verifyCode(value)) {
         limiter.fail(ip);
         return send(401, loginPage({ error: 'That code doesn’t look right. Please try again or ask the 886 team.' }));
       }

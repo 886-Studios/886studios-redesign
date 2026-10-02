@@ -1,33 +1,78 @@
 # Configuration hardening checklist
 
-Reviewed October 2, 2026. Scope: the public Astro site and the separately deployed Vercel perks portal. Evidence comes from the current working tree at `7a96c57`, including existing uncommitted changes. This document records recommendations; it does not apply configuration changes.
+Reviewed October 2, 2026. Scope: the public Astro site and the separately deployed Vercel perks portal. Evidence comes from the current working tree at `7a96c57`, including existing uncommitted changes. The original audit recommendations are below; the implementation status records the subsequent compatibility-focused changes.
 
 The primary risks are guessing the shared portal code, exposing partner data through public files or caches, and deploying with incorrect credentials or environment settings. The shared code grants possession-based access; it does not identify or revoke individual users.
 
-## Prioritized work
+## Implementation status — October 2, 2026
 
-Unchecked items are recommendations or deployment checks, not claims that production is currently misconfigured.
+The requested implementation was narrowed to preserve existing behavior. No production
+credentials were changed and no new service, firewall rule, or deployment was created.
 
-- [ ] **High — Add login rate limiting across instances.** `apps/perks-portal/src/auth.mjs:35` stores eight failures per 15 minutes in an in-memory `Map`. Cold starts and separate instances have separate counters; at 10,000 entries it also stops recording new keys. The README acknowledges the process-local limit, but the repository contains no shared limiter configuration. Configure a platform rule for **POST `/perks/login`**, covering both the public proxy and direct portal entry points, or use a durable shared counter. Verify the actual client IP through the proxy before choosing the counting key. Vercel WAF supports path/method conditions and rate limiting, but its counters are regional; use shared storage if an exact global limit is required. Its current Hobby/Pro counting windows also stop at ten minutes, so an eight-per-15-minute policy needs an appropriate alternative. Start with logging, account for office/shared IPs, and then enforce a tested threshold. Correct the README's production route from `/login` to `/perks/login`. [Vercel rate limiting](https://vercel.com/docs/vercel-firewall/vercel-waf/rate-limiting), [rule parameters](https://vercel.com/docs/vercel-firewall/vercel-waf/rule-configuration).
+- [x] **Close the local login race.** The handler reads the bounded body before checking
+  the counter, then checks the code and updates failures without an intervening await.
+  Concurrent requests cannot pass a stale count. Successful login still resets failures.
+  A full 10,000-key table now blocks untracked keys until capacity is available.
+- [ ] **Add login rate limiting across instances.** The limiter remains process-local.
+  A shared store or platform rule still needs provisioning and verification on both
+  **POST `/perks/login`** entry points. Verify the real counting key through the proxy,
+  evaluate shared-office traffic in logging mode, then enforce the chosen policy.
+  No Redis dependency was added to an existing deployment. See [Vercel rate limiting](https://vercel.com/docs/vercel-firewall/vercel-waf/rate-limiting).
+- [x] **Add stronger credential checks to release preflight.** It rejects whitespace,
+  control characters, known placeholders, access codes outside 16–256 characters, and
+  session secrets outside 43–512 base64/base64url/hex-compatible characters. Generate
+  secrets from at least 32 random bytes; format checks cannot prove randomness.
+  Runtime and form validation now share the same 256-character code maximum.
+- [ ] **Activate stronger credential minimums at runtime after coordinated rotation.**
+  Runtime keeps the existing six-character code and 32-character secret minimums so
+  current valid credentials and sessions remain compatible. It does not yet enforce
+  preflight's whitespace/placeholder rules. Before adopting the release gate, supply
+  compliant credentials, redistribute a changed code to approved companies, and retire
+  old deployments. Changing either credential invalidates existing sessions.
+- [x] **Validate complete origins and ports.** Production accepts only a complete HTTPS
+  origin with no embedded credentials, non-root path, query, or fragment; local dev
+  permits loopback HTTP. Both scripts validate decimal integer ports from 1 to 65535.
+  Existing defaults remain `https://www.886studios.com`, `/perks`, and `4186`; explicitly
+  empty base paths still support root-mounted deployments. Normalize malformed existing
+  settings before release. Runtime configuration errors produce a safe 503.
+- [x] **Add a separate release preflight.** `npm run preflight` validates runtime settings,
+  stronger credentials, Node 22, and the local `.vercel/project.json` name/IDs for
+  `886-studios-perks`, with `/perks` and the production origin. It rejects conflicting
+  environment project/org IDs and prints variable names without values. It does not
+  query Vercel or prove a stale link still names the correct remote project.
+- [x] **Align Node versions.** The portal now uses `>=22.12.0 <23`, its own `.nvmrc`, and
+  `engine-strict=true`. The function still targets `nodejs22.x`; no dependency or root
+  lockfile change was needed. Tests were run on Node 22.23.3.
+- [x] **Keep production checks separate from fixture builds.** `npm run validate:release`
+  runs preflight, tests, and build. Existing `build` and `validate` commands do not require
+  production credentials. A synthetic build test verifies the packaged runtime/login
+  flow and checks that development credentials, environment files, and source snapshots
+  are absent from the output. Only the function contains the synthetic private catalog.
+- [ ] **Verify live release and response settings.** Supply the real private catalog and
+  portal project link securely, run `validate:release` on the intended release commit,
+  and verify remote project identity, cookie scope, all cache-control layers, CSP, HSTS,
+  rewrite behavior, and direct/proxy access. The real catalog is absent in this checkout.
 
-- [ ] **High — Tighten portal credential validation.** `apps/perks-portal/src/auth.mjs:8` only checks a six-character code and a 32-character secret. Local probes confirmed that six spaces and a 32-space secret pass validation. A 257-character code also passes configuration validation even though `apps/perks-portal/src/server.mjs:99` rejects login inputs over 256 characters. Reject whitespace-only values and known placeholders, enforce the same code maximum at configuration and login, and use a randomly generated access code of at least 16 characters plus a session secret generated from at least 32 random bytes. Length checks alone cannot establish randomness. Reject malformed credentials rather than silently trimming them. **Migration:** establish compliant credentials before increasing minimum lengths; changing either credential invalidates existing sessions and changing the access code requires redistributing it to approved companies.
+## Implementation verification
 
-- [ ] **Medium — Validate the complete origin and port.** `apps/perks-portal/src/server.mjs:46` reduces `APP_ORIGIN` to `.origin`. Probes confirmed that URLs containing credentials, a path, query, or fragment are accepted and those components are silently discarded. Require an absolute HTTPS origin with no embedded credentials, non-root path, query, or fragment in production. Preserve HTTP loopback support for development. Validate `PORT` as an integer from 1 to 65535 in `apps/perks-portal/scripts/dev.mjs` and `apps/perks-portal/scripts/start.mjs`; current `Number(...)` conversion permits confusing empty/invalid inputs. **Migration:** normalize existing settings to `APP_ORIGIN=https://www.886studios.com` and `PORT=4186` before stricter validation ships. Preserve the documented root-mounted development mode and validated `/perks` production base path.
+On Node **22.23.3**:
 
-- [ ] **Medium — Add a release configuration preflight.** The portal build validates the private catalog but does not check runtime credentials or origin/base-path settings. Bad credentials produce a safe 503 after deployment, which still makes the portal unavailable. Add a separate preflight that validates required runtime configuration, reports variable names without values, and confirms the deployment targets `886-studios-perks` with `/perks`. Keep secrets out of the build artifact. Both runtime entry points should use the same validation. **Migration:** retain the current fail-closed request behavior and allow fixture-only/local builds without production credentials.
+```sh
+node --test --test-reporter=spec apps/perks-portal/tests/*.test.mjs tests/*.test.mjs
+```
 
-- [ ] **Medium — Align Node versions.** The root requires `>=22.12.0 <23`, `.nvmrc` selects 22, and the portal function declares `nodejs22.x`; the portal package permits every newer Node major. Align its supported range and installation enforcement with Node 22. This session's executable is Node 26.10.0, so its test results do not establish Node 22 compatibility. **Migration:** select Node 22 before reinstalling or running release validation; retain the root lockfile and `npm ci` workflow. The portal currently has no dependencies, so its missing lockfile is not itself a risk.
-
-- [ ] **Medium — Make the portal release gate explicit.** GitHub runs portal tests, but `apps/perks-portal/vercel.json` builds with `npm run build`, and a manually prepared prebuilt artifact can bypass those tests. Require `npm --prefix apps/perks-portal run validate` on the exact release commit, with the securely supplied private catalog, before publishing its artifact. Add an artifact check that only the server function contains `private/catalog.json`, and that `.env*`, development credentials, and source snapshots are absent. Confirm `.vercel/project.json` points to the perks project before a release. **Migration:** keep private data out of public CI artifacts and use synthetic catalog fixtures for ordinary pull requests.
-
-- [ ] **Medium — Expand configuration regression checks.** `scripts/check-security.mjs:7` reads the first CSP rather than validating every effective header rule. Existing proxy tests check no-store and indexing exclusions but do not establish deployed CDN/rewrite behavior. Cover required portal CSP directives, all cache-control layers, rewrite caching, HSTS, and cookie scope. After changes, check both proxy and direct portal responses, including authenticated HTML, errors, and redirects; use synthetic data and credentials for automated checks. Preserve the existing public-site allowance for inline styles unless the dependent styling has been migrated.
+**72 passed, 0 failed, 1 skipped.** The skipped test needs the absent real private catalog.
+The passing tests cover concurrent login attempts, capacity exhaustion, legacy credentials,
+session behavior, strict preflight rejection/redaction, origin/port validation, a synthetic
+portal build, packaged production login, and the public-site regression suite. No live
+production configuration or private catalog was used.
 
 ## Environment inventory and intended settings
 
 | Setting | Current default / use | Hardening requirement |
 | --- | --- | --- |
-| `PERKS_ACCESS_CODE` | Blank template; runtime requires at least six characters | Required portal Secret; random code, recommended minimum 16 characters, maximum 256. Share only with approved companies. |
-| `PERKS_SESSION_SECRET` | Blank template; runtime requires at least 32 characters | Required portal Secret generated from at least 32 random bytes. Keep it server-side and separate from the access code. |
+| `PERKS_ACCESS_CODE` | Blank template; runtime permits 6–256 characters | Required portal Secret; release preflight requires 16–256 characters and rejects malformed values. Share only with approved companies. |
+| `PERKS_SESSION_SECRET` | Blank template; runtime requires at least 32 characters | Required portal Secret generated from at least 32 random bytes; release preflight requires at least 43 encoded characters. Keep it server-side and separate from the access code. |
 | `APP_ORIGIN` | Runtime fallback `https://www.886studios.com` | Set explicitly in production; validate the entire origin. Use the actual preview origin for separately scoped preview credentials. |
 | `APP_BASE_PATH` | `/perks` in production entry points; empty in development | Set `/perks` explicitly for the proxied deployment. Preserve intentional root-mounted local/test support. |
 | `PORT` | `4186` for portal scripts | Local/standalone configuration only; integer validation. Both scripts bind to `127.0.0.1`. |
@@ -61,7 +106,7 @@ These require inspecting the deployed projects; repository configuration cannot 
 - [x] Portal HTML is configured as private/no-store across browser and CDN controls. Only allowlisted files under the portal's `public/` directory are served without authentication; the catalog stays behind access checks. No-index headers cover errors and authenticated responses. Public builds and IndexNow submissions reject portal references.
 - [x] Environment files, portal private files, and Vercel output are ignored. No real `.env`, private catalog, development credentials, or Vercel artifacts were tracked in the current tree or found in the relevant local path history.
 
-## Validation and limits
+## Original audit validation and limits
 
 Ran the existing configuration/privacy/authentication suites:
 
@@ -73,4 +118,4 @@ Result: **27 passed, 0 failed, 1 skipped**, on Node **26.10.0**. The skipped tes
 
 Secret review inventoried 417 tracked paths, checked non-binary current files up to 5 MB for common private-key/API-token signatures, and scanned 1,294 selected text blobs reachable from local Git refs. It also checked exact matches for two local credentials without printing their values. No matches were found. This is a bounded local scan; it does not establish the absence of secrets in remote-only history, logs, deployment artifacts, unscanned formats, or other accounts.
 
-Live environment values, firewall settings, branch protection, response headers, deployment aliases, and private release artifacts were not inspected. A fresh production build, Node 22 release validation, and dependency advisory audit were not performed. The private catalog and portal project link are absent from this checkout, so they must be supplied securely before validating a real portal release.
+Live environment values, firewall settings, branch protection, response headers, deployment aliases, and private release artifacts were not inspected. At audit time, a fresh production build, Node 22 validation, and dependency advisory audit had not been performed. See the implementation verification above for the later Node 22 and synthetic-build results. The private catalog and portal project link are absent from this checkout, so they must be supplied securely before validating a real portal release.
