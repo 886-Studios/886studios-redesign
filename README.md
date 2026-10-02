@@ -4,9 +4,12 @@ Astro static site for 886 Studios, deployed on Vercel at `https://www.886studios
 Routes use page-level Astro components, shared configuration, data-driven content, and isolated browser scripts.
 
 This README covers the public website. The separately deployed `/perks` app has its own
-[setup and deployment guide](apps/perks-portal/README.md); root npm commands do not build or test it.
+[setup and deployment guide](apps/perks-portal/README.md). Root npm scripts build and test
+the public site; use `npm --prefix apps/perks-portal ...` for the portal. GitHub's validation
+workflow runs code checks for both apps.
 
-[Quick start](#quick-start) · [Scripts](#scripts) · [Troubleshooting](#common-pitfalls) ·
+[Quick start](#quick-start) · [Troubleshooting](#common-pitfalls) ·
+[Checks and preview](#checks-and-preview) · [Scripts](#scripts) ·
 [Environment](#environment) · [Content](#content-boundaries) · [Deployment](#deployment)
 
 ## Prerequisites
@@ -21,58 +24,90 @@ of Node 22. GitHub Actions reads `.nvmrc`; use the same major version locally an
 
 ## Quick Start
 
-Run all commands from the repository root unless noted otherwise. With nvm installed,
-select the runtime before installing dependencies:
+Run commands from the repository root unless noted otherwise. With nvm installed:
 
 ```bash
 nvm install
 nvm use
-```
-
-If you use another version manager, select Node 22.12+ within Node 22 yourself.
-Then install and start the website:
-
-```bash
 npm ci
 npm run dev
 ```
 
-No environment variables or API keys are required for the public website. If you need local
-configuration, copy `.env.example` to `.env` only when `.env` does not already exist.
+With another version manager, select Node 22.12+ within Node 22 before running `npm ci`.
+No environment variables or API keys are required for the public website.
 
 Open `http://127.0.0.1:4173/`. If port `4173` is already in use, Astro prints the alternate local URL in the terminal. Use that printed URL instead.
 The server binds to localhost by default. For intentional testing from another device,
 use `npm run dev -- --host 0.0.0.0` on a trusted network.
 
-For day-to-day development, use `npm run dev`. Check types and regression tests without
-fetching external feeds:
+**Builds and pages using blog content need the live Substack feed.** An unavailable,
+blocked, invalid, or empty feed fails the build to protect existing article URLs.
+The [code checks below](#checks-and-preview) do not fetch the live feed.
+
+The Astro dev server does not serve the separate `/perks` app or apply Vercel's proxy rules.
+A working portal preview also needs its ignored private catalog; see the
+[portal setup guide](apps/perks-portal/README.md#local-preview).
+
+## Common Pitfalls
+
+| Symptom | What to do |
+| --- | --- |
+| `npm ci` reports an unsupported engine | Run `nvm install && nvm use`, then retry. Node versions above 22 are also outside the supported range. |
+| `npm ci` reports a lockfile mismatch | If dependency edits were intentional, run `npm install` and commit `package-lock.json` with `package.json`. Otherwise restore the matching committed files and rerun `npm ci`. |
+| Build fails with `Could not load ikigai Insights` | Check access to the feed configured in `src/lib/substack.ts` and retry when it recovers. Use `npm run validate:code` for checks that do not fetch the feed. |
+| Port `4173` is occupied | Use Astro's printed URL or choose a port with `npm run dev -- --port 4174`. |
+| Preview is stale, or a check reports missing `dist/` | Run `npm run build` first. SEO and security checks inspect the existing build. |
+| `/perks` is unavailable locally, or portal tests skip a catalog check | Follow the [portal setup guide](apps/perks-portal/README.md#local-preview). Its server is separate, and a fresh clone omits the private catalog. |
+| `/events` is stale | Run `npm run events:sync`, review the archive diff, then rebuild. No Luma API key is needed. |
+| SEO checks report sitemap parity errors | Give every indexable page one self-referencing canonical and include its route in `src/pages/sitemap.xml.ts`. |
+| An image still looks stale | Regenerate its variants with `npm run images:optimize` when applicable, then check the asset URL and browser/CDN cache. |
+| Content generation warns that Git metadata is unavailable | Use a full Git clone for accurate dates. The generator keeps the committed fallback when it cannot derive dates. |
+
+Edit source under `src/` and `public/`, not generated files in `dist/`. Keep screenshots,
+traces, local environment files, and OS metadata out of commits; `.artifacts/` is ignored.
+
+## Checks and Preview
+
+Check the public site's types and regression tests without fetching external feeds:
 
 ```bash
 npm run validate:code
 ```
 
-Before handing work back or opening a PR, run:
+To reproduce GitHub's checks for both apps, also run:
+
+```bash
+npm --prefix apps/perks-portal test
+```
+
+Successful checks report no type errors or failed tests. The portal's private-catalog test
+is skipped when that ignored file is absent; the remaining portal tests use fixtures.
+
+Before handing website changes back or opening a PR, run the full public-site validation:
 
 ```bash
 npm run validate
 ```
 
 This runs diagnostics, tests, the production build, and generated-site SEO and security checks.
-A successful run ends with `Security validation passed`.
+A successful run ends with `Security validation passed`. It requires the live Substack
+feed and does not build or test the perks portal.
 
-**The build requires access to the live Substack feed.** An unavailable, blocked, or empty
-feed fails the build to protect existing article URLs. Pages that load blog content also
-need that feed during development. `npm run validate:code` can run without external feed
-access after dependencies are installed, but does not validate the production output.
-
-To inspect the production build locally:
+To build without the full validation suite:
 
 ```bash
 npm run build
+```
+
+After a successful build or full validation, serve the generated `dist/` output:
+
+```bash
 npm run preview
 ```
 
-Use the URL printed by Astro.
+Use the URL printed by Astro. Preview does not rebuild files or emulate Vercel redirects,
+rewrites, or response headers. For portal changes, use its
+[tests and build instructions](apps/perks-portal/README.md#tests-and-build).
 
 ## Scripts
 
@@ -100,24 +135,6 @@ Review any resulting diff before committing. Do not hand-edit `src/data/contentD
 
 Use `npm install <package>` only when intentionally changing dependencies. For normal setup and CI-style installs, use `npm ci` so `package-lock.json` is respected exactly.
 
-## Common Pitfalls
-
-| Symptom | What to do |
-| --- | --- |
-| `npm ci` reports an unsupported engine | Run `nvm install && nvm use`, then retry. Node versions above 22 are also outside the supported range. |
-| `npm ci` reports a lockfile mismatch | If dependency edits were intentional, run `npm install` and commit `package-lock.json` with `package.json`. |
-| Build fails with `Could not load ikigai Insights` | Check access to the feed configured in `src/lib/substack.ts` and retry when it recovers. Use `npm run validate:code` for checks that do not fetch the feed. |
-| Port `4173` is occupied | Use Astro's printed URL or choose a port with `npm run dev -- --port 4174`. |
-| Preview is stale, or a check reports missing `dist/` | Run `npm run build` first. SEO and security checks inspect the existing build. |
-| `/events` is stale | Run `npm run events:sync`, review the archive diff, then rebuild. No Luma API key is needed. |
-| `/perks` is unavailable locally | Run the separate app using its [local preview instructions](apps/perks-portal/README.md#local-preview). Astro does not apply Vercel's proxy rules. |
-| SEO checks report sitemap parity errors | Give every indexable page one self-referencing canonical and include its route in `src/pages/sitemap.xml.ts`. |
-| An image still looks stale | Regenerate its variants with `npm run images:optimize` when applicable, then check the asset URL and browser/CDN cache. |
-| Content generation warns that Git metadata is unavailable | Use a full Git clone for accurate dates. The generator keeps the committed fallback when it cannot derive dates. |
-
-Edit source under `src/` and `public/`, not generated files in `dist/`. Keep screenshots,
-traces, local environment files, and OS metadata out of commits; `.artifacts/` is ignored.
-
 ## Environment
 
 All variables in the root [.env.example](.env.example) are optional for the public website.
@@ -142,7 +159,9 @@ The four site-verification variables emit ownership meta tags when they are set.
 normally configured in Vercel for production verification and are not needed for local work.
 
 All `.env*` files, including `.env.local`, `.env.production`, and `.env.staging`, are ignored
-except `.env.example` templates. Keep credentials in ignored files or deployment secrets.
+except `.env.example` templates. Search-verification tokens and the IndexNow key are public
+ownership proofs. Portal access codes and session secrets belong in the portal's configuration,
+not in the public-site project or browser code.
 
 The template also lists optional `INDEXNOW_*` overrides. These are read from exported shell
 variables, not loaded automatically from `.env`; see [Search indexing](#search-indexing).
@@ -292,6 +311,10 @@ The script CSP rejects inline JavaScript. Astro keeps executable scripts externa
 including analytics initialization and redirect helpers; JSON-LD remains inline data.
 Keep new executable scripts external as well. Inline styles are still allowed to preserve
 the existing design and dynamic layout behavior.
+
+Use the [configuration hardening checklist](docs/config-hardening-checklist.md) for known
+validation gaps, credential handling, and deployment checks. It records recommendations;
+it does not confirm live environment settings, firewall rules, or branch protection.
 
 The Contact page links directly to `it@886studios.com` with a `mailto:` URL, so
 it does not require an email provider or server-side configuration.
@@ -444,17 +467,9 @@ Current visual direction: dark 886 language, restrained purple accents, real fou
 
 ## Validation Checklist
 
-For website changes, run the full validation described in [Quick start](#quick-start).
-To reproduce GitHub's checks without external feed access:
-
-```bash
-npm run validate:code
-npm --prefix apps/perks-portal test
-```
-
-Root validation does not include the perks app. Its tests skip the private-catalog check
-when that ignored file is absent; its build requires the catalog. Follow the
-[portal guide](apps/perks-portal/README.md) when changing that app.
+For website changes, run the full validation in [Checks and preview](#checks-and-preview).
+That section also gives the commands for GitHub's checks without live feed access.
+For portal changes, follow its [tests and build guide](apps/perks-portal/README.md#tests-and-build).
 
 `npm run check:seo` reads generated files from `dist/`, so do not run it before the first
 build. The regression suite checks titles, descriptions, canonicals, Open Graph and Twitter
