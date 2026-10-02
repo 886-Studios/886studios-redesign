@@ -131,3 +131,60 @@ The comparison isolates the testimonial section because the supplied reference i
 - Founder profile photos are absent because the user said they will supply them later. This is expected, not a QA blocker.
 
 Final result: passed
+
+## Team page — approved purple portrait design (2026-10-02)
+
+### Target and constraints
+- Approved visual: solid-purple portrait silhouettes on the existing black page, with monochrome photos and social icons.
+- Source visual: `/Users/patryk/.codex/generated_images/01a0fa70-816d-71a3-8c6f-5b7d816766f0/exec-5d7c2e1d-f58c-4a4b-a896-d2f848fb9527.png`.
+- Implementation: `http://127.0.0.1:4173/team`, branch `feature/new-information-architecture`.
+- User constraint supersedes generated portrait likenesses: retain the existing photographs, changing only background transparency and monochrome display. All 15 output cutouts were compared against their original decoded RGB; every visible pixel is unchanged. CSS handles grayscale and framing. Originals are untouched.
+
+### Browser comparison
+- Native Safari used after both in-app and Chrome browser automation surfaces were unavailable.
+- Compared source and rendered page side by side in one browser capture. Source normalized to 1440px width; implementation iframe 1440px wide, both displayed at 50% scale on a 2x display. Header/footer and careers intentionally retain the existing production components/content.
+- Evidence: `.artifacts/team/desktop-comparison.png`, `.artifacts/team/desktop-comparison-bottom.png`, `.artifacts/team/desktop-final.png`.
+- Also rendered 320px, 390px, and 768px iframe viewports side by side. Verified readable wrapping, contained portraits, and responsive grids. The narrowest title wraps naturally. No horizontal content overflow observed.
+- Typography: Georgia serif heading matches the selected direction, with the existing Geist body font. Existing brand tokens supply black, white, lavender, and solid purple `#8b5cf6`.
+- Layout: centered 2-person batch group, 3-person operating group, 4-column supporting grid with the last pair centered; mobile reflows to 1/2 columns.
+- Copy: all 15 current names, roles, and affiliations retained. Original profile/social links remain functional. No invented addresses.
+
+### Findings and resolution
+- P1: first Kai asset had lost its alpha because of Sharp operation order. Fixed the helper to decode RGB before joining alpha, regenerated Kai, and verified transparency plus unchanged visible RGB for every output.
+- P2: legacy photo framing varied across the source photos. Added explicit CSS framing offsets/scales, preserving poses and pixels. Fixed bottom-edge gaps by ensuring photographs extend to the crop boundary.
+- P2: the existing dev server served stale component CSS. Restarted the preview and verified computed transforms, then repeated the side-by-side comparison. No remaining actionable P0/P1/P2 findings.
+- P3: low-resolution source photos (especially seated / wider shots) have natural edge softness. No generative replacement or enhancement was applied.
+
+### Functional verification
+- Opened and closed the mobile menu; followed Kai's profile link and verified the destination.
+- Verified all 15 internal profile destinations exist in the production build. Social links use existing destinations, accessible names, and 44px targets.
+- Safari console checked after navigation: normal font-preconnect / Vite messages only; no errors.
+- Astro type check passed with zero errors/warnings. All 37 existing tests passed. Production build passed after enabling access to its required remote blog feed.
+
+final result: passed
+
+### Team typography follow-up (2026-10-02)
+- Reused the shared `PageHero` and standard section spacing for consistency with other pages, replacing the custom serif header.
+- Removed the top “886 Studios” eyebrow and “Built by real founders, for founders.” lead.
+- Reused `section-h2 section-h2--compact` for team groups and Careers: responsive 22–34px headings instead of 11px eyebrow labels.
+- Confirmed the updated header and larger group titles in the local Safari preview. `npm run check` passed with zero errors, warnings, or hints; `git diff --check` passed.
+
+### Team layout follow-up (2026-10-02)
+- Kept the shared header typography and scoped tighter vertical spacing to Team, using existing spacing tokens.
+- Latest grouping: one Operating Team section, ordered Kai Huang, Kevin Lin, Max Hsieh, Patryk Chojecki, Carter Wang. All five share one row at 1100px and wider. Kevin retains the Batch Partner title. Supporting Partners is now Advisors. Both groups use the same responsive five/three/two-column layout.
+- Preserved source order, portrait treatment, real content, and 44px social targets. Portraits cap at 200px consistently, with natural text wrapping at narrow widths.
+- Reviewed desktop 1440px and phones 390px/320px together in Safari. Section hierarchy stays clear, all three groups remain distinct, and long names/affiliations wrap inside their columns.
+- Careers now uses the same purple section label and shared paragraph typography/spacing as Fund Partner on the overview page, per the follow-up request.
+- Impeccable detector returned no findings for the team components; Astro check passed with zero errors, warnings, or hints; whitespace check passed.
+- Confirmed the merged Operating Team row, requested order, Kevin's title, and Advisors heading in Safari after restarting the preview to clear stale component CSS. Astro check passed again after regrouping.
+- Added shared CSS subgrid tracks for portraits, titles, names, companies, and socials. Missing fields retain their track; wrapped text sizes the corresponding track across each row. Verified alignment at 1440px, 390px, and 320px in Safari.
+- Role titles now use small, muted uppercase text; company affiliations retain regular-case purple text. Portraits, names, and social targets retain their existing styling. Astro check passed after the markup changes.
+- Added Forma to Max Hsieh and individual external links for active companies with their own company websites. Company links sit outside the profile anchor, preserving valid markup, independent keyboard targets, and the five aligned tracks. Per the latest request, verified Wikipedia articles are the fallback for Guitar Hero, Playdom, Mochi Media, Hot or Not, and Tiburon. ThunderCore and Symbio remain plain text because no matching Wikipedia article was found and their prior URLs lead to migration/rebranding pages. Corrected the team label CATCHPLAY.
+- Safari confirmed Forma points to joinforma.com and company links are distinct from profile links. Desktop alignment remains intact; Astro check passed for 106 files with zero diagnostics.
+
+### Portrait consistency and sharpening (2026-10-02)
+- Added a shared TeamPortrait component for the directory and profile pages, keeping the same cutout assets, framing, monochrome treatment, and purple shapes across both.
+- Applied mild display-only sharpening to Kevin Chou, Phil Chen, Charles Huang, and James Hong using an alpha-preserving convolution filter. Source photo files remain unchanged.
+- Reviewed the desktop directory, Kevin Chou profile, and mobile Phil Chen profile together in Safari. Portraits render consistently, directory alignment remains intact, and no obvious sharpening halos were observed. Evidence: `.artifacts/team/portrait-consistency.png`.
+- Astro check passed for 107 files with zero errors, warnings, or hints; whitespace check passed.
+- Follow-up: removed sharpening for Phil Chen and James Hong per user feedback; their team and profile portraits now use the prior unsharpened appearance. Removed the newly added Lifelike Capital affiliation from Kevin Lin's team listing.

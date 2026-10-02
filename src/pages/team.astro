@@ -19,8 +19,8 @@ const { careers } = siteContent.about;
   structuredData={getPeopleItemListSchema("/team")}
 >
   <div class="page" id="page-team">
-    <PageHero title="Team" accentHeader />
-    <div class="section">
+    <PageHero title="Our People" accentHeader />
+    <div class="section team-content">
       <AboutTeam />
 
       <hr class="divider divider--spaced">
@@ -36,3 +36,16 @@ const { careers } = siteContent.about;
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  #page-team :global(.pg-hero.accent-hero) {
+    padding-block: var(--space-xl) var(--space-lg);
+  }
+  .team-content { padding-block: var(--space-lg) var(--space-xl); }
+  #page-team .divider--spaced { margin-block: var(--space-xl); }
+  @media (max-width: 760px) {
+    #page-team :global(.pg-hero.accent-hero) {
+      padding-block: var(--space-lg) var(--space-md);
+    }
+  }
+</style>

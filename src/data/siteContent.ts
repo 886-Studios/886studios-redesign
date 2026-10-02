@@ -1558,6 +1558,7 @@ export const siteContent = {
         initials: "MH",
         name: "Max Hsieh",
         role: "Venture Partner & General Manager",
+        company: "Forma",
         photo: "/assets/headshots/max-hsieh.webp",
         objectPosition: "top center",
         linkedinUrl: "https://www.linkedin.com/in/max-hsieh-8045875a",
@@ -1651,7 +1652,7 @@ export const siteContent = {
       {
         initials: "TC",
         name: "Timothy Chen",
-        company: "VIA Technologies / CAATCHPLAY",
+        company: "VIA Technologies / CATCHPLAY",
         photo: "/assets/headshots/timothy-chen.webp",
       },
     ],

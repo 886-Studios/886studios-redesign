@@ -1,146 +1,76 @@
 ---
 import { siteContent } from "../data/siteContent";
-import { partnerProfileByName } from "../data/partnerProfiles";
+import { partnerProfileByName, type ProfileSocial } from "../data/partnerProfiles";
+import TeamPerson from "./TeamPerson.astro";
 
 const { about } = siteContent;
-const batchPartnerNames = new Set(["Kai Huang", "Kevin Lin"]);
-const partnerGroups = [
-  { title: "Batch Partners", kind: "batch", people: about.partners.filter((person) => batchPartnerNames.has(person.name)) },
-  { title: "Supporting Partners", kind: "supporting", people: about.partners.filter((person) => !batchPartnerNames.has(person.name)) },
+const operatingPartnerNames = new Set(["Kai Huang", "Kevin Lin"]);
+const partners = about.partners.map((person) => ({
+  ...person,
+  role: "role" in person ? person.role : undefined,
+  profile: partnerProfileByName.get(person.name),
+}));
+const operatingTeam = about.team.map((person) => ({
+  ...person,
+  profile: partnerProfileByName.get(person.name),
+  socials: [
+    { platform: "linkedin", href: person.linkedinUrl, ariaLabel: `${person.name} on LinkedIn` },
+    ...(person.xUrl ? [{ platform: "x", href: person.xUrl, ariaLabel: `${person.name} on X` }] : []),
+  ] as ProfileSocial[],
+}));
+const groups = [
+  { title: about.teamTitle, kind: "operating", people: [...partners.filter((person) => operatingPartnerNames.has(person.name)), ...operatingTeam] },
+  { title: "Advisors", kind: "advisors", people: partners.filter((person) => !operatingPartnerNames.has(person.name)) },
 ];
 ---
 
-{partnerGroups.map((group) => (
-  <Fragment>
-    {group.kind === "supporting" && <hr class="divider divider--spaced">}
-
-<div class="reveal reveal-delay-1">
-  <div class="section-tag">{group.title}</div>
-  <div class:list={["team-grid", "team-grid--partners", `team-grid--${group.kind}`]}>
-    {
-      group.people.map((partner) => {
-        const partnerProfile = partnerProfileByName.get(partner.name);
-        const linkedin = partnerProfile?.socials?.find((link) => link.platform === "linkedin");
-
-        return (
-          <div class:list={["team-card", partnerProfile && "team-card--link", partnerProfile && "team-card--profile"]}>
-            {partnerProfile && (
-              <a class="team-card-hit-link" href={`/about/${partnerProfile.slug}`} aria-label={`View profile for ${partner.name}`}></a>
-            )}
-            <div class="avatar-wrap">
-              {partner.photo
-                ? <img class="avatar-photo" src={partner.photo} alt={partner.name} width="80" height="80" loading="lazy" decoding="async" />
-                : <div class="avatar">{partner.initials}</div>
-              }
-            </div>
-            <div class="team-name-row">
-              <div class="team-name">{partner.name}</div>
-              {linkedin && (
-                <div class="team-socials">
-                  <a
-                    class="team-social-link team-social-link--linkedin"
-                    href={linkedin.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={linkedin.ariaLabel}
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path d="M4.98 3.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM3.5 8.5h2.96V20.5H3.5V8.5Zm5.28 0h2.84v1.64h.04c.4-.75 1.37-1.84 3.34-1.84 3.57 0 4.23 2.35 4.23 5.41v6.79h-2.96v-6.01c0-1.43-.03-3.27-1.99-3.27-2 0-2.31 1.56-2.31 3.17v6.11H8.78V8.5Z" />
-                    </svg>
-                  </a>
-                </div>
-              )}
-            </div>
-            {"role" in partner && <div class="team-role">{partner.role}</div>}
-            {partner.company && <div class="team-company">{partner.company}</div>}
-          </div>
-        );
-      })
-    }
-  </div>
+<div class="people">
+  {groups.map((group) => (
+    <section class:list={["people-group", `people-group--${group.kind}`]} aria-labelledby={`people-${group.kind}`}>
+      <h2 class="section-h2 section-h2--compact" id={`people-${group.kind}`}>{group.title}</h2>
+      <ul class="people-grid" role="list">
+        {group.people.map((person) => (
+          <li>
+            <TeamPerson
+              name={person.name}
+              photo={person.photo}
+              role={person.role}
+              company={"company" in person ? person.company : undefined}
+              profileHref={person.profile ? `/about/${person.profile.slug}` : undefined}
+              socials={"socials" in person ? person.socials : person.profile?.socials}
+              eager={group.kind === "operating"}
+            />
+          </li>
+        ))}
+      </ul>
+    </section>
+  ))}
 </div>
-    {group.kind === "batch" && (
-      <Fragment>
-        <hr class="divider divider--spaced">
-        <div class="reveal">
-          <div class="section-tag">{about.teamTitle}</div>
-          <div class="team-grid team-grid--ops">
-            {
-              about.team.map((person) => {
-                const teamProfile = partnerProfileByName.get(person.name);
-
-                return (
-                  <div class:list={["team-card", teamProfile && "team-card--link", teamProfile && "team-card--profile"]}>
-                    {teamProfile && (
-                      <a class="team-card-hit-link" href={`/about/${teamProfile.slug}`} aria-label={`View profile for ${person.name}`}></a>
-                    )}
-                    <div class="avatar-wrap">
-                      {person.photo
-                        ? <img class="avatar-photo" src={person.photo} alt={person.name} width="80" height="80" loading="lazy" decoding="async" style={person.objectPosition ? `object-position: ${person.objectPosition}` : undefined} />
-                        : <div class="avatar">{person.initials}</div>
-                      }
-                    </div>
-                    <div class="team-name-row">
-                      <div class="team-name">{person.name}</div>
-                      <div class="team-socials">
-                        <a
-                          class="team-social-link team-social-link--linkedin"
-                          href={person.linkedinUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          aria-label={`${person.name} on LinkedIn`}
-                        >
-                          <svg viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M4.98 3.5a1.75 1.75 0 1 1 0 3.5 1.75 1.75 0 0 1 0-3.5ZM3.5 8.5h2.96V20.5H3.5V8.5Zm5.28 0h2.84v1.64h.04c.4-.75 1.37-1.84 3.34-1.84 3.57 0 4.23 2.35 4.23 5.41v6.79h-2.96v-6.01c0-1.43-.03-3.27-1.99-3.27-2 0-2.31 1.56-2.31 3.17v6.11H8.78V8.5Z" />
-                          </svg>
-                        </a>
-                        {person.xUrl && (
-                          <a
-                            class="team-social-link team-social-link--x"
-                            href={person.xUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`${person.name} on X`}
-                          >
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
-                              <path d="M18.901 1.153h3.68l-8.04 9.19 9.458 12.504H16.594l-5.8-7.584-6.64 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932L18.9 1.153Zm-1.291 19.492h2.04L6.486 3.24H4.298L17.61 20.645Z" />
-                            </svg>
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                    <div class="team-role">{person.role}</div>
-                  </div>
-                );
-              })
-            }
-          </div>
-        </div>
-      </Fragment>
-    )}
-  </Fragment>
-))}
 
 <style>
-  .team-grid--partners {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
+  .people { display: grid; gap: var(--space-xl) var(--space-md); }
+  .people-group { min-width: 0; }
+  .people-group > h2 { margin-bottom: var(--space-md); }
+  .people-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 var(--space-md);
+    padding: 0;
+    margin: 0 0 calc(-1 * var(--space-lg));
   }
-
-  .team-grid--partners > .team-card {
+  .people-grid > li {
+    display: grid;
+    grid-template-rows: subgrid;
+    grid-row: span 5;
+    row-gap: 0;
     min-width: 0;
-    flex: 0 0 calc((100% - 30px) / 4);
+    padding-bottom: var(--space-lg);
   }
-
-  .team-grid--batch > .team-card {
-    flex-basis: calc((100% - 20px) / 3);
+  @media (min-width: 1100px) {
+    .people-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   }
-
-  @media (max-width: 720px) {
-    .team-grid--partners { gap: 12px; }
-    .team-grid--partners > .team-card { flex-basis: calc((100% - 12px) / 2); }
-    .team-grid--batch > .team-card { flex-basis: 100%; }
+  @media (max-width: 760px) {
+    .people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-sm); }
   }
 </style>

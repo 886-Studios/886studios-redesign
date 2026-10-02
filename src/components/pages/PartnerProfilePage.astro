@@ -1,5 +1,6 @@
 ---
 import BackLink from "../BackLink.astro";
+import TeamPortrait from "../TeamPortrait.astro";
 import type { PartnerProfile } from "../../data/partnerProfiles";
 
 const { profile } = Astro.props as { profile: PartnerProfile };
@@ -37,7 +38,7 @@ const { profile } = Astro.props as { profile: PartnerProfile };
       )}
     </div>
     <figure class="partner-profile-photo">
-      <img src={profile.photo} alt={profile.name} width="400" height="400" decoding="async" loading="eager" fetchpriority="high" />
+      <TeamPortrait name={profile.name} photo={profile.photo} eager profile />
     </figure>
   </section>
 
