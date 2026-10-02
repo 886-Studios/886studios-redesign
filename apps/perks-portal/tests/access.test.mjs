@@ -19,6 +19,38 @@ async function request(handler, path='/', { method='GET', headers={}, body='' }=
 }
 const login = (handler, code=config.code, extra={}) => request(handler,'/login',{method:'POST',headers:{origin:config.origin,'content-type':'application/x-www-form-urlencoded',...extra},body:new URLSearchParams({code}).toString()});
 
+test('indexing exclusions survive authentication, assets, redirects, and error responses', async () => {
+  for (const basePath of ['', '/perks']) {
+    const handler = make({ basePath });
+    const home = basePath || '/';
+    const signed = await request(handler, `${basePath}/login`, {
+      method: 'POST', headers: { origin: config.origin, 'content-type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ code: config.code }).toString(),
+    });
+    const cookie = signed.headers['set-cookie'].split(';')[0];
+    const responses = [signed];
+    for (const headers of [{}, { cookie }]) {
+      for (const path of [home, `${home}?q=test`, `${basePath}/login`, `${basePath}/styles.css`, `${basePath}/app.js`, `${basePath}/private/catalog.json`, `${basePath}/missing`]) {
+        responses.push(await request(handler, path, { headers }));
+      }
+      responses.push(await request(handler, home, { method: 'HEAD', headers }));
+    }
+    responses.push(await request(handler, `${basePath}/login`, { method: 'POST' }));
+    responses.push(await request(handler, home, { method: 'PUT' }));
+    responses.push(await request(make({ basePath, code: undefined }), home));
+    for (const response of responses) {
+      for (const rule of ['noindex', 'nofollow', 'noarchive', 'nosnippet', 'noimageindex']) {
+        assert.ok(response.headers['x-robots-tag'].split(/,\s*/).includes(rule), `${response.status}: ${rule}`);
+      }
+      if (response.body.startsWith('<!doctype html>')) {
+        assert.ok(response.body.includes(`<meta name="robots" content="${response.headers['x-robots-tag']}">`));
+      }
+    }
+    // Crawlers must be able to read noindex; robots.txt is not an indexing exclusion.
+    assert.equal((await request(handler, `${basePath}/robots.txt`)).body, 'User-agent: *\nAllow: /\n');
+  }
+});
+
 test('locked HTML and every public asset contain no private partner data',async()=>{
   const handler=make();
   for(const path of ['/','/login','/?q=Private','/styles.css','/app.js']) {
@@ -83,7 +115,7 @@ test('missing credentials fail closed, and private responses are not indexable',
   const handler=make({code:undefined});const result=await request(handler);
   assert.equal(result.status,503);assert.doesNotMatch(result.body,/private-referral/);
   assert.match(result.headers['x-robots-tag'],/noindex/);
-  assert.match((await request(handler,'/robots.txt')).body,/Disallow: \//);
+  assert.match((await request(handler,'/robots.txt')).body,/Allow: \//);
 });
 test('search query injection is escaped and unknown categories are discarded',async()=>{
   const handler=make();const cookie=(await login(handler)).headers['set-cookie'].split(';')[0];

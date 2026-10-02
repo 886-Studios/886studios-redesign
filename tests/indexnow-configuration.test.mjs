@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { mkdtemp, mkdir, rm, symlink, writeFile } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import test from "node:test";
 import { fetchIndexNow, getIndexNowConfig } from "../scripts/lib/indexnow-config.mjs";
 
@@ -63,4 +63,17 @@ test("the CLI can inspect a submission without sending or printing its key", asy
   assert.equal(preview.urlCount, 1);
   assert.equal(preview.firstUrl, "https://www.886studios.com/contact");
   assert.ok(!output.includes("public-key-1234"));
+});
+
+test("the CLI rejects private portal URLs from explicit arguments and sitemap input", async (t) => {
+  const directory = await fixture(t);
+  const script = new URL("../scripts/submit-indexnow.mjs", import.meta.url).pathname;
+  await writeFile(path.join(directory, "sitemap.xml"), "<urlset><url><loc>https://www.886studios.com/perks</loc></url></urlset>");
+  for (const argument of ["--url=https://www.886studios.com/perks", "--url=https://www.886studios.com/perks/login?q=test", "--sitemap=sitemap.xml"]) {
+    const result = spawnSync(process.execPath, [script, "--dry-run", argument], {
+      cwd: directory, env: { PATH: process.env.PATH }, encoding: "utf8",
+    });
+    assert.equal(result.status, 1);
+    assert.match(result.stderr, /Private perks URLs must never be submitted/);
+  }
 });

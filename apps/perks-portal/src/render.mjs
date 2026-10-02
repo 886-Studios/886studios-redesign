@@ -18,7 +18,7 @@ const sharingImageAlt = 'Purple 886 Studios logo on a dark purple and blue backg
 
 function page(body, { title = '886 Studios Exclusive Perks', basePath = '' } = {}) {
   const description = 'Partner benefits for 886 Studios portfolio companies.';
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow, noarchive"><meta name="referrer" content="same-origin"><meta name="theme-color" content="#050507"><meta name="description" content="${description}"><title>${escape(title)}</title>
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex"><meta name="referrer" content="same-origin"><meta name="theme-color" content="#050507"><meta name="description" content="${description}"><title>${escape(title)}</title>
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="886 Studios">
   <meta property="og:url" content="https://www.886studios.com/perks">

@@ -9,7 +9,7 @@ const HEADERS = {
   'Cache-Control': 'private, no-store, max-age=0',
   'CDN-Cache-Control': 'no-store',
   'Vercel-CDN-Cache-Control': 'no-store',
-  'X-Robots-Tag': 'noindex, nofollow, noarchive',
+  'X-Robots-Tag': 'noindex, nofollow, noarchive, nosnippet, noimageindex',
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
   'Referrer-Policy': 'same-origin',
@@ -70,7 +70,7 @@ export function createHandler({ root, code, secret, origin, basePath = '', secur
       if (basePath && url.pathname !== basePath && !url.pathname.startsWith(`${basePath}/`)) return send(404, 'Not found.', 'text/plain');
       const path = url.pathname.slice(basePath.length) || '/';
       if (req.method === 'GET' || req.method === 'HEAD') {
-        if (path === '/robots.txt') return send(200, 'User-agent: *\nDisallow: /\n', 'text/plain; charset=utf-8');
+        if (path === '/robots.txt') return send(200, 'User-agent: *\nAllow: /\n', 'text/plain; charset=utf-8');
         if (assets.has(path)) {
           const asset = assets.get(path);
           res.setHeader('Cache-Control', 'public, max-age=3600');

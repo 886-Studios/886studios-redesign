@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fetchIndexNow, getIndexNowConfig } from "./lib/indexnow-config.mjs";
+import { isPrivatePerksUrl } from "./lib/private-perks.mjs";
 
 const isDryRun = process.argv.includes("--dry-run");
 const requestedUrls = process.argv
@@ -46,6 +47,7 @@ const candidateUrls =
 const urlList = [...new Set(candidateUrls)];
 
 for (const url of urlList) {
+  if (isPrivatePerksUrl(url)) throw new Error("Private perks URLs must never be submitted to IndexNow.");
   let parsedUrl;
 
   try {

@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { access, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
+import { hasPrivatePerksReference, isPrivatePerksUrl } from "./lib/private-perks.mjs";
 
 const config = JSON.parse(await readFile("vercel.json", "utf8"));
 const policy = config.headers.flatMap((entry) => entry.headers)
@@ -19,12 +20,17 @@ async function checkDirectory(directory) {
   for (const entry of await readdir(directory, { withFileTypes: true })) {
     const file = path.join(directory, entry.name);
     if (entry.isDirectory()) {
+      assert.ok(!isPrivatePerksUrl(`/${path.relative("dist", file).split(path.sep).join("/")}`),
+        `${file}: private perks must not be emitted as public static pages`);
       await checkDirectory(file);
       continue;
     }
+    if (!/\.(?:html|xml|txt|json|js)$/i.test(entry.name)) continue;
+    const html = await readFile(file, "utf8");
+    assert.ok(!hasPrivatePerksReference(html),
+      `${file}: public content must not expose the private perks portal`);
     if (!entry.name.endsWith(".html")) continue;
     pages += 1;
-    const html = await readFile(file, "utf8");
     assert.equal(html.includes("data-google-analytics-id="), productionAnalytics,
       `${file}: Google analytics must match the deployment environment`);
     assert.equal(html.includes("<vercel-analytics"), productionAnalytics && !file.includes(`${path.sep}apply${path.sep}`),
