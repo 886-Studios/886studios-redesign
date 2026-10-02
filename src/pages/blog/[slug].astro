@@ -61,7 +61,7 @@ const LocalContent = localEntry ? (await render(localEntry)).Content : undefined
             "@type": "Person",
             name: post.author,
             ...(post.author === "Carter Wang"
-              ? { url: getAbsoluteUrl("/about/carter-wang") }
+              ? { url: getAbsoluteUrl("/team/carter") }
               : {}),
           },
     publisher: { "@id": "https://www.886studios.com/#organization" },

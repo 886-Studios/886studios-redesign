@@ -1,6 +1,5 @@
 ---
 import { brand, siteContent } from "../data/siteContent";
-import { partnerProfiles } from "../data/partnerProfiles";
 
 interface Props {
   currentPath: string;
@@ -15,9 +14,6 @@ const isActiveNavItem = (href: string) => {
     return currentPath === href;
   }
   if (href === "/resources" && ["/incorporation-101", "/interview-guidebook"].includes(currentPath)) {
-    return true;
-  }
-  if (href === "/team" && partnerProfiles.some((profile) => currentPath === `/about/${profile.slug}`)) {
     return true;
   }
   return href === "/" ? currentPath === "/" : currentPath === href || currentPath.startsWith(`${href}/`);

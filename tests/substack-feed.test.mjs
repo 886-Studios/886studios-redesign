@@ -87,7 +87,7 @@ test("imported articles and RSS retain working destinations for moved references
   const links = [
     ...["kai-huang", "kevin-lin", "chris-wang", "jacob-hsu"].map((slug) => [
       `https://withikigai.com/partners/886-partners-1/${slug}`,
-      `https://www.886studios.com/about/${slug}`,
+      `https://www.886studios.com/team/${slug === "kevin-lin" ? slug : slug.split("-")[0]}`,
     ]),
     ["https://ramp.com/leading-indicators/april-2026-ai-index", "https://ramp.com/data/april-2026-ai-index"],
   ];

@@ -1,0 +1,40 @@
+---
+import PartnerProfilePage from "../../components/pages/PartnerProfilePage.astro";
+import { partnerProfiles } from "../../data/partnerProfiles";
+import type { PartnerProfile } from "../../data/partnerProfiles";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getAbsoluteUrl, getPersonSchema, getProfileDescription } from "../../lib/seo";
+
+export function getStaticPaths() {
+  return partnerProfiles.map((profile) => ({
+    params: { slug: profile.slug },
+    props: { profile },
+  }));
+}
+
+const { profile } = Astro.props as { profile: PartnerProfile };
+const profileDescription = getProfileDescription(profile);
+const profileImageSize = profile.legacySlug === "patryk-chojecki" ? 931 : 400;
+const profileImageWidth = profile.legacySlug === "james-hong" ? 1120 : profileImageSize;
+const profileImageHeight = profile.legacySlug === "james-hong" ? 1404 : profileImageSize;
+---
+
+<BaseLayout
+  title={`${profile.name} | 886 Studios`}
+  description={profileDescription}
+  ogImage={getAbsoluteUrl(profile.photo)}
+  ogImageAlt={[profile.name, profile.role, profile.company].filter(Boolean).join(", ")}
+  ogImageWidth={profileImageWidth}
+  ogImageHeight={profileImageHeight}
+  ogImageType="image/webp"
+  ogType="profile"
+  pageType="ProfilePage"
+  breadcrumbs={[
+    { name: "Team", path: "/team" },
+    { name: profile.name, path: `/team/${profile.slug}` },
+  ]}
+  structuredData={getPersonSchema(profile)}
+  hideFooterSocials
+>
+  <PartnerProfilePage profile={profile} />
+</BaseLayout>

@@ -188,3 +188,23 @@ final result: passed
 - Reviewed the desktop directory, Kevin Chou profile, and mobile Phil Chen profile together in Safari. Portraits render consistently, directory alignment remains intact, and no obvious sharpening halos were observed. Evidence: `.artifacts/team/portrait-consistency.png`.
 - Astro check passed for 107 files with zero errors, warnings, or hints; whitespace check passed.
 - Follow-up: removed sharpening for Phil Chen and James Hong per user feedback; their team and profile portraits now use the prior unsharpened appearance. Removed the newly added Lifelike Capital affiliation from Kevin Lin's team listing.
+
+### Team profiles and canonical routes (2026-10-02)
+- Directory and profile headers now share roster identity data and company/social components, alongside the shared portrait component. Role text remains distinct from linked company names. Corrected Kevin Lin's biography role to Batch Partner and CATCHPLAY spelling in Timothy Chen's profile.
+- All 15 canonical profiles now live under `/team/`: unique first names use the first name only; Kevin Lin and Kevin Chou retain surnames. James and Jameson have separate first-name routes.
+- Updated directory links, blog author/archive links, breadcrumbs, Person metadata, and sitemap. Added permanent deployment redirects and static fallback pages for old `/about/` profiles; removed the legacy broad redirect that intercepted `/team/` routes.
+- Verified directory alignment, Kai's profile, and Kevin Lin's mobile profile in Safari. Navigating to `/about/kai-huang` resolved to `/team/kai`. Evidence: `.artifacts/team/profile-routes-consistency.png`.
+- Astro check passed without diagnostics; all 40 tests passed, including roster parity, all profile routes, and redirect-loop coverage. Production build, SEO validation (77 indexable pages), security validation (102 HTML pages), and whitespace checks passed.
+
+### Team polish (2026-10-02)
+- Preserved the approved portraits, palette, five-person desktop operating row, copy, and shared profile components.
+- Balanced wrapped role/name text; grouped company labels so short company names stay together and separators follow the next company when wrapping. Added understated persistent link underlines to distinguish verified destinations from plain affiliations.
+- Matched the optical sizes of X and LinkedIn, retained 44px targets, and added shared hover/focus/pressed feedback. Tightened mobile heading, row, section, and Careers spacing using existing tokens.
+- One initial and one confirmation review covered 1440px, 900px, 390px, and 320px together in Safari. Alignment and wrapping remained intact; profile navigation and return were checked. Evidence: `.artifacts/team/polish-responsive.png`.
+- Astro check, production build, SEO validation, security validation, and whitespace checks passed. No portrait files or factual copy changed during polish.
+
+### James Hong replacement photo (2026-10-02)
+- Replaced James's roster photo with the user-provided Slack image, shared by the directory and `/team/james`. Saved the lossless source as `public/assets/headshots/james-hong-portrait.webp` and the transparent cutout as `public/assets/headshots/team/james-hong-portrait.webp`.
+- Used built-in image editing for background extraction, then applied only the resulting alpha mask to the original RGB pixels. The existing helper verified every visible source RGB channel remained unchanged. CSS supplies grayscale and matching framing; James has no sharpening filter.
+- Updated social-image dimensions for the 1120×1404 source. Reviewed team, desktop profile, and phone profile together in Safari; confirmed the final crop after one adjustment. Evidence: `.artifacts/team/james-hong-replacement-review.png`; exact prompt: `.artifacts/team/james-hong-edit-prompt.md`.
+- Astro check and whitespace checks passed.

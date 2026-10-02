@@ -6323,67 +6323,19 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   line-height: 1;
 }
 
-.partner-profile-company {
-  margin: 22px 0 0;
-  color: var(--purple-bright);
-  font-family: var(--font-body);
-  font-size: 0.72rem;
-  letter-spacing: 0.14em;
-  line-height: 1.55;
+.team-person-role {
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
+  text-wrap: balance;
+  margin-bottom: 4px;
 }
+.team-person-role:empty { margin: 0; }
 
-.partner-profile-socials {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 18px;
-}
-
-.partner-profile-social-link {
-  width: 44px;
-  height: 44px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.025);
-  color: var(--text-muted);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.partner-profile-social-link svg {
-  width: 15px;
-  height: 15px;
-  display: block;
-  fill: currentColor;
-}
-
-.partner-profile-social-link--linkedin svg {
-  transform: scale(1.18);
-}
-
-.partner-profile-social-link--x svg {
-  transform: scale(0.96);
-}
-
-.partner-profile-social-link:hover {
-  border-color: rgba(167, 139, 250, 0.42);
-  background: rgba(139, 92, 246, 0.1);
-  color: var(--text-primary);
-  transform: translateY(-1px);
-}
-
-.partner-profile-social-link:focus-visible {
-  outline: 2px solid var(--purple-bright);
-  outline-offset: 4px;
-}
+.partner-profile-identity { margin-top: 22px; }
 
 .partner-profile-photo {
   width: min(100%, 320px);

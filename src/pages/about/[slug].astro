@@ -1,39 +1,32 @@
 ---
-import PartnerProfilePage from "../../components/pages/PartnerProfilePage.astro";
+import { siteConfig } from "../../config/site";
 import { partnerProfiles } from "../../data/partnerProfiles";
-import type { PartnerProfile } from "../../data/partnerProfiles";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import { getAbsoluteUrl, getPersonSchema, getProfileDescription } from "../../lib/seo";
 
 export function getStaticPaths() {
   return partnerProfiles.map((profile) => ({
-    params: { slug: profile.slug },
-    props: { profile },
+    params: { slug: profile.legacySlug },
+    props: { destination: `/team/${profile.slug}` },
   }));
 }
 
-const { profile } = Astro.props as { profile: PartnerProfile };
-const profileDescription = getProfileDescription(profile);
-const profileImageSize = profile.slug === "patryk-chojecki" ? 931 : 400;
+const { destination } = Astro.props;
 ---
 
-<BaseLayout
-  title={`${profile.name} | 886 Studios`}
-  description={profileDescription}
-  ogImage={getAbsoluteUrl(profile.photo)}
-  ogImageAlt={`${profile.name}, ${profile.company}`}
-  ogImageWidth={profileImageSize}
-  ogImageHeight={profileImageSize}
-  ogImageType="image/webp"
-  ogType="profile"
-  pageType="ProfilePage"
-  breadcrumbs={[
-    { name: "About us", path: "/about" },
-    { name: "Team", path: "/team" },
-    { name: profile.name, path: `/about/${profile.slug}` },
-  ]}
-  structuredData={getPersonSchema(profile)}
-  hideFooterSocials
->
-  <PartnerProfilePage profile={profile} />
-</BaseLayout>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    <link rel="canonical" href={`${siteConfig.url}${destination}`} />
+    <title>Profile has moved | 886 Studios</title>
+  </head>
+  <body>
+    <main><p><a id="profile-destination" href={destination}>Continue to profile</a></p></main>
+    <script>
+      const destination = document.querySelector<HTMLAnchorElement>("#profile-destination")?.getAttribute("href");
+      if (destination) window.location.replace(`${destination}${window.location.search}${window.location.hash}`);
+    </script>
+  </body>
+</html>

@@ -155,7 +155,7 @@ export function getProfileDescription(profile: PartnerProfile) {
   const profileText = cleanText(profile.profile.map(profileParagraphToText).join(" "));
   if (profileText) return getMetaDescription(profileText);
 
-  const operatingRole = getOperatingRole(profile.name);
+  const operatingRole = profile.role;
   const fallback = operatingRole
     ? `${profile.name} is the ${operatingRole} at 886 Studios in Taipei.`
     : `${profile.name} is a partner at 886 Studios associated with ${profile.company}.`;
@@ -523,20 +523,20 @@ export function getEventsStructuredData(events: LumaEventCard[]): JsonLdObject[]
 }
 
 export function getPersonSchema(profile: PartnerProfile): JsonLdObject {
-  const pageUrl = `${siteConfig.url}/about/${profile.slug}`;
+  const pageUrl = `${siteConfig.url}/team/${profile.slug}`;
 
   return {
     "@type": "Person",
     "@id": `${pageUrl}#person`,
     name: profile.name,
     url: pageUrl,
-    mainEntityOfPage: { "@id": getPageFragmentId(`/about/${profile.slug}`, "webpage") },
+    mainEntityOfPage: { "@id": getPageFragmentId(`/team/${profile.slug}`, "webpage") },
     image: getAbsoluteUrl(profile.photo),
-    jobTitle: getPersonRole(profile.name),
+    jobTitle: profile.role,
     description: getProfileDescription(profile),
     affiliation: { "@id": organizationId },
     sameAs: profile.socials?.map((link) => link.href),
-    knowsAbout: [getVisibleRole(profile.name), ...profile.companiesBuilt].filter(
+    knowsAbout: [profile.role, profile.company, ...profile.companiesBuilt].filter(
       (value): value is string => Boolean(value),
     ),
   };
@@ -715,23 +715,7 @@ function getArticleTopics(article: ResourceArticle) {
 
 function getProfileUrl(name: string) {
   const profile = partnerProfiles.find((item) => item.name === name);
-  return profile ? `${siteConfig.url}/about/${profile.slug}` : undefined;
-}
-
-function getOperatingRole(name: string) {
-  return siteContent.about.team.find((person) => person.name === name)?.role;
-}
-
-function getPersonRole(name: string) {
-  return getOperatingRole(name) ??
-    (siteContent.about.partners.some((person) => person.name === name) ? "Partner" : undefined);
-}
-
-function getVisibleRole(name: string) {
-  return (
-    siteContent.about.team.find((person) => person.name === name)?.role ??
-    siteContent.about.partners.find((person) => person.name === name)?.company
-  );
+  return profile ? `${siteConfig.url}/team/${profile.slug}` : undefined;
 }
 
 function getPageFragmentId(path: string, fragment: string) {

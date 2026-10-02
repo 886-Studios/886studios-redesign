@@ -1,23 +1,12 @@
 ---
 import { siteContent } from "../data/siteContent";
-import { partnerProfileByName, type ProfileSocial } from "../data/partnerProfiles";
+import { partnerProfileByName } from "../data/partnerProfiles";
 import TeamPerson from "./TeamPerson.astro";
 
 const { about } = siteContent;
 const operatingPartnerNames = new Set(["Kai Huang", "Kevin Lin"]);
-const partners = about.partners.map((person) => ({
-  ...person,
-  role: "role" in person ? person.role : undefined,
-  profile: partnerProfileByName.get(person.name),
-}));
-const operatingTeam = about.team.map((person) => ({
-  ...person,
-  profile: partnerProfileByName.get(person.name),
-  socials: [
-    { platform: "linkedin", href: person.linkedinUrl, ariaLabel: `${person.name} on LinkedIn` },
-    ...(person.xUrl ? [{ platform: "x", href: person.xUrl, ariaLabel: `${person.name} on X` }] : []),
-  ] as ProfileSocial[],
-}));
+const partners = about.partners.map((person) => partnerProfileByName.get(person.name)!);
+const operatingTeam = about.team.map((person) => partnerProfileByName.get(person.name)!);
 const groups = [
   { title: about.teamTitle, kind: "operating", people: [...partners.filter((person) => operatingPartnerNames.has(person.name)), ...operatingTeam] },
   { title: "Advisors", kind: "advisors", people: partners.filter((person) => !operatingPartnerNames.has(person.name)) },
@@ -35,9 +24,9 @@ const groups = [
               name={person.name}
               photo={person.photo}
               role={person.role}
-              company={"company" in person ? person.company : undefined}
-              profileHref={person.profile ? `/about/${person.profile.slug}` : undefined}
-              socials={"socials" in person ? person.socials : person.profile?.socials}
+              company={person.company}
+              profileHref={`/team/${person.slug}`}
+              socials={person.socials}
               eager={group.kind === "operating"}
             />
           </li>
@@ -71,6 +60,10 @@ const groups = [
     .people-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }
   }
   @media (max-width: 760px) {
+    .people { row-gap: var(--space-lg); }
+    .people-group > h2 { margin-bottom: var(--space-sm); }
     .people-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: var(--space-sm); }
+    .people-grid { margin-bottom: calc(-1 * var(--space-md)); }
+    .people-grid > li { padding-bottom: var(--space-md); }
   }
 </style>

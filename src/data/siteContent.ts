@@ -1641,7 +1641,7 @@ export const siteContent = {
         initials: "JH",
         name: "James Hong",
         company: "Hot or Not",
-        photo: "/assets/headshots/james-hong.webp",
+        photo: "/assets/headshots/james-hong-portrait.webp",
       },
       {
         initials: "SC",

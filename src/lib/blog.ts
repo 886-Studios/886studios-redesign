@@ -34,7 +34,7 @@ export function getLatestBlogModifiedDate(posts: BlogPost[]) {
 }
 
 export function getBlogAuthorHref(author: string) {
-  return author === "Carter Wang" ? "/about/carter-wang" : undefined;
+  return author === "Carter Wang" ? "/team/carter" : undefined;
 }
 
 async function loadBlogPosts() {

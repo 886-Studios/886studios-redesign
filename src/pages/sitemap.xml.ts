@@ -43,7 +43,7 @@ const staticRoutes = [
 ];
 
 const profileRoutes = partnerProfiles.map((profile) => ({
-  path: `/about/${profile.slug}`,
+  path: `/team/${profile.slug}`,
   priority: "0.5",
   changefreq: "monthly",
 }));

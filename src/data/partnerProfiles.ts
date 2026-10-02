@@ -1,3 +1,5 @@
+import { siteContent } from "./siteContent";
+
 export interface PartnerQuestion {
   question: string;
   answer: string[];
@@ -14,6 +16,8 @@ export interface ProfileSocial {
 
 export interface PartnerProfile {
   slug: string;
+  legacySlug: string;
+  role?: string;
   name: string;
   company: string;
   photo: string;
@@ -26,12 +30,10 @@ export interface PartnerProfile {
   companiesBuilt: string[];
 }
 
-export const partnerProfiles: PartnerProfile[] = [
+const profileContent: Omit<PartnerProfile, "legacySlug" | "role" | "company" | "photo">[] = [
   {
     slug: "max-hsieh",
     name: "Max Hsieh",
-    company: "Venture Partner & General Manager",
-    photo: "/assets/headshots/max-hsieh.webp",
     sourceUrl: "https://www.886studios.com/about/max-hsieh",
     profileTitle: "About Max",
     profile: [
@@ -51,8 +53,6 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "patryk-chojecki",
     name: "Patryk Chojecki",
-    company: "Program Manager",
-    photo: "/assets/headshots/patryk-chojecki.webp",
     sourceUrl: "https://www.886studios.com/about/patryk-chojecki",
     profileTitle: "About Patryk",
     profile: [
@@ -73,8 +73,6 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "carter-wang",
     name: "Carter Wang",
-    company: "Venture Associate",
-    photo: "/assets/headshots/carter-wang.webp",
     sourceUrl: "https://www.886studios.com/about/carter-wang",
     profileTitle: "About Carter",
     profile: [
@@ -103,8 +101,6 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "kai-huang",
     name: "Kai Huang",
-    company: "Guitar Hero",
-    photo: "/assets/headshots/kai-huang.webp",
     sourceUrl: "https://www.886studios.com/about/kai-huang",
     profileTitle: "Profile",
     profile: [
@@ -161,8 +157,6 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "joseph-hei",
     name: "Joseph Hei",
-    company: "Orbit Baby",
-    photo: "/assets/headshots/joseph-hei.webp",
     sourceUrl: "https://www.886studios.com/about/joseph-hei",
     profileTitle: "Profile",
     profile: [
@@ -210,8 +204,6 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "charles-huang",
     name: "Charles Huang",
-    company: "Guitar Hero",
-    photo: "/assets/headshots/charles-huang.webp",
     sourceUrl: "https://www.886studios.com/about/charles-huang",
     profileTitle: "Profile",
     profile: [
@@ -314,8 +306,6 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "jameson-hsu",
     name: "Jameson Hsu",
-    company: "Mochi Media",
-    photo: "/assets/headshots/jameson-hsu.webp",
     sourceUrl: "https://www.886studios.com/about/jameson-hsu",
     profileTitle: "Profile",
     profile: [
@@ -372,12 +362,10 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "kevin-lin",
     name: "Kevin Lin",
-    company: "Twitch",
-    photo: "/assets/headshots/kevin-lin.webp",
     sourceUrl: "https://www.886studios.com/about/kevin-lin",
     profileTitle: "About Kevin",
     profile: [
-      `Kevin Lin is an experienced technology investor and entrepreneur with more than 20 years of operating and investment experience. Kevin is a Managing Partner at 886 Studios and Co-Founder and General Partner at Lifelike Capital, a leading early stage technology venture capital firm. Prior, Kevin was Co-Founder and COO of Twitch, the world’s leading live streaming gaming and community platform.`,
+      `Kevin Lin is an experienced technology investor and entrepreneur with more than 20 years of operating and investment experience. Kevin is a Batch Partner at 886 Studios and Co-Founder and General Partner at Lifelike Capital, a leading early stage technology venture capital firm. Prior, Kevin was Co-Founder and COO of Twitch, the world’s leading live streaming gaming and community platform.`,
       `Under his leadership, Twitch brought live social video to hundreds of millions of people worldwide, enabling thousands of creators to build communities and make a living through live, shared experiences. Kevin led Twitch from inception to a dominant 90% market share, 2,000+ employees, $1.5B USD in revenue, and an acquisition by Amazon for $1B USD.`,
       `Kevin is also a Co-Founder of Lin Capital (predecessor to Lifelike Capital), former Chairman of the Board of OURA, Board Director for Krafton/PUBG, Co-Founder and CEO of Metatheory, Co-Founder of Gold House, and a prolific angel/venture capital investor. Kevin has led venture capital investments in top companies including Cruise Automation (the leading autonomous AI driving company, acquired by GM for $1B+ USD), Alto Pharmacy (latest value at $1B USD), OURA (latest value at $5B USD).`,
       `Kevin holds a Bachelors from Yale University.`,
@@ -394,8 +382,6 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "kevin-chou",
     name: "Kevin Chou",
-    company: "Kabam",
-    photo: "/assets/headshots/kevin-chou.webp",
     sourceUrl: "https://www.886studios.com/about/kevin-chou",
     profileTitle: "Profile",
     profile: [
@@ -449,8 +435,6 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "chris-wang",
     name: "Chris Wang",
-    company: "Playdom",
-    photo: "/assets/headshots/chris-wang.webp",
     sourceUrl: "https://www.886studios.com/about/chris-wang",
     profileTitle: "Profile",
     profile: [
@@ -512,8 +496,6 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "jacob-hsu",
     name: "Jacob Hsu",
-    company: "Catalyte",
-    photo: "/assets/headshots/jacob-hsu.webp",
     sourceUrl: "https://www.886studios.com/about/jacob-hsu",
     profileTitle: "Profile",
     profile: [
@@ -563,8 +545,6 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "james-hong",
     name: "James Hong",
-    company: "Hot or Not",
-    photo: "/assets/headshots/james-hong.webp",
     sourceUrl: "https://www.886studios.com/about/james-hong",
     profileTitle: "Profile",
     profile: [],
@@ -580,8 +560,6 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "steven-chiang",
     name: "Steven Chiang",
-    company: "Tiburon Entertainment",
-    photo: "/assets/headshots/steven-chiang.webp",
     sourceUrl: "https://www.886studios.com/about/steven-chiang",
     profileTitle: "About Steven",
     profile: [
@@ -604,12 +582,10 @@ export const partnerProfiles: PartnerProfile[] = [
   {
     slug: "timothy-chen",
     name: "Timothy Chen",
-    company: "VIA Technologies",
-    photo: "/assets/headshots/timothy-chen.webp",
     sourceUrl: "https://www.886studios.com/about/timothy-chen",
     profileTitle: "Profile",
     profile: [
-      `Tim started his career at VIA Technologies, a semiconductor company based in Taiwan. As the Head of Global Sales and Marketing, he soon began angel investing in various companies. He also founded CAATCHPLAY, a media/film streaming, production, and distribution company based in Taiwan.`,
+      `Tim started his career at VIA Technologies, a semiconductor company based in Taiwan. As the Head of Global Sales and Marketing, he soon began angel investing in various companies. He also founded CATCHPLAY, a media/film streaming, production, and distribution company based in Taiwan.`,
       `With a clear vision of what he wants to achieve, he shares with us how he came to be an angel investor and how his own interests have driven him to find and solve problems.`,
     ],
     socials: [
@@ -664,13 +640,11 @@ export const partnerProfiles: PartnerProfile[] = [
         ],
       },
     ],
-    companiesBuilt: ["VIA Technologies", "CAATCHPLAY"],
+    companiesBuilt: ["VIA Technologies", "CATCHPLAY"],
   },
   {
     slug: "phil-chen",
     name: "Phil Chen",
-    company: "HTC Vive",
-    photo: "/assets/headshots/phil-chen.webp",
     sourceUrl: "https://www.886studios.com/about/phil-chen",
     profileTitle: "Profile",
     profile: [
@@ -730,6 +704,33 @@ export const partnerProfiles: PartnerProfile[] = [
     companiesBuilt: ["HTC", "Cold Electric", "New Taipei Kings", "Race Capital", "Presence Capital"],
   },
 ];
+
+// Directory and profile headers read the same identity fields from the roster.
+const roster = [...siteContent.about.team, ...siteContent.about.partners];
+const firstNameCounts = new Map<string, number>();
+for (const person of profileContent) {
+  const firstName = person.slug.split("-")[0];
+  firstNameCounts.set(firstName, (firstNameCounts.get(firstName) ?? 0) + 1);
+}
+
+export const partnerProfiles: PartnerProfile[] = profileContent.map((profile) => {
+  const person = roster.find((person) => person.name === profile.name);
+  if (!person) throw new Error(`Missing team entry for ${profile.name}`);
+  const firstName = profile.slug.split("-")[0];
+  const socials: ProfileSocial[] | undefined = "linkedinUrl" in person ? [
+    { platform: "linkedin", href: person.linkedinUrl, ariaLabel: `${person.name} on LinkedIn` },
+    ...("xUrl" in person && person.xUrl ? [{ platform: "x" as const, href: person.xUrl, ariaLabel: `${person.name} on X` }] : []),
+  ] : profile.socials;
+  return {
+    ...profile,
+    legacySlug: profile.slug,
+    slug: firstNameCounts.get(firstName) === 1 ? firstName : profile.slug,
+    role: "role" in person ? person.role : undefined,
+    company: "company" in person ? person.company ?? "" : "",
+    photo: person.photo,
+    socials,
+  };
+});
 
 export const partnerProfileBySlug = new Map(partnerProfiles.map((profile) => [profile.slug, profile]));
 export const partnerProfileByName = new Map(partnerProfiles.map((profile) => [profile.name, profile]));

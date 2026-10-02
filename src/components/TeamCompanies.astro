@@ -1,0 +1,27 @@
+---
+import { teamCompanyLinks } from "../data/teamCompanyLinks";
+interface Props { company?: string; }
+const { company } = Astro.props;
+const companies = company?.split(" / ") ?? [];
+---
+  <p class="person-company">
+    {companies.map((label, index) => (
+      <Fragment>
+        <span class="company-entry">
+        {index > 0 && <span aria-hidden="true"> / </span>}
+        {teamCompanyLinks[label] ? (
+          <a href={teamCompanyLinks[label]} target="_blank" rel="noopener noreferrer">{label}</a>
+        ) : label}
+        </span>{" "}
+      </Fragment>
+    ))}
+  </p>
+<style>
+  .person-company { color: var(--purple-bright); font-size: 14px; line-height: 1.5; margin-top: 4px; }
+  .company-entry { display: inline-block; max-width: 100%; vertical-align: top; overflow-wrap: anywhere; }
+  .person-company a { color: inherit; text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 35%, transparent); text-underline-offset: 3px; }
+  .person-company a:is(:hover, :focus-visible) { color: var(--text-primary); text-decoration-color: currentColor; }
+  a:focus-visible { outline: 2px solid var(--purple-bright); outline-offset: 5px; }
+  @media (max-width: 760px) { .person-company { font-size: 13px; } }
+  @media (max-width: 440px) { .person-company { font-size: 12px; } }
+</style>

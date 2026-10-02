@@ -55,10 +55,10 @@ function normalizeBatchNames(value: string) {
 
 // Verified replacements for moved pages linked from the imported archive.
 const archivedLinkReplacements: Record<string, string> = {
-  "https://withikigai.com/partners/886-partners-1/kai-huang": "https://www.886studios.com/about/kai-huang",
-  "https://withikigai.com/partners/886-partners-1/kevin-lin": "https://www.886studios.com/about/kevin-lin",
-  "https://withikigai.com/partners/886-partners-1/chris-wang": "https://www.886studios.com/about/chris-wang",
-  "https://withikigai.com/partners/886-partners-1/jacob-hsu": "https://www.886studios.com/about/jacob-hsu",
+  "https://withikigai.com/partners/886-partners-1/kai-huang": "https://www.886studios.com/team/kai",
+  "https://withikigai.com/partners/886-partners-1/kevin-lin": "https://www.886studios.com/team/kevin-lin",
+  "https://withikigai.com/partners/886-partners-1/chris-wang": "https://www.886studios.com/team/chris",
+  "https://withikigai.com/partners/886-partners-1/jacob-hsu": "https://www.886studios.com/team/jacob",
   "https://ramp.com/leading-indicators/april-2026-ai-index": "https://ramp.com/data/april-2026-ai-index",
 };
 
