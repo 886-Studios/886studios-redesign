@@ -208,3 +208,15 @@ final result: passed
 - Used built-in image editing for background extraction, then applied only the resulting alpha mask to the original RGB pixels. The existing helper verified every visible source RGB channel remained unchanged. CSS supplies grayscale and matching framing; James has no sharpening filter.
 - Updated social-image dimensions for the 1120×1404 source. Reviewed team, desktop profile, and phone profile together in Safari; confirmed the final crop after one adjustment. Evidence: `.artifacts/team/james-hong-replacement-review.png`; exact prompt: `.artifacts/team/james-hong-edit-prompt.md`.
 - Astro check and whitespace checks passed.
+
+### Team delight (2026-10-02)
+- Added a small, alternating turn to the existing purple portrait shapes on profile hover, keyboard focus, and press. The photographs, framing, content, and aligned rows remain unchanged. CSS only; no new scripts or dependencies.
+- Restricted hover to fine pointers; reduced-motion preferences keep shapes still and retain name-color feedback and focus outlines. Profile-page portraits stay static.
+- Removed company-link underlines as requested; links retain color and focus feedback across team and profile pages.
+- Reviewed 1440px, 900px, 390px, and 320px together in Safari, confirmed visible keyboard focus, and activated Kai's profile using the keyboard. Evidence: `.artifacts/team/delight-responsive.png`. Reduced-motion behavior was reviewed in CSS; no device preference was changed.
+- Astro check passed for 111 files with zero diagnostics; whitespace check passed. Temporary review page moved out of public assets.
+
+### Joseph Hei portrait edge (2026-10-02)
+- Identified a bright rightmost pixel column in Joseph's original photo. Added a 0.5% right-edge clip in the shared portrait component to hide that column and its resampling fringe without editing the source or changing his framing.
+- Confirmed the line is gone on the team directory and desktop/mobile profile previews after opening the refreshed server on port 4174. Evidence: `.artifacts/team/joseph-edge-fix.png`.
+- Astro check passed with zero diagnostics; whitespace check passed. Temporary review page moved out of public assets.

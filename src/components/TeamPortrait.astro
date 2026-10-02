@@ -43,6 +43,7 @@ const filterId = `portrait-sharpen-${name.toLowerCase().replaceAll(" ", "-")}`;
   )}
   <span class="portrait-shape" aria-hidden="true"></span>
   <img
+    class:list={{ "portrait-trim-edge": name === "Joseph Hei" }}
     src={cutout}
     alt={name}
     width="400"
@@ -73,7 +74,11 @@ const filterId = `portrait-sharpen-${name.toLowerCase().replaceAll(" ", "-")}`;
     background: var(--purple);
     mask: url("/assets/team/portrait-shape-mask.png") center / 100% 100% no-repeat;
     mask-mode: luminance;
+    /* The link engages the backdrop; the photograph keeps its exact framing. */
+    rotate: calc(var(--portrait-engaged, 0) * var(--portrait-turn, 5deg));
+    transition: rotate 280ms cubic-bezier(0.16, 1, 0.3, 1);
   }
+  .portrait--1, .portrait--3 { --portrait-turn: -5deg; }
   .portrait--1 .portrait-shape { transform: scaleX(-1); }
   .portrait--2 .portrait-shape { transform: rotate(-8deg) scale(.94); }
   .portrait--3 .portrait-shape { transform: rotate(7deg) scale(.94); }
@@ -86,5 +91,10 @@ const filterId = `portrait-sharpen-${name.toLowerCase().replaceAll(" ", "-")}`;
     filter: grayscale(1) var(--portrait-sharpen);
     transform-origin: top center;
     transform: translate(var(--portrait-x), var(--portrait-y)) scale(var(--portrait-scale));
+  }
+  /* Joseph's source has a bright rightmost column; trim it and its sampling edge. */
+  .portrait img.portrait-trim-edge { clip-path: inset(0 .5% 0 0); }
+  @media (prefers-reduced-motion: reduce) {
+    .portrait-shape { rotate: none; transition: none; }
   }
 </style>
