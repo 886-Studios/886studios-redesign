@@ -603,7 +603,6 @@ export const siteContent = {
           { id: "portfolio", label: "Portfolio", href: "/portfolio" },
           { id: "events", label: "Events", href: "/events" },
           { id: "resources", label: "Resources", href: "/resources" },
-          { id: "rising-star", label: "Rising Star", href: "/rising-star" },
         ],
       },
       {
@@ -611,7 +610,6 @@ export const siteContent = {
         label: "About us",
         children: [
           { id: "overview", label: "Overview", href: "/about" },
-          { id: "manifesto", label: "Manifesto", href: "/manifesto" },
           { id: "team", label: "Team", href: "/team" },
           { id: "blog", label: "Blog", href: "/blog" },
           { id: "newsroom", label: "In the News", href: "/newsroom" },

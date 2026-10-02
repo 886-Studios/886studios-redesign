@@ -396,8 +396,7 @@ drawer uses the same hierarchy. Edit it in `siteContent.nav.items`.
 | Programs | Launch Station | `/launch-station` | Launch Station overview |
 | Community | Events | `/events` | Luma event archive |
 | Community | Resources | `/resources` | Resource library |
-| Community | Rising Star | `/rising-star` | Draft placeholder content; noindex |
-| About us | Manifesto | `/manifesto` | Draft placeholder content; noindex |
+| Hidden | Manifesto | `/manifesto` | Direct URL only; draft placeholder content; noindex |
 | About us | Team | `/team` | Operating team and partners |
 | About us | Blog | `/blog` | Local articles and ikigai Insights |
 | About us | In the News | `/newsroom` | Media coverage |
@@ -408,8 +407,14 @@ Team and Newsroom use
 with the existing `/about` page. Article and profile URLs remain available, as do
 the existing About, Contact, Portfolio, and Launch Station pages.
 
-The former `/about/manifesto`, `/about/team`, `/about/newsroom`, and
-`/community/rising-star` paths redirect to their root-level routes.
+The former `/about/manifesto`, `/about/team`, and `/about/newsroom` paths redirect
+to their root-level routes.
+
+Rising Star is archived in `src/archived/rising-star.astro`. Its `/rising-star` and
+`/community/rising-star` routes are unpublished and return 404. To restore the
+draft, move its source back to `src/pages/rising-star.astro` and restore its menu
+entry. Manifesto remains available by direct URL, but is hidden from navigation.
+Both pages are excluded from the sitemap.
 
 Draft pages use `src/layouts/BlankPageLayout.astro` and remain `noindex` and excluded
 from the sitemap while their content is unfinished. When a page is ready, replace its
