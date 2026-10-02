@@ -7109,7 +7109,12 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   transform: translateX(-50%);
 }
 
-.footer-privacy-link {
+.footer-links {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-link {
   display: inline-flex;
   align-items: center;
   min-height: 32px;
@@ -7121,8 +7126,8 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   transition: color 0.18s ease;
 }
 
-.footer-privacy-link:hover,
-.footer-privacy-link:focus-visible {
+.footer-link:hover,
+.footer-link:focus-visible {
   color: var(--text-primary);
   text-decoration: underline;
 }
@@ -7981,7 +7986,7 @@ body:has(.application-banner:not([hidden])) .site-main .page {
     padding-block: 8px;
   }
 
-  .footer-privacy-link {
+  .footer-link {
     display: inline-flex;
     align-items: center;
     min-height: 32px;

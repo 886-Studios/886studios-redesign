@@ -16,7 +16,10 @@ const { hideSocials = false } = Astro.props;
     </a>
     <div class="footer-copy">
       <span>{siteContent.footer.copy}</span>
-      <a class="footer-privacy-link" href="/privacy">Privacy</a>
+      <div class="footer-links">
+        <a class="footer-link" href="/contact">Contact</a>
+        <a class="footer-link" href="/privacy">Privacy</a>
+      </div>
     </div>
     {!hideSocials && <SocialLinks />}
   </div>
