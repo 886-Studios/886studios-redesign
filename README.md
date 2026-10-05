@@ -265,7 +265,10 @@ email prefilled. Substack handles confirmation and any signup errors.
 
 ## Deployment
 
-The site is a static Astro build deployed on Vercel.
+The site is a static Astro build from
+[886-Studios/886studios.com](https://github.com/886-Studios/886studios.com), deployed to the
+Vercel project `886studios-redesign`. Keep that Vercel project name: branch protection and
+the event-sync workflow require its `Vercel – 886studios-redesign` status check.
 
 - Build command: `npm run validate` (enforced by `vercel.json`)
 - Install command: `npm ci`; runtime: Node 22
