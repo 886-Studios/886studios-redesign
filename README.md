@@ -1,7 +1,9 @@
 # 886 Studios Website
 
-Astro static site for 886 Studios, deployed on Vercel at `https://www.886studios.com`.
-Routes use page-level Astro components, shared configuration, data-driven content, and isolated browser scripts.
+The public website for 886 Studios, built with Astro and deployed on Vercel.
+
+[Live website](https://www.886studios.com) ·
+[GitHub repository](https://github.com/886-Studios/886studios.com)
 
 This README covers the public website. The separately deployed `/perks` app has its own
 [setup and deployment guide](apps/perks-portal/README.md). Root npm scripts build and test
@@ -10,7 +12,8 @@ workflow runs code checks for both apps.
 
 [Quick start](#quick-start) · [Troubleshooting](#common-pitfalls) ·
 [Checks and preview](#checks-and-preview) · [Scripts](#scripts) ·
-[Environment](#environment) · [Content](#content-boundaries) · [Deployment](#deployment)
+[Environment](#environment) · [Editing](#editing-workflow) ·
+[Content](#content-boundaries) · [Deployment](#deployment)
 
 ## Prerequisites
 
@@ -24,21 +27,26 @@ of Node 22. GitHub Actions reads `.nvmrc`; use the same major version locally an
 
 ## Quick Start
 
-Run commands from the repository root unless noted otherwise. With nvm installed:
+No environment variables or API keys are required to run the public website.
+With [nvm](https://github.com/nvm-sh/nvm) installed, clone the repository and start the dev server:
 
 ```bash
+git clone https://github.com/886-Studios/886studios.com.git
+cd 886studios.com
 nvm install
 nvm use
 npm ci
 npm run dev
 ```
 
+Already have a checkout? Run from its existing directory, starting at `nvm install`.
 With another version manager, select Node 22.12+ within Node 22 before running `npm ci`.
-No environment variables or API keys are required for the public website.
+All commands below run from the repository root unless stated otherwise.
 
-Open `http://127.0.0.1:4173/`. If port `4173` is already in use, Astro prints the alternate local URL in the terminal. Use that printed URL instead.
-The server binds to localhost by default. For intentional testing from another device,
-use `npm run dev -- --host 0.0.0.0` on a trusted network.
+Open `http://127.0.0.1:4173/` to see the homepage. Edits in `src/` reload in the browser;
+press **Ctrl+C** in the terminal to stop the server. If the port is occupied, use the
+alternate URL Astro prints. For testing from another device on a trusted network, use
+`npm run dev -- --host 0.0.0.0`.
 
 **Builds and pages using blog content need the live Substack feed.** An unavailable,
 blocked, invalid, or empty feed fails the build to protect existing article URLs.
@@ -57,6 +65,7 @@ A working portal preview also needs its ignored private catalog; see the
 | Build fails with `Could not load ikigai Insights` | Check access to the feed configured in `src/lib/substack.ts` and retry when it recovers. Use `npm run validate:code` for checks that do not fetch the feed. |
 | Port `4173` is occupied | Use Astro's printed URL or choose a port with `npm run dev -- --port 4174`. |
 | Preview is stale, or a check reports missing `dist/` | Run `npm run build` first. SEO and security checks inspect the existing build. |
+| A production build reports `analytics must match the deployment environment` | Run the [production-mode check](#production-mode-check) to reproduce it. Redirect pages need the same analytics components as other pages. Build and security-check flags must match. |
 | `/perks` is unavailable locally, or portal tests skip a catalog check | Follow the [portal setup guide](apps/perks-portal/README.md#local-preview). Its server is separate, and a fresh clone omits the private catalog. |
 | `/events` is stale | Run `npm run events:sync`, review the archive diff, then rebuild. No Luma API key is needed. |
 | SEO checks report sitemap parity errors | Give every indexable page one self-referencing canonical and include its route in `src/pages/sitemap.xml.ts`. |
@@ -68,46 +77,56 @@ traces, local environment files, and OS metadata out of commits; `.artifacts/` i
 
 ## Checks and Preview
 
-Check the public site's types and regression tests without fetching external feeds:
+### Fast local checks
+
+Reproduce GitHub's checks for both apps without fetching external feeds:
 
 ```bash
 npm run validate:code
-```
-
-To reproduce GitHub's checks for both apps, also run:
-
-```bash
 npm --prefix apps/perks-portal test
 ```
 
 Successful checks report no type errors or failed tests. The portal's private-catalog test
 is skipped when that ignored file is absent; the remaining portal tests use fixtures.
 
-Before handing website changes back or opening a PR, run the full public-site validation:
+### Full site validation
+
+Before opening a PR, run the public site's complete validation:
 
 ```bash
 npm run validate
 ```
 
-This runs diagnostics, tests, the production build, and generated-site SEO and security checks.
-A successful run ends with `Security validation passed`. It requires the live Substack
-feed and does not build or test the perks portal.
+This runs diagnostics, tests, a static build, and generated-site SEO and security checks.
+It requires the live Substack feed. A normal local run ends with
+`Security validation passed: … analytics disabled.` The perks portal has a separate
+[test and build workflow](apps/perks-portal/README.md#tests-and-build).
 
-To build without the full validation suite:
+### Production-mode check
+
+Before a production release, also check the markup that is enabled only on Vercel production.
+In macOS/Linux shells:
+
+```bash
+VERCEL=1 VERCEL_ENV=production npm run validate
+```
+
+Success ends with `Security validation passed: … analytics production only.` The flags
+apply to the build and its checks in this command. Keep them out of local environment files.
+This command enables real analytics in the generated HTML, so rebuild normally before
+opening a local preview.
+
+### Local preview
+
+Build fresh output with local analytics settings, then serve `dist/`:
 
 ```bash
 npm run build
-```
-
-After a successful build or full validation, serve the generated `dist/` output:
-
-```bash
 npm run preview
 ```
 
-Use the URL printed by Astro. Preview does not rebuild files or emulate Vercel redirects,
-rewrites, or response headers. For portal changes, use its
-[tests and build instructions](apps/perks-portal/README.md#tests-and-build).
+Use the URL printed by Astro. After further edits, rebuild before refreshing the preview.
+Vercel redirects, proxy rules, and response headers must be checked on a deployment.
 
 ## Scripts
 
@@ -155,8 +174,9 @@ YANDEX_SITE_VERIFICATION=
 BAIDU_SITE_VERIFICATION=
 ```
 
-The four site-verification variables emit ownership meta tags when they are set. They are
-normally configured in Vercel for production verification and are not needed for local work.
+These variables configure ownership meta tags. Google also has a public fallback token
+in `src/config/site.ts`; setting its variable overrides that fallback. Ownership tokens
+are normally configured in Vercel and are not needed for local work.
 
 All `.env*` files, including `.env.local`, `.env.production`, and `.env.staging`, are ignored
 except `.env.example` templates. Search-verification tokens and the IndexNow key are public
@@ -166,10 +186,10 @@ not in the public-site project or browser code.
 The template also lists optional `INDEXNOW_*` overrides. These are read from exported shell
 variables, not loaded automatically from `.env`; see [Search indexing](#search-indexing).
 
-Google Analytics and Vercel Analytics run only in a production build where Vercel sets
-`VERCEL=1` and `VERCEL_ENV=production`. Local development, local builds, and Vercel previews
-do not send analytics. The production Google measurement ID remains in `src/config/site.ts`.
-Do not copy Vercel's production environment flags into local environment files.
+Google Analytics and Vercel Analytics require both an Astro production build and
+`VERCEL=1`, `VERCEL_ENV=production`. Normal local builds and Vercel previews omit them.
+The [production-mode check](#production-mode-check) explicitly enables that markup for
+validation. The Google measurement ID is in `src/config/site.ts`.
 
 Shared conversion events are sent to both providers by `src/scripts/analytics.ts`. Trackable links and forms opt in with `data-analytics-event`, plus optional `data-analytics-placement` and `data-analytics-label` attributes. Do not put email addresses, names, form values, or other personal data in these attributes. Current funnel events are `program_interest`, `application_started`, `newsletter_signup`, `event_registration_started`, `event_details_opened`, `event_calendar_opened`, `founder_ama_opened`, `blog_post_opened`, `substack_publication_opened`, and `substack_post_opened`.
 
@@ -270,6 +290,12 @@ The site is a static Astro build from
 Vercel project `886studios-redesign`. Keep that Vercel project name: branch protection and
 the event-sync workflow require its `Vercel – 886studios-redesign` status check.
 
+To update an existing checkout that still uses the former GitHub URL:
+
+```bash
+git remote set-url origin https://github.com/886-Studios/886studios.com.git
+```
+
 - Build command: `npm run validate` (enforced by `vercel.json`)
 - Install command: `npm ci`; runtime: Node 22
 - Output directory: `dist/`
@@ -282,33 +308,48 @@ Vercel also proxies `/perks` to the separate perks project and `/timer` to the t
 `npm run dev` and `npm run preview` serve only the Astro site; they do not emulate the
 redirects, proxy rules, or response headers in `vercel.json`. Verify those on a Vercel deployment.
 
-The Events page is generated from `src/data/luma-events.json`; no Luma API key is required. The
-`Sync Luma events` GitHub Actions workflow checks Luma's public calendar every 30 minutes, merges
-new and updated events into the archive, and commits only when the event data changes. That commit
-triggers the normal Vercel rebuild. Past events are retained permanently even after they fall out of
-Luma's limited public history feed, while unpublished future events are removed.
-GitHub's `Validate site` workflow runs `npm run validate:code` and
-`npm --prefix apps/perks-portal test`. Vercel runs the
-full `npm run validate` command, including the live Substack feed, generated pages, SEO,
-and CSP checks. This split avoids Substack's HTTP 403 responses to GitHub-hosted runners
-while keeping the production feed and website content unchanged. Both GitHub workflows
-pin their actions to reviewed commit SHAs and use full Git history for content dates.
+### Release workflow
 
-The branch-protection template in `.github/main-branch-protection.json` requires both
-`Validate` from GitHub Actions and
-`Vercel – 886studios-redesign` from Vercel on `main`, including administrators, and blocks
-force pushes and deletion when applied. Committing the file does not enable those rules;
-apply it only after both checks are deployed and passing.
-Code changes must pass both checks on a branch before updating `main`; a separate review
-approval is not required.
+1. Work on a branch and run the [local and production-mode checks](#checks-and-preview).
+2. Push the branch and wait for both required checks:
 
-Event sync checks its exact candidate commit, publishes it on a temporary branch, records
-the successful `Validate` status with the GitHub Actions token, and waits for the candidate's
-Vercel preview to pass the full validation suite before updating `main`. It removes that
-run's temporary branch afterward. Recording the code-check status is necessary because
-token-created pushes do not trigger another Actions workflow. The sync has no branch-rule
-bypass. A failed build, a ten-minute deployment timeout, or a newer commit on `main` stops
-publication; the next run retries from the latest code.
+   | Check | Runs |
+   | --- | --- |
+   | `Validate` | Website diagnostics/tests and perks portal tests in GitHub Actions |
+   | `Vercel – 886studios-redesign` | Full site validation, including the live feed, build, SEO, and CSP checks |
+
+3. Merge into `main` after both pass. A separate review approval is not required.
+4. Wait for the **production** deployment to succeed, then verify the live routes and redirects.
+   A passing preview alone does not verify production-only analytics markup.
+
+GitHub checks avoid the live feed because Substack can return HTTP 403 to GitHub-hosted
+runners. Vercel runs the feed-backed build. Both GitHub workflows use full Git history
+for content dates and pin their actions to reviewed commit SHAs.
+
+The protection settings in [.github/main-branch-protection.json](.github/main-branch-protection.json)
+require both checks, including for administrators, and block force pushes and branch deletion.
+The file records the settings; committing it does not apply them to a new repository.
+
+The production version before the October 5, 2026 redesign is preserved on
+[archive/production-2026-10-05](https://github.com/886-Studios/886studios.com/tree/archive/production-2026-10-05)
+at `cd3139b`.
+
+### Scheduled event updates
+
+The Events page uses `src/data/luma-events.json`. `Sync Luma events` checks Luma's public
+calendar every 30 minutes and commits only when event data changes; no API key is required.
+Past events remain in the archive after leaving Luma's feed, while unpublished future events
+are removed. For a manual refresh, run `npm run events:sync` and review the diff.
+
+The workflow validates each candidate on a temporary branch and waits for Vercel before
+updating `main`. It records its own completed `Validate` status because token-created
+pushes do not trigger another Actions run. A failed check, a ten-minute deployment timeout,
+or a newer commit on `main` stops publication; the next run retries from the latest code.
+
+If scheduled sync fails, manually run `Sync Luma events` on `main` and inspect its log.
+The script falls back to Luma's public iCal feed if the richer feed is unavailable.
+
+### Runtime configuration
 
 The script CSP rejects inline JavaScript. Astro keeps executable scripts external,
 including analytics initialization and redirect helpers; JSON-LD remains inline data.
@@ -321,9 +362,6 @@ it does not confirm live environment settings, firewall rules, or branch protect
 
 The Contact page links directly to `it@886studios.com` with a `mailto:` URL, so
 it does not require an email provider or server-side configuration.
-
-If the scheduled event sync fails, manually run `Sync Luma events` on `main` and inspect its
-log. The sync script falls back to Luma's public iCal feed if the richer feed is unavailable.
 
 ## Architecture Map
 
@@ -407,10 +445,9 @@ When working from this tracker, fetch the database first to confirm the current 
 
 ## Content Boundaries
 
-### Information architecture workspace
+### Public routes
 
-`feature/new-information-architecture` is the local working branch for the new IA.
-Keep its commits local until publication is explicitly requested.
+The current information architecture is deployed from `main`.
 
 The top bar contains Home, three menus, Contact us, and the application CTA. The mobile
 drawer uses the same hierarchy. Edit it in `siteContent.nav.items`.
@@ -422,19 +459,22 @@ drawer uses the same hierarchy. Edit it in `siteContent.nav.items`.
 | Programs | Launch Station | `/launch-station` | Launch Station overview |
 | Community | Events | `/events` | Luma event archive |
 | Community | Resources | `/resources` | Resource library |
-| Hidden | Manifesto | `/manifesto` | Direct URL only; draft placeholder content; noindex |
-| About us | Team | `/team` | Operating team and partners |
+| About us | Overview | `/about` | Studio introduction |
+| About us | Team | `/team` | Operating team and advisors |
+| About us | Portfolio | `/portfolio` | Backed companies |
 | About us | Blog | `/blog` | Local articles and ikigai Insights |
 | About us | In the News | `/newsroom` | Media coverage |
 | | Contact us | `/contact` | Application, email, and community links |
+| Hidden | Manifesto | `/manifesto` | Direct URL only; draft placeholder content; noindex |
 
 Team and Newsroom use
 `src/components/AboutTeam.astro` and `src/components/AboutNews.astro`, also shared
-with the existing `/about` page. Article and profile URLs remain available, as do
-the existing About, Contact, Portfolio, and Launch Station pages.
+with the `/about` page. Profiles live at `/team/<slug>`; former `/about/<legacy-slug>`
+profile URLs redirect to them.
 
 The former `/about/manifesto`, `/about/team`, and `/about/newsroom` paths redirect
-to their root-level routes.
+to their root-level routes. `/programs` redirects to `/ikigai-launchpad`, and
+`/programs/launch-station` redirects to `/launch-station`.
 
 Rising Star is archived in `src/archived/rising-star.astro`. Its `/rising-star` and
 `/community/rising-star` routes are unpublished and return 404. To restore the
