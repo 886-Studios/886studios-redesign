@@ -600,7 +600,6 @@ export const siteContent = {
         id: "community",
         label: "Community",
         children: [
-          { id: "portfolio", label: "Portfolio", href: "/portfolio" },
           { id: "events", label: "Events", href: "/events" },
           { id: "resources", label: "Resources", href: "/resources" },
         ],
@@ -611,6 +610,7 @@ export const siteContent = {
         children: [
           { id: "overview", label: "Overview", href: "/about" },
           { id: "team", label: "Team", href: "/team" },
+          { id: "portfolio", label: "Portfolio", href: "/portfolio" },
           { id: "blog", label: "Blog", href: "/blog" },
           { id: "newsroom", label: "In the News", href: "/newsroom" },
         ],
