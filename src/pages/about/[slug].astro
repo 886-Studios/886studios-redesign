@@ -1,5 +1,7 @@
 ---
-import { siteConfig } from "../../config/site";
+import GoogleAnalytics from "../../components/GoogleAnalytics.astro";
+import VercelAnalytics from "../../components/VercelAnalytics.astro";
+import { getGoogleAnalyticsId, siteConfig } from "../../config/site";
 import { partnerProfiles } from "../../data/partnerProfiles";
 
 export function getStaticPaths() {
@@ -21,6 +23,7 @@ const { destination } = Astro.props;
     <meta http-equiv="refresh" content={`0;url=${destination}`} />
     <link rel="canonical" href={`${siteConfig.url}${destination}`} />
     <title>Profile has moved | 886 Studios</title>
+    <GoogleAnalytics measurementId={getGoogleAnalyticsId()} />
   </head>
   <body>
     <main><p><a id="profile-destination" href={destination}>Continue to profile</a></p></main>
@@ -28,5 +31,6 @@ const { destination } = Astro.props;
       const destination = document.querySelector<HTMLAnchorElement>("#profile-destination")?.getAttribute("href");
       if (destination) window.location.replace(`${destination}${window.location.search}${window.location.hash}`);
     </script>
+    <VercelAnalytics />
   </body>
 </html>
