@@ -74,7 +74,7 @@ export interface PortfolioCompany {
   playStoreUrl?: string;
   founders?: readonly {
     name: string;
-    linkedinUrl: string;
+    linkedinUrl?: string;
     xUrl?: string;
   }[];
   logo: {
@@ -92,6 +92,57 @@ export interface PortfolioCompany {
 }
 
 export const portfolioCompanies = [
+  {
+    name: "Dexter",
+    slug: "dexter",
+    relationship: "886-backed",
+    category: "Media & Entertainment",
+    program: "ikigai #04",
+    founders: [
+      {
+        name: "Astemir Azhakhov",
+        xUrl: "https://x.com/astemir_dex",
+      },
+      {
+        name: "Kanshobi Azh",
+        xUrl: "https://x.com/kantemirdex",
+      },
+    ],
+    logo: {
+      src: "/assets/portfolio/dexter.jpg",
+      alt: "Dexter logo",
+      width: 1024,
+      height: 1024,
+      imageClass: "is-app-icon",
+    },
+    description:
+      "Dexter is an AI cohost for live streamers. Just talk to it, and Dexter handles the production: running OBS, designing overlays, moderating chat and taking care of the technical stuff, so streamers can focus on entertaining. It learns each streamer's audience and style, breaks down every stream to show what's working, and it's actually fun to talk to.",
+  },
+  {
+    name: "Amicare",
+    slug: "amicare",
+    relationship: "886-backed",
+    category: "B2B SaaS",
+    program: "ikigai #04",
+    founders: [
+      {
+        name: "Martin Droruga",
+        linkedinUrl: "https://www.linkedin.com/in/martin-droruga/",
+        xUrl: "https://x.com/mr_s0l0_d0lo",
+      },
+      { name: "Azaan Azam" },
+      { name: "Tayo M Alemi" },
+    ],
+    logo: {
+      src: "/assets/portfolio/amicare.jpg",
+      alt: "Amicare logo",
+      width: 1024,
+      height: 1024,
+      imageClass: "is-app-icon",
+    },
+    description:
+      "Amicare is building AI-powered shared infrastructure that connects healthcare providers as patients transition between care settings. The platform helps care teams coordinate transitions, intelligently route patients to the right providers, and gain visibility into available care capacity, making it easier for patients to access the care they need.",
+  },
   {
     name: "footnotes",
     slug: "footnotes",
