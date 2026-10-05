@@ -62,7 +62,7 @@ export const pageMeta = {
   launchStation: {
     title: "Launch Station | 886 Studios",
     description:
-      "Launch Station is 886 Studios' invitation-only, 90-day builder residency in Taipei. Rolling entry, shared workspace, startup perks, and community. No cost or equity.",
+      "Launch Station is 886 Studios' invitation-only, 90-day builder residency in Taipei. Rolling entry, free office space, startup perks, and community. No cost or equity.",
     ogImage: `${siteConfig.url}/assets/launch-station/prezzy-day.jpg`,
     ogImageAlt: "The community gathered at Launch Station Prezzy Day",
     ogImageWidth: 1920,

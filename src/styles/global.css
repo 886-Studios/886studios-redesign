@@ -6922,25 +6922,9 @@ body:has(.application-banner:not([hidden])) .site-main .page {
   max-width: 680px;
 }
 
-.contact-community .contact-path-label {
-  margin-bottom: var(--space-xs);
-  color: var(--text-muted);
-}
-
-.contact-community .contact-path-title {
-  font-size: clamp(23px, 2.4vw, 27px);
-  white-space: normal;
-}
-
+.contact-community .contact-path-title,
 .contact-community .contact-path-copy {
-  max-width: 58ch;
-  margin: var(--space-xs) 0 0;
-  font-size: 15px;
   white-space: normal;
-}
-
-.contact-community .contact-action-link {
-  margin-top: var(--space-md);
 }
 
 .contact-community-brand {
@@ -6984,9 +6968,6 @@ body:has(.application-banner:not([hidden])) .site-main .page {
     margin-top: 0;
   }
 
-  .contact-community .contact-action-link {
-    margin-top: var(--space-md);
-  }
 }
 
 @media (max-width: 520px) {

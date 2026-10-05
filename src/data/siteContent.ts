@@ -1213,7 +1213,7 @@ export const siteContent = {
         },
       ],
       lead:
-        "A 90-day builder residency from 886 Studios in Taipei. Shared workspace, startup perks, and a community to build alongside.",
+        "A 90-day builder residency from 886 Studios in Taipei. Free office space, startup perks, and a community to build alongside.",
       status: "Invitation only. Rolling entry.",
       essentials: [
         {
@@ -1240,7 +1240,7 @@ export const siteContent = {
       benefitsTitle: "What founders get",
       benefits: [
         {
-          title: "Workspace",
+          title: "Free office space",
           body: "Free desk space in our shared startup office.",
         },
         {
@@ -1287,7 +1287,7 @@ export const siteContent = {
         },
       },
       card: {
-        body: "886 Studios’ invitation-only, 90-day builder residency in Taipei. Rolling entry, shared workspace, startup perks, and community. No cost or equity.",
+        body: "886 Studios’ invitation-only, 90-day builder residency in Taipei. Rolling entry, free office space, startup perks, and community. No cost or equity.",
         cta: {
           label: "Explore Launch Station →",
           href: "/launch-station",
