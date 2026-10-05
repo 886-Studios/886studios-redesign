@@ -12,7 +12,7 @@ const [titleBeforeSticker, titleAfterSticker] = about.title.split(" real ");
       {titleBeforeSticker}{" "}<span class="founder-sticker"><span class="founder-sticker-text">real</span></span>{" "}{titleAfterSticker}
     </Fragment>
   </PageHero>
-  <div class="section">
+  <div class="section about-content">
     <div class="about-cols reveal">
       {
         about.columns.map((column) => (
@@ -26,6 +26,32 @@ const [titleBeforeSticker, titleAfterSticker] = about.title.split(" real ");
         ))
       }
     </div>
+
+    <hr class="divider divider--spaced">
+
+    <section class="about-companies reveal" aria-labelledby="about-companies-title">
+      <h2 class="section-tag about-column-tag" id="about-companies-title">{about.companies.title}</h2>
+      <div class="logo-wall">
+        {
+          about.companies.logos.map((logo) => (
+            <div class="logo-card">
+              <div class="logo-stage">
+                <img
+                  class:list={["logo-image", logo.imageClass]}
+                  src={logo.src}
+                  alt={logo.alt}
+                  width={logo.width}
+                  height={logo.height}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="logo-caption">{logo.name}</div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
 
     <hr class="divider divider--spaced">
 
@@ -86,6 +112,15 @@ const [titleBeforeSticker, titleAfterSticker] = about.title.split(" real ");
 </div>
 
 <style>
+  .about-content {
+    padding-top: clamp(var(--space-lg), 4vw, var(--space-xl));
+  }
+
+  .about-companies .logo-wall {
+    padding-top: 0;
+    border-top: 0;
+  }
+
   .founder-sticker {
     display: inline-flex;
     align-items: center;

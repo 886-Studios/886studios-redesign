@@ -33,7 +33,10 @@ function initNavChrome() {
   const footer = select<HTMLElement>(".site-footer");
   const banner = select<HTMLElement>("[data-application-banner]");
   const desktopViewport = window.matchMedia("(min-width: 881px)");
+  const hoverPointer = window.matchMedia("(hover: hover) and (pointer: fine)");
   const sectionDrawers = selectAll<HTMLDetailsElement>("[data-nav-group]");
+  let hoverOpenedSection: HTMLDetailsElement | null = null;
+  let sectionCloseTimer: number | undefined;
   let previouslyFocusedElement: HTMLElement | null = null;
   let previousBodyOverflow = "";
   let previousHtmlOverflow = "";
@@ -45,21 +48,55 @@ function initNavChrome() {
 
   if (!nav || !hamburger || !drawer || !overlay || !closeButton) return;
 
+  const cancelSectionClose = () => {
+    window.clearTimeout(sectionCloseTimer);
+    sectionCloseTimer = undefined;
+  };
+
   const closeSectionDrawers = () => {
+    cancelSectionClose();
+    hoverOpenedSection = null;
     sectionDrawers.forEach((section) => { section.open = false; });
   };
 
   sectionDrawers.forEach((section) => {
     const trigger = section.querySelector("summary");
+    section.addEventListener("pointerenter", (event) => {
+      if (!desktopViewport.matches || !hoverPointer.matches || event.pointerType !== "mouse") return;
+
+      cancelSectionClose();
+      if (section.open) return;
+
+      closeSectionDrawers();
+      section.open = true;
+      hoverOpenedSection = section;
+    });
+    section.addEventListener("pointerleave", () => {
+      if (hoverOpenedSection !== section) return;
+
+      cancelSectionClose();
+      sectionCloseTimer = window.setTimeout(() => {
+        sectionCloseTimer = undefined;
+        if (hoverOpenedSection === section && !section.contains(document.activeElement)) {
+          section.open = false;
+          hoverOpenedSection = null;
+        }
+      }, 180);
+    });
     trigger?.addEventListener("click", (event) => {
       event.preventDefault();
-      const shouldOpen = !section.open;
+      // Clicking a hover-open menu keeps it open until explicitly dismissed.
+      const shouldOpen = hoverOpenedSection === section || !section.open;
       closeSectionDrawers();
       section.open = shouldOpen;
     });
     section.addEventListener("focusout", (event) => {
       if (event.relatedTarget instanceof Node && !section.contains(event.relatedTarget)) {
         section.open = false;
+        if (hoverOpenedSection === section) {
+          cancelSectionClose();
+          hoverOpenedSection = null;
+        }
       }
     });
   });
@@ -190,6 +227,7 @@ function initNavChrome() {
     closeSectionDrawers();
     if (event.matches) closeDrawer();
   });
+  hoverPointer.addEventListener("change", closeSectionDrawers);
   window.addEventListener("pagehide", closeDrawer);
   window.addEventListener("pagehide", closeSectionDrawers);
 

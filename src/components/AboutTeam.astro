@@ -9,7 +9,7 @@ const partners = about.partners.map((person) => partnerProfileByName.get(person.
 const operatingTeam = about.team.map((person) => partnerProfileByName.get(person.name)!);
 const groups = [
   { title: about.teamTitle, kind: "operating", people: [...partners.filter((person) => operatingPartnerNames.has(person.name)), ...operatingTeam] },
-  { title: "Advisors", kind: "advisors", people: partners.filter((person) => !operatingPartnerNames.has(person.name)) },
+  { title: "Partners", kind: "partners", people: partners.filter((person) => !operatingPartnerNames.has(person.name)) },
 ];
 ---
 

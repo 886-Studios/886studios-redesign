@@ -6,7 +6,7 @@ const photoLoopSets = [false, true];
 const isExternalHeroCta = home.hero.cta.href.startsWith("http");
 const portfolioPreviewSlugs = ["o3o-labs", "preciser", "dentscape", "gitroll", "peeps"];
 const portfolioPreviewItems = portfolioPreviewSlugs
-  .map((slug) => home.founders.portfolio.find((item) => item.slug === slug))
+  .map((slug) => home.portfolio.find((item) => item.slug === slug))
   .filter((item): item is NonNullable<typeof item> => Boolean(item));
 const getPhotoSrcset = (src: string) =>
   `${src.replace("-960.webp", "-480.webp")} 480w, ${src} 960w`;
@@ -118,28 +118,7 @@ const getPhotoSrcset = (src: string) =>
     </div>
   </div>
 
-  <div class="section reveal reveal-delay-1">
-    <h2 class="section-h2">{home.founders.title}</h2>
-    <div class="logo-wall">
-      {
-        home.founders.logos.map((logo) => (
-          <div class="logo-card">
-            <div class="logo-stage">
-              <img
-                class:list={["logo-image", logo.imageClass]}
-                src={logo.src}
-                alt={logo.alt}
-                width={logo.width}
-                height={logo.height}
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-            <div class="logo-caption">{logo.name}</div>
-          </div>
-        ))
-      }
-    </div>
+  <div class="section home-portfolio reveal reveal-delay-1">
     <div class="portfolio-block">
       <h2 class="section-h2">Our portfolio</h2>
       <ul class="portfolio-list" aria-label="Portfolio companies">
